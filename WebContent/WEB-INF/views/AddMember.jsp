@@ -33,7 +33,7 @@
 	<div class="color-line"></div>
 
 	<div class="back-link">
-		<a href="index.html" class="btn btn-primary">메인으로 가기</a>
+		<a href="index.do" class="btn btn-primary">메인으로 가기</a>
 	</div>
 
 	<div class="login-container">

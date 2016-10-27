@@ -207,7 +207,7 @@
             <div class="col-lg-3">
                 <div class="hpanel">
                     <div class="panel-body text-center h-200">
-                        <i class="pe-7s-graph1 fa-4x"></i>
+                        <!-- <i class="pe-7s-graph1 fa-4x"></i> 
 
                         <h1 class="m-xs">$1 206,90</h1>
 
@@ -215,26 +215,30 @@
                             All Income
                         </h3>
                         <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum.</small>
+                       	-->
                     </div>
-                    <div class="panel-footer">
-                        This is standard panel footer
+                    <div class="panel-footer text-center">
+                        <input type="button" class="btn btn-success" value="메모쓰기">
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="hpanel stats">
                     <div class="panel-body h-200">
-                        <div class="stats-title pull-left">
+                    <!--     <div class="stats-title pull-left">
                             <h4>Users Activity</h4>
-                        </div>
+                        </div> 
                         <div class="stats-icon pull-right">
                             <i class="pe-7s-share fa-4x"></i>
                         </div>
+				        	-->  	           
                         <div class="m-t-xl">
                             <h3 class="m-b-xs">4 210,160</h3>
+				                          
                     <span class="font-bold no-margins">
                         Social users
                     </span>
+                         
                             <div class="progress m-t-xs full progress-small">
                                 <div style="width: 55%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="55" role="progressbar" class=" progress-bar progress-bar-success">
                                     <span class="sr-only">35% Complete (success)</span>
