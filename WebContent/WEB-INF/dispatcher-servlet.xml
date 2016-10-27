@@ -9,5 +9,6 @@
 
 <context:annotation-config />                      
 <context:component-scan base-package="kr.or.epm.Controller" />
+<context:component-scan base-package="kr.or.epm.LoginController" />
 
 </beans>
