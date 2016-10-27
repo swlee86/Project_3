@@ -14,6 +14,6 @@ public class IndexController{
 	//최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
 	public String view() {
-		return "/views/index";
+		return "index";
 	}
 }
