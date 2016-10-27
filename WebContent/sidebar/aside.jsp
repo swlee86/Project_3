@@ -39,7 +39,7 @@
                 <a href="index.html"> <span class="nav-label">Main</span> <span class="label label-success pull-right">v.1</span> </a>
             </li>
             <li>
-                <a href="analytics.jsp"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right">NEW</span> </a>
+                <a href="private_memo.do"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right">NEW</span> </a>
             </li>
             <li>
                 <a href="contacts.jsp"> <span class="nav-label">주소록</span><span class="label label-warning pull-right">NEW</span> </a>
