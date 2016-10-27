@@ -17,7 +17,7 @@
                     <ul class="dropdown-menu animated flipInX m-t-xs">
                         <li><a href="contacts.html">Contacts</a></li>
                         <li><a href="profile.html">Profile</a></li>
-                        <li><a href="analytics.html">Analytics</a></li>
+                        <li><a href="analytics.jsp">Analytics</a></li>
                         <li class="divider"></li>
                         <li><a href="login.html">Logout</a></li>
                     </ul>
@@ -39,10 +39,10 @@
                 <a href="index.html"> <span class="nav-label">Main</span> <span class="label label-success pull-right">v.1</span> </a>
             </li>
             <li>
-                <a href="analytics.html"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right">NEW</span> </a>
+                <a href="analytics.jsp"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right">NEW</span> </a>
             </li>
             <li>
-                <a href="analytics.html"> <span class="nav-label">주소록</span><span class="label label-warning pull-right">NEW</span> </a>
+                <a href="analytics.jsp"> <span class="nav-label">주소록</span><span class="label label-warning pull-right">NEW</span> </a>
             </li>
             <li>
                 <a href="#"><span class="nav-label">개인 일정 관리</span><span class="fa arrow"></span> </a>
