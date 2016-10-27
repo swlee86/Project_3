@@ -2267,7 +2267,7 @@ body.fullscreen-panel-mode {
 }
 /* Menu */
 #side-menu {
-  background: #f7f9fa;
+  background: #f7f9fa; 
 }
 #side-menu li a {
   color: #6a6c6f;
