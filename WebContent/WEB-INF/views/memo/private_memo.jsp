@@ -218,7 +218,30 @@
                        	-->
                     </div>
                     <div class="panel-footer text-center">
-                        <input type="button" class="btn btn-success" value="메모쓰기">
+                      <!--   <input type="button" class="btn btn-success" value="메모쓰기"> -->
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+     						   글쓰기
+						</button>
+                    </div>
+                    <!-- modal 창 구현 div Tag -->
+                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="color-line"></div>
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title">개인 메모 작성</h4>
+                                    <small class="font-bold">여기에 메모를 기재해 주세요.</small>
+                                </div>
+                                <div class="modal-body">
+                                	<textarea rows="1" cols="1" style="margin: 0px; width: 100%; height: 5%;"></textarea>
+                                    <textarea rows="1" cols="1" style="margin: 0px; width: 100%; height: 250px;"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

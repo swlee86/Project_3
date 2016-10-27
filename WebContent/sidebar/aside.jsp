@@ -42,7 +42,7 @@
                 <a href="private_memo.do"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right">NEW</span> </a>
             </li>
             <li>
-                <a href="contacts.jsp"> <span class="nav-label">주소록</span><span class="label label-warning pull-right">NEW</span> </a>
+                <a href="contacts.do"> <span class="nav-label">주소록</span><span class="label label-warning pull-right">NEW</span> </a>
             </li>
             <li>
                 <a href="#"><span class="nav-label">개인 일정 관리</span><span class="fa arrow"></span> </a>
