@@ -33,21 +33,22 @@
                 </div>
             </div>
         </div>
-
+        
+		<!-- <span class="label label-success pull-right">버튼달고 싶으면 여기에 메세지 입력</span> -->
         <ul class="nav" id="side-menu">
             <li class="active">
-                <a href="index.html"> <span class="nav-label">Main</span> <span class="label label-success pull-right">v.1</span> </a>
+                <a href="index.html"> <span class="nav-label">Main</span> <span class="label label-success pull-right"></span> </a>
             </li>
             <li>
-                <a href="private_memo.do"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right">NEW</span> </a>
+                <a href="private_memo.do"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right"></span> </a>
             </li>
             <li>
-                <a href="contacts.do"> <span class="nav-label">주소록</span><span class="label label-warning pull-right">NEW</span> </a>
+                <a href="contacts.do"> <span class="nav-label">주소록</span><span class="label label-warning pull-right"></span> </a>
             </li>
             <li>
                 <a href="#"><span class="nav-label">개인 일정 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="forms_elements.html">Forms elements</a></li>
+                    <li><a href="registration_schedule.do">일정 등록</a></li>
                     <li><a href="forms_extended.html">Forms extended</a></li>
                     <li><a href="text_editor.html">Text editor</a></li>
                     <li><a href="wizard.html">Wizard</a></li>

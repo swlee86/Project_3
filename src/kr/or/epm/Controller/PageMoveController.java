@@ -39,4 +39,10 @@ public class PageMoveController{
 		return "project/projects";
 	}	
 	
+	//SideBar(aside.jsp) 일정관리 > 일정등록 클릭시 구동
+	@RequestMapping("/registration_schedule.do")
+	public String registration_scheduleview() {
+		return "schedule/registration_schedule";
+	}	
+	
 }
