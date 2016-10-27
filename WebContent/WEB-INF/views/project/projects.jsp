@@ -210,20 +210,16 @@
             </a>
 
             <div id="hbreadcrumb" class="pull-right m-t-lg">
-                <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li>
-                        <span>App views</span>
-                    </li>
-                    <li class="active">
-                        <span>Projects</span>
-                    </li>
+                    <ol class="hbreadcrumb breadcrumb">
+                    <li><a href="index.do">홈</a></li>
+                    <li><span>프로젝트 관리</span></li>
+                	<li><a href="projects.do">진행중인 프로젝트</a></li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                프로젝트
+                진행중인 프로젝트
             </h2>
-            <small>진행 중인 프로젝트</small>
+            <small>부서에서 진행 중인 프로젝트를 확인하실 수 있습니다</small>
         </div>
     </div>
 </div>

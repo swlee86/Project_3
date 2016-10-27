@@ -218,7 +218,6 @@
                        	-->
                     </div>
                     <div class="panel-footer text-center">
-                      <!--   <input type="button" class="btn btn-success" value="메모쓰기"> -->
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
      						   글쓰기
 						</button>
@@ -246,67 +245,82 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="hpanel stats">
-                    <div class="panel-body h-200">
-                    <!--     <div class="stats-title pull-left">
-                            <h4>Users Activity</h4>
-                        </div> 
-                        <div class="stats-icon pull-right">
-                            <i class="pe-7s-share fa-4x"></i>
-                        </div>
-				        	-->  	           
-                        <div class="m-t-xl">
-                            <h3 class="m-b-xs">4 210,160</h3>
-				                          
-                    <span class="font-bold no-margins">
-                        Social users
-                    </span>
-                         
-                            <div class="progress m-t-xs full progress-small">
-                                <div style="width: 55%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="55" role="progressbar" class=" progress-bar progress-bar-success">
-                                    <span class="sr-only">35% Complete (success)</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <small class="stats-label">Pages / Visit</small>
-                                    <h4>7.80</h4>
-                                </div>
+                <div class="hpanel">
+                    <div class="panel-body text-center h-200">
+                        <!-- <i class="pe-7s-graph1 fa-4x"></i> 
 
-                                <div class="col-xs-6">
-                                    <small class="stats-label">% New Visits</small>
-                                    <h4>76.43%</h4>
+                        <h1 class="m-xs">$1 206,90</h1>
+
+                        <h3 class="font-extra-bold no-margins text-success">
+                            All Income
+                        </h3>
+                        <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum.</small>
+                       	-->
+                    </div>
+                    <div class="panel-footer text-center">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+     						   글쓰기
+						</button>
+                    </div>
+                    <!-- modal 창 구현 div Tag -->
+                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="color-line"></div>
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title">개인 메모 작성</h4>
+                                    <small class="font-bold">여기에 메모를 기재해 주세요.</small>
+                                </div>
+                                <div class="modal-body">
+                                	<textarea rows="1" cols="1" style="margin: 0px; width: 100%; height: 5%;"></textarea>
+                                    <textarea rows="1" cols="1" style="margin: 0px; width: 100%; height: 250px;"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        This is standard panel footer
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="hpanel stats">
-                    <div class="panel-body h-200">
-                        <div class="stats-title pull-left">
-                            <h4>Page Views</h4>
-                        </div>
-                        <div class="stats-icon pull-right">
-                            <i class="pe-7s-monitor fa-4x"></i>
-                        </div>
-                        <div class="m-t-xl">
-                            <h1 class="text-success">860k+</h1>
-                    <span class="font-bold no-margins">
-                        Social users
-                    </span>
-                            <br/>
-                            <small>
-                                Lorem Ipsum is simply dummy text of the printing and <strong>typesetting industry</strong>. Lorem Ipsum has been.
-                            </small>
-                        </div>
+                <div class="hpanel">
+                    <div class="panel-body text-center h-200">
+                        <!-- <i class="pe-7s-graph1 fa-4x"></i> 
+
+                        <h1 class="m-xs">$1 206,90</h1>
+
+                        <h3 class="font-extra-bold no-margins text-success">
+                            All Income
+                        </h3>
+                        <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum.</small>
+                       	-->
                     </div>
-                    <div class="panel-footer">
-                        This is standard panel footer
+                    <div class="panel-footer text-center">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+     						   글쓰기
+						</button>
+                    </div>
+                    <!-- modal 창 구현 div Tag -->
+                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="color-line"></div>
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title">개인 메모 작성</h4>
+                                    <small class="font-bold">여기에 메모를 기재해 주세요.</small>
+                                </div>
+                                <div class="modal-body">
+                                	<textarea rows="1" cols="1" style="margin: 0px; width: 100%; height: 5%;"></textarea>
+                                    <textarea rows="1" cols="1" style="margin: 0px; width: 100%; height: 250px;"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
