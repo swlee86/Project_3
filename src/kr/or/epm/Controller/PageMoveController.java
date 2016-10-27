@@ -26,4 +26,17 @@ public class PageMoveController{
 	public String contactsview() {
 		return "contacts/contacts";
 	}
+	
+	//SideBar(aside.jsp) 조직도 > 부서인원 클릭시 구동
+	@RequestMapping("/team_member.do")
+	public String teammemberview() {
+		return "organization_chart/team_member";
+	}
+		
+	//SideBar(aside.jsp) 프로젝트 > 진행중인 프로젝트 클릭시 구동
+	@RequestMapping("/projects.do")
+	public String projectview() {
+		return "project/projects";
+	}	
+	
 }
