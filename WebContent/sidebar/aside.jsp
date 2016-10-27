@@ -3,12 +3,12 @@
 <aside id="menu">
     <div id="navigation">
         <div class="profile-picture">
-            <a href="index.html">
-                <img src="images/profile.jpg" class="img-circle m-b" alt="logo">
+            <a href="${pageContext.request.contextPath}/index.do">
+                <img src="${pageContext.request.contextPath}/images/profile.jpg" class="img-circle m-b" alt="logo">
             </a>
 
             <div class="stats-label text-color">
-                <span class="font-extra-bold font-uppercase">Robert Razer</span>
+                <span class="font-extra-bold font-uppercase">Project_3</span>
 
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">
@@ -167,7 +167,7 @@
                 </ul>
             </li>
             <li>
-                <a href="options.html"> <span class="nav-label">사이트 개인 설정</span></a>
+                <a href="options.jsp"> <span class="nav-label">사이트 개인 설정</span></a>
             </li>
             <li>
                 <a href="#"><span class="nav-label">Tables</span><span class="fa arrow"></span> </a>
