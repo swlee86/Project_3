@@ -15,7 +15,7 @@ public class PageMoveController{
 		return "index";
 	}
 	
-	@RequestMapping("/index.do")
+	@RequestMapping("/private_memo.do")
 	public String memoview() {
 		return "private_memo";
 	}
