@@ -206,62 +206,35 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="hpanel">
-                    <div class="panel-body text-center h-200">
-                        <!-- <i class="pe-7s-graph1 fa-4x"></i> 
-
-                        <h1 class="m-xs">$1 206,90</h1>
-
-                        <h3 class="font-extra-bold no-margins text-success">
-                            All Income
-                        </h3>
-                        <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit vestibulum.</small>
-                       	-->
+                    <div class="panel-body text-center h-100">
+  
                     </div>
                     <div class="panel-footer text-center">
-                        <input type="button" class="btn btn-success" value="메모쓰기">
+                        <input type="button" class="btn btn-success" id="writeMemoBtn" value="메모쓰기">
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-3">
-                <div class="hpanel stats">
-                    <div class="panel-body h-200">
-                    <!--     <div class="stats-title pull-left">
-                            <h4>Users Activity</h4>
-                        </div> 
-                        <div class="stats-icon pull-right">
-                            <i class="pe-7s-share fa-4x"></i>
-                        </div>
-				        	-->  	           
-                        <div class="m-t-xl">
-                            <h3 class="m-b-xs">4 210,160</h3>
-				                          
-                    <span class="font-bold no-margins">
-                        Social users
-                    </span>
-                         
-                            <div class="progress m-t-xs full progress-small">
-                                <div style="width: 55%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="55" role="progressbar" class=" progress-bar progress-bar-success">
-                                    <span class="sr-only">35% Complete (success)</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <small class="stats-label">Pages / Visit</small>
-                                    <h4>7.80</h4>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <small class="stats-label">% New Visits</small>
-                                    <h4>76.43%</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        This is standard panel footer
-                    </div>
-                </div>
+	            <div class="hpanel">
+	            	<div class="panel-heading">
+	            		<div class="panel-tools">
+	            			<a class="showhide"><i class="fa fa-chevron-up"></i></a>
+	            			<a class="closebox"><i class="fa fa-times"></i></a>
+	            		</div>
+	            		메모장
+	            	</div>
+	                <div class="panel-body">
+	                	<div class="h-100">
+	                		<h4>내용이 랄랄라...</h4>
+	                	</div>
+	                </div>
+	                <div class="panel-footer text-center">
+	                        <input type="button" class="btn btn-success" value="자세히 보기">
+	                </div>
+	            </div>
             </div>
+            
             <div class="col-lg-3">
                 <div class="hpanel stats">
                     <div class="panel-body h-200">
