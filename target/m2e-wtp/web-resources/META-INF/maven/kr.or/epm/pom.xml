@@ -46,7 +46,12 @@
 			<version>4.3.2.RELEASE</version>
 		</dependency>
 
-
+		<!-- DB local 저장소 등록 -->
+  		<dependency>
+    		<groupId>com.oracle</groupId>
+    		<artifactId>ojdbc</artifactId>
+    		<version>11</version>
+		</dependency>
 
 		<!-- AspectJ -->
 		<dependency>
