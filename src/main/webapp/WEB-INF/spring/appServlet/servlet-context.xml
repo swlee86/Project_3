@@ -21,8 +21,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.or.epm" />
 	
+	<context:annotation-config />                      
+	<context:component-scan base-package="kr.or.epm.Controller" />
+	<context:component-scan base-package="kr.or.epm.LoginController" />
+	<context:component-scan base-package="kr.or.epm" />
 	
 	
 </beans:beans>
