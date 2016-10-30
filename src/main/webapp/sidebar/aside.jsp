@@ -58,19 +58,11 @@
             <li>
                 <a href="#"><span class="nav-label">메일 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="panels.html">Panels design</a></li>
-                    <li><a href="typography.html">Typography</a></li>
-                    <li><a href="buttons.html">Colors &amp; Buttons</a></li>
-                    <li><a href="components.html">Components</a></li>
-                    <li><a href="alerts.html">Alerts</a></li>
-                    <li><a href="modals.html">Modals</a></li>
-                    <li><a href="loading_buttons.html">Loading buttons</a></li>
-                    <li><a href="draggable.html">Draggable panels</a></li>
-                    <li><a href="code_editor.html">Code editor</a></li>
-                    <li><a href="email_template.html">Email template</a></li>
-                    <li><a href="nestable_list.html">List</a></li>
-                    <li><a href="tour.html">Tour</a></li>
-                    <li><a href="icons.html">Icons library</a></li>
+                    <li><a href="mailbox.do">메일 읽기</a></li>
+                    <li><a href="mailbox_compose.do">메일 쓰기</a></li>
+                    <li><a href="#">수신 확인</a></li>
+                    <li><a href="#">스팸 메일 관리</a></li>
+                    <li><a href="#">휴지통</a></li>
                 </ul>
             </li>
             <li>

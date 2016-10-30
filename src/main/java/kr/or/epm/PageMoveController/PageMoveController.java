@@ -18,7 +18,7 @@ public class PageMoveController{
 	//SideBar(aside.jsp) 개인 메모 클릭시 구동
 	@RequestMapping("/private_memo.do")
 	public String memoview() {
-		return "memo/private_memo";
+		return "memo/private_notes";
 	}
 	
 	//SideBar(aside.jsp) 주소록 클릭시 구동
@@ -56,5 +56,17 @@ public class PageMoveController{
 	@RequestMapping("/calendar_schedule.do")
 	public String calendar_scheduleview() {
 		return "schedule/calendar_schedule";
+	}
+	
+	//SideBar(aside.jsp) 메일 서비스 > 메일함 클릭시 구동
+	@RequestMapping("/mailbox.do")
+	public String mailboxview() {
+		return "mail/mailbox";
+	}
+	
+	//SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
+	@RequestMapping("/mailbox_compose.do")
+	public String mailbox_composeview() {
+		return "mail/mailbox_compose";
 	}
 }
