@@ -243,18 +243,15 @@
             <div class="col-md-3">
                 <div class="hpanel">
                     <div class="panel-body">
-
-                        <a href="mailbox_compose.html" class="btn btn-success btn-block m-b-md">Compose</a>
-
                         <ul class="mailbox-list">
                             <li>
-                                <a href="#">
+                                <a href="mailbox.do">
                                     <span class="pull-right">12</span>
                                     <i class="fa fa-envelope"></i> Inbox
                                 </a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-paper-plane"></i> Sent</a>
+                            <li class="active">
+                                <a href="mailbox_compose.do"><i class="fa fa-paper-plane"></i> Sent</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-pencil"></i> Draft</a>

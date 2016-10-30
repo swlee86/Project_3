@@ -240,7 +240,7 @@
 
                         <ul class="mailbox-list">
                             <li class="active">
-                                <a href="#">
+                                <a href="mailbox.do">
                                     <span class="pull-right">12</span>
                                     <i class="fa fa-envelope"></i> Inbox
                                 </a>

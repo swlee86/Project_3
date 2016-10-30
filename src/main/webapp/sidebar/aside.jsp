@@ -51,7 +51,7 @@
                     <li><a href="registration_schedule.do">일정 등록</a></li>
                     <li><a href="calendar_schedule.do">일정 보기</a></li>
                     <li><a href="text_editor.html">Text editor</a></li>
-                    <li><a href="wizard.html">Wizard</a></li>
+                    <li><a href="12313">Wizard</a></li>
                     <li><a href="validation.html">Validation</a></li>
                 </ul>
             </li>
@@ -130,6 +130,7 @@
             <li>
                 <a href="#"><span class="nav-label">인사 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
+                	<li><a href="member_datatables.do">사원 정보(관리자)</a></li>
                     <li><a href="chartjs.html">ChartJs</a></li>
                     <li><a href="flot.html">Flot charts</a></li>
                     <li><a href="inline.html">Inline graphs</a></li>

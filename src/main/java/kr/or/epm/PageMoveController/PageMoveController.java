@@ -69,4 +69,23 @@ public class PageMoveController{
 	public String mailbox_composeview() {
 		return "mail/mailbox_compose";
 	}
+	
+	//SideBar(aside.jsp) 인사관리 > 사원정보(관리자) 클릭시 구동
+	@RequestMapping("/member_datatables.do")
+	public String member_datatablesview() {
+		return "members/member_datatables";
+	}
+	
+	//404번 에러 발생시 구동
+	@RequestMapping("/error_404.do")
+	public String error_404view() {
+		return "errors/error_404";
+	}
+	
+	//500번 에러 발생시 구동
+	@RequestMapping("/error_500.do")
+	public String error_500view() {
+		return "errors/error_500";
+	}
+			
 }
