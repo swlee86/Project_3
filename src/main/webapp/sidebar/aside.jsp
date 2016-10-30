@@ -49,7 +49,7 @@
                 <a href="#"><span class="nav-label">개인 일정 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="registration_schedule.do">일정 등록</a></li>
-                    <li><a href="forms_extended.html">Forms extended</a></li>
+                    <li><a href="calendar_schedule.do">일정 보기</a></li>
                     <li><a href="text_editor.html">Text editor</a></li>
                     <li><a href="wizard.html">Wizard</a></li>
                     <li><a href="validation.html">Validation</a></li>
