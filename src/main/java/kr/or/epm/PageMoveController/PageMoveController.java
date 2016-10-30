@@ -1,4 +1,4 @@
-package kr.or.epm.Controller;
+package kr.or.epm.PageMoveController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,5 +50,11 @@ public class PageMoveController{
 	@RequestMapping("/registration_schedule.do")
 	public String registration_scheduleview() {
 		return "schedule/registration_schedule";
+	}
+	
+	//SideBar(aside.jsp) 일정관리 > 일정 보기 클릭시 구동
+	@RequestMapping("/calendar_schedule.do")
+	public String calendar_scheduleview() {
+		return "schedule/calendar_schedule";
 	}
 }
