@@ -210,10 +210,31 @@
   
                     </div>
                     <div class="panel-footer text-center">
-                        <input type="button" class="btn btn-success" id="writeMemoBtn" value="메모쓰기">
+                    	<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" value="메모쓰기"">
                     </div>
                 </div>
             </div>
+
+			<!--메모에 쓸 modal-->
+              <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"  aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="color-line"></div>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">메모쓰기</h4>
+                                    <small class="font-bold">필요한 내용을 입력해보세요 !</small>
+                                </div>
+                                <div class="modal-body">
+                                    <textarea></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+            
             
             <div class="col-lg-3">
 	            <div class="hpanel">

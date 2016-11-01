@@ -28,63 +28,74 @@
 <link rel="stylesheet" href="styles/style.css">
 
 </head>
-<body class="blank">
-
-	<div class="color-line"></div>
-
+<body class="landing-page">
+	
 	<div class="back-link">
-		<a href="index.do" class="btn btn-primary">메인으로 가기</a>
+    	<a href="Test_MainLanding_View.jsp" class="btn btn-primary">Back to Dashboard</a>
 	</div>
+	<header id="page-top">
+		<div class="container">
+			<div class="heading">
 
-	<div class="login-container">
-
-		<div class="row">
-			
-			<div class="col-md-12">
-			
-			<div class="text-center m-b-md">
-				<h3>회원가입 페이지</h3>
-			</div>
-			
-				<div class="hpanel">
-					<!--흰 화면 -->
-					<div class="panel-body">
-						<form action="" method="post">
-			
-							<div class="form-group">
-								<label class="control-label" for="userId">아이디</label>
-							    <input type="text" class="form-control" id="userId" name="userId">
-							    <span>아이디체크</span>
+				<div class="register-container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="text-center m-b-md">
+								<h3>회원가입</h3>
+								<small>2PM 의 다양한 기능을 느껴보세요!</small>
 							</div>
-
-							<div class="form-group">
-								<label class="control-label" for="userPw">비밀번호</label>
-							    <input type="password" class="form-control" id="userPw" name="userPw">
+							<div class="hpanel">
+								<div class="panel-body">
+									<form action="#" id="loginForm">
+										<div class="row">
+											<div class="form-group col-lg-12">
+												<label style="color:black;">Username</label> <input type="" value="" id=""
+													class="form-control" name="">
+											</div>
+											<div class="form-group col-lg-6">
+												<label style="color:black;">Password</label> <input type="password" value=""
+													id="" class="form-control" name="">
+											</div>
+											<div class="form-group col-lg-6">
+												<label style="color:black;">Repeat Password</label> <input type="password"
+													value="" id="" class="form-control" name="">
+											</div>
+											<div class="form-group col-lg-6">
+												<label style="color:black;">Email Address</label> <input type="" value="" id=""
+													class="form-control" name="">
+											</div>
+											<div class="form-group col-lg-6">
+												<label style="color:black;">Repeat Email Address</label> <input type="" value=""
+													id="" class="form-control" name="">
+											</div>
+										</div>
+										<div class="text-center">
+											<button class="btn btn-success">Register</button>
+											<button class="btn btn-default">Cancel</button>
+										</div>
+									</form>
+								</div>
 							</div>
-
-							<div class="form-group">
-								<label class="control-label" for="userName">이름</label>
-							    <input type="text" class="form-control" id="userName" name="userName">
-							</div>
-							
-							<div class="form-group">
-								<label class="control-label" for="userName">전화번호</label>
-							    <input type="text" class="form-control" id="userName" name="userName">
-							</div>
-							
-							<div class="form-group">
-								
-							    <input type="submit" class="btn btn-success btn-block" value="회원가입">
-							    
-							</div>
-							
-
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
-	</div>
+	</header>
+
+	<!-- Vendor scripts -->
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
+<script src="vendor/iCheck/icheck.min.js"></script>
+<script src="vendor/sparkline/index.js"></script>
+
+<!-- App scripts -->
+<script src="scripts/homer.js"></script>
+	
 
 </body>
 </html>
