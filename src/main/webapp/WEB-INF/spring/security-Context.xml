@@ -4,9 +4,9 @@
  xmlns:security="http://www.springframework.org/schema/security"
  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
   http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
-  <security:http auto-config="true">
+  <security:http>
    <security:csrf disabled="true"/>
-  <security:form-login login-page="/login.htm" />
+  <security:form-login login-page="/secure_Login.do" />
   <security:intercept-url pattern="/sanction_approve.do" access="hasRole('ROLE_ADMIN')" />
 </security:http>
 <security:authentication-manager>

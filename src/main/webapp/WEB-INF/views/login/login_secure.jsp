@@ -49,7 +49,7 @@
             </div>
             <div class="hpanel">
                 <div class="panel-body">
-                        <form action="#" id="loginForm" method="post">
+                        <form action="${pageContext.request.contextPath}/login" id="loginForm" method="post">
                             <div class="form-group">
                                 <label class="control-label" for="username">아이디</label>
                                 <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="" value="" name="username" id="username" class="form-control">
