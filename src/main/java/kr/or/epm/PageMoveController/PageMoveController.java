@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageMoveController{
 
-	
 	//최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
 	public String indexview() {
@@ -94,4 +93,5 @@ public class PageMoveController{
 		return "errors/error_500";
 	}
 			
+	
 }
