@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,7 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
 
+
 </head>
 <body class="blank">
 
@@ -45,7 +47,16 @@
         <div class="col-md-12">
             <div class="text-center m-b-md">
                 <h3>로그인을 해주세요!</h3>
-                <small>WelCome 2pm!</small>
+                <small>WelCome 2pm!<br>
+                    <c:if test="${param.error != null}">
+    					<div>
+     						 로그인실패<br>
+      						<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+       						이유 : <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+      						</c:if>
+    					</div>
+   					</c:if> 
+                </small>
             </div>
             <div class="hpanel">
                 <div class="panel-body">
@@ -91,6 +102,7 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+
 
 </body>
 </html>

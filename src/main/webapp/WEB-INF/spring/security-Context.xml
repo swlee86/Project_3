@@ -6,7 +6,8 @@
   http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
   <security:http>
    <security:csrf disabled="true"/>
-  <security:form-login login-page="/secure_Login.do" />
+  <security:form-login login-page="/secure_Login.do"
+  								authentication-failure-url="/secure_Login.do?error" />
   <security:intercept-url pattern="/sanction_approve.do" access="hasRole('ROLE_ADMIN')" />
 </security:http>
 <security:authentication-manager>
