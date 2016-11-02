@@ -68,7 +68,7 @@
             <li>
                 <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="tables_design.html">Tables design</a></li>
+                    <li><a href="sanction_approve.do">승인 처리</a></li>
                     <li><a href="datatables.html">Data tables</a></li>
                     <li><a href="footable.html">Foo Table</a></li>
                 </ul>
@@ -152,7 +152,7 @@
             <li>
                 <a href="#"><span class="nav-label">회원 정보 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="login.htm">Login</a></li>
                     <li><a href="register.html">Register</a></li>
                     <li><a href="error_one.html">Error 404</a></li>
                     <li><a href="error_two.html">Error 505</a></li>

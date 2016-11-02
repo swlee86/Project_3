@@ -25,6 +25,7 @@
 	<context:annotation-config />                      
 	<context:component-scan base-package="kr.or.epm.PageMoveController" />
 	<context:component-scan base-package="kr.or.epm.LoginController" />
+	<context:component-scan base-package="kr.or.epm.SecurityController" />
 	<context:component-scan base-package="kr.or.epm" />
 	
 	

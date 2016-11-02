@@ -76,6 +76,12 @@ public class PageMoveController{
 		return "members/member_datatables";
 	}
 	
+	//SideBar(aside.jsp) 전자 결재 > 결재 승인(관리자) 클릭시 구동
+	@RequestMapping("/sanction_approve.do")
+	public String sanction_approveview() {
+		return "electronic_sanction/sanction_approve";
+	}
+	
 	//404번 에러 발생시 구동
 	@RequestMapping("/error_404.do")
 	public String error_404view() {
