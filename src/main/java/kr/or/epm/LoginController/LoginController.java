@@ -32,10 +32,10 @@ public class LoginController {
 		
 	}
 		
-	@RequestMapping("/AddMember.do")
+	@RequestMapping("/addMember.do")
 	public String addMember(){
 		System.out.println("회원 가입");
-		return "AddMember";
+		return "register/addMember";
 	}
 	
 	
