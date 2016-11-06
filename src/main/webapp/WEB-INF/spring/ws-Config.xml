@@ -6,11 +6,12 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/websocket 
         http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd">
+    
+    <bean id="echoHandler" class="	" />
+ 	<bean id="chatHandler" class="kr.or.epm.ws.ChatWebSocketHandler" />
  
     <websocket:handlers>
-        <websocket:mapping handler="echoHandler" path="/echo"/>
+        <websocket:mapping handler="echoHandler" path="/echo_ws"/>
+        <websocket:mapping handler="chatHandler" path="/chat_ws"/>
     </websocket:handlers>
-    
-    <bean id="echoHandler" class="kr.or.epm.ws.EchoHandler" />
- 
 </beans>
