@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,11 +51,20 @@
 						<div class="col-md-12">
 							<div class="text-center m-b-md">
 								<h3>로그인</h3>
-								<small>WelCome 2pm!</small>
+								<small>WelCome 2pm! 
+									<c:if test="${param.error != null}">
+										<div>
+											로그인실패<br>
+											<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+       										이유 : <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+											</c:if>
+										</div>
+									</c:if>
+								</small>
 							</div>
 							<div class="hpanel">
 								<div class="panel-body">
-									<form action="#" id="loginForm" method="POST">
+									<form action="${pageContext.request.contextPath}/login" id="loginForm" method="POST">
 										<div class="form-group">
 											<label class="control-label" for="username" style="color: black;">아이디</label> <input
 												type="text" placeholder="example@gmail.com"
