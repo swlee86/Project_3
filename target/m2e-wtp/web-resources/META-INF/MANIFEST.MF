@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: wong_
 Build-Jdk: 1.8.0_101
+=======
+Built-By: jun
+Build-Jdk: 1.8.0_45
+>>>>>>> Maven_Project
 Created-By: Maven Integration for Eclipse
 
