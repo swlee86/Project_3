@@ -65,7 +65,7 @@ public class PageMoveController {
 	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
 	@RequestMapping("/mailbox_compose.do")
 	public String mailbox_composeview() {
-		return "mail.mailbox_compose";
+		return "mail/mailbox_compose";
 	}
 
 	// SideBar(aside.jsp) 인사관리 > 사원정보(관리자) 클릭시 구동

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div class="back-link">
     <a href="index.html" class="btn btn-primary">Back to Dashboard</a>
 </div>
