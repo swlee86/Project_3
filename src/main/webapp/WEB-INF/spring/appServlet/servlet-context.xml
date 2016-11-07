@@ -12,11 +12,11 @@
 	<context:component-scan base-package="kr.or.epm.PageMoveController" />
 	<context:component-scan base-package="kr.or.epm.LoginController" />
 	<context:component-scan base-package="kr.or.epm.SecurityController" />
-	<context:component-scan base-package="kr.or.epm" />
+	<context:component-scan base-package="kr.or.epm.Chat" />
 
 		<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	
 	                 
 	
 	
