@@ -11,7 +11,7 @@ public class PageMoveController {
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
 	public String indexview() {
-		return "index";
+		return "home.index";
 	}
 
 	// SideBar(aside.jsp) 개인 메모 클릭시 구동
