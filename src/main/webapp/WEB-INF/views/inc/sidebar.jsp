@@ -141,6 +141,10 @@
             <li>
                 <a href="#"><span class="nav-label">게시판 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
+                 	<li><a href="info_board_list.do">회사정보 게시판</a></li>
+                 	<li><a href="media_board_list.do">언론 게시판</a></li>
+                 	<li><a href="business_board_list.do">업무정보공유 게시판</a></li>
+                 	<li><a href="free_board_list.do">사원정보공유 게시판</a></li>
                     <li><a href="overview.html"><span class="label label-success pull-right">Start</span> Overview </a>  </li>
                     <li><a href="transition_two.html">Columns from up</a></li>
                     <li><a href="transition_one.html">Columns custom</a></li>
