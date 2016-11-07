@@ -25,6 +25,7 @@ public class LoginController {
 	public String LoginResult(String username){
 		System.out.println("로그인 리절트 : "+username);
 		if(username.equals("admin")){
+			System.out.println("어드민 로그인");
 			return "index";
 		}else{
 			return null;
