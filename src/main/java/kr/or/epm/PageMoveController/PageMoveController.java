@@ -97,5 +97,33 @@ public class PageMoveController {
 	public String chat_wsview() {
 		return "chat.chat_ws";
 	}
-
+	
+	//회사정보 게시판  > 리스트페이지이동 
+	@RequestMapping("/info_board_list.do")
+	public String info_board_list() {
+		return "board_info.info_board_list";
+	}
+	//회사정보 게시판  > 글쓰기페이지이동 
+	@RequestMapping("/info_board_write.do")
+	public String info_board_write() {
+		return "board_info/info_board_write";
+	}
+	
+	
+	
+	//언론 게시판   > 리스트페이지이동
+	@RequestMapping("/media_board_list.do")
+	public String media_board_list() {
+		return "error_404";
+	}
+	//업무정보공유게시판   > 리스트페이지이동
+	@RequestMapping("/business_board_list.do")
+	public String business_board_list() {
+		return "error_404";
+	}
+	//사원정보공유 게시판   > 리스트페이지이동
+	@RequestMapping("/free_board_list.do")
+	public String free_board_list() {
+		return "board_free.free_board_list";
+	}
 }
