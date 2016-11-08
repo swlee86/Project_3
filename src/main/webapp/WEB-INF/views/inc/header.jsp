@@ -11,7 +11,8 @@
         </span>
     </div>
     <nav role="navigation">
-        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="header-link hide-menu">
+        	&nbsp;<i class="fa fa-bars"></i></div>
         <div class="small-logo">
             <span class="text-primary">HOMER APP</span>
         </div>
@@ -39,17 +40,6 @@
 					<li>
                         <a class="" href="profile.html">Profile</a>
                     </li>
-<!-- 
-					<li>
-                        <a class="" href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a class="" href="login.html">Logout</a>
-                    </li>
-                    <li>
-                        <a class="" href="profile.html">Profile</a>
-                    </li>
-                     -->
                 </ul>
             </div>
         </div>

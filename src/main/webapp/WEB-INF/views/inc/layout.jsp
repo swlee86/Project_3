@@ -36,6 +36,7 @@
 <![endif]-->
 
 <!-- Header -->
+<div id="header">
 <tiles:insertAttribute name="header" />
 
 <!-- Navigation -->

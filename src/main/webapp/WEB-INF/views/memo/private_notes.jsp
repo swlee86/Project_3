@@ -41,10 +41,11 @@
                 </div>
                 <div class="panel-section">
 
-                    <div class="input-group">
+                    <div class="input-group" style="font-size: 100%">
                         <input type="text" class="form-control" placeholder="Search note...">
                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" style="font-size: 23px"><i class="glyphicon glyphicon-plus small"></i> </button>
+                                <button class="btn btn-default" type="button">
+                                <i class="glyphicon-customer glyphicon-plus"></i> </button>
                            </span>
                     </div>
                     <button type="button" data-toggle="collapse" data-target="#notes"
