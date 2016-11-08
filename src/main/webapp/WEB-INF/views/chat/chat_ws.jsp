@@ -40,8 +40,7 @@
 
 						<div class="col-md-9 ">
 							<div class="chat-discussion">
-								<textarea id="messageWindow" rows="25" cols="100"
-									readonly="readonly"></textarea>
+								<textarea id="messageWindow" rows="25" cols="100" readonly="readonly"></textarea>
 							</div>
 						</div>
 						<div class="col-md-3">
@@ -135,10 +134,9 @@
 				</div>
 				<div class="panel-footer">
 					<div class="input-group">
-						<input type="text" class="form-control"
-							placeholder="Type your message here..." id="inputMessage">
+						<input type="text" class="form-control"	placeholder="Type your message here..." id="inputMessage">
 						<span class="input-group-btn">
-							<button class="btn btn-success" onclick="send()" value="send">Send</button>
+							<button class="btn btn-success" onclick="send()" value="send" id="send">Send</button>
 						</span>
 					</div>
 				</div>
@@ -146,14 +144,3 @@
 		</div>
 	</div>
 </div>
-<!-- Vendor scripts -->
-<script src="vendor/jquery/dist/jquery.min.js"></script>
-<script src="vendor/jquery-ui/jquery-ui.min.js"></script>
-<script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
-<script src="vendor/iCheck/icheck.min.js"></script>
-<script src="vendor/sparkline/index.js"></script>
-
-<!-- App scripts -->
-<script src="scripts/homer.js"></script>

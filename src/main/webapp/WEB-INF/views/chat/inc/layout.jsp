@@ -58,17 +58,50 @@
 <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
 <script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.resize.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.pie.js"></script>
-<script src="vendor/flot.curvedlines/curvedLines.js"></script>
-<script src="vendor/jquery.flot.spline/index.js"></script>
 <script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 <script src="vendor/iCheck/icheck.min.js"></script>
-<script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+
+
+<script type="text/javascript">
+        var textarea = document.getElementById("messageWindow");
+        var webSocket = new WebSocket('ws://localhost:8090/epm/chat_ws');
+        var inputMessage = document.getElementById('inputMessage');
+    webSocket.onerror = function(event) {
+      onError(event)
+    };
+    webSocket.onopen = function(event) {
+      onOpen(event)
+    };
+    webSocket.onmessage = function(event) {
+      onMessage(event)
+    };
+    function onMessage(event) {
+        textarea.value += "상대 : " + event.data + "\n";
+    }
+    function onOpen(event) {
+        textarea.value += "연결 성공\n";
+    }
+    function onError(event) {
+      alert(event.data);
+    }
+    function send() {
+        textarea.value += "나 : " + inputMessage.value + "\n";
+        webSocket.send(inputMessage.value);
+        inputMessage.value = "";
+    }
+    
+    $('#inputMessage').keypress(function(event){
+    	if(event.which==13){
+    		$('#send').click();
+    		return false;
+    	}
+    	
+    })
+  </script>
+
 </body>
 </html>
