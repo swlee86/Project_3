@@ -25,6 +25,25 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+<style>
+.contact-panelt h3 {
+  margin-bottom: 2px;
+  
+}
+.contact-panelt h3 a {
+  color: inherit;
+}
+.contact-panelt p {
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 0;
+}
+.contact-panelt img {
+  width: 75px;
+  height: 75px;
+  margin-right:30px;
+}
+</style>
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
