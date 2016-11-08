@@ -108,18 +108,10 @@ public class PageMoveController {
 	public String info_board_write() {
 		return "board_info/info_board_write";
 	}
-	
-	
-	
-	//언론 게시판   > 리스트페이지이동
-	@RequestMapping("/media_board_list.do")
-	public String media_board_list() {
-		return "error_404";
-	}
-	//업무정보공유게시판   > 리스트페이지이동
-	@RequestMapping("/business_board_list.do")
-	public String business_board_list() {
-		return "error_404";
+	//회사정보 게시판 > 글보기페이지 이동
+	@RequestMapping("/info_board_view.do")
+	public String info_board_view() {
+		return "board_info.info_board_view";
 	}
 	//사원정보공유 게시판   > 리스트페이지이동
 	@RequestMapping("/free_board_list.do")

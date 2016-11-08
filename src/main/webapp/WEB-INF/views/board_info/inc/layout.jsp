@@ -20,11 +20,14 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-
+    <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
+    <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />
+    
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/static_custom.css">
 
 </head>
 <body class="fixed-navbar fixed-sidebar">

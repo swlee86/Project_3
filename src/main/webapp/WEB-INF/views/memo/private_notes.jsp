@@ -42,9 +42,9 @@
                 <div class="panel-section">
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search note...">
+                        <input type="text" class="form-control" placeholder="Search note....">
                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" style="font-size: 23px"><i class="glyphicon glyphicon-plus small"></i> </button>
+                                <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
                            </span>
                     </div>
                     <button type="button" data-toggle="collapse" data-target="#notes"

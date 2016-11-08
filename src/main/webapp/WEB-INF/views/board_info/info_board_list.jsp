@@ -33,7 +33,7 @@
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                	총 게시글 수 : 10 개
+                	총 게시글 수 : 130 개
             </div>
             <div class="panel-body">
             	<form action="" class="form-inline">
@@ -44,7 +44,7 @@
                      <div class="input-group">
                      	<input type="text" class="form-control input-sm" placeholder="" name="s"/>
                         	<span class="input-group-btn">
-								<button class="btn btn-sm btn-default" type="submit"> <span class="fa fa-search" style=" font-size: 19px;"></span> </button>
+								<button class="btn btn-sm btn-default" type="submit"><span class="fa fa-search" style="font-size:15px;"></span> </button>
 							</span>
                      </div>
                 </form>            	
@@ -70,7 +70,7 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Vosselaar</td>
+                        <td><a href="info_board_view.do">Vosselaar</a></td>
                         <td>박지은</td>
                         <td>16/11/06</td>
                         <td>11</td>
@@ -97,12 +97,12 @@
             </div>
              <div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default"><i class="fa fa-chevron-left" style=" font-size: 20px;"></i></button>
+                    <button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button>
                     <button class="btn btn-default active">1</button>
                     <button class="btn btn-default  ">2</button>
                     <button class="btn btn-default">3</button>
                     <button class="btn btn-default">4</button>
-                    <button type="button" class="btn btn-default "><i class="fa fa-chevron-right" style=" font-size: 20px;"></i></button>
+                    <button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 </div>
               </div>
         </div> 
