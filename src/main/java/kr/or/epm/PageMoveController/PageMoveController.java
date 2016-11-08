@@ -118,4 +118,10 @@ public class PageMoveController {
 	public String free_board_list() {
 		return "board_free.free_board_list";
 	}
+	
+	//주소록 > 주소록 추가 페이지 이동
+	@RequestMapping("/enroll.do")
+	public String contacts() {
+		return "contacts.enroll";
+	}
 }
