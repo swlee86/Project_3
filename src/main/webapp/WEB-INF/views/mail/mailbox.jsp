@@ -50,16 +50,16 @@
 									<i class="fa fa-refresh"></i> Refresh
 								</button>
 								<button class="btn btn-default btn-sm" >
-									<i class="fa fa-eye"></i>
+									&nbsp;<i class="fa fa-eye"></i>
 								</button>
 								<button class="btn btn-default btn-sm" >
-									<i class="fa fa-exclamation"></i>
+									&nbsp;<i class="fa fa-exclamation"></i>
 								</button>
 								<button class="btn btn-default btn-sm">
-									<i class="fa fa-trash-o"></i>
+									&nbsp;<i class="fa fa-trash-o"></i>
 								</button>
 								<button class="btn btn-default btn-sm" >
-									<i class="fa fa-check"></i>
+									&nbsp;<i class="fa fa-check"></i>
 								</button>
 								<button class="btn btn-default btn-sm" >
 									<i class="fa fa-tag"></i>
