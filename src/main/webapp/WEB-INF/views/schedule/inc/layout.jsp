@@ -65,14 +65,17 @@
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/moment/min/moment.min.js"></script>
 <script src="vendor/fullcalendar/dist/fullcalendar.min.js"></script>
-
+<script src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="vendor/select2-3.5.2/select2.min.js"></script>
+<script src="vendor/moment/moment.js"></script>
+<script src="vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 
 <script>
 
     $(function () {
-
+    	  $('.input-group.date').datepicker();
 
         /* initialize the external events
          -----------------------------------------------------------------*/
