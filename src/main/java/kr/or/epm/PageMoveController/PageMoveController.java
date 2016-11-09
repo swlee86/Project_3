@@ -143,4 +143,10 @@ public class PageMoveController {
 	public String mailbox_trash() {
 		return "mail.mailbox_trash";
 	}	
+	
+	//전자결재 > 결재보기화면 페이지이동
+	@RequestMapping("/sanction_approve_view.do")
+	public String sanction_approve_view() {
+		return "electronic_sanction.sanction_approve_view";
+	}
 }
