@@ -83,7 +83,7 @@
                         <td>4</td>
                         <td>공통</td>
                         <td>결재</td>
-                        <td>기안용지_승인_프로세스_재기안</td>
+                        <td><a href="sanction_approve_view.do">기안용지_승인_프로세스_재기안</a></td>
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>

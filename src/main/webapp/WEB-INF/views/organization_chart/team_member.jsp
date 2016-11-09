@@ -31,6 +31,11 @@
 <div class="content animate-panel">
 
 <div class="row">
+		<div class="col-md-3">
+			<jsp:include page="/sidebar/mailLeftList_side.jsp"></jsp:include>
+		</div>
+		
+	 <div class="col-md-9"> 
     <div class="col-lg-3">
         <div class="hpanel hgreen contact-panel">
             <div class="panel-body">
@@ -107,6 +112,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 <div class="row">
