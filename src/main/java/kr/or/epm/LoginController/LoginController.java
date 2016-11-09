@@ -18,24 +18,25 @@ public class LoginController {
 	@RequestMapping(value="/login.do", method=RequestMethod.GET)
 	public String loginview(){
 		System.out.println("로그인");
-		return "login/login";
+		return "login.login";
 	}
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String loginResult(String username){
 		System.out.println("로그인 리절트 : "+username);
 		if(username.equals("admin")){
-			return "index";
+			System.out.println("어드민 로그인");
+			return "home.index";
 		}else{
 			return null;
 		}
 		
 	}
 		
-	@RequestMapping("/AddMember.do")
+	@RequestMapping("/addMember.do")
 	public String addMember(){
 		System.out.println("회원 가입");
-		return "AddMember";
+		return "register.addMember";
 	}
 	
 	

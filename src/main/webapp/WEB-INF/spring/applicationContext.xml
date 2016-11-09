@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context 
-                           http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/mvc
+       					   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<mvc:annotation-driven />
+	<bean id="driverManagerDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="springuser"></property>
+		<property name="password" value="1004"></property>
+	</bean>
 
-<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-	<property name="username" value="springuser"></property>
-	<property name="password" value="1004"></property>
-</bean>
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"></property>
+		<property name="order" value="1" />
+	</bean>
+	
+	<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="2"></property>
+	</bean>
+	
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="3" />
+	</bean>
+
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/Tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<mvc:resources location="/WEB-INF/resource/js/" mapping="/js/**" />
+	<bean name="jsonview"
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 
 
 </beans>

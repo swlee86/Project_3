@@ -2947,7 +2947,7 @@ label.error:before {
   text-align: center;
 }
 .file-body i.fa {
-  font-size: 56px;
+  font-size:  56px; 
 }
 /* Filter search */
 .filter-item {
