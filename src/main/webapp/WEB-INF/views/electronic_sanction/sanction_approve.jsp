@@ -117,7 +117,9 @@
                     </tr>
                     </tbody>
                 </table>
-                <button type="button"  class="btn w-xs btn-primary" >일괄결재</button>
+                <div class="row" style="text-align:right; margin-right:5px;">
+                	<button type="button"  class="btn w-xs btn-primary" >일괄결재</button>
+                </div>
 			</div>
 
             </div>

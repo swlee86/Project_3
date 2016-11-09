@@ -36,22 +36,16 @@
                 		총 개시글 수 : <font color="coral">10</font> 개
             </div>
             <div class="panel-body">
-            	<div class="row">
-            		<div class="col-md-8"></div>
-            		<div class="col-md-4">
+            	<div class="row" style="text-align:right; margin-right:5px;">
             			<form action="" class="form-inline">
                  			<select  class="form-control input-sm" >
                     			<option >제목</option>
                         		<option>작성자명</option>
                     		 </select> 	
-                     		<span class="input-group">
-                     		<input type="text" class="form-control input-sm" name="s"/>
-                        		<span class="input-group-btn">
-									<button class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
-								</span>
-                   	  		</span>
+                     		  <input type="text" class="form-control input-sm" name="s"/>
+                    		 <button class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
                 		</form>
-            		</div>
+            		
                 </div>                	
                 <br>     
                  <hr style="border:1px solid gray; margin-bottom:0px">
@@ -97,7 +91,9 @@
                     </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn w-xs btn-primary" >글 등록</button>
+                 <div class="row" style="text-align:right; margin-right:5px;">
+                	<button type="button" class="btn w-xs btn-primary" onclick="location.href='info_board_write.do'" >글 등록</button>
+                </div>
 			</div>
 
             </div>
