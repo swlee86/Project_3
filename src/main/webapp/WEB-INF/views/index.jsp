@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%session.setAttribute("id", "PSJ"); %>
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
