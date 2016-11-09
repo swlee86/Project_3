@@ -80,6 +80,7 @@ public class PageMoveController {
 		return "electronic_sanction.sanction_approve";
 	}
 
+	
 	// 404번 에러 발생시 구동
 	@RequestMapping("/error_404.do")
 	public String error_404view() {
@@ -123,5 +124,11 @@ public class PageMoveController {
 	@RequestMapping("/enroll.do")
 	public String contacts() {
 		return "contacts.enroll";
+	}
+	
+	//전자 결재 > 기안문작성
+	@RequestMapping("/sanction_approve_write.do")
+	public String sanction_approve_write() {
+		return "electronic_sanction.sanction_approve_write";
 	}
 }

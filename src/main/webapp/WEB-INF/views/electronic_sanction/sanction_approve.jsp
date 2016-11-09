@@ -1,4 +1,5 @@
-<div class="normalheader transition animated fadeIn">
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+    <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
             <a class="small-header-action" href="">
@@ -11,362 +12,128 @@
                 <ol class="hbreadcrumb breadcrumb">
                     <li><a href="index.html">Dashboard</a></li>
                     <li>
-                        <span>Tables</span>
+                        <span>App views</span>
                     </li>
                     <li class="active">
-                        <span>Tables design</span>
+                        <span>Contacts</span>
                     </li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                Tables design
+                	결재대기함
             </h2>
-            <small>Examples of various designs of tables.</small>
+            <small>Show users list in nice and color panels</small>
         </div>
     </div>
 </div>
 
 <div class="content animate-panel">
-
-<div class="row">
-    <div class="col-lg-8">
-        <div class="hpanel">
-            <div class="panel-heading">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                    <a class="closebox"><i class="fa fa-times"></i></a>
-                </div>
-                This is a basic table design
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1" class="table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Street Address</th>
-                        <th>City</th>
-                        <th>Country</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Abraham</td>
-                        <td>076 9477 4896</td>
-                        <td>294-318 Duis Ave</td>
-                        <td>Vosselaar</td>
-                        <td>Belgium</td>
-                    </tr>
-                    <tr>
-                        <td>Phelan</td>
-                        <td>0500 034548</td>
-                        <td>680-1097 Mi Rd.</td>
-                        <td>Lavoir</td>
-                        <td>Pakistan</td>
-                    </tr>
-                    <tr>
-                        <td>Raya</td>
-                        <td>(01315) 27698</td>
-                        <td>Ap #289-8161 In Avenue</td>
-                        <td>Santomenna</td>
-                        <td>Burkina Faso</td>
-                    </tr>
-                    <tr>
-                        <td>Azalia</td>
-                        <td>0500 854198</td>
-                        <td>226-4861 Augue. St.</td>
-                        <td>Newtown</td>
-                        <td>Christmas Island</td>
-                    </tr>
-                    <tr>
-                        <td>Garth</td>
-                        <td>(01662) 59083</td>
-                        <td>3219 Elit Avenue</td>
-                        <td>Ternitz</td>
-                        <td>Saint Martin</td>
-                    </tr>
-                    <tr>
-                        <td>Selma</td>
-                        <td>0877 118 6905</td>
-                        <td>P.O. Box 410, 7331 Nec, St.</td>
-                        <td>Glenrothes</td>
-                        <td>Korea, North</td>
-                    </tr>
-                    </tbody>
-                </table>
-</div>
-
-            </div>
-            <div class="panel-footer">
-                Table - 6 rows
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="hpanel">
-            <div class="panel-heading">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                    <a class="closebox"><i class="fa fa-times"></i></a>
-                </div>
-                This is a condensed basic table
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1" class="table table-condensed">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Street</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Henry</td>
-                        <td>Purus Gravida Sagittis Limited</td>
-                        <td>055 1753 4032</td>
-                    </tr>
-                    <tr>
-                        <td>Shelly</td>
-                        <td>Posuere Enim Inc.</td>
-                        <td>0313 143 2317</td>
-                    </tr>
-                    <tr>
-                        <td>Edan</td>
-                        <td>Quisque Imperdiet Company</td>
-                        <td>076 1743 8649</td>
-                    </tr>
-                    <tr>
-                        <td>Sophia</td>
-                        <td>Quam Incorporated</td>
-                        <td>0863 826 7513</td>
-                    </tr>
-                    <tr>
-                        <td>Griffith</td>
-                        <td>Tempor Erat Corp.</td>
-                        <td>0845 46 45</td>
-                    </tr>
-
-                    </tbody>
-                </table>
-                    </div>
-
-            </div>
-            <div class="panel-footer">
-                Table - 5 rows
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-4">
-        <div class="hpanel">
-            <div class="panel-heading">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                    <a class="closebox"><i class="fa fa-times"></i></a>
-                </div>
-                This is a striped table design
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1" class="table table-condensed table-striped">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Street</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Henry</td>
-                        <td>Purus Gravida Sagittis Limited</td>
-                        <td>055 1753 4032</td>
-                    </tr>
-                    <tr>
-                        <td>Shelly</td>
-                        <td>Posuere Enim Inc.</td>
-                        <td>0313 143 2317</td>
-                    </tr>
-                    <tr>
-                        <td>Edan</td>
-                        <td>Quisque Imperdiet Company</td>
-                        <td>076 1743 8649</td>
-                    </tr>
-                    <tr>
-                        <td>Sophia</td>
-                        <td>Quam Incorporated</td>
-                        <td>0863 826 7513</td>
-                    </tr>
-                    <tr>
-                        <td>Griffith</td>
-                        <td>Tempor Erat Corp.</td>
-                        <td>0845 46 45</td>
-                    </tr>
-
-                    </tbody>
-                </table>
-</div>
-
-            </div>
-            <div class="panel-footer">
-                Table - 5 rows
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-8">
-        <div class="hpanel">
-            <div class="panel-heading">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                    <a class="closebox"><i class="fa fa-times"></i></a>
-                </div>
-                This is a bordered striped basic table
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Street Address</th>
-                        <th>City</th>
-                        <th>Country</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Abraham</td>
-                        <td>076 9477 4896</td>
-                        <td>294-318 Duis Ave</td>
-                        <td>Vosselaar</td>
-                        <td>Belgium</td>
-                    </tr>
-                    <tr>
-                        <td>Phelan</td>
-                        <td>0500 034548</td>
-                        <td>680-1097 Mi Rd.</td>
-                        <td>Lavoir</td>
-                        <td>Pakistan</td>
-                    </tr>
-                    <tr>
-                        <td>Raya</td>
-                        <td>(01315) 27698</td>
-                        <td>Ap #289-8161 In Avenue</td>
-                        <td>Santomenna</td>
-                        <td>Burkina Faso</td>
-                    </tr>
-                    <tr>
-                        <td>Azalia</td>
-                        <td>0500 854198</td>
-                        <td>226-4861 Augue. St.</td>
-                        <td>Newtown</td>
-                        <td>Christmas Island</td>
-                    </tr>
-                    <tr>
-                        <td>Garth</td>
-                        <td>(01662) 59083</td>
-                        <td>3219 Elit Avenue</td>
-                        <td>Ternitz</td>
-                        <td>Saint Martin</td>
-                    </tr>
-                    <tr>
-                        <td>Selma</td>
-                        <td>0877 118 6905</td>
-                        <td>P.O. Box 410, 7331 Nec, St.</td>
-                        <td>Glenrothes</td>
-                        <td>Korea, North</td>
-                    </tr>
-                    </tbody>
-                </table>
-</div>
-
-            </div>
-            <div class="panel-footer">
-                Table - 6 rows
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
+	<div class="row">
+	
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                    <a class="closebox"><i class="fa fa-times"></i></a>
-                </div>
-                This is a bordered striped and responsive table
+                	전체 : <font color="coral">10</font> 개
             </div>
             <div class="panel-body">
+            	<div class="row" style="background-color:#f7f9fa">
+	            	<form action="" class="form-inline">
+	            		<table style="margin-top:20px; margin-bottom:20px;" width="100%">
+	                 		<tr > 
+	                 			<td width="10%"></td>
+	                 			<th style="text-align:right;padding-right:20px;">기안자 </th>
+	                 			<td><input type="text" class="form-control input-sm" style="width:60%"></td>
+	                 			<td width="10%"></td>
+	                 			<th style="text-align:right;padding-right:20px;">양식명 </th>
+	                 			<td><input type="text" class="form-control input-sm" style="width:60%"></td>
+	                 			<td width="10%"></td>
+	                 		</tr> 
+	                 		<tr> <td colspan="7">&nbsp;</td>
+	                 		</tr>
+	                 		<tr>
+	                 			<td></td>
+	                 			<th style="text-align:right;padding-right:20px;">문서제목 </th>
+	                 			<td><input type="text" class="form-control input-sm" width="100%" style="width:100%"></td>
+	                 			<td></td>
+	                 			<td></td>
+	                 			<td><button class="btn w-xs btn-danger" type="submit"><span class="fa fa-search"></span> Search</button></td>
+	                 			<td></td>
+	                 		</tr>            
+	               		</table>
+	                </form>   
+                </div>  
+                       	
+                <br>     
+                <hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                <table cellpadding="1" cellspacing="1" class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Street Address</th>
-                        <th>City</th>
-                        <th>Country</th>
+                        <th>NO</th>
+                        <th>서식함</th>
+                        <th>유형</th>
+                        <th>문서제목</th>
+                        <th>기안자</th>
+                        <th>기안부서</th>
+                        <th>기안일</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Abraham</td>
-                        <td>076 9477 4896</td>
-                        <td>294-318 Duis Ave</td>
-                        <td>Vosselaar</td>
-                        <td>Belgium</td>
+                        <td>4</td>
+                        <td>공통</td>
+                        <td>결재</td>
+                        <td>기안용지_승인_프로세스_재기안</td>
+                        <td>통삼일</td>
+                        <td>그룹웨어팀</td>
+                        <td>2016.11.09 19:24</td>
                     </tr>
                     <tr>
-                        <td>Phelan</td>
-                        <td>0500 034548</td>
-                        <td>680-1097 Mi Rd.</td>
-                        <td>Lavoir</td>
-                        <td>Pakistan</td>
+                        <td>3</td>
+                        <td>공통</td>
+                        <td>결재</td>
+                        <td>기안용지_승인_프로세스_재기안</td>
+                        <td>통삼일</td>
+                        <td>그룹웨어팀</td>
+                        <td>2016.11.09 19:24</td>
                     </tr>
                     <tr>
-                        <td>Raya</td>
-                        <td>(01315) 27698</td>
-                        <td>Ap #289-8161 In Avenue</td>
-                        <td>Santomenna</td>
-                        <td>Burkina Faso</td>
-                    </tr>
+                        <td>2</td>
+                        <td>공통</td>
+                        <td>결재</td>
+                        <td>기안용지_승인_프로세스_재기안</td>
+                        <td>통삼일</td>
+                        <td>그룹웨어팀</td>
+                        <td>2016.11.09 19:24</td>
+                    </tr>                    
                     <tr>
-                        <td>Azalia</td>
-                        <td>0500 854198</td>
-                        <td>226-4861 Augue. St.</td>
-                        <td>Newtown</td>
-                        <td>Christmas Island</td>
-                    </tr>
-                    <tr>
-                        <td>Garth</td>
-                        <td>(01662) 59083</td>
-                        <td>3219 Elit Avenue</td>
-                        <td>Ternitz</td>
-                        <td>Saint Martin</td>
-                    </tr>
-                    <tr>
-                        <td>Selma</td>
-                        <td>0877 118 6905</td>
-                        <td>P.O. Box 410, 7331 Nec, St.</td>
-                        <td>Glenrothes</td>
-                        <td>Korea, North</td>
+                        <td>1</td>
+                        <td>공통</td>
+                        <td>결재</td>
+                        <td>기안용지_승인_프로세스_재기안</td>
+                        <td>통삼일</td>
+                        <td>그룹웨어팀</td>
+                        <td>2016.11.09 19:24</td>
                     </tr>
                     </tbody>
                 </table>
+                <button type="button"  class="btn w-xs btn-primary" >일괄결재</button>
+			</div>
+
+            </div>
+             <div class="panel-footer"  style="text-align:center;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button>
+                    <button class="btn btn-default active">1</button>
+                    <button class="btn btn-default  ">2</button>
+                    <button class="btn btn-default">3</button>
+                    <button class="btn btn-default">4</button>
+                    <button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 </div>
-
-            </div>
-            <div class="panel-footer">
-                Table - 6 rows
-            </div>
-        </div>
-    </div>
+              </div>
+        </div> 
+            
+         
+   </div>  
 </div>
-
 </div>

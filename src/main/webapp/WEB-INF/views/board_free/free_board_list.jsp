@@ -33,22 +33,28 @@
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                	총 게시글 수 : 10 개
+                		총 개시글 수 : <font color="coral">10</font> 개
             </div>
             <div class="panel-body">
-            	<form action="" class="form-inline">
-                 	<select  class="form-control input-sm" >
-                    	<option >제목</option>
-                        <option>작성자명</option>
-                     </select> 	
-                     <div class="input-group">
-                     	<input type="text" class="form-control input-sm" placeholder="" name="s"/>
-                        	<span class="input-group-btn">
-								<button class="btn btn-sm btn-default" type="submit"> <span class="fa fa-search" style=" font-size: 19px;"></span> </button>
-							</span>
-                     </div>
-                </form>            	
+            	<div class="row">
+            		<div class="col-md-8"></div>
+            		<div class="col-md-4">
+            			<form action="" class="form-inline">
+                 			<select  class="form-control input-sm" >
+                    			<option >제목</option>
+                        		<option>작성자명</option>
+                    		 </select> 	
+                     		<span class="input-group">
+                     		<input type="text" class="form-control input-sm" name="s"/>
+                        		<span class="input-group-btn">
+									<button class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
+								</span>
+                   	  		</span>
+                		</form>
+            		</div>
+                </div>                	
                 <br>     
+                 <hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
                 <table cellpadding="1" cellspacing="1" class="table">
                     <thead>
@@ -91,7 +97,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-outline btn-success" style="text-align:right">글 등록</button>
+                <button type="button" class="btn w-xs btn-primary" >글 등록</button>
 			</div>
 
             </div>
