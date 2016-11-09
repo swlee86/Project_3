@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Header -->
 <div id="header">
     <div class="color-line">
     </div>
     <div id="logo" class="light-version">
         <span>
-            Homer Theme
+            2PM
         </span>
     </div>
     <nav role="navigation">
@@ -25,13 +26,17 @@
             </button>
             <div class="collapse mobile-navbar" id="mobile-collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a class="" href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a class="" href="login.html">Logout</a>
-                    </li>
-                    <li>
+					<c:if test="${empty pageContext.request.userPrincipal}">
+						<li>
+							<a href="${pageContext.request.contextPath}/login.do">Login</a>
+						</li>
+					</c:if>
+					<c:if test="${not empty pageContext.request.userPrincipal}">
+						<li>
+							<a href="${pageContext.request.contextPath}/logout">Logout</a>
+						</li>
+					</c:if>
+					<li>
                         <a class="" href="profile.html">Profile</a>
                     </li>
                 </ul>
@@ -98,7 +103,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="analytics.html">
+                                    <a href="analytics.do">
                                         <i class="pe pe-7s-graph1 text-danger"></i>
                                         <h5>Analytics</h5>
                                     </a>
@@ -151,11 +156,21 @@
                         <i class="pe-7s-upload pe-7s-news-paper"></i>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="login.html">
-                        <i class="pe-7s-upload pe-rotate-90"></i>
-                    </a>
-                </li>
+                
+                <c:if test="${empty pageContext.request.userPrincipal}">
+					<li>
+						<a href="${pageContext.request.contextPath}/login.do">
+							<i class="pe-7s-upload pe-rotate-90"></i>
+						</a>
+					</li>
+				</c:if>
+				<c:if test="${not empty pageContext.request.userPrincipal}">
+					<li>
+						<a href="${pageContext.request.contextPath}/logout">
+							<i class="pe-7s-upload pe-rotate-90"></i>
+						</a>
+					</li>
+				</c:if>
             </ul>
         </div>
     </nav>
