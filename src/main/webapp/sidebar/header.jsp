@@ -39,17 +39,6 @@
 					<li>
                         <a class="" href="profile.html">Profile</a>
                     </li>
-<!-- 
-					<li>
-                        <a class="" href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a class="" href="login.html">Logout</a>
-                    </li>
-                    <li>
-                        <a class="" href="profile.html">Profile</a>
-                    </li>
-                     -->
                 </ul>
             </div>
         </div>
