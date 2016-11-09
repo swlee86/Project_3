@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- 채팅 테스트용 아이디 세션 -->
+<%session.setAttribute("id", "PSJ"); %>
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
 			<h2>Welcome to EPM</h2>
-
 			<p>
 				스타트업 및 중소기업의 <strong>프로젝트 관리, 인사, 일정 관리</strong>를 위한 그 모든 프로그램
 			</p>
@@ -19,56 +21,112 @@
 						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 							class="closebox"><i class="fa fa-times"></i></a>
 					</div>
-					Dashboard information and statistics
+					Dashboard information
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-3 text-center">
-							<div class="small">
-								<i class="fa fa-bolt"></i> Page views
+						<div class="col-md-6">
+							<div class="small text-center">
+								<i class="fa fa-bolt"></i> <a href="mailbox.do">전자 우편</a>
 							</div>
-							<div>
-								<h1 class="font-extra-bold m-t-xl m-b-xs">226,802</h1>
-								<small>Page views in last month</small>
-							</div>
-							<div class="small m-t-xl">
-								<i class="fa fa-clock-o"></i> Data from January
-							</div>
+						<div class="table-responsive">
+						<table class="table table-hover table-mailbox">
+							<tbody>
+								<tr>
+									<td class="">
+										<div class="checkbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</td>
+									<td><a href="#">Henry Patterson</a></td>
+									<td><a href="#">Aliquam nec justo interdum, ornare minon, elementum lacus.</a></td>
+									<td><i class="fa fa-paperclip"></i></td>
+									<td class="text-right mail-date">Thu, Aug 06</td>
+								</tr>
+								<tr class="unread">
+									<td class="">
+										<div class="checkbox checkbox-single checkbox-success">
+											<input type="checkbox" checked> <label></label>
+										</div>
+									</td>
+									<td><a href="#">Joseph Hurley</a></td>
+									<td><a href="#">Nullam tempus leo id urna sagittisblandit.</a></td>
+									<td><i class="fa fa-paperclip"></i></td>
+									<td class="text-right mail-date">Sun, Aug 10</td>
+								</tr>
+								<tr class="active">
+									<td class="">
+										<div class="checkbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</td>
+									<td><a href="#">Grant Franco</a></td>
+									<td><a href="#">Etiam maximus tellus a turpis tempormollis.</a></td>
+									<td></td>
+									<td class="text-right mail-date">Mon, Oct 19</td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
 						</div>
 						<div class="col-md-6">
-							<div class="text-center small">
-								<i class="fa fa-laptop"></i> Active users in current month
-								(December)
+							<div class="small text-center">
+								<i class="fa fa-clock-o"></i><a href="info_board_list.do">사내 공지</a>
 							</div>
-							<div class="flot-chart" style="height: 160px">
-								<div class="flot-chart-content" id="flot-line-chart"></div>
+							<div class="text-center" style="width: 460px;">
+								<table cellpadding="1" cellspacing="1" class="table">
+									<tr>
+                        				<td>3</td>
+                        				<td>Vosselsaar&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>22</td>
+                    				</tr>
+                    				<tr>
+                        				<td>2</td>
+                        				<td><a href="info_board_view.do">Vosselaar</a></td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>11</td>
+                    				</tr>
+                    				<tr>
+                        				<td>5</td>
+                        				<td>Vosselaar</td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>11</td>
+                    				</tr>                 
+                    				<tr>
+                        				<td>5</td>
+                        				<td>Vosselaar</td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>11</td>
+                    				</tr>        
+                    				<tr>
+                        				<td>1</td>
+                        				<td>Vosselaar&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG"></td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>100</td>
+                    				</tr>
+                    			</table>
 							</div>
-						</div>
-						<div class="col-md-3 text-center">
-							<div class="small">
-								<i class="fa fa-clock-o"></i> Active duration
-							</div>
-							<div>
-								<h1 class="font-extra-bold m-t-xl m-b-xs">10 Months</h1>
-								<small>And four weeks</small>
-							</div>
-							<div class="small m-t-xl">
+							<div class="small m-t-xl pull-right" >
 								<i class="fa fa-clock-o"></i> Last active in 12.10.2015
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="panel-footer">
-					<span class="pull-right"> You have two new messages from <a
-						href="">Monica Bolt</a>
-					</span> Last update: 21.05.2015
+					Last update: 21.05.2015  [새로고침 ico]
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-3">
-			<div class="hpanel">
+			<div class="hpanel" >
 				<div class="panel-body text-center h-200">
 					<i class="pe-7s-graph1 fa-4x"></i>
 
@@ -153,7 +211,6 @@
 						<div class="flot-chart-content" id="flot-income-chart"></div>
 					</div>
 					<div class="m-t-xs">
-
 						<div class="row">
 							<div class="col-xs-5">
 								<small class="stat-label">Today</small>

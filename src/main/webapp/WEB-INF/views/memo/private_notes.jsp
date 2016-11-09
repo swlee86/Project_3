@@ -8,7 +8,6 @@
                     <i class="fa fa-arrow-up"></i>
                 </div>
             </a>
-
             <div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
                     <li><a href="index.html">Dashboard</a></li>
@@ -29,9 +28,6 @@
 </div>
 
 <div class="content animate-panel">
-
-
-
     <div class="row">
         <div class="col-md-3">
             <div class="hpanel panel-group">

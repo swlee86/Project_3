@@ -5,10 +5,10 @@
 		<div class="panel-body">
 
 			<ul class="mailbox-list">
-				<li><a href="TestMailList.jsp"> <!-- <span class="pull-right">12</span> -->
+				<li><a href="mailbox.do"> <!-- <span class="pull-right">12</span> -->
 						<i class="fa fa-envelope"></i> 메일보기
 				</a></li>
-				<li><a href="TestMailWrite.jsp"><i
+				<li><a href="mailbox_compose.do"><i
 						class="fa fa-paper-plane"></i> 메일쓰기</a></li>
 				<li><a href="#"><i class="fa fa-pencil"></i> Draft</a></li>
 				<li><a href="#"><i class="fa fa-trash"></i> 메일삭제</a></li>

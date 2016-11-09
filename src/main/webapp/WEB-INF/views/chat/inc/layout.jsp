@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -30,7 +30,7 @@
 <body class="fixed-navbar fixed-sidebar">
 
 <!-- Simple splash screen-->
-<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>Homer - Responsive Admin Theme</h1><p>Special Admin Theme for small and medium webapp with very clean and aesthetic style and feel. </p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
 <!--[if lt IE 7]>
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -80,7 +80,9 @@
       onMessage(event)
     };
     function onMessage(event) {
-        textarea.value += "상대 : " + event.data + "\n";
+        var text = "";
+        var msg = JSON.parse(event.data);
+    	textarea.value += msg.id + " : " + msg.text + "\n";
     }
     function onOpen(event) {
         textarea.value += "연결 성공\n";
@@ -89,8 +91,15 @@
       alert(event.data);
     }
     function send() {
-        textarea.value += "나 : " + inputMessage.value + "\n";
-        webSocket.send(inputMessage.value);
+    	
+    	var msg = {
+    		type : "message",
+    		text : inputMessage.value,
+    		id : "${sessionScope.id}"
+    	}
+    	
+        textarea.value += msg.id + " : " + inputMessage.value + "\n";
+        webSocket.send(JSON.stringify(msg));
         inputMessage.value = "";
     }
     
@@ -101,6 +110,7 @@
     	}
     	
     })
+ 
   </script>
 
 </body>

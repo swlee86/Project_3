@@ -32,15 +32,15 @@ public class PageMoveController {
 		return "organization_chart.team_member";
 	}
 
-	// SideBar(aside.jsp) 프로젝트 > 진행중인 프로젝트 클릭시 구동
+	// SideBar(aside.jsp) 프로젝트 > 전체 프로젝트 클릭시 구동
 	@RequestMapping("/projects.do")
-	public String projectview() {
+	public String projectlistview() {
 		return "project.projects";
 	}
-
-	// SideBar(aside.jsp) 프로젝트 > 전체 프로젝트 클릭시 구동
+	
+	// SideBar(aside.jsp) 프로젝트 > 진행중인 프로젝트 클릭시 구동
 	@RequestMapping("/project_list.do")
-	public String projectlistview() {
+	public String projectview() {
 		return "project.project_list";
 	}
 
@@ -53,7 +53,7 @@ public class PageMoveController {
 	// SideBar(aside.jsp) 일정관리 > 일정 보기 클릭시 구동
 	@RequestMapping("/calendar_schedule.do")
 	public String calendar_scheduleview() {
-		return "schedule/calendar_schedule";
+		return "schedule.calendar_schedule";
 	}
 
 	// SideBar(aside.jsp) 메일 서비스 > 메일함 클릭시 구동
@@ -126,9 +126,48 @@ public class PageMoveController {
 		return "contacts.enroll";
 	}
 	
-	//전자 결재 > 기안문작성
+	//전자 결재 > 기안문작성 페이지이동
 	@RequestMapping("/sanction_approve_write.do")
 	public String sanction_approve_write() {
 		return "electronic_sanction.sanction_approve_write";
 	}
+	
+	//메일 > 보낸메일함 페이지이동 
+	@RequestMapping("/mailbox_send.do")
+	public String mailbox_send() {
+		return "mail.mailbox_send";
+	}
+	
+	//메일 > 휴지통 페이지이동 
+	@RequestMapping("/mailbox_trash.do")
+	public String mailbox_trash() {
+		return "mail.mailbox_trash";
+	}	
+	
+	//전자결재 > 결재보기화면 페이지이동
+	@RequestMapping("/sanction_approve_view.do")
+	public String sanction_approve_view() {
+		return "electronic_sanction.sanction_approve_view";
+	}
+	
+	//메일  > 메일세부글 보기 페이지 이동
+	@RequestMapping("/mailbox_view.do")
+	public String mailbox_read() {
+		return "mail.mailbox_view";
+	}
+	
+	//헤더  > 차트 (매출 현황보기)
+	@RequestMapping("/analytics.do")
+	public String chartView(){
+		return "chart.chartMoney_View";
+	}
+	
+	//급여 관리 > 급여 항목 설정
+	@RequestMapping("/salarySetting.do")
+	public String salrySetting(){
+		return "salary.salarySetting";
+	}
+	
+	
+	
 }

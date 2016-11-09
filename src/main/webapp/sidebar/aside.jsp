@@ -76,8 +76,8 @@
             <li>
                 <a href="#"><span class="nav-label">프로젝트 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="project_list.do">전체 프로젝트</a></li>
-                    <li><a href="projects.do">진행중인 프로젝트</a></li>
+                	<li><a href="project_list.do">전체 프로젝트</a></li>  
+                	<li><a href="projects.do">진행중인 프로젝트</a></li>         
                     <li><a href="project.html">Project detail</a></li>
                     <li><a href="app_plans.html">App plans</a></li>
                     <li><a href="social_board.html">Social board</a></li>
