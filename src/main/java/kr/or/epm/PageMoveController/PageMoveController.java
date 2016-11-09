@@ -126,9 +126,15 @@ public class PageMoveController {
 		return "contacts.enroll";
 	}
 	
-	//전자 결재 > 기안문작성
+	//전자 결재 > 기안문작성 페이지이동
 	@RequestMapping("/sanction_approve_write.do")
 	public String sanction_approve_write() {
 		return "electronic_sanction.sanction_approve_write";
+	}
+	
+	//메일 > 보낸메일함 페이지이동 
+	@RequestMapping("/mailbox_send.do")
+	public String mailbox_send() {
+		return "mail.mailbox_send";
 	}
 }

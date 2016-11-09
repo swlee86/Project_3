@@ -60,7 +60,7 @@
                 <ul class="nav nav-second-level">
                     <li><a href="mailbox.do">메일 읽기</a></li>
                     <li><a href="mailbox_compose.do">메일 쓰기</a></li>
-                    <li><a href="#">수신 확인</a></li>
+                    <li><a href="mailbox_send.do">보낸메일함 (수신 확인)</a></li>
                     <li><a href="#">스팸 메일 관리</a></li>
                     <li><a href="#">휴지통</a></li>
                 </ul>
