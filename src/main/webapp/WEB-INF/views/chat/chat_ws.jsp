@@ -31,6 +31,7 @@
 				<div class="panel-heading hbuilt">
 					<div class="panel-tools">
 						&nbsp;&nbsp;&nbsp;&nbsp;
+						<!-- 유저 초대 버튼 / 모달창 사용 -->
 						<input type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal6" value="초대하기" style="margin-top:-5px;">
 						
 					</div>
@@ -76,6 +77,7 @@
 	</div>
 </div>
 
+<!-- 유저 초대용 모달 창(부서를 먼저 읽어와서 부서 클릭시 멤버가 나오도록 구성 예정) -->
    <div class="modal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">

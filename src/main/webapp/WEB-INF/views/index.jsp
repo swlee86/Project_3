@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- 채팅 테스트용 아이디 세션 -->
 <%session.setAttribute("id", "PSJ"); %>
 <div class="content animate-panel">
 	<div class="row">
