@@ -51,6 +51,10 @@
 				                                <input id="checkbox3" type="checkbox">
 				                                <label for="checkbox3"> 중요 </label>
 				                            </div>
+				                            <select  class="form-control input-sm">
+				                            	<option><img alt="logo" class="img-circle m-b" src="images/s1.PNG">업무</option>
+				                            	<option style="background-image:url(images/a1.jpg);">중요</option>
+				                            </select>
 				                            </div>
 										</td>
 									</tr>
