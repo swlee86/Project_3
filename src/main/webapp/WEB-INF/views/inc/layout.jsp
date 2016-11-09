@@ -30,7 +30,7 @@
 <body class="fixed-navbar fixed-sidebar">
 
 <!-- Simple splash screen-->
-<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>Homer - Responsive Admin Theme</h1><p>Special Admin Theme for small and medium webapp with very clean and aesthetic style and feel. </p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
 <!--[if lt IE 7]>
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -71,73 +71,6 @@
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <script src="scripts/charts.js"></script>
-
-<script>
-
-    $(function () {
-
-        /**
-         * Flot charts data and options
-         */
-        var data1 = [ [0, 55], [1, 48], [2, 40], [3, 36], [4, 40], [5, 60], [6, 50], [7, 51] ];
-        var data2 = [ [0, 56], [1, 49], [2, 41], [3, 38], [4, 46], [5, 67], [6, 57], [7, 59] ];
-
-        var chartUsersOptions = {
-            series: {
-                splines: {
-                    show: true,
-                    tension: 0.4,
-                    lineWidth: 1,
-                    fill: 0.4
-                },
-            },
-            grid: {
-                tickColor: "#f0f0f0",
-                borderWidth: 1,
-                borderColor: 'f0f0f0',
-                color: '#6a6c6f'
-            },
-            colors: [ "#62cb31", "#efefef"],
-        };
-
-        $.plot($("#flot-line-chart"), [data1, data2], chartUsersOptions);
-
-        /**
-         * Flot charts 2 data and options
-         */
-        var chartIncomeData = [
-            {
-                label: "line",
-                data: [ [1, 10], [2, 26], [3, 16], [4, 36], [5, 32], [6, 51] ]
-            }
-        ];
-
-        var chartIncomeOptions = {
-            series: {
-                lines: {
-                    show: true,
-                    lineWidth: 0,
-                    fill: true,
-                    fillColor: "#64cc34"
-
-                }
-            },
-            colors: ["#62cb31"],
-            grid: {
-                show: false
-            },
-            legend: {
-                show: false
-            }
-        };
-
-        $.plot($("#flot-income-chart"), chartIncomeData, chartIncomeOptions);
-
-
-
-    });
-
-</script>
 
 </body>
 </html>

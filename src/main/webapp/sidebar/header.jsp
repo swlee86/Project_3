@@ -7,7 +7,7 @@
     </div>
     <div id="logo" class="light-version">
         <span>
-            Homer Theme
+            2PM
         </span>
     </div>
     <nav role="navigation">
@@ -39,17 +39,6 @@
 					<li>
                         <a class="" href="profile.html">Profile</a>
                     </li>
-<!-- 
-					<li>
-                        <a class="" href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a class="" href="login.html">Logout</a>
-                    </li>
-                    <li>
-                        <a class="" href="profile.html">Profile</a>
-                    </li>
-                     -->
                 </ul>
             </div>
         </div>
@@ -114,7 +103,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="analytics.html">
+                                    <a href="analytics.do">
                                         <i class="pe pe-7s-graph1 text-danger"></i>
                                         <h5>Analytics</h5>
                                     </a>

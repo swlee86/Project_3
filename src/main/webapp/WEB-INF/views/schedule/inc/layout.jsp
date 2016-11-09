@@ -22,7 +22,12 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="vendor/fullcalendar/dist/fullcalendar.print.css" media='print'/>
     <link rel="stylesheet" href="vendor/fullcalendar/dist/fullcalendar.min.css" />
-
+  	<link rel="stylesheet" href="vendor/select2-3.5.2/select2.css" />
+  	<link rel="stylesheet" href="vendor/select2-bootstrap/select2-bootstrap.css" />
+  	<link rel="stylesheet" href="vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
+    <link rel="stylesheet" href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+  	
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
@@ -32,7 +37,7 @@
 <body class="fixed-navbar fixed-sidebar">
 
 <!-- Simple splash screen-->
-<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>Homer - Responsive Admin Theme</h1><p>Special Admin Theme for small and medium webapp with very clean and aesthetic style and feel. </p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
 <!--[if lt IE 7]>
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -65,14 +70,17 @@
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/moment/min/moment.min.js"></script>
 <script src="vendor/fullcalendar/dist/fullcalendar.min.js"></script>
-
+<script src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="vendor/select2-3.5.2/select2.min.js"></script>
+<script src="vendor/moment/moment.js"></script>
+<script src="vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 
 <script>
 
     $(function () {
-
+    	  $('.input-group.date').datepicker();
 
         /* initialize the external events
          -----------------------------------------------------------------*/

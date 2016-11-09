@@ -50,16 +50,16 @@
 									<i class="fa fa-refresh"></i> Refresh
 								</button>
 								<button class="btn btn-default btn-sm" >
-									<i class="fa fa-eye"></i>
+									&nbsp;<i class="fa fa-eye"></i>
 								</button>
 								<button class="btn btn-default btn-sm" >
-									<i class="fa fa-exclamation"></i>
+									&nbsp;<i class="fa fa-exclamation"></i>
 								</button>
 								<button class="btn btn-default btn-sm">
-									<i class="fa fa-trash-o"></i>
+									&nbsp;<i class="fa fa-trash-o"></i>
 								</button>
 								<button class="btn btn-default btn-sm" >
-									<i class="fa fa-check"></i>
+									&nbsp;<i class="fa fa-check"></i>
 								</button>
 								<button class="btn btn-default btn-sm" >
 									<i class="fa fa-tag"></i>
@@ -99,8 +99,7 @@
 										</div>
 									</td>
 									<td><a href="#">Marshall Horne</a></td>
-									<td><a href="#">Praesent nec nisl sed neque ornare
-											maximus at ac enim.</a></td>
+									<td><a href="mailbox_view.do">클릭해보세여여여요요</a></td>
 									<td></td>
 									<td class="text-right mail-date">Wed, Jan 13</td>
 								</tr>
