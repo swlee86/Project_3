@@ -8,7 +8,6 @@
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
 			<h2>Welcome to EPM</h2>
-
 			<p>
 				스타트업 및 중소기업의 <strong>프로젝트 관리, 인사, 일정 관리</strong>를 위한 그 모든 프로그램
 			</p>
@@ -26,44 +25,66 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-3 text-center">
-							<div class="small">
+						<div class="col-md-6">
+							<div class="small text-center">
 								<i class="fa fa-bolt"></i> 전자 우편
 							</div>
-							<div>
-								<h1 class="font-extra-bold m-t-xl m-b-xs">226,802</h1>
-								<small>Page views in last month</small>
+						<div class="table-responsive">
+						<table class="table table-hover table-mailbox">
+							<tbody>
+								<tr>
+									<td class="">
+										<div class="checkbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</td>
+									<td><a href="#">Henry Patterson</a></td>
+									<td><a href="#">Aliquam nec justo interdum, ornare minon, elementum lacus.</a></td>
+									<td><i class="fa fa-paperclip"></i></td>
+									<td class="text-right mail-date">Thu, Aug 06</td>
+									<td class="">
+										<div class="checkbox checkbox-single checkbox-success">
+											<input type="checkbox" checked> <label></label>
+										</div>
+									</td>
+									<td><a href="#">Joseph Hurley</a></td>
+									<td><a href="#">Nullam tempus leo id urna sagittisblandit.</a></td>
+									<td><i class="fa fa-paperclip"></i></td>
+									<td class="text-right mail-date">Sun, Aug 10</td>
+									<td class="">
+										<div class="checkbox">
+											<input type="checkbox"> <label></label>
+										</div>
+									</td>
+									<td><a href="#">Grant Franco</a></td>
+									<td><a href="#">Etiam maximus tellus a turpis tempormollis.</a></td>
+									<td></td>
+									<td class="text-right mail-date">Mon, Oct 19</td>
+								</tr>
+							</tbody>
+						</table>
+									<button class="btn btn-success" value="#" id="#">메일함으로</button>
 							</div>
 							<div class="small m-t-xl">
 								<i class="fa fa-clock-o"></i> Data from January
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="text-center small">
-								<i class="fa fa-laptop"></i> 부서에서 진행 중인 프로젝트
+							<div class="small text-center">
+								<i class="fa fa-clock-o"></i> 사내 공지
 							</div>
-							<div class="flot-chart" style="height: 160px">
-								<div class="flot-chart-content" id="flot-line-chart"></div>
-							</div>
-						</div>
-						<div class="col-md-3 text-center">
-							<div class="small">
-								<i class="fa fa-clock-o"></i> Active duration
-							</div>
-							<div>
-								<h1 class="font-extra-bold m-t-xl m-b-xs">10 Months</h1>
+							<div class="text-center" style="width: 460px;">
+								<h1 class="font-extra-bold m-t-xl m-b-xs text-center">10 Months</h1>
 								<small>And four weeks</small>
 							</div>
-							<div class="small m-t-xl">
+							<div class="small m-t-xl pull-right" >
 								<i class="fa fa-clock-o"></i> Last active in 12.10.2015
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="panel-footer">
-					<span class="pull-right"> You have two new messages from <a
-						href="">Monica Bolt</a>
-					</span> Last update: 21.05.2015
+					Last update: 21.05.2015  [새로고침 ico]
 				</div>
 			</div>
 		</div>

@@ -65,8 +65,7 @@
 							<input type="text" class="form-control"
 								placeholder="Type your message here..." id="inputMessage">
 							<span class="input-group-btn">
-								<button class="btn btn-success" onclick="send()" value="send"
-									id="send">Send</button>
+								<button class="btn btn-success" onclick="send()" value="send" id="send">Send</button>
 							</span>
 						</div>
 					</div>
@@ -123,9 +122,8 @@
 					</div>
 					
 					<div class="panel-body">	
-						<a data-toggle="collapse" data-parent="#accordion" href="#q4"
-							aria-expanded="true"> <i
-							class="fa fa-chevron-down pull-right text-muted"></i> 세번째 주소록 그룹
+						<a data-toggle="collapse" data-parent="#accordion" href="#q4" aria-expanded="true"> 
+							<i class="fa fa-chevron-down pull-right text-muted"></i> 세번째 주소록 그룹
 						</a>
 						<div id="q4" class="panel-collapse collapse">
 							<hr>
