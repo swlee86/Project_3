@@ -32,15 +32,15 @@ public class PageMoveController {
 		return "organization_chart.team_member";
 	}
 
-	// SideBar(aside.jsp) 프로젝트 > 진행중인 프로젝트 클릭시 구동
+	// SideBar(aside.jsp) 프로젝트 > 전체 프로젝트 클릭시 구동
 	@RequestMapping("/projects.do")
-	public String projectview() {
+	public String projectlistview() {
 		return "project.projects";
 	}
-
-	// SideBar(aside.jsp) 프로젝트 > 전체 프로젝트 클릭시 구동
+	
+	// SideBar(aside.jsp) 프로젝트 > 진행중인 프로젝트 클릭시 구동
 	@RequestMapping("/project_list.do")
-	public String projectlistview() {
+	public String projectview() {
 		return "project.project_list";
 	}
 
