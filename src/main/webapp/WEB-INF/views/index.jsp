@@ -126,7 +126,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-3">
-			<div class="hpanel">
+			<div class="hpanel" >
 				<div class="panel-body text-center h-200">
 					<i class="pe-7s-graph1 fa-4x"></i>
 
