@@ -7,7 +7,7 @@
     </div>
     <div id="logo" class="light-version">
         <span>
-            Homer Theme
+            2PM
         </span>
     </div>
     <nav role="navigation">

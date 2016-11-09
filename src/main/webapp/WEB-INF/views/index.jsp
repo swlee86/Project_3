@@ -27,7 +27,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="small text-center">
-								<i class="fa fa-bolt"></i> 전자 우편
+								<i class="fa fa-bolt"></i> <a href="mailbox.do">전자 우편</a>
 							</div>
 						<div class="table-responsive">
 						<table class="table table-hover table-mailbox">
@@ -67,19 +67,50 @@
 								</tr>
 							</tbody>
 						</table>
-						<button class="btn btn-success" value="#" id="#">메일함</button>
-							</div>
-							<div class="small m-t-xl">
-								<i class="fa fa-clock-o"></i> Data from January
-							</div>
+						</div>
 						</div>
 						<div class="col-md-6">
 							<div class="small text-center">
-								<i class="fa fa-clock-o"></i> 사내 공지
+								<i class="fa fa-clock-o"></i><a href="info_board_list.do">사내 공지</a>
 							</div>
 							<div class="text-center" style="width: 460px;">
-								<h1 class="font-extra-bold m-t-xl m-b-xs text-center">10 Months</h1>
-								<small>And four weeks</small>
+								<table cellpadding="1" cellspacing="1" class="table">
+									<tr>
+                        				<td>3</td>
+                        				<td>Vosselsaar&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>22</td>
+                    				</tr>
+                    				<tr>
+                        				<td>2</td>
+                        				<td><a href="info_board_view.do">Vosselaar</a></td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>11</td>
+                    				</tr>
+                    				<tr>
+                        				<td>5</td>
+                        				<td>Vosselaar</td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>11</td>
+                    				</tr>                 
+                    				<tr>
+                        				<td>5</td>
+                        				<td>Vosselaar</td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>11</td>
+                    				</tr>        
+                    				<tr>
+                        				<td>1</td>
+                        				<td>Vosselaar&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG"></td>
+                        				<td>박지은</td>
+                        				<td>16/11/06</td>
+                        				<td>100</td>
+                    				</tr>
+                    			</table>
 							</div>
 							<div class="small m-t-xl pull-right" >
 								<i class="fa fa-clock-o"></i> Last active in 12.10.2015
@@ -180,7 +211,6 @@
 						<div class="flot-chart-content" id="flot-income-chart"></div>
 					</div>
 					<div class="m-t-xs">
-
 						<div class="row">
 							<div class="col-xs-5">
 								<small class="stat-label">Today</small>
