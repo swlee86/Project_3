@@ -155,4 +155,19 @@ public class PageMoveController {
 	public String mailbox_read() {
 		return "mail.mailbox_view";
 	}
+	
+	//헤더  > 차트 (매출 현황보기)
+	@RequestMapping("/analytics.do")
+	public String chartView(){
+		return "chart.chartMoney_View";
+	}
+	
+	//급여 관리 > 급여 항목 설정
+	@RequestMapping("/salarySetting.do")
+	public String salrySetting(){
+		return "salary.salarySetting";
+	}
+	
+	
+	
 }

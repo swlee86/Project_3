@@ -140,6 +140,15 @@
                     <li><a href="c3.html">C3 Charts</a></li>
                 </ul>
             </li>
+                <li>
+                <a href="#"><span class="nav-label">급여 관리</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                	<li><a href="salarySetting.do">급여 항목 설정</a></li>
+                    <li><a href="#">급여 마감 관리</a></li>
+                    <li><a href="#">급여 조회</a></li>
+                    <li><a href="#">퇴직금 계산</a></li>
+                </ul>
+            </li>
             <li>
                 <a href="#"><span class="nav-label">게시판 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">

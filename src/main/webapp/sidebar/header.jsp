@@ -103,7 +103,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="analytics.html">
+                                    <a href="analytics.do">
                                         <i class="pe pe-7s-graph1 text-danger"></i>
                                         <h5>Analytics</h5>
                                     </a>
