@@ -22,13 +22,13 @@
 						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 							class="closebox"><i class="fa fa-times"></i></a>
 					</div>
-					Dashboard information and statistics
+					Dashboard information
 				</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-3 text-center">
 							<div class="small">
-								<i class="fa fa-bolt"></i> Page views
+								<i class="fa fa-bolt"></i> 전자 우편
 							</div>
 							<div>
 								<h1 class="font-extra-bold m-t-xl m-b-xs">226,802</h1>
@@ -40,8 +40,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="text-center small">
-								<i class="fa fa-laptop"></i> Active users in current month
-								(December)
+								<i class="fa fa-laptop"></i> 부서에서 진행 중인 프로젝트
 							</div>
 							<div class="flot-chart" style="height: 160px">
 								<div class="flot-chart-content" id="flot-line-chart"></div>

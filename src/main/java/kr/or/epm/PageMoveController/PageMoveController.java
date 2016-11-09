@@ -53,7 +53,7 @@ public class PageMoveController {
 	// SideBar(aside.jsp) 일정관리 > 일정 보기 클릭시 구동
 	@RequestMapping("/calendar_schedule.do")
 	public String calendar_scheduleview() {
-		return "schedule/calendar_schedule";
+		return "schedule.calendar_schedule";
 	}
 
 	// SideBar(aside.jsp) 메일 서비스 > 메일함 클릭시 구동
