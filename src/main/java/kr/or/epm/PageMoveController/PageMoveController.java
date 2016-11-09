@@ -137,4 +137,10 @@ public class PageMoveController {
 	public String mailbox_send() {
 		return "mail.mailbox_send";
 	}
+	
+	//메일 > 휴지통 페이지이동 
+	@RequestMapping("/mailbox_trash.do")
+	public String mailbox_trash() {
+		return "mail.mailbox_trash";
+	}	
 }
