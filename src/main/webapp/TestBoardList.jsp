@@ -83,8 +83,7 @@
 
 						<div class="panel-body">
 							<div class="table-responsive">
-								<table cellpadding="1" cellspacing="1"
-									class="table table-bordered table-striped">
+								<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
 									<thead>
 										<tr>
 											<th>No.</th>

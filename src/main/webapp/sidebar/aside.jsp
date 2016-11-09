@@ -68,7 +68,7 @@
             <li>
                 <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="tables_design.html">Tables design</a></li>
+                    <li><a href="sanction_approve.do">승인 처리</a></li>
                     <li><a href="datatables.html">Data tables</a></li>
                     <li><a href="footable.html">Foo Table</a></li>
                 </ul>
@@ -152,8 +152,8 @@
             <li>
                 <a href="#"><span class="nav-label">회원 정보 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.do">로그인</a></li>
+                    <li><a href="addMember.do">회원가입</a></li>
                     <li><a href="error_one.html">Error 404</a></li>
                     <li><a href="error_two.html">Error 505</a></li>
                     <li><a href="lock.html">Lock screen</a></li>
@@ -170,6 +170,9 @@
                     <li><a href="datatables.html">Data tables</a></li>
                     <li><a href="footable.html">Foo Table</a></li>
                 </ul>
+            </li>
+            <li>
+            <a href="chat_ws.do"><span class="nav-label">실시간 채팅</span><span class="fa arrow"></span> </a>
             </li>
             <li>
                 <a href="widgets.html"> <span class="nav-label">Widgets</span> <span class="label label-success pull-right">Special</span></a>
