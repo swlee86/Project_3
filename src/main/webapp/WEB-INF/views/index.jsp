@@ -42,6 +42,8 @@
 									<td><a href="#">Aliquam nec justo interdum, ornare minon, elementum lacus.</a></td>
 									<td><i class="fa fa-paperclip"></i></td>
 									<td class="text-right mail-date">Thu, Aug 06</td>
+								</tr>
+								<tr class="unread">
 									<td class="">
 										<div class="checkbox checkbox-single checkbox-success">
 											<input type="checkbox" checked> <label></label>
@@ -51,6 +53,8 @@
 									<td><a href="#">Nullam tempus leo id urna sagittisblandit.</a></td>
 									<td><i class="fa fa-paperclip"></i></td>
 									<td class="text-right mail-date">Sun, Aug 10</td>
+								</tr>
+								<tr class="active">
 									<td class="">
 										<div class="checkbox">
 											<input type="checkbox"> <label></label>
@@ -63,7 +67,7 @@
 								</tr>
 							</tbody>
 						</table>
-									<button class="btn btn-success" value="#" id="#">메일함으로</button>
+						<button class="btn btn-success" value="#" id="#">메일함</button>
 							</div>
 							<div class="small m-t-xl">
 								<i class="fa fa-clock-o"></i> Data from January
