@@ -29,33 +29,38 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form>
+						<form class="form-inline">
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 기간</th>
 										<td>
-											<label class="control-label">시작일 :</label>
+											<div class="form-group">
+											시작일 :
 											<div class="input-group date">
-												<input type="text" class="form-control" value="10/06/2016">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span>
+												<input type="text" class="form-control" value="10/06/2016" size="20px">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 											</div>
-											~
+											&nbsp;&nbsp;~&nbsp;&nbsp;
+											종료일 :
 											<div class="input-group date">
-												<input type="text" class="form-control" value="10/06/2016">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span>
+												<input type="text" class="form-control" value="10/06/2016" size="20px"> 
+												<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 											</div>
+											<div class="checkbox checkbox-success">
+				                                <input id="checkbox3" type="checkbox">
+				                                <label for="checkbox3"> 중요 </label>
+				                            </div>
+				                            </div>
 										</td>
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 제목</th>
-										<td><input type="text" class="form-control input-sm" placeholder="제목"></td>
+										<td><input type="text" class="form-control input-sm" placeholder="제목" style="width:100%"></td>
 									</tr>	
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">장소</th>
-										<td><input type="text" class="form-control input-sm" placeholder="장소"></td>
+										<td><input type="text" class="form-control input-sm" placeholder="장소" style="width:100%"></td>
 									</tr>	
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">참여자</th>
@@ -72,7 +77,7 @@
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 내용</th>
 										<td>
-											<textarea cols="10" rows="10" class="form-control"  placeholder="내용"></textarea>
+											<textarea cols="10" rows="10" class="form-control"  placeholder="내용" style="width:100%"></textarea>
 										</td>
 									</tr>
 								</tbody>

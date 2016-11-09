@@ -22,7 +22,12 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="vendor/fullcalendar/dist/fullcalendar.print.css" media='print'/>
     <link rel="stylesheet" href="vendor/fullcalendar/dist/fullcalendar.min.css" />
-
+  	<link rel="stylesheet" href="vendor/select2-3.5.2/select2.css" />
+  	<link rel="stylesheet" href="vendor/select2-bootstrap/select2-bootstrap.css" />
+  	<link rel="stylesheet" href="vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
+    <link rel="stylesheet" href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+  	
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
