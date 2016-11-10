@@ -23,7 +23,6 @@
 </div>
 
 <div class="content">
-
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="row">
@@ -31,39 +30,12 @@
 					<div class="hpanel">
 						<div class="panel-body">
 							<div id="external-events">
-								<h2>FullCalendar</h2>
-								is a jQuery plugin that provides a full-sized, drag & drop
-								calendar like the one below. It uses AJAX to fetch events
-								on-the-fly for each month and is easily configured to use your
-								own feed format (an extension is provided for Google Calendar).
+								<strong>일정을 추가해보세요 !</strong>
 								<p>
-									<a href="http://arshaw.com/fullcalendar/" target="_blank">FullCalendar
-										documentation</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="hpanel">
-						<div class="panel-body">
-							<div id="external-events">
-								<strong>Click, Drop or Resize event on calendar!</strong>
-
-								<p>
-									Message from functions: <br />
-								<div id='external-events'>
-									<p>Drag a event and drop into callendar.</p>
-									<div class='external-event h-bg-green text-white'>Go to
-										shop and buy some products.</div>
-									<div class='external-event h-bg-green text-white'>Check
-										the new CI from Corporation.</div>
-									<p class="m-t">
-										<input type='checkbox' id='drop-remove' class="i-checks"
-											checked /> <label for='drop-remove'>remove after
-											drop</label>
-									</p>
-								</div>
+									<br />
+									<div id='external-events'>
+										<div class='external-event h-bg-green text-white'>일정이름을 입력하세요</div>
+									</div>
 								</p>
 							</div>
 						</div>
