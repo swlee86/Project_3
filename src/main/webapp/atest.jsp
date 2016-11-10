@@ -40,8 +40,13 @@ li{
             <li><a href="">품질시험팀</a></li>
         </ul>
     </li>
+ </ul>   
+    <select>
+    	<option style="background-color: red;">테s스트</option>
+    	<option  style="background-image:url(images/a1.jpg);">테스트</option>
+    </select>
 .......
 .......
-</ul>
+
 </body>
 </html>
