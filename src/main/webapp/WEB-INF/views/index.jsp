@@ -73,8 +73,8 @@
 							<div class="small text-center">
 								<i class="fa fa-clock-o"></i><a href="info_board_list.do">사내 공지</a>
 							</div>
-             			   <div class="table-responsive">
-           				     <table cellpadding="1" cellspacing="1" class="table">
+						<div class="table-responsive">
+							<table class="table table-hover table-mailbox">
 									<tr>
                         				<td>3</td>
                         				<td>Vosselsaar&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
