@@ -344,7 +344,7 @@
                                 <button class="btn btn-default"><i class="fa fa-trash"></i> Discard</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary">Send email</button>
+                        <button class="btn btn-primary ladda-button-demo"  data-style="zoom-in">Send email</button>
                         <div class="btn-group">
                             <button class="btn btn-default"><i class="fa fa-paperclip"></i> </button>
                             <button class="btn btn-default"><i class="fa fa-image"></i> </button>
@@ -379,6 +379,9 @@
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/summernote/dist/summernote.min.js"></script>
+<script src="vendor/ladda/dist/ladda.min.js"></script>
+<script src="vendor/ladda/dist/ladda.jquery.min.js"></script>
+
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
@@ -398,7 +401,22 @@
             ]
         });
 
+    var l = $( '.ladda-button-demo' ).ladda();
+    l.click(function(){
+
+        // Start loading
+        l.ladda( 'start' );
+
+        // Do something in backend and then stop ladda
+        // setTimeout() is only for demo purpose
+        setTimeout(function(){
+            l.ladda('stop');
+        },2000)
+
     });
+    });
+    
+
 
 </script>
 
