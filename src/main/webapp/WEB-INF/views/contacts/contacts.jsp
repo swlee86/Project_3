@@ -25,8 +25,7 @@
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-md-3">
-			<div class="hpanel panel-group" id="accordion" role="tablist"
-				aria-multiselectable="true">
+			<div class="hpanel panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel-body">
 					<button type="button" class="btn w-xs btn-success btn-block"onclick="location.href='enroll.do'">주소록 등록</button>
 				</div>
@@ -52,10 +51,9 @@
 					</div>
 				</div>
 				<div class="panel-body" style="text-align: center">
-					<button type="button" class="btn btn-outline btn-success">
-						개인 주소록 그룹 관리 그룹 추가
+					<button type="button" class="btn w-xs btn-outline btn-success btn-block"onclick="location.href='contaacts_group.do'">
+						주소록 그룹 관리
 					</button>
-
 				</div>
 			</div>
 		</div>
