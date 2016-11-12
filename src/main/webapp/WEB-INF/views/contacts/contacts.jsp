@@ -52,11 +52,10 @@
 					</div>
 				</div>
 				<div class="panel-body" style="text-align: center">
-					<button type="button" class="btn btn-outline btn-success">주소록
-						그룹 추가</button>
-					
-					<button type="button" class="btn btn-outline btn-success">주소록
-						그룹 삭제</button>
+					<button type="button" class="btn btn-outline btn-success">
+						개인 주소록 그룹 관리 그룹 추가
+					</button>
+
 				</div>
 			</div>
 		</div>
@@ -93,13 +92,15 @@
 									<div class="row">
 										<div class="col-md-8"></div>
 										<div class="col-md-4">
+										
 											<form action="" class="form-inline">
+										
 												<select class="form-control input-sm">
 													<option>이름</option>
 													<option>회사명</option>
 													<option>메일</option>
 												</select>
-												
+														
 												<div class="input-group">
 													<input type="text" class="form-control input-sm" name="s" />
 													<span class="input-group-btn">
@@ -109,6 +110,7 @@
 													</span>
 												</div>
 											</form>
+										
 										</div>
 									</div>
 									<hr>
@@ -201,14 +203,8 @@
 										</button>
 									</div>
 								</div>
-								<br>
-								<button type="button" class="btn btn-outline btn-primary">삭제</button>
-								&nbsp;&nbsp;
-								<button type="button" class="btn btn-outline btn-primary">메일
-									보내기</button>
-								&nbsp;&nbsp;
-								<button type="button" class="btn btn-outline btn-primary">주소록
-									그룹에 추가</button>
+							
+							
 							</div>
 
 						</div>
@@ -272,8 +268,9 @@
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">수정</button>
+				<button type="button" class="btn btn-primary">삭제</button>
 			</div>
 		</div>
 	</div>
