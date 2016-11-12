@@ -20,12 +20,13 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-
+    <link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+    
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
-
+<link rel="stylesheet" href="styles/static_custom.css">
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -61,8 +62,26 @@
 <script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
-
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+
+
+<script>
+
+    $(function () {
+
+        $('.demo2').click(function(){
+            swal({
+                title: "",
+                text: "주소록에 추가 되었습니다.",
+                type: "success"
+            });
+        });
+
+    });
+
+</script>
+
 </body>
 </html>

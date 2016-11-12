@@ -89,9 +89,9 @@
 								<div class="panel-heading hbuilt">
 									<div class="row">
 										<div class="col-md-8"></div>
-										<div class="col-md-4">
+										<div class="col-md-4 " >
 										
-											<form action="" class="form-inline">
+											<form action="" class="form-inline ">
 										
 												<select class="form-control input-sm">
 													<option>이름</option>
