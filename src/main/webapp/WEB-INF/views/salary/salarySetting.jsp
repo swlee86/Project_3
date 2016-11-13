@@ -73,6 +73,11 @@
 	   		 			</table>
 	   		 		</div>
 	   		 	</div>
+	   		 	<div class="panel-footer">
+	   		 		<h4>풋터입니다.</h4>
+	   		 	</div>
+	   		 	
+	   		 	
 	   		 </div>
 		</div>	
 	</div>
