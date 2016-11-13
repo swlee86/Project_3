@@ -168,6 +168,11 @@ public class PageMoveController {
 		return "salary.salarySetting";
 	}
 	
+	//주소록  > 주소록 그룹 관리 페이지 이동
+	@RequestMapping("/contaacts_group.do")
+	public String contaacts_group(){
+		return "contacts.contacts_group";
+	}
 	
 	
 }

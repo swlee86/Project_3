@@ -80,10 +80,9 @@
 <script>
 
     $(function () {
-    	  $('.input-group.date').datepicker();
-
-        /* initialize the external events
-         -----------------------------------------------------------------*/
+		
+    
+    	
 
         $('#external-events div.external-event').each(function() {
 
@@ -102,87 +101,127 @@
 
         });
 
+           
+
+    	
+    	$('.input-group.date').datepicker();
+
 
         /* initialize the calendar
-         -----------------------------------------------------------------*/
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
+        -----------------------------------------------------------------*/
+       var date = new Date();
+       var d = date.getDate();
+       var m = date.getMonth();
+       var y = date.getFullYear();
 
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: true,
-            droppable: true, // this allows things to be dropped onto the calendar
-            drop: function() {
-                // is the "remove after drop" checkbox checked?
-                if ($('#drop-remove').is(':checked')) {
-                    // if so, remove the element from the "Draggable Events" list
-                    $(this).remove();
-                }
-            },
-            events: [
-                {
-                    title: 'All Day Event',
-                    start: new Date(y, m, 1)
-                },
-                {
-                    title: 'Long Event',
-                    start: new Date(y, m, d-5),
-                    end: new Date(y, m, d-2),
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d-3, 16, 0),
-                    allDay: false,
-                },
-                {
-                    title: 'Homer task',
-                    start: new Date(y, m, d + 5, 19, 0),
-                    end: new Date(y, m, d + 6, 22, 30),
-                    allDay: false,
-                    backgroundColor: "#62cb31",
-                    borderColor: "#62cb31"
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d+4, 16, 0),
-                    allDay: false
-                },
-                {
-                    title: 'Meeting',
-                    start: new Date(y, m, d, 10, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Lunch',
-                    start: new Date(y, m, d, 12, 0),
-                    end: new Date(y, m, d, 14, 0),
-                    allDay: false
-                },
-                {
-                    title: 'Birthday Party',
-                    start: new Date(y, m, d+1, 19, 0),
-                    end: new Date(y, m, d+1, 22, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Click for Google',
-                    start: new Date(y, m, 28),
-                    end: new Date(y, m, 29),
-                    url: 'http://google.com/'
-                }
-            ],
-        });
+       $('#calendar').fullCalendar({
+           header: {
+               left: 'prev,next today',
+               center: 'title',
+               right: 'month,agendaWeek,agendaDay'
+           },
+           editable: true,
+           droppable: true, // this allows things to be dropped onto the calendar
+           drop: function() {
+               // is the "remove after drop" checkbox checked?
+               if ($('#drop-remove').is(':checked')) {
+                   // if so, remove the element from the "Draggable Events" list
+                   $(this).remove();
+               }
+           },
+          /*  select: function(start, end){            
+               // prompt 함수 : alert가 input태그처럼 뜸, 거기서 확인을 누르면  return true, 취소를 누르면 retrun false임
+               //             -> 그래서 if 조건문에 들어감! 개 신기방기함
+               var title = prompt('제목 : ');
+               var eventData;
+               
+               // start. end : 드래그할 때 시작일과, 종료일을 parameter로 받아 오는 듯!
+                  eventData= {
+                     title: title,
+                     start: start,
+                     end: end
+                  };
+                  //'renderEvent' 값이면, events들을 새로 불러와서 띄워줌!
+                  $('#calendar').fullCalendar('renderEvent', eventData, true);
+                  //'unselect' 값이면, events들에 변화를 안줌
+                  //$('#calendar').fullCalendar('unselect');
+           }, */
+           select: function(){            
+               // prompt 함수 : alert가 input태그처럼 뜸, 거기서 확인을 누르면  return true, 취소를 누르면 retrun false임
+               //             -> 그래서 if 조건문에 들어감! 개 신기방기함
+               var title = prompt('제목 : ');
+               var eventData;
+               
+               // start. end : 드래그할 때 시작일과, 종료일을 parameter로 받아 오는 듯!
+                  eventData= {
+                     title: title,
+                     start: start,
+                     end: end
+                  };
+                  //'renderEvent' 값이면, events들을 새로 불러와서 띄워줌!
+                  $('#calendar').fullCalendar('renderEvent', eventData, true);
+                  //'unselect' 값이면, events들에 변화를 안줌
+                  //$('#calendar').fullCalendar('unselect');
+           },
+           events: [
+               {
+                   title: 'All Day Event',
+                   start: new Date(y, m, 1)
+               },
+               {
+                   title: 'Long Event',
+                   start: new Date(y, m, d-5),
+                   end: new Date(y, m, d-2),
+               },
+               {
+                   id: 999,
+                   title: 'Repeating Event',
+                   start: new Date(y, m, d-3, 16, 0),
+                   allDay: false,
+               },
+               {
+                   title: 'Homer task',
+                   start: new Date(y, m, d + 5, 19, 0),
+                   end: new Date(y, m, d + 6, 22, 30),
+                   allDay: false,
+                   backgroundColor: "#62cb31",
+                   borderColor: "#62cb31"
+               },
+               {
+                   id: 999,
+                   title: 'Repeating Event',
+                   start: new Date(y, m, d+4, 16, 0),
+                   allDay: false
+               },
+               {
+                   title: 'Meeting',
+                   start: new Date(y, m, d, 10, 30),
+                   allDay: false
+               },
+               {
+                   title: 'Lunch',
+                   start: new Date(y, m, d, 12, 0),
+                   end: new Date(y, m, d, 14, 0),
+                   allDay: false
+               },
+               {
+                   title: 'Birthday Party',
+                   start: new Date(y, m, d+1, 19, 0),
+                   end: new Date(y, m, d+1, 22, 30),
+                   allDay: false
+               },
+               {
+                   title: 'Click for Google',
+                   start: new Date(y, m, 28),
+                   end: new Date(y, m, 29),
+                   url: 'http://google.com/'
+               }
+           ],
+       });
 
 
-    });
+   });
+
 
 </script>
 

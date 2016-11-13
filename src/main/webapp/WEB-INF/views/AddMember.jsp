@@ -40,7 +40,7 @@
 				<div class="register-container">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="text-center m-b-md">
+							<div class="text-center m-b-md" >
 								<h3>회원가입</h3>
 								<small>2PM 의 다양한 기능을 느껴보세요!</small>
 							</div>

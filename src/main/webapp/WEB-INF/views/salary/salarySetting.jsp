@@ -44,8 +44,8 @@
 			</p>
 			<p>
 				<i class="pe-7s-attention"></i><span class="font-icon-name"></span>
-				&nbsp; 계산식은 항목정보1, 항목정보2, 연산자정보, 숫자정보를 선택해 조합해서 작성하면 됩니다
-    			예)수당일때 : P01항목에 209로 나누고 T01을 곱한 값에 1.5를 곱하는 경우 ((P01/209)*T01)*1.5
+				&nbsp; 계산식은 항목정보1, 항목정보2, 연산자정보, 숫자정보를 선택해 조합해서 작성하면 됩니다 예)수당일때 :
+				P01항목에 209로 나누고 T01을 곱한 값에 1.5를 곱하는 경우 ((P01/209)*T01)*1.5
 			</p>
 		</div>
 	</div>
@@ -55,6 +55,50 @@
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-4">
+<<<<<<< HEAD
+			<div class="hpanel">
+				<div class="panel-body">
+					<h4>
+						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;항목정보
+					</h4>
+					<div class="table-responsive">
+						<table cellpadding="1" cellspacing="1" class="table">
+							<tr>
+								<th>첫번째</th>
+								<th>두번째</th>
+							</tr>
+							<tr>
+								<td>테스트</td>
+								<td>테스트2</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="hpanel">
+
+				<div class="panel-body">
+					<h4>
+						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;항목정보
+					</h4>
+					<div class="table-responsive">
+						<table cellpadding="1" cellspacing="1" class="table">
+							<tr>
+								<th>첫번째</th>
+								<th>두번째</th>
+							</tr>
+							<tr>
+								<td>테스트</td>
+								<td>테스트2</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+=======
 	   		 <div class="hpanel">
 	   			 <div class="panel-heading">
 	   			 	<h4>항목정보</h4>	
@@ -73,7 +117,37 @@
 	   		 			</table>
 	   		 		</div>
 	   		 	</div>
+	   		 	<div class="panel-footer">
+	   		 		<h4>풋터입니다.</h4>
+	   		 	</div>
+	   		 	
+	   		 	
 	   		 </div>
 		</div>	
+>>>>>>> maven_HA
 	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="hpanel">
+
+				<div class="panel-body">
+					<h4>
+						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;계산식 정보
+					</h4>
+					<div class="table-responsive">
+						<table cellpadding="1" cellspacing="1" class="table">
+							<tr>
+								<th>항목명</th>
+								<th>계산식</th>
+							</tr>
+							<tr>
+								<td>테스트</td>
+								<td>테스트2</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div> 
+		</div>	
+	</div>		
 </div>
