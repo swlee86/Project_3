@@ -36,16 +36,16 @@
                 	전체 : <font color="coral">10</font> 개
             </div>
             <div class="panel-body">
-            	<div class="row" style="background-color:#f7f9fa">
+            	<div class="row" style="background-color:#f3f3f3">
 	            	<form action="" class="form-inline">
-	            		<table style="margin-top:20px; margin-bottom:20px;" width="100%">
+	            		<table style="margin-top:10px; margin-bottom:10px;" width="100%">
 	                 		<tr > 
 	                 			<td width="10%"></td>
 	                 			<th style="text-align:right;padding-right:20px;">기안자 </th>
-	                 			<td><input type="text" class="form-control input-sm" style="width:60%"></td>
+	                 			<td><input type="text" class="form-control input-sm" style="width:60%; height: 27px; "></td>
 	                 			<td width="10%"></td>
 	                 			<th style="text-align:right;padding-right:20px;">양식명 </th>
-	                 			<td><input type="text" class="form-control input-sm" style="width:60%"></td>
+	                 			<td><input type="text" class="form-control input-sm" style="width:60%; height: 27px;"></td>
 	                 			<td width="10%"></td>
 	                 		</tr> 
 	                 		<tr> <td colspan="7">&nbsp;</td>
@@ -53,10 +53,10 @@
 	                 		<tr>
 	                 			<td></td>
 	                 			<th style="text-align:right;padding-right:20px;">문서제목 </th>
-	                 			<td><input type="text" class="form-control input-sm" width="100%" style="width:100%"></td>
+	                 			<td><input type="text" class="form-control input-sm" width="100%" style="width:100%; height: 27px;"></td>
 	                 			<td></td>
 	                 			<td></td>
-	                 			<td><button class="btn w-xs btn-danger" type="submit"><span class="fa fa-search"></span> Search</button></td>
+	                 			<td><button class="btn btn-sm" style="background-color:#ff757f;color:white" type="submit"><span class="fa fa-search"></span>&nbsp; 검색  &nbsp;</button></td>
 	                 			<td></td>
 	                 		</tr>            
 	               		</table>
