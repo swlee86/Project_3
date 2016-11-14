@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
 
@@ -46,7 +47,13 @@ public class PageMoveController {
 	public String projectview() {
 		return "project.project_list";
 	}
-
+	
+	//프로젝트 생성하기
+	@RequestMapping(value="/projectMake.do", method=RequestMethod.GET)
+	public String projectMake(){
+		return "project.projectMakeForm";
+	}
+	
 	// SideBar(aside.jsp) 일정관리 > 일정등록 클릭시 구동
 	@RequestMapping("/registration_schedule.do")
 	public String registration_scheduleview() {
@@ -175,6 +182,7 @@ public class PageMoveController {
 	@RequestMapping("/Attendace.do")
 	public String Attendace(HttpServletRequest request, Model model){
 		String ip =request.getRemoteAddr();
+		System.out.println("나의 아이피 : "+ip);
 		model.addAttribute("ip",ip);
 		return "TAttendance.TimeAttendaceMainView";
 	}
