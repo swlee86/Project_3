@@ -112,19 +112,7 @@
 		console.log(upbtn2);
 		//히든 값 담은 변수
 		var hiddenValue = upbtn2.value;
-		
-		$.ajax(
-				{
-					url:"projectDetailCheckView.do",
-					data : 
-					{
-						"hidden" : hiddenValue	
-					},
-					success : function(data){
-						alert("성공 : "+data);				
-					}
-				}	
-			  )			
+		location.href="projectDetailCheckView.do?hidden="+hiddenValue;
 	}
 </script>
 </body>
