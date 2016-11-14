@@ -1,6 +1,10 @@
 package kr.or.epm.PageMoveController;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
@@ -166,6 +170,20 @@ public class PageMoveController {
 	@RequestMapping("/salarySetting.do")
 	public String salrySetting(){
 		return "salary.salarySetting";
+	}
+	
+	//근태 관리 > 근태 
+	@RequestMapping("/Attendace.do")
+	public String Attendace(HttpServletRequest request, Model model){
+		String ip =request.getRemoteAddr();
+		model.addAttribute("ip",ip);
+		return "TAttendance.TimeAttendaceMainView";
+	}
+	
+	//월별 근태 보기
+	@RequestMapping("/AttendaceMonth.do")
+	public String AttendaceMonth(){
+		return "TAttendance.MonthAttendaceView";
 	}
 	
 	//주소록  > 주소록 그룹 관리 페이지 이동
