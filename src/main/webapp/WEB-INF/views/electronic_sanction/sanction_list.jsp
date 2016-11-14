@@ -20,7 +20,7 @@
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                	결재대기함
+                	요청한 결재
             </h2>
             <small>Show users list in nice and color panels</small>
         </div>
