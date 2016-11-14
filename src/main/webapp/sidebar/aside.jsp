@@ -139,6 +139,13 @@
                 </ul>
             </li>
             <li>
+                <a href="#"><span class="nav-label">근태 관리</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                	<li><a href="Attendace.do">일일 근태 등록</a></li>
+                	<li><a href="AttendaceMonth.do">월별 근태 조회</a></li>	
+                </ul>
+            </li>
+            <li>
                 <a href="#"><span class="nav-label">게시판 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="overview.html"><span class="label label-success pull-right">Start</span> Overview </a>  </li>

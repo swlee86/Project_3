@@ -238,60 +238,7 @@
 
         <div class="row">
             <div class="col-md-3">
-                <div class="hpanel">
-                    <div class="panel-body">
-
-                        <a href="mailbox_compose.html" class="btn btn-success btn-block m-b-md">Compose</a>
-
-                        <ul class="mailbox-list">
-                            <li>
-                                <a href="#">
-                                    <span class="pull-right">12</span>
-                                    <i class="fa fa-envelope"></i> Inbox
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-paper-plane"></i> Sent</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-pencil"></i> Draft</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-trash"></i> Trash</a>
-                            </li>
-                        </ul>
-                        <hr>
-                        <ul class="mailbox-list">
-                            <li>
-                                <a href="#"><i class="fa fa-plane text-danger"></i> Travel</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bar-chart text-warning"></i> Finance</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-users text-info"></i> Social</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-tag text-success"></i> Promos</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-flag text-primary"></i> Updates</a>
-                            </li>
-                        </ul>
-                        <hr>
-                        <ul class="mailbox-list">
-                            <li>
-                                <a href="#"><i class="fa fa-gears"></i> Settings</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-info-circle"></i> Support</a>
-                            </li>
-                        </ul>
-
-
-                    </div>
-
-                </div>
+				<jsp:include page="/sidebar/mailLeftList_side.jsp"></jsp:include>
             </div>
             <div class="col-md-9">
                 <div class="hpanel email-compose">
@@ -344,7 +291,7 @@
                                 <button class="btn btn-default"><i class="fa fa-trash"></i> Discard</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary">Send email</button>
+                        <button class="btn btn-primary ladda-button-demo"  data-style="zoom-in">Send email</button>
                         <div class="btn-group">
                             <button class="btn btn-default"><i class="fa fa-paperclip"></i> </button>
                             <button class="btn btn-default"><i class="fa fa-image"></i> </button>
@@ -379,6 +326,9 @@
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/summernote/dist/summernote.min.js"></script>
+<script src="vendor/ladda/dist/ladda.min.js"></script>
+<script src="vendor/ladda/dist/ladda.jquery.min.js"></script>
+
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
@@ -398,7 +348,22 @@
             ]
         });
 
+    var l = $( '.ladda-button-demo' ).ladda();
+    l.click(function(){
+
+        // Start loading
+        l.ladda( 'start' );
+
+        // Do something in backend and then stop ladda
+        // setTimeout() is only for demo purpose
+        setTimeout(function(){
+            l.ladda('stop');
+        },2000)
+
     });
+    });
+    
+
 
 </script>
 
