@@ -25,7 +25,8 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
-
+	<!--jQuery UI CSS-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -72,31 +73,29 @@
 			location.href="projectMake.do";
 		});
 		
-		$("#form").validate({
-            rules: {
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                url: {
-                    required: true,
-                    url: true
-                },
-                number: {
-                    required: true,
-                    number: true
-                },
-                max: {
-                    required: true,
-                    maxlength: 4
-                }
-            },
-            submitHandler: function(form) {
-                form.submit();
-            }
-        });
-
+		//프로젝트 시작일
+		$('#formstartDate').datepicker({
+			     changeMonth: true, 
+		         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+		         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+		         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		         dateFormat: 'yy-mm-dd'
+		});	
 		
+
+		$('#formendDate').datepicker({
+			 changeMonth: true, 
+	         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+	         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+	         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	         dateFormat: 'yy-mm-dd'
+		});
+ 
+		
+		
+				
 	});
 
 	//상세보기 클릭시 실행

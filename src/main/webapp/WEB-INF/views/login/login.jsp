@@ -33,7 +33,7 @@
 												app</span>
 										</div>
 										<div class="form-group">
-											<label class="control-label" for="password" style="color: black;">비밀번호</label> <input
+											<label class="control-label" for="password" style="color:black;">비밀번호</label> <input
 												type="password" title="Please enter your password"
 												placeholder="******" required="" value="" name="password"
 												id="password" class="form-control"> <span
