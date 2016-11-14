@@ -213,6 +213,7 @@ public class PageMoveController {
 		return "contacts.contacts_group";
 	}
 	
+<<<<<<< HEAD
 	//자유게시판  > 자유게시판 상세 페이지 이동
 	@RequestMapping("/free_board_view.do")
 	public String free_board_view(){
@@ -237,6 +238,13 @@ public class PageMoveController {
 		return "board_media/media_board_write";
 	}
 	
+	
+	//내정보수정
+	@RequestMapping("/editMyinfo.do")
+	public String test(){
+		return "myinfo.editMyinfo";
+	}
+
 	
 	//언론게시판  > 언론게시판 상세보기 페이지 이동
 	@RequestMapping("/media_board_view.do")
