@@ -134,13 +134,13 @@
 							</div>
 							<br/>
 							<div class="project-people">
-								<img alt="logo" class="img-circle" src="images/a1.jpg"> <img
-									alt="logo" class="img-circle" src="images/a2.jpg"> <img
-									alt="logo" class="img-circle" src="images/a3.jpg"> <img
-									alt="logo" class="img-circle" src="images/a4.jpg"> <img
-									alt="logo" class="img-circle" src="images/a5.jpg"> <img
-									alt="logo" class="img-circle" src="images/a6.jpg"> <img
-									alt="logo" class="img-circle" src="images/a7.jpg">
+								<img alt="logo" class="img-circle" src="images/a1.jpg"> 
+								<img alt="logo" class="img-circle" src="images/a2.jpg"> 
+								<img alt="logo" class="img-circle" src="images/a3.jpg"> 
+								<img alt="logo" class="img-circle" src="images/a4.jpg"> 
+								<img alt="logo" class="img-circle" src="images/a5.jpg"> 
+								<img alt="logo" class="img-circle" src="images/a6.jpg"> 
+								<img alt="logo" class="img-circle" src="images/a7.jpg">
 							</div>
 						</div>
 					</div>

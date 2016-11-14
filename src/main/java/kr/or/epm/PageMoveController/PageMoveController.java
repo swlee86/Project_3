@@ -148,10 +148,17 @@ public class PageMoveController {
 		return "contacts.enroll";
 	}
 	
+
 	//전자 결재 > 기안문작성 페이지이동
-	@RequestMapping("/sanction_approve_write.do")
-	public String sanction_approve_write() {
-		return "electronic_sanction.sanction_approve_write";
+	@RequestMapping("/sanction_list.do")
+	public String sanction_list() {
+		return "electronic_sanction.sanction_list";
+	}	
+	
+	//전자 결재 > 기안문작성 페이지이동
+	@RequestMapping("/sanction_write.do")
+	public String sanction_write() {
+		return "electronic_sanction.sanction_write";
 	}	
 	
 	//전자결재 > 결재보기화면 페이지이동
@@ -177,6 +184,13 @@ public class PageMoveController {
 	public String salrySetting(){
 		return "salary.salarySetting";
 	}
+	
+	//급여 관리> 급여 조회(개인)
+	@RequestMapping("/salarySearch.do")
+	public String salarySearch(){
+		return "salary.salarySearch";
+	}
+	
 	
 	//근태 관리 > 근태 
 	@RequestMapping("/Attendace.do")

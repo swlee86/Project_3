@@ -88,7 +88,7 @@
 							</table>
 							<div class="row" style="text-align:right;margin-right:10px;">
 								<input type="submit"  class="btn w-xs btn-primary" value="결재 요청" style="margin-right:10px;">
-								<input type="button"  onclick="location.href='contacts.do'" class="btn w-xs btn-default"  value="취 소">
+								<input type="button"  onclick="location.href='sanction_list.do'" class="btn w-xs btn-default"  value="취 소">
 							</div>
 						</div>
 						</form>	

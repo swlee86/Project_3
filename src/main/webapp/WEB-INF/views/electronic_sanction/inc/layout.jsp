@@ -64,5 +64,6 @@
 
 	<!-- App scripts -->
 	<script src="scripts/homer.js"></script>
+
 </body>
 </html>
