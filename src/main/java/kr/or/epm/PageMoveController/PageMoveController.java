@@ -171,6 +171,13 @@ public class PageMoveController {
 		return "salary.salarySetting";
 	}
 	
+	//급여 관리> 급여 조회(개인)
+	@RequestMapping("/salarySearch.do")
+	public String salarySearch(){
+		return "salary.salarySearch";
+	}
+	
+	
 	//근태 관리 > 근태 
 	@RequestMapping("/Attendace.do")
 	public String Attendace(HttpServletRequest request, Model model){
