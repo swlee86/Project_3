@@ -161,12 +161,6 @@
                  	<li><a href="media_board_list.do">언론 게시판</a></li>
                  	<li><a href="business_board_list.do">업무정보공유 게시판</a></li>
                  	<li><a href="free_board_list.do">사원정보공유 게시판</a></li>
-                    <li><a href="overview.html"><span class="label label-success pull-right">Start</span> Overview </a>  </li>
-                    <li><a href="transition_two.html">Columns from up</a></li>
-                    <li><a href="transition_one.html">Columns custom</a></li>
-                    <li><a href="transition_three.html">Panels zoom</a></li>
-                    <li><a href="transition_four.html">Rows from down</a></li>
-                    <li><a href="transition_five.html">Rows from right</a></li>
                 </ul>
             </li>
             <li>

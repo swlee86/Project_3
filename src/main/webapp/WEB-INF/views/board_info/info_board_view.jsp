@@ -55,7 +55,11 @@
 						ullamcorper.</p>
 				</div>
 				<div class="panel-footer">
+					 <span class="pull-right">
+	                  	<button type="button" class="btn btn-xs  btn-success"  >뒤로가기</button>
+	                </span>
 					<i class="fa fa-eye"> </i> 142 views
+				
 				</div>
 			</div>
 

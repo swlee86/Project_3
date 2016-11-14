@@ -49,41 +49,41 @@
                 <br>     
                 <hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1" class="table">
+                <table cellpadding="1" cellspacing="1" class="table" style="text-align:left">
                     <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자명</th>
-                        <th>작성일시</th>
-                        <th>조회수</th>
+                    <tr style="background-color:#f6f6f6;">
+                        <th style="text-align:center">번호</th>
+                        <th style="width:50%;">제목</th>
+                        <th >작성자명</th>
+                        <th >작성일시</th>
+                        <th >조회수</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>3</td>
-                        <td>Vosselsaar&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
+                        <td style="text-align:center">3</td>
+                        <td>ㅋㅋ&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
                         <td>박지은</td>
                         <td>16/11/06</td>
                         <td>22</td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td><a href="info_board_view.do">클릭하세요</a></td>
+                        <td style="text-align:center">2</td>
+                        <td><a href="info_board_view.do">클릭하f요</a></td>
                         <td>박지은</td>
                         <td>16/11/06</td>
                         <td>11</td>
                     </tr>
                     <tr>
-                        <td>5</td>
-                        <td>Vosselaar</td>
+                        <td style="text-align:center">5</td>
+                        <td><a href="info_board_view.do">ㅋㅋ</a></td>
                         <td>박지은</td>
                         <td>16/11/06</td>
                         <td>11</td>
                     </tr>                    
                     <tr>
-                        <td>1</td>
-                        <td>Vosselaar&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG"></td>
+                        <td style="text-align:center">1</td>
+                        <td>나나나&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG"></td>
                         <td>박지은</td>
                         <td>16/11/06</td>
                         <td>100</td>
