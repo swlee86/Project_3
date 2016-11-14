@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="normalheader transition animated fadeIn">
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
 			<a class="small-header-action" href="">
@@ -50,7 +50,7 @@
 											<span class="input-group">
                      							<input type="text" class="form-control input-sm" />
                         						<span class="input-group-btn">
-													<button class="btn btn-sm btn-default" type="submit">&nbsp; <i class="pe-7s-add-user" ></i></button>
+													<input type="button" class="btn btn-sm btn-default"  data-toggle="modal" data-target="#myModal6" value="추가">
 												</span>
                    	  						</span>
 										</td>
@@ -94,6 +94,67 @@
 						</form>	
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header">
+				<h4 class="modal-title"><font color="#6a6c6f">결재자 선택<i class="fa fa-table"></i></font></h4>
+				<small class="font-bold">Lorem Ipsum is simply dummy text.</small>
+			</div>
+			<div class="modal-body">
+				<table class="table table-bordered" style="text-align:center; float: left; width: 45%;">
+					<tr style="background-color:#f5f5f5;">
+						<th style="text-align:center">순번</th>
+						<th style="text-align:center">이름</th>
+						<th style="text-align:center">부서</th>
+						<th style="text-align:center">직위</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>박성준</td>
+						<td>개발부</td>
+						<td>PL</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>이상원</td>
+						<td>개발부</td>
+						<td>PM</td>
+					</tr>
+				</table>
+				<input type="button" value="=>" style="text-align: center;">
+				<table class="table table-bordered" style="text-align:center; float: left; width: 45%; margin-left: 10%;">
+					<tr style="background-color:#f5f5f5;">
+						<th style="text-align:center">순번</th>
+						<th style="text-align:center">이름</th>
+						<th style="text-align:center">부서</th>
+						<th style="text-align:center">직위</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">추가</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
