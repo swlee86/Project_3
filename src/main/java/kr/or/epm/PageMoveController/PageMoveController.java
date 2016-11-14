@@ -213,7 +213,7 @@ public class PageMoveController {
 		return "contacts.contacts_group";
 	}
 	
-<<<<<<< HEAD
+
 	//자유게시판  > 자유게시판 상세 페이지 이동
 	@RequestMapping("/free_board_view.do")
 	public String free_board_view(){
