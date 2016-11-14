@@ -1,6 +1,9 @@
 package kr.or.epm.PageMoveController;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
@@ -68,6 +71,18 @@ public class PageMoveController {
 		return "mail/mailbox_compose";
 	}
 
+	//메일 > 보낸메일함 페이지이동 
+	@RequestMapping("/mailbox_send.do")
+	public String mailbox_send() {
+		return "mail.mailbox_send";
+	}
+	
+	//메일 > 휴지통 페이지이동 
+	@RequestMapping("/mailbox_trash.do")
+	public String mailbox_trash() {
+		return "mail.mailbox_trash";
+	}
+	
 	// SideBar(aside.jsp) 인사관리 > 사원정보(관리자) 클릭시 구동
 	@RequestMapping("/member_datatables.do")
 	public String member_datatablesview() {
@@ -130,18 +145,6 @@ public class PageMoveController {
 	@RequestMapping("/sanction_approve_write.do")
 	public String sanction_approve_write() {
 		return "electronic_sanction.sanction_approve_write";
-	}
-	
-	//메일 > 보낸메일함 페이지이동 
-	@RequestMapping("/mailbox_send.do")
-	public String mailbox_send() {
-		return "mail.mailbox_send";
-	}
-	
-	//메일 > 휴지통 페이지이동 
-	@RequestMapping("/mailbox_trash.do")
-	public String mailbox_trash() {
-		return "mail.mailbox_trash";
 	}	
 	
 	//전자결재 > 결재보기화면 페이지이동
@@ -151,9 +154,9 @@ public class PageMoveController {
 	}
 	
 	//메일  > 메일세부글 보기 페이지 이동
-	@RequestMapping("/mailbox_view.do")
+	@RequestMapping("/mail_detail.do")
 	public String mailbox_read() {
-		return "mail.mailbox_view";
+		return "mail.mail_detail";
 	}
 	
 	//헤더  > 차트 (매출 현황보기)
@@ -166,6 +169,20 @@ public class PageMoveController {
 	@RequestMapping("/salarySetting.do")
 	public String salrySetting(){
 		return "salary.salarySetting";
+	}
+	
+	//근태 관리 > 근태 
+	@RequestMapping("/Attendace.do")
+	public String Attendace(HttpServletRequest request, Model model){
+		String ip =request.getRemoteAddr();
+		model.addAttribute("ip",ip);
+		return "TAttendance.TimeAttendaceMainView";
+	}
+	
+	//월별 근태 보기
+	@RequestMapping("/AttendaceMonth.do")
+	public String AttendaceMonth(){
+		return "TAttendance.MonthAttendaceView";
 	}
 	
 	//주소록  > 주소록 그룹 관리 페이지 이동
