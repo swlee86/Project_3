@@ -24,6 +24,16 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+	
+	<!--jQuery UI CSS-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   
+	
+	<style>
+.ui-datepicker-calendar {
+    display: none;
+ }
+    
+</style>
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
@@ -67,9 +77,45 @@
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
 
+<!--월별 캘린더.-->  
+<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script> 
+
+
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 
+<script>
+$(function(){
+	var currentYear = (new Date()).getFullYear();
+    var startYear = currentYear-10;
+	var options = {
+	           startYear: startYear,
+	           finalYear: currentYear,
+	           pattern: 'yyyy-mm',
+	           monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+	   };
+	//데이트피커
+	$('#Monthly').monthpicker(options);
+	$('#sevdate1').monthpicker(options);
+	$('#sevdate2').monthpicker(options);
+	$('#searchicon').click(function(){
+		var date = $('#Monthly').val();
+		alert("선택한 날짜 : "+date);
+		
+	});
+	$('#searchicon_sevdate1').click(function(){
+		var date = $('#sevdate1').val();
+		alert("선택한 날짜 : "+date);
+		
+	});
+	$('#searchicon_sevdate2').click(function(){
+		var date = $('#sevdate2').val();
+		alert("선택한 날짜 : "+date);
+		
+	});
+	
+});
+</script>
 
 </body>
 </html>

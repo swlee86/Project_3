@@ -54,10 +54,6 @@
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-4">
-<<<<<<< HEAD
-=======
-
->>>>>>> maven_HA
 			<div class="hpanel">
 				<div class="panel-body">
 					<h4>
@@ -100,10 +96,7 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-=======
 
->>>>>>> maven_HA
 	   		 <div class="hpanel">
 	   			 <div class="panel-heading">
 	   			 	<h4>항목정보</h4>	
@@ -129,10 +122,7 @@
 	   		 	
 	   		 </div>
 		</div>	
-<<<<<<< HEAD
-=======
 
->>>>>>> maven_HA
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
