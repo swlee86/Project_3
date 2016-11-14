@@ -68,7 +68,23 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
-
-	
+<script>
+	$(function(){
+		/*메일 보기 리스트에서 메일 쓰기 버튼 클릭시*/
+		$('#writeMailBtn').click(function(){
+			location.href="mailbox_compose.do";
+		});
+		
+		
+		$('#sendMailBtn').click(function(){
+			
+			var title = $('#aa').val();
+			var user = $('#bb').val();
+			var msg = $('#note').val();
+			alert("제목 : "+title + " / 유저 : "+user+"/내용 : "+msg);
+		});
+		
+	});
+</script>
 </body>
 </html>

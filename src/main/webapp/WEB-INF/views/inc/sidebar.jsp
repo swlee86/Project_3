@@ -143,6 +143,7 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="Attendace.do">일일 근태 등록</a></li>
            			<li><a href="AttendaceMonth.do">월별 근태 조회</a></li>
+           			<li><a href="AttendaceOther.do">각기다른 근태보기</a></li>
                 </ul>
             </li>
             <li>

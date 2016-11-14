@@ -50,23 +50,44 @@
 				<div class="panel-body">
 					<div class="table-responsive">
 						<div class="table-responsive">
-							<table class="table">
+							<table class="table table-bordered table-striped">
 								<tr>
 									<th/>
 									<th>테스트</th>
 									<th>첫번째</th>
 									<th>첫번째</th>
 									<th>첫번째</th>
+									<th>진행상황</th>
 								</tr>
 								<tr>
-									<td>
-											<input type="checkbox" class="i-checks"> 
-										
-									</td>
+									<td><input type="checkbox" class="i-checks"></td>
 									<td>안녕</td>
 									<td>헬로</td>
-									<th>세번째</th>
-									<th>네번째</th>
+									<td>세번째</td>
+									<td>네번째</td>
+									<td>
+										<select class="form-control">
+											<option>선택</option>
+											<option>진행중</option>
+											<option>보류</option>
+											<option>완료</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="i-checks"></td>
+									<td>두번째</td>
+									<td>둘둘</td>
+									<td>둘리</td>
+									<td>난서현이야</td>
+									<td>
+										<select class="form-control">
+											<option>선택</option>
+											<option>진행중</option>
+											<option>보류</option>
+											<option>완료</option>
+										</select>
+									</td>
 								</tr>
 							</table>
 						</div>

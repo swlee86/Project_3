@@ -75,7 +75,7 @@ public class PageMoveController {
 	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
 	@RequestMapping("/mailbox_compose.do")
 	public String mailbox_composeview() {
-		return "mail/mailbox_compose";
+		return "mail.mailbox_compose";
 	}
 
 	//메일 > 보낸메일함 페이지이동 
@@ -209,6 +209,12 @@ public class PageMoveController {
 	@RequestMapping("/AttendaceMonth.do")
 	public String AttendaceMonth(){
 		return "TAttendance.MonthAttendaceView";
+	}
+	
+	//각기 다른 근태 보기
+	@RequestMapping("/AttendaceOther.do")
+	public String AttendaceOther(){
+		return "TAttendance.AttendaceOtherView";
 	}
 	
 	//주소록  > 주소록 그룹 관리 페이지 이동
