@@ -211,6 +211,12 @@ public class PageMoveController {
 		return "TAttendance.MonthAttendaceView";
 	}
 	
+	//근태 신청서 쓰기
+	@RequestMapping("/AttendaceWrite.do")
+	public String AttendaceWrite(){
+		return "TAttendance.AttendaceWriteView";
+	}
+	
 	//각기 다른 근태 보기
 	@RequestMapping("/AttendaceOther.do")
 	public String AttendaceOther(){
@@ -279,4 +285,12 @@ public class PageMoveController {
 	public String business_board_write(){
 		return "board_business/business_board_write";
 	}
+	
+	
+	//관리자 > 부서관리 페이지
+	@RequestMapping("/adminDepartMent.do")
+	public String adminDepartMent(){
+		return "admin.adminDepartMentView";
+	}
+	
 }
