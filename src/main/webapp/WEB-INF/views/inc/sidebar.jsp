@@ -68,10 +68,9 @@
             <li>
                 <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
+                	<li><a href="sanction_write.do">요청 등록</a></li>
+                	<li><a href="sanction_list.do">요청한 결재</a></li>
                 	<li><a href="sanction_approve.do">결재대기함</a></li>
-                	<li><a href="sanction_approve_write.do">기안문작성</a></li>
-                    <li><a href="datatables.html">Data tables</a></li>
-                    <li><a href="footable.html">Foo Table</a></li>
                 </ul>
             </li>
             <li>

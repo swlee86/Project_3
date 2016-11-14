@@ -148,10 +148,17 @@ public class PageMoveController {
 		return "contacts.enroll";
 	}
 	
+
 	//전자 결재 > 기안문작성 페이지이동
-	@RequestMapping("/sanction_approve_write.do")
-	public String sanction_approve_write() {
-		return "electronic_sanction.sanction_approve_write";
+	@RequestMapping("/sanction_list.do")
+	public String sanction_list() {
+		return "electronic_sanction.sanction_list";
+	}	
+	
+	//전자 결재 > 기안문작성 페이지이동
+	@RequestMapping("/sanction_write.do")
+	public String sanction_write() {
+		return "electronic_sanction.sanction_write";
 	}	
 	
 	//전자결재 > 결재보기화면 페이지이동
