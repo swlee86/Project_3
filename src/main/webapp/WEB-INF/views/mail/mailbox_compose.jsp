@@ -238,60 +238,7 @@
 
         <div class="row">
             <div class="col-md-3">
-                <div class="hpanel">
-                    <div class="panel-body">
-
-                        <a href="mailbox_compose.html" class="btn btn-success btn-block m-b-md">Compose</a>
-
-                        <ul class="mailbox-list">
-                            <li>
-                                <a href="#">
-                                    <span class="pull-right">12</span>
-                                    <i class="fa fa-envelope"></i> Inbox
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-paper-plane"></i> Sent</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-pencil"></i> Draft</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-trash"></i> Trash</a>
-                            </li>
-                        </ul>
-                        <hr>
-                        <ul class="mailbox-list">
-                            <li>
-                                <a href="#"><i class="fa fa-plane text-danger"></i> Travel</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bar-chart text-warning"></i> Finance</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-users text-info"></i> Social</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-tag text-success"></i> Promos</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-flag text-primary"></i> Updates</a>
-                            </li>
-                        </ul>
-                        <hr>
-                        <ul class="mailbox-list">
-                            <li>
-                                <a href="#"><i class="fa fa-gears"></i> Settings</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-info-circle"></i> Support</a>
-                            </li>
-                        </ul>
-
-
-                    </div>
-
-                </div>
+				<jsp:include page="/sidebar/mailLeftList_side.jsp"></jsp:include>
             </div>
             <div class="col-md-9">
                 <div class="hpanel email-compose">

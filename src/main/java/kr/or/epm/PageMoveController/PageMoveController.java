@@ -1,6 +1,5 @@
 package kr.or.epm.PageMoveController;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -72,6 +71,18 @@ public class PageMoveController {
 		return "mail/mailbox_compose";
 	}
 
+	//메일 > 보낸메일함 페이지이동 
+	@RequestMapping("/mailbox_send.do")
+	public String mailbox_send() {
+		return "mail.mailbox_send";
+	}
+	
+	//메일 > 휴지통 페이지이동 
+	@RequestMapping("/mailbox_trash.do")
+	public String mailbox_trash() {
+		return "mail.mailbox_trash";
+	}
+	
 	// SideBar(aside.jsp) 인사관리 > 사원정보(관리자) 클릭시 구동
 	@RequestMapping("/member_datatables.do")
 	public String member_datatablesview() {
@@ -134,18 +145,6 @@ public class PageMoveController {
 	@RequestMapping("/sanction_approve_write.do")
 	public String sanction_approve_write() {
 		return "electronic_sanction.sanction_approve_write";
-	}
-	
-	//메일 > 보낸메일함 페이지이동 
-	@RequestMapping("/mailbox_send.do")
-	public String mailbox_send() {
-		return "mail.mailbox_send";
-	}
-	
-	//메일 > 휴지통 페이지이동 
-	@RequestMapping("/mailbox_trash.do")
-	public String mailbox_trash() {
-		return "mail.mailbox_trash";
 	}	
 	
 	//전자결재 > 결재보기화면 페이지이동
@@ -155,9 +154,9 @@ public class PageMoveController {
 	}
 	
 	//메일  > 메일세부글 보기 페이지 이동
-	@RequestMapping("/mailbox_view.do")
+	@RequestMapping("/mail_detail.do")
 	public String mailbox_read() {
-		return "mail.mailbox_view";
+		return "mail.mail_detail";
 	}
 	
 	//헤더  > 차트 (매출 현황보기)
