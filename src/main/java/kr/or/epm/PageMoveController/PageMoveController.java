@@ -190,7 +190,11 @@ public class PageMoveController {
 	public String salarySearch(){
 		return "salary.salarySearch";
 	}
-	
+	//급여 관리 > 퇴직금 계산
+	@RequestMapping("/severancepay.do")
+	public String severancepay(){
+		return "salary.severancepay";
+	}
 	
 	//근태 관리 > 근태 
 	@RequestMapping("/Attendace.do")
