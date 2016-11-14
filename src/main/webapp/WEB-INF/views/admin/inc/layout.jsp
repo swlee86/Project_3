@@ -84,12 +84,16 @@
 						},
 						success : function(data){
 							console.log(data);
-							var text = "";
+							var text = "<h3>"+$('#depart').html()+"</h3>";
+							text += "<table class='table'><tr><th></th><th>이름</th><th>나이</th>";
 							
 							$.each(data, function(index){
 								console.log(index);
-								text += "<h4>이름 : "+data[index].name +", 나이 : "+data[index].age+"</h4>";
+								text += "<tr><td><input type='checkbox'></td><td>"+data[index].name +"</td><td>"+data[index].age+"</td><tr/>";
 							});
+							
+							text+="</table>";
+							text+="<input type='button' class='btn btn-default' value='버튼입니다'>";
 							$('#departList').html('');
 							$('#departList').html(text);
 						}

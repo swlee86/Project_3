@@ -52,10 +52,9 @@
 		<div class="col-lg-8">
 			<div class="hpanel">
 				<div class="panel-body">
-					<h4>부서 리스트</h4>
-					<hr/>
+					
 					<div id="departList">
-						
+						<h4>부서를 선택해주세요</h4>
 					</div>
 				</div>
 				<div class="panel-footer">This is standard panel footer</div>
