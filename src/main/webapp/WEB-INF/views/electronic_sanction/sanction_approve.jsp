@@ -2,15 +2,14 @@
     <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
-            <a class="small-header-action" href="">
+            <a class="small-header-action" href="#">
                 <div class="clip-header">
                     <i class="fa fa-arrow-up"></i>
                 </div>
             </a>
-
             <div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="index.do">Dashboard</a></li>
                     <li>
                         <span>App views</span>
                     </li>
@@ -134,8 +133,6 @@
                 </div>
               </div>
         </div> 
-            
-         
    </div>  
 </div>
 </div>

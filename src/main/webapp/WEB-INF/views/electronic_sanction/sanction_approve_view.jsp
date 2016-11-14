@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="normalheader transition animated fadeIn">
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
 			<a class="small-header-action" href="">
@@ -11,7 +11,7 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
+					<li><a href="index.do">Dashboard</a></li>
 					<li><span>App views</span></li>
 					<li class="active"><span>Contacts</span></li>
 				</ol>
@@ -76,20 +76,26 @@
 						</form>	
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 </div>
 
 
-<div class="modal fade hmodal-success" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true">
+
+
+<div class="modal fade hmodal-success" id="myModal1" tabindex="-2" role="dialog" aria-hidden="true">
 	<div class="modal-dialog  modal-sm">
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center">
-		 		기재하신 업무는 ㅇㅇ 입니다. 정말 처리하시겠습니까?
+		 		업무처리 안내
+			</div>
+			<div class="modal-body">
+				<font class="font-bold" size="2em">
+					<font style="color:gray;">기재하신 업무는 ㅇㅇ 입니다.</font><br>
+					<font style="color:#9d9fa2"> 정말 처리하시겠습니까?</font> <br>
+				</font>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
@@ -98,6 +104,8 @@
 		</div>
 	</div>
 </div>
+
+
 
 <div class="modal fade hmodal-success" id="myModal5" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
