@@ -245,7 +245,7 @@ public class PageMoveController {
 	
 	//내정보수정
 	@RequestMapping("/editMyinfo.do")
-	public String test(){
+	public String editMyinfo(){
 		return "myinfo.editMyinfo";
 	}
 
@@ -273,4 +273,17 @@ public class PageMoveController {
 	public String business_board_write(){
 		return "board_business/business_board_write";
 	}
+	
+	//탈퇴
+	@RequestMapping("/withdrawal.do")
+	public String withdrawal(){
+		return "withdrawal.withdrawalMainView";
+	}
+	
+	//아이디찾기,비밀번호찾기 메인
+	@RequestMapping("/findIdPw.do")
+	public String findIdPw(){
+		return "find.findMainView";
+	}
+	
 }
