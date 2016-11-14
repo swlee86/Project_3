@@ -53,7 +53,9 @@
 					Calendar
 				</div>
 				<div class="panel-body">
-					<div id="calendar"></div>
+					<div id="calendar">
+					
+					</div>
 				</div>
 			</div>
 		</div>

@@ -7,7 +7,6 @@
 				<div class="clip-header">
 					<i class="fa fa-arrow-up"></i>
 				</div>
-
 			</a>
 			<div class="row">
 				<div class="form-group col-sm-4">
@@ -55,6 +54,10 @@
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-4">
+<<<<<<< HEAD
+=======
+
+>>>>>>> maven_HA
 			<div class="hpanel">
 				<div class="panel-body">
 					<h4>
@@ -97,6 +100,39 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> maven_HA
+	   		 <div class="hpanel">
+	   			 <div class="panel-heading">
+	   			 	<h4>항목정보</h4>	
+	   			 </div>
+	   			<div class="panel-body">
+                	<div class="table-responsive">
+                		<table cellpadding="1" cellspacing="1" class="table">
+	   		 				<tr>
+	   		 					<th>첫번째</th>
+	   		 					<th>두번째</th>
+	   		 				</tr>
+	   		 				<tr>
+	   		 					<td>테스트</td>
+	   		 					<td>테스트2</td>
+	   		 				</tr>
+	   		 			</table>
+	   		 		</div>
+	   		 	</div>
+	   		 	<div class="panel-footer">
+	   		 		<h4>풋터입니다.</h4>
+	   		 	</div>
+	   		 	
+	   		 	
+	   		 </div>
+		</div>	
+<<<<<<< HEAD
+=======
+
+>>>>>>> maven_HA
 	</div>
 	<div class="row">
 		<div class="col-sm-12">

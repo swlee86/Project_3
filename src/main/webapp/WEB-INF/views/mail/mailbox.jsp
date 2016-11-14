@@ -99,7 +99,7 @@
 										</div>
 									</td>
 									<td><a href="#">Marshall Horne</a></td>
-									<td><a href="mailbox_view.do">클릭해보세여여여요요</a></td>
+									<td><a href="mail_detail.do">클릭해보세여여여요요</a></td>
 									<td></td>
 									<td class="text-right mail-date">Wed, Jan 13</td>
 								</tr>

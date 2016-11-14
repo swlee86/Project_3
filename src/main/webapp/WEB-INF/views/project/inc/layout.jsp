@@ -65,5 +65,68 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+<script>
+
+	$(function(){
+		$('#makeProjectBtn').click(function(){
+			location.href="projectMake.do";
+		});
+		
+		$("#form").validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                url: {
+                    required: true,
+                    url: true
+                },
+                number: {
+                    required: true,
+                    number: true
+                },
+                max: {
+                    required: true,
+                    maxlength: 4
+                }
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+
+		
+	});
+
+	//상세보기 클릭시 실행
+	function detailProjectCheckList(mybtn){
+		
+		var btn = mybtn;
+		var upbtn = btn.parentNode.previousSibling.previousSibling.childNodes;
+		var upbtn2;
+		
+		for(var i = 0; i < upbtn.length; i++){
+			upbtn2 = upbtn[3];
+		}
+	
+		console.log(upbtn2);
+		//히든 값 담은 변수
+		var hiddenValue = upbtn2.value;
+		
+		$.ajax(
+				{
+					url:"projectDetailCheckView.do",
+					data : 
+					{
+						"hidden" : hiddenValue	
+					},
+					success : function(data){
+						alert("성공 : "+data);				
+					}
+				}	
+			  )			
+	}
+</script>
 </body>
 </html>
