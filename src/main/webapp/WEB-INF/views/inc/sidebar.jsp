@@ -139,7 +139,14 @@
                     <li><a href="c3.html">C3 Charts</a></li>
                 </ul>
             </li>
-                <li>
+            <li>
+                <a href="#"><span class="nav-label">근태 관리</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                	<li><a href="Attendace.do">일일 근태 등록</a></li>
+           			<li><a href="AttendaceMonth.do">월별 근태 조회</a></li>
+                </ul>
+            </li>
+            <li>
                 <a href="#"><span class="nav-label">급여 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="salarySetting.do">급여 항목 설정</a></li>
