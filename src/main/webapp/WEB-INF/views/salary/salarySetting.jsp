@@ -7,7 +7,6 @@
 				<div class="clip-header">
 					<i class="fa fa-arrow-up"></i>
 				</div>
-
 			</a>
 			<div class="row">
 				<div class="form-group col-sm-4">
@@ -56,6 +55,9 @@
 	<div class="row">
 		<div class="col-lg-4">
 <<<<<<< HEAD
+=======
+
+>>>>>>> maven_HA
 			<div class="hpanel">
 				<div class="panel-body">
 					<h4>
@@ -98,7 +100,10 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 =======
+
+>>>>>>> maven_HA
 	   		 <div class="hpanel">
 	   			 <div class="panel-heading">
 	   			 	<h4>항목정보</h4>	
@@ -124,6 +129,9 @@
 	   		 	
 	   		 </div>
 		</div>	
+<<<<<<< HEAD
+=======
+
 >>>>>>> maven_HA
 	</div>
 	<div class="row">
