@@ -16,7 +16,7 @@
 					<li class="active"><span>Contacts</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">기안문 작성</h2>
+			<h2 class="font-light m-b-xs">요청 등록</h2>
 			<small>Show users list in nice and color panels</small>
 		</div>
 	</div>
@@ -94,8 +94,6 @@
 						</form>	
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
