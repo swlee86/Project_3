@@ -161,6 +161,7 @@
                 <ul class="nav nav-second-level">
                     <li><a href="login.do">로그인</a></li>
                     <li><a href="addMember.do">회원가입</a></li>
+                    <li><a href="psjtest.do">????</a></li>
                     <li><a href="error_one.html">Error 404</a></li>
                     <li><a href="error_two.html">Error 505</a></li>
                     <li><a href="lock.html">Lock screen</a></li>

@@ -5,10 +5,12 @@
 <div id="header">
     <div class="color-line">
     </div>
-    <div id="logo" class="light-version">
-        <span>
-            2PM
-        </span>
+    <div id="logo" class="light-version" >
+    	<a href="index.do">
+	        <span>
+	            2PM
+	        </span>
+		</a>
     </div>
     <nav role="navigation">
         <div class="header-link hide-menu">

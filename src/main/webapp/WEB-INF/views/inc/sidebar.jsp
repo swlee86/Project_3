@@ -150,8 +150,8 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="salarySetting.do">급여 항목 설정</a></li>
                     <li><a href="#">급여 마감 관리</a></li>
-                    <li><a href="#">급여 조회</a></li>
-                    <li><a href="#">퇴직금 계산</a></li>
+                    <li><a href="salarySearch.do">급여 조회</a></li>
+                    <li><a href="severancepay.do">퇴직금 계산</a></li>
                 </ul>
             </li>
             <li>
@@ -168,6 +168,7 @@
                 <ul class="nav nav-second-level">
                     <li><a href="login.do">로그인</a></li>
                     <li><a href="addMember.do">회원가입</a></li>
+                    <li><a href="editMyinfo.do">내정보수정</a></li>
                     <li><a href="error_one.html">Error 404</a></li>
                     <li><a href="error_two.html">Error 505</a></li>
                     <li><a href="lock.html">Lock screen</a></li>
