@@ -199,5 +199,27 @@ public class PageMoveController {
 		return "contacts.contacts_group";
 	}
 	
+	//자유게시판  > 자유게시판 상세 페이지 이동
+	@RequestMapping("/free_board_view.do")
+	public String free_board_view(){
+		return "board_free.free_board_view";
+	}
+
+	//언론게시판  > 언론게시판 리스트 페이지 이동
+	@RequestMapping("/media_board_list.do")
+	public String media_board_list(){
+		return "board_media.media_board_list";
+	}
 	
+	//언론게시판  > 언론게시판 상세보기 페이지 이동
+	@RequestMapping("/media_board_view.do")
+	public String media_board_view(){
+		return "board_media.media_board_view";
+	}
+	
+	//업무정보게시판  > 업무정보게시판  리스트 페이지 이동
+	@RequestMapping("/business_board_list.do")
+	public String business_board_list(){
+		return "board_business.business_board_list";
+	}
 }

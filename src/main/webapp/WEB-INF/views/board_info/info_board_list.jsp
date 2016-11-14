@@ -69,7 +69,7 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><a href="info_board_view.do">Vosselaar</a></td>
+                        <td><a href="info_board_view.do">클릭하세요</a></td>
                         <td>박지은</td>
                         <td>16/11/06</td>
                         <td>11</td>
@@ -91,7 +91,7 @@
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button" class="btn w-xs btn-primary" onclick="location.href='info_board_write.do'" >글 등록</button>
+                	<button type="button" class="btn w-xs btn-success" onclick="location.href='info_board_write.do'" >글 등록</button>
                 </div>
 			</div>
 

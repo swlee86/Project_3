@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -22,87 +23,43 @@
 	</div>
 </div>
 
+
 <div class="content animate-panel">
-	<div class="row social-board">
-		<div class="col-lg-12">
-			<div class="hpanel hgreen">
-				<div class="panel-body">
-					<div class="media social-profile clearfix">
-						<a class="pull-left"> <img src="images/a7.jpg"
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="hpanel blog-box">
+				<div class="panel-heading">
+					<div class="media clearfix">
+						<a class="pull-left"> <img src="images/a3.jpg"
 							alt="profile-picture">
 						</a>
 						<div class="media-body">
-							<h5>John Smith</h5>
-							<small class="text-muted">13.05.2015</small>
+							<small>Created by: <span class="font-bold">Mike
+									Smith</span>
+							</small> <br /> <small class="text-muted">21.03.2015, 06:45 pm</small>
 						</div>
 					</div>
-
-					<div class="social-content m-t-md">
-						There are many variations of passages of Lorem Ipsum available,
-						but the majority have By injected humour, or randomised words
-						which don't look even slightly believable. There are many
-						variations of passages of Lorem Ipsum available, but the majority
-						have By injected humour, or randomised words which don't look even
-						slightly believable. There are many variations of passages of
-						Lorem Ipsum available, but the majority have By injected humour,
-						or randomised words which don't look even slightly believable.
-						There are many variations of passages of Lorem Ipsum available,
-						but the majority have By injected humour, or randomised words
-						which don't look even slightly believable. <img
-							class="img-responsive m-t-md" src="images/p2.jpg" alt="">
-
-					</div>
+				</div>
+				<div class="panel-body">
+					<a href="blog_details.html">
+						<h4>Article about new design</h4>
+					</a>
+					<p>There are many variations of passages of Lorem Ipsum
+						available, but the majority have suffered alteration in some form,
+						by injected humour, or randomised words which don't look even
+						slightly believable. If you are going to use a passage of Lorem
+						Ipsum...</p>
+					<p>Praesent eget euismod nibh. Fusce ac tellus eu nisl lobortis
+						maximus ac eget sapien. Nulla malesuada mauris non nulla imperdiet
+						ullamcorper.</p>
 				</div>
 				<div class="panel-footer">
-					<div class="social-talk">
-						<div class="media social-profile clearfix">
-							<a class="pull-left"> <img src="images/a1.jpg"
-								alt="profile-picture">
-							</a>
-
-							<div class="media-body">
-								<span class="font-bold">John Novak</span> <small
-									class="text-muted">21.03.2015</small>
-
-								<div class="social-content">
-									Injected humour, or randomised words which don't look even
-									slightly believable.<br> Injected humour, or randomised
-									words which don't look even slightly believable<br>.
-									Injected humour, or randomised <br>words which don't look
-									even slightly believable.<br> Injected humour, or
-									randomised words which don't look even slightly believable.
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="social-talk">
-						<div class="media social-profile clearfix">
-							<a class="pull-left"> <img src="images/a3.jpg"
-								alt="profile-picture">
-							</a>
-
-							<div class="media-body">
-								<span class="font-bold">Mark Smith</span> <small
-									class="text-muted">14.04.2015</small>
-								<div class="social-content">Many desktop publishing
-									packages and web page editors.</div>
-							</div>
-						</div>
-					</div>
-					<br>
-					<div class="social-form">
-						<form>
-							<div class="input-group">
-								<input type="text" class="form-control"
-									placeholder="Your comment"> <span
-									class="input-group-btn"> <input type="submit"
-									class="btn btn-sm btn-default" value=" 댓글 달기 ">
-								</span>
-							</div>
-						</form>
-					</div>
+					<i class="fa fa-eye"> </i> 142 views
 				</div>
 			</div>
+
+
 		</div>
 	</div>
 </div>

@@ -54,7 +54,7 @@
                     <thead>
                     <tr>
                         <th>번호</th>
-                        <th>제ㅇ목</th>
+                        <th>제목</th>
                         <th>작성자명</th>
                         <th>작성일시</th>
                         <th>조회수</th>
@@ -70,7 +70,7 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<img alt="reply"  src="images/replyimg.gif"> &nbsp;Vosselaar</td>
+                        <td><a href="free_board_view.do">&nbsp;&nbsp;&nbsp;&nbsp;<img alt="reply"  src="images/replyimg.gif"> &nbsp;클릭하세요</a></td>
                         <td>박지은  (부서명)</td>
                         <td>16/11/06</td>
                         <td>11</td>
@@ -92,7 +92,7 @@
                     </tbody>
                 </table>
                  <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button" class="btn w-xs btn-primary" onclick="location.href='info_board_write.do'" >글 등록</button>
+                	<button type="button" class="btn w-xs btn-success" onclick="location.href='free_board_write.do'" >글 등록</button>
                 </div>
 			</div>
 
