@@ -96,7 +96,7 @@
 
             </div>
             <div class="panel-footer">
-                Table - 6 rows
+                <input type="button" class="btn btn-success" value="프로젝트 작성" id="makeProjectBtn">
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!--프로젝트 상세 카드형식-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -28,13 +29,22 @@
 		<div class="col-lg-6">
 			<div class="hpanel hgreen">
 				<div class="panel-body">
+					
+					<!--프로젝트 상세 히든 번호-->
+					<input type="hidden" class="hiddenValue" value="${1}">
 					<span class="label label-success pull-right" style="margin-top:-5px;">NEW</span>
 					<div class="row">
 						<div class="col-sm-8">
-
-							<h4>
-								프로젝트 제목 - <small>연결고리</small>
-							</h4>
+							<div class="row">
+								<div class="col-sm-4">
+									<h4 class="projectName">프로젝트 제목</h4>
+								</div>
+								<div class="col-sm-4">
+									<h4 class="makeUser">박성준</h4>
+								</div>	
+							</div>
+							 
+							
 							<br />
 							
 							<div class="row">
@@ -78,13 +88,15 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<input type="button" class="btn btn-success" value="진행사항 기입란">
+					<button class="btn btn-success" onclick="detailProjectCheckList(this)">상세보기</button>
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-6">
 			<div class="hpanel hgreen">
 				<div class="panel-body">
+					<!--프로젝트 상세 히든 번호-->
+					<input type="hidden" class="hiddenValue" value="${2}">
 					<span class="label label-success pull-right" style="margin-top:-5px;">NEW</span>
 					<div class="row">
 						<div class="col-sm-8">
@@ -93,7 +105,6 @@
 								프로젝트 제목 - <small>연결고리</small>
 							</h4>
 							<br />
-							
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="project-label">시작일</div>
@@ -135,7 +146,7 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<input type="button" class="btn btn-success" value="진행사항 기입란">
+					<button class="btn btn-success" onclick="detailProjectCheckList(this)">상세보기</button>
 				</div>
 			</div>
 		</div>
