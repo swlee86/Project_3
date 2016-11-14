@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="back-link">
+<!-- <div class="back-link">
 <a href="Test_MainLanding_View.jsp" class="btn btn-primary">Back to Dashboard</a>
-</div>
+</div>-->
 	<div class="container">
 		<div class="heading">
 
@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="text-center m-b-md" style="color:gray">
-							<h2><b>회원가입</b></h2>
+							<h3>회원가입</h3>
 							<small>2PM 의 다양한 기능을 느껴보세요!</small>
 						</div>
 						
@@ -66,6 +66,7 @@
 												</span> 										
 											</div>
 											<div class="row">
+											<br>
 											<div class=" col-lg-6">
 												<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소">
 											</div>
@@ -84,6 +85,9 @@
 													<option>국민</option>
 													<option>신한</option>
 													<option>기업</option>
+													<option>SC은행</option>
+													<option>우체국</option>
+													<option>농협</option>
 												</select>
 											</div>
 											<div class=" col-lg-6">

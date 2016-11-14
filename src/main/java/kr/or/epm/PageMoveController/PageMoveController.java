@@ -213,5 +213,10 @@ public class PageMoveController {
 		return "contacts.contacts_group";
 	}
 	
+	//내정보수정
+	@RequestMapping("/editMyinfo.do")
+	public String test(){
+		return "myinfo.editMyinfo";
+	}
 	
 }
