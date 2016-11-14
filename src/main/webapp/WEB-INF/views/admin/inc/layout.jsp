@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -19,24 +20,20 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
-    
+    <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
     <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />
+    
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
-    <link rel="stylesheet" href="styles/static_custom.css">
     <link rel="stylesheet" href="styles/style.css">
-
+    <link rel="stylesheet" href="styles/static_custom.css">
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
 <!-- Simple splash screen-->
 <div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
-<!--[if lt IE 7]>
-<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
 
 <!-- Header -->
 <tiles:insertAttribute name="header" />
@@ -49,7 +46,7 @@
 <tiles:insertAttribute name="content" />
 
     <!-- Right sidebar -->
-<tiles:insertAttribute name="rightsidebar" />
+<tiles:insertAttribute name="rightsidebar" /> 
 
     <!-- Footer-->
 <tiles:insertAttribute name="footer" />
@@ -58,32 +55,48 @@
 
 <!-- Vendor scripts -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/jquery-ui/jquery-ui.min.js"></script>
 <script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="vendor/jquery-flot/jquery.flot.js"></script>
+<script src="vendor/jquery-flot/jquery.flot.resize.js"></script>
+<script src="vendor/jquery-flot/jquery.flot.pie.js"></script>
+<script src="vendor/flot.curvedlines/curvedLines.js"></script>
+<script src="vendor/jquery.flot.spline/index.js"></script>
 <script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
-<script src="vendor/summernote/dist/summernote.min.js"></script>
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <script>
 	$(function(){
-		/*메일 보기 리스트에서 메일 쓰기 버튼 클릭시*/
-		$('#writeMailBtn').click(function(){
-			location.href="mailbox_compose.do";
-		});
-		
-		
-		$('#sendMailBtn').click(function(){
+		//개발부서 클릭시 아작스 이용
+		$('#depart').click(function(){
 			
-			var title = $('#aa').val();
-			var user = $('#bb').val();
-			var msg = $('#note').val();
-			alert("제목 : "+title + " / 유저 : "+user+"/내용 : "+msg);
+			$.ajax(
+					 {
+						url:"adminDepart_depart.do",
+						data : 
+						{
+							"depart" : $('#depart').html()	
+						},
+						success : function(data){
+							console.log(data);
+							var text = "";
+							
+							$.each(data, function(index){
+								console.log(index);
+								text += "<h4>이름 : "+data[index].name +", 나이 : "+data[index].age+"</h4>";
+							});
+							$('#departList').html('');
+							$('#departList').html(text);
+						}
+				     }
+				  ); 
+			
 		});
-		
 	});
 </script>
 </body>

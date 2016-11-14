@@ -75,7 +75,7 @@ public class PageMoveController {
 	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
 	@RequestMapping("/mailbox_compose.do")
 	public String mailbox_composeview() {
-		return "mail/mailbox_compose";
+		return "mail.mailbox_compose";
 	}
 
 	//메일 > 보낸메일함 페이지이동 
@@ -211,6 +211,18 @@ public class PageMoveController {
 		return "TAttendance.MonthAttendaceView";
 	}
 	
+	//근태 신청서 쓰기
+	@RequestMapping("/AttendaceWrite.do")
+	public String AttendaceWrite(){
+		return "TAttendance.AttendaceWriteView";
+	}
+	
+	//각기 다른 근태 보기
+	@RequestMapping("/AttendaceOther.do")
+	public String AttendaceOther(){
+		return "TAttendance.AttendaceOtherView";
+	}
+	
 	//주소록  > 주소록 그룹 관리 페이지 이동
 	@RequestMapping("/contaacts_group.do")
 	public String contaacts_group(){
@@ -245,7 +257,7 @@ public class PageMoveController {
 	
 	//내정보수정
 	@RequestMapping("/editMyinfo.do")
-	public String editMyinfo(){
+	public String test(){
 		return "myinfo.editMyinfo";
 	}
 
@@ -274,16 +286,11 @@ public class PageMoveController {
 		return "board_business/business_board_write";
 	}
 	
-	//탈퇴
-	@RequestMapping("/withdrawal.do")
-	public String withdrawal(){
-		return "withdrawal.withdrawalMainView";
-	}
 	
-	//아이디찾기,비밀번호찾기 메인
-	@RequestMapping("/findIdPw.do")
-	public String findIdPw(){
-		return "find.findMainView";
+	//관리자 > 부서관리 페이지
+	@RequestMapping("/adminDepartMent.do")
+	public String adminDepartMent(){
+		return "admin.adminDepartMentView";
 	}
 	
 }

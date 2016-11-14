@@ -143,6 +143,8 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="Attendace.do">일일 근태 등록</a></li>
            			<li><a href="AttendaceMonth.do">월별 근태 조회</a></li>
+           			<li><a href="AttendaceWrite.do">휴가/외박 신청</a></li>
+           			<li><a href="AttendaceOther.do">각기다른 근태보기</a></li>
                 </ul>
             </li>
             <li>
@@ -188,8 +190,16 @@
                 </ul>
             </li>
             <li>
-            <a href="chat_ws.do"><span class="nav-label">실시간 채팅</span><span class="fa arrow"></span> </a>
+           		 <a href="chat_ws.do"><span class="nav-label">실시간 채팅</span><span class="fa arrow"></span> </a>
             </li>
+              <li>
+                <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="#">사원관리</a></li>
+                    <li><a href="adminDepartMent.do">부서관리</a></li>
+                </ul>
+            </li>
+            
             <li>
                 <a href="widgets.html"> <span class="nav-label">Widgets</span> <span class="label label-success pull-right">Special</span></a>
             </li>
