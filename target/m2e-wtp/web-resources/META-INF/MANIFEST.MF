@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
-Built-By: Lee
-Build-Jdk: 1.8.0_111
+<<<<<<< HEAD
+Built-By: com
+Build-Jdk: 1.8.0_73
+=======
+Built-By: jun
+Build-Jdk: 1.8.0_45
+>>>>>>> PSJMavenBranch
 Created-By: Maven Integration for Eclipse
 
