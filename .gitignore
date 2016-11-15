@@ -2,3 +2,4 @@
 *.MF
 *.properties
 /target/
+build/
