@@ -206,5 +206,9 @@ public class PageMoveController {
 		return "contacts.contacts_group";
 	}
 	
-	
+	// 관리자 메뉴 > 거래처 > 거래처 메뉴로 이동
+	@RequestMapping("/client.do")
+	public String clientView() {
+		return "client.clientView";
+	}
 }
