@@ -335,5 +335,55 @@ public class PageMoveController {
 	public String findPwResult(){
 		return "find.findPW_Result";
 	}
+	
+	//업무 요청 수신
+	@RequestMapping("/taskRequest_rec.do")
+	public String taskRequest_rec(){
+		return "task.taskRequest_rec";
+	}
 
+	//업무 요청 송신
+	@RequestMapping("/taskRequest_trans.do")
+	public String taskRequest_trans(){
+		return "task.taskRequest_trans";
+	}
+
+	//업무 보고 수신
+	@RequestMapping("/taskReport_rec.do")
+	public String taskReport_rec(){
+		return "task.taskReport_rec";
+	}
+
+	//업무 보고 송신
+	@RequestMapping("/taskReport_trans.do")
+	public String taskReport_trans(){
+		return "task.taskReport_trans";
+	}
+	
+	//업무 일지 수신
+	@RequestMapping("/taskLog_rec.do")
+	public String taskLog_rec(){
+		return "task.taskLog_rec";
+	}
+
+	//업무 일지 송신
+	@RequestMapping("/taskLog_trans.do")
+	public String taskLog_trans(){
+		return "task.taskLog_trans";
+	}	
+	
+	
+	
+	//업무 요청 수신 -> 상세
+	@RequestMapping("/taskRequest_rec_detail.do")
+	public String taskRequest_rec_detail(){			
+		return "task.Request_rec_detail";
+	}
+	
+	//업무 요청 송신 -> 상세
+	@RequestMapping("/taskRequest_trans_detail.do")
+	public String taskRequest_trans_detail(){			
+		return "task.Request_trans_detail";
+	}
+		
 }
