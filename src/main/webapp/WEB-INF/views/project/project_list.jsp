@@ -36,6 +36,12 @@
              	<small>프로젝트 리스트</small>
             </div>
             <div class="panel-body">
+            	<div class="form-group">
+            		<select class="form-control">
+            			<option>전체보기</option>
+            			<option>내것만</option>
+            		</select>
+            	</div>
                 <div class="table-responsive">
                 <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
                     <thead>

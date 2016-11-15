@@ -75,7 +75,7 @@ public class PageMoveController {
 	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
 	@RequestMapping("/mailbox_compose.do")
 	public String mailbox_composeview() {
-		return "mail/mailbox_compose";
+		return "mail.mailbox_compose";
 	}
 
 	//메일 > 보낸메일함 페이지이동 
@@ -148,10 +148,17 @@ public class PageMoveController {
 		return "contacts.enroll";
 	}
 	
+
 	//전자 결재 > 기안문작성 페이지이동
-	@RequestMapping("/sanction_approve_write.do")
-	public String sanction_approve_write() {
-		return "electronic_sanction.sanction_approve_write";
+	@RequestMapping("/sanction_list.do")
+	public String sanction_list() {
+		return "electronic_sanction.sanction_list";
+	}	
+	
+	//전자 결재 > 기안문작성 페이지이동
+	@RequestMapping("/sanction_write.do")
+	public String sanction_write() {
+		return "electronic_sanction.sanction_write";
 	}	
 	
 	//전자결재 > 결재보기화면 페이지이동
@@ -183,7 +190,11 @@ public class PageMoveController {
 	public String salarySearch(){
 		return "salary.salarySearch";
 	}
-	
+	//급여 관리 > 퇴직금 계산
+	@RequestMapping("/severancepay.do")
+	public String severancepay(){
+		return "salary.severancepay";
+	}
 	
 	//근태 관리 > 근태 
 	@RequestMapping("/Attendace.do")
@@ -200,11 +211,99 @@ public class PageMoveController {
 		return "TAttendance.MonthAttendaceView";
 	}
 	
+	//근태 신청서 쓰기
+	@RequestMapping("/AttendaceWrite.do")
+	public String AttendaceWrite(){
+		return "TAttendance.AttendaceWriteView";
+	}
+	
+	//각기 다른 근태 보기
+	@RequestMapping("/AttendaceOther.do")
+	public String AttendaceOther(){
+		return "TAttendance.AttendaceOtherView";
+	}
+	
 	//주소록  > 주소록 그룹 관리 페이지 이동
 	@RequestMapping("/contaacts_group.do")
 	public String contaacts_group(){
 		return "contacts.contacts_group";
 	}
 	
+
+	//자유게시판  > 자유게시판 상세 페이지 이동
+	@RequestMapping("/free_board_view.do")
+	public String free_board_view(){
+		return "board_free.free_board_view";
+	}
+	
+	//자유게시판  > 자유게시판 글쓰기 페이지 이동
+	@RequestMapping("/free_board_write.do")
+	public String free_board_write(){
+		return "board_free/free_board_write";
+	}
+
+	//언론게시판  > 언론게시판 리스트 페이지 이동
+	@RequestMapping("/media_board_list.do")
+	public String media_board_list(){
+		return "board_media.media_board_list";
+	}
+	
+	//언론게시판  > 언론게시판 글쓰기 페이지 이동
+	@RequestMapping("/media_board_write.do")
+	public String media_board_write(){
+		return "board_media/media_board_write";
+	}
+	
+	
+	//내정보수정
+	@RequestMapping("/editMyinfo.do")
+	public String editMyinfo(){
+		return "myinfo.editMyinfo";
+	}
+
+	
+	//언론게시판  > 언론게시판 상세보기 페이지 이동
+	@RequestMapping("/media_board_view.do")
+	public String media_board_view(){
+		return "board_media.media_board_view";
+	}
+	
+	//업무정보게시판  > 업무정보게시판  리스트 페이지 이동
+	@RequestMapping("/business_board_list.do")
+	public String business_board_list(){
+		return "board_business.business_board_list";
+	}
+	
+	//업무정보게시판  > 업무정보게시판  상세 페이지 이동
+	@RequestMapping("/business_board_view.do")
+	public String business_board_view(){
+		return "board_business.business_board_view";
+	}
+	
+	//업무정보게시판  > 업무정보게시판  글쓰기 페이지 이동
+	@RequestMapping("/business_board_write.do")
+	public String business_board_write(){
+		return "board_business/business_board_write";
+	}
+	
+
+	//탈퇴
+	@RequestMapping("/withdrawal.do")
+	public String withdrawal(){
+		return "withdrawal.withdrawalMainView";
+	}
+	
+	//아이디찾기,비밀번호찾기 메인
+	@RequestMapping("/findIdPw.do")
+	public String findIdPw(){
+		return "find.findMainView";
+	}
+	
+	//관리자 > 부서관리 페이지
+	@RequestMapping("/adminDepartMent.do")
+	public String adminDepartMent(){
+		return "admin.adminDepartMentView";
+
+	}
 	
 }

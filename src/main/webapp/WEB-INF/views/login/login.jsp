@@ -33,7 +33,7 @@
 												app</span>
 										</div>
 										<div class="form-group">
-											<label class="control-label" for="password" style="color: black;">비밀번호</label> <input
+											<label class="control-label" for="password" style="color:black;">비밀번호</label> <input
 												type="password" title="Please enter your password"
 												placeholder="******" required="" value="" name="password"
 												id="password" class="form-control"> <span
@@ -45,8 +45,9 @@
 											<p class="help-block small">(if this is a private
 												computer)</p>
 										</div>
-										<input type="submit" class="btn btn-success btn-block"
-											value="로그인" id="loginSubmitBtn"> <a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
+										<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
+										<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
+										<label class="control-label" for="find" style="text-align:center"><a href="findIdPw.do">아이디 / 비밀번호 찾기</a></label>
 									</form>
 								</div>
 							</div>

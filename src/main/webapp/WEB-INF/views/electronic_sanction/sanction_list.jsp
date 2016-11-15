@@ -2,14 +2,15 @@
     <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
-            <a class="small-header-action" href="#">
+            <a class="small-header-action" href="">
                 <div class="clip-header">
                     <i class="fa fa-arrow-up"></i>
                 </div>
             </a>
+
             <div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.do">Dashboard</a></li>
+                    <li><a href="index.html">Dashboard</a></li>
                     <li>
                         <span>App views</span>
                     </li>
@@ -19,7 +20,7 @@
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                	결재대기함
+                	요청한 결재
             </h2>
             <small>Show users list in nice and color panels</small>
         </div>
@@ -68,6 +69,7 @@
                 <table cellpadding="1" cellspacing="1" class="table table-hover">
                     <thead>
                     <tr>
+                    	<th> </th>
                         <th>NO</th>
                         <th>서식함</th>
                         <th>유형</th>
@@ -79,6 +81,7 @@
                     </thead>
                     <tbody>
                     <tr>
+                    	<td><input type="checkbox"></td>
                         <td>4</td>
                         <td>공통</td>
                         <td>결재</td>
@@ -88,6 +91,7 @@
                         <td>2016.11.09 19:24</td>
                     </tr>
                     <tr>
+                    	<td><input type="checkbox"></td>
                         <td>3</td>
                         <td>공통</td>
                         <td>결재</td>
@@ -97,6 +101,7 @@
                         <td>2016.11.09 19:24</td>
                     </tr>
                     <tr>
+                    	<td><input type="checkbox"></td>
                         <td>2</td>
                         <td>공통</td>
                         <td>결재</td>
@@ -106,6 +111,7 @@
                         <td>2016.11.09 19:24</td>
                     </tr>                    
                     <tr>
+                    	<td><input type="checkbox"></td>
                         <td>1</td>
                         <td>공통</td>
                         <td>결재</td>
@@ -117,7 +123,8 @@
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button"  class="btn w-xs btn-primary" >일괄결재</button>
+                	<button type="button"  class="btn w-xs btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModal1">요청 취소</button>
+                	<button type="button"  class="btn w-xs btn-primary" onclick="window.location.href='sanction_write.do'">요청 등록</button>
                 </div>
 			</div>
 
@@ -133,6 +140,62 @@
                 </div>
               </div>
         </div> 
+            
+         
    </div>  
 </div>
+</div>
+
+
+<div class="modal fade hmodal-success" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog  modal-sm">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header text-center">
+		 		확인을 누르시면 선택하신 ㅇㅇ 요청이 취소 처리가 됩니다.<br>
+		 		정말 처리하시겠습니까?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary btn-sm demo2" data-dismiss="modal" data-toggle="modal" data-target="#myModal5">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade hmodal-success" id="myModal5" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header">
+				<h4 class="modal-title"><font color="#6a6c6f">처리 결과<i class="fa fa-table"></i></font></h4>
+				<small class="font-bold">Lorem Ipsum is simply dummy text.</small>
+			</div>
+			<div class="modal-body">
+				<table class="table table-bordered" style="text-align:center">
+					<tr style="background-color:#f5f5f5;">
+						<th style="text-align:center">순번</th>
+						<th style="text-align:center">결재자</th>
+						<th style="text-align:center">결제유형</th>
+						<th style="text-align:center">결재</th>
+						<th style="text-align:center">배정일시</th>
+						<th style="text-align:center">확인일시</th>
+						<th style="text-align:center">결재일시</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>박성준 - (사단)한국소프트웨어기술진흥협회</td>
+						<td>결재</td>
+						<td>진행</td>
+						<td>2016.11.08 11:49</td>
+						<td>2016.11.08 12:42</td>
+						<td>2016.11.08 12:42</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
 </div>
