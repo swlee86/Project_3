@@ -33,21 +33,31 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="hpanel">
-				<div class="panel-body">
+				<div class="panel-body">	
 					<form class="form-horizontal">
  						<div class="row">
-							<div class="form-group col-lg-12">
-								<label class="col-md-offset-4 col-md-2 control-label" style="text-align: center;">찾으신 비밀번호는 : </label>
-								<label class="col-md-2 control-label" style="text-align: center;">비밀번호</label>
-							</div>
-							<br/>
+							
+								<div class="form-group col-lg-12">
+									<label class="col-md-12 control-label" style="text-align: center;">
+									<i class="fa pe-7s-search fa-3x"></i> &nbsp;&nbsp;&nbsp;
+									 	입력하신 정보와 일치하는 비밀번호입니다.
+									</label>
+								</div>
+								
+								<div class="col-md-offset-5 col-md-2">
+									<input type="text" class="form-control" readonly="readonly" placeholder="찾은비밀번호">
+								</div>
+						</div>	
+								
+							
+						
+						 <br><br><br><br><br>
+						<div class="form-group col-lg-12 text-center" >
+								<a class="btn btn-default" href="login.do">로그인하기</a>
 						</div>
 						
-						
-						<div class="text-center" >
-							<a class="btn btn-default" href="login.do">로그인하기</a>
-						</div>
 					</form>
+						
 				</div>
 			</div>
 		</div>
