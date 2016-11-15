@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<script src="vendor/jquery/dist/jquery.min.js"></script>
 
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
