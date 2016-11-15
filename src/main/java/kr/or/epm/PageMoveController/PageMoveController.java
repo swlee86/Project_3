@@ -311,8 +311,7 @@ public class PageMoveController {
 		return "admin.adminDepartMentView";
 
 	}
-<<<<<<< HEAD
-	
+
 	//아이디찾기
 	@RequestMapping("/findId.do")
 	public String findId(){
@@ -336,6 +335,5 @@ public class PageMoveController {
 	public String findPwResult(){
 		return "find.findPW_Result";
 	}
-=======
->>>>>>> Maven_Project
+
 }
