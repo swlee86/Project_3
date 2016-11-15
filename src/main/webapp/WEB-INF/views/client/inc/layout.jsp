@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -24,22 +25,31 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
-	
-	<!--jQuery UI CSS-->
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   
-	
-	<style>
-.ui-datepicker-calendar {
-    display: none;
- }
-    
+<style>
+.contact-panelt h3 {
+  margin-bottom: 2px;
+  
+}
+.contact-panelt h3 a {
+  color: inherit;
+}
+.contact-panelt p {
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 0;
+}
+.contact-panelt img {
+  width: 75px;
+  height: 75px;
+  margin-right:30px;
+}
 </style>
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
 <!-- Simple splash screen-->
-<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>Homer - Responsive Admin Theme</h1><p>Special Admin Theme for small and medium webapp with very clean and aesthetic style and feel. </p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
 <!--[if lt IE 7]>
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -67,61 +77,10 @@
 <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
 <script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.resize.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.pie.js"></script>
-<script src="vendor/flot.curvedlines/curvedLines.js"></script>
-<script src="vendor/jquery.flot.spline/index.js"></script>
 <script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 <script src="vendor/iCheck/icheck.min.js"></script>
-<script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
-
-<!--월별 캘린더.-->  
-<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script> 
-
-
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
-
-<script>
-$(function(){
-	var currentYear = (new Date()).getFullYear();
-    var startYear = currentYear-10;
-	var options = {
-	           startYear: startYear,
-	           finalYear: currentYear,
-	           pattern: 'yyyy-mm',
-	           monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-	   };
-	//데이트피커
-	$('#Monthly').monthpicker(options);
-	//$('#sevdate1').monthpicker(options);
-	
-	$('#searchicon').click(function(){
-		var date = $('#Monthly').val();
-		alert("선택한 날짜 : "+date);
-		
-	});
-	
-
-	$('#sevdate1').datepicker({
-	    changeMonth: true, 
-        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dateFormat: 'yy-mm-dd'
-    });
-	
-	$('#searchicon_sevdate1').click(function(){
-		var date = $('#sevdate1').val();
-		alert("선택한 날짜 : "+date);
-		
-	});
-		
-});
-</script>
-
 </body>
 </html>
