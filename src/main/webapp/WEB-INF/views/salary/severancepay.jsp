@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<script src="vendor/jquery/dist/jquery.min.js"></script>
 
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -31,9 +32,9 @@
 					<div class="p-xs">
 						<form method="post" class="form-horizontal">
 							<div class="form-group">
-								<label class="col-sm-2 control-label text-left">정산구분:</label>
+								<label class="col-sm-3 control-label text-left">정산구분:</label>
 
-								<div class="col-sm-4">
+								<div class="col-sm-8">
 									<select class="form-control">
 										<option>퇴직정산</option>
 										<option>중도정산</option>
@@ -41,27 +42,17 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label text-left ">정산기준일자:</label>
+								<label class="col-sm-3 control-label text-left ">정산기준일자:</label>
 
-								<div class="col-sm-4">
-									<input type="text" class="form-control input-sm" id="sevdate1">
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="sevdate1">
 									<button type="button" class="btn btn-sm btn-default">
 										<span id="searchicon_sevdate1" class="fa fa-search"></span>
 									</button>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label text-left">퇴직일자:</label>
-
-								<div class="col-sm-4">
-									<input type="text" class="form-control input-sm" id="sevdate2">
-									<button type="button" class="btn btn-sm btn-default">
-										<span id="searchicon_sevdate2" class="fa fa-search"></span>
-									</button>
-								</div>
-							</div>
-							<div class="col-sm-4"></div>
-							<input type="submit" class="btn btn-success" value="조회하기">
+							<div class="col-sm-9"></div>
+							<input type="button" class="btn btn-success" id="searchbtn" value="조회하기">
 						</form>
 
 

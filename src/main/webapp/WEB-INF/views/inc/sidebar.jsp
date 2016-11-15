@@ -201,6 +201,12 @@
             </li>
             
             <li>
+                <a href="#"><span class="nav-label">관리자 메뉴</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="client.do">거래처</a></li>
+                </ul>
+            </li>
+            <li>
                 <a href="widgets.html"> <span class="nav-label">Widgets</span> <span class="label label-success pull-right">Special</span></a>
             </li>
             <li>

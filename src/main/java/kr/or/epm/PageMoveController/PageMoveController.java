@@ -228,7 +228,13 @@ public class PageMoveController {
 	public String contaacts_group(){
 		return "contacts.contacts_group";
 	}
-	
+
+	// 관리자 메뉴 > 거래처 > 거래처 메뉴로 이동
+	@RequestMapping("/client.do")
+	public String clientView() {
+		return "client.clientView";
+	}
+
 
 	//자유게시판  > 자유게시판 상세 페이지 이동
 	@RequestMapping("/free_board_view.do")
@@ -305,5 +311,4 @@ public class PageMoveController {
 		return "admin.adminDepartMentView";
 
 	}
-	
 }
