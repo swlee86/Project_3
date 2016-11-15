@@ -16,7 +16,7 @@
 					<li class="active"><span>Mailbox</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">Mailbox</h2>
+			<h2 class="font-light m-b-xs">메일 쓰기</h2>
 			<small>Mailbox - Email list.</small>
 		</div>
 	</div>
@@ -27,67 +27,62 @@
 		<div class="col-md-3">
 			<jsp:include page="/sidebar/mailLeftList_side.jsp"></jsp:include>
 		</div>
-		<div class="col-md-9">
-			<div class="hpanel email-compose">
-				<div class="panel-heading hbuilt">
-					<div class="p-xs h4">메일 쓰기</div>
-				</div>
-			
-					<div class="panel-body no-padding">
-						<br/>
-						<form method="get" class="form-horizontal">
-							<div class="form-group">
-								<label class="col-sm-2 control-label text-left">제목:</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control input-sm" id="aa">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label text-left">수신자:</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control input-sm" id="bb">
-								</div>
-							</div>
+		<div class="col-lg-9">
+			<div class="hpanel">
+				<div class="panel-body">
+					<div class="table-responsive">
+						<form class="form-inline">
+							<div class="table-responsive">
+								<table cellpadding="1" cellspacing="1"
+									class="table table-bordered ">
+									<tr>
+										<th
+											style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
+											color="coral">*</font> <span style="color: white;">제목</span></th>
+										<td>
+											<div class="form-group">
+												<div class="input-group date">
+													<input type="text" class="form-control" size="20px">
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
+											color="coral"></font><span style="color:white">파일 첨부</span></th>
+										<td><input type="file" class="form-control"></td>
+									</tr>
+									<tr>
+										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
+											color="coral"></font><span style="color:white">수신자 명</span></th>
+										<td><input type="text" class="form-control"></td>
+									</tr>
+									<tr>
+										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
+											color="coral"></font><span style="color:white">수신자 메일</span></th>
+										<td><input type="email" class="form-control" placeholder="example@naver.com"></td>
+									</tr>
+									<tr>
+										<th
+											style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%">
+											<font color="coral">*</font><span style="color:white">내용</span>
+										</th>
+										<td><textarea class="form-control" cols="10" rows="10"
+												style="width: 100%"></textarea></td>
+									</tr>
+								</table>
 							
-							<div class="form-group">
-								<label class="col-sm-2 control-label text-left">내용 : </label>
-								<div class="col-sm-9">
-									<textarea class="form-control" cols="5" rows="5" id="note"></textarea>
-								</div>
+									<input type="submit" class="btn btn-success" value="메일보내기">
+									<input type="button" class="btn btn-danger" value="취소">
+							
 							</div>
-
 						</form>
 					</div>
-			
-				<br />
-				<div class="panel-footer">
-					<div class="pull-right">
-						<div class="btn-group">
-							<button class="btn btn-default">
-								<i class="fa fa-edit"></i> Save
-							</button>
-							<button class="btn btn-default">
-								<i class="fa fa-trash"></i> Discard
-							</button>
-						</div>
-					</div>
-					<button class="btn btn-success" id="sendMailBtn">메일 보내기</button>
-					<div class="btn-group">
-						<button class="btn btn-default">
-							<i class="fa fa-paperclip"></i>
-						</button>
-						<button class="btn btn-default">
-							<i class="fa fa-image"></i>
-						</button>
-					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
 
 </div>
-
-
 </body>
 </html>
