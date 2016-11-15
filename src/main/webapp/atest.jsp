@@ -47,6 +47,26 @@ li{
     </select>
 .......
 .......
-
+									<div class="row">
+											<form action="" class="form-inline ">
+										 <div class="form-group">
+												<select class="form-control input-sm">
+													<option>이름</option>
+													<option>회사명</option>
+													<option>메일</option>
+												</select>
+													</div>
+													 <div class="form-group">	
+												<div class="input-group">
+													<input type="text" class="form-control input-sm" name="s" />
+													<span class="input-group-btn">
+														<button class="btn btn-default input-sm" type="submit">
+															<span class="fa fa-search"></span>
+														</button>
+													</span>
+												</div>
+												</div>
+											</form>
+									</div>
 </body>
 </html>

@@ -50,7 +50,7 @@
                 <br>     
                  <hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1" class="table" style="text-align:left">
+                <table cellpadding="1" cellspacing="1" class="table  table-hover" style="text-align:left">
                     <thead>
                     <tr style="background-color:#f6f6f6;">
                         <th style="text-align:center">번호</th>
