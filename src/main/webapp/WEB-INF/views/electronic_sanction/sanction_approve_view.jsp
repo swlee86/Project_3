@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="normalheader transition animated fadeIn">
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
 			<a class="small-header-action" href="">
@@ -11,7 +11,7 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
+					<li><a href="index.do">Dashboard</a></li>
 					<li><span>App views</span></li>
 					<li class="active"><span>Contacts</span></li>
 				</ol>
@@ -66,28 +66,53 @@
 									</tr>
 								</table>	
 							<div class="row" style="text-align:center;margin-right:10px;">
-								<input type="submit"  class="btn w-xs btn-primary" value="결재회수" style="margin-right:5px;">
-								<input type="button"  class="btn w-xs btn-default" data-toggle="modal" data-target="#myModal5" style="margin-right:5px;" value="진행현황">
-								<input type="button"  class="btn w-xs btn-default"  style="margin-right:5px;"  value="인쇄">
-								<input type="button"  class="btn w-xs btn-default"   value="목록">
+								<input type="button"  class="btn w-xs btn-primary" data-toggle="modal" data-target="#myModal1"  value="결재" style="margin-right:5px;">
+								<input type="button"  class="btn w-xs btn-default" data-toggle="modal" data-target="#myModal1" style="margin-right:5px;" value="승인 거부">
+								<input type="button"  class="btn w-xs btn-default" data-toggle="modal" data-target="#myModal1" style="margin-right:5px;" value="보류">
+								<input type="button"  class="btn w-xs btn-default" style="margin-right:5px;"  value="인쇄">
+								<input type="button"  class="btn w-xs btn-default"  onclick="window.location.href='sanction_approve.do'" value="목록">
 							</div>
 						</div>
 						</form>	
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 </div>
+
+
+
+
+<div class="modal fade hmodal-success" id="myModal1" tabindex="-2" role="dialog" aria-hidden="true">
+	<div class="modal-dialog  modal-sm">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header text-center">
+		 		업무처리 안내
+			</div>
+			<div class="modal-body">
+				<font class="font-bold" size="2em">
+					<font style="color:gray;">기재하신 업무는 ㅇㅇ 입니다.</font><br>
+					<font style="color:#9d9fa2"> 정말 처리하시겠습니까?</font> <br>
+				</font>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary btn-sm demo2" data-dismiss="modal" data-toggle="modal" data-target="#myModal5">승인</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 
 <div class="modal fade hmodal-success" id="myModal5" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header">
-				<h4 class="modal-title"><font color="#6a6c6f">진행현황 <i class="fa fa-table"></i></font></h4>
+				<h4 class="modal-title"><font color="#6a6c6f">처리 결과<i class="fa fa-table"></i></font></h4>
 				<small class="font-bold">Lorem Ipsum is simply dummy text.</small>
 			</div>
 			<div class="modal-body">

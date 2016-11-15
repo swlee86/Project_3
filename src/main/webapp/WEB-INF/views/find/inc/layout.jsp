@@ -66,54 +66,5 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
-<script>
-
-	$(function(){
-		$('#makeProjectBtn').click(function(){
-			location.href="projectMake.do";
-		});
-		
-		//프로젝트 시작일
-		$('#formstartDate').datepicker({
-			     changeMonth: true, 
-		         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-		         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-		         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		         dateFormat: 'yy-mm-dd'
-		});	
-		
-
-		$('#formendDate').datepicker({
-			 changeMonth: true, 
-	         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-	         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-	         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-	         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	         dateFormat: 'yy-mm-dd'
-		});
- 
-		
-		
-				
-	});
-
-	//상세보기 클릭시 실행
-	function detailProjectCheckList(mybtn){
-		
-		var btn = mybtn;
-		var upbtn = btn.parentNode.previousSibling.previousSibling.childNodes;
-		var upbtn2;
-		
-		for(var i = 0; i < upbtn.length; i++){
-			upbtn2 = upbtn[3];
-		}
-	
-		console.log(upbtn2);
-		//히든 값 담은 변수
-		var hiddenValue = upbtn2.value;
-		location.href="projectDetailCheckView.do?hidden="+hiddenValue;
-	}
-</script>
 </body>
 </html>
