@@ -18,7 +18,6 @@
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">일정보기</h2>
-			<input type="button" class="btn btn-success" value="일정추가" id="addScheduleBtn">
 		</div>
 	</div>
 </div>
@@ -27,12 +26,21 @@
 	<div class="row">
 		<div class="col-lg-12">
 				<div class="hpanel">
-					<div class="panel-heading">
+					<div class="panel-heading hbuilt">
 						<div class="panel-tools">
 							<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 								class="closebox"><i class="fa fa-times"></i></a>
 						</div>
-						Calendar
+						<div class="row">
+							<div class="col-md-1">
+								<input type="button" class="btn btn-success" value="일정추가" id="addScheduleBtn">
+							</div>
+							<div class="col-md-1">
+								<input type="button" class="btn btn-primary" value="일정리스트보기" id="listScheduleBtn">
+							</div>
+							
+						</div>
+						
 					</div>
 					<div class="panel-body">
 						<div id="calendar"></div>

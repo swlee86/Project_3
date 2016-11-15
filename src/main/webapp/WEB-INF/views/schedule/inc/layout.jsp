@@ -109,9 +109,14 @@
 	var end;
 
   $(function () {
-		
+		//일정 추가 버튼 클릭시	
 	  $('#addScheduleBtn').click(function(){
 		 location.href="registration_schedule.do"; 
+	  });
+		
+	  //일정 리스트 보기 버튼 클릭시
+	  $('#listScheduleBtn').click(function(){
+		 location.href="listSchedule.do"; 
 	  });
 	  
     	$('#start').datepicker({
