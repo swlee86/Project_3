@@ -45,7 +45,7 @@
 								<label class="col-sm-3 control-label text-left ">정산기준일자:</label>
 
 								<div class="col-sm-8">
-									<input type="text" class="form-control input-sm" id="sevdate1">
+									<input type="text" class="form-control" id="sevdate1">
 									<button type="button" class="btn btn-sm btn-default">
 										<span id="searchicon_sevdate1" class="fa fa-search"></span>
 									</button>
