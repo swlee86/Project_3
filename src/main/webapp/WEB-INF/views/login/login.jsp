@@ -47,7 +47,9 @@
 										</div>
 										<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
 										<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
-										<label class="control-label" for="find" style="text-align:center"><a href="findIdPw.do">아이디 / 비밀번호 찾기</a></label>
+										<a class="btn btn-default btn-block" href="findId.do">아이디 찾기</a>
+										<a class="btn btn-default btn-block" href="findPw.do">비밀번호 찾기</a>
+										
 									</form>
 								</div>
 							</div>

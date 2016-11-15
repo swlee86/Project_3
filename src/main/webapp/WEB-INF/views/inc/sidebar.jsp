@@ -172,6 +172,8 @@
                     <li><a href="addMember.do">회원가입</a></li>
                     <li><a href="editMyinfo.do">내정보수정</a></li>
                     <li><a href="withdrawal.do">회원탈퇴</a></li>
+                    <li><a href="findId.do">아이디찾기</a></li>
+                    <li><a href="findPw.do">비밀번호찾기</a></li>
                     <li><a href="error_one.html">Error 404</a></li>
                     <li><a href="error_two.html">Error 505</a></li>
                     <li><a href="lock.html">Lock screen</a></li>
@@ -200,6 +202,12 @@
                 </ul>
             </li>
             
+            <li>
+                <a href="#"><span class="nav-label">관리자 메뉴</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="client.do">거래처</a></li>
+                </ul>
+            </li>
             <li>
                 <a href="widgets.html"> <span class="nav-label">Widgets</span> <span class="label label-success pull-right">Special</span></a>
             </li>

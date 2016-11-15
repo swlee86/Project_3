@@ -228,7 +228,13 @@ public class PageMoveController {
 	public String contaacts_group(){
 		return "contacts.contacts_group";
 	}
-	
+
+	// 관리자 메뉴 > 거래처 > 거래처 메뉴로 이동
+	@RequestMapping("/client.do")
+	public String clientView() {
+		return "client.clientView";
+	}
+
 
 	//자유게시판  > 자유게시판 상세 페이지 이동
 	@RequestMapping("/free_board_view.do")
@@ -305,5 +311,29 @@ public class PageMoveController {
 		return "admin.adminDepartMentView";
 
 	}
+
+	//아이디찾기
+	@RequestMapping("/findId.do")
+	public String findId(){
+		return "find.findID";
+	}
 	
+	//비밀번호찾기
+	@RequestMapping("/findPw.do")
+	public String findPw(){			
+		return "find.findPW";
+	}
+	
+	//아이디찾기 결과
+	@RequestMapping("/findID_Result.do")
+	public String findIdResult(){
+		return "find.findID_Result";
+	}
+
+	//비밀번호찾기 결과
+	@RequestMapping("/findPW_Result.do")
+	public String findPwResult(){
+		return "find.findPW_Result";
+	}
+
 }

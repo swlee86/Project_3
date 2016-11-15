@@ -22,53 +22,55 @@
 	</div>
 </div>
 
-<div class="normalheader transition animated fadeIn">
+<div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<form class="form-inline">
-						<div class="form-group col-md-1">
-							<div class="col-md-1" style="margin-top: 5px;">
-								<select class="form-control">
-									<option>선택</option>
-									<option>야근</option>
-									<option>외근</option>
-									<option>휴가</option>
-								</select>
+					<div class="table-responsive">
+						<form class="form-inline">
+							<div class="table-responsive">
+								<table cellpadding="1" cellspacing="1"
+									class="table table-bordered ">
+									<tr>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 30px; width: 10%"><font
+											color="coral">*</font> 기간</th>
+										<td>
+											<div class="form-group">				
+												<div class="input-group date">
+													<input type="text" class="form-control" id="writeOtherAttendace"
+														value="" size="20px"> <span
+														class="input-group-addon"><i
+														class="glyphicon glyphicon-calendar"></i></span>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th style="background-color: #f5f5f5; text-align: right; padding-right: 30px; width: 10%">
+											<font color="coral">*</font> 근태종류
+										</th>
+										<td>
+											<div class="form-group">				
+												<select class="form-control">
+													<option>선택</option>
+													<option>외근</option>
+													<option>휴가</option>
+													<option>출장</option>
+												</select>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</div>
-						</div>
-
-						<div class="form-group col-md-4">
-							<h4>
-								<label class="col-md-3">근무년월</label>
-							</h4>
-							<div class="col-md-4">
-								<input type="text" class="form-control" id="otherdate">
-							</div>
-						</div>
-
-						<div class="form-group col-md-4">
-							<h4>
-								<label class="col-md-3">사원번호</label>
-							</h4>
-							<div class="col-md-4">
-								<input type="text" class="form-control" id="otherdate">
-							</div>
-						</div>
-
-						<div class="form-group col-md-1" style="margin-top: 10px;">
-							<div class="col-md-1">
-								<input type="button" class="btn btn-success" value="검색">
-							</div>
-						</div>
-
-					</form>
-
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-		<br/>
+
+		<br />
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
