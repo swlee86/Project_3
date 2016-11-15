@@ -87,18 +87,21 @@
 						<div class="panel-body">
 							<div class="hpanel">
 								<div class="panel-heading hbuilt">
-									<div class="row">
-										<div class="col-md-8"></div>
-										<div class="col-md-4 " >
-										
-											<form action="" class="form-inline ">
-										
+									<div class="row text-right" >
+									 	<div class="col-md-6"></div> 
+										<form action="" class="form-inline ">
+										<div class="col-md-2">
+											<div class="form-group">
 												<select class="form-control input-sm">
 													<option>이름</option>
 													<option>회사명</option>
 													<option>메일</option>
 												</select>
-														
+											</div>
+										</div>
+										
+										<div class="col-md-4">		
+											<div class="form-group">	
 												<div class="input-group">
 													<input type="text" class="form-control input-sm" name="s" />
 													<span class="input-group-btn">
@@ -107,9 +110,9 @@
 														</button>
 													</span>
 												</div>
-											</form>
-										
-										</div>
+											</div>
+											</div>
+										</form>
 									</div>
 									<hr>
 								</div>
