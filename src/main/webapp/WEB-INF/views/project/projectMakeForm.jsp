@@ -61,10 +61,7 @@
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 제목</th>
 										<td><input type="text" class="form-control input-sm" placeholder="제목" style="width:100%"></td>
 									</tr>	
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">장소</th>
-										<td><input type="text" class="form-control input-sm" placeholder="장소" style="width:100%"></td>
-									</tr>	
+								
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">참여자</th>
 										<td>
