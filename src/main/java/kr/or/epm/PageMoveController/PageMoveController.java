@@ -311,4 +311,29 @@ public class PageMoveController {
 		return "admin.adminDepartMentView";
 
 	}
+
+	//아이디찾기
+	@RequestMapping("/findId.do")
+	public String findId(){
+		return "find.findID";
+	}
+	
+	//비밀번호찾기
+	@RequestMapping("/findPw.do")
+	public String findPw(){			
+		return "find.findPW";
+	}
+	
+	//아이디찾기 결과
+	@RequestMapping("/findID_Result.do")
+	public String findIdResult(){
+		return "find.findID_Result";
+	}
+
+	//비밀번호찾기 결과
+	@RequestMapping("/findPW_Result.do")
+	public String findPwResult(){
+		return "find.findPW_Result";
+	}
+
 }

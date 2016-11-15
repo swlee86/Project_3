@@ -172,6 +172,8 @@
                     <li><a href="addMember.do">회원가입</a></li>
                     <li><a href="editMyinfo.do">내정보수정</a></li>
                     <li><a href="withdrawal.do">회원탈퇴</a></li>
+                    <li><a href="findId.do">아이디찾기</a></li>
+                    <li><a href="findPw.do">비밀번호찾기</a></li>
                     <li><a href="error_one.html">Error 404</a></li>
                     <li><a href="error_two.html">Error 505</a></li>
                     <li><a href="lock.html">Lock screen</a></li>
