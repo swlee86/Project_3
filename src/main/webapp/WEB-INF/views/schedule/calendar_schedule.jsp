@@ -7,6 +7,7 @@
 				<div class="clip-header">
 					<i class="fa fa-arrow-up"></i>
 				</div>
+				
 			</a>
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
@@ -16,8 +17,8 @@
 					<li class="active"><span>Calendar</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">Calendar</h2>
-			<small>Full-sized, drag & drop event calendar.</small>
+			<h2 class="font-light m-b-xs">일정보기</h2>
+			<input type="button" class="btn btn-success" value="일정추가" id="addScheduleBtn">
 		</div>
 	</div>
 </div>

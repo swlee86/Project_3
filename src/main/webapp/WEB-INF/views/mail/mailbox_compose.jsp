@@ -71,8 +71,10 @@
 												style="width: 100%"></textarea></td>
 									</tr>
 								</table>
-							
-									<input type="submit" class="btn btn-success" value="메일보내기">
+									<button class="btn btn-success btn-sm">
+										<i class="pe pe-7s-mail"> </i>메일보내기
+									</button>	
+									
 									<input type="button" class="btn btn-danger" value="취소">
 							
 							</div>
