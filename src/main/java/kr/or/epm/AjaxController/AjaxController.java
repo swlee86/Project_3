@@ -27,5 +27,11 @@ public class AjaxController {
 		
 		return jsonview;  //private View jsonview 타입으로 리턴
 	}
-
+	//퇴직금 조회
+	@RequestMapping("/sevSearch.do")
+	public View sevSearch(String select, String date, Model model){
+		System.out.println("select :"+select +"/date: "+date);
+		model.addAttribute("select", select);
+		return jsonview;
+	}
 }

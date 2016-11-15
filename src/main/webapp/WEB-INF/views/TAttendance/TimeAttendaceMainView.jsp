@@ -175,7 +175,7 @@ var endWorkStatus = new Date();
 		 	 
 		     //시간
 		 	 var resultHour = (endWorkStatus-startWorkStatus)/60000 / 60; 
-			 var resultHour2 = Math.floor(resultHour)
+			 var resultHour2 = Math.floor(resultHour);
 		     
 		     
 		 	 alert("시간 ? "+resultHour2);
