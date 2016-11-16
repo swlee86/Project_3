@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -26,8 +27,9 @@
 				<div class="form-group">
 					<div id="selectedYear">
 						<select class="form-control" id="Yearly">
-							<option value="1989">1989</option>
-							<option value="1990">1990</option>
+							<c:forEach begin="1960" end="2016" var="i" >
+									<option value="i">${i}</option>
+							</c:forEach>
 						</select>
 						<button type="button" class="btn btn-sm btn-default" id="YearlySal">
 							<span id="searchiconYear" class="fa fa-search"></span>&nbsp;&nbsp;검색

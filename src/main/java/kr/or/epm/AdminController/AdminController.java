@@ -41,4 +41,11 @@ public class AdminController {
 		return "admin.adminGradeView";
 	}
 	
+	//시간 정보 관리 페이지 이동
+	@RequestMapping("/adminTimeInfo.do")
+	public String timeInfo(){
+		return "admin.adminTimeInfo";
+	}
+			
+	
 }

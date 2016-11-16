@@ -9,7 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
-
+/*
+ * 작성자 : 하재현
+ * 작성일 : 2016-11-16
+ * 목  적 : 급여 관리 메뉴 컨트롤러 
+ * */
 @Controller
 public class SalaryAjaxController {
 

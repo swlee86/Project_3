@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
     <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />
+    <link rel="stylesheet" href="vendor/clockpicker/dist/bootstrap-clockpicker.min.css" />
+    
     
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -67,6 +69,8 @@
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
+<script src="vendor/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
@@ -102,6 +106,10 @@
 			
 		});
 	});
+	
+	// 시간정보 관리 페이지 - ClockPicker
+    $('.clockpicker').clockpicker({autoclose: true});
+
 </script>
 </body>
 </html>
