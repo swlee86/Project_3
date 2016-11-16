@@ -36,7 +36,7 @@
                             <p class="small">
                                                  지점 관련 페이지는 여기로!
                             </p>
-                            <button class="btn btn-success btn-sm">이동</button>
+                            <button class="btn btn-success btn-sm" id="moveBranchBtn">이동</button>
                         </div>
                     </div>
                 </div>

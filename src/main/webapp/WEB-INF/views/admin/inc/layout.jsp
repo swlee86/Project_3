@@ -149,9 +149,16 @@
 		});
 	});
 	
+	//부서관리 - 지점 보기 페이지 이동. 
+	$('#moveBranchBtn').click(function(){
+		location.href="adminBranch.do";
+	});
+	
 	// 시간정보 관리 페이지 - ClockPicker
     $('.clockpicker').clockpicker({autoclose: true});
-
+	
+	
+	
 </script>
 </body>
 </html>
