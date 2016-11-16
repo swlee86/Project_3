@@ -4,6 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/*
+ * 작성일 : 2016-11-16
+ * 작성자 : 박성준
+ * 사용 목적 : 프로젝트 관련 프로젝트 
+ */
+
 @Controller
 public class ProjectController {
 	
