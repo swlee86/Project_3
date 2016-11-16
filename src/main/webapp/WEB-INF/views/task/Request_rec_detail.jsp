@@ -59,15 +59,13 @@
 									</tr>
 							
 									<tr>
-										<th style="background-color:#f5f5f5;text-align:right;padding-right:30px; width:10%">내용</th>
-										<td colspan="3">업무 내용</td>
-									</tr>
-									
-									
-									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:30px; width:10%">담당자</th>
 										<td colspan="3">박지은</td>
-										
+									</tr>
+									
+									<tr>
+										<th style="background-color:#f5f5f5;text-align:right;padding-right:30px; width:10%">내용</th>
+										<td colspan="3">업무 내용</td>
 									</tr>
 									
 									 <tr>
@@ -85,6 +83,11 @@
 													<input type="button"  class="btn w-xs btn-default" data-toggle="modal" data-target="#myModal4"  value="완료" style="margin-right:5px;">
 													<input type="button"  class="btn w-xs btn-default" data-toggle="modal" data-target="#myModal5" value="중단"style="margin-right:5px;" >
 												<br><br><br>
+													<div class="progress m-t-xs full progress-striped">
+								                        <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class=" progress-bar progress-bar-warning">
+								                            75%
+								                        </div>
+								                    </div>
 												</div>
 										</td>
 									</tr>
