@@ -1,5 +1,11 @@
 package kr.or.epm.VO;
 
+/*
+ * 작성일 : 2016-11-16
+ * 작성자 : 백승아
+ * 사용 목적 : 프로젝트 상세 참여자에 대한 VO
+ */
+
 public class Pjd_people {
 	private String pj_no;
 	private String pjd_no;
