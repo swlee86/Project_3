@@ -386,6 +386,12 @@ public class PageMoveController {
 		return "task.Request_trans_detail";
 	}
 	
+	//관리자 > 사원관리 페이지 이동
+	@RequestMapping("/adminEmployeeManage.do")
+	public String adminEmployeeManage(){			
+		return "admin.adminEmployeeManage";
+	}	
+	
 	//주소록 > 주소록 수정페이지 이동
 	@RequestMapping("/contacts_update.do")
 	public String contacts_update(){			

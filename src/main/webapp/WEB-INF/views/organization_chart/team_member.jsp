@@ -43,31 +43,28 @@
 
 		<div class="col-md-9">
 			<div class="hpanel">
-				<div class="panel-body">
-					<div class="row" >
-						<div class="col-md-12" style="background-color:#f7f9fa;margin-bottom:20px;padding-top:20px;padding-bottom:20px">
+			 <div class="border-top border-left border-right bg-light">
+                        <div class="p-m">
 							<font size="4em"><b>부서정보</b> <i class="fa fa-list-alt"></i></font><br>
-							<table>
-							<tr>
-								<td style="text-align:right; padding-right:10px">부서장 : </td>
-								<td>박지은</td>
-							</tr>
-							<tr>
-								<td style="text-align:right; padding-right:10px">전화번호 : </td>
-								<td>031-123-1234</td>
-							</tr>
-							<tr>
-								<td style="text-align:right; padding-right:10px">총 인원  : </td>
-								<td>12명</td>
-							</tr>
-							<tr>
-								<td style="text-align:right; padding-right:10px">담당업무 : </td>
-								<td>사회복지(아동, 노인, 장애인 등)</td>
-							</tr>
-							</table>
-						</div>
-					</div>
-					<hr>
+                            <div>
+                                <span class="font-extra-bold">부서장 : </span>
+                              	 박지은
+                            </div>
+                            <div>
+                                <span class="font-extra-bold">전화번호 : </span>
+                              	031-123-1234
+                            </div>
+                            <div>
+                                <span class="font-extra-bold">총 인원 : </span>
+                                12명
+                            </div>
+                            <div>
+                                <span class="font-extra-bold">담당업무 : </span>
+                                	사회복지(아동, 노인, 장애인 등)
+                            </div>
+                        </div>
+                    </div>
+				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-4">
 							<div class="hpanel hgreen contact-panel">
