@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -34,20 +35,54 @@
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 								<tbody>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">성</th>
-										<td><input type="text" class="form-control input-sm" placeholder="성을 입력하세요."></td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"">이름</th>
-										<td><input type="text" class="form-control input-sm" placeholder="이름을 입력하세요."></td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%; padding-top:15px;"><font color="coral">* </font>이름</th>
+										<td>	
+											<div class="form-group">	
+												<div class="input-group">
+													<input type="text" class="form-control input-sm" placeholder="이름을 입력하세요."/>
+													<span class="input-group-btn">
+														<button class="btn btn-default input-sm" >
+															<font size="2em">사내사원</font> <span class="fa fa-user-plus"></span>
+														</button>
+													</span>
+												</div>
+											</div>
+										</td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%;padding-top:15px;">생년월일</th>
+										<td>
+											<div class="form-inline">
+											<select  class="form-control input-sm">
+												<c:forEach begin="1960" end="1999" var="i">
+													<option value="i">${i}</option>
+												</c:forEach>
+											</select>
+											년 &nbsp;
+											<select  class="form-control input-sm">
+												<c:forEach begin="1" end="12" var="i">
+													<option value="i">${i}</option>
+												</c:forEach>
+											</select>
+											월&nbsp;
+											<select  class="form-control input-sm">
+												<c:forEach begin="1" end="12" var="i">
+													<option value="i">${i}</option>
+												</c:forEach>
+											</select>
+											일
+											</div>
+										</td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5;text-align:right;padding-right:30px; width:10%">회사</th>
-										<td colspan="3"><input type="text"  class="form-control input-sm" placeholder="회사명을 입력하세요."></td>
-									</tr>
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">연락처</th>
-										<td><input type="text" class="form-control input-sm" placeholder="연락처를 입력하세요."></td>
+										<th style="background-color:#f5f5f5;text-align:right;padding-right:30px; width:10%">소속</th>
+										<td><input type="text"  class="form-control input-sm" placeholder="회사명을 입력하세요."></td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">메일</th>
-										<td><input type="email"  class="form-control input-sm" placeholder="이메일을 입력하세요."></td>
+										<td><input type="text" class="form-control input-sm" placeholder="메일을 입력하세요."></td>
+									</tr>
+									<tr>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">연락처1</th>
+										<td><input type="text" class="form-control input-sm" placeholder="연락처를 입력하세요."></td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">연락처2</th>
+										<td><input type="email"  class="form-control input-sm" placeholder="연락처를 입력하세요."></td>
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">사진등록</th>
@@ -63,6 +98,12 @@
 											</select>
 										</td>
 									</tr>
+									<tr >
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%; padding-top:20px;">메모</th>
+										<td colspan="3">
+											<textarea class="form-control"></textarea>
+										</td>
+									</tr>									
 								</tbody>
 							</table>
 							<div class="row" style="text-align:center;margin-right:10px;">
