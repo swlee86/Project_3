@@ -35,6 +35,13 @@ public class AdminController {
 		return "admin.adminNewMember";
 	}
 	
+
+	//관리자 > 부서관리 페이지
+	@RequestMapping("/adminDepartMent.do")
+	public String adminDepartMent(){
+		return "admin.adminDepartMentView";
+	}
+	
 	//직위 관리 페이지
 	@RequestMapping("/adminGrade.do")
 	public String adminGrade(){

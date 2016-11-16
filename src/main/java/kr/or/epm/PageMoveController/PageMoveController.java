@@ -305,12 +305,6 @@ public class PageMoveController {
 		return "find.findMainView";
 	}
 	
-	//관리자 > 부서관리 페이지
-	@RequestMapping("/adminDepartMent.do")
-	public String adminDepartMent(){
-		return "admin.adminDepartMentView";
-	}
-
 	//아이디찾기
 	@RequestMapping("/findId.do")
 	public String findId(){
