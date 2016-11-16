@@ -29,10 +29,16 @@ public class AdminController {
 		return list;
 	}
 	
+	//사원 등록 페이지
 	@RequestMapping("/adminMakeMember.do")
 	public String makeNewMember(){
 		return "admin.adminNewMember";
 	}
 	
+	//직위 관리 페이지
+	@RequestMapping("/adminGrade.do")
+	public String adminGrade(){
+		return "admin.adminGradeView";
+	}
 	
 }
