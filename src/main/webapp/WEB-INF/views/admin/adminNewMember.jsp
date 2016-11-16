@@ -31,24 +31,24 @@
 				 	<h4>사원등록</h4>
 				 	  <br/>
 				 	  <div class="table-responsive">
-                		<form class="inline">
+                		<form class="inline" action="adminAddMember.do">
 	                		<table cellpadding="1" cellspacing="1" class="table table-bordered ">
 	                    		<tbody>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사번</th>
-	                    				<td><input type="text" class="form-control input-sm"></td>
+	                    				<td><input type="text" class="form-control input-sm" id="emp_no"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">구분번호</th>
-	                    				<td><input type="text" class="form-control input-sm"></td>
+	                    				<td><input type="text" class="form-control input-sm" id="cg_no"></td>
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위번호</th>
-	                    				<td><input type="text" class="form-control input-sm"></td>
+	                    				<td><input type="text" class="form-control input-sm" id="position_no"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서번호</th>
-	                    				<td><input type="text" class="form-control input-sm"></td>
+	                    				<td><input type="text" class="form-control input-sm" id="low_dept_no"></td>
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>이름</th>
-	                    				<td><input type="text" class="form-control input-sm"></td>
+	                    				<td><input type="text" class="form-control input-sm" id="emp_name"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>생년월일</th>
 	                    				<td>
 	                    					<div class="form-inline">
@@ -65,7 +65,7 @@
 											</select>
 											월&nbsp;
 											<select  class="form-control input-sm">
-												<c:forEach begin="1" end="12" var="i">
+												<c:forEach begin="1" end="31" var="i">
 													<option value="i">${i}</option>
 												</c:forEach>
 											</select>

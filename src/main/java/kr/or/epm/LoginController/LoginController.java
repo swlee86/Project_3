@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 
  */
 
-
 @Controller
 public class LoginController {
 
@@ -33,12 +32,6 @@ public class LoginController {
 		
 	}
 		
-	@RequestMapping("/addMember.do")
-	public String addMember(){
-		System.out.println("회원 가입");
-		return "register.addMember";
-	}
-	
 	
 	
 }
