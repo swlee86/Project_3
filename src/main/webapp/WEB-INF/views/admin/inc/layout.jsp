@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -31,7 +31,19 @@
 	
 	<!--jQuery UI CSS-->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   
-	
+	<style>
+		#sortable{
+			padding-left:0px;
+		 	list-style:none;
+			width : 100%;
+			height : 100px;
+		}
+		
+		#sortable li{
+			font-size : 15px;
+			margin:20px;
+		}
+	</style>
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -114,6 +126,9 @@
 		        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		        dateFormat: 'yy-mm-dd'
 		});	
+		
+		$( "#sortable" ).sortable();
+
 	});
 </script>
 </body>
