@@ -42,9 +42,9 @@
 									<select class="form-control input-sm">
 										<option>사번</option>
 										<option>이름</option>
-										<option>직위</option>
 										<option>부서</option>
 										<option>하위부서</option>
+										<option>직위</option>
 									</select>
 								</div>
 							</div>
