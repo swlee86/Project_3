@@ -21,64 +21,25 @@
 		</div>
 	</div>
 </div>
-<div class="content">
-<div class="row">
-    <div class="col-md-6">
-        <div class="hpanel">
-                <div class="v-timeline vertical-container animate-panel"  data-child="vertical-timeline-block" data-delay="1">
-                    <div class="vertical-timeline-block">
-                        <div class="vertical-timeline-icon navy-bg">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="vertical-timeline-content">
-                            <div class="p-sm">
-                                <span class="vertical-date pull-right"> Saturday <br/> <small>12:17:43 PM</small> </span>
 
-                                <h2>The standard chunk of Lorem Ipsum</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-                                </p>
+<div class="content animate-panel">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h2 class="m-b-xs">지점</h2>
+                            <p class="font-bold text-success">조회, 등록, 수정, 삭제</p>
+                            <div class="m">
+                                <i class="pe-7s-science fa-5x"></i>
                             </div>
-                            <div class="panel-footer">
-                                It is a long established fact that
-                            </div>
+                            <p class="small">
+                                                 지점 관련 페이지는 여기로!
+                            </p>
+                            <button class="btn btn-success btn-sm">이동</button>
                         </div>
                     </div>
-                    <div class="vertical-timeline-block">
-                        <div class="vertical-timeline-icon navy-bg">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="vertical-timeline-content">
-                            <div class="p-sm">
-                                <span class="vertical-date pull-right"> Saturday <br/> <small>12:17:43 PM</small> </span>
-
-                                <h2>There are many variations</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-                                </p>
-                            </div>
-                            <div class="panel-footer">
-                                It is a long established fact that
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vertical-timeline-block">
-                        <div class="vertical-timeline-icon navy-bg">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="vertical-timeline-content">
-                            <div class="p-sm">
-                                <span class="vertical-date pull-right"> Saturday <br/> <small>12:17:43 PM</small> </span>
-
-                                <h2>Contrary to popular belief</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-                                </p>
-                            </div>
-                            <div class="panel-footer">
-                                It is a long established fact that
-                            </div>
-                        </div>
-                    </div>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+         </div>
 </div>

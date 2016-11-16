@@ -160,7 +160,7 @@
                     <tr style="background-color:#f9fafc">
                     	<th style="text-align:center;padding-bottom:10px;">
 							<div class="checkbox checkbox-success">
-                            	<input id="access" type="checkbox">
+                            	<input type="checkbox" class="i-checks">
                                	<label for="checkbox"></label> 
                        		</div>
 						</th>
@@ -176,7 +176,7 @@
                     <tr style="height:10px;">
                     	<td  style="text-align:center">
                     		<div class="checkbox checkbox-success">
-                            	<input id="access" type="checkbox">
+                            	<input type="checkbox" class="i-checks">
                                	<label for="checkbox"></label> 
                        		</div>
 						</td>
