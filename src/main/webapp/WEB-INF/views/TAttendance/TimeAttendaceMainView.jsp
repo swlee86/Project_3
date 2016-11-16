@@ -47,12 +47,13 @@
 								<div class="form-group">
 									<label class="form-control col-md-8">접속 IP : ${ip}</label>
 									<div class="col-md-2">
-										<input class="btn btn-default" type="button" value="출근"
-											id="startWorkBtn">
+										<input class="btn btn-default" type="button" value="출근" id="startWorkBtn">
 									</div>
 									<div class="col-md-2">
-										<input class="btn btn-default" type="button" value="퇴근"
-											id="endWorkBtn">
+										<input class="btn btn-default" type="button" value="퇴근" id="endWorkBtn">
+									</div>
+									<div class="col-md-2">
+										<input class="btn btn-default" type="button" value="조퇴" id="stopWorkBtn">
 									</div>
 								</div>
 							</form>
@@ -68,6 +69,7 @@
 								<th>성명</th>
 								<th>출근시각</th>
 								<th>퇴근시각</th>
+								<th>조퇴시각</th>
 								<th>근무시간</th>
 							</tr>
 							<tr>
@@ -75,6 +77,7 @@
 								<td>박성준</td>
 								<td id="start"></td>
 								<td id="end"></td>
+								<td id="stop"></td>
 								<td id="workTime"></td>
 							</tr>
 						</table>
@@ -94,6 +97,8 @@
 	var startWorkStatus = new Date();
 	//전역변수 - 퇴근 날짜 시간
 	var endWorkStatus = new Date();
+	//전역변수 - 조퇴 날짜 시간
+	var stopWorkStatus = new Date();
 
 	$(function() {
 
@@ -150,6 +155,24 @@
 			var m = date.getMinutes();
 			m = checkTime(m);
 			$('#end').html(h + ":" + m);
+
+			endWorkStatus.setHours(h, m, 0, 0);
+
+			//시작 시간
+			stTime = $('#start').html();
+			//종료 시간
+			endTime = $('#end').html();
+			workingTime(stTime, endTime);
+		});
+		
+		//조퇴 버튼 클릭시 - ajax 로 현재 시간 디비에 넣어줘야 함.
+		$('#stopWorkBtn').click(function() {
+			var date = new Date();
+			var h = date.getHours();
+			h = checkTime(h);
+			var m = date.getMinutes();
+			m = checkTime(m);
+			$('#stop').html(h + ":" + m);
 
 			endWorkStatus.setHours(h, m, 0, 0);
 

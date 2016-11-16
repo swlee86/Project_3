@@ -64,8 +64,7 @@
 								<td>2016-11-10</td>
 								<td>2016-11-20</td>
 								<td></td>
-								<td><span class="label label-success"
-									style="margin-top: -5px; width: 20%;">진행</span></td>
+								<td><span class="label label-success" style="margin-top: -5px; width: 20%;">진행</span></td>
 							</tr>
 							<tr>
 								<td>펜애플</td>
@@ -75,8 +74,7 @@
 								<td>2016-11-10</td>
 								<td>2016-12-20</td>
 								<td></td>
-								<td><span class="label label-info"
-									style="margin-top: -5px; width: 20%;">완료</span></td>
+								<td><span class="label label-info" style="margin-top: -5px; width: 20%;">완료</span></td>
 							</tr>
 							<tr>
 								<td>펜투애플</td>
@@ -86,8 +84,7 @@
 								<td>2016-10-10</td>
 								<td>2016-12-25</td>
 								<td></td>
-								<td><span class="label label-danger"
-									style="margin-top: -5px; width: 20%;">미진행</span></td>
+								<td><span class="label label-danger"	style="margin-top: -5px; width: 20%;">미진행</span></td>
 							</tr>
 						</tbody>
 					</table>
