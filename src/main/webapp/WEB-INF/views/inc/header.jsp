@@ -180,7 +180,7 @@
 </div>
 
 <!--생일자 관련 모달-->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="birthModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -209,7 +209,7 @@
 <script>
 
 $('#birthDay').click(function(){
-	$('#myModal').modal();
+	$('#birthModal').modal();
 });
 
 </script>
