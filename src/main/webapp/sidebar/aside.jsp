@@ -78,26 +78,7 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="project_list.do">전체 프로젝트</a></li>  
                 	<li><a href="projects.do">진행중인 프로젝트</a></li>         
-                    <li><a href="project.html">Project detail</a></li>
-                    <li><a href="app_plans.html">App plans</a></li>
-                    <li><a href="social_board.html">Social board</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="timeline.html">Timeline</a></li>
-                    <li><a href="notes.html">Notes</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="mailbox.html">Mailbox</a></li>
-                    <li><a href="mailbox_compose.html">Email compose</a></li>
-                    <li><a href="mailbox_view.html">Email view</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="blog_details.html">Blog article</a></li>
-                    <li><a href="forum.html">Forum</a></li>
-                    <li><a href="forum_details.html">Forum details</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="calendar.html">Calendar</a></li>
-                    <li><a href="invoice.html">Invoice</a></li>
-                    <li><a href="file_manager.html">File manager</a></li>
-                    <li><a href="chat_view.html">Chat view</a></li>
-                    <li><a href="search.html">Search view</a></li>
+                    <li><a href="projectApprove.do">프로젝트 승인 대기함</a></li> 
                 </ul>
             </li>
             <li>

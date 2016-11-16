@@ -16,6 +16,16 @@ public class ProjectController {
 		return "project.projectDetailView";
 	}
 	
+	//프로젝트 승인 처리 페이지
+	@RequestMapping("/projectApprove.do")
+	public String projectApprove(){
+		return "project.projectApproveList";
+	}
 	
+	//대기중인 프로젝트 제목 클릭시 
+	@RequestMapping("/project_approve_detailview.do")
+	public String project_approve_detailview(){
+		return "project.projectApproveDetailView";
+	}
 	
 }
