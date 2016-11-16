@@ -181,7 +181,7 @@
                     <li><a href="adminMakeMember.do">사원등록</a></li>
                     <li><a href="adminEmployeeManage.do">사원관리</a></li>
                     <li><a href="adminDepartMent.do">부서관리</a></li>
-                  
+                    <li><a href="adminGrade.do">직위관리</a></li>
                 </ul>
             </li>
             
