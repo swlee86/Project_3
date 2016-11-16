@@ -25,12 +25,65 @@
 
 <div class="content animate-panel">
 	<div class="row">
+	
+    <div class="col-lg-6">
+        <div class="hpanel">
+            <div class="panel-heading">
+                	직위 추가
+            </div>
+            <div class="panel-body">
+            	<div class="col-md-4">
+            		<input type="text" class="form-control">
+            	</div>
+            	<div class="col-md-4">
+	            	<button class="btn btn-default">
+	            		 <span class="fa fa-plus-circle"></span>
+	            	</button>
+            	</div>
+            </div>
+          </div>
+
+
+			<div class="hpanel">
+				<div class="v-timeline vertical-container animate-panel"
+					data-child="vertical-timeline-block" data-delay="1">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-inbox"></i>
+						</div>
+						<div class="vertical-timeline-content">
+							<div class="p-sm">
+								
+								<h4>기본급여</h4>
+								<input type="text" class="form-control">
+								
+							</div>
+							<div class="panel-footer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="hpanel">
+				<div class="v-timeline vertical-container animate-panel"
+					data-child="vertical-timeline-block" data-delay="1">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-inbox"></i>
+						</div>
+						<div class="vertical-timeline-content">
+							<div class="p-sm">
+								<h4>추가급여</h4>
+								<input type="text" class="form-control">
+							</div>
+							<div class="panel-footer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="col-lg-6">
 			<div class="hpanel">
-				<div class="panel-heading hbuilt">	
-					<input type="text" class="form-control"> 
-					<input type="button" class="btn btn-default" value="추가">
-				</div>
 				<div class="v-timeline vertical-container animate-panel"
 					data-child="vertical-timeline-block" data-delay="1">
 					<div class="vertical-timeline-block">
@@ -55,40 +108,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-6">
-			<div class="hpanel">
-				<div class="v-timeline vertical-container animate-panel"
-					data-child="vertical-timeline-block" data-delay="1">
-					<div class="vertical-timeline-block">
-						<div class="vertical-timeline-icon navy-bg">
-							<i class="fa fa-inbox"></i>
-						</div>
-						<div class="vertical-timeline-content">
-							<div class="p-sm">
-								<h4>기본급여</h4>
-							</div>
-							<div class="panel-footer"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="hpanel">
-				<div class="v-timeline vertical-container animate-panel"
-					data-child="vertical-timeline-block" data-delay="1">
-					<div class="vertical-timeline-block">
-						<div class="vertical-timeline-icon navy-bg">
-							<i class="fa fa-inbox"></i>
-						</div>
-						<div class="vertical-timeline-content">
-							<div class="p-sm">
-								<h4>추가급여</h4>
-							</div>
-							<div class="panel-footer"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 	</div>
 </div>
 

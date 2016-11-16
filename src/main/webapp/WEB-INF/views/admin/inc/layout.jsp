@@ -87,6 +87,9 @@
 <script src="scripts/homer.js"></script>
 <script>
 	$(function(){
+		//직급관리 - 추가시 사용하는 드래그 앤 드랍. 
+		$( "#sortable" ).sortable();
+		
 		//개발부서 클릭시 아작스 이용
 		$('#depart').click(function(){
 			
@@ -124,10 +127,11 @@
 		        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
 		        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 		        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		        dateFormat: 'yy-mm-dd'
+		        dateFormat: 'yy-mm-dd',
+		        changeYear: true
 		});	
 		
-		$( "#sortable" ).sortable();
+
 
 	});
 </script>
