@@ -75,74 +75,53 @@
                 <table cellpadding="1" cellspacing="1" class="table table-hover table-bordered table-condensed" >
                     <thead>
                     <tr style="background-color:#f9fafc">
-                    	<th style="text-align:center;padding-bottom:10px;">
-							<div class="checkbox checkbox-success">
-                            	<input id="checkbox3" type="checkbox">
-                               	<label for="checkbox"></label> 
-                       		</div>
-						</th>
-                        <th  style="text-align:center;padding-bottom:20px;">NO</th>
-                        <th  style="text-align:center;padding-bottom:20px;">사번</th>
-                        <th  style="text-align:center;padding-bottom:20px;">이름</th>
-                        <th  style="text-align:center;padding-bottom:20px;">지점</th>
-                        <th  style="text-align:center;padding-bottom:20px;">부서</th>
-                        <th  style="text-align:center;padding-bottom:20px;">하위부서</th>
-                        <th  style="text-align:center;padding-bottom:20px;">직위</th>
+                        <th  style="text-align:center;"> NO </th>
+                        <th  style="text-align:center;">사 번</th>
+                        <th  style="text-align:center;">이 름</th>
+                      	<th  style="text-align:center;">구 분</th>                      
+                        <th  style="text-align:center;">지 점</th>
+                        <th  style="text-align:center;">부 서</th>
+                        <th  style="text-align:center;">하위 부서</th>
+                        <th  style="text-align:center;">직 위</th>
                     </tr>
                     </thead>
                     
                     <tbody>
                     <tr style="height:10px;">
-                    	<td  style="text-align:center">
-                    		<div class="checkbox checkbox-success">
-                            	<input id="checkbox3" type="checkbox">
-                               	<label for="checkbox"></label> 
-                       		</div>
-						</td>
-                        <td  style="text-align:center;padding-top:15px;">3</td>
-                        <td  style="text-align:center;padding-top:15px;">91001111</td>
-                        <td  style="text-align:center;padding-top:15px;"><a href="adminMemberDetail.do">클릭하세요</a></td>
-                        <td  style="text-align:center;padding-top:15px;">본사</td>
-                        <td  style="text-align:center;padding-top:15px;">경영부</td>
-                        <td  style="text-align:center;padding-top:15px;">전문경영</td>
-                        <td  style="text-align:center;padding-top:15px;">부장</td>
+                        <td  style="text-align:center;">3</td>
+                        <td  style="text-align:center;">91001111</td>
+                        <td  style="text-align:center;"><a href="adminMemberDetail.do">클릭하세요</a></td>
+                        <td  style="text-align:center;">정상근무</td>
+                        <td  style="text-align:center;">본사</td>
+                        <td  style="text-align:center;">경영부</td>
+                        <td  style="text-align:center;">전문경영</td>
+                        <td  style="text-align:center;">부장</td>
                     </tr>
                     <tr style="height:10px;">
-                    	<td  style="text-align:center">
-                    		<div class="checkbox checkbox-success">
-                            	<input id="checkbox3" type="checkbox">
-                               	<label for="checkbox"></label> 
-                       		</div>
-						</td>
-                        <td  style="text-align:center;padding-top:15px;">2</td>
-                        <td  style="text-align:center;padding-top:15px;">91001111</td>
-                        <td  style="text-align:center;padding-top:15px;">박지은</td>
-                        <td  style="text-align:center;padding-top:15px;">본사</td>
-                        <td  style="text-align:center;padding-top:15px;">경영부</td>
-                        <td  style="text-align:center;padding-top:15px;">전문경영</td>
-                        <td  style="text-align:center;padding-top:15px;">부장</td>
+                        <td  style="text-align:center;">2</td>
+                        <td  style="text-align:center;">91001111</td>
+                        <td  style="text-align:center;">박지은</td>
+                        <td  style="text-align:center;">출산휴가</td>
+                        <td  style="text-align:center;">본사</td>
+                        <td  style="text-align:center;">경영부</td>
+                        <td  style="text-align:center;">전문경영</td>
+                        <td  style="text-align:center;">부장</td>
                     </tr>
                     <tr style="height:10px;">
-                    	<td  style="text-align:center">
-                    		<div class="checkbox checkbox-success">
-                            	<input id="checkbox3" type="checkbox">
-                               	<label for="checkbox"></label> 
-                       		</div>
-						</td>
-                        <td  style="text-align:center;padding-top:15px;">1</td>
-                        <td  style="text-align:center;padding-top:15px;">91001111</td>
-                        <td  style="text-align:center;padding-top:15px;">박지은</td>
-                        <td  style="text-align:center;padding-top:15px;">본사</td>
-                        <td  style="text-align:center;padding-top:15px;">경영부</td>
-                        <td  style="text-align:center;padding-top:15px;">전문경영</td>
-                        <td  style="text-align:center;padding-top:15px;">부장</td>
+                        <td  style="text-align:center;">1</td>
+                        <td  style="text-align:center;">91001111</td>
+                        <td  style="text-align:center;">박지은</td>
+                        <td  style="text-align:center;">육아휴직</td>
+                        <td  style="text-align:center;">본사</td>
+                        <td  style="text-align:center;">경영부</td>
+                        <td  style="text-align:center;">전문경영</td>
+                        <td  style="text-align:center;">부장</td>
                     </tr>
                     </tbody>
                 </table>    
 			</div>
 		    <div class="row" style="text-align:right; margin-right:5px;">
             	<button type="button"  class="btn btn-sm btn-success" onclick="location.href='adminMakeMember.do'">사원 등록</button>
-            	<button type="button"  class="btn btn-sm btn-default" >사원 삭제</button>
             </div>
 
             </div>

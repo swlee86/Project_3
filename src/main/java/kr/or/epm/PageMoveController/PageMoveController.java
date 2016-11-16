@@ -393,11 +393,15 @@ public class PageMoveController {
 	
 	//관리자 > 회원관리 > 회원 상세페이지 이동
 	@RequestMapping("/adminMemberDetail.do")
-	public String adminMemberUpdate(){			
+	public String adminMemberDetail(){			
 		return "admin.adminMemberDetail";
 	}	
 	
-	
+	//관리자 > 회원관리 > 회원 정보 수정 페이지 이동
+	@RequestMapping("/adminMemberUpdate.do")
+	public String adminMemberUpdate(){			
+		return "admin.adminMemberUpdate";
+	}		
 	//주소록 > 주소록 수정페이지 이동
 	@RequestMapping("/contacts_update.do")
 	public String contacts_update(){			
