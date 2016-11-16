@@ -18,7 +18,7 @@
 <body>
 <script type="text/javascript">	
 	alert('${data}');
-	window.location.replace("adminMakeMember.do");
+	window.location.replace('${answer}');
 </script>
 </body>
 </html>
