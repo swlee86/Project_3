@@ -37,7 +37,19 @@
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
 
-
+	<style>
+		#sortable{
+			padding-left:0px;
+		 	list-style:none;
+			width : 100%;
+			height : 100px;
+		}
+		
+		#sortable li{
+			font-size : 15px;
+			margin:20px;
+		}
+	</style>
 
 
 
@@ -89,7 +101,7 @@
 <script>
 	$(function(){
 		
-	
+		$( "#sortable" ).sortable();
 		
 		var currentYear = (new Date()).getFullYear();
 		var startYear = currentYear - 10;
