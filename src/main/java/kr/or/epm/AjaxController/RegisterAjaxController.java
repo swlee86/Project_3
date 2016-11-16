@@ -9,15 +9,13 @@ import org.springframework.web.servlet.View;
 import kr.or.epm.Service.RegisterService;
 
 @Controller
-public class AjaxController {
+public class RegisterAjaxController {
 	
 	@Autowired
 	private View jsonview;
 	
 	@Autowired
 	private RegisterService regiseterservice;
-	
-	
 	
 	@RequestMapping("/numchk.do")
 	public View jsonkosta(String command , String emp_no , Model model){	

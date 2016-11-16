@@ -3,6 +3,14 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.RegisterDAO">
+	
+	<!-- 관리자 > 사원등록에서 등록시 처리되는 insert 쿼리문 -->
+	<insert id="insertEmp" parameterType="kr.or.epm.VO.Emp">
+		INSERT INTO emp(emp_no, cg_no, position_no, low_dept_no, emp_name, birth, salary ,emp_break)
+	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break})
+	</insert>
+	
+	
 	<insert id="insertEmp_detail">
 		INSERT INTO emp_detail(emp_no, id, pwd, bank, addr, addr_detail, account ,postcode)
 	    VALUES(#{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode})
