@@ -3,8 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.RegisterDAO">
-	<insert id="insert">
+	<insert id="insertEmp_detail">
 		INSERT INTO emp_detail(emp_no, id, pwd, bank, addr, addr_detail, account ,postcode)
-	    VALUES( #{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode})
+	    VALUES(#{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode})
 	</insert>
+	
+	<select id="selectEmpId" parameterType="int" resultType="kr.or.epm.VO.Emp">
+		select emp_no, cg_no, position_no, low_dept_no, emp_break, salary, emp_name, birth, pic, email, cell_phone, emp_tel
+		from emp
+	</select>
 </mapper>
