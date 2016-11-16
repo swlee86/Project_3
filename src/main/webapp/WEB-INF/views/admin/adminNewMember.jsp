@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!--관리자 사원 등록 페이지-->	
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
