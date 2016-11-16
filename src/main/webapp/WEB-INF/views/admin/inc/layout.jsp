@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -22,15 +22,28 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
     <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />
-    <link rel="stylesheet" href="vendor/clockpicker/dist/bootstrap-clockpicker.min.css" />
-    
     
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/static_custom.css">
-
+	
+	<!--jQuery UI CSS-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   
+	<style>
+		#sortable{
+			padding-left:0px;
+		 	list-style:none;
+			width : 100%;
+			height : 100px;
+		}
+		
+		#sortable li{
+			font-size : 15px;
+			margin:20px;
+		}
+	</style>
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -69,8 +82,6 @@
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
-<script src="vendor/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
-
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
@@ -105,11 +116,20 @@
 				  ); 
 			
 		});
-	});
-	
-	// 시간정보 관리 페이지 - ClockPicker
-    $('.clockpicker').clockpicker({autoclose: true});
+		
+		
+		$('#makeuserDate').datepicker({
+		     changeMonth: true, 
+		        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+		        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+		        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+		        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		        dateFormat: 'yy-mm-dd'
+		});	
+		
+		$( "#sortable" ).sortable();
 
+	});
 </script>
 </body>
 </html>
