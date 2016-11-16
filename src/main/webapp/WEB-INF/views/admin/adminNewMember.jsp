@@ -31,28 +31,28 @@
 				 	<h4>사원등록</h4>
 				 	  <br/>
 				 	  <div class="table-responsive">
-                		<form class="inline" action="adminAddMember.do">
+                		<form class="inline" action="adminAddMember.do" method="post">
 	                		<table cellpadding="1" cellspacing="1" class="table table-bordered ">
 	                    		<tbody>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사번</th>
-	                    				<td><input type="text" class="form-control input-sm" id="emp_no"></td>
+	                    				<td><input type="text" class="form-control input-sm" name="emp_no"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">구분번호</th>
-	                    				<td><input type="text" class="form-control input-sm" id="cg_no"></td>
+	                    				<td><input type="text" class="form-control input-sm" name="cg_no"></td>
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위번호</th>
-	                    				<td><input type="text" class="form-control input-sm" id="position_no"></td>
+	                    				<td><input type="text" class="form-control input-sm" name="position_no"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서번호</th>
-	                    				<td><input type="text" class="form-control input-sm" id="low_dept_no"></td>
+	                    				<td><input type="text" class="form-control input-sm" name="low_dept_no"></td>
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>이름</th>
-	                    				<td><input type="text" class="form-control input-sm" id="emp_name"></td>
+	                    				<td><input type="text" class="form-control input-sm" name="emp_name"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>생년월일</th>
 	                    				<td>
 	                    					<div class="form-inline">
-												<input type="text" class="form-control input-sm" id="makeuserDate"> 
+												<input type="text" class="form-control input-sm" name="birth" id="birth"> 
 											</div>
 	                    				</td>
 	                    			</tr>
@@ -60,15 +60,19 @@
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>연봉</th>
 	                    				<td>
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm"> 만원
+	                    						<input type="text" class="form-control input-sm" name="salary"> 만원
 	                    					</div>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">잔여 휴가일수</th>
 	                    				<td>
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm"> 일
+	                    						<input type="text" class="form-control input-sm" name="emp_break"> 일
 	                    					</div>
 	                    				</td>
+	                    			</tr>
+	                    			<tr>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>개인 연락처</th>
+	                    				<td><input type="text" class="form-control input-sm" name="cell_phone"></td>
 	                    			</tr>
 	                    		</tbody>
 	                    	</table>
