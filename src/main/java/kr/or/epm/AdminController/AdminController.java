@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/*
+ * 작성자 : 박성준
+ * 작성일 : 2016-11-14
+ * 목  적 : 관리자 전용 컨트롤러 
+ */
+
 @Controller
 public class AdminController {
 
@@ -22,5 +28,11 @@ public class AdminController {
 		list.add(new TestAdminDTO("테스트", "25"));
 		return list;
 	}
+	
+	@RequestMapping("/adminMakeMember.do")
+	public String makeNewMember(){
+		return "admin.adminNewMember";
+	}
+	
 	
 }
