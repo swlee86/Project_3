@@ -77,6 +77,7 @@
                         <th>기안자</th>
                         <th>기안부서</th>
                         <th>기안일</th>
+                        <th>처리상태</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -89,6 +90,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
+                        <td><span class="label label-success" style="margin-top: -5px; width: 20%;">승인</span></td>
                     </tr>
                     <tr>
                     	<td><input type="checkbox"></td>
@@ -99,6 +101,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
+                        <td><span class="label label-success" style="margin-top: -5px; width: 20%;">승인</span></td>
                     </tr>
                     <tr>
                     	<td><input type="checkbox"></td>
@@ -109,6 +112,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
+                        <td><span class="label label-info"	style="margin-top: -5px; width: 20%;">보류</span></td>
                     </tr>                    
                     <tr>
                     	<td><input type="checkbox"></td>
@@ -119,6 +123,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
+                        <td><span class="label label-danger"	style="margin-top: -5px; width: 20%;">승인 거부</span></td>
                     </tr>
                     </tbody>
                 </table>
