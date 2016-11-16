@@ -175,8 +175,12 @@
             	$('#resultBtn').click(function(){
             		
             	 title =$('#mytitle').val(); 
-        		 start =$('#start').val(); 
-        		 end =$('#end').val(); 
+        		 start =$('#start').val();
+        		 var endtDate = $('#end').val();
+        		 endtDate+1;
+        		 alert("종료날플러스1 : " +endtDate);
+        		 end =endtDate;
+        		 alert(end);
             		if(title != ""){	
         				   var eventData;
                            eventData= {
