@@ -131,6 +131,13 @@
 
 		<dependency>
 			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
@@ -229,7 +236,7 @@
 			<version>2.2.2</version>
 		</dependency>
 
-		<!--jquery UI- 달력 관련-->
+		<!--jquery UI- 달력 관련 -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>

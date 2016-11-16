@@ -12,7 +12,7 @@ public class AjaxController {
 	@Autowired
 	private View jsonview;
 	
-	@RequestMapping("/idchk.do")
+	@RequestMapping("/numchk.do")
 	public View jsonkosta(String command , String userid , Model model){
 		System.out.println("command : " + command);
 		System.out.println("name : " + userid);

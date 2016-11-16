@@ -111,10 +111,10 @@
 	<script src="js/custom/register.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#idchk').click(function() {
+			$('#numchk').click(function() {
 				$.ajax({
 					type : "post",
-					url : "idchk.do",
+					url : "numchk.do",
 					data : "command=AjaxTest&userid=" + $('#userid').val(),
 					success : function(data) {
 						console.log(data);

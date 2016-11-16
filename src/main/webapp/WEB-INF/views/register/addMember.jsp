@@ -23,7 +23,7 @@
 											<div class="input-group">
 												<input type="text" value="" id="userid" class="form-control" name=""> 
 												<span class="input-group-btn">
-													<input type="button" class="btn btn-success " id="idchk" value="사번 확인">
+													<input type="button" class="btn btn-success " id="numchk" value="사번 확인">
 												</span> 										
 											</div>
 											<span id="chkresult" style="color: blue;"></span>
@@ -94,12 +94,7 @@
 												<input type="text" value="" id="" class="form-control" name="">
 											</div>
 											</div>
-										</div>
-
-
-
-										
-										
+										</div>						
 									</div>
 									<div class="text-center">
 										<button class="btn btn-success">Register</button>
@@ -112,5 +107,4 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
