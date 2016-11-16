@@ -385,5 +385,12 @@ public class PageMoveController {
 	public String taskRequest_trans_detail(){			
 		return "task.Request_trans_detail";
 	}
+	
+	//주소록 > 주소록 수정페이지 이동
+	@RequestMapping("/contacts_update.do")
+	public String contacts_update(){			
+		return "contacts.contacts_update";
+	}
+	
 		
 }

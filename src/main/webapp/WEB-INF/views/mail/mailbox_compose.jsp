@@ -21,8 +21,8 @@
 		</div>
 	</div>
 </div>
-<div class="content animate-panel">
 
+<div class="content animate-panel">
 	<div class="row">
 		<div class="col-md-3">
 			<jsp:include page="/sidebar/mailLeftList_side.jsp"></jsp:include>
@@ -37,30 +37,30 @@
 									class="table table-bordered ">
 									<tr>
 										<th
-											style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
-											color="coral">*</font> <span style="color: white;">제목</span></th>
+											style="background-color: #34495e; text-align: right; padding-right: 30px; width: 15%"><font
+											color="coral">*</font> <span style="color:white">제목</span></th>
 										<td>
 											<div class="form-group">
 												<div class="input-group date">
-													<input type="text" class="form-control" size="20px">
+													<input type="text" class="form-control input-sm" size="100%">
 												</div>
 											</div>
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
+										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 15%"><font
 											color="coral"></font><span style="color:white">파일 첨부</span></th>
-										<td><input type="file" class="form-control"></td>
+										<td><input type="file" class="form-control input-sm" size="100%"></td>
 									</tr>
 									<tr>
 										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
 											color="coral"></font><span style="color:white">수신자 명</span></th>
-										<td><input type="text" class="form-control"></td>
+										<td><input type="text" class="form-control input-sm" size="100%"></td>
 									</tr>
 									<tr>
 										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
 											color="coral"></font><span style="color:white">수신자 메일</span></th>
-										<td><input type="email" class="form-control" placeholder="example@naver.com"></td>
+										<td><input type="email" class="form-control input-sm" placeholder="example@naver.com" size="100%"></td>
 									</tr>
 									<tr>
 										<th
@@ -71,12 +71,15 @@
 												style="width: 100%"></textarea></td>
 									</tr>
 								</table>
-									<button class="btn btn-success btn-sm">
-										<i class="pe pe-7s-mail"> </i>메일보내기
-									</button>	
-									
-									<input type="button" class="btn btn-danger" value="취소">
+								
 							
+							<div class="btn-group pull-right" >
+									<button class="btn btn-success btn-sm">
+										<i class="fa fa-arrow-right"></i> 보내기
+									</button>	
+									<input type="button" class="btn btn-default  btn-sm"  data-toggle="modal" data-target="#myModal5" value="미리 보기">
+								 	<input type="button" class="btn btn-default  btn-sm" value="취소"> 
+							</div>	
 							</div>
 						</form>
 					</div>
@@ -84,7 +87,43 @@
 			</div>
 		</div>
 	</div>
-
 </div>
-</body>
-</html>
+
+
+<div class="modal fade hmodal-success" id="myModal5" tabindex="-1" role="dialog" aria-hidden="true" > 
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:10px">
+				<h4 class="modal-title"><font size=5em>미리보기</font></h4>
+			</div>
+			<div class="modal-body">
+				<table class="table"style="border:1px solid #f0f0f0; ">
+					<tr>
+						<td>
+							<div style="font-size:16px;font-weight:bold; padding-top:5px;padding-left:20px">제목입력</div><br>
+							<div style="padding-left:20px">보낸사람 : 박지은&nbsp; &lt;wong_303@naver.com&gt;</div><br>
+							<div style="padding-left:20px">받는사람 : 송중기&nbsp; &lt;wong123@naver.com&gt;</div><br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span style="padding-left:20px"> 첨부파일 : <font color="#00ba2e">첨부된 파일이 없습니다.</font></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div style="padding-left:20px">
+								내용<br>
+								내용내용<br>내용<br>내용내용<br>내용내용내용내용내용내용
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+			</div>
+		</div>
+	</div>
+</div>

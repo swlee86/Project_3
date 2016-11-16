@@ -240,37 +240,38 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="color-line"></div>
-			<div class="modal-header text-center">
+			<div class="modal-header text-center" style="height:180px;padding-top:25px">
 				<h4 class="modal-title"><img alt="logo" class="img-circle m-b" src="images/a4.jpg"></h4>
-				<small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
 			</div>
 			<div class="modal-body">
-				<table class="table">
+				<table class="table  table-condensed  table-bordered">
 					<tr>
-						<td>이름</td>
-						<td>박지은</td>
-					</tr>
-					<tr>
-						<td>나이</td>
-						<td>24세</td>
-					</tr>
-					<tr>
-						<td>생년월일</td>
-						<td>1993.3.3</td>
-					</tr>
-					<tr>
-						<td>연락처</td>
-						<td>010-2808-1024</td>
-					</tr>
-					<tr>
-						<td>회사명</td>
+						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">이름</td>
+						<td>박지d=d은</td>
+						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">소속</td>
 						<td>코스타</td>
+					</tr>
+					<tr>
+						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">생년월일</td>
+						<td>1993.03.03</td>
+						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">메일</td>
+						<td>wong_303@naver.com</td>
+					</tr>
+					<tr>
+						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">연락처1</td>
+						<td>010-2808-1024</td>
+						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">연락처2</td>
+						<td>02-280-1024</td>
+					</tr>
+					<tr>
+						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">메모</td>
+						<td colspan="3">착한사람</td>
 					</tr>
 				</table>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary">수정</button>
+				<button type="button" class="btn btn-primary"onclick="location.href='contacts_update.do'">수정</button>
 				<button type="button" class="btn btn-primary">삭제</button>
 			</div>
 		</div>
