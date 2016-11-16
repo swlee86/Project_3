@@ -26,7 +26,7 @@
 
 <div class="content animate-panel">
 	<div class="row">
-		<div class="col-lg-4">
+		<div class="col-lg-6">
 			<div class="hpanel">
 				<div class="v-timeline vertical-container animate-panel"
 					data-child="vertical-timeline-block" data-delay="1">
@@ -37,52 +37,72 @@
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
 								<h2>지점</h2>
-								<select class="form-control">
-									<option>지점 선택</option>
-									<option>서울</option>
-									<option>경기</option>
-									<option>충북</option>
-									<option>제주</option>
-								</select>
+						
+									<h4 id="1" draggable="true" ondragstart="drag(event)">첫번째</h4>
+									<h4 id="2" draggable="true" ondragstart="drag(event)">두번째</h4>
+							
+								<div id="div1" class="form-group" ondrop="drop(event)" ondragover="allowDrop(event)" style="border: 1px solid black; width: 100%; height: 50px;">
+									<input type="button" class="btn btn-success" value="삭제">
+								</div>
+								<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" style="border: 1px solid black; width: 100%; height: 50px;"></div>
+								
+								
 							</div>
 							<div class="panel-footer"></div>
 						</div>
 					</div>
 				</div>
-				<div class="vertical-timeline-block">
-                        <div class="vertical-timeline-icon navy-bg">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="vertical-timeline-content">
-                            <div class="p-sm">
-                            <h4>부서</h4>
-                             <select class="form-control">
-									<option>부서</option>
-									<option>서울</option>
-									<option>경기</option>
-									<option>충북</option>
-									<option>제주</option>
-								</select>
-                            </div>
-                            <div class="panel-footer">
-                                It is a long established fact that
-                            </div>
-                        </div>
-                    </div>
 			</div>
 		</div>
-		<div class="col-lg-8">
+		<div class="col-lg-6">
 			<div class="hpanel">
 				<div class="v-timeline vertical-container animate-panel"
 					data-child="vertical-timeline-block" data-delay="1">
-
-					<div class="panel-body">
-						<h4>사원리스트</h4>
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-inbox"></i>
+						</div>
+						<div class="vertical-timeline-content">
+							<div class="p-sm">
+								<h4>기본급여</h4>
+							</div>
+							<div class="panel-footer"></div>
+						</div>
 					</div>
-
-
+				</div>
+			</div>
+			<div class="hpanel">
+				<div class="v-timeline vertical-container animate-panel"
+					data-child="vertical-timeline-block" data-delay="1">
+					<div class="vertical-timeline-block">
+						<div class="vertical-timeline-icon navy-bg">
+							<i class="fa fa-inbox"></i>
+						</div>
+						<div class="vertical-timeline-content">
+							<div class="p-sm">
+								<h4>추가급여</h4>
+							</div>
+							<div class="panel-footer"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
