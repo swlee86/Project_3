@@ -101,7 +101,7 @@
 						</td>
                         <td  style="text-align:center;padding-top:15px;">3</td>
                         <td  style="text-align:center;padding-top:15px;">91001111</td>
-                        <td  style="text-align:center;padding-top:15px;">박지은</td>
+                        <td  style="text-align:center;padding-top:15px;"><a href="adminMemberDetail.do">클릭하세요</a></td>
                         <td  style="text-align:center;padding-top:15px;">본사</td>
                         <td  style="text-align:center;padding-top:15px;">경영부</td>
                         <td  style="text-align:center;padding-top:15px;">전문경영</td>
@@ -142,6 +142,7 @@
 			</div>
 		    <div class="row" style="text-align:right; margin-right:5px;">
             	<button type="button"  class="btn btn-sm btn-success" onclick="location.href='adminMakeMember.do'">사원 등록</button>
+            	<button type="button"  class="btn btn-sm btn-default" >사원 삭제</button>
             </div>
 
             </div>

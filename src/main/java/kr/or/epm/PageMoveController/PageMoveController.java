@@ -391,6 +391,13 @@ public class PageMoveController {
 		return "admin.adminEmployeeManage";
 	}	
 	
+	//관리자 > 회원관리 > 회원 상세페이지 이동
+	@RequestMapping("/adminMemberDetail.do")
+	public String adminMemberUpdate(){			
+		return "admin.adminMemberDetail";
+	}	
+	
+	
 	//주소록 > 주소록 수정페이지 이동
 	@RequestMapping("/contacts_update.do")
 	public String contacts_update(){			
