@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.RegisterDAO">
+	<insert id="insert">
+		INSERT INTO emp_detail(emp_no, id, pwd, bank, addr, addr_detail, account ,postcode)
+	    VALUES( #{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode})
+	</insert>
+</mapper>
