@@ -3,10 +3,10 @@ package kr.or.epm.VO;
 /*
  * 작성일 : 2016-11-16
  * 작성자 : 백승아
- * 사용 목적 : 업무 구분에 대한 VO
+ * 사용 목적 : 사원 이력 구분에 대한 VO
  */
 
-public class Task_cg {
+public class Emp_his_cg {
 	private String cg_no;
 	private String cg_name;
 
@@ -28,6 +28,6 @@ public class Task_cg {
 
 	@Override
 	public String toString() {
-		return "Task_cg [cg_no=" + cg_no + ", cg_name=" + cg_name + "]";
+		return "Emp_his_cg [cg_no=" + cg_no + ", cg_name=" + cg_name + "]";
 	}
 }

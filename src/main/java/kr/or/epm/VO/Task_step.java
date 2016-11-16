@@ -1,5 +1,11 @@
 package kr.or.epm.VO;
 
+/*
+ * 작성일 : 2016-11-16
+ * 작성자 : 백승아
+ * 사용 목적 : 업무 진행 단계에 대한 VO
+ */
+
 public class Task_step {
 	private String task_step_no;
 	private String task_step_name;
