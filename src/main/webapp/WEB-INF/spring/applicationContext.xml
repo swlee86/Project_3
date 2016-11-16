@@ -20,7 +20,7 @@
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="driverManagerDataSource"></property>
-		<property name="mapperLocations" value="classpath*:kr/or/emp/mapper/*xml" />
+		<property name="mapperLocations" value="classpath*:kr/or/epm/mapper/*xml" />
 	</bean>
 
 	

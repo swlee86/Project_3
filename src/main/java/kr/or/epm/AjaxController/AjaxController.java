@@ -6,8 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
-import kr.or.emp.Service.RegisterService;
-import kr.or.epm.VO.Emp;
+import kr.or.epm.Service.RegisterService;
 
 @Controller
 public class AjaxController {
