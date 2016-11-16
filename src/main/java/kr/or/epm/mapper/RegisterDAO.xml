@@ -23,4 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUsedEmpno" parameterType="String" resultType="String">
 		select id from emp_detail where emp_no=#{emp_no}
 	</select>
+	
+	<select id="selectUsedId" parameterType="String" resultType="String">
+		select id from emp_detail where id=#{id}
+	</select>
+	
+	
+	
 </mapper>

@@ -36,4 +36,10 @@ public class RegisterService {
 		String resultemp = registerDao.selectUsedEmpno(result);
 		return resultemp;
 	}
+	
+	public String selectUsedId(String id){
+		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
+		String resultemp = registerDao.selectUsedId(id);
+		return resultemp;
+	}
 }

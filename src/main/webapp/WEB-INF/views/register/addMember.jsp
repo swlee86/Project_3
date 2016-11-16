@@ -26,18 +26,18 @@
 													<input type="button" class="btn btn-success " id="numchk" value="사번 확인">
 												</span> 										
 											</div>
-											<span id="chkresult" style="color: blue;"></span>
+											<span id="numchkresult" style="color: blue;"></span>
 										</div>
 																			
 										<div class="form-group col-lg-12">
 											<label style="color: black;">ID</label>
 											<div class="input-group">
-												<input type="text" value="" id="userid" class="form-control" name=""> 
+												<input type="text" value="" id="id" class="form-control" name=""> 
 												<span class="input-group-btn">
 													<input type="button" class="btn btn-success " id="idchk" value="중복 체크">
 												</span> 										
 											</div>
-											<span id="chkresult" style="color: blue;"></span>
+											<span id="idchkresult" style="color: blue;"></span>
 										</div>
 										
 										<div class="form-group col-lg-6">
