@@ -115,11 +115,24 @@
 				$.ajax({
 					type : "post",
 					url : "numchk.do",
-					data : "command=AjaxTest&emp_no=" + $('#emp_no').val(),
+					data : "emp_no=" + $('#emp_no').val(),
 					success : function(data) {
 						console.log(data);
-						$('#chkresult').empty();
-						$('#chkresult').append(data.numcheck);
+						$('#numchkresult').empty();
+						$('#numchkresult').append(data.numcheck);
+					}
+				})
+			});
+			
+			$('#idchk').click(function() {
+				$.ajax({
+					type : "post",
+					url : "idchk.do",
+					data : "id=" + $('#id').val(),
+					success : function(data) {
+						console.log(data);
+						$('#idchkresult').empty();
+						$('#idchkresult').append(data.idcheck);
 					}
 				})
 			});
