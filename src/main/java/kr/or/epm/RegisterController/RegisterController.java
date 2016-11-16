@@ -2,9 +2,8 @@ package kr.or.epm.RegisterController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Emp;
 
@@ -29,24 +28,23 @@ public class RegisterController {
 	}
 	
 	
-	
-	
-	
 	@RequestMapping("/adminAddMember.do")
-	public String insertEmp(Emp emp, ModelAndView mv){
+	public String insertEmp(Emp emp, Model mv){
 		System.out.println(emp.toString());
 		int result = registerservice.insertEmp(emp);
 		String answer = null;
 		String data = null;
 		if(result>0){
-			answer="admin/redirect";
-			data = "사원 기본정보 등록이 완료 되었습니다";
+			System.out.println("반영 성공");
+			answer = "admin/redirect";
+			data = "사원정보 등록에 성공하였습니다.";
 		}else{
-			answer="admin/redirect";
-			data= "사원 기본정보 등록에 실패하였습니다.";
-			
+			System.out.println("반영 실패");
+			answer = "admin/redirect";
+			data = "사원정보 등록에 실패 하였습니다.";
 		}
-		mv.addObject("data", data);
+		mv.addAttribute("data", data);
+		System.out.println(data);
 		return answer;
 	}
 	
