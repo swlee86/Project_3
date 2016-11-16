@@ -51,7 +51,7 @@
                     <ul class="dropdown-menu hdropdown notification animated flipInX">
                         <li>
                             <a>
-                                <span class="label label-success">NEW</span> It is a long established.
+                                <span class="label label-success">생일자</span> 이달의 생일자
                             </a>
                         </li>
                         <li>
