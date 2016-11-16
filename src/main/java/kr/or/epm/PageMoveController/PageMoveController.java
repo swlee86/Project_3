@@ -309,7 +309,6 @@ public class PageMoveController {
 	@RequestMapping("/adminDepartMent.do")
 	public String adminDepartMent(){
 		return "admin.adminDepartMentView";
-
 	}
 
 	//아이디찾기
