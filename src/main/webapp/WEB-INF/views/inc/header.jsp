@@ -54,7 +54,7 @@
                     <ul class="dropdown-menu hdropdown notification animated flipInX">
                         <li>
                             <a>
-                                <span class="label label-success">NEW</span> It is a long established.
+                                <span class="label label-success" id="birthDay">이달의 생일자</span>
                             </a>
                         </li>
                         <li>
@@ -179,7 +179,38 @@
     </nav>
 </div>
 
+<!--생일자 관련 모달-->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">이달의 생일자</h4>
+        <small>축하합니다!!</small>
+      </div>
+      <div class="modal-body">
+        
+        <ul style="list-style:none; padding-left:0px;">
+        	<li><a href="#"><i class="fa fa-heart"></i> 박성준</a></li>
+        	<li><a href="#"><i class="fa fa-heart"></i> 홍길동</a></li>
+        </ul>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="vendor/jquery/dist/jquery.min.js"></script>
 <script>
+
+$('#birthDay').click(function(){
+	$('#myModal').modal();
+});
 
 </script>
     
