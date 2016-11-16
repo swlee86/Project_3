@@ -9,13 +9,27 @@
                            http://www.springframework.org/schema/mvc
        					   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<mvc:annotation-driven />
-	<bean id="driverManagerDataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	
+	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="url" value="jdbc:oracle:thin:@orcl.cn5acqnoqihv.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></property>
 		<property name="username" value="swlee"></property>
 		<property name="password" value="oracle0905"></property>
 	</bean>
+
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="driverManagerDataSource"></property>
+		<property name="mapperLocations" value="classpath*:kr/or/emp/mapper/*xml" />
+	</bean>
+
+	
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -24,8 +38,7 @@
 		<property name="order" value="1" />
 	</bean>
 	
-	<bean id="viewResolver2"
-		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	<bean id="viewResolver2" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="2"></property>
 	</bean>
 	
@@ -44,8 +57,7 @@
 	</bean>
 
 	<mvc:resources location="/WEB-INF/resource/js/" mapping="/js/**" />
-	<bean name="jsonview"
-		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 
 
 </beans>

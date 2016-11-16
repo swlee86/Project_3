@@ -115,16 +115,15 @@
 				$.ajax({
 					type : "post",
 					url : "numchk.do",
-					data : "command=AjaxTest&userid=" + $('#userid').val(),
+					data : "command=AjaxTest&emp_no=" + $('#emp_no').val(),
 					success : function(data) {
 						console.log(data);
 						$('#chkresult').empty();
-						$('#chkresult').append(data.idcheck);
+						$('#chkresult').append(data.numcheck);
 					}
 				})
 			});
 		});
 	</script>
-
 </body>
 </html>

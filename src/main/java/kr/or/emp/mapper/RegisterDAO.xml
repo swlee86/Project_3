@@ -8,8 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    VALUES(#{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode})
 	</insert>
 	
-	<select id="selectEmpId" parameterType="int" resultType="kr.or.epm.VO.Emp">
-		select emp_no, cg_no, position_no, low_dept_no, emp_break, salary, emp_name, birth, pic, email, cell_phone, emp_tel
-		from emp
+	<select id="selectEmpno" parameterType="String" resultType="String">
+		select emp_no from emp where emp_no=#{emp_no}
+	</select>
+	
+	<select id="selectUsedEmpno" parameterType="String" resultType="String">
+		select id from emp_detail where emp_no=#{emp_no}
 	</select>
 </mapper>
