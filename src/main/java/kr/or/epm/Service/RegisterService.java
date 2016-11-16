@@ -1,11 +1,10 @@
-package kr.or.emp.Service;
+package kr.or.epm.Service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.RegisterDAO;
-import kr.or.epm.VO.Emp;
 
 
 @Service
