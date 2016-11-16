@@ -182,6 +182,7 @@
                     <li><a href="adminEmployeeManage.do">사원관리</a></li>
                     <li><a href="adminDepartMent.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
+                    <li><a href="adminTimeInfo.do">시간 정보 관리</a></li>
                 </ul>
             </li>
             
