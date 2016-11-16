@@ -17,7 +17,7 @@
 					<li class="active"><span>DataTables</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">매출 관리</h2>
+			<h2 class="font-light m-b-xs">매출 등록</h2>
 		</div>
 	</div>
 </div>

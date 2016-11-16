@@ -41,15 +41,25 @@ public class AdminController {
 		return "admin.adminGradeView";
 	}
 	
-	//시간 정보 관리 페이지 이동
+	//시간 등록 페이지 이동
 	@RequestMapping("/adminTimeInfo.do")
 	public String timeInfo(){
 		return "admin.adminTimeInfo";
 	}
-	//매출 관리 페이지 이동
+	//시간 관리 목록 페이지로 이동
+	@RequestMapping("/adminCommute.do")
+	public String commuteTime(){
+		return "admin.adminCommute";
+	}
+	
+	//매출 등록 페이지 이동
 	@RequestMapping("/adminSales.do")
 	public String salesInfo(){
 		return "admin.adminSales";
 	}
-	
+	//매출 목록 페이지
+	@RequestMapping("adminSalesList.do")
+	public String salesList(){
+		return "admin.adminSalesList";
+	}
 }

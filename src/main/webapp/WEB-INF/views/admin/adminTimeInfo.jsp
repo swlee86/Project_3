@@ -17,7 +17,7 @@
 					<li class="active"><span>DataTables</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">시간 정보 관리 페이지</h2>
+			<h2 class="font-light m-b-xs">시간 정보 등록</h2>
 		</div>
 	</div>
 </div>
@@ -90,7 +90,7 @@
 	                            </tbody>
 	                          </table>   
                          	<div class="form-group" style="text-align:center">
-                   		<input type="submit" class="btn btn-success" value="등록" style="margin-right:10px">
+                   		<input type="submit" class="btn btn-success" value="등록" style="margin-right:10px" onclick="location.href='adminCommute.do'">
                    		<input type="button" class="btn btn-default" value="취소">
 	                    	</div>
 						</form>
@@ -156,7 +156,7 @@
 	                    				</td>
 	                    				<th style="width:20%; text-align: right; background-color:#f5f5f5">마감시간</th>
 	                    				<td>
-	                    				   <div class="input-group clockpicker" data-autoclose="true">
+	                    				<div class="input-group clockpicker" data-autoclose="true">
                         					<input type="text" class="form-control" value="09:30" >
                                					 <span class="input-group-addon">
                                     			 <span class="fa fa-clock-o"></span>
@@ -167,7 +167,7 @@
 	                            </tbody>
 	                          </table>   
                          	<div class="form-group" style="text-align:center">
-                   		<input type="submit" class="btn btn-success" value="등록" style="margin-right:10px">
+                   		<input type="submit" class="btn btn-success" value="등록" style="margin-right:10px" onclick="location.href='adminAccess.do'">
                    		<input type="button" class="btn btn-default" value="취소">
 	                    	</div>
 						</form>
