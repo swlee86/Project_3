@@ -271,7 +271,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary"onclick="location.href='contacts_update.do'">수정</button>
+				<button type="button" class="btn btn-primary" onclick="modifyGroup();">수정</button>
 				<button type="button" class="btn btn-primary">삭제</button>
 			</div>
 		</div>

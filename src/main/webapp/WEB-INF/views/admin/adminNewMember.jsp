@@ -52,24 +52,7 @@
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>생년월일</th>
 	                    				<td>
 	                    					<div class="form-inline">
-											<select  class="form-control input-sm">
-												<c:forEach begin="1960" end="1999" var="i" >
-													<option value="i">${i}</option>
-												</c:forEach>
-											</select>
-											년 &nbsp;
-											<select  class="form-control input-sm">
-												<c:forEach begin="1" end="12" var="i">
-													<option value="i">${i}</option>
-												</c:forEach>
-											</select>
-											월&nbsp;
-											<select  class="form-control input-sm">
-												<c:forEach begin="1" end="31" var="i">
-													<option value="i">${i}</option>
-												</c:forEach>
-											</select>
-											일
+												<input type="text" class="form-control input-sm" id="makeuserDate"> 
 											</div>
 	                    				</td>
 	                    			</tr>
