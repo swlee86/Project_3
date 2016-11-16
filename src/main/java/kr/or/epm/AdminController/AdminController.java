@@ -46,6 +46,10 @@ public class AdminController {
 	public String timeInfo(){
 		return "admin.adminTimeInfo";
 	}
-			
+	//매출 관리 페이지 이동
+	@RequestMapping("/adminSales.do")
+	public String salesInfo(){
+		return "admin.adminSales";
+	}
 	
 }

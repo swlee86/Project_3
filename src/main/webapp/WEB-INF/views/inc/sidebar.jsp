@@ -183,6 +183,7 @@
                     <li><a href="adminDepartMent.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminTimeInfo.do">시간 정보 관리</a></li>
+                    <li><a href="adminSales.do">매출 관리</a></li>
                 </ul>
             </li>
             
