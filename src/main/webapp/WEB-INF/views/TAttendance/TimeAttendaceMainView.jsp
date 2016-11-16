@@ -165,6 +165,7 @@
 			workingTime(stTime, endTime);
 		});
 		
+		//조퇴 버튼 클릭시 - ajax 로 현재 시간 디비에 넣어줘야 함.
 		$('#stopWorkBtn').click(function() {
 			var date = new Date();
 			var h = date.getHours();
