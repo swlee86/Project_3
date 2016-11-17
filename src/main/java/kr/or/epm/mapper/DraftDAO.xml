@@ -4,15 +4,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.DraftDAO">
 	
-	<!--현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 ) / 정렬순서는 미승인을 위로-->
+	<!--현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 ) / 
+
+정렬순서는 미승인을 위로-->
 	<select id="selectDraft_rec" resultType="kr.or.epm.VO.Draft">
 		select draft_no, d.cg_no, cg_name, draft_title, draft_content, 
 		       emp_no, draft_date, file_name, d.step_no, step_name, 
 		       step, rec_del_check, del_check 
-		from draft d join form_cg f 
-		                on d.cg_no = f.cg_no
-		             join approval a 
-		                on d.step_no = a.step_no
+		from draft d 
+		join form_cg f 
+			on d.cg_no = f.cg_no
+		join approval a 
+			on d.step_no = a.step_no
 		where d.draft_no in 
 		  (select draft_no from draft_line where emp_no=#{emp_no}) 
 		and rec_del_check=0
@@ -33,8 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectOffice" resultType="hashmap">
 		select d.draft_no, rec_place, rec_fax, rec_person, rec_tel, 
 			   rec_postcode, rec_addr, rec_addr_detail, cg_no, draft_title,
-         		draft_content, emp_no, draft_date, file_name, step_no, rec_del_check, del_check
-		from office o join draft d on d.draft_no = o.draft_no where d.draft_no=#{draft_no}
+         		draft_content, emp_no, draft_date, file_name, 
+         		step_no, rec_del_check, del_check
+		from office o 
+		join draft d 
+			on d.draft_no = o.draft_no 
+		where d.draft_no=#{draft_no}
 	</select>
 	
 	
@@ -42,7 +49,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectBreak" resultType="hashmap">
 		select d.draft_no, break_start, break_end, break_term, 
 			   b.break_cg_no, break_cg_name,cg_no, draft_title,
-         draft_content, emp_no, draft_date, file_name, step_no, rec_del_check, del_check 
+         		draft_content, emp_no, draft_date, file_name, step_no, 
+         		rec_del_check, del_check 
 		from break b 
 		join break_cg c 
 			on b.break_cg_no = c.break_cg_no 

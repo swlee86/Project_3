@@ -28,7 +28,7 @@
 					<div id="selectedYear">
 						<select class="form-control" id="Yearly">
 							<c:forEach begin="1960" end="2016" var="i" >
-									<option value="i">${i}</option>
+									<option value=i>${i}</option>
 							</c:forEach>
 						</select>
 						<button type="button" class="btn btn-sm btn-default" id="YearlySal">
