@@ -53,6 +53,7 @@
 									<option>선택</option>
 									<option>성준1호점</option>
 									<option>성준2호점</option>
+									<option>성준3호점</option>
 								</select>
 								<br/>
 								
