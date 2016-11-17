@@ -184,18 +184,10 @@
                     <li><a href="adminSalaryView.do">급여관리</a></li>
                     <li><a href="adminCommute.do">시간 정보 관리</a></li>
                     <li><a href="adminSalesList.do">매출 관리</a></li>
-                </ul>
-            </li>
-            
-            <li>
-                <a href="#"><span class="nav-label">관리자 메뉴</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
                     <li><a href="client.do">거래처</a></li>
                 </ul>
             </li>
-            
-            
-              <li>
+            <li>
                 <a href="#"><span class="nav-label">업무관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="taskWrite.do">업무 등록</a></li>
