@@ -60,7 +60,7 @@ public class RegisterController {
 			mv.addAttribute("data", data);
 			mv.addAttribute("answer", answer);
 		}
-		return "admin/redirect";
+		return "register/registerRedirect";
 	}
 	
 	//관리자 > 사원정보 등록페이지에서 사원 등록메뉴 처리시에 필요한 하위 부서번호를 가져 오는 함수
@@ -95,7 +95,7 @@ public class RegisterController {
 		}
 		mv.addAttribute("data", data);
 		mv.addAttribute("answer", answer);
-		return "admin/redirect";
+		return "register/registerRedirect";
 	}
 	
 	

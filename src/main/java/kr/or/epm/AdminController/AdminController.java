@@ -100,17 +100,7 @@ public class AdminController {
 	public String commuteTime(){
 		return "admin.adminCommute";
 	}
-	
-	//매출 등록 페이지 이동
-	@RequestMapping("/adminSales.do")
-	public String salesInfo(){
-		return "admin.adminSales";
-	}
-	//매출 목록 페이지
-	@RequestMapping("/adminSalesList.do")
-	public String salesList(){
-		return "admin.adminSalesList";
-	}
+
 	//급여 관리 메뉴 목록 페이지
 	@RequestMapping("/adminSalaryView.do")
 	public String salaryView(){
