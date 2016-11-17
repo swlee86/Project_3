@@ -62,13 +62,14 @@
 									<option>개발1호</option>
 									<option>영업1호</option>
 								</select> <br />
-								<div class="col-md-offset-2 col-md-4"> 
-									<input type="button" class="btn btn-success" id="seeDepartBtn" value="부서조회">
+								<div class="col-md-offset-2 col-md-4">
+									<input type="button" class="btn btn-success" id="seeDepartBtn"
+										value="부서조회">
 								</div>
-								<div class="col-md-4"> 
-									<input type="button" class="btn btn-success" id="addDownDepartBtn"
-										value="부서추가">
-								</div>	
+								<div class="col-md-4">
+									<input type="button" class="btn btn-success"
+										id="addDownDepartBtn" value="부서추가">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -94,97 +95,97 @@
 
 							<div class="panel-body">
 								<div id="seeAndModifyDiv">
-								<form class="form-horizontal">
-									<div class="form-group">
-										<h4>하위부서 정보(조회, 수정)</h4>
-									</div>
-									<div class="form-group">
-										<div class="col-md-3">
-											<label>부서</label>
+									<form class="form-horizontal">
+										<div class="form-group">
+											<h4>하위부서 정보(조회, 수정)</h4>
 										</div>
-										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+										<div class="form-group">
+											<div class="col-md-3">
+												<label>부서</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" class="form-control" readonly="readonly">
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-3">
-											<label>하위 부서명</label>
+										<div class="form-group">
+											<div class="col-md-3">
+												<label>하위 부서명</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" class="form-control" readonly="readonly">
+											</div>
 										</div>
-										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+										<div class="form-group">
+											<div class="col-md-3">
+												<label>연락처</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" class="form-control" readonly="readonly">
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-3">
-											<label>연락처</label>
+										<div class="form-group">
+											<div class="col-md-3">
+												<label>팩스번호</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" class="form-control" readonly="readonly">
+											</div>
 										</div>
-										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+										<div class="form-group">
+											<div class="col-md-offset-2 col-md-6">
+												<input type="submit" class="btn btn-success" value="수정">
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-3">
-											<label>팩스번호</label>
-										</div>
-										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" value="수정">
-										</div>
-									</div>
 
-								</form>
+									</form>
 								</div>
 								<!--추가할때 뜨는 폼-->
 								<div id="addDiv">
-								<form class="form-horizontal">
-									<div class="form-group">
-										<h4>하위부서 등록</h4>
-									</div>
-									<div class="form-group">
-										<div class="col-md-3">
-											<label>부서</label>
+									<form class="form-horizontal">
+										<div class="form-group">
+											<h4>하위부서 등록</h4>
 										</div>
-										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+										<div class="form-group">
+											<div class="col-md-3">
+												<label>부서</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" class="form-control" readonly="readonly">
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-3">
-											<label>하위 부서명</label>
+										<div class="form-group">
+											<div class="col-md-3">
+												<label>하위 부서명</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" class="form-control" readonly="readonly">
+											</div>
 										</div>
-										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+										<div class="form-group">
+											<div class="col-md-3">
+												<label>연락처</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" class="form-control" readonly="readonly">
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-3">
-											<label>연락처</label>
+										<div class="form-group">
+											<div class="col-md-3">
+												<label>팩스번호</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" class="form-control" readonly="readonly">
+											</div>
 										</div>
-										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+										<div class="form-group">
+											<div class="col-md-offset-2 col-md-6">
+												<input type="submit" class="btn btn-success" value="등록">
+											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-3">
-											<label>팩스번호</label>
-										</div>
-										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" value="등록">
-										</div>
-									</div>
-								</form>
+									</form>
 								</div>
-								
-								
+
+
 							</div>
 							<div class="panel-footer"></div>
 						</div>
