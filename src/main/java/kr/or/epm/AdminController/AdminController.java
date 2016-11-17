@@ -54,6 +54,12 @@ public class AdminController {
 		return "admin.adminDepartMentView";
 	}
 	
+	//관리자 > 지점보기 페이지
+	@RequestMapping("/adminBranch.do")
+	public String adminBranch(){
+		return "admin.adminDepartMentBranch";
+	}
+	
 	//직위 관리 페이지
 	@RequestMapping("/adminGrade.do")
 	public String adminGrade(){
