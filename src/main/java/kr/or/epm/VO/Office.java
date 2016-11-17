@@ -15,6 +15,8 @@ public class Office {
 	private String rec_addr;
 	private String rec_addr_detail;
 	
+	
+	
 	public String getDraft_no() {
 		return draft_no;
 	}
