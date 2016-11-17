@@ -16,6 +16,13 @@ public class Schedule {
 	private String sch_content;
 	private String step_no;
 
+	
+	//추가 DTO 2016-11-18
+	private String cg_color;
+	private String cg_name; 
+	private String step_name;
+	private String step;
+	
 	public String getSch_no() {
 		return sch_no;
 	}
@@ -87,13 +94,47 @@ public class Schedule {
 	public void setStep_no(String step_no) {
 		this.step_no = step_no;
 	}
-	
+
+	public String getCg_color() {
+		return cg_color;
+	}
+
+	public void setCg_color(String cg_color) {
+		this.cg_color = cg_color;
+	}
+
+	public String getCg_name() {
+		return cg_name;
+	}
+
+	public void setCg_name(String cg_name) {
+		this.cg_name = cg_name;
+	}
+
+	public String getStep_name() {
+		return step_name;
+	}
+
+	public void setStep_name(String step_name) {
+		this.step_name = step_name;
+	}
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
+
 	@Override
 	public String toString() {
 		return "Schedule [sch_no=" + sch_no + ", emp_no=" + emp_no + ", cg_no=" + cg_no + ", sign=" + sign
 				+ ", sch_name=" + sch_name + ", sch_start=" + sch_start + ", sch_end=" + sch_end + ", sch_content="
-				+ sch_content + ", step_no=" + step_no + "]";
+				+ sch_content + ", step_no=" + step_no + ", cg_color=" + cg_color + ", cg_name=" + cg_name
+				+ ", step_name=" + step_name + ", step=" + step + "]";
 	}
-
+	
+	
 	
 }

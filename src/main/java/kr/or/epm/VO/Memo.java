@@ -14,7 +14,7 @@ public class Memo {
 	private String memo_date;
 	private String color_no;
 	
-	//DTO 추가 2016-11-17
+	//DTO 추가 2016-11-17 김주희
 	private String color;
 	private String color_name;
 	public String getMemo_no() {
