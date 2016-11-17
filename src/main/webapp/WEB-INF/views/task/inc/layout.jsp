@@ -19,12 +19,21 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-
+    
+    <link rel="stylesheet" href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+        <link rel="stylesheet" href="vendor/select2-3.5.2/select2.css" />
+    <link rel="stylesheet" href="vendor/select2-bootstrap/select2-bootstrap.css" />
+    
+    
+    
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
-
+    
+	<!--jQuery UI CSS-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+	
 	<!-- jquery ui -->
    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
 </head>
@@ -73,14 +82,25 @@
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <script type="text/javascript">
-$('#start').datepicker({
+$('#makeuserUpdateDate').datepicker({
     changeMonth: true, 
-      dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-      dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-      monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-      monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-      dateFormat: 'yy-mm-dd'
-});
+       dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+       dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+       monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+       monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+       dateFormat: 'yy-mm-dd',
+       changeYear: true
+});   
+
+$('#makeuserUpdateDate2').datepicker({
+    changeMonth: true, 
+       dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+       dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+       monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+       monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+       dateFormat: 'yy-mm-dd',
+       changeYear: true
+}); 
 </script>
 </body>
 </html>

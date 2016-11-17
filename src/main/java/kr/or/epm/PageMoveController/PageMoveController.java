@@ -329,19 +329,29 @@ public class PageMoveController {
 		return "find.findPW_Result";
 	}
 	
-	//업무 요청 수신
-	@RequestMapping("/taskRequest_rec.do")
-	public String taskRequest_rec(){
-		return "task.taskRequest_rec";
+	
+	//업무 > 업무 등록 페이지 이동
+	@RequestMapping("/taskWrite.do")
+	public String taskWrite(){
+		return "task.taskWrite";
+	}
+	
+	//업무 > 업무 요청 페이지 이동 
+	@RequestMapping("/taskRequest.do")
+	public String taskRequest(){
+		return "task.taskRequest";
 	}
 
-	//업무 요청 송신
-	@RequestMapping("/taskRequest_trans.do")
-	public String taskRequest_trans(){
-		return "task.taskRequest_trans";
+	
+	//업무 요청 수신 -> 상세
+	@RequestMapping("/taskRequest_rec_detail.do")
+	public String taskRequest_rec_detail(){			
+		return "task.Request_rec_detail";
 	}
+	
 
-	//업무 보고 수신
+
+/*	//업무 보고 수신
 	@RequestMapping("/taskReport_rec.do")
 	public String taskReport_rec(){
 		return "task.taskReport_rec";
@@ -365,19 +375,16 @@ public class PageMoveController {
 		return "task.taskLog_trans";
 	}	
 	
+
+	*/
 	
 	
-	//업무 요청 수신 -> 상세
-	@RequestMapping("/taskRequest_rec_detail.do")
-	public String taskRequest_rec_detail(){			
-		return "task.Request_rec_detail";
-	}
 	
-	//업무 요청 송신 -> 상세
-	@RequestMapping("/taskRequest_trans_detail.do")
-	public String taskRequest_trans_detail(){			
-		return "task.Request_trans_detail";
-	}
+	
+	
+	
+	
+	
 	
 	//관리자 > 사원관리 페이지 이동
 	@RequestMapping("/adminEmployeeManage.do")
