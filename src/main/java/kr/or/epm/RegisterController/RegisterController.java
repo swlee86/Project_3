@@ -35,20 +35,26 @@ public class RegisterController {
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
 	public String insertMemberOk(Emp_detail emp_detail, Model mv){
 		System.out.println("회원 가입 처리 중...");
-		int result = registerservice.insertEmp_detail(emp_detail);
+		int result = 0;
 		String answer = null;
-		String data = null;
-		if(result>0){
-			System.out.println("반영 성공");
-			answer = "index.do";
-			data = "회원 가입에 성공하였습니다.";
-		}else{
-			System.out.println("반영 실패");
-			answer = "addMember.do";
-			data = "회원 가입에 실패 하였습니다.";
+		String data = null;			
+		try{
+			result = registerservice.insertEmp_detail(emp_detail);
+		}catch(Exception e){
+			e.getMessage();
+		}finally{
+			if(result>0){
+				System.out.println("반영 성공");
+				answer = "index.do";
+				data = "회원 가입에 성공하였습니다.";
+			}else{
+				System.out.println("반영 실패");
+				answer = "addMember.do";
+				data = "회원 가입에 실패 하였습니다.";
+			}
+			mv.addAttribute("data", data);
+			mv.addAttribute("answer", answer);
 		}
-		mv.addAttribute("data", data);
-		mv.addAttribute("answer", answer);
 		return "admin/redirect";
 	}
 	
@@ -64,17 +70,23 @@ public class RegisterController {
 	@RequestMapping("/adminAddMember.do")
 	public String insertEmp(Emp emp, Model mv){
 		System.out.println(emp.toString());
-		int result = registerservice.insertEmp(emp);
+		int result = 0;
 		String answer = null;
 		String data = null;
-		if(result>0){
-			System.out.println("반영 성공");
-			answer = "adminEmployeeManage.do";
-			data = "사원정보 등록에 성공하였습니다.";
-		}else{
-			System.out.println("반영 실패");
-			answer = "adminMakeMember.do";
-			data = "사원정보 등록에 실패 하였습니다.";
+		try{
+			result = registerservice.insertEmp(emp);			
+		}catch(Exception e){
+			e.getMessage();
+		}finally{
+			if(result>0){
+				System.out.println("반영 성공");
+				answer = "adminEmployeeManage.do";
+				data = "사원정보 등록에 성공하였습니다.";
+			}else{
+				System.out.println("반영 실패");
+				answer = "adminMakeMember.do";
+				data = "사원정보 등록에 실패 하였습니다.";
+			}
 		}
 		mv.addAttribute("data", data);
 		mv.addAttribute("answer", answer);
