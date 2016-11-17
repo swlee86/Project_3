@@ -9,7 +9,6 @@
 					<i class="fa fa-arrow-up"></i>
 				</div>
 			</a>
-
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.html">Dashboard</a></li>
