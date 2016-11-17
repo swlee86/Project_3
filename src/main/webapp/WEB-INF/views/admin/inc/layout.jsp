@@ -201,7 +201,10 @@
 	$('#movetotalSalaryList').click(function(){
 		location.href="adminSalaryList.do";
 	});
-	
+	//급여관리-급여 기본 정보 관리 페이지로 이동
+	$('#moveSalaryManage').click(function(){
+		location.href="adminSalaryManage.do";
+	});
 	
 </script>
 </body>

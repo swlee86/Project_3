@@ -109,7 +109,7 @@ public class AdminController {
 	public String salaryManage(){
 		return "admin.adminSalaryList";
 	}
-	//급여 등록 페이지
+	//급여 기본 정보 관리 페이지
 	@RequestMapping("/adminSalaryManage.do")
 	public String salaryInfo(){
 		return "admin.adminSalaryManage";
@@ -124,6 +124,10 @@ public class AdminController {
 	public String totalSalaryListDetail(){
 		return "admin.admintotalSalaryListDetail";
 	}
-	
+	//급여 기본 정보 등록/수정 페이지
+	@RequestMapping("/adminSalaryModify.do")
+	public String salaryInfoModify(){
+		return "admin.adminSalaryModify";
+	}
 	
 }
