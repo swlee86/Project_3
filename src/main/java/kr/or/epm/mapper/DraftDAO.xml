@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.epm.DAO.DraftDAO">
 	
 	<!--현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 ) / 정렬순서는 미승인을 위로-->
-	<select id="selectDraft_rec" resultType="kr.or.emp.VO.Draft">
+	<select id="selectDraft_rec" resultType="kr.or.epm.VO.Draft">
 		select draft_no, d.cg_no, cg_name, draft_title, draft_content, 
 		       emp_no, draft_date, file_name, d.step_no, step_name, 
 		       step, rec_del_check, del_check 
@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 승인자가 승인처리 -->
-	<update id="approveDraft" parameterType="kr.or.emp.VO.Draft">
+	<update id="approveDraft" parameterType="kr.or.epm.VO.Draft">
 		update draft_line 
 			set app_check=1, 
 				app_date=to_char(sysdate,'yyyy-mm-dd')
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 수신된 전자결재문서 상세보기(대외발신공문) -->
-	<select id="selectOffice" resultType="kr.or.emp.VO.Office">
+	<select id="selectOffice" resultType="kr.or.epm.VO.Office">
 		select draft_no, rec_place, rec_fax, rec_person, rec_tel, 
 			   rec_postcode, rec_addr, rec_addr_detail 
 		from office where draft_no=#{draft_no}
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 수신된 전자결재문서 상세보기(휴가신청) -->
-	<select id="selectBreak" resultType="kr.or.emp.VO.Break">
+	<select id="selectBreak" resultType="kr.or.epm.VO.Break">
 		select draft_no, break_start, break_end, break_term, 
 			   b.break_cg_no, break_cg_name 
 		from break b 
@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 수신된 전자결재문서 상세보기(협조문) -->
-	<select id="selectCooperation" resultType="kr.or.emp.VO.Cooperation">
+	<select id="selectCooperation" resultType="kr.or.epm.VO.Cooperation">
 		select draft_no, c.low_dept_no, dept_no, branch_name, 
 			   dept_name, low_dept_name, tel, fax, 
 			   pre_low_dept_no, his_check, depth 
@@ -59,21 +59,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 수신에서 삭제처리 -->
-	<update id="deleteDraft_rec" parameterType="kr.or.emp.VO.Draft">
+	<update id="deleteDraft_rec" parameterType="kr.or.epm.VO.Draft">
 		update draft 
 			set rec_del_check =1
 		where draft_no=#{draft_no}
 	</update>
 	
 	<!-- 송신에서 삭제처리 -->
-	<update id="deleteDraft" parameterType="kr.or.emp.VO.Draft">
+	<update id="deleteDraft" parameterType="kr.or.epm.VO.Draft">
 		update draft 
 			set del_check =1
 		where draft_no=#{draft_no}
 	</update>
 	
 	<!-- 송신결재함 조회 -->
-	<select id="selectDraft" resultType="kr.or.emp.VO.Draft">
+	<select id="selectDraft" resultType="kr.or.epm.VO.Draft">
 		select draft_no, d.cg_no, cg_name, draft_title, draft_content, 
 	       	   emp_no, draft_date, file_name, d.step_no, step_name, 
 	       	   step, rec_del_check, del_check
@@ -88,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 결재라인 진행 현황 -->
-	<select id="selectDraftLine" resultType="kr.or.emp.VO.Draft_line">
+	<select id="selectDraftLine" resultType="kr.or.epm.VO.Draft_line">
 		select draft_no, l.emp_no,app_check, app_date, e.position_no, 
 			   position_name,step, low_dept_no, salary, emp_name, birth, 
 			   pic, email, cell_phone, emp_tel, emp_break,cg_no 
