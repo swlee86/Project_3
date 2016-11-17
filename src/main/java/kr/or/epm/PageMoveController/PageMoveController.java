@@ -342,7 +342,12 @@ public class PageMoveController {
 		return "task.taskRequest";
 	}
 
-	
+	//업무요청 > 업무요청 수신 > 상세페이지
+	@RequestMapping("/taskRequest_Receive_Detail.do")
+	public String taskRequest_Receive_Detail(){
+		return "task.taskRequest_Receive_Detail";
+	}
+
 	//업무 요청 수신 -> 상세
 	@RequestMapping("/taskRequest_rec_detail.do")
 	public String taskRequest_rec_detail(){			
