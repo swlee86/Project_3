@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -70,6 +70,7 @@
                     </thead>
                     
                     <tbody>
+                    <c:forEach var="list" items="${list}">
                     <tr style="height:10px;">
                     	<td  style="text-align:center">
                     		<div class="checkbox checkbox-success">
@@ -77,10 +78,11 @@
                                	<label for="checkbox"></label> 
                        		</div>
 						</td>
-                        <td  style="text-align:center;padding-top:15px;">2016-11</td>
-                        <td  style="text-align:center;padding-top:15px;">1.000.000</td>
-                        <td  style="text-align:center;padding-top:15px;">1.000.000</td>
+                        <td  style="text-align:center;padding-top:15px;">${list.month}</td>
+                        <td  style="text-align:center;padding-top:15px;">${list.profit}</td>
+                        <td  style="text-align:center;padding-top:15px;">${list.expense}</td>
                     </tr>
+                    </c:forEach>
                     </tbody>
                 </table>    
 			</div>

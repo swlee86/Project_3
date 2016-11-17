@@ -31,7 +31,7 @@
 				 	<h4>수익 및 비용 등록</h4>
 				 	  <br/>
 				 	  <div class="table-responsive col-lg-8">
-                		<form class="inline" action="">
+                		<form class="inline" action="" method="post">
 	                		<table cellpadding="1" cellspacing="1" class="table table-bordered ">
 	                    		<tbody>
 	                    			<tr>
