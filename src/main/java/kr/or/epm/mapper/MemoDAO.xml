@@ -13,4 +13,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where m.emp_no=#{emp_no}
 		order by m.memo_date DESC
 	</select>
+	
+	<!-- 선택한 메모 상세 조회 -->
+	<select id="selectMemo_detail" resultType="kr.or.epm.VO.Memo">
+		select memo_no,emp_no,title,memo_content,memo_date,
+	       		m.color_no, color, color_name
+		from memo m
+		join memocolor c
+	  		on m.color_no = c.color_no
+		where memo_no=#{memo_no}
+	</select>
+	
+	<!-- 메모 색상 목록 -->
+	<select id="selectMemocolorList" resultType="kr.or.epm.VO.Memocolor">
+		select color_name from memocolor
+	</select>
+	
+	<!-- 색상 선택 -->
+	<select id="selectMemocolor" resultType="kr.or.epm.VO.Memocolor">
+		select color from memocolor where color_name=#{color_name}
+	</select>
+	
+	
+	<!-- 메모 삭제 -->
+	<delete id="deleteMemo" parameterType="String">
+		delete memo where memo_no=#{memo_no}
+	</delete>
+	
+	<!-- 메모 수정(제목, 내용, 색상)-->
+	<update id="updateMemo" parameterType="kr.or.epm.VO.Memo">
+		update memo 
+		set title=#{title}, 
+		    memo_content=#{memo_content}, 
+		    color_no=
+		      (select color_no from memocolor where color_name=#{color_name}),
+    		memo_date=to_char(sysdate,'yyyy-mm-dd') 
+		where memo_no = #{memo_no}
+	</update>
 </mapper>

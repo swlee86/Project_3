@@ -22,7 +22,7 @@ public interface DraftDAO {
 	public List<Draft> selectDraft_rec();
 	
 	//승인 처리
-	public void approveDraft(Draft dto);
+	public int approveDraft(Draft dto);
 	
 	//수신된 전자결재문서 상세보기(대외발신공문)
 	public Office selectOffice(String draft_no);
@@ -34,10 +34,10 @@ public interface DraftDAO {
 	public Cooperation selectCooperation(String draft_no);
 	
 	//수신결재함에서 삭제
-	public void deleteDraft_rec(Draft dto);
+	public int deleteDraft_rec(Draft dto);
 	
 	//수신결재함에서 삭제
-	public void deleteDraft(Draft dto);
+	public int deleteDraft(Draft dto);
 	
 	//결재라인
 	
