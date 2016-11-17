@@ -113,6 +113,10 @@
 			location.href="adminDepartment.do";
 		});
 		
+		$('#moveDepartDownBtn').click(function(){
+			location.href="adminDownDepartment.do";
+		});
+		
 		//드래그 앤 드롭
 		$( "#sortable" ).sortable();
 		

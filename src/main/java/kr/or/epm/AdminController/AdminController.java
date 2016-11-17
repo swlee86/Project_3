@@ -59,10 +59,16 @@ public class AdminController {
 	public String adminBranch(){
 		return "admin.adminDepartMentBranch";
 	}
-	
+	//관리자 > 부서 관리 페이지
 	@RequestMapping("/adminDepartment.do")
 	public String adminDepartment(){
 		return "admin.adminDepartMentView";
+	}
+	
+	//관리자 > 하위 부서 관리 페이지
+	@RequestMapping("/adminDownDepartment.do")
+	public String adminDownDepartment(){
+		return "admin.dminDownDepartmentView";
 	}
 	
 	//직위 관리 페이지
