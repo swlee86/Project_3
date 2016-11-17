@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--관리자 부서관리 페이지-->
+<!--관리자 급여 관리 첫 페이지-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -28,7 +28,7 @@
                 <div class="hpanel">
                     <div class="panel-body">
                         <div class="text-center">
-                            <h2 class="m-b-xs">기지급 급여 내역</h2>
+                            <h2 class="m-b-xs">급여 내역</h2>
                            <div class="m">
                                 <i class="pe-7s-science fa-5x"></i>
                             </div>

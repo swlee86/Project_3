@@ -130,7 +130,8 @@
 		$('#selectSalesdate').monthpicker(options);
 		//매출 목록에서 날짜로 검색시 사용
 		$('#salesdate').monthpicker(options);
-		
+		//기지급 급여 목록페이지의 월별 조회시 사용
+		$('#totalSalListdate').monthpicker(options);	
 		//개발부서 클릭시 아작스 이용
 		$('#depart').click(function(){
 			
@@ -178,6 +179,7 @@
 	$('#movetotalSalaryList').click(function(){
 		location.href="adminSalaryList.do";
 	});
+	
 	
 </script>
 </body>

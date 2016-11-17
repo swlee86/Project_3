@@ -113,6 +113,11 @@ public class AdminController {
 	public String totalSalaryList(){
 		return "admin.admintotalSalaryList";
 	}
+	//기지급 급여 목록에서 특정 월 클릭시 상세보기
+	@RequestMapping("/adminSalaryListDetail.do")
+	public String totalSalaryListDetail(){
+		return "admin.admintotalSalaryListDetail";
+	}
 	
 	
 }
