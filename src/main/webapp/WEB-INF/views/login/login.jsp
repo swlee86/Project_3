@@ -23,7 +23,7 @@
 							</div>
 							<div class="hpanel">
 								<div class="panel-body">
-									<form action="${pageContext.request.contextPath}/login" id="loginForm" method="POST">
+									<form action="${pageContext.request.contextPath}/login" id="loginForm" method="POST" name="f">
 										<div class="form-group">
 											<label class="control-label" for="username" style="color: black;">아이디</label> <input
 												type="text" placeholder="example@gmail.com"

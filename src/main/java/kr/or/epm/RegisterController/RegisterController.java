@@ -2,6 +2,7 @@ package kr.or.epm.RegisterController;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,9 @@ public class RegisterController {
 	@Autowired
 	private RegisterService registerservice;
 	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	//회원가입 클릭시 view 페이지 보여주는 함수
 	@RequestMapping(value="/addMember.do", method=RequestMethod.GET)
 	public String insertMember(){
@@ -35,6 +39,7 @@ public class RegisterController {
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
 	public String insertMemberOk(Emp_detail emp_detail, Model mv){
 		System.out.println("회원 가입 처리 중...");
+		emp_detail.setPwd(this.bCryptPasswordEncoder.encode(emp_detail.getPwd()));;
 		int result = 0;
 		String answer = null;
 		String data = null;			
