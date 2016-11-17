@@ -107,6 +107,22 @@
 <script src="scripts/homer.js"></script>
 <script>
 	$(function(){
+		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
+		$('#seeBranchBtn').click(function(){
+			var select = $("#selectBranch option:selected").val();
+			$.ajax(
+					 {
+						url : "selectBranchList.do",
+						data : {
+									selectBranchName : select
+							   },
+						success : function(data){
+							alert("성공");
+						}
+					 }
+				  );
+		});	
+		
 		//하위부서 추가 영역
 		$('#addDiv').hide();
 		//하위부서 정보 보기 영역
