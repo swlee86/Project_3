@@ -106,7 +106,28 @@
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <script>
+
+	//부서  -  부서 관리 페이지에서 지점 선택시
+	function departMentFuc(option){
+		alert("셀렉트 변환 : "+option);
+		$.ajax(
+				  {
+						url : "departMentSelect.do",
+						data : {
+									branch_name : option 
+							   },
+						success : function(data){
+							alert("성공!");
+						}
+		          }
+			  );
+	}
+
 	$(function(){
+		
+		
+		
+		
 		//지점 추가 디브 
 		$('#addBrunchDiv').hide();
 		
@@ -118,6 +139,24 @@
 		//지점등록 폼 submit 버튼 클릭시
 		$('#addBranchsubmitBtn').click(function(){
 		
+			
+			$.ajax(
+					   {
+							url : "branchAdd.do",
+							data : 
+									{
+										branch_name :  $('#addbranchName').val(),
+										postcode : $('#addpostcode').val(),
+										addr : 	$('#addaddr').val(),
+										addr_detail : $('#addaddr_detail').val()
+									},
+							success : function(data){
+								alert("등록 성공!");
+								location.href="adminDepartWidget.do";
+							}
+			           }
+			      );
+			
 		});
 		
 		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.

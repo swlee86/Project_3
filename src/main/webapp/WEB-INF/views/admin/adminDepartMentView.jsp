@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>		
 <!--관리자 부서관리 페이지-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -42,12 +43,15 @@
 
 							<div class="panel-body">
 
-								<label class="form-control">지점 선택</label> <select
-									class="form-control">
+								<label class="form-control">지점 선택</label> 
+								<select class="form-control" onchange="departMentFuc(this.value)">
 									<option>선택</option>
-									<option>서울</option>
-									<option>제주</option>
-								</select> <br /> <label class="form-control">부서 선택</label> <select
+									<c:forEach var="list" items="${branchList}">
+										<option value="${list.branch_name}">${list.branch_name}</option>
+									</c:forEach>
+								</select> 
+								<br /> 
+								<label class="form-control">부서 선택</label> <select
 									class="form-control">
 									<option>선택</option>
 									<option>영업부</option>
