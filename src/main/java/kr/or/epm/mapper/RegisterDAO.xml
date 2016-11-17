@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from emp_detail where id=#{id}
 	</select>
 	
-	<!-- 관리자의 사원정보  정보 등록 화면에서 하위 부서번호의 정보를 low_dept 테이블에서 불러오는 쿼리문-->
+	<!-- 관리자의 사원정보  > 정보 등록 화면에서 하위 부서번호의 정보를 low_dept 테이블에서 불러오는 쿼리문-->
 	<select id="selectLowDeptNo" resultType="kr.or.epm.VO.Low_dept">
 		select * from low_dept
 	</select>
