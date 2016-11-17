@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.epm.Service.AdminService;
 import kr.or.epm.Service.RegisterService;
+import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Low_dept;
 
 /*
@@ -24,6 +26,8 @@ public class AdminController {
 
 	@Autowired
 	private RegisterService registerservice;
+	@Autowired
+	private AdminService adminservice;
 	
 	//관리자 개발.
 	@RequestMapping(value="/adminDepart_depart.do",method=RequestMethod.GET)
@@ -47,18 +51,27 @@ public class AdminController {
 		return "admin.adminNewMember";
 	}
 	
+	
+	//관리자 > 지점보기 페이지
+	@RequestMapping("/adminBranch.do")
+	public String adminBranch(Model model){
+		
+		List<Branch> list = adminservice.listBranch();
+		for(int i =0; i < list.size(); i++){
+			System.out.println("컨트롤러 : "+list.get(i).getBranch_name());
+		}
+		
+		model.addAttribute("branchList",list);
+		
+		return "admin.adminDepartMentBranch";
+	}
 
 	//관리자 > 부서관리 페이지
 	@RequestMapping("/adminDepartWidget.do")
 	public String adminDepartMent(){
 		return "admin.adminDepartWidget";
 	}
-	
-	//관리자 > 지점보기 페이지
-	@RequestMapping("/adminBranch.do")
-	public String adminBranch(){
-		return "admin.adminDepartMentBranch";
-	}
+
 	//관리자 > 부서 관리 페이지
 	@RequestMapping("/adminDepartment.do")
 	public String adminDepartment(){
