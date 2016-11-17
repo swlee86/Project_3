@@ -107,6 +107,22 @@
 <script src="scripts/homer.js"></script>
 <script>
 	$(function(){
+		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
+		$('#seeBranchBtn').click(function(){
+			var select = $("#selectBranch option:selected").val();
+			$.ajax(
+					 {
+						url : "selectBranchList.do",
+						data : {
+									selectBranchName : select
+							   },
+						success : function(data){
+							alert("성공");
+						}
+					 }
+				  );
+		});	
+		
 		//하위부서 추가 영역
 		$('#addDiv').hide();
 		//하위부서 정보 보기 영역
@@ -201,7 +217,10 @@
 	$('#movetotalSalaryList').click(function(){
 		location.href="adminSalaryList.do";
 	});
-	
+	//급여관리-급여 기본 정보 관리 페이지로 이동
+	$('#moveSalaryManage').click(function(){
+		location.href="adminSalaryManage.do";
+	});
 	
 </script>
 </body>

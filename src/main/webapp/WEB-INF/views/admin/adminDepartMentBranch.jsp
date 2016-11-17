@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!--회사 지점 페이지-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -40,24 +41,16 @@
 							</div>
 
 							<div class="panel-body">
-
-								<label class="form-control">지역 선택</label> <select
-									class="form-control">
+								<label class="form-control">지점 선택</label>
+								 <select class="form-control" id="selectBranch">
 									<option>선택</option>
-									<option>서울</option>
-									<option>제주</option>
-								</select> 
-								<br /> 
-								<label class="form-control">지점 선택</label> <select
-									class="form-control">
-									<option>선택</option>
-									<option>성준1호점</option>
-									<option>성준2호점</option>
-									<option>성준3호점</option>
+									<c:forEach var="list" items="${branchList}">
+										<option value="${list.branch_name}">${list.branch_name}</option>
+									</c:forEach>
 								</select>
 								<br/>
 								
-								<input type="button" class="btn btn-success" value="조회">
+								<input type="button" class="btn btn-success" id="seeBranchBtn" value="조회">
 							</div>
 							<div class="panel-footer"></div>
 						</div>

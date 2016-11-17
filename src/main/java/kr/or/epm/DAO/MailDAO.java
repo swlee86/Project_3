@@ -1,7 +1,6 @@
 package kr.or.epm.DAO;
 
 import java.util.List;
-
 import kr.or.epm.VO.Mail;
 
 public interface MailDAO {
