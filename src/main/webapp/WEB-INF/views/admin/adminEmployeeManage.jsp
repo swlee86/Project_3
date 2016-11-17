@@ -88,35 +88,25 @@
                     
                     <tbody>
                   
-                    <tr style="height:10px;">
-                    	<td  style="text-align:center">
-                    		<div class="checkbox checkbox-success">
-                            	<input type="checkbox" class="i-checks" id="checkbox3">
-                               	<label for="checkbox"></label> 
-                       		</div>
-						</td>
-                        <td  style="text-align:center;padding-top:15px;">2</td>
-                        <td  style="text-align:center;padding-top:15px;">91001111</td>
-                        <td  style="text-align:center;padding-top:15px;">박지은</td>
-                        <td  style="text-align:center;padding-top:15px;">본사</td>
-                        <td  style="text-align:center;padding-top:15px;">경영부</td>
-                        <td  style="text-align:center;padding-top:15px;">전문경영</td>
-                        <td  style="text-align:center;padding-top:15px;">부장</td>
+                    <tr>
+                        <td  style="text-align:center;">2</td>
+                        <td  style="text-align:center;">91001111</td>
+                        <td  style="text-align:center;"><a href="adminMemberDetail.do">클릭</a></td>
+                        <td  style="text-align:center;">정상근무</td>
+                        <td  style="text-align:center;">본사</td>
+                        <td  style="text-align:center;">경영부</td>
+                        <td  style="text-align:center;">전문경영</td>
+                        <td  style="text-align:center;">부장</td>
                     </tr>
-                    <tr style="height:10px;">
-                    	<td  style="text-align:center">
-                    		<div class="checkbox checkbox-success">
-                            	<input type="checkbox" class="i-checks" id="checkbox3">
-                               	<label for="checkbox"></label> 
-                       		</div>
-						</td>
-                        <td  style="text-align:center;padding-top:15px;">1</td>
-                        <td  style="text-align:center;padding-top:15px;">91001111</td>
-                        <td  style="text-align:center;padding-top:15px;">박지은</td>
-                        <td  style="text-align:center;padding-top:15px;">본사</td>
-                        <td  style="text-align:center;padding-top:15px;">경영부</td>
-                        <td  style="text-align:center;padding-top:15px;">전문경영</td>
-                        <td  style="text-align:center;padding-top:15px;">부장</td>
+                    <tr>
+                        <td  style="text-align:center;">1</td>
+                        <td  style="text-align:center;">91001111</td>
+                        <td  style="text-align:center;">박지은</td>
+                        <td  style="text-align:center;">출산휴가</td>
+                        <td  style="text-align:center;;">본사</td>
+                        <td  style="text-align:center;">경영부</td>
+                        <td  style="text-align:center;">전문경영</td>
+                        <td  style="text-align:center;">부장</td>
                     </tr>
                     </tbody>
                 </table>    

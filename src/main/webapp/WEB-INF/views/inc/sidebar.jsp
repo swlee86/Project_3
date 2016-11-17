@@ -197,12 +197,10 @@
               <li>
                 <a href="#"><span class="nav-label">업무관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="taskRequest_rec.do">업무 요청 수신</a></li>
-                    <li><a href="taskRequest_trans.do">업무 요청 송신</a></li>
-                    <li><a href="taskReport_rec.do">업무 보고 수신</a></li>
-                    <li><a href="taskReport_trans.do">업무 보고 송신</a></li>
-                    <li><a href="taskLog_rec.do">업무 일지 수신</a></li>
-                    <li><a href="taskLog_trans.do">업무 일지 송신</a></li>
+                	<li><a href="taskWrite.do">업무 등록</a></li>
+                    <li><a href="taskRequest.do">업무 요청</a></li>
+                    <li><a href="taskInform.do">업무 보고</a></li>
+                    <li><a href="taskLog.do">업무 일지</a></li>
                 </ul>
             </li>
             
