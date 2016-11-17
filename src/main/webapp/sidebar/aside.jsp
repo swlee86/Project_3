@@ -60,81 +60,64 @@
                 <ul class="nav nav-second-level">
                     <li><a href="mailbox.do">메일 읽기</a></li>
                     <li><a href="mailbox_compose.do">메일 쓰기</a></li>
-                    <li><a href="#">수신 확인</a></li>
+                    <li><a href="mailbox_send.do">보낸메일함 (수신 확인)</a></li>
                     <li><a href="#">스팸 메일 관리</a></li>
-                    <li><a href="#">휴지통</a></li>
+                    <li><a href="mailbox_trash.do">휴지통</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="sanction_approve.do">승인 처리</a></li>
-                    <li><a href="datatables.html">Data tables</a></li>
-                    <li><a href="footable.html">Foo Table</a></li>
+                	<li><a href="sanction_write.do">요청 등록</a></li>
+                	<li><a href="sanction_list.do">요청한 결재</a></li>
+                	<li><a href="sanction_approve.do">결재대기함</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><span class="nav-label">업무관리</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                	<li><a href="taskWrite.do">업무 등록</a></li>
+                    <li><a href="taskRequest.do">업무 요청</a></li>
+                    <li><a href="taskInform.do">업무 보고</a></li>
+                    <li><a href="taskLog.do">업무 일지</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#"><span class="nav-label">프로젝트 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                	<li><a href="project_list.do">전체 프로젝트</a></li>  
-                	<li><a href="projects.do">진행중인 프로젝트</a></li>         
+                    <li><a href="project_list.do">전체 프로젝트</a></li>
+                    <li><a href="projects.do">진행중인 프로젝트</a></li>
                     <li><a href="projectApprove.do">프로젝트 승인 대기함</a></li> 
                 </ul>
             </li>
             <li>
-                <a href="#"><span class="nav-label">조직도</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
-                    <li><a href="team_member.do">부서 인원</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="project.html">Project detail</a></li>
-                    <li><a href="app_plans.html">App plans</a></li>
-                    <li><a href="social_board.html">Social board</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="timeline.html">Timeline</a></li>
-                    <li><a href="notes.html">Notes</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="mailbox.html">Mailbox</a></li>
-                    <li><a href="mailbox_compose.html">Email compose</a></li>
-                    <li><a href="mailbox_view.html">Email view</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="blog_details.html">Blog article</a></li>
-                    <li><a href="forum.html">Forum</a></li>
-                    <li><a href="forum_details.html">Forum details</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="calendar.html">Calendar</a></li>
-                    <li><a href="invoice.html">Invoice</a></li>
-                    <li><a href="file_manager.html">File manager</a></li>
-                    <li><a href="chat_view.html">Chat view</a></li>
-                    <li><a href="search.html">Search view</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><span class="nav-label">인사 관리</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
-                	<li><a href="member_datatables.do">사원 정보(관리자)</a></li>
-                    <li><a href="chartjs.html">ChartJs</a></li>
-                    <li><a href="flot.html">Flot charts</a></li>
-                    <li><a href="inline.html">Inline graphs</a></li>
-                    <li><a href="chartist.html">Chartist</a></li>
-                    <li><a href="c3.html">C3 Charts</a></li>
-                </ul>
+                <a href="team_member.do"><span class="nav-label">조직도</span></a>
             </li>
             <li>
                 <a href="#"><span class="nav-label">근태 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="Attendace.do">일일 근태 등록</a></li>
-                	<li><a href="AttendaceMonth.do">월별 근태 조회</a></li>	
+           			<li><a href="AttendaceMonth.do">월별 근태 조회</a></li>
+           			<li><a href="AttendaceWrite.do">휴가/외박 신청</a></li>
+           			<li><a href="AttendaceOther.do">각기다른 근태보기</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><span class="nav-label">급여 관리</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                	<li><a href="salarySetting.do">급여 항목 설정</a></li>
+                    <li><a href="#">급여 마감 관리</a></li>
+                    <li><a href="salarySearch.do">급여 조회</a></li>
+                    <li><a href="severancepay.do">퇴직금 계산</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#"><span class="nav-label">게시판 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="overview.html"><span class="label label-success pull-right">Start</span> Overview </a>  </li>
-                    <li><a href="transition_two.html">Columns from up</a></li>
-                    <li><a href="transition_one.html">Columns custom</a></li>
-                    <li><a href="transition_three.html">Panels zoom</a></li>
-                    <li><a href="transition_four.html">Rows from down</a></li>
-                    <li><a href="transition_five.html">Rows from right</a></li>
+                 	<li><a href="info_board_list.do">회사정보 게시판</a></li>
+                 	<li><a href="media_board_list.do">언론 게시판</a></li>
+                 	<li><a href="business_board_list.do">업무정보공유 게시판</a></li>
+                 	<li><a href="free_board_list.do">사원정보공유 게시판</a></li>
                 </ul>
             </li>
             <li>
@@ -143,6 +126,9 @@
                     <li><a href="login.do">로그인</a></li>
                     <li><a href="addMember.do">회원가입</a></li>
                     <li><a href="editMyinfo.do">내정보수정</a></li>
+                    <li><a href="withdrawal.do">회원탈퇴</a></li>
+                    <li><a href="findId.do">아이디찾기</a></li>
+                    <li><a href="findPw.do">비밀번호찾기</a></li>
                     <li><a href="error_one.html">Error 404</a></li>
                     <li><a href="error_two.html">Error 505</a></li>
                     <li><a href="lock.html">Lock screen</a></li>
@@ -150,32 +136,20 @@
                 </ul>
             </li>
             <li>
-                <a href="options.jsp"> <span class="nav-label">사이트 개인 설정</span></a>
+           		 <a href="chat_ws.do"><span class="nav-label">실시간 채팅</span></a>
             </li>
-            <li>
-                <a href="#"><span class="nav-label">Tables</span><span class="fa arrow"></span> </a>
+              <li>
+                <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="tables_design.html">Tables design</a></li>
-                    <li><a href="datatables.html">Data tables</a></li>
-                    <li><a href="footable.html">Foo Table</a></li>
+                    <li><a href="adminEmployeeManage.do">사원관리</a></li>
+                    <li><a href="adminDepartWidget.do">부서관리</a></li>
+                    <li><a href="adminGrade.do">직위관리</a></li>
+                    <li><a href="adminSalaryView.do">급여관리</a></li>
+                    <li><a href="adminCommute.do">시간 정보 관리</a></li>
+                    <li><a href="adminSalesList.do">매출 관리</a></li>
+                    <li><a href="client.do">거래처</a></li>
                 </ul>
             </li>
-            <li>
-            <a href="chat_ws.do"><span class="nav-label">실시간 채팅</span><span class="fa arrow"></span> </a>
-            </li>
-            <li>
-                <a href="widgets.html"> <span class="nav-label">Widgets</span> <span class="label label-success pull-right">Special</span></a>
-            </li>
-            <li>
-                <a href="grid_system.html"> <span class="nav-label">Grid system</span></a>
-            </li>
-            <li>
-                <a href="landing_page.html"> <span class="nav-label">Landing page</span></a>
-            </li>
-            <li>
-                <a href="package.html"> <span class="nav-label">Package</span></a>
-            </li>
-
         </ul>
     </div>
 </aside>

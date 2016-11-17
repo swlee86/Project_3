@@ -74,6 +74,15 @@
                 </ul>
             </li>
             <li>
+                <a href="#"><span class="nav-label">업무관리</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                	<li><a href="taskWrite.do">업무 등록</a></li>
+                    <li><a href="taskRequest.do">업무 요청</a></li>
+                    <li><a href="taskInform.do">업무 보고</a></li>
+                    <li><a href="taskLog.do">업무 일지</a></li>
+                </ul>
+            </li>
+            <li>
                 <a href="#"><span class="nav-label">프로젝트 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="project_list.do">전체 프로젝트</a></li>
@@ -82,42 +91,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><span class="nav-label">조직도</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
-                    <li><a href="team_member.do">부서 인원</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="project.html">Project detail</a></li>
-                    <li><a href="app_plans.html">App plans</a></li>
-                    <li><a href="social_board.html">Social board</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="timeline.html">Timeline</a></li>
-                    <li><a href="notes.html">Notes</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="mailbox.html">Mailbox</a></li>
-                    <li><a href="mailbox_compose.html">Email compose</a></li>
-                    <li><a href="mailbox_view.html">Email view</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="blog_details.html">Blog article</a></li>
-                    <li><a href="forum.html">Forum</a></li>
-                    <li><a href="forum_details.html">Forum details</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="calendar.html">Calendar</a></li>
-                    <li><a href="invoice.html">Invoice</a></li>
-                    <li><a href="file_manager.html">File manager</a></li>
-                    <li><a href="chat_view.html">Chat view</a></li>
-                    <li><a href="search.html">Search view</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><span class="nav-label">인사 관리</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
-                	<li><a href="member_datatables.do">사원 정보(관리자)</a></li>
-                    <li><a href="chartjs.html">ChartJs</a></li>
-                    <li><a href="flot.html">Flot charts</a></li>
-                    <li><a href="inline.html">Inline graphs</a></li>
-                    <li><a href="chartist.html">Chartist</a></li>
-                    <li><a href="c3.html">C3 Charts</a></li>
-                </ul>
+                <a href="team_member.do"><span class="nav-label">조직도</span></a>
             </li>
             <li>
                 <a href="#"><span class="nav-label">근태 관리</span><span class="fa arrow"></span> </a>
@@ -162,18 +136,7 @@
                 </ul>
             </li>
             <li>
-                <a href="options.jsp"> <span class="nav-label">사이트 개인 설정</span></a>
-            </li>
-            <li>
-                <a href="#"><span class="nav-label">Tables</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
-                    <li><a href="tables_design.html">Tables design</a></li>
-                    <li><a href="datatables.html">Data tables</a></li>
-                    <li><a href="footable.html">Foo Table</a></li>
-                </ul>
-            </li>
-            <li>
-           		 <a href="chat_ws.do"><span class="nav-label">실시간 채팅</span><span class="fa arrow"></span> </a>
+           		 <a href="chat_ws.do"><span class="nav-label">실시간 채팅</span></a>
             </li>
               <li>
                 <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
@@ -187,31 +150,6 @@
                     <li><a href="client.do">거래처</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#"><span class="nav-label">업무관리</span><span class="fa arrow"></span> </a>
-                <ul class="nav nav-second-level">
-                	<li><a href="taskWrite.do">업무 등록</a></li>
-                    <li><a href="taskRequest.do">업무 요청</a></li>
-                    <li><a href="taskInform.do">업무 보고</a></li>
-                    <li><a href="taskLog.do">업무 일지</a></li>
-                </ul>
-            </li>
-            
-            
-            
-            <li>
-                <a href="widgets.html"> <span class="nav-label">Widgets</span> <span class="label label-success pull-right">Special</span></a>
-            </li>
-            <li>
-                <a href="grid_system.html"> <span class="nav-label">Grid system</span></a>
-            </li>
-            <li>
-                <a href="landing_page.html"> <span class="nav-label">Landing page</span></a>
-            </li>
-            <li>
-                <a href="package.html"> <span class="nav-label">Package</span></a>
-            </li>
-
         </ul>
     </div>
 </aside>
