@@ -117,11 +117,7 @@
 		
 		//지점등록 폼 submit 버튼 클릭시
 		$('#addBranchsubmitBtn').click(function(){
-			$.ajax(
-					{
-						url : ""	
-					}
-			     );
+		
 		});
 		
 		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
