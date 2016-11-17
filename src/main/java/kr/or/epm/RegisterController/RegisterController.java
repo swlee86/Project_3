@@ -1,17 +1,14 @@
 package kr.or.epm.RegisterController;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
-import kr.or.epm.VO.Low_dept;
 
 
 /*
@@ -63,7 +60,7 @@ public class RegisterController {
 	}
 	
 
-	
+	//관리자 > 사원관리 > 사원 등록에서 등록 버튼을 누르면 타게 되는 함수(인서트 처리를 담당한다)
 	@RequestMapping("/adminAddMember.do")
 	public String insertEmp(Emp emp, Model mv){
 		System.out.println(emp.toString());

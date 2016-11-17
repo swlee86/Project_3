@@ -65,7 +65,7 @@
 	                    				<td colspan="3">
 	                    					<select class="form-control input-sm" id="position_no" id="low_dept_no" name="low_dept_no">
 	                    						<c:forEach var='dept'  items='${list}'>
-	                    							<option value='${dept.dept_no}'>${dept.low_dept_name}</option>
+	                    							<option value='${dept.low_dept_no}'>${dept.branch_name}&nbsp;${dept.dept_name}&nbsp;${dept.low_dept_name}</option>
 	                    						</c:forEach>
 	                    					</select>
 	                    				</td>
@@ -80,7 +80,7 @@
 											</div>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">이메일</th>
-	                    				<td><input type="text" class="form-control input-sm" ></td>
+	                    				<td><input type="text" class="form-control input-sm" name="email"></td>
 	                    			</tr>
 	                    			
 	                    			<tr>

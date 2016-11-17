@@ -21,8 +21,8 @@
 										<div class="form-group col-lg-12">
 											<label style="color: black;">사번 확인</label>
 											<div class="input-group">
-												<input type="text" value="" id="emp_no" class="form-control" name=""> 
-												<span class="input-group-btn">
+												<input type="text" value="" id="emp_no" class="form-control" name="emp_no"> 
+												<span class="input-group-btn" id="numchkmsg">
 													<input type="button" class="btn btn-success " id="numchk" value="사번 확인">
 												</span> 										
 											</div>
@@ -32,7 +32,7 @@
 										<div class="form-group col-lg-12">
 											<label style="color: black;">ID</label>
 											<div class="input-group">
-												<input type="text" value="" id="id" class="form-control" name=""> 
+												<input type="text" value="" id="id" class="form-control" name="id"> 
 												<span class="input-group-btn">
 													<input type="button" class="btn btn-success " id="idchk" value="중복 체크">
 												</span> 										

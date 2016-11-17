@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자의 사원등록에서 등록시 처리되는 insert 쿼리문 -->
 	<insert id="insertEmp" parameterType="kr.or.epm.VO.Emp">
-		INSERT INTO emp(emp_no, cg_no, position_no, low_dept_no, emp_name, birth, salary ,emp_break, cell_phone)
-	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break}, #{cell_phone})
+		INSERT INTO emp(emp_no, cg_no, position_no, low_dept_no, emp_name, birth, salary ,emp_break, cell_phone, email)
+	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break}, #{cell_phone}, #{email})
 	</insert>
 	
 	<!-- 회원 가입시 인서트 처리되는 쿼리문 -->
