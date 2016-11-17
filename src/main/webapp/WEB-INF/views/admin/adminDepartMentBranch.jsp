@@ -17,7 +17,7 @@
 					<li class="active"><span>Calendar</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">부서관리</h2>
+			<h2 class="font-light m-b-xs">지점 관리</h2>
 		</div>
 	</div>
 </div>
@@ -41,54 +41,28 @@
 
 							<div class="panel-body">
 
-								<label class="form-control">지점 선택</label> <select
+								<label class="form-control">지역 선택</label> <select
 									class="form-control">
 									<option>선택</option>
 									<option>서울</option>
 									<option>제주</option>
-								</select> <br /> <input type="button" class="btn btn-success" value="조회">
+								</select> 
+								<br /> 
+								<label class="form-control">지점 선택</label> <select
+									class="form-control">
+									<option>선택</option>
+									<option>성준1호점</option>
+									<option>성준2호점</option>
+									<option>성준3호점</option>
+								</select>
+								<br/>
+								
+								<input type="button" class="btn btn-success" value="조회">
 							</div>
 							<div class="panel-footer"></div>
 						</div>
 					</div>
 
-					<div class="vertical-timeline-block">
-						<div class="vertical-timeline-icon navy-bg">
-							<i class="fa fa-calendar"></i>
-						</div>
-						<div class="vertical-timeline-content">
-							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
-								<h2>지점 정보</h2>
-							</div>
-
-							<div class="panel-body">
-								
-					
-									<ul id="branchUl">
-										<li style="margin-top: 5px;">첫번째</li>
-									</ul>
-						
-								<br/>
-								<form class="form-horizontal">	
-									<div class="col-md-8"></div>
-									<div class="col-md-2">
-										<input type="button" class="btn btn-default" value="정보조회">
-									</div>
-									<div class="col-md-2">
-										<input type="button" class="btn btn-default" value="정보수정">
-									</div>
-								</form>
-							</div>
-							<div class="panel-footer">
-								
-							</div>
-						</div>
-					</div>
-					
-					
 					<div class="vertical-timeline-block">
 						<div class="vertical-timeline-icon navy-bg">
 							<i class="fa fa-calendar"></i>
@@ -143,42 +117,42 @@
 							<div class="panel-body">
 								<form class="form-horizontal">
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>지점명</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>우편번호</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>우편번호</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>기존주소</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>상세주소</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
@@ -210,42 +184,42 @@
 							<div class="panel-body">
 								<form class="form-horizontal">
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>지점명</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>우편번호</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>우편번호</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>기존주소</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>상세주소</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>

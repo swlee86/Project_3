@@ -88,8 +88,31 @@ public class AdminController {
 		return "admin.adminSales";
 	}
 	//매출 목록 페이지
-	@RequestMapping("adminSalesList.do")
+	@RequestMapping("/adminSalesList.do")
 	public String salesList(){
 		return "admin.adminSalesList";
 	}
+	//급여 관리 메뉴 목록 페이지
+	@RequestMapping("/adminSalaryView.do")
+	public String salaryView(){
+		return "admin.adminSalaryView";
+	}
+	
+	//지급된 급여 목록 페이지
+	@RequestMapping("/adminSalary.do")
+	public String salaryManage(){
+		return "admin.adminSalaryList";
+	}
+	//급여 등록 페이지
+	@RequestMapping("/adminSalaryManage.do")
+	public String salaryInfo(){
+		return "admin.adminSalaryManage";
+	}
+	//기지급 급여 내역 페이지
+	@RequestMapping("/adminSalaryList.do")
+	public String totalSalaryList(){
+		return "admin.admintotalSalaryList";
+	}
+	
+	
 }

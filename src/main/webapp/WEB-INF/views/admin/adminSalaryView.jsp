@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--맨처음 관리자 지점,부서, 하위부서 위젯 페이지-->
+<!--관리자 부서관리 페이지-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -17,7 +17,7 @@
 					<li class="active"><span>Calendar</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">부서관리</h2>
+			<h2 class="font-light m-b-xs">급여 관리</h2>
 		</div>
 	</div>
 </div>
@@ -28,52 +28,52 @@
                 <div class="hpanel">
                     <div class="panel-body">
                         <div class="text-center">
-                            <h2 class="m-b-xs">지점</h2>
-                            <p class="font-bold text-success">조회, 등록, 수정, 삭제</p>
-                            <div class="m">
+                            <h2 class="m-b-xs">기지급 급여 내역</h2>
+                           <div class="m">
                                 <i class="pe-7s-science fa-5x"></i>
                             </div>
                             <p class="small">
-                                                 지점 관련 페이지는 여기로!
+                                                 지급된 급여 목록 조회
                             </p>
-                            <button class="btn btn-success btn-sm" id="moveBranchBtn">이동</button>
+                            <button class="btn btn-success btn-sm" id="movetotalSalaryList">이동</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+         
+
+      <div class="col-md-4">
                 <div class="hpanel">
                     <div class="panel-body">
                         <div class="text-center">
-                            <h2 class="m-b-xs">부서</h2>
-                            <p class="font-bold text-success">조회, 등록, 수정, 삭제</p>
-                            <div class="m">
+                            <h2 class="m-b-xs">당월 급여 내역</h2>
+                           <div class="m">
                                 <i class="pe-7s-science fa-5x"></i>
                             </div>
                             <p class="small">
-                                                 부서 관련 페이지는 여기로!
+                                                 지급 예정 급여 목록 조회
                             </p>
-                            <button class="btn btn-success btn-sm" id="moveDepartBtn">이동</button>
+                            <button class="btn btn-success btn-sm" id="moveSalaryPlanList">이동</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+
+   <div class="col-md-4">
                 <div class="hpanel">
                     <div class="panel-body">
                         <div class="text-center">
-                            <h2 class="m-b-xs">하위부서</h2>
-                            <p class="font-bold text-success">조회, 등록, 수정, 삭제</p>
-                            <div class="m">
+                            <h2 class="m-b-xs">급여 기본 정보 관리</h2>
+                           <div class="m">
                                 <i class="pe-7s-science fa-5x"></i>
                             </div>
                             <p class="small">
-                                                 하위부서 관련 페이지는 여기로!
+                                                 개인별 급여 기본 정보 관리
                             </p>
-                            <button class="btn btn-success btn-sm" id="moveDepartDownBtn">이동</button>
+                            <button class="btn btn-success btn-sm" id="moveSalaryManage">이동</button>
                         </div>
                     </div>
                 </div>
-            </div>
-         </div>
-</div>
+                </div>
+    </div>
+  </div>
