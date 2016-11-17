@@ -170,11 +170,14 @@
 	// 시간정보 관리 페이지 - ClockPicker
     $('.clockpicker').clockpicker({autoclose: true});
 	
-	//급여관리- 지급된 급여 목록보기 페이지로 이동
-	$('#moveSalaryList').click(function(){
+	//급여관리- 당월 지급 예정 급여 목록보기 페이지로 이동
+	$('#moveSalaryPlanList').click(function(){
 		location.href="adminSalary.do"
 	})
-	
+	//급여관리 - 기지급 급여 목록보기 페이지로 이동
+	$('#movetotalSalaryList').click(function(){
+		location.href="adminSalaryList.do";
+	});
 	
 </script>
 </body>
