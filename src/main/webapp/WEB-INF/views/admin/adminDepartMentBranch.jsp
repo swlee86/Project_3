@@ -74,7 +74,7 @@
 								<form class="form-horizontal">	
 									<div class="col-md-10"></div>
 									<div class="col-md-2">
-										<input type="button" class="btn btn-default" value="지점 추가">
+										<input type="button" class="btn btn-default" id="addBrunchBtn" value="지점 추가">
 									</div>
 								</form>
 							</div>
@@ -114,7 +114,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" readonly="readonly" id="addbranchName" name="branchName">
 										</div>
 									</div>
 									<div class="form-group">
@@ -122,15 +122,7 @@
 											<label>우편번호</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-4">
-											<label>우편번호</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" readonly="readonly" id="addpostcode" name="postcode">
 										</div>
 									</div>
 									<div class="form-group">
@@ -138,7 +130,7 @@
 											<label>기존주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" readonly="readonly" id="addaddr" name="addr">
 										</div>
 									</div>
 									<div class="form-group">
@@ -146,12 +138,12 @@
 											<label>상세주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" readonly="readonly" id="addaddr_detail" name="addr_detail">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" value="수정">
+											<input type="button" class="btn btn-success" id="addBranchsubmitBtn" value="추가">
 										</div>
 									</div>
 									
@@ -162,7 +154,7 @@
 					</div>
 					
 					<!--등록-->
-					<div class="vertical-timeline-block">
+					<div class="vertical-timeline-block" id="addBrunchDiv">
 						<div class="vertical-timeline-icon navy-bg">
 							<i class="fa fa-calendar"></i>
 						</div>
@@ -181,7 +173,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control">
+											<input type="text" class="form-control" readonly="readonly" id="branchName" name="branchName">
 										</div>
 									</div>
 									<div class="form-group">
@@ -189,15 +181,7 @@
 											<label>우편번호</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control">
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-4">
-											<label>우편번호</label>
-										</div>
-										<div class="col-md-8">
-											<input type="text" class="form-control">
+											<input type="text" class="form-control" readonly="readonly" id="postcode" name="postcode">
 										</div>
 									</div>
 									<div class="form-group">
@@ -205,7 +189,7 @@
 											<label>기존주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control">
+											<input type="text" class="form-control" readonly="readonly" id="addr" name="addr">
 										</div>
 									</div>
 									<div class="form-group">
@@ -213,14 +197,15 @@
 											<label>상세주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control">
+											<input type="text" class="form-control" readonly="readonly" id="addr_detail" name="addr_detail">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" value="등록">
+											<input type="submit" class="btn btn-success" value="수정">
 										</div>
 									</div>
+									
 								</form>
 							</div>
 							<div class="panel-footer"></div>
