@@ -107,14 +107,48 @@
 <script src="scripts/homer.js"></script>
 <script>
 	$(function(){
+		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
+		$('#seeBranchBtn').click(function(){
+			var select = $("#selectBranch option:selected").val();
+			$.ajax(
+					 {
+						url : "selectBranchList.do",
+						data : {
+									selectBranchName : select
+							   },
+						success : function(data){
+							alert("성공");
+						}
+					 }
+				  );
+		});	
+		
+		//하위부서 추가 영역
+		$('#addDiv').hide();
+		//하위부서 정보 보기 영역
+		$('#seeAndModifyDiv').show();
+		
 		
 		//부서 관리 페이지
 		$('#moveDepartBtn').click(function(){
 			location.href="adminDepartment.do";
 		});
 		
+		//하위 부서 관리 페이지
 		$('#moveDepartDownBtn').click(function(){
 			location.href="adminDownDepartment.do";
+		});
+		
+		//하위부서 조회 버튼 클릭시
+		$('#seeDepartBtn').click(function(){
+			$('#seeAndModifyDiv').show();
+			$('#addDiv').hide();
+		});
+		
+		//하위 부서 추가 버튼
+		$('#addDownDepartBtn').click(function(){
+			$('#addDiv').show();
+			$('#seeAndModifyDiv').hide();
 		});
 		
 		//드래그 앤 드롭
@@ -134,7 +168,8 @@
 		$('#selectSalesdate').monthpicker(options);
 		//매출 목록에서 날짜로 검색시 사용
 		$('#salesdate').monthpicker(options);
-		
+		//기지급 급여 목록페이지의 월별 조회시 사용
+		$('#totalSalListdate').monthpicker(options);	
 		//개발부서 클릭시 아작스 이용
 		$('#depart').click(function(){
 			
@@ -181,6 +216,10 @@
 	//급여관리 - 기지급 급여 목록보기 페이지로 이동
 	$('#movetotalSalaryList').click(function(){
 		location.href="adminSalaryList.do";
+	});
+	//급여관리-급여 기본 정보 관리 페이지로 이동
+	$('#moveSalaryManage').click(function(){
+		location.href="adminSalaryManage.do";
 	});
 	
 </script>

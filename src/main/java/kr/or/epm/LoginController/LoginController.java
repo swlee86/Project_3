@@ -1,5 +1,7 @@
 package kr.or.epm.LoginController;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,13 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
+
+	
 	@RequestMapping(value="/login.do", method=RequestMethod.GET)
 	public String loginview(){
 		System.out.println("로그인");
 		return "login.login";
 	}
 	
-	@RequestMapping(value="/login.do", method=RequestMethod.POST)
+	/*@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String loginResult(String username){
 		System.out.println("로그인 리절트 : "+username);
 		if(username.equals("admin")){
@@ -30,7 +34,7 @@ public class LoginController {
 			return null;
 		}
 		
-	}
+	}*/
 		
 	
 	

@@ -22,6 +22,28 @@ public class Task {
 	private String file_name;
 	private String task_step_no;
 	private String step_no;
+	
+	// 추가 변수
+	private String cg_name;
+	private String step_name;
+	
+	public String getCg_name() {
+		return cg_name;
+	}
+
+	public void setCg_name(String cg_name) {
+		this.cg_name = cg_name;
+	}
+	
+	public String getStep_name() {
+		return step_name;
+	}
+
+	public void setStep_name(String step_name) {
+		this.step_name = step_name;
+	}
+	
+	//////////////////////////////////////////////////////
 
 	public String getTask_no() {
 		return task_no;
