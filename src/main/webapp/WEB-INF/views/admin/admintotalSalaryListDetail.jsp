@@ -57,32 +57,32 @@
                     <tbody>
                   
                     <tr>
-                      <th  style="text-align:center;"> 1 </th>
-                        <th  style="text-align:center;">91001111</th>
-                        <th  style="text-align:center;">박지은</th> 
-                        <th  style="text-align:center;">서울</th>
-                        <th  style="text-align:center;">개발부</th>
-                        <th  style="text-align:center;">개발1팀</th>
-                        <th  style="text-align:center;">대리</th>
-                        <th  style="text-align:center;">70:00</th>
-                        <th  style="text-align:center;">70:00</th>
-                        <th  style="text-align:center;">확정</th>
-                        <th  style="text-align:center;">1.000.000</th>
-                        <th  style="text-align:center;">2016-11-17</th>
+                        <td  style="text-align:center;"> 1 </td>
+                        <td  style="text-align:center;">91001111</td>
+                        <td  style="text-align:center;">박지은</td> 
+                        <td  style="text-align:center;">서울</td>
+                        <td  style="text-align:center;">개발부</td>
+                        <td  style="text-align:center;">개발1팀</td>
+                        <td  style="text-align:center;">대리</td>
+                        <td  style="text-align:center;">70:00</td>
+                        <td  style="text-align:center;">70:00</td>
+                        <td  style="text-align:center;">확정</td>
+                        <td  style="text-align:center;">1.000.000</td>
+                        <td  style="text-align:center;">2016-11-17</td>
                     </tr>
                     <tr>
-                        <th  style="text-align:center;"> 2</th>
-                        <th  style="text-align:center;">91001111</th>
-                        <th  style="text-align:center;">박지은</th> 
-                        <th  style="text-align:center;">서울</th>
-                        <th  style="text-align:center;">개발부</th>
-                        <th  style="text-align:center;">개발1팀</th>
-                        <th  style="text-align:center;">대리</th>
-                        <th  style="text-align:center;">70:00</th>
-                        <th  style="text-align:center;">70:00</th>
-                        <th  style="text-align:center;">확정</th>
-                        <th  style="text-align:center;">1.000.000</th>
-                        <th  style="text-align:center;">2016-11-17</th>
+                             <td  style="text-align:center;"> 1 </td>
+                        <td  style="text-align:center;">91001111</td>
+                        <td  style="text-align:center;">박지은</td> 
+                        <td  style="text-align:center;">서울</td>
+                        <td  style="text-align:center;">개발부</td>
+                        <td  style="text-align:center;">개발1팀</td>
+                        <td  style="text-align:center;">대리</td>
+                        <td  style="text-align:center;">70:00</td>
+                        <td  style="text-align:center;">70:00</td>
+                        <td  style="text-align:center;">확정</td>
+                        <td  style="text-align:center;">1.000.000</td>
+                        <td  style="text-align:center;">2016-11-17</td>
                     </tr>
                     </tbody>
                 </table>    

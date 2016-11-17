@@ -57,10 +57,6 @@ public class AdminController {
 	public String adminBranch(Model model){
 		
 		List<Branch> list = adminservice.listBranch();
-		for(int i =0; i < list.size(); i++){
-			System.out.println("컨트롤러 : "+list.get(i).getBranch_name());
-		}
-		
 		model.addAttribute("branchList",list);
 		
 		return "admin.adminDepartMentBranch";
@@ -74,7 +70,9 @@ public class AdminController {
 
 	//관리자 > 부서 관리 페이지
 	@RequestMapping("/adminDepartment.do")
-	public String adminDepartment(){
+	public String adminDepartment(Model model){
+		List<Branch> list = adminservice.listBranch();
+		model.addAttribute("branchList",list);
 		return "admin.adminDepartMentView";
 	}
 	
@@ -100,17 +98,7 @@ public class AdminController {
 	public String commuteTime(){
 		return "admin.adminCommute";
 	}
-	
-	//매출 등록 페이지 이동
-	@RequestMapping("/adminSales.do")
-	public String salesInfo(){
-		return "admin.adminSales";
-	}
-	//매출 목록 페이지
-	@RequestMapping("/adminSalesList.do")
-	public String salesList(){
-		return "admin.adminSalesList";
-	}
+
 	//급여 관리 메뉴 목록 페이지
 	@RequestMapping("/adminSalaryView.do")
 	public String salaryView(){

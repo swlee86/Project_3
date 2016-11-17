@@ -15,27 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
-
-
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.GET)
 	public String loginview(){
 		System.out.println("로그인");
 		return "login.login";
 	}
-	
-	/*@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String loginResult(String username){
-		System.out.println("로그인 리절트 : "+username);
-		if(username.equals("admin")){
-			System.out.println("어드민 로그인");
-			return "home.index";
-		}else{
-			return null;
-		}
-		
-	}*/
-		
 	
 	
 }
