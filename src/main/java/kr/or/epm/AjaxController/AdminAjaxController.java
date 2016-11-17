@@ -29,8 +29,10 @@ public class AdminAjaxController {
 	public View branchList(String selectBranchName , Model model){	
 		
 		Branch dto = adminservice.chooseBranch(selectBranchName);
-		System.out.println("아작스 컨트롤러 dto : "+dto.toString());
+		model.addAttribute(dto);
 		return jsonview;
 	}
+	
+	
 	
 }

@@ -107,6 +107,23 @@
 <script src="scripts/homer.js"></script>
 <script>
 	$(function(){
+		//지점 추가 디브 
+		$('#addBrunchDiv').hide();
+		
+		//왼쪽 디브 등록
+		$('#addBrunchBtn').click(function(){
+			$('#addBrunchDiv').show();	
+		});
+		
+		//지점등록 폼 submit 버튼 클릭시
+		$('#addBranchsubmitBtn').click(function(){
+			$.ajax(
+					{
+						url : ""	
+					}
+			     );
+		});
+		
 		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
 		$('#seeBranchBtn').click(function(){
 			var select = $("#selectBranch option:selected").val();
@@ -117,7 +134,35 @@
 									selectBranchName : select
 							   },
 						success : function(data){
-							alert("성공");
+							
+							$.each(data, function(index){
+								$('#branchName').val(data[index].branch_name);
+								$('#branchName').attr("readonly",false);
+								
+								$('#postcode').val(data[index].postcode);
+								$('#postcode').attr("readonly",false);
+								
+								$('#addr').val(data[index].addr);
+								$('#addr').attr("readonly",false);
+								
+								$('#addr_detail').val(data[index].addr_detail);
+								$('#addr_detail').attr("readonly",false);
+							});
+							
+						}, error : function(){
+							alert("지점을 선택해주세요!");
+							
+							$('#branchName').val('');
+							$('#branchName').attr("readonly",true);
+							
+							$('#postcode').val('');
+							$('#postcode').attr("readonly",true);
+							
+							$('#addr').val('');
+							$('#addr').attr("readonly",true);
+							
+							$('#addr_detail').val('');
+							$('#addr_detail').attr("readonly",true);
 						}
 					 }
 				  );
