@@ -48,14 +48,6 @@
 											<label style="color: black;">Repeat Password</label> <input
 												type="password" value="" id="pwdchk" class="form-control" name="pwdchk">
 										</div>
-										<div class="form-group col-lg-6">
-											<label style="color: black;">Email Address</label> 
-											<input type="email" value="" id="email" class="form-control" name="email">
-										</div>
-										<div class="form-group col-lg-6">
-											<label style="color: black;">Repeat Email Address</label> 
-											<input type="email" value="" id="email_chk" class="form-control" name="email_chk">
-										</div>
 										<div class="form-group col-lg-12">
 											<label style="color: black;">주소</label>
 											<div class="input-group">
