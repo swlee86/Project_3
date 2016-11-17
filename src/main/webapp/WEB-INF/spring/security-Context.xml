@@ -9,14 +9,15 @@
   <security:form-login login-page="/login.do"
   								authentication-failure-url="/login.do?error" />
   <security:logout logout-success-url="/index.html" />
-  <security:intercept-url pattern="/sanction_approve.do" access="hasRole('ROLE_ADMIN')" />
+  <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')" />
 </security:http>
 <security:authentication-manager>
      <security:authentication-provider>
-      <security:user-service>
-       <security:user name="test" password="1004" authorities="ROLE_USER"/>
-       <security:user name="admin" password="1004" authorities="ROLE_ADMIN,ROLE_USER"/>
-      </security:user-service>
+		<security:jdbc-user-service data-source-ref="driverManagerDataSource"
+			users-by-username-query="select id as USERID, pwd as PASSWORD, 1 enable from emp_detail where id=?"
+			authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
+		/>
      </security:authentication-provider>
  </security:authentication-manager>
+
 </beans>
