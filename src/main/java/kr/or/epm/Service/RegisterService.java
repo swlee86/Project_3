@@ -5,12 +5,12 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.epm.DAO.RegisterDAO;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Low_dept;
-
 
 @Service
 public class RegisterService {
@@ -43,8 +43,6 @@ public class RegisterService {
 		int result = registerDao.insertEmp_detail(emp_detail);
 		return result;
 	}
-	
-	
 	
 	//회원가입시 사원번호 입력 후 체크를 누르면 사원 정보를 불러오는 함수
 	public String selectEmpId(String emp_no){
