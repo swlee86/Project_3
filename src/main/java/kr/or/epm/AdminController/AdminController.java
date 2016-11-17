@@ -49,15 +49,20 @@ public class AdminController {
 	
 
 	//관리자 > 부서관리 페이지
-	@RequestMapping("/adminDepartMent.do")
+	@RequestMapping("/adminDepartWidget.do")
 	public String adminDepartMent(){
-		return "admin.adminDepartMentView";
+		return "admin.adminDepartWidget";
 	}
 	
 	//관리자 > 지점보기 페이지
 	@RequestMapping("/adminBranch.do")
 	public String adminBranch(){
 		return "admin.adminDepartMentBranch";
+	}
+	
+	@RequestMapping("/adminDepartment.do")
+	public String adminDepartment(){
+		return "admin.adminDepartMentView";
 	}
 	
 	//직위 관리 페이지

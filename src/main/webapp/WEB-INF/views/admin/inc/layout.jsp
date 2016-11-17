@@ -49,6 +49,13 @@
 			font-size : 15px;
 			margin:20px;
 		}
+		
+		#branchUl{
+			 list-style:none;
+			 	
+		}
+		
+		
 	</style>
 
 
@@ -101,6 +108,12 @@
 <script>
 	$(function(){
 		
+		//부서 관리 페이지
+		$('#moveDepartBtn').click(function(){
+			location.href="adminDepartment.do";
+		});
+		
+		//드래그 앤 드롭
 		$( "#sortable" ).sortable();
 		
 		var currentYear = (new Date()).getFullYear();

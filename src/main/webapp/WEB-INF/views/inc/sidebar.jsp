@@ -179,7 +179,7 @@
                 <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="adminEmployeeManage.do">사원관리</a></li>
-                    <li><a href="adminDepartMent.do">부서관리</a></li>
+                    <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminCommute.do">시간 정보 관리</a></li>
                     <li><a href="adminSalesList.do">매출 관리</a></li>
