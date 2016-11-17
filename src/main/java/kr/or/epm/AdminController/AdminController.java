@@ -68,7 +68,7 @@ public class AdminController {
 	//관리자 > 하위 부서 관리 페이지
 	@RequestMapping("/adminDownDepartment.do")
 	public String adminDownDepartment(){
-		return "admin.dminDownDepartmentView";
+		return "admin.adminDownDepartmentView";
 	}
 	
 	//직위 관리 페이지

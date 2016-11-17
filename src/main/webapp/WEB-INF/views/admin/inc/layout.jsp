@@ -107,14 +107,32 @@
 <script src="scripts/homer.js"></script>
 <script>
 	$(function(){
+		//하위부서 추가 영역
+		$('#addDiv').hide();
+		//하위부서 정보 보기 영역
+		$('#seeAndModifyDiv').show();
+		
 		
 		//부서 관리 페이지
 		$('#moveDepartBtn').click(function(){
 			location.href="adminDepartment.do";
 		});
 		
+		//하위 부서 관리 페이지
 		$('#moveDepartDownBtn').click(function(){
 			location.href="adminDownDepartment.do";
+		});
+		
+		//하위부서 조회 버튼 클릭시
+		$('#seeDepartBtn').click(function(){
+			$('#seeAndModifyDiv').show();
+			$('#addDiv').hide();
+		});
+		
+		//하위 부서 추가 버튼
+		$('#addDownDepartBtn').click(function(){
+			$('#addDiv').show();
+			$('#seeAndModifyDiv').hide();
 		});
 		
 		//드래그 앤 드롭
