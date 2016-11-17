@@ -114,7 +114,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addbranchName" name="branchName">
+											<input type="text" class="form-control" readonly="readonly" id="branchName" name="branchName">
 										</div>
 									</div>
 									<div class="form-group">
@@ -122,7 +122,7 @@
 											<label>우편번호</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addpostcode" name="postcode">
+											<input type="text" class="form-control" readonly="readonly" id="postcode" name="postcode">
 										</div>
 									</div>
 									<div class="form-group">
@@ -130,7 +130,7 @@
 											<label>기존주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addaddr" name="addr">
+											<input type="text" class="form-control" readonly="readonly" id="addr" name="addr">
 										</div>
 									</div>
 									<div class="form-group">
@@ -138,7 +138,7 @@
 											<label>상세주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addaddr_detail" name="addr_detail">
+											<input type="text" class="form-control" readonly="readonly" id="addr_detail" name="addr_detail">
 										</div>
 									</div>
 									<div class="form-group">
@@ -173,7 +173,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="branchName" name="branchName">
+											<input type="text" class="form-control" readonly="readonly" id="addbranchName" name="branchName">
 										</div>
 									</div>
 									<div class="form-group">
@@ -181,7 +181,7 @@
 											<label>우편번호</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="postcode" name="postcode">
+											<input type="text" class="form-control" readonly="readonly" id="addpostcode" name="postcode">
 										</div>
 									</div>
 									<div class="form-group">
@@ -189,7 +189,7 @@
 											<label>기존주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addr" name="addr">
+											<input type="text" class="form-control" readonly="readonly" id="addaddr" name="addr">
 										</div>
 									</div>
 									<div class="form-group">
@@ -197,12 +197,12 @@
 											<label>상세주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addr_detail" name="addr_detail">
+											<input type="text" class="form-control" readonly="readonly" id="addaddr_detail" name="addr_detail">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" value="수정">
+											<input type="submit" class="btn btn-success" value="등록">
 										</div>
 									</div>
 									
