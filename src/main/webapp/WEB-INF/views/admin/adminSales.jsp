@@ -41,11 +41,11 @@
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:15%; text-align: right; background-color:#f5f5f5">수익</th>
-	                    				<td><input type="text" class="form-control input-sm" id="profit"></td>
+	                    				<td><input type="text" class="form-control input-sm" id="profit" name="profit"></td>
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:15%; text-align: right; background-color:#f5f5f5">비용</th>
-	                    				<td><input type="text" class="form-control input-sm" id="expense"></td>
+	                    				<td><input type="text" class="form-control input-sm" id="expense" name="expense"></td>
 	                    			</tr>
 	                    		</tbody>
 	                    	</table>

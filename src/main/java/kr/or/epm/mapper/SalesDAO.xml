@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </insert>
 
 <select id="selectSalesInfo" resultType="kr.or.epm.VO.Sales">
-	select month, profit, expense from sales
+	select month, profit, expense from sales order by month asc
 </select>
 
 

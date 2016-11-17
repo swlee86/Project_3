@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  
+  작성자 : 이상원
+  작성일 : 2016-11-18
+  목  적 : 관리자 > 사원 관리 DAO.xml
+-->
+
+<mapper namespace="kr.or.epm.DAO.EmployeeManageDAO">
+
+<!-- 사원관리 페이지를 열 때 사원정보(Emp 테이블)를 모두 불러오는 쿼리문 -->
+<select id="selectEmpManage" resultType="kr.or.epm.VO.etc.EmployeeManage">
+select rn, r.emp_no, r.emp_name, r.cg_name, r.branch_name, r.dept_name, r.low_dept_name, p.position_name from(select rownum rn, r.emp_no, r.emp_name, e.cg_name, r.branch_name, r.dept_name, r.low_dept_name, r.position_no from (select e.emp_no, e.emp_name, e.cg_no, e.position_no, l.branch_name, l.dept_name, l.low_dept_name from emp e join low_dept l on e.low_dept_no=l.low_dept_no) r join emp_cg e on r.cg_no=e.cg_no) r join position p on r.position_no=p.position_no WHERE rn BETWEEN ${param1} AND ${param2}
+</select>
+
+<!-- 사원 정보(Emp)의 총 갯수를 불러오는 쿼리문 -->
+<select id="selectEmpCount" resultType="int">
+select count(*) from emp
+</select>
+
+</mapper>

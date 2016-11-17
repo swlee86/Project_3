@@ -402,11 +402,6 @@ public class PageMoveController {
 	}	
 	
 	
-	//관리자 > 사원관리 페이지 이동
-	@RequestMapping("/adminEmployeeManage.do")
-	public String adminEmployeeManage(){			
-		return "admin.adminEmployeeManage";
-	}	
 	
 	//관리자 > 회원관리 > 회원 상세페이지 이동
 	@RequestMapping("/adminMemberDetail.do")
