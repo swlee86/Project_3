@@ -58,17 +58,18 @@
 					<h4>
 						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여정보
 					</h4>
+					 <hr style="border:1px solid gray; margin-bottom:0px">
 					<div class="table-responsive">
 						<table cellpadding="1" cellspacing="1"
-							class="table table-bordered">
-							<tr>
-								<td>지급기준일</td>
+							class="table table-bordered table-condensed">
+							<tr style="background-color:#f9fafc">
+								<th>지급기준일</th>
 								<td>2016-11-25</td>
-								<td>지급총액</td>
+								<th>지급총액</th>
 								<td>20.000.000</td>
-								<td>공제총액</td>
+								<th>공제총액</th>
 								<td>1.000.000</td>
-								<td>실지급액</td>
+								<th>실지급액</th>
 								<td>19.000.000</td>
 							</tr>
 
@@ -90,10 +91,11 @@
 					<h4>
 						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여 상세 정보
 					</h4>
+					 <hr style="border:1px solid gray; margin-bottom:0px">
 					<div class="table-responsive">
 						<table cellpadding="1" cellspacing="1"
-							class="table table-bordered">
-							<tr>
+							class="table table-bordered table-condensed">
+							<tr style="background-color:#f9fafc">
 								<th colspan="1" style="text-align: center">No</th>
 								<th colspan="2" style="text-align: center">지급항목</th>
 								<th colspan="2" style="text-align: center">공제항목</th>
