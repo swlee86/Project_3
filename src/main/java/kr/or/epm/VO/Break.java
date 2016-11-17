@@ -12,6 +12,10 @@ public class Break {
 	private String break_term;
 	private String break_cg_no;
 	
+	
+	// 추가 DTO 2016-11-17
+	private String break_cg_name;
+	
 	public String getDraft_no() {
 		return draft_no;
 	}
@@ -52,9 +56,21 @@ public class Break {
 		this.break_cg_no = break_cg_no;
 	}
 
+	
+	public String getBreak_cg_name() {
+		return break_cg_name;
+	}
+
+	public void setBreak_cg_name(String break_cg_name) {
+		this.break_cg_name = break_cg_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Break [draft_no=" + draft_no + ", break_start=" + break_start + ", break_end=" + break_end
-				+ ", break_term=" + break_term + ", break_cg_no=" + break_cg_no + "]";
+				+ ", break_term=" + break_term + ", break_cg_no=" + break_cg_no + ", break_cg_name=" + break_cg_name
+				+ "]";
 	}
+
+	
 }
