@@ -70,7 +70,7 @@
                             <p class="small">
                                                  하위부서 관련 페이지는 여기로!
                             </p>
-                            <button class="btn btn-success btn-sm" id="moveBranchBtn">이동</button>
+                            <button class="btn btn-success btn-sm" id="moveDepartDownBtn">이동</button>
                         </div>
                     </div>
                 </div>
