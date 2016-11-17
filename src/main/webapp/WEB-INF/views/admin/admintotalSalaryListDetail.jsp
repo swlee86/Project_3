@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--당월 지급 예정 급여 내역 페이지  -->
+<!--기지급 급여 특정 월 상세 페이지  -->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -17,11 +17,10 @@
 					</span>
 				</div>
 			</div>
-			<h2 class="font-light m-b-xs">당월 지급 예정 급여 내역</h2>
+			<h2 class="font-light m-b-xs">급여 내역 상세 조회</h2>
 		</div>
 	</div>
 </div>
-
 
 <div class="content animate-panel">
 	<div class="row">
@@ -32,38 +31,7 @@
                 	전체 사원: <font color="#ff757f">100</font> 명
             </div>
             <div class="panel-body">
-					<div class="row text-right">
-						<div class="col-md-7"></div>
-						<form action="" class="form-inline ">
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control input-sm">
-										<option>지점</option>
-										<option>부서</option>
-										<option>하위부서</option>
-										<option>사번</option>
-										<option>이름</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="col-md-3">
-								<div class="form-group">
-									<div class="input-group">
-										<input type="text" class="form-control input-sm" name="salaryPlaninput" />
-										<span class="input-group-btn">
-											<button class="btn btn-default input-sm" type="submit">
-												<span class="fa fa-search"></span>
-											</button>
-										</span>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-					
-					
-				
+			
 				<br>     
                 <hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
@@ -85,6 +53,7 @@
                     </tr>
                     </thead>
                     
+                      
                     <tbody>
                   
                     <tr>
@@ -126,4 +95,4 @@
    </div>  
 </div>
 </div>		
-
+                    		
