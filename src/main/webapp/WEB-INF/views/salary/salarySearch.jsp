@@ -72,8 +72,7 @@
 								<th>실지급액</th>
 								<td>19.000.000</td>
 							</tr>
-
-						</table>
+   						</table>
 					</div>
 				</div>
 			</div>
