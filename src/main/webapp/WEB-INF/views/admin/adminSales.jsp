@@ -36,7 +36,7 @@
 	                    		<tbody>
 	                    			<tr>
 	                    				<th style="width:15%; text-align: right; background-color:#f5f5f5">연월 선택</th>
-	                    				<td><input type="text" class="form-control input-sm" id="selectSalesdate">
+	                    				<td><input type="text" class="form-control input-sm" id="selectSalesdate" name="month">
      									</td>
 	                    			</tr>
 	                    			<tr>
