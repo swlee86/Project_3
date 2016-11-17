@@ -35,7 +35,7 @@
                             <p class="small">
                                                  지급된 급여 목록 조회
                             </p>
-                            <button class="btn btn-success btn-sm" id="moveSalaryList">이동</button>
+                            <button class="btn btn-success btn-sm" id="movetotalSalaryList">이동</button>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                             <p class="small">
                                                  지급 예정 급여 목록 조회
                             </p>
-                            <button class="btn btn-success btn-sm" id="moveSalaryList">이동</button>
+                            <button class="btn btn-success btn-sm" id="moveSalaryPlanList">이동</button>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                             <p class="small">
                                                  개인별 급여 기본 정보 관리
                             </p>
-                            <button class="btn btn-success btn-sm" id="moveSalaryList">이동</button>
+                            <button class="btn btn-success btn-sm" id="moveSalaryManage">이동</button>
                         </div>
                     </div>
                 </div>

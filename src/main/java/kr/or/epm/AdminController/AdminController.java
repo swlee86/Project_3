@@ -108,5 +108,11 @@ public class AdminController {
 	public String salaryInfo(){
 		return "admin.adminSalaryManage";
 	}
+	//기지급 급여 내역 페이지
+	@RequestMapping("/adminSalaryList.do")
+	public String totalSalaryList(){
+		return "admin.admintotalSalaryList";
+	}
+	
 	
 }
