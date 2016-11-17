@@ -19,9 +19,10 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
     
     <link rel="stylesheet" href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
-        <link rel="stylesheet" href="vendor/select2-3.5.2/select2.css" />
+    <link rel="stylesheet" href="vendor/select2-3.5.2/select2.css" />
     <link rel="stylesheet" href="vendor/select2-bootstrap/select2-bootstrap.css" />
     
     
@@ -30,12 +31,14 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+ 
     
 	<!--jQuery UI CSS-->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 	
 	<!-- jquery ui -->
    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
+   
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -78,7 +81,7 @@
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
-
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <script type="text/javascript">
@@ -101,6 +104,25 @@ $('#makeuserUpdateDate2').datepicker({
        dateFormat: 'yy-mm-dd',
        changeYear: true
 }); 
+$('.demo4').click(function () {
+    swal({
+                title: "삭제 하시겠습니까?",
+                text: "확인을 누르시면 선택하신  업무가 삭제 됩니다.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "확인",
+                cancelButtonText: "취소",
+                closeOnConfirm: false,
+                closeOnCancel: false },
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal("삭제되었습니다", "선택하신 업무가 삭제되었습니다", "success");
+                } else {
+                    swal("취소되었습니다.", "선택하신 업무가 유지됩니다 :)", "error");
+                }
+            });
+});
 </script>
 </body>
 </html>
