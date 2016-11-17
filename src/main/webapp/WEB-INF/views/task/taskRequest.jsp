@@ -103,35 +103,35 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td>
+											<td style="padding-top:12px;">
 												<input type="checkbox" style="margin-left:20px">
 											</td>
-											<td>4</td>
-											<td>
+											<td style="padding-top:12px;">2</td>
+											<td style="padding-top:12px;">
 												<div class="checkbox checkbox-danger" style="padding-top:0px;margin-top:0px;">
 													<input id="checkbox1" type="checkbox" checked ><label ></label>
 												</div>
 											</td>
-											<td><a href="taskRequest_Receive_Detail.do">UI/UX 구현(클릭하세요)</a></td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
+											<td style="padding-top:12px;"><a href="taskRequest_Receive_Detail.do">UI/UX 구현(클릭하세요)</a></td>
+											<td style="padding-top:12px;">2016-11-16</td>
+											<td style="padding-top:12px;">김주희</td>
+											<td style="padding-top:12px;"> 2016-11-15</td>
 
-											<td><button class="btn btn-xs btn-warning2" >미승인</button></td>
+											<td style="padding-top:12px;"><button class="btn btn-xs btn-warning2" >미승인</button></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>4</td>
-											<td>
+											<td style="padding-top:12px;"><input type="checkbox" style="margin-left:20px"></td>
+											<td style="padding-top:12px;">4</td>
+											<td style="padding-top:12px;">
 												<div class="checkbox checkbox-danger"  style="padding-top:0px;margin-top:0px">
 													<input id="checkbox2" type="checkbox"><label ></label>
 												</div>
 											</td>
-											<td>DB 구현</td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td><button class="btn btn-xs btn-info">&nbsp;&nbsp;승인&nbsp;&nbsp;</button></td>
+											<td style="padding-top:12px;">DB 구현</td>
+											<td style="padding-top:12px;">2016-11-16</td>
+											<td style="padding-top:12px;" >김주희</td>
+											<td style="padding-top:12px;">2016-11-15</td>
+											<td style="padding-top:12px;"> <button class="btn btn-xs btn-info">&nbsp;&nbsp;승인&nbsp;&nbsp;</button></td>
 										</tr>
 									</tbody>
 								</table>

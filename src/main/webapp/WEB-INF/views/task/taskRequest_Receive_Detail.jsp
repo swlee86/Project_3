@@ -8,6 +8,15 @@
 					<i class="fa fa-arrow-up"></i>
 				</div>
 			</a> 
+			
+			<div id="hbreadcrumb" class="pull-right m-t-lg">
+				<ol class="hbreadcrumb breadcrumb">
+					<li><a href="index.do">Dashboard</a></li>
+					<li><span>App views</span></li>
+					<li class="active"><span>Contacts</span></li>
+				</ol>
+			</div>
+			<h2 class="font-light m-b-xs">업무 요청 수신 페이지</h2>
 			<small>Show users list in nice and color panels</small>
 		</div>
 	</div>
@@ -83,10 +92,11 @@
 									</tr>
 								</table>
 								
-								<div class="row" style="text-align:center;margin-right:10px;">		
-									<input type="submit"  class="btn btn-sm btn-success"   style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px" value="처리하기">
-									<input type="button"  class="btn btn-sm btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px" value="뒤로가기">
+								<div class=" pull-right" style="text-align:center;">
+									<input type="submit"  class="btn btn-sm btn-success" value="처리하기" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+									<input type="button"  onclick="location.href='contacts.do'" class="btn btn-sm btn-default"  value="뒤로가기" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 								</div>
+	
 							</div>
 						</form>	
 					</div>

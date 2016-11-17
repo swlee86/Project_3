@@ -36,8 +36,8 @@
                 	전체 : <font color="coral">10</font> 개
             </div>
             <div class="panel-body">
-            	<div class="row">
-	            	<form action="" class="form-inline">
+            	<!-- <div class="row">
+	            	<form action="" class="form-inline ">
 	            		<div class="form-group" style="margin-left:10px;">
 	            			<select class="form-control col-md-4">
 	            				<option>선택</option>
@@ -61,9 +61,46 @@
 	            			</div>
 	            		</div>    
 	                </form>   
-                </div>  
-                      
-                <hr style="border:1px solid gray; margin-bottom:0px">
+                </div> -->
+
+
+
+					<div class="row text-right">
+						<div class="col-md-6"></div>
+						<form action="" class="form-inline ">
+							<div class="col-md-2">
+								<div class="form-group">
+									<select class="form-control input-sm">
+										<option>선택</option>
+										<option>책임자</option>
+										<option>프로젝트 명</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm" name="s" />
+										<span class="input-group-btn">
+											<button class="btn btn-default input-sm" type="submit" style="color: #f05050">
+												<span class="fa fa-search"></span> 검색
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+
+
+
+
+
+
+
+					<hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
                 <table cellpadding="1" cellspacing="1" class="table table-hover">
                     <thead>
@@ -96,7 +133,7 @@
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button"  class="btn w-xs btn-primary" >일괄결재</button>
+                	<button type="button"  class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">일괄결재</button>
                 </div>
 			</div>
 

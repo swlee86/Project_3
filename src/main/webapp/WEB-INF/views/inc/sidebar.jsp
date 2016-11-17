@@ -66,6 +66,7 @@
                 <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="sanction_write.do">요청 등록</a></li>
+                	<li><a href="AttendaceWrite.do">휴가/외박 신청</a></li>
                 	<li><a href="sanction_list.do">요청한 결재</a></li>
                 	<li><a href="sanction_approve.do">결재대기함</a></li>
                 </ul>
@@ -95,7 +96,6 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="Attendace.do">일일 근태 등록</a></li>
            			<li><a href="AttendaceMonth.do">월별 근태 조회</a></li>
-           			<li><a href="AttendaceWrite.do">휴가/외박 신청</a></li>
            			<li><a href="AttendaceOther.do">각기다른 근태보기</a></li>
                 </ul>
             </li>
@@ -138,7 +138,8 @@
               <li>
                 <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="adminEmployeeManage.do">사원관리</a></li>
+                    <li><a href="adminEmployeeManage.do">사원정보관리</a></li>
+                    <li><a href="adminEmployeeRoleManage.do">사원권한관리</a></li>
                     <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminSalaryView.do">급여관리</a></li>
@@ -146,6 +147,9 @@
                     <li><a href="adminSalesList.do">매출 관리</a></li>
                     <li><a href="client.do">거래처</a></li>
                 </ul>
+            </li>
+            <li>
+            	&nbsp;
             </li>
         </ul>
     </div>

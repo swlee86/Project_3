@@ -419,6 +419,13 @@ public class PageMoveController {
 	public String adminMemberUpdate(){			
 		return "admin.adminMemberUpdate";
 	}		
+	
+	//관리자 > 회원관리 > 사원 권한 부여 페이지
+	@RequestMapping("/adminEmployeeRoleManage.do")
+	public String adminEmployeeRoleManage(){			
+		return "admin.adminEmployeeRoleManage";
+	}	
+
 	//주소록 > 주소록 수정페이지 이동
 	@RequestMapping("/contacts_update.do")
 	public String contacts_update(){			

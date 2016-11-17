@@ -33,40 +33,40 @@
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">문서번호</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">문서번호</th>
 										<td style="width:40%">자동채번</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">기안일자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안일자</th>
 										<td style="width:40%">2016-11-09</td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">기안자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안자</th>
 										<td>김주희</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">기안부서</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안부서</th>
 										<td>그룹웨어팀</td>
 									</tr>	
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">참조자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참조자</th>
 										<td>박지은 </td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">기결재첨부</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기결재첨부</th>
 										<td></td>
 									</tr>	
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">수신처</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">수신처</th>
 										<td colspan="3">박성준 (사단)한국소프트웨어기술진흥협회 </td>
 									</tr>	
 																									
 									<tr>
-										<th style="background-color:#f5f5f5;text-align:right;padding-right:30px; width:10%">문서제목</th>
+										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">문서제목</th>
 										<td colspan="3">결재</td>
 									</tr>
 									<tr>
 										<td colspan="4">
-											전자결재
+											전자결재<br>전자<br>결재
 										</td>
 									</tr>
 								</table>	
 							<div class="row" style="text-align:center;margin-right:10px;">
-								<input type="button"  class="btn w-xs btn-primary" data-toggle="modal" data-target="#myModal1"  value="결재" style="margin-right:5px;">
+								<input type="button"  class="btn w-xs btn-success" data-toggle="modal" data-target="#myModal1"  value="결재" style="margin-right:5px;">
 								<input type="button"  class="btn w-xs btn-default" data-toggle="modal" data-target="#myModal1" style="margin-right:5px;" value="승인 거부">
 								<input type="button"  class="btn w-xs btn-default" data-toggle="modal" data-target="#myModal1" style="margin-right:5px;" value="보류">
 								<input type="button"  class="btn w-xs btn-default" style="margin-right:5px;"  value="인쇄">

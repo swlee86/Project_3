@@ -63,8 +63,15 @@
 								<td>애플 + 펜 = 파인애플펜</td>
 								<td>2016-11-10</td>
 								<td>2016-11-20</td>
-								<td></td>
-								<td><span class="label label-success" style="margin-top: -5px; width: 20%;">진행</span></td>
+								<td>
+									<div
+										class="progress m-t-xs full progress-striped progress-small">
+										<div style="width: 25%" aria-valuemax="100" aria-valuemin="0"
+											aria-valuenow="25" role="progressbar"
+											class=" progress-bar progress-bar-warning active "></div>
+									</div>
+								</td>
+								<td><span class="label label-info" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">진행</span></td>
 							</tr>
 							<tr>
 								<td>펜애플</td>
@@ -73,8 +80,15 @@
 								<td>펜애플 + 애플 = 펜파인애플펜</td>
 								<td>2016-11-10</td>
 								<td>2016-12-20</td>
-								<td></td>
-								<td><span class="label label-info" style="margin-top: -5px; width: 20%;">완료</span></td>
+								<td>
+									<div
+										class="progress m-t-xs full progress-striped progress-small">
+										<div style="width: 50%" aria-valuemax="100" aria-valuemin="0"
+											aria-valuenow="50" role="progressbar"
+											class=" progress-bar progress-bar-warning active "></div>
+									</div>
+								</td>
+								<td><span class="label label-primary" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">완료</span></td>
 							</tr>
 							<tr>
 								<td>펜투애플</td>
@@ -83,8 +97,15 @@
 								<td>펜애플 + 애플 = 펜파파파인애플펜</td>
 								<td>2016-10-10</td>
 								<td>2016-12-25</td>
-								<td></td>
-								<td><span class="label label-danger"	style="margin-top: -5px; width: 20%;">미진행</span></td>
+								<td>
+									<div
+										class="progress m-t-xs full progress-striped progress-small">
+										<div style="width: 75%" aria-valuemax="100" aria-valuemin="0"
+											aria-valuenow="75" role="progressbar"
+											class=" progress-bar progress-bar-warning active "></div>
+									</div>
+								</td>
+								<td><span class="label label-danger"	style="margin-top: -5px; width: 20%;padding-left:10px;padding-right:10px;">미진행</span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -92,8 +113,9 @@
 
 			</div>
 			<div class="panel-footer">
-				<input type="button" class="btn btn-success" value="프로젝트 작성"
-					id="makeProjectBtn">
+			<div style="text-align:right">
+				<input type="button" class="btn btn-sm btn-success" value="프로젝트 작성" id="makeProjectBtn" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+			</div>
 			</div>
 		</div>
 	</div>

@@ -55,7 +55,7 @@
 	                 			<td><input type="text" class="form-control input-sm" width="100%" style="width:100%; height: 27px;"></td>
 	                 			<td></td>
 	                 			<td></td>
-	                 			<td><button class="btn btn-sm" style="background-color:#ff757f;color:white" type="submit"><span class="fa fa-search"></span>&nbsp; 검색  &nbsp;</button></td>
+	                 			<td><button class="btn btn-sm" style="background-color:#f07070;color:white" type="submit"><span class="fa fa-search"></span>&nbsp; 검색  &nbsp;</button></td>
 	                 			<td></td>
 	                 		</tr>            
 	               		</table>
@@ -117,7 +117,7 @@
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button"  class="btn w-xs btn-primary" >일괄결재</button>
+                	<button type="button"  class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">일괄결재</button>
                 </div>
 			</div>
 

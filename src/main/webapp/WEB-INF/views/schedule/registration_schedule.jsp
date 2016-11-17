@@ -33,7 +33,7 @@
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="coral">*</font> 기간</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 기간</th>
 										<td>
 											<div class="form-group">
 											시작일 :
@@ -54,7 +54,7 @@
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="coral">*</font> 제목</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 제목</th>
 										<td><input type="text" class="form-control input-sm" placeholder="제목" style="width:100%"></td>
 									</tr>	
 									<tr>
@@ -81,7 +81,7 @@
 									</tr>
 									
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="coral">*</font> 내용</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 내용</th>
 										<td>
 											<textarea cols="10" rows="10" class="form-control"  placeholder="내용" style="width:100%"></textarea>
 										</td>

@@ -81,7 +81,7 @@
 								</table>
 							</div>
 						</form>
-						<div class="row" style="text-align: center; margin-right: 10px;">
+						<div  class=" pull-right" style="text-align: center; margin-right: 10px;">
 							<input type="button" class="btn btn-sm btn-success"
 								onclick="window.location.href='taskRequest.do'"
 								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px"

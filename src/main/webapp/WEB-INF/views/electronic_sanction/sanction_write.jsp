@@ -89,10 +89,15 @@
 									</tr>
 								</tbody>
 							</table>
-							<div class="row" style="text-align:right;margin-right:10px;">
+							<div class=" pull-right" style="text-align:center;">
+								<input type="submit"  class="btn btn-sm btn-success" value="결재 요청" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+								<input type="button"   onclick="location.href='sanction_list.do'" class="btn btn-sm btn-default"  value="취 소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+							</div>
+							
+							<!-- <div class="row" style="text-align:right;margin-right:10px;">
 								<input type="submit"  class="btn w-xs btn-primary" value="결재 요청" style="margin-right:10px;">
 								<input type="button"  onclick="location.href='sanction_list.do'" class="btn w-xs btn-default"  value="취 소">
-							</div>
+							</div> -->
 						</div>
 						</form>	
 					</div>

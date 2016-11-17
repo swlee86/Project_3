@@ -90,7 +90,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
-                        <td><span class="label label-success" style="margin-top: -5px; width: 20%;padding-left:20px;padding-right:20px;">승인</span></td>
+                        <td><span class="label label-primary" style="margin-top: -5px; width: 20%;padding-left:17px;padding-right:17px;">승인</span></td>
                     </tr>
                     <tr>
                     	<td><input type="checkbox"></td>
@@ -101,7 +101,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
-                        <td><span class="label label-success" style="margin-top: -5px; width: 20%;">&nbsp;&nbsp;승인&nbsp;&nbsp;</span></td>
+                        <td><span class="label label-primary" style="margin-top: -5px; width: 20%;padding-left:17px;padding-right:17px;">승인</span></td>
                     </tr>
                     <tr>
                     	<td><input type="checkbox"></td>
@@ -112,7 +112,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
-                        <td><span class="label label-info"	style="margin-top: -5px; width: 20%;">&nbsp;&nbsp;보류&nbsp;&nbsp;</span></td>
+                        <td><span class="label label-warning"	style="margin-top: -5px; width: 20%;padding-left:17px;padding-right:17px;">보류</span></td>
                     </tr>                    
                     <tr>
                     	<td><input type="checkbox"></td>

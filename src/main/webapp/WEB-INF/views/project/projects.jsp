@@ -90,8 +90,9 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<button class="btn btn-success"
-						onclick="detailProjectCheckList(this)">상세보기</button>
+				<div style="text-align:right">
+					<button class="btn btn-sm btn-success" onclick="detailProjectCheckList(this)" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">상세보기</button>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -149,8 +150,9 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<button class="btn btn-success"
-						onclick="detailProjectCheckList(this)">상세보기</button>
+					<div style="text-align:right">
+						<button class="btn btn-success" onclick="detailProjectCheckList(this)" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">상세보기</button>
+					</div>
 				</div>
 			</div>
 		</div>

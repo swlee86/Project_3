@@ -53,7 +53,7 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<div class="row">
+				<!-- 	<div class="row">
 						<div class="col-sm-8">
 							<label>첫번쨰</label>
 						</div>
@@ -63,7 +63,7 @@
 						<div class="col-sm-2">
 							<label>세번째</label>
 						</div>
-					</div>
+					</div> -->
 					<br />
 					<div class="table-responsive">
 						<table cellpadding="1" cellspacing="1"
