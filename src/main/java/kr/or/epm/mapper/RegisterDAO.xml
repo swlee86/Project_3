@@ -4,30 +4,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.RegisterDAO">
 	
-	<!-- 관리자 > 사원등록에서 등록시 처리되는 insert 쿼리문 -->
+	<!-- 관리자의 사원등록에서 등록시 처리되는 insert 쿼리문 -->
 	<insert id="insertEmp" parameterType="kr.or.epm.VO.Emp">
 		INSERT INTO emp(emp_no, cg_no, position_no, low_dept_no, emp_name, birth, salary ,emp_break, cell_phone)
 	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break}, #{cell_phone})
 	</insert>
 	
-	
+	<!-- 회원 가입시 인서트 처리되는 쿼리문 -->
 	<insert id="insertEmp_detail">
 		INSERT INTO emp_detail(emp_no, id, pwd, bank, addr, addr_detail, account ,postcode)
 	    VALUES(#{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode})
 	</insert>
 	
+	<!-- 회원가입에서 해당 사번이 사용 가능한지 확인하는 쿼리문 -->
 	<select id="selectEmpno" parameterType="String" resultType="String">
 		select emp_no from emp where emp_no=#{emp_no}
 	</select>
 	
+	<!-- 회원 가입에서 해당 사번이 가입되어 있는지 여부를 체크해주는 쿼리문 -->
 	<select id="selectUsedEmpno" parameterType="String" resultType="String">
 		select id from emp_detail where emp_no=#{emp_no}
 	</select>
 	
+	<!-- 회원 가입에서 입력한 아이디가 맞는지 체크해주는 쿼리문 -->
 	<select id="selectUsedId" parameterType="String" resultType="String">
 		select id from emp_detail where id=#{id}
 	</select>
 	
+	<!-- 관리자의 사원정보  > 정보 등록 화면에서 하위 부서번호의 정보를 low_dept 테이블에서 불러오는 쿼리문-->
+	<select id="selectLowDeptNo" resultType="kr.or.epm.VO.Low_dept">
+		select * from low_dept
+	</select>
 	
 	
 </mapper>

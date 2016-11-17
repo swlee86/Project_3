@@ -3,10 +3,15 @@ package kr.or.epm.AdminController;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.epm.Service.RegisterService;
+import kr.or.epm.VO.Low_dept;
 
 /*
  * 작성자 : 박성준
@@ -17,6 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AdminController {
 
+	@Autowired
+	private RegisterService registerservice;
+	
 	//관리자 개발.
 	@RequestMapping(value="/adminDepart_depart.do",method=RequestMethod.GET)
 	@ResponseBody
@@ -31,7 +39,11 @@ public class AdminController {
 	
 	//사원 등록 페이지
 	@RequestMapping("/adminMakeMember.do")
-	public String makeNewMember(){
+	public String makeNewMember(Model mv){
+		List<Low_dept> list =null;
+		list = registerservice.selectLowDeptNo();
+		
+		mv.addAttribute("list", list);
 		return "admin.adminNewMember";
 	}
 	
