@@ -98,7 +98,7 @@ public class AdminController {
 		return "admin.adminSalaryView";
 	}
 	
-	//급여 관리 페이지
+	//지급된 급여 목록 페이지
 	@RequestMapping("/adminSalary.do")
 	public String salaryManage(){
 		return "admin.adminSalaryList";

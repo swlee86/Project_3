@@ -170,6 +170,10 @@
 	// 시간정보 관리 페이지 - ClockPicker
     $('.clockpicker').clockpicker({autoclose: true});
 	
+	//급여관리- 지급된 급여 목록보기 페이지로 이동
+	$('#moveSalaryList').click(function(){
+		location.href="adminSalary.do"
+	})
 	
 	
 </script>
