@@ -141,7 +141,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="panel-footer" style="text-align: center;background-color:##f5f5f5">
+						<div class="panel-footer" style="text-align: center;background-color:#f5f5f5">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default">
 									&nbsp;<i class="fa fa-chevron-left"></i>
@@ -236,7 +236,7 @@
 										<tr>
 											<td><input type="checkbox" style="margin-left:20px"></td>
 											<td>4</td>
-											<td><a href="taskRequest_rec_detail.do">UI/UX 구현</a></td>
+											<td><a href="taskRequest_Transmit_Detail.do">UI/UX 구현(클릭하세요)</a></td>
 											<td>2016-11-16</td>
 											<td>김주희</td>
 											<td>2016-11-15</td>
@@ -250,7 +250,7 @@
 											<td>2016-11-16</td>
 											<td>김주희</td>
 											<td>2016-11-15</td>
-											<td><button class="btn btn-xs btn-info">&nbsp;&nbsp;승인&nbsp;&nbsp;</button></td>
+											<td><button class="btn btn-xs btn-primary2">&nbsp;&nbsp;보류&nbsp;&nbsp;</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -260,7 +260,7 @@
 								</div>
 							</div>
 						</div>
-							<div class="panel-footer" style="text-align: center;background-color:##f5f5f5">
+							<div class="panel-footer" style="text-align: center;background-color:#f5f5f5">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default">
 									&nbsp;<i class="fa fa-chevron-left"></i>
@@ -356,7 +356,7 @@
 										<tr>
 											<td><input type="checkbox" style="margin-left:20px"></td>
 											<td>4</td>
-											<td><a href="taskRequest_rec_detail.do">UI/UX 구현</a></td>
+											<td><a href="taskRequest_Participation_Detail.do">UI/UX 구현</a></td>
 											<td>2016-11-16</td>
 											<td>김주희</td>
 											<td>2016-11-15</td>
@@ -387,7 +387,7 @@
 								</div>
 							</div>
 						</div>
-							<div class="panel-footer" style="text-align: center;background-color:##f5f5f5">
+							<div class="panel-footer" style="text-align: center;background-color:#f5f5f5">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default">
 									&nbsp;<i class="fa fa-chevron-left"></i>

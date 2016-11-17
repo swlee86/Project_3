@@ -105,7 +105,7 @@
 												<div class="input-group">
 													<input type="text" class="form-control input-sm" name="s" />
 													<span class="input-group-btn">
-														<button class="btn btn-default input-sm" type="submit">
+														<button class="btn btn-default input-sm" type="submit" style="color:#f05050">
 															<span class="fa fa-search"></span>
 														</button>
 													</span>
@@ -270,9 +270,9 @@
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary" onclick="modifyGroup();">수정</button>
-				<button type="button" class="btn btn-primary">삭제</button>
+				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">닫기</button>
+				<button type="button" class="btn btn-success btn-sm" onclick="modifyGroup();" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정</button>
+				<button type="button" class="btn btn-success btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제</button>
 			</div>
 		</div>
 	</div>

@@ -41,8 +41,8 @@
 												<div class="input-group">
 													<input type="text" class="form-control input-sm" placeholder="이름을 입력하세요." value="박지은"/>
 													<span class="input-group-btn">
-														<button class="btn btn-default input-sm" >
-															<font size="2em">사내사원</font> <span class="fa fa-user-plus"></span>
+														<button class="btn btn-default input-sm" type="button">
+															<font style="color:#fd7d86 "> <span class="fa fa-user-plus"></span></font>
 														</button>
 													</span>
 												</div>
@@ -106,9 +106,9 @@
 									</tr>									
 								</tbody>
 							</table>
-							<div class="row" style="text-align:center;margin-right:10px;">
-								<input type="submit"  class="btn w-xs btn-success" value="등 록">
-								<input type="button"  onclick="location.href='contacts.do'" class="btn w-xs btn-default"  value="취 소">
+							<div class=" pull-right" style="text-align:center;">
+								<input type="submit"  class="btn btn-sm btn-success" value="등 록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+								<input type="button"  onclick="location.href='contacts.do'" class="btn btn-sm btn-default"  value="취 소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 							</div>
 						</div>
 						</form>	

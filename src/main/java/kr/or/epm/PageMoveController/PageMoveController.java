@@ -347,48 +347,59 @@ public class PageMoveController {
 	public String taskRequest_Receive_Detail(){
 		return "task.taskRequest_Receive_Detail";
 	}
-
-	//업무 요청 수신 -> 상세
-	@RequestMapping("/taskRequest_rec_detail.do")
-	public String taskRequest_rec_detail(){			
-		return "task.Request_rec_detail";
+	
+	//업무 요청 > 업무요청 송신 > 상세페이지
+	@RequestMapping("/taskRequest_Transmit_Detail.do")
+	public String taskRequest_Transmit_Detail(){			
+		return "task.taskRequest_Transmit_Detail";
 	}
 	
-
-
-/*	//업무 보고 수신
-	@RequestMapping("/taskReport_rec.do")
-	public String taskReport_rec(){
-		return "task.taskReport_rec";
-	}
-
-	//업무 보고 송신
-	@RequestMapping("/taskReport_trans.do")
-	public String taskReport_trans(){
-		return "task.taskReport_trans";
+	//업무 요청 > 업무요청 참여 > 상세페이지
+	@RequestMapping("/taskRequest_Participation_Detail.do")
+	public String  taskRequest_Participation_Detail(){			
+		return "task. taskRequest_Participation_Detail";
 	}
 	
-	//업무 일지 수신
-	@RequestMapping("/taskLog_rec.do")
-	public String taskLog_rec(){
-		return "task.taskLog_rec";
+	
+	//업무 > 업무보고 페이지 이동
+	@RequestMapping("/taskInform.do")
+	public String taskInform(){
+		return "task.taskInform";
 	}
+	
+	//업무 보고 > 업무보고 수신 > 상세페이지
+	@RequestMapping("/taskInform_Receive_Detail.do")
+	public String taskInform_Receive_Detail(){
+		return "task.taskInform_Receive_Detail";
+	}
+	
+	
 
-	//업무 일지 송신
-	@RequestMapping("/taskLog_trans.do")
-	public String taskLog_trans(){
-		return "task.taskLog_trans";
+	//업무 보고 > 업무보고 송신 > 상세페이지
+	@RequestMapping("/taskInform_Transmit_Detail.do")
+	public String taskInform_Transmit_Detail(){			
+		return "task.taskInform_Transmit_Detail";
 	}	
 	
-
-	*/
+	//업무  > 업무일지 페이지 이동
+	@RequestMapping("/taskLog.do")
+	public String taskLog(){
+		return "task.taskLog";
+	}
+	
+	//업무일지 > 업무 일지 수신 > 상세페이지
+	@RequestMapping("/taskLog_Receive_Detail.do")
+	public String taskLog_Receive_Detail(){			
+		return "task.taskLog_Receive_Detail";
+	}
 	
 	
 	
-	
-	
-	
-	
+	//업무일지 > 업무 일지 송신 > 상세페이지
+	@RequestMapping("/taskLog_Transmit_Detail.do")
+	public String taskLog_Transmit_Detail(){			
+		return "task.taskLog_Transmit_Detail";
+	}	
 	
 	
 	//관리자 > 사원관리 페이지 이동

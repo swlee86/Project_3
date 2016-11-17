@@ -32,32 +32,36 @@
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">문서번호</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">문서번호</th>
 										<td style="width:40%">자동채번</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">기안일자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안일자</th>
 										<td style="width:40%">2016.11.09</td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">기안자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안자</th>
 										<td>통삼삼</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">기안부서</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안부서</th>
 										<td>그룹웨어팀</td>
 									</tr>	
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">참조자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참조자</th>
 										<td>
 											<span class="input-group">
                      							<input type="text" class="form-control input-sm" />
-                        						<span class="input-group-btn">
-													<input type="button" class="btn btn-sm btn-default"  data-toggle="modal" data-target="#myModal6" value="추가">
-												</span>
-                   	  						</span>
+                        							<a type="button" class="btn btn-default input-group-addon"  data-toggle="modal" data-target="#myModal6" >
+                        								<span style="color:#fd7d86 "><i class="fa fa-user-plus"></i></span>
+                        							</a>
+											</span> 
+
+                   	  						
+                   	  						
+                   	  						
 										</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">기결재첨부</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기결재첨부</th>
 										<td></td>
 									</tr>																	
 									<tr>
-										<th style="background-color:#f5f5f5;text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 문서제목</th>
+										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 문서제목</th>
 										<td colspan="3"><input type="text"  class="form-control input-sm" placeholder="문서제목을 입력하세요."></td>
 									
 									</tr>
@@ -66,21 +70,21 @@
 									
 								<table cellpadding="1" cellspacing="1" class="table table-bordered "  >	
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 서류종류</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 서류종류</th>
 										<td><input type="text" class="form-control input-sm" ></td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 매수</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 매수</th>
 										<td><input type="text"  class="form-control input-sm" size="20px"></td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 제출사유</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 제출사유</th>
 										<td>
 											<textarea cols="10" rows="10" class="form-control" ></textarea>
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"> <i class="pe-7s-paperclip"></i> 파일업로드</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"> <i class="pe-7s-paperclip"></i> 파일업로드</th>
 										<td><input type="file"  class="form-control input-sm" ></td>
 									</tr>
 								</tbody>

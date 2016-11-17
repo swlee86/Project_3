@@ -74,11 +74,11 @@
 								
 							
 							<div class="btn-group pull-right" >
-									<button class="btn btn-success btn-sm">
+									<button class="btn btn-success btn-sm"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 										<i class="fa fa-arrow-right"></i> 보내기
 									</button>	
-									<input type="button" class="btn btn-default  btn-sm"  data-toggle="modal" data-target="#myModal5" value="미리 보기">
-								 	<input type="button" class="btn btn-default  btn-sm" value="취소"> 
+									<input type="button" class="btn btn-default  btn-sm"  data-toggle="modal" data-target="#myModal5" value="미리 보기"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+								 	<input type="button" class="btn btn-default  btn-sm" value="취소"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"> 
 							</div>	
 							</div>
 						</form>

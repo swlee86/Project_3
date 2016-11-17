@@ -88,14 +88,14 @@
 				
 							 	<table  class="table table-bordered">
 							 			<tr>
-							 				<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:20%"><font color="coral">*</font> 그룹명</th>
+							 				<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:20%"><font color="#f05050">*</font> 그룹명</th>
 											<td>	<input type="text" class="form-control  input-sm" ></td>
 							 			</tr>			 				
 							 	</table>
 							 	<div class="row text-right" style="margin-right:5px;">
-							 		<button type="button" class="btn  btn-primary btn-sm"> 등록 </button>
-							 		<button type="button" class="btn btn-default btn-sm"> 수정 </button>
-							 		<button type="button" class="btn  btn-default btn-sm"> 삭제 </button>	
+							 		<button type="button" class="btn  btn-success btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"> 등록 </button>
+							 		<button type="button" class="btn btn-default btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"> 수정 </button>
+							 		<button type="button" class="btn  btn-default btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"> 삭제 </button>	
 							 	</div>
 							
 						</div>

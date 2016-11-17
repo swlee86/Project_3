@@ -39,6 +39,116 @@
 	<!-- jquery ui -->
    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
    
+   
+   
+   <style>
+
+span.sty {
+	clear: both;
+}
+
+label.sty {
+  width: 100px;
+  margin-right:30px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  color: #999;
+}
+
+/* hide input */
+input.radio:empty {
+	margin-left: -2999px; 
+}
+input[type="radio"]{
+    visibility:hidden;
+}
+
+/* style label */
+input.radio:empty ~ label {
+	position: relative;
+	float: left;
+	line-height: 2.5em;
+	text-indent: 3.25em;
+	margin-top: 2em;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+input.radio:empty ~ label:before {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 0.1em;
+	background: white;
+	border-radius: 3px 0 0 3px;
+}
+
+/* toggle hover */
+input.radio:hover:not(:checked) ~ label:before {
+	content:'';
+	text-indent: .9em;
+	color: red;
+	width:0.1em;
+}
+
+input.radioa:hover:not(:checked) ~ label {
+	color: #3498db;
+}
+
+input.radior:hover:not(:checked) ~ label {
+	color: #e67e22;
+}
+
+input.radiow:hover:not(:checked) ~ label {
+	color: #a86ebf;
+}
+
+input.radioa:checked ~ label:before {
+	content:'승인';
+	text-indent: .9em;
+	width:100%;
+	color: white;
+	text-align:center;
+	padding-left:10px;
+
+	background-color: #3498db;
+}
+input.radior:checked ~ label:before {
+	content:'거부';
+	text-indent: .9em;
+	width:100%;
+	color: white;   
+	text-align:center;
+	background-color: #e67e22;   
+}
+input.radiow:checked ~ label:before {
+	content:'보류';
+	text-indent: .9em;
+	width:100%;
+	color: white;
+	text-align:center;
+	background-color: #a86ebf;
+}
+
+input.radio:checked ~ label {
+	color: white;
+}
+
+input.radio:focus ~ label:before {
+	box-shadow: 0 0 0 3px #999;
+}
+   </style>
+   
+   
+   
+   
+   
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -122,6 +232,13 @@ $('.demo4').click(function () {
                     swal("취소되었습니다.", "선택하신 업무가 유지됩니다 :)", "error");
                 }
             });
+});
+$('.demo2').click(function(){
+    swal({
+        title: "등록성공",
+        text: "정상적으로 업무가 등록되었습니다.",
+        type: "success"
+    });
 });
 </script>
 </body>

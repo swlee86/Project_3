@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-    <div class="normalheader transition animated fadeIn">
+    <div class="normalheader transition animated fadeIn media-body">
     <div class="hpanel">
         <div class="panel-body">
             <a class="small-header-action" href="">
@@ -56,7 +56,7 @@
 	                 			<td><input type="text" class="form-control input-sm" width="100%" style="width:100%; height: 27px;"></td>
 	                 			<td></td>
 	                 			<td></td>
-	                 			<td><button class="btn btn-sm" style="background-color:#ff757f;color:white" type="submit"><span class="fa fa-search"></span>&nbsp; 검색  &nbsp;</button></td>
+	                 			<td><button class="btn btn-sm" style="background-color:#f07070;color:white" type="submit"><span class="fa fa-search"></span>&nbsp; 검색  &nbsp;</button></td>
 	                 			<td></td>
 	                 		</tr>            
 	               		</table>
@@ -90,7 +90,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
-                        <td><span class="label label-success" style="margin-top: -5px; width: 20%;">승인</span></td>
+                        <td><span class="label label-success" style="margin-top: -5px; width: 20%;padding-left:20px;padding-right:20px;">승인</span></td>
                     </tr>
                     <tr>
                     	<td><input type="checkbox"></td>
@@ -101,7 +101,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
-                        <td><span class="label label-success" style="margin-top: -5px; width: 20%;">승인</span></td>
+                        <td><span class="label label-success" style="margin-top: -5px; width: 20%;">&nbsp;&nbsp;승인&nbsp;&nbsp;</span></td>
                     </tr>
                     <tr>
                     	<td><input type="checkbox"></td>
@@ -112,7 +112,7 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
-                        <td><span class="label label-info"	style="margin-top: -5px; width: 20%;">보류</span></td>
+                        <td><span class="label label-info"	style="margin-top: -5px; width: 20%;">&nbsp;&nbsp;보류&nbsp;&nbsp;</span></td>
                     </tr>                    
                     <tr>
                     	<td><input type="checkbox"></td>
@@ -123,14 +123,16 @@
                         <td>통삼일</td>
                         <td>그룹웨어팀</td>
                         <td>2016.11.09 19:24</td>
-                        <td><span class="label label-danger"	style="margin-top: -5px; width: 20%;">승인 거부</span></td>
+                        <td><span class="label label-danger" style="margin-top: -5px; width: 20%;">승인 거부</span></td>
                     </tr>
                     </tbody>
                 </table>
-                <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button"  class="btn w-xs btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModal1">요청 취소</button>
-                	<button type="button"  class="btn w-xs btn-primary" onclick="window.location.href='sanction_write.do'">요청 등록</button>
-                </div>
+
+                <div class=" pull-right" style="text-align:center;">
+					<input type="button" onclick="window.location.href='sanction_write.do'" class="btn btn-sm btn-success" value="요청 등록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+					<input type="button"  class="btn btn-sm btn-default"  value="요청 취소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px" data-dismiss="modal" data-toggle="modal" data-target="#myModal1">
+				</div>
+                
 			</div>
 
             </div>

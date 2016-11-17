@@ -33,62 +33,64 @@
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 기간</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="coral">*</font> 기간</th>
 										<td>
 											<div class="form-group">
 											시작일 :
 											<div class="input-group date">
 												<input type="text" class="form-control" value="10/06/2016" size="20px">
-												<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+												<span class="input-group-addon" style="color:#fd7d86 "><i class="fa fa-calendar"></i></span>
 											</div>
 											&nbsp;&nbsp;~&nbsp;&nbsp;
 											종료일 :
 											<div class="input-group date">
 												<input type="text" class="form-control" value="10/06/2016" size="20px"> 
-												<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+												<span class="input-group-addon" style="color:#fd7d86 "><i class="fa fa-calendar"></i></span>
 											</div>
-											<div class="checkbox checkbox-success">
-				                                <input id="checkbox3" type="checkbox">
-				                                <label for="checkbox3"> 중요 </label>
-				                            </div>
-				                            <select  class="form-control input-sm">
-				                            	<option style="background-color: blue"><img alt="logo" class="img-circle m-b" src="images/s1.PNG">업무ts</option>
-				                            	<option style="background-image:url(images/a1.jpg);">중요</option>
-				                            </select>
+											<div class="checkbox checkbox-danger" style="padding-top:0px;margin-top:0px;padding-right:10px;">
+													<input id="checkbox1" type="checkbox" checked ><label >중요 </label>
+											</div>
 				                            </div>
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 제목</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="coral">*</font> 제목</th>
 										<td><input type="text" class="form-control input-sm" placeholder="제목" style="width:100%"></td>
 									</tr>	
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">장소</th>
-										<td><input type="text" class="form-control input-sm" placeholder="장소" style="width:100%"></td>
-									</tr>	
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">참여자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; ">참여자</th>
 										<td>
 											<span class="input-group">
-                     							<input type="text" class="form-control input-sm" />
-                        						<span class="input-group-btn">
-													<button class="btn btn-sm btn-default" type="submit">&nbsp; <i class="pe-7s-add-user text-danger" ></i></button>
-												</span>
-                   	  						</span>
+                     							<input type="text" class="form-control input-sm"/>
+                        							<a type="button" class="btn btn-default input-group-addon"  data-toggle="modal" data-target="#myModal6" >
+                        								<span style="color:#fd7d86 "><i class="fa fa-user-plus"></i></span>
+                        							</a>
+											</span> 
 										</td>
+										
 									</tr>																	
 									
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%"><font color="coral">*</font> 내용</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">범주설정</th>
+										<td>
+											<select  class="form-control input-sm">
+				                            	<option style="background-color: blue"><img alt="logo" class="img-circle m-b" src="images/s1.PNG">업무ts</option>
+				                            	<option style="background-image:url(images/a1.jpg);">중요</option>
+				                            </select>
+										</td>
+									</tr>
+									
+									<tr>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="coral">*</font> 내용</th>
 										<td>
 											<textarea cols="10" rows="10" class="form-control"  placeholder="내용" style="width:100%"></textarea>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<div class="row" style="text-align:right;margin-right:10px;">
-								<input type="submit"  class="btn w-xs btn-primary" value="저장" style="margin-right:10px;">
-								<input type="button"  onclick="location.href='contacts.do'" class="btn w-xs btn-default"  value="취 소">
+							<div class=" pull-right" style="text-align:center;">
+								<input type="submit"  class="btn btn-sm btn-success" value="등 록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+								<input type="button"  onclick="location.href='contacts.do'" class="btn btn-sm btn-default"  value="취 소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 							</div>
 						</div>
 						</form>	

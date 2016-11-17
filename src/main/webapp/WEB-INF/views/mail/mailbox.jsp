@@ -33,10 +33,9 @@
 				<div class="panel-heading hbuilt">
 					<div class="text-center p-xs font-normal">
 						<div class="input-group">
-							<input type="text" class="form-control input-sm"
-								placeholder="Search email in your inbox..."> <span
-								class="input-group-btn">
-								<button type="button" class="btn btn-sm btn-default">Search
+							<input type="text" class="form-control input-sm" placeholder="Search email in your inbox..."> 
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-sm btn-default" style="color:#f05050"><span class="fa fa-search"></span> Search
 								</button>
 							</span>
 						</div>
@@ -113,8 +112,8 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<input type="button" class="btn btn-success" value="메일쓰기" id="writeMailBtn">
-					<input type="button" class="btn btn-danger" value="삭제하기">
+						<input type="button" class="btn btn-sm btn-success" value="메일쓰기" id="writeMailBtn" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+						<input type="button" onclick="location.href='contacts.do'" class="btn btn-sm btn-default" value="삭제하기" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 				</div>
 			</div>
 		</div>

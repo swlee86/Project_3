@@ -43,13 +43,13 @@
             		<div class="col-md-8 m-b-md">
 							<div class="btn-group">
 								<button class="btn btn-default btn-sm">
-									<i class="pe pe-7s-mail"> </i> 메일보내기
+									&nbsp;&nbsp;<i class="fa fa-envelope"></i>&nbsp;&nbsp;
 								</button>
 								<button class="btn btn-default btn-sm">
-									<i class="pe pe-7s-trash text-danger"></i> 완전 삭제
+									&nbsp;&nbsp;<i class="fa fa-close"></i>&nbsp;&nbsp;
 								</button>
 								<button class="btn btn-default btn-sm">
-									<i class="pe pe-7s-back "></i> 되돌 리기
+									&nbsp;&nbsp;<i class="fa fa-mail-reply"></i>&nbsp;&nbsp;
 								</button>
 							</div>
 					</div>
@@ -59,7 +59,7 @@
 							<div class="input-group">
 								<input type="text"  class="form-control input-sm" name="s"/>
 								<div class="input-group-btn">
-									<button class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
+									<button class="btn btn-sm btn-default" type="submit" style="color:#f05050">&nbsp;<span class="fa fa-search" ></span> </button>
 								</div>			
 							</div>
 						</form>

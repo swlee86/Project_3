@@ -40,11 +40,11 @@
             	<div class="row" >
             		<div class="col-md-8 m-b-md">
 							<div class="btn-group">
-								<button class="btn btn-default btn-sm">
-									<i class="pe pe-7s-mail"> </i> 메일보내기
+								<button class="btn btn-default btn-sm" >
+									&nbsp;&nbsp;<i class="fa fa-envelope"></i>&nbsp;&nbsp;
 								</button>
-								<button class="btn btn-default btn-sm">
-									<i class="pe pe-7s-trash"> </i> 삭제
+								<button class="btn btn-default btn-sm" >
+									&nbsp;&nbsp;<i class="fa fa-trash"></i>&nbsp;&nbsp;
 								</button>
 							</div>
 					</div>
@@ -54,7 +54,7 @@
 							<div class="input-group">
 								<input type="text"  class="form-control input-sm" name="s"/>
 								<div class="input-group-btn">
-									<button class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
+									<button class="btn btn-sm btn-default" type="submit" style="color:#f05050">&nbsp;<span class="fa fa-search" ></span> </button>
 								</div>			
 							</div>
 						</form>
@@ -102,7 +102,7 @@
 									</td>
 									<td>송중기</td>
 									<td><a href="#">요요요요요요요요ㅛ요용</a></td>
-									<td><font color=colar><b>안읽음</b></font></td>
+									<td><font color=red><b>안읽음</b></font></td>
 									<td>
 										<button class="btn btn-default btn-xs" style="margin:0px">
 											발송취소
