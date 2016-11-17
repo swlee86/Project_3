@@ -12,4 +12,7 @@ public interface BranchDAO {
 	//지점 선택후 선택한 지점 정보 조회
 	Branch selectChooseBranch(String selectBranchName);
 	
+	//지점 추가
+	int addBranch(Branch dto);
+	
 }

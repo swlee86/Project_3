@@ -18,11 +18,9 @@ public class Dept {
 	public String getDept_no() {
 		return dept_no;
 	}
-
 	public void setDept_no(String dept_no) {
 		this.dept_no = dept_no;
 	}
-
 	public String getBranch_no() {
 		return branch_no;
 	}

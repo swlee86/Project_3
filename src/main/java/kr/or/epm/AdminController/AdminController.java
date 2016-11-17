@@ -57,10 +57,6 @@ public class AdminController {
 	public String adminBranch(Model model){
 		
 		List<Branch> list = adminservice.listBranch();
-		for(int i =0; i < list.size(); i++){
-			System.out.println("컨트롤러 : "+list.get(i).getBranch_name());
-		}
-		
 		model.addAttribute("branchList",list);
 		
 		return "admin.adminDepartMentBranch";
@@ -74,7 +70,9 @@ public class AdminController {
 
 	//관리자 > 부서 관리 페이지
 	@RequestMapping("/adminDepartment.do")
-	public String adminDepartment(){
+	public String adminDepartment(Model model){
+		List<Branch> list = adminservice.listBranch();
+		model.addAttribute("branchList",list);
 		return "admin.adminDepartMentView";
 	}
 	

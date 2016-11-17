@@ -42,7 +42,7 @@
 
 							<div class="panel-body">
 								<label class="form-control">지점 선택</label>
-								 <select class="form-control" id="selectBranch">
+								 <select class="form-control" id="departMentselectBranch">
 									<option>선택</option>
 									<c:forEach var="list" items="${branchList}">
 										<option value="${list.branch_name}">${list.branch_name}</option>
@@ -143,7 +143,7 @@
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
-											<input type="button" class="btn btn-success" id="addBranchsubmitBtn" value="추가">
+											<input type="button" class="btn btn-success" id="modifyBranchsubmitBtn" value="수정">
 										</div>
 									</div>
 									
@@ -173,7 +173,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addbranchName" name="branchName">
+											<input type="text" class="form-control" id="addbranchName" name="branchName">
 										</div>
 									</div>
 									<div class="form-group">
@@ -181,7 +181,7 @@
 											<label>우편번호</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addpostcode" name="postcode">
+											<input type="text" class="form-control" id="addpostcode" name="postcode">
 										</div>
 									</div>
 									<div class="form-group">
@@ -189,7 +189,7 @@
 											<label>기존주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addaddr" name="addr">
+											<input type="text" class="form-control"id="addaddr" name="addr">
 										</div>
 									</div>
 									<div class="form-group">
@@ -197,12 +197,12 @@
 											<label>상세주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addaddr_detail" name="addr_detail">
+											<input type="text" class="form-control" id="addaddr_detail" name="addr_detail">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" value="등록">
+											<input type="submit" class="btn btn-success" id="addBranchsubmitBtn" value="등록">
 										</div>
 									</div>
 									
