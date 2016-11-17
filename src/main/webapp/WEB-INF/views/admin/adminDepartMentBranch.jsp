@@ -117,42 +117,42 @@
 							<div class="panel-body">
 								<form class="form-horizontal">
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>지점명</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>우편번호</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>우편번호</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>기존주소</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>상세주소</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control" readonly="readonly">
 										</div>
 									</div>
@@ -184,42 +184,42 @@
 							<div class="panel-body">
 								<form class="form-horizontal">
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>지점명</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>우편번호</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>우편번호</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>기존주소</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<label>상세주소</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-8">
 											<input type="text" class="form-control">
 										</div>
 									</div>
