@@ -58,18 +58,18 @@
                      <tbody>
                   
                     <tr>
-                      <th  style="text-align:center;"> 1 </th>
-                        <th  style="text-align:center;"><a href="adminSalaryListDetail.do">2016-11</a></th>
-                        <th  style="text-align:center;">6.000.000</th> 
-                        <th  style="text-align:center;">1.000.000</th>
-                        <th  style="text-align:center;">5.000.000</th>
+                        <td  style="text-align:center;"> 1 </td>
+                        <td  style="text-align:center;"><a href="adminSalaryListDetail.do">2016-11</a></td>
+                        <td  style="text-align:center;">6.000.000</td> 
+                        <td  style="text-align:center;">1.000.000</td>
+                        <td  style="text-align:center;">5.000.000</td>
                     </tr>
                       <tr>
-                      <th  style="text-align:center;"> 2 </th>
-                        <th  style="text-align:center;"><a href="adminSalaryListDetail.do">2016-10</a></th>
-                        <th  style="text-align:center;">6.000.000</th> 
-                        <th  style="text-align:center;">1.000.000</th>
-                        <th  style="text-align:center;">5.000.000</th>
+                      <td  style="text-align:center;"> 2 </td>
+                        <td  style="text-align:center;"><a href="adminSalaryListDetail.do">2016-10</a></td>
+                        <td  style="text-align:center;">6.000.000</td> 
+                        <td  style="text-align:center;">1.000.000</td>
+                        <td  style="text-align:center;">5.000.000</td>
                     </tr>
                         </tbody>
                 </table>   

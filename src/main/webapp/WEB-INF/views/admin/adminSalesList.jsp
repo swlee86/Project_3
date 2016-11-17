@@ -51,35 +51,27 @@
 							</div>
 						</form>
 					</div>
+			
+                    
 				<br>     
                 <hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
                 <table cellpadding="1" cellspacing="1" class="table table-hover table-bordered table-condensed" >
                     <thead>
                     <tr style="background-color:#f9fafc">
-                    	<th style="text-align:center;padding-bottom:10px;">
-							<div class="checkbox checkbox-success">
-                            	<input type="checkbox" class="i-checks" id="sales">
-                               	<label for="checkbox"></label> 
-                       		</div>
-						</th>
-                        <th  style="text-align:center;padding-bottom:20px;">날짜</th>
-                        <th  style="text-align:center;padding-bottom:20px;">수익</th>
-                        <th  style="text-align:center;padding-bottom:20px;">비용</th>
+                    	<th style="text-align:center;">NO</th>
+                        <th  style="text-align:center;">날짜</th>
+                        <th  style="text-align:center;">수익</th>
+                        <th  style="text-align:center;">비용</th>
                      </tr>
                     </thead>
                     
                     <tbody>
                     <tr style="height:10px;">
-                    	<td  style="text-align:center">
-                    		<div class="checkbox checkbox-success">
-                            	<input type="checkbox" class="i-checks" id="sales">
-                               	<label for="checkbox"></label> 
-                       		</div>
-						</td>
-                        <td  style="text-align:center;padding-top:15px;">2016-11</td>
-                        <td  style="text-align:center;padding-top:15px;">1.000.000</td>
-                        <td  style="text-align:center;padding-top:15px;">1.000.000</td>
+                        <td  style="text-align:center;">1</td>
+                        <td  style="text-align:center;">2016-11</td>
+                        <td  style="text-align:center;">1.000.000</td>
+                        <td  style="text-align:center;">1.000.000</td>
                     </tr>
                     </tbody>
                 </table>    

@@ -85,17 +85,17 @@
                     <tbody>
                   
                     <tr>
-                        <th  style="text-align:center;"> 1 </th>
-                        <th  style="text-align:center;">11111111</th>
-                        <th  style="text-align:center;">브라운</th> 
-                        <th  style="text-align:center;">제주</th>
-                        <th  style="text-align:center;">영업부</th>
-                        <th  style="text-align:center;">영업1팀</th>
-                        <th  style="text-align:center;">계장</th>
-                        <th  style="text-align:center;">2016-01-01</th>
-                        <th  style="text-align:center;">01011111111</th>
-                        <th  style="text-align:center;">brown@epm.com</th>
-                        <th  style="text-align:center;"><button type="button" class="btn btn-sm btn-success" onclick="location.href='adminSalaryModify.do'">수정</button></th>
+                        <td  style="text-align:center;"> 1 </td>
+                        <td  style="text-align:center;">11111111</td>
+                        <td  style="text-align:center;">브라운</td> 
+                        <td  style="text-align:center;">제주</td>
+                        <td  style="text-align:center;">영업부</td>
+                        <td  style="text-align:center;">영업1팀</td>
+                        <td  style="text-align:center;">계장</td>
+                        <td  style="text-align:center;">2016-01-01</td>
+                        <td  style="text-align:center;">01011111111</td>
+                        <td  style="text-align:center;">brown@epm.com</td>
+                        <td  style="text-align:center;"><button type="button" class="btn btn-sm btn-success" onclick="location.href='adminSalaryModify.do'">수정</button></td>
                     </tr>
 
 
