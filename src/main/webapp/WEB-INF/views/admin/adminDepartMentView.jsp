@@ -23,23 +23,14 @@
 </div>
 
 <div class="content animate-panel">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="hpanel">
-                    <div class="panel-body">
-                        <div class="text-center">
-                            <h2 class="m-b-xs">지점</h2>
-                            <p class="font-bold text-success">조회, 등록, 수정, 삭제</p>
-                            <div class="m">
-                                <i class="pe-7s-science fa-5x"></i>
-                            </div>
-                            <p class="small">
-                                                 지점 관련 페이지는 여기로!
-                            </p>
-                            <button class="btn btn-success btn-sm" id="moveBranchBtn">이동</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="hpanel">
+				<div class="panel-body">
+					<h4>시밤</h4>
+				</div>
+			</div>
+		</div>
+
+	</div>
 </div>
