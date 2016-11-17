@@ -81,7 +81,7 @@
 									</select> <br />
 									<div class="col-md-4"></div>
 									<div class="col-md-4">
-										<input type="button" class="btn btn-default" value="부서 등록">
+										<input type="button" class="btn btn-success" value="부서 등록">
 									</div>
 								</form>
 							</div>
