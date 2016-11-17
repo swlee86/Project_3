@@ -13,7 +13,10 @@ public class Memo {
 	private String memo_content;
 	private String memo_date;
 	private String color_no;
-
+	
+	//DTO 추가 2016-11-17
+	private String color;
+	private String color_name;
 	public String getMemo_no() {
 		return memo_no;
 	}
@@ -62,9 +65,28 @@ public class Memo {
 		this.color_no = color_no;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getColor_name() {
+		return color_name;
+	}
+
+	public void setColor_name(String color_name) {
+		this.color_name = color_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Memo [memo_no=" + memo_no + ", emp_no=" + emp_no + ", title=" + title + ", memo_content=" + memo_content
-				+ ", memo_date=" + memo_date + ", color_no=" + color_no + "]";
+				+ ", memo_date=" + memo_date + ", color_no=" + color_no + ", color=" + color + ", color_name="
+				+ color_name + "]";
 	}
+
+	
 }

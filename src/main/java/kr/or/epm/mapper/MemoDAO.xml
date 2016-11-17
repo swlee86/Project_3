@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.MemoDAO">
+	<!-- 로그인한 사원의 전체 메모  -->
+	<select id="selectMemo" resultType="kr.or.epm.VO.Memo">
+		select memo_no,emp_no,title,memo_content,memo_date,
+      			m.color_no, color, color_name
+		from memo m 
+		join memocolor c 
+		  on m.color_no = c.color_no 
+		where m.emp_no=#{emp_no}
+		order by m.memo_date DESC
+	</select>
+</mapper>
