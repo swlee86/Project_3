@@ -18,7 +18,7 @@ select rn, r.emp_no, r.emp_name, r.cg_name, r.branch_name, r.dept_name, r.low_de
 
 
 <!-- 사원권한 관리 페이지를 열 때 사원정보를 불러오는 쿼리문 -->
-<select id="selectEmpManage" resultType="kr.or.epm.VO.EmployeeManage">
+<select id="selectEmpManageId" resultType="kr.or.epm.VO.EmployeeManage">
 select rn, r.emp_no, r.emp_name, r.cg_name, r.branch_name, r.dept_name, r.low_dept_name, p.position_name from(select rownum rn, r.emp_no, r.emp_name, e.cg_name, r.branch_name, r.dept_name, r.low_dept_name, r.position_no from (select e.emp_no, e.emp_name, e.cg_no, e.position_no, l.branch_name, l.dept_name, l.low_dept_name from emp e join low_dept l on e.low_dept_no=l.low_dept_no) r join emp_cg e on r.cg_no=e.cg_no) r join position p on r.position_no=p.position_no WHERE rn BETWEEN ${param1} AND ${param2}
 </select>
 
