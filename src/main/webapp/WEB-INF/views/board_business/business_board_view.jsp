@@ -71,9 +71,12 @@
 								</div>
 								</c:forEach>
 								
-								<form action="#" method="post">
+								<form action="business_reply_insert.do" method="post">
 									<div class="input-group">
 										<input type="text" class="form-control " placeholder="Your comment" name="content">
+										<input type="hidden" name="currentpage" value="${currentpage}">
+										<input type="hidden" name="pagesize" value="${pagesize}">
+										<input type="hidden" name="no" value="${list.no}">
 										<span class="input-group-btn"> 
 										<input type="submit" class="btn  btn-default" value=" 댓글 달기 ">
 										</span>

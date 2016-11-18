@@ -122,22 +122,22 @@ public class BusinessBoardController {
 	
 	
 	//댓글 입력을 누르면 인서트 되는 함수
-	@RequestMapping(value="/business_board_view.do", method=RequestMethod.POST)
-	public String reply_write(Principal principal, Re_BusinessBoard dto, Model mv, String pagesize, String currentpage){
+	@RequestMapping(value="/business_reply_insert.do")
+	public String reply_write(Principal principal, Re_BusinessBoard dto, Model mv, String pagesize, String currentpage, String no, String content){
 		String id= principal.getName();
-		Re_BusinessBoard business = businessboardservice.selectWrite(id);
-		business.setContent(dto.getContent());
-		business.setNo(dto.getNo());
-		System.out.println(dto.getNo());
+		dto = businessboardservice.selectWrite(id);
+		dto.setContent(dto.getContent());
+		dto.setNo(no);
+		dto.setContent(content);
 		
-		System.out.println(business.toString());
+		System.out.println(dto.toString());
 		
 		int result = 0;
 		String link = null;
 		String msg = null;
 		
 		try{
-			result  = businessboardservice.insertReply(business);
+			result  = businessboardservice.insertReply(dto);
 		}catch(Exception e){
 			e.getMessage();
 		}finally{
