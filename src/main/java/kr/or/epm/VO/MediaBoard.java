@@ -13,12 +13,25 @@ public class MediaBoard {
 	private String title;
 	private String content;
 	private String regdate;
-	private List<CommonsMultipartFile> file_name; 
 	
-	public List<CommonsMultipartFile> getFile_name() {
+	private String file_name;
+	
+	
+	
+//	private List<CommonsMultipartFile> file_name; 
+	
+/*	public List<CommonsMultipartFile> getFile_name() {
 		return file_name;
 	}
 	public void setFile_name(List<CommonsMultipartFile> file_name) {
+		this.file_name = file_name;
+	}
+	*/
+	
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
 		this.file_name = file_name;
 	}
 	

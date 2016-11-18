@@ -88,6 +88,12 @@ public class MediaBoardController {
 	@RequestMapping(value = "/media_board_view.do", method = RequestMethod.GET)
 	public String media_board_view(String no, String pg, Model model) {
 		System.out.println("media_board_view() 컨트롤러 탐");
+/*		
+		if(pg == null && pg.equals("")){
+			pg = "1";
+		}
+		*/
+		
 		System.out.println("no : "+ no + "pg : "+pg);
 		
 		MediaBoard list = null;
@@ -104,6 +110,15 @@ public class MediaBoardController {
 		return "board_media.media_board_view";
 	}
 	
-	
+	//언론게시판 > 글쓰기 처리
+	@RequestMapping(value = "/media_board_write.do", method = RequestMethod.POST)
+	public String media_board_write(MediaBoard mediaBoard , Model model) {
+		System.out.println("media_board_write()처리 컨트롤러 탐");
+		
+		System.out.println(mediaBoard.getTitle()+"/"+mediaBoard.getContent()+"/"+mediaBoard.getFile_name());
+		
+		return null;
+		/*return "redirect:media_board_view.do?no="+.get;*/
+	}
 	
 }
