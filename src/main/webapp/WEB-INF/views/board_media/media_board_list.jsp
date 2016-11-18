@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
@@ -10,19 +11,19 @@
 
             <div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li>
-                        <span>App views</span>
+                        <span>Board</span>
                     </li>
                     <li class="active">
-                        <span>Contacts</span>
+                        <span>Media Board</span>
                     </li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
                 	언론 게시판
             </h2>
-            <small>Show users list in nice and color panels</small>
+            <small>회사의 언론정보를 공유하는 게시판입니다.</small>
         </div>
     </div>
 </div>
@@ -60,38 +61,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td  style="text-align:center">3</td>
-                        <td>Vosselsaar&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
-                        <td>박지은</td>
-                        <td>16/11/06</td>
-                        <td>22</td>
-                    </tr>
-                    <tr>
-                        <td  style="text-align:center">2</td>
-                        <td><a href="media_board_view.do">클릭하세요</a></td>
-                        <td>박지은</td>
-                        <td>16/11/06</td>
-                        <td>11</td>
-                    </tr>
-                    <tr>
-                        <td  style="text-align:center">5</td>
-                        <td>Vosselaar</td>
-                        <td>박지은</td>
-                        <td>16/11/06</td>
-                        <td>11</td>
-                    </tr>                    
-                    <tr>
-                        <td  style="text-align:center">1</td>
-                        <td>Vosselaar&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG"></td>
-                        <td>박지은</td>
-                        <td>16/11/06</td>
-                        <td>100</td>
-                    </tr>
+                    
+                    <c:forEach items="${list}"  var="n">
+                    	<tr>
+	                        <td  style="text-align:center">${n.no}</td>
+	                        <td>
+	                        	<a href="media_board_view.do?no=${n.no}">${n.title}<c:if test="${not empty file_name}">&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></c:if></a>
+	                        </td>
+	                        <td>${n.emp_name}</td>
+	                        <td>${n.regdate}</td>
+	                        <td>${n.hit}</td>
+                   	 	</tr>
+                    </c:forEach>
+
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button" class="btn w-xs btn-success" onclick="location.href='media_board_write.do'" >글 등록</button>
+                	<button type="button" class="btn w-xs btn-success" onclick="location.href='media_board_write.do'" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">글 등록</button>
                 </div>
 			</div>
 
