@@ -36,6 +36,20 @@
             <div class="panel-heading">
                 		총 개시글 수 : <font color="coral">10</font> 개
             </div>
+            <form name="list">
+				<select name="pagesize" onchange="submit()" class="form-control" style="width: 20%; margin-left: 80%">
+					<c:forEach var="i" begin="10" end="100" step="10">
+						<c:choose>
+							<c:when test="${psize == i}">
+								<option value='${i}' selected>${i}건</option>
+							</c:when>
+							<c:otherwise>
+								<option value='${i}'>${i}건</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</select>
+			</form>
             <div class="panel-body">
             	<div class="row" style="text-align:right; margin-right:5px;">
             			<form action="" class="form-inline">

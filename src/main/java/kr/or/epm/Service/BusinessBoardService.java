@@ -67,4 +67,10 @@ public class BusinessBoardService {
 		int result = businessboarddao.insertArticle(dto);
 		return result;
 	}
+	
+	public int insertReply(Re_BusinessBoard dto){
+		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
+		int result = businessboarddao.insertReply(dto);
+		return result;
+	}
 }

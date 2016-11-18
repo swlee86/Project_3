@@ -74,7 +74,7 @@ public class BusinessBoardController {
 	}
 	
 	//업무정보게시판  > 업무정보게시판  상세 페이지 이동
-	@RequestMapping("/business_board_view.do")
+	@RequestMapping(value="/business_board_view.do", method=RequestMethod.GET)
 	public String business_board_view(Model mv, int no, int currentpage, int pagesize){
 		String link = null;
 		BusinessBoard businessboard = null;
@@ -95,12 +95,48 @@ public class BusinessBoardController {
 		return link;
 	}
 	
+	//댓글 입력을 누르면 인서트 되는 ㅎ마수
+	@RequestMapping(value="/business_board_view.do", method=RequestMethod.POST)
+	public String reply_write(Principal principal, Re_BusinessBoard dto, Model mv, String pagesize, String currentpage){
+		String id= principal.getName();
+		Re_BusinessBoard business = businessboardservice.selectWrite(id);
+		business.setContent(dto.getContent());
+		business.setNo(dto.getNo());
+		System.out.println(dto.getNo());
+		
+		System.out.println(business.toString());
+		
+		int result = 0;
+		String link = null;
+		String msg = null;
+		
+		try{
+			result  = businessboardservice.insertReply(business);
+		}catch(Exception e){
+			e.getMessage();
+		}finally{
+			if(result>0){
+				link = "business_board_view.do?no="+dto.getNo()+"&currentpage="+currentpage+"&pagesize="+pagesize;
+				msg = "댓글 입력에 성공하였습니다.";
+			}else{
+				link = "business_board_view.do?no="+dto.getNo()+"&currentpage="+currentpage+"&pagesize="+pagesize;
+				msg = "댓글 입력에 실패하였습니다.";
+		}		
+			mv.addAttribute("link", link);
+			mv.addAttribute("msg", msg);	
+	}
+		return "board_business.business_redirect";
+}	
+	
+	
 	//업무정보게시판  > 업무정보게시판  글쓰기 페이지 이동
 	@RequestMapping(value="/business_board_write.do", method=RequestMethod.GET)
 	public String business_board_write(){
 		return "board_business.business_board_write";
 	}
 	
+	
+	//글쓰기 누르면 인서트 시키는 서비스 함수
 	@RequestMapping(value="/business_board_write.do", method=RequestMethod.POST)
 	public String business_board_write_Ok(Principal principal, BusinessBoard board, Model mv){
 		String id= principal.getName();

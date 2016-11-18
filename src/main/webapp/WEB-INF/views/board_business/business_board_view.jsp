@@ -53,7 +53,7 @@
 						<div class="media-body">
 							<h5>${list.title}</h5>
 							 	${list.content}
-							 	
+							 	 글번호 :  ${list.no}
 							 	
 							<!-- Comments -->
 							<div class="forum-comments">
@@ -73,12 +73,11 @@
 								</div>
 								</c:forEach>
 								
-								<form>
+								<form action="#" method="post">
 									<div class="input-group">
-										<input type="text" class="form-control "
-											placeholder="Your comment"> <span
-											class="input-group-btn"> <input type="submit"
-											class="btn  btn-default" value=" 댓글 달기 ">
+										<input type="text" class="form-control " placeholder="Your comment" name="content">
+										<span class="input-group-btn"> 
+										<input type="submit" class="btn  btn-default" value=" 댓글 달기 ">
 										</span>
 									</div>
 								</form>
@@ -87,6 +86,7 @@
 							<br>
 							<div class="row" style="text-align:center">
 								<a href="business_board_list.do?currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success" style="">뒤로 가기</button></a>
+								<a href="Answer.do"><button type="button" class="btn btn-sm btn-success" style="">답글 쓰기</button></a>							
 							</div>
 						</div>
 					</div>
