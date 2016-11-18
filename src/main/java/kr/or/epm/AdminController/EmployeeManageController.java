@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.epm.Service.EmployeeManageService;
-import kr.or.epm.VO.etc.EmployeeManage;
+import kr.or.epm.VO.EmployeeManage;
 
 @Controller
 public class EmployeeManageController {
@@ -16,7 +16,7 @@ public class EmployeeManageController {
 	@Autowired
 	private EmployeeManageService employeeManage;
 	
-	//관리자 > 사원관리 페이지 이동
+	//관리자 > 사원관리 페이지를 열면서 데이터를 함께 불러오는 함수(페이징 처리 포함되어 있음)
 	@RequestMapping("/adminEmployeeManage.do")
 	public String adminEmployeeManage(Model mv, String pagesize, String currentpage){				
 		int totalcount = employeeManage.selectEmpCount();
@@ -45,6 +45,8 @@ public class EmployeeManageController {
         }
 		
 		List<EmployeeManage> list = null;
+		
+		
 		try{
 			 list = employeeManage.selectEmpManage(cpage, pgsize); 
 			 System.out.println("list size chk : " +  list.size());

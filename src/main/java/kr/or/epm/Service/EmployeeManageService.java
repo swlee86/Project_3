@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.EmployeeManageDAO;
-import kr.or.epm.VO.etc.EmployeeManage;
+import kr.or.epm.VO.EmployeeManage;
 
 @Service
 public class EmployeeManageService {

@@ -1,4 +1,4 @@
-package kr.or.epm.VO.etc;
+package kr.or.epm.VO;
 
 public class EmployeeManage {
 	private String emp_no;
@@ -9,9 +9,20 @@ public class EmployeeManage {
 	private String low_dept_name;
 	private String position_name;
 	private String rn;
+	private String id;
 	
-	
-	
+	public String getRn() {
+		return rn;
+	}
+	public void setRn(String rn) {
+		this.rn = rn;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getrn() {
 		return rn;
 	}
@@ -65,8 +76,10 @@ public class EmployeeManage {
 	public String toString() {
 		return "EmployeeManage [emp_no=" + emp_no + ", emp_name=" + emp_name + ", cg_name=" + cg_name + ", branch_name="
 				+ branch_name + ", dept_name=" + dept_name + ", low_dept_name=" + low_dept_name + ", position_name="
-				+ position_name + ", rn=" + rn + "]";
+				+ position_name + ", rn=" + rn + ", id=" + id + "]";
 	}
+	
+	
 	
 	
 	
