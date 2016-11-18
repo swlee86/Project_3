@@ -18,13 +18,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select no, emp_name,title, content, hit, regdate from company where no = #{no}
 	</select>
 	
-	<insert id="insertInfoBoard" >
-	<!-- 	insert into company (no,emp_no, emp_name, hit, title,content,regdate,file_name, del_check) values  -->
+	<!--게시판 글쓰기-->
+	<insert id="insertInfoBoard" parameterType="kr.or.epm.VO.Company">
+		insert into company (no,emp_no, emp_name, hit, title,content,regdate,file_name, del_check) 
+			values(
+						company_seq.nextval,
+						#{emp_no},
+						(select emp_name from emp where emp_no = #{emp_no}),
+						0,
+						#{title},
+						#{content},
+						to_char(sysdate,'yyyy-mm-dd'),
+						null,
+						0
+				  )
 	</insert>
 	
 	
+	<!--시큐리티를 이용, 사번 뽑아옴.-->
 	<select id="selectEmpUserInfo" resultType="kr.or.epm.VO.Emp_detail">
 		select emp_no from emp_detail where id = #{id}
 	</select>
 	
+	<!--제목 검색-->
+	<select id="selectSeacrchCompanyList" resultType="kr.or.epm.VO.Company">
+		select no, emp_name,title, content, hit, regdate from company WHERE title LIKE '%${param3}%'
+	</select>
 </mapper>
