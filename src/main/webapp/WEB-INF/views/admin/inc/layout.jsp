@@ -160,7 +160,8 @@
 		
 		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
 		$('#seeBranchBtn').click(function(){
-			var select = $("#selectBranch option:selected").val();
+			var select = $("#departMentselectBranch option:selected").val();
+			alert("선택한 지점 : "+select);
 			$.ajax(
 					 {
 						url : "selectBranchList.do",
