@@ -30,7 +30,6 @@
 				</div>
 				<div class="panel-heading hbuilt">
 					<div class="p-xs">
-
 						<form method="get" class="form-horizontal">
 							<div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 제 목 : </label>
