@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
@@ -60,34 +61,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="text-align:center">3</td>
-                        <td>ㅋㅋ&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
-                        <td>박지은</td>
-                        <td>16/11/06</td>
-                        <td>22</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:center">2</td>
-                        <td><a href="info_board_view.do">클릭하f요</a></td>
-                        <td>박지은</td>
-                        <td>16/11/06</td>
-                        <td>11</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:center">5</td>
-                        <td><a href="info_board_view.do">ㅋㅋ</a></td>
-                        <td>박지은</td>
-                        <td>16/11/06</td>
-                        <td>11</td>
-                    </tr>                    
-                    <tr>
-                        <td style="text-align:center">1</td>
-                        <td>나나나&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG"></td>
-                        <td>박지은</td>
-                        <td>16/11/06</td>
-                        <td>100</td>
-                    </tr>
+                 		<c:forEach var="list" items="${companyList}">
+                 			<tr>
+                 				<td>${list.no}</td>
+                 				<td>${list.title}</td>
+                 				<td>${list.content}</td>
+                 				<td>${list.regdate}</td>
+                 				<td>${list.hit}</td>
+                 			</tr>
+                 		</c:forEach>
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
