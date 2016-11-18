@@ -84,13 +84,11 @@
 							<br>
 							<div class="row" style="text-align:center">
 								<a href="business_board_list.do?currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success" style="">뒤로 가기</button></a>
-								<a href="Answer.do?no=${list.no}&currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success" style="">답글 쓰기</button></a>							
+								<a href="answer.do?no=${list.no}&currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success" style="">답글 쓰기</button></a>							
 							</div>
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 
 		</div>

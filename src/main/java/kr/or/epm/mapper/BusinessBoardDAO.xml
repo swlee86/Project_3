@@ -7,7 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- business 게시판 글 리스트를 불러오는 쿼리문  -->
 <select id="selectList" resultType="kr.or.epm.VO.BusinessBoard">
-select no, title, emp_name, regdate, hit, low_dept_name from (select rownum rn, no, title, emp_name, regdate, hit, low_dept_name from business order by no desc) where rn between ${param1} and ${param2}
+select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer from(select rownum rn, no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer from (select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer from business order by refer desc, step asc) order by rn) where rn between #{param1} and #{param2}
+
 </select >
 	
 <!-- business Board(business)의 총 갯수를 불러오는 쿼리문 -->
@@ -52,6 +53,10 @@ values(RE_BUSINESS_SEQ.nextval, #{no}, #{emp_no}, #{emp_name}, #{content}, to_ch
 <!-- 글을 읽으면 hit가 추가되는 쿼리문 -->
 <update id="updateHit" parameterType="int">
 update business SET hit=hit+1 where no=#{no}
+</update>
+
+<update id="updateStep" parameterType="int">
+update business set step=step+1, depth=depth+1 where refer=#{refer} 
 </update>
 
 </mapper>

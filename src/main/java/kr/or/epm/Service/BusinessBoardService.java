@@ -80,4 +80,10 @@ public class BusinessBoardService {
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
 		businessboarddao.updateHit(no);
 	}
+	
+	//답글 이후의 글들의 step, depth가 1씩 증가하는 서비스 함수
+	public void updateStep(int refer){
+		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
+		businessboarddao.updateStep(refer);
+	}
 }

@@ -79,7 +79,12 @@
                     <c:forEach var="list" items="${list}">
                     <tr>
                         <td style="text-align:center">${list.no}</td>
-                        <td><a href="business_board_view.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">${list.title}</a>&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
+                        <td>
+                        <c:forEach begin="0" end="${list.depth}" step="1">
+                        	&nbsp;&nbsp;&nbsp;
+                        </c:forEach>
+                        	<a href="business_board_view.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">${list.title}</a>&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG">
+                        </td>
                         <td>${list.emp_name}(${list.low_dept_name})</td>
                         <td>${list.regdate}</td>
                         <td>${list.hit}</td>
@@ -88,21 +93,28 @@
                     </tbody>
                 </table>
                  <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button" class="btn w-xs btn-success" onclick="location.href='business_board_write.do'" >글 등록</button>
+                	<button type="button" class="btn w-xs btn-success" onclick="location.href='business_board_write.do?&currentpage=${cpage}&pagesize=${psize}'">글 등록</button>
                 </div>
 			</div>
 
             </div>
              <div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
-					<c:if test="${cpage>1}">
-                    	<a href="business_board_list.do?currentpage=${cpage-1}&pagesize=${psize}"><button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button></a>
+					<c:if test="${cpage > 1}">
+                    	<button type="button" class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${cpage-1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
                     </c:if>
                     <c:forEach var="i" begin="1" end="${pagecount}" step="1">	
-						<a href="business_board_list.do?currentpage=${i}&pagesize=${psize}"><button class="btn btn-default">${i}</button></a>
+                    <c:choose>
+                    	<c:when test="${cpage==i}">
+                    		<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
+                    	</c:when>
+                    	<c:otherwise>
+							<button class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${i}&pagesize=${psize}'">${i}</button>                	
+                    	</c:otherwise>
+                    </c:choose>
 					</c:forEach>
-					<c:if test="${cpage>1}">
-                    	<a href="business_board_list.do?currentpage=${cpage+1}&pagesize=${psize}"><button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button></a>
+					<c:if test="${cpage < pagecount}">
+                    	<button type="button" class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${cpage+1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 	</c:if>
                 
                 </div>

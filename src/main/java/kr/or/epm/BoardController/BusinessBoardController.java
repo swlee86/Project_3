@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -96,6 +97,30 @@ public class BusinessBoardController {
 		return link;
 	}
 	
+		//댓글 달고나서 다시 본문을 불러오는 함수(hit 증가 없음)
+		@RequestMapping(value="/business_board_view_reply.do", method=RequestMethod.GET)
+		public String business_board_view_after_reply(Model mv, int no, int currentpage, int pagesize){
+			String link = null;
+			BusinessBoard businessboard = null;
+			List<Re_BusinessBoard> re_list = null;
+			try{
+				businessboard = businessboardservice.selectDetail(no);
+				re_list = businessboardservice.selectReList(no);
+			}catch(Exception e){
+				
+			}finally{
+				mv.addAttribute("list", businessboard);
+				mv.addAttribute("re_list", re_list);
+				mv.addAttribute("currentpage", currentpage);
+				mv.addAttribute("pagesize", pagesize);
+				link = "board_business.business_board_view";
+			}
+			
+			return link;
+		}
+	
+	
+	
 	//댓글 입력을 누르면 인서트 되는 함수
 	@RequestMapping(value="/business_board_view.do", method=RequestMethod.POST)
 	public String reply_write(Principal principal, Re_BusinessBoard dto, Model mv, String pagesize, String currentpage){
@@ -117,10 +142,10 @@ public class BusinessBoardController {
 			e.getMessage();
 		}finally{
 			if(result>0){
-				link = "business_board_view.do?no="+dto.getNo()+"&currentpage="+currentpage+"&pagesize="+pagesize;
+				link = "business_board_view_reply.do?no="+dto.getNo()+"&currentpage="+currentpage+"&pagesize="+pagesize;
 				msg = "댓글 입력에 성공하였습니다.";
 			}else{
-				link = "business_board_view.do?no="+dto.getNo()+"&currentpage="+currentpage+"&pagesize="+pagesize;
+				link = "business_board_view_reply.do?no="+dto.getNo()+"&currentpage="+currentpage+"&pagesize="+pagesize;
 				msg = "댓글 입력에 실패하였습니다.";
 		}		
 			mv.addAttribute("link", link);
@@ -132,7 +157,9 @@ public class BusinessBoardController {
 	
 	//업무정보게시판  > 업무정보게시판  글쓰기 페이지 이동
 	@RequestMapping(value="/business_board_write.do", method=RequestMethod.GET)
-	public String business_board_write(){
+	public String business_board_write(int currentpage, int pagesize, Model mv){
+		mv.addAttribute("currentpage", currentpage);
+		mv.addAttribute("pagesize", pagesize);
 		return "board_business.business_board_write";
 	}
 	
@@ -177,11 +204,11 @@ public class BusinessBoardController {
 		return "board_business.business_redirect";
 	}
 	
-	@RequestMapping(value="/Answer.do", method=RequestMethod.GET)
+	//답변하기 누르면 기존 글의 데이터를 가지고 가서 write 화면에 뿌려주는 함수
+	@RequestMapping(value="/answer.do", method=RequestMethod.GET)
 	public String answer(Model mv, int no, int currentpage, int pagesize){
 		String link = null;
 		BusinessBoard businessboard = null;
-		List<Re_BusinessBoard> re_list = null;
 		try{
 			businessboard = businessboardservice.selectDetail(no);
 		}catch(Exception e){
@@ -197,11 +224,51 @@ public class BusinessBoardController {
 	
 	
 	//답변 인서트 컨트롤러 
-	@RequestMapping("/answerOk.do")
-	public String answerOk(BusinessBoard board, Model mv){
+	@RequestMapping(value="/answer.do", method=RequestMethod.POST)
+	public String answerOk(Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth){
 		System.out.println("답번쓰기 시작");
+		Re_BusinessBoard dto = businessboardservice.selectWrite(principal.getName());
+		System.out.println("title : " + title + " / " + "content : " + content + "no : " + no + "refer : " + refer + "step : " + step);
+		BusinessBoard business = new BusinessBoard();
+		String link = null;
+		String msg = null;
+		int result = 0;
 		
+		/*businessboardservice.updateStep(refer);*/
+
+		if(business.getFile_name()==null){
+			business.setFile_name("0");
+		}
 		
-		return null;
+		business.setNo(no);
+		business.setTitle(title);
+		business.setContent(content);
+		business.setRefer(refer);
+		business.setHit(0);
+		business.setEmp_no(dto.getEmp_no());
+		business.setEmp_name(dto.getEmp_name());
+		business.setLow_dept_name(dto.getLow_dept_name());
+		business.setLow_dept_no(dto.getLow_dept_no());
+		business.setDepth(depth+1);//부모글의 depth +1
+		business.setStep(step+1);	//부모글의 스텝번호+1
+		System.out.println(business.toString());
+		try{
+			
+			result = businessboardservice.insertArticle(business);
+		}catch(Exception e){
+			e.getMessage();
+		}finally{
+			if(result > 0){
+			link = "business_board_list.do";
+			msg = "글 입력에 성공하였습니다.";
+		}else{
+			link = "business_board_list.do";
+			msg = "글 입력에 실패하였습니다.";
+		}
+		mv.addAttribute("link", link);
+		mv.addAttribute("msg", msg);
+		}
+		
+		return "board_business.business_redirect";
 	}
 }
