@@ -17,12 +17,19 @@ public interface CompanyBoardDAO {
 	//리스트 보기
 	List<Company> selectCompanyList(int start, int end);
 	
+	//검색한 리스트 보기
+	List<Company> selectSeacrchCompanyList(int start, int end, String title);
+	
+	
 	//글 상세보기
 	Company selectDetail(int no);
 	
 	//게시글 쓰기
-	int insertInfoBoard(String title,String content);
+	int insertInfoBoard(Company company);
 	
 	//시큐리티 통한 사원 정보 가져오기
 	Emp_detail selectEmpUserInfo(String id);
+	
+	
+	
 }

@@ -27,11 +27,8 @@ public class CompanyBoardController {
 	private CompanyBoardService companyBoardService;
 	
 	//회사정보 게시판  > 리스트페이지이동 
-	@RequestMapping("/info_board_list.do")
+	@RequestMapping(value="/info_board_list.do", method=RequestMethod.GET)
 	public String info_board_list(String pagesize, String currentpage, Model model) {
-		
-	
-		
 		
 		int totalcount = companyBoardService.selectBoardCount();
 		int pagecount = 0;
@@ -68,7 +65,6 @@ public class CompanyBoardController {
 			model.addAttribute("psize", pgsize);
 			model.addAttribute("pagecount", pagecount);
 			model.addAttribute("totalcount", totalcount);
-		
 		}
         
 		return "board_info.info_board_list";
@@ -78,7 +74,6 @@ public class CompanyBoardController {
 	@RequestMapping("/detailinfo_board_list.do")
 	public String detailView(String no, int currentpage, int pagesize, Model model){
 		Company company = null;
-		System.out.println("넘어온 글번호 : "+no + "/currentPage : "+currentpage + "/pagesize : "+pagesize);
 		int no2 = Integer.parseInt(no);
 		try{
 			 company = companyBoardService.selectDetailBoard(no2);
@@ -92,18 +87,89 @@ public class CompanyBoardController {
 	}
 	
 	
+	//게시판 글쓰기
 	@RequestMapping(value="/CompanyBoardWrite.do", method=RequestMethod.POST)
-	public String test(String title, String content, Principal principal){
+	public String test(String title, String content, Principal principal, Model model){
 		
 		String id = principal.getName();
 		System.out.println("아이디  : "+id);
+		//시큐리티 이용 사번 정보 뽑기
 		Emp_detail emp=companyBoardService.WriterStatus(id);
-		
 		System.out.println("유저 : " +emp.toString());
-		companyBoardService.insertInfoBoard(title, content);
+		Company company = new Company();
+		company.setContent(content);
+		company.setEmp_no(emp.getEmp_no());
+		company.setTitle(title);
 		
+		String link = "";
+		String msg = "";
+		int result = 0;
+		try{
+			result = companyBoardService.insertInfoBoard(company);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(result>0){
+				link = "info_board_list.do";
+				msg = "글 입력에 성공하였습니다.";
+			}else{
+				link = "info_board_list.do";
+				msg = "글 입력에 실패하였습니다.";
+			}
+			model.addAttribute("link", link);
+			model.addAttribute("msg", msg);
+		}
 		
-		return null;
+		return "board_info.info_board_redirect";
+		
 	}
+	
+	
+	//제목 검색
+	@RequestMapping(value ="/info_board_list.do", method=RequestMethod.POST)
+	public String searchInfo_board(String title, String pagesize, String currentpage, Model model){
+		System.out.println("검색하신 단어 : "+title);
+		
+		int totalcount = companyBoardService.selectBoardCount();
+		int pagecount = 0;
+
+		
+        if(pagesize == null || pagesize.trim().equals("")){
+            pagesize = "10"; 			// default 10건씩 
+        }
+        
+        if(currentpage == null || currentpage.trim().equals("")){
+            currentpage = "1";        //default 1 page
+        }
+        
+        
+      
+        int pgsize = Integer.parseInt(pagesize);  		// 10
+        int cpage = Integer.parseInt(currentpage);     //1
+                               
+        
+        if(totalcount % pgsize==0){        //전체 건수 , pagesize 
+            pagecount = totalcount/pgsize;
+        }else{
+            pagecount = (totalcount/pgsize) + 1;
+        }
+        
+        List<Company> list = null;
+		
+        try{
+        	list = companyBoardService.selectChooseBoard(title, cpage, pgsize);
+        	
+        }catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			model.addAttribute("companyList", list);
+			model.addAttribute("cpage", cpage);
+			model.addAttribute("psize", pgsize);
+			model.addAttribute("pagecount", pagecount);
+			model.addAttribute("totalcount", totalcount);
+		}
+		return "board_info.info_board_list";
+	}
+	
 	
 }
