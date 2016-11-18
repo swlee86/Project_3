@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+    <!--텍스트 에디터 사용시 추가해야할 css -->
+    <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
+    <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />
 
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -52,20 +55,46 @@
 
 <!-- Vendor scripts -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
-<script src="vendor/jquery-ui/jquery-ui.min.js"></script>
 <script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.resize.js"></script>
-<script src="vendor/jquery-flot/jquery.flot.pie.js"></script>
-<script src="vendor/flot.curvedlines/curvedLines.js"></script>
-<script src="vendor/jquery.flot.spline/index.js"></script>
 <script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
+<script src="vendor/summernote/dist/summernote.min.js"></script>
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+
+
+<script>
+
+$(function () {
+
+    // Initialize summernote plugin
+    $('.summernote').summernote();
+
+    var sHTML = $('.summernote').code();
+
+    console.log(sHTML);
+
+    $('.summernote1').summernote({
+        toolbar: [
+            ['headline', ['style']],
+            ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+            ['textsize', ['fontsize']],
+            ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+        ]
+    });
+
+    $('.summernote2').summernote({
+        airMode: true,
+    });
+
+});
+
+
+</script>
+
 </body>
 </html>
