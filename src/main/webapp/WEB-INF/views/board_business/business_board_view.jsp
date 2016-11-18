@@ -50,11 +50,9 @@
 								<strong>${list.emp_name}</strong><br> ${list.regdate}
 							</div>
 						</div>
-						<div class="media-body">
+						<div class="media-body" style="height: 1000px;">
 							<h5>${list.title}</h5>
 							 	${list.content}
-							 	 글번호 :  ${list.no}
-							 	
 							<!-- Comments -->
 							<div class="forum-comments">
 								<c:forEach var="re_list" items="${re_list}">
@@ -86,7 +84,7 @@
 							<br>
 							<div class="row" style="text-align:center">
 								<a href="business_board_list.do?currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success" style="">뒤로 가기</button></a>
-								<a href="Answer.do"><button type="button" class="btn btn-sm btn-success" style="">답글 쓰기</button></a>							
+								<a href="Answer.do?no=${list.no}&currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success" style="">답글 쓰기</button></a>							
 							</div>
 						</div>
 					</div>

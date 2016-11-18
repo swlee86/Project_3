@@ -73,7 +73,7 @@ public class BusinessBoardController {
 		return "board_business.business_board_list";
 	}
 	
-	//업무정보게시판  > 업무정보게시판  상세 페이지 이동
+	//업무정보게시판  > 업무정보게시판  글 내용보는 페이지 이동
 	@RequestMapping(value="/business_board_view.do", method=RequestMethod.GET)
 	public String business_board_view(Model mv, int no, int currentpage, int pagesize){
 		String link = null;
@@ -95,7 +95,7 @@ public class BusinessBoardController {
 		return link;
 	}
 	
-	//댓글 입력을 누르면 인서트 되는 ㅎ마수
+	//댓글 입력을 누르면 인서트 되는 함수
 	@RequestMapping(value="/business_board_view.do", method=RequestMethod.POST)
 	public String reply_write(Principal principal, Re_BusinessBoard dto, Model mv, String pagesize, String currentpage){
 		String id= principal.getName();
@@ -174,5 +174,33 @@ public class BusinessBoardController {
 			mv.addAttribute("msg", msg);
 		}
 		return "board_business.business_redirect";
+	}
+	
+	@RequestMapping(value="/Answer.do", method=RequestMethod.GET)
+	public String answer(Model mv, int no, int currentpage, int pagesize){
+		String link = null;
+		BusinessBoard businessboard = null;
+		List<Re_BusinessBoard> re_list = null;
+		try{
+			businessboard = businessboardservice.selectDetail(no);
+		}catch(Exception e){
+			
+		}finally{
+			mv.addAttribute("list", businessboard);
+			mv.addAttribute("currentpage", currentpage);
+			mv.addAttribute("pagesize", pagesize);
+			link = "board_business.business_board_answer";
+		}
+		return link;
+	}
+	
+	
+	//답변 인서트 컨트롤러 
+	@RequestMapping("/answerOk.do")
+	public String answerOk(BusinessBoard board, Model mv){
+		System.out.println("답번쓰기 시작");
+		
+		
+		return null;
 	}
 }

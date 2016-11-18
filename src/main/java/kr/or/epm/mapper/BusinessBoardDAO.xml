@@ -16,8 +16,9 @@ select count(*) from business
 </select>
 
 <!-- business Board list에서 글을 클릭하면 글 내용을 불러오는 쿼리문 -->
+<!-- business Board 글 내용에서 답글을 누르면 답글을 띄울 때 본문 내용을 에디터에 띄워주는 쿼리문 -->
 <select id="selectDetail" resultType="kr.or.epm.VO.BusinessBoard">
-select no, title, content, emp_name, regdate, low_dept_name from business where no=#{no}
+select no, title, content, emp_name, regdate, low_dept_name, refer, depth, step from business where no=#{no}
 </select>
 	
 <!-- business board list에서 글을 클릭하여 내용을 불러올 때 댓글 내용도 불러오는 쿼리문 -->	
