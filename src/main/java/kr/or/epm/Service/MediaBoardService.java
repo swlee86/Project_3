@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.MediaBoardDAO;
 import kr.or.epm.VO.MediaBoard;
+import kr.or.epm.VO.MediaBoardReply;
 
 @Service
 public class MediaBoardService {
@@ -25,7 +26,7 @@ public class MediaBoardService {
 		return list;
 	}
 
-	//전체 게시글 수
+	//전체 게시글 수 구하는 함수
 	public int selectCount(String field, String query) {
 		int totalcount = 0;
 		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
@@ -33,4 +34,19 @@ public class MediaBoardService {
 		System.out.println("=>  게시글 총 수 : "+ totalcount);
 		return totalcount;
 	}
+	
+	//게시판 상세글 불러오는 함수
+	public MediaBoard selectDetail(int no){
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		MediaBoard list = mediaBoardDAO.selectDetail(no);
+		return list;
+	}
+	
+	//게시판 상세글 리플 불러오는 함수
+	public List<MediaBoardReply> selectReList(int no){
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		List<MediaBoardReply> relist = mediaBoardDAO.selectReList(no);
+		return relist;
+	}
+	
 }
