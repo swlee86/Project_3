@@ -29,6 +29,7 @@ public class MediaBoardController {
 	public String media_board_list(String pg , String f , String q , Model model) {
 		System.out.println("media_board_list() 컨트롤러 탐");
 		
+		/*System.out.println("q : "+q +" q!==null : "+(q != null)+"q.equals('') : "+q.equals(""));*/
 		int totalcount = 0;
 		int cpage = 1;
 		int pagecount = 0;
@@ -40,13 +41,13 @@ public class MediaBoardController {
 		List<MediaBoard> list = null;
 		
 		
-		if(pg != null && pg.equals("")){
+		if(pg != null && !pg.equals("")){
 			cpage = Integer.parseInt(pg);
 		}
-		if(f != null && f.equals("")){
+		if(f != null && !f.equals("")){
 			field = f;
 		}
-		if(q != null && q.equals("")){
+		if(q != null && !q.equals("")){
 			query = q;
 		}
 		
