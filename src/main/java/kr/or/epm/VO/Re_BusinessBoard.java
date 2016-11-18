@@ -5,7 +5,7 @@ package kr.or.epm.VO;
 작성자 :	김주희
 사용 목적 :	업무정보공유게시판 덧글에 대한 VO
 **/
-public class Re_business {
+public class Re_BusinessBoard {
 	private String re_no;
 	private String no;
 	private String emp_no;

@@ -12,9 +12,9 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Mailbox</span></li>
+					<li><a href="index.do">Main</a></li>
+					<li><span>게시판 서비스</span></li>
+					<li class="active"><span>업무정보 공유 게시판</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">업무 정보 공유 게시판</h2>
@@ -57,52 +57,21 @@
 
 							<!-- Comments -->
 							<div class="forum-comments">
+								<c:forEach var="re_list" items="${re_list}">
 								<div class="media">
-									<a class="pull-left"> <img src="images/a1.jpg"
-										alt="profile-picture">
+									<a class="pull-left"> <img src="images/a1.jpg" alt="profile-picture">
 									</a>
 
 									<div class="media-body">
-										<span class="font-bold">John Novak</span> <small
-											class="text-muted">21.03.2015</small>
+										<span class="font-bold">${re_list.emp_name}</span> <small
+											class="text-muted">${re_list.regdate}</small>
 
-										<div class="social-content">Injected humour, or
-											randomised words which don't look even slightly believable.
-											Proin eu tempus tortor, vitae bibendum est. Nam placerat
-											hendrerit rhoncus.</div>
-									</div>
-								</div>
-								<div class="media">
-									<a class="pull-left"> <img src="images/a3.jpg"
-										alt="profile-picture">
-									</a>
-
-									<div class="media-body">
-										<span class="font-bold">Mark Smith</span> <small
-											class="text-muted">14.04.2015</small>
-										<div class="social-content">Many desktop publishing
-											packages and web page editors.Morbi imperdiet sem non
-											dignissim vulputate. Cras maximus porttitor dui sed placerat.
-											Integer eleifend pulvinar arcu at mattis. Ut porta tellus id
-											enim volutpat, non pharetra elit vestibulum.</div>
-									</div>
-								</div>
-								<div class="media">
-									<a class="pull-left"> <img src="images/a9.jpg"
-										alt="profile-picture">
-									</a>
-
-									<div class="media-body">
-										<span class="font-bold">John Smith</span> <small
-											class="text-muted">22.11.2015</small>
-										<div class="social-content">Nunc egestas eu odio ut
-											pellentesque. Fusce sagittis quam et lobortis scelerisque.
-											Nulla in libero lacinia, fringilla magna in, congue diam.
-											Vivamus fermentum eget erat hendrerit mattis. Nulla facilisi.
+										<div class="social-content">
+											${re_list.content}
 										</div>
 									</div>
 								</div>
-
+								</c:forEach>
 								<form>
 									<div class="input-group">
 										<input type="text" class="form-control "
@@ -117,6 +86,7 @@
 							<br>
 							<div class="row" style="text-align:center">
 								<a href="business_board_list.do?currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success">뒤로 가기</button></a>
+								<button type="button" class="btn btn-sm btn-success">답글 달기</button>
 							</div>
 						</div>
 					</div>

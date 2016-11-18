@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.epm.Service.BusinessBoardService;
 import kr.or.epm.VO.BusinessBoard;
+import kr.or.epm.VO.Re_BusinessBoard;
 
 /*
  * 작성자 : 이상원
@@ -74,12 +75,15 @@ public class BusinessBoardController {
 	public String business_board_view(Model mv, int no, int currentpage, int pagesize){
 		String link = null;
 		BusinessBoard businessboard = null;
+		List<Re_BusinessBoard> re_list = null;
 		try{
-			businessboard = businessboardservice.selectDetail(no);			
+			businessboard = businessboardservice.selectDetail(no);
+			re_list = businessboardservice.selectReList(no);
 		}catch(Exception e){
 			
 		}finally{
 			mv.addAttribute("list", businessboard);
+			mv.addAttribute("re_list", re_list);
 			mv.addAttribute("currentpage", currentpage);
 			mv.addAttribute("pagesize", pagesize);
 			link = "board_business.business_board_view";

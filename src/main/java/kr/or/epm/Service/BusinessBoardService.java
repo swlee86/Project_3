@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.BusinessBoardDAO;
 import kr.or.epm.VO.BusinessBoard;
+import kr.or.epm.VO.Re_BusinessBoard;
 
 @Service
 public class BusinessBoardService {
@@ -37,5 +38,11 @@ public class BusinessBoardService {
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
 		BusinessBoard businessboard = businessboarddao.selectDetail(no);
 		return businessboard;
+	}
+	
+	public List<Re_BusinessBoard> selectReList(int no){
+		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
+		List<Re_BusinessBoard> list = businessboarddao.selectReList(no);
+		return list;
 	}
 }

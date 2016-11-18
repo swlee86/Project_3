@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.BusinessBoard;
+import kr.or.epm.VO.Re_BusinessBoard;
 
 public interface BusinessBoardDAO {
 	
@@ -10,4 +11,5 @@ public interface BusinessBoardDAO {
 	List<BusinessBoard> selectList(int start, int end);
 	int selectBoardCount();
 	BusinessBoard selectDetail(int no);
+	List<Re_BusinessBoard> selectReList(int no);
 }
