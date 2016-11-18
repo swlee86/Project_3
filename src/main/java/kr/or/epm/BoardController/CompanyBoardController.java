@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.or.epm.Service.BusinessBoardService;
 import kr.or.epm.Service.CompanyBoardService;
 import kr.or.epm.VO.Company;
 
@@ -28,9 +27,8 @@ public class CompanyBoardController {
 	@RequestMapping("/info_board_list.do")
 	public String info_board_list(String pagesize, String currentpage, Model model) {
 		int totalcount = companyBoardService.selectBoardCount();
-		System.out.println("게시글 총 수 : "+totalcount);
 		int pagecount = 0;
-		System.out.println("처음 들어온 currentpage : " + currentpage);
+
 		
         if(pagesize == null || pagesize.trim().equals("")){
             pagesize = "10"; 			// default 10건씩 
@@ -40,7 +38,6 @@ public class CompanyBoardController {
             currentpage = "1";        //default 1 page
         }
         
-        System.out.println("최종 currentpage : " + currentpage);
         
       
         int pgsize = Integer.parseInt(pagesize);  		// 10
@@ -55,18 +52,38 @@ public class CompanyBoardController {
         
         List<Company> list = null;
         try{
-        	
         	list = companyBoardService.selectBoard(cpage, pgsize);
-        	System.out.println("컴패니 컨트롤러 : "+list.size());
-        	
         }catch (Exception e) {
-        	e.getMessage();
-        }finally{
-        	model.addAttribute("companyList", list);
-        }
+        	e.printStackTrace();
+		}finally {
+			model.addAttribute("companyList", list);
+			model.addAttribute("cpage", cpage);
+			model.addAttribute("psize", pgsize);
+			model.addAttribute("pagecount", pagecount);
+			model.addAttribute("totalcount", totalcount);
 		
+		}
+        
 		return "board_info.info_board_list";
 	}
+	
+	//상세보기		  
+	@RequestMapping("/detailinfo_board_list.do")
+	public String detailView(String no, int currentpage, int pagesize, Model model){
+		Company company = null;
+		System.out.println("넘어온 글번호 : "+no + "/currentPage : "+currentpage + "/pagesize : "+pagesize);
+		int no2 = Integer.parseInt(no);
+		try{
+			 company = companyBoardService.selectDetailBoard(no2);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			model.addAttribute("company", company);
+		}
+		
+		return "board_info.info_board_view";
+	}
+	
 	
 	@RequestMapping(value="/CompanyBoardWrite.do", method=RequestMethod.POST)
 	public String test(String title, String infotext){

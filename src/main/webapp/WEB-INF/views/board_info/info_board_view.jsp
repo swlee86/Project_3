@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -35,30 +35,21 @@
 							alt="profile-picture">
 						</a>
 						<div class="media-body">
-							<small>Created by: <span class="font-bold">Mike
-									Smith</span>
-							</small> <br /> <small class="text-muted">21.03.2015, 06:45 pm</small>
+							<small>작성자 : <span class="font-bold">관리자
+									</span>
+							</small> <br /> <small class="text-muted">${company.regdate}</small>
 						</div>
 					</div>
 				</div>
-				<div class="panel-body">
-					<a href="blog_details.html">
-						<h4>Article about new design</h4>
-					</a>
-					<p>There are many variations of passages of Lorem Ipsum
-						available, but the majority have suffered alteration in some form,
-						by injected humour, or randomised words which don't look even
-						slightly believable. If you are going to use a passage of Lorem
-						Ipsum...</p>
-					<p>Praesent eget euismod nibh. Fusce ac tellus eu nisl lobortis
-						maximus ac eget sapien. Nulla malesuada mauris non nulla imperdiet
-						ullamcorper.</p>
+				<div class="panel-body"><!-- 
+					<a href="blog_details.html"></a> -->
+						${company.content}
 				</div>
 				<div class="panel-footer">
 					 <span class="pull-right">
-	                  	<button type="button" class="btn btn-xs  btn-success"  >뒤로가기</button>
+					 	<a href="info_board_list.do?currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-xs btn-success">뒤로 가기</button></a>
 	                </span>
-					<i class="fa fa-eye"> </i> 142 views
+					<i class="fa fa-eye"> </i> ${company.hit}
 				
 				</div>
 			</div>

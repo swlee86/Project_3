@@ -30,8 +30,9 @@ public class AdminAjaxController {
 	//지점 선택후 조회 클릭 했을시 지점 상세정보 출력
 	@RequestMapping("/selectBranchList.do")
 	public View branchList(String selectBranchName , Model model){	
-		
+		System.out.println("넘어온 데이타 : "+selectBranchName);
 		Branch dto = adminservice.chooseBranch(selectBranchName);
+		System.out.println("어드민 아작스 : "+dto.toString());
 		model.addAttribute(dto);
 		return jsonview;
 	}

@@ -55,6 +55,7 @@
                     <tr style="background-color:#f6f6f6;">
                         <th style="text-align:center">번호</th>
                         <th style="width:50%;">제목</th>
+                        <th>내용</th>
                         <th >작성자명</th>
                         <th >작성일시</th>
                         <th >조회수</th>
@@ -64,11 +65,12 @@
                  		<c:forEach var="list" items="${companyList}">
                  			<tr>
                  				<td>${list.no}</td>
-                 				<td>${list.title}</td>
+                 				<td><a href="detailinfo_board_list.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">${list.title}</a></td>
                  				<td>${list.content}</td>
+                 				<td>관리자</td>
                  				<td>${list.regdate}</td>
                  				<td>${list.hit}</td>
-                 			</tr>
+                 			</tr> 
                  		</c:forEach>
                     </tbody>
                 </table>
@@ -80,12 +82,16 @@
             </div>
              <div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button>
-                    <button class="btn btn-default active">1</button>
-                    <button class="btn btn-default  ">2</button>
-                    <button class="btn btn-default">3</button>
-                    <button class="btn btn-default">4</button>
-                    <button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button>
+                    <c:if test="${cpage>1}">
+                    	<a href="info_board_list.do?currentpage=${cpage-1}&pagesize=${psize}"><button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button></a>
+                    </c:if>
+                    <c:forEach var="i" begin="1" end="${pagecount}" step="1">	
+						<a href="info_board_list.do?currentpage=${i}&pagesize=${psize}"><button class="btn btn-default">${i}</button></a>
+					</c:forEach>
+					<c:if test="${cpage>1}">
+                    	<a href="info_board_list.do?currentpage=${cpage+1}&pagesize=${psize}"><button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button></a>
+                	</c:if>
+                
                 </div>
               </div>
         </div> 
