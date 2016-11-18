@@ -35,7 +35,7 @@
 							<div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 제 목 : </label>
 								<div class="col-sm-11">
-									<input type="text" class="form-control input-sm" name="title"
+									<input type="text" class="form-control input-sm" id="info_board_title" name="title"
 										placeholder="안녕하세요">
 								</div>
 							</div>
@@ -53,22 +53,17 @@
 									</div>
 								</div>
 							</div>
-
-						
-
-
 					</div>
 				</div>
 				<div class="panel-body no-padding">
-					<div class="summernote">
-					</div>
+					<textarea class="summernote" name="content"></textarea>
 				</div>
-
+		
 
 				<div class="panel-footer">
 					<div class="pull-right">
 						<div class="btn-group">
-							<button class="btn btn-default">
+							<button class="btn btn-default" id="sendWriteBtn">
 								<i class="fa fa-edit"></i> 글 등록
 							</button>
 							<button class="btn btn-default">
@@ -80,7 +75,9 @@
 					<br>
 
 				</div>
+				
 				</form>
+				
 			</div>
 		</div>
 	</div>

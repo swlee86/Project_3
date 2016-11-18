@@ -108,6 +108,31 @@
         $('.summernote2').summernote({
             airMode: true,
         });
+        
+     /*   $('#sendWriteBtn').click(function(){
+    	   alert("서브밋 호출");
+    	   
+    	   var title = $('#info_board_title').val();
+    	   //var status = $('.note-editable').text();
+    	   var status = $('.note-editable').html();
+    	   
+    	   alert("제목 : "+title+"/status : "+status);
+    	   
+    	   $.ajax(
+    			     {
+    		   				url : "CompanyBoardWrite.do",
+    		   				Type : "POST",
+    		   				data : {
+    		   							title : title,
+    		   							status : status
+    		   					   },
+    		   				success : function(data){
+    		   					alert("성공");
+    		   				}
+    	   		     }
+    	          )
+    	   
+    	 }); */
 
     });
 
