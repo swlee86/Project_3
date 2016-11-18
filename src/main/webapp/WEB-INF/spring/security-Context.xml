@@ -10,6 +10,7 @@
   								authentication-failure-url="/login.do?error" />
   <security:logout logout-success-url="/index.html" />
   <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')" />
+  <security:intercept-url pattern="/*board.do" access="hasRole('ROLE_MASTER')" />
 </security:http>
 <security:authentication-manager>
      <security:authentication-provider>
