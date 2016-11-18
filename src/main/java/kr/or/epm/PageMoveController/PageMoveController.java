@@ -129,7 +129,7 @@ public class PageMoveController {
 	//회사정보 게시판  > 글쓰기페이지이동 
 	@RequestMapping("/info_board_write.do")
 	public String info_board_write() {
-		return "board_info/info_board_write";
+		return "board_info.info_board_write";
 	}
 	//회사정보 게시판 > 글보기페이지 이동
 	@RequestMapping("/info_board_view.do")
@@ -245,7 +245,7 @@ public class PageMoveController {
 	//자유게시판  > 자유게시판 글쓰기 페이지 이동
 	@RequestMapping("/free_board_write.do")
 	public String free_board_write(){
-		return "board_free/free_board_write";
+		return "board_free.free_board_write";
 	}
 
 	//언론게시판  > 언론게시판 리스트 페이지 이동
@@ -257,7 +257,7 @@ public class PageMoveController {
 	//언론게시판  > 언론게시판 글쓰기 페이지 이동
 	@RequestMapping("/media_board_write.do")
 	public String media_board_write(){
-		return "board_media/media_board_write";
+		return "board_media.media_board_write";
 	}
 	
 	
@@ -289,7 +289,7 @@ public class PageMoveController {
 	//업무정보게시판  > 업무정보게시판  글쓰기 페이지 이동
 	@RequestMapping("/business_board_write.do")
 	public String business_board_write(){
-		return "board_business/business_board_write";
+		return "board_business.business_board_write";
 	}
 	
 
