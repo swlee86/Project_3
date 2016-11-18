@@ -53,8 +53,8 @@
 						<div class="media-body">
 							<h5>${list.title}</h5>
 							 	${list.content}
-							 </i>
-
+							 	
+							 	
 							<!-- Comments -->
 							<div class="forum-comments">
 								<c:forEach var="re_list" items="${re_list}">

@@ -95,5 +95,14 @@ public class BusinessBoard {
 		this.file_name = file_name;
 	}
 	
+	@Override
+	public String toString() {
+		return "BusinessBoard [no=" + no + ", emp_no=" + emp_no + ", emp_name=" + emp_name + ", low_dept_no="
+				+ low_dept_no + ", low_dept_name=" + low_dept_name + ", refer=" + refer + ", depth=" + depth + ", step="
+				+ step + ", hit=" + hit + ", title=" + title + ", content=" + content + ", regdate=" + regdate
+				+ ", file_name=" + file_name + "]";
+	}
+	
+	
 	
 }

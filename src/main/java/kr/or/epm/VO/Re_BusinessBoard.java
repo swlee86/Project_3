@@ -12,7 +12,29 @@ public class Re_BusinessBoard {
 	private String emp_name;
 	private String content;
 	private String regdate;
+	private String low_dept_no;
+	private String low_dept_name;
 	
+	
+	
+	
+	
+	public String getLow_dept_no() {
+		return low_dept_no;
+	}
+
+	public void setLow_dept_no(String low_dept_no) {
+		this.low_dept_no = low_dept_no;
+	}
+
+	public String getLow_dept_name() {
+		return low_dept_name;
+	}
+
+	public void setLow_dept_name(String low_dept_name) {
+		this.low_dept_name = low_dept_name;
+	}
+
 	public String getRe_no() {
 		return re_no;
 	}
@@ -60,12 +82,15 @@ public class Re_BusinessBoard {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Re_business [re_no=" + re_no + ", no=" + no + ", emp_no=" + emp_no + ", emp_name=" + emp_name
-				+ ", content=" + content + ", regdate=" + regdate + "]";
+		return "Re_BusinessBoard [re_no=" + re_no + ", no=" + no + ", emp_no=" + emp_no + ", emp_name=" + emp_name
+				+ ", content=" + content + ", regdate=" + regdate + ", low_dept_no=" + low_dept_no + ", low_dept_name="
+				+ low_dept_name + "]";
 	}
+	
+
 	
 	
 

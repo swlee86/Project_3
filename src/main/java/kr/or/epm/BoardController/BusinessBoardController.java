@@ -25,6 +25,7 @@ public class BusinessBoardController {
 	@Autowired
 	private BusinessBoardService businessboardservice;
 	
+	
 
 	//업무정보게시판  > 업무정보게시판  리스트 페이지 이동
 	@RequestMapping("/business_board_list.do")
@@ -101,17 +102,41 @@ public class BusinessBoardController {
 	}
 	
 	@RequestMapping(value="/business_board_write.do", method=RequestMethod.POST)
-	public int business_board_write_Ok(Principal principal, BusinessBoard board){
+	public String business_board_write_Ok(Principal principal, BusinessBoard board, Model mv){
 		String id= principal.getName();
 		System.out.println(id);
-		BusinessBoard business = businessboardservice.selectWrite(id);
+		Re_BusinessBoard business = businessboardservice.selectWrite(id);
+		int maxrefer = businessboardservice.selectRefer();
+		
 		board.setEmp_no(business.getEmp_no());
-		board.setEmp_name(business.getEmp_name());
+		board.setEmp_name(business.getEmp_name());;
 		board.setLow_dept_no(business.getLow_dept_no());
 		board.setLow_dept_name(business.getLow_dept_name());
+		board.setRefer(maxrefer+1);
 		
+		if(board.getFile_name()==null){
+			board.setFile_name("0");
+		}
 		
-		
-		return 0;
+		System.out.println(board.toString());
+		int result = 0;
+		String link = null;
+		String msg = null;
+		try{
+			result = businessboardservice.insertArticle(board);			
+		}catch(Exception e){
+			e.getMessage();
+		}finally{
+			if(result>0){
+				link = "business_board_list.do";
+				msg = "글 입력에 성공하였습니다.";
+			}else{
+				link = "business_board_list.do";
+				msg = "글 입력에 실패하였습니다.";
+			}
+			mv.addAttribute("link", link);
+			mv.addAttribute("msg", msg);
+		}
+		return "board_business.business_redirect";
 	}
 }

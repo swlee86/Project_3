@@ -23,11 +23,21 @@ select title, content, emp_name, regdate, low_dept_name from business where no=#
 select emp_name, content, regdate from (select rownum rn, emp_name, content, regdate from re_business where no=#{no} order by re_no asc)
 </select>
 
-<!-- 글을 쓰기 위해 필요한 데이터인 emp_no, emp_name, low_dept_name을 불러온다 -->	
+<!-- 글을 쓰기 위해 필요한 데이터인 emp_no, emp_name, low_dept_no, low_dept_name을 불러온다 -->	
 <select id="selectWrite" resultType="kr.or.epm.VO.Re_BusinessBoard">
 select e.emp_no, e.emp_name, l.low_dept_name, e.low_dept_no from (select e.emp_no, e.low_dept_no, e.emp_name from emp e join (select emp_no from emp_detail ed where id=#{id}) ed on e.emp_no=ed.emp_no) e join low_dept l on e.low_dept_no=l.low_dept_no
 </select>
 
+<!-- 글쓰기시 Refer 설정을 위해 최대 Refer 값을 불러온다 -->
+<select id="selectRefer" resultType="int">
+select nvl(max(refer),0) from business
+</select>
 
+
+<!-- 글쓰기 진행시 글을 인서트 하는 쿼리문 -->
+<insert id="insertArticle" parameterType="kr.or.epm.VO.BusinessBoard">
+insert into business(no, emp_no, emp_name, low_dept_no, low_dept_name, refer, depth, step, hit, title, content, regdate, file_name)
+values(BUSINESS_SEQ.nextval, #{emp_no}, #{emp_name}, #{low_dept_no}, #{low_dept_name}, #{refer}, #{depth}, #{step}, #{hit}, #{title},#{content}, to_char(sysdate, 'YYYY-MM-DD'), #{file_name})
+</insert>
 
 </mapper>

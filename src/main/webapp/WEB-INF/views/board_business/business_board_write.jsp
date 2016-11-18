@@ -44,9 +44,8 @@
 								</label>
 								<div class="col-sm-11">
 									<div class="btn-group">
-										<button class="btn btn-default">
-											<i class="fa fa-paperclip"></i>
-										</button>
+										<input type="button" class="btn btn-default" value="파일">
+										
 										<button class="btn btn-default">
 											<i class="fa fa-image"></i>
 										</button>
@@ -57,24 +56,21 @@
 				</div>
 				<div class="panel-body no-padding">
 					<div>
-							<input type="hidden" id="content" name="content"  class="summernote">
+					<textarea rows="20" cols="20" id="content" name="content"  class="summernote"></textarea>
 					</div>
 				</div>
-			</form>				
 				
 				<div class="panel-footer">
 					<div class="pull-right">
 						<div class="btn-group">
 							<input type="submit" class="btn btn-default fa fa-edit" value="글쓰기">
-							<button class="btn btn-default">
-								<i class="fa fa-refresh"></i> 목록으로
-							</button>
+							<button class="btn btn-default"><i class="fa fa-refresh"></i> 목록으로</button>
 						</div>
 					</div>
 					<br>
 					<br>
-
 				</div>
+			</form>				
 			</div>
 		</div>
 	</div>

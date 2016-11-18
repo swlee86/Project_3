@@ -48,9 +48,23 @@ public class BusinessBoardService {
 	}
 	
 	//BusinessBoard에 글을 쓰기 위해서 미리 필요한 데이터를 불러와서 BusinessDTO에 저장하는 서비스 함수
-	public BusinessBoard selectWrite(String id){
+	public Re_BusinessBoard selectWrite(String id){
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
-		BusinessBoard businessboard = businessboarddao.selectWrite(id);
+		Re_BusinessBoard businessboard = businessboarddao.selectWrite(id);
 		return businessboard;
+	}
+	
+	//최대 Refer 값을 불러오는 함수
+	public int selectRefer(){
+		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
+		int refer = businessboarddao.selectRefer();
+		return refer;
+	}
+	
+	//최초 글쓰기시 적용되는 서비스 함수(refer+1)
+	public int insertArticle(BusinessBoard dto){
+		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
+		int result = businessboarddao.insertArticle(dto);
+		return result;
 	}
 }
