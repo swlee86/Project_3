@@ -24,12 +24,27 @@ public class CompanyBoardService {
 	@Autowired
 	private SqlSession sqlSession;
 
+	
+	//Company 제목 검색 리스트 가져오기
+	public List<Company> selectChooseBoard(String title, int cpage, int pgsize){
+		
+		int start = cpage * pgsize - (pgsize - 1);
+		int end = cpage * pgsize;
+		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
+		
+		List<Company> list = companyboarddao.selectSeacrchCompanyList(start, end, title);
+		for(int i = 0; i < list.size(); i++){
+			System.out.println("서비스 : "+list.get(i).toString());
+		}
+		
+		return list;
+	}
+	
 	//Company 리스트 가져오기
 	public List<Company> selectBoard(int cpage, int pgsize) {
 
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
-		System.out.println("서비스 셀렉트보드 : " + start + " / " + end);
 		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
 		List<Company> list = companyboarddao.selectCompanyList(start, end);
 		System.out.println("서비스 부분 : " + list.size());
@@ -54,12 +69,12 @@ public class CompanyBoardService {
 	
 	
 	//회사 정보게시판 글쓰기
-	public int insertInfoBoard(String title, String content){
-		System.out.println("제목 : "+title+ " / 내용 : "+content);
+	public int insertInfoBoard(Company company){
+		System.out.println("글쓰기 : "+company.toString());
 		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
-		int result = companyboarddao.insertInfoBoard(title, content);
+		int result = companyboarddao.insertInfoBoard(company);
 		
-		return 0;
+		return result;
 	}
 	
 	//글쓴이 정보 보기

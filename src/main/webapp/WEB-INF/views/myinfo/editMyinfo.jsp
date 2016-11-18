@@ -34,33 +34,40 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<form class="form-horizontal">
+					<form class="form-horizontal" method="POST">
  						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">사번</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" readonly="readonly" placeholder="사번">
+									<input type="text" class="form-control" readonly="readonly" name="emp_no">
 								</div>
 							</div>
 
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">부서</label>
 								<div class="col-sm-7">
-									<input type="text" readonly="readonly" class="form-control"  placeholder="개발부">
+									<input type="text" readonly="readonly" class="form-control" name="dept_name">
+								</div>
+							</div>
+							
+							<div class="form-group col-lg-12">
+								<label class="col-sm-3 control-label" style="text-align: right;">이름</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control"  readonly="readonly" name="emp_name">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">아이디</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" readonly="readonly" placeholder="아이디">
+									<input type="text" class="form-control" readonly="readonly" name="id">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">비밀번호</label>
 								<div class="col-sm-7">
-									<input type="password" class="form-control"  value="">
+									<input type="password" class="form-control" name="pwd">
 								</div>
 							</div>
 							
@@ -72,18 +79,13 @@
 								<span id="chkpass" style="color: blue;"></span>	
 							</div>
 							
-							<div class="form-group col-lg-12">
-								<label class="col-sm-3 control-label" style="text-align: right;">이름</label>
-								<div class="col-sm-7">
-									<input type="text" class="form-control"  placeholder="홍길동">
-								</div>
-							</div>
+							
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">주소</label>
 								<div class="col-sm-7">
 									<div class="input-group">
-										<input type="text" id="sample6_postcode" class="form-control" placeholder="우편번호">
+										<input type="text" id="sample6_postcode" class="form-control" placeholder="" name="postcode">
 										<span class="input-group-btn">
 											<input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-success "  value="우편번호 찾기">
 										</span> 			
@@ -92,45 +94,31 @@
 								<br/>
 								<div class="col-sm-3"></div>
 								<div class=" col-sm-4">
-									<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소">
+									<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소" name="addr">
 								</div>
 								<div class=" col-sm-3">
-									<input type="text" id="sample6_address2"  class="form-control"  placeholder="상세주소">
+									<input type="text" id="sample6_address2"  class="form-control"  placeholder="상세주소" name="addr_detail">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">연락처</label>
 								<div class="col-sm-7">
-									<div class="col-sm-2" style="padding: 0px;">
-										<input type="tel" class="form-control">								
-									</div>
-									<div class="col-sm-1">
-									_
-									</div>
-									<div class="col-sm-4" style="padding: 0px;">
-										<input type="tel" class="form-control">
-									</div>
-									<div class="col-sm-1">
-									_
-									</div>
-									<div class="col-sm-4 " style="padding: 0px;">
-										<input type="tel" class="form-control">
-									</div>
+									<input type="text" class="form-control" name="cell_phone">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">이메일</label>
 								<div class="col-sm-7">
-									<input type="email" class="form-control"  placeholder="example@gmail.com">
+									<input type="email" class="form-control"  placeholder="example@gmail.com" name="email">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">은행</label>
 								<div class="col-sm-7">
-									<select class="form-control" >
+									<select class="form-control" name="bank">
 													<option>국민</option>
 													<option>신한</option>
 													<option>기업</option>
@@ -144,7 +132,7 @@
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">계좌번호</label>
 								<div class="col-sm-7">
-									<input type="email" class="form-control"  placeholder="123456-22-123456">
+									<input type="email" class="form-control"  placeholder="123456-22-123456" name="account">
 								</div>
 							</div>
 							
