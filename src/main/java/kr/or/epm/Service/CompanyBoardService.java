@@ -27,12 +27,12 @@ public class CompanyBoardService {
 	 public List<Company> selectBoard(int cpage, int pgsize){ 
 	  int start = cpage * pgsize -(pgsize - 1); 
 	  int end = cpage * pgsize; 
-	  System.out.println(start + " / "+ end); 
+	  System.out.println("서비스 셀렉트보드 : " +start + " / "+ end); 
 	  CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);	
 	  List<Company> list = companyboarddao.selectCompanyList(start, end);
-	  
+	  System.out.println("서비스 부분 : "+list.size());
 	  for(int i = 0; i < list.size(); i++){
-		  System.out.println("리스트 이름 : " +list.get(i).getEmp_name());
+		  System.out.println("리스트 이름 : " +list.get(i).toString());
 	  }
 	  
 	  return list; 
