@@ -14,7 +14,6 @@
 					<h2 class="font-light m-b-xs">급여 조회</h2>
 				</div>
 			</div>
-
 			<form class="form-inline">
 
 				<div class="form-group">
