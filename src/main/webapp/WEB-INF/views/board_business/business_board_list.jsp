@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
@@ -62,15 +62,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="list" items="${list}">
-                    <tr>
-                        <td style="text-align:center">${list.no}</td>
-                        <td><a href="business_board_view.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">${list.title}</a>&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
-                        <td>${list.emp_name}(${list.low_dept_name})</td>
-                        <td>${list.regdate}</td>
-                        <td>${list.hit}</td>
-                    </tr>
-                    </c:forEach>
+                    
                     </tbody>
                 </table>
                  <div class="row" style="text-align:right; margin-right:5px;">
@@ -81,16 +73,12 @@
             </div>
              <div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
-					<c:if test="${cpage>1}">
-                    	<a href="business_board_list.do?currentpage=${cpage-1}&pagesize=${psize}"><button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button></a>
-                    </c:if>
-                    <c:forEach var="i" begin="1" end="${pagecount}" step="1">	
-						<a href="business_board_list.do?currentpage=${i}&pagesize=${psize}"><button class="btn btn-default">${i}</button></a>
-					</c:forEach>
-					<c:if test="${cpage>1}">
-                    	<a href="business_board_list.do?currentpage=${cpage+1}&pagesize=${psize}"><button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button></a>
-                	</c:if>
-                
+                    <button type="button" class="btn btn-default"><i class="fa fa-chevron-left" style=" font-size: 20px;"></i></button>
+                    <button class="btn btn-default active">1</button>
+                    <button class="btn btn-default  ">2</button>
+                    <button class="btn btn-default">3</button>
+                    <button class="btn btn-default">4</button>
+                    <button type="button" class="btn btn-default "><i class="fa fa-chevron-right" style=" font-size: 20px;"></i></button>
                 </div>
               </div>
         </div> 
