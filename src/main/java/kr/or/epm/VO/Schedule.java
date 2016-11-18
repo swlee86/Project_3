@@ -21,7 +21,7 @@ public class Schedule {
 	private String cg_color;
 	private String cg_name; 
 	private String step_name;
-	private String step;
+	private int step;
 	
 	public String getSch_no() {
 		return sch_no;
@@ -119,11 +119,11 @@ public class Schedule {
 		this.step_name = step_name;
 	}
 
-	public String getStep() {
+	public int getStep() {
 		return step;
 	}
 
-	public void setStep(String step) {
+	public void setStep(int step) {
 		this.step = step;
 	}
 

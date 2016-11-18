@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 수신된 전자결재문서 상세보기(대외발신공문) -->
-	<select id="selectOffice" resultType="hashmap">
+	<select id="selectOffice" resultType="kr.or.epm.VO.Office">
 		select d.draft_no, rec_place, rec_fax, rec_person, rec_tel, 
 			   rec_postcode, rec_addr, rec_addr_detail, cg_no, draft_title,
          		draft_content, emp_no, draft_date, file_name, 
@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 수신된 전자결재문서 상세보기(휴가신청) -->
-	<select id="selectBreak" resultType="hashmap">
+	<select id="selectBreak" resultType="kr.or.epm.VO.Break">
 		select d.draft_no, break_start, break_end, break_term, 
 			   b.break_cg_no, break_cg_name,cg_no, draft_title,
          		draft_content, emp_no, draft_date, file_name, step_no, 
@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 수신된 전자결재문서 상세보기(협조문) -->
-	<select id="selectCooperation" resultType="hashmap">
+	<select id="selectCooperation" resultType="kr.or.epm.VO.Cooperation">
 		select d.draft_no, c.low_dept_no, dept_no, branch_name, 
 			   dept_name, low_dept_name, tel, fax, 
 			   pre_low_dept_no, his_check, depth,
