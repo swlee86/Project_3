@@ -28,9 +28,10 @@
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
+				<form method="POST" class="form-horizontal" action="CompanyBoardWrite.do">
 				<div class="panel-heading hbuilt">
 					<div class="p-xs">
-						<form method="get" class="form-horizontal">
+						
 							<div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 제 목 : </label>
 								<div class="col-sm-11">
@@ -53,13 +54,13 @@
 								</div>
 							</div>
 
-						</form>
+						
 
 
 					</div>
 				</div>
 				<div class="panel-body no-padding">
-					<div class="summernote" name="infotext">
+					<div class="summernote">
 					</div>
 				</div>
 
@@ -79,6 +80,7 @@
 					<br>
 
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>

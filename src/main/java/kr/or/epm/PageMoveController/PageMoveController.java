@@ -120,12 +120,7 @@ public class PageMoveController {
 	public String chat_wsview() {
 		return "chat.chat_ws";
 	}
-	
-	//회사정보 게시판  > 리스트페이지이동 
-	@RequestMapping("/info_board_list.do")
-	public String info_board_list() {
-		return "board_info.info_board_list";
-	}
+
 	//회사정보 게시판  > 글쓰기페이지이동 
 	@RequestMapping("/info_board_write.do")
 	public String info_board_write() {
