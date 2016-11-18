@@ -1,7 +1,5 @@
 package kr.or.epm.VO;
 
-import java.io.File;
-
 public class BusinessBoard {
 	private String no;
 	private String emp_no;

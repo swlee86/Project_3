@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.epm.Service.BusinessBoardService;
 import kr.or.epm.VO.BusinessBoard;
@@ -21,6 +22,9 @@ public class BusinessBoardController {
 	@Autowired
 	private BusinessBoardService businessboardservice;
 	
+
+	//업무정보게시판  > 업무정보게시판  리스트 페이지 이동
+	@RequestMapping("/business_board_list.do")
 	public String em(Model mv, String pagesize, String currentpage){
 		int totalcount = businessboardservice.selectBoardCount();
 		int pagecount = 0;
@@ -63,6 +67,31 @@ public class BusinessBoardController {
 			mv.addAttribute("totalcount", totalcount);
 		}
 		return "board_business.business_board_list";
+	}
+	
+	//업무정보게시판  > 업무정보게시판  상세 페이지 이동
+	@RequestMapping("/business_board_view.do")
+	public String business_board_view(Model mv, int no, int currentpage, int pagesize){
+		String link = null;
+		BusinessBoard businessboard = null;
+		try{
+			businessboard = businessboardservice.selectDetail(no);			
+		}catch(Exception e){
+			
+		}finally{
+			mv.addAttribute("list", businessboard);
+			mv.addAttribute("currentpage", currentpage);
+			mv.addAttribute("pagesize", pagesize);
+			link = "board_business.business_board_view";
+		}
+		
+		return link;
+	}
+	
+	//업무정보게시판  > 업무정보게시판  글쓰기 페이지 이동
+	@RequestMapping("/business_board_write.do")
+	public String business_board_write(){
+		return "board_business.business_board_write";
 	}
 
 }

@@ -15,6 +15,7 @@ public class BusinessBoardService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//BusinessBoard의 리스트를 불러오는 함수(페이징 처리 포함)
 	public List<BusinessBoard> selectBoard(int cpage, int pgsize){
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
@@ -24,10 +25,17 @@ public class BusinessBoardService {
 		return list;
 	}
 	
-	//Emp 테이블의 열 갯수를 구하는 서비스 함수
+	//Business 테이블의 열 갯수를 구하는 서비스 함수
 	public int selectBoardCount(){
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
 		int result = businessboarddao.selectBoardCount();
 		return result;
+	}
+	
+	//글번호를 가지고 상세 내역을 불러오는 서비스 함수
+	public BusinessBoard selectDetail(int no){
+		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
+		BusinessBoard businessboard = businessboarddao.selectDetail(no);
+		return businessboard;
 	}
 }

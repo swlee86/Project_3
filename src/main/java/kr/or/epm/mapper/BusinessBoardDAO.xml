@@ -5,7 +5,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.epm.DAO.BusinessBoardDAO">
 
 <select id="selectList" resultType="kr.or.epm.VO.BusinessBoard">
-select no, title, emp_name, regdate ,hit from business
+select no, title, emp_name, regdate, hit, low_dept_name from (select rownum rn, no, title, emp_name, regdate, hit, low_dept_name from business order by no desc) where rn between 1 and 5
 </select >
+	
+<!-- business Board(business)의 총 갯수를 불러오는 쿼리문 -->
+<select id="selectBoardCount" resultType="int">
+select count(*) from business
+</select>
+
+<select id="selectDetail" resultType="kr.or.epm.VO.BusinessBoard">
+select title, content, emp_name, regdate, low_dept_name from business where no=#{no}
+</select>
+	
 	
 </mapper>

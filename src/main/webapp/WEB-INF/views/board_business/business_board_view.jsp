@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -36,8 +36,8 @@
 
 				<div class="panel-heading">
 					<span class="pull-right"> <i class="fa fa-clock-o"> </i> :
-						10.12.2015, 10:22 am
-					</span> <span class="f"> 게시판 > 업무 정보 공유 게시판 > <span class="text-success">영업부</span>
+						${list.regdate}
+					</span> <span class="f"> 게시판 > 업무 정보 공유 게시판 > <span class="text-success">${list.low_dept_name}</span>
 					</span>
 				</div>
 
@@ -47,27 +47,13 @@
 						<div class="media-image pull-left">
 							<img src="images/a6.jpg" alt="profile-picture">
 							<div class="author-info">
-								<strong>박지은</strong><br> Oct 21.2016
+								<strong>${list.emp_name}</strong><br> ${list.regdate}
 							</div>
 						</div>
 						<div class="media-body">
-							<h5>Fusce tristique massa turpis</h5>
-							Sed venenatis dui non blandit semper. Proin sed ullamcorper arcu,
-							et ullamcorper mauris. Vestibulum ante ipsum primis in faucibus
-							orci luctus et ultrices posuere cubilia Curae; Nullam vitae
-							efficitur urna. Integer vitae mi commodo, porttitor nulla vitae,
-							sollicitudin eros. <br /> <br /> Proin eu tempus tortor, vitae
-							bibendum est. Nam placerat hendrerit rhoncus. Ut finibus, orci ut
-							euismod gravida, felis elit lobortis purus, eget bibendum tortor
-							sapien sit amet turpis. Integer porttitor ligula ac felis
-							imperdiet volutpat. Praesent sit amet libero id eros convallis
-							fringilla tempus vitae est. <br /> <br /> Quisque gravida
-							maximus rhoncus. Lorem ipsum dolor sit amet, consectetur
-							adipiscing elit. Donec eget felis dictum, aliquam nunc vitae,
-							pharetra dolor. Aenean sapien erat, molestie sit amet faucibus
-							non, pharetra a dui. Aenean ut venenatis dolor, et volutpat odio.
-							Nam ultrices gravida ligula sed porta. <br /> <br /> <i> -
-								Best regards, John Jackson </i>
+							<h5>${list.title}</h5>
+							 	${list.content}
+							 </i>
 
 							<!-- Comments -->
 							<div class="forum-comments">
@@ -130,7 +116,7 @@
 							</div>
 							<br>
 							<div class="row" style="text-align:center">
-								<button type="button" class="btn btn-sm btn-success">뒤로 가기</button>
+								<a href="business_board_list.do?currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success">뒤로 가기</button></a>
 							</div>
 						</div>
 					</div>

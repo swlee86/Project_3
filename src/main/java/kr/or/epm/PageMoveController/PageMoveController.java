@@ -274,23 +274,6 @@ public class PageMoveController {
 		return "board_media.media_board_view";
 	}
 	
-	//업무정보게시판  > 업무정보게시판  리스트 페이지 이동
-	@RequestMapping("/business_board_list.do")
-	public String business_board_list(){
-		return "board_business.business_board_list";
-	}
-	
-	//업무정보게시판  > 업무정보게시판  상세 페이지 이동
-	@RequestMapping("/business_board_view.do")
-	public String business_board_view(){
-		return "board_business.business_board_view";
-	}
-	
-	//업무정보게시판  > 업무정보게시판  글쓰기 페이지 이동
-	@RequestMapping("/business_board_write.do")
-	public String business_board_write(){
-		return "board_business.business_board_write";
-	}
 	
 
 	//탈퇴
