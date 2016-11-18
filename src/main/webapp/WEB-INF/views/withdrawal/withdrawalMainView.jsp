@@ -73,7 +73,7 @@
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center">
-		 	탈퇴하시겠습니까?
+		 		<small>탈퇴하시겠습니까?</small>
 		 	</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success">확인</button>
