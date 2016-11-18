@@ -246,11 +246,7 @@ public class PageMoveController {
 	
 	
 	
-	//내정보수정
-	@RequestMapping("/editMyinfo.do")
-	public String editMyinfo(){
-		return "myinfo.editMyinfo";
-	}
+	
 
 
 	
