@@ -30,5 +30,7 @@ public interface MemoDAO {
 	//메모 수정(제목, 내용, 색상)
 	public int updateMemo(Memo dto);
 	
+	//메모 생성,추가
+	public void insertMemo(Memo dto);
 	
 }

@@ -73,9 +73,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	<!-- 일정 등록,추가 -->
+	<insert id="insertSchedule" parameterType="kr.or.epm.VO.Schedule">
+		insert into schedule(sch_no,
+		                     emp_no,
+		                     cg_no,
+		                     sign,
+		                     sch_name,
+		                     sch_start,
+		                     sch_end,
+		                     sch_content,
+		                     step_no)
+		       values(SCHEDULE_SEQ.NEXTVAL,
+		              #{emp_no},
+		              (select cg_no from sch_cg where cg_name=#{cg_name}),
+		              #{sign},
+		              #{sch_name},
+		              #{sch_start},
+		              #{sch_end},
+		              #{sch_content},
+		              (select step_no from sch_step where step_name=#{step_name}))
+	</insert>
+	
 	<!-- 일정 참여자 추가 -->
+	<insert id="insertSchPeople" parameterType="kr.or.epm.VO.Sch_people">
+		insert into sch_people(sch_no,emp_no) values(#{sch_no},#{emp_no})
+	</insert>
 	
 	<!-- 일정 참여자 삭제 -->
-	
+	<delete id="deleteSchPeople" parameterType="kr.or.epm.VO.Sch_people">
+		delete sch_people where sch_no=#{sch_no} and emp_no=#{emp_no}
+	</delete>
 	
 </mapper>

@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Sch_people;
 import kr.or.epm.VO.Schedule;
 
 /**
@@ -30,5 +31,14 @@ public interface ScheduleDAO {
 	//일정 - 진행 단계 수정
 	public int updateSchedule_step(Schedule dto);
 	
+	//일정 등록,추가
+	public void insertSchedule(Schedule dto);
+	
+	//일정 참여자 추가
+	public void insertSchPeople(Sch_people dto);
+	
+	//일정 참여자 삭제
+	public void deleteSchPeople(Sch_people dto);
+
 	
 }
