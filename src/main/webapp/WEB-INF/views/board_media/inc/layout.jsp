@@ -28,7 +28,21 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	<script>
+	$(function(){
+		$('#clip').click(function(){
+			console.log('클릭');
+			$('#clipfile').css('display','block');
+		});
+		$('#img').click(function(){
+			console.log('클릭');
+			$('#imgfile').css('display','block');
+		});
+	});
+	
+	</script>
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
