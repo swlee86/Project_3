@@ -1,11 +1,13 @@
 package kr.or.epm.BoardController;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.epm.Service.BusinessBoardService;
 import kr.or.epm.VO.BusinessBoard;
@@ -93,9 +95,23 @@ public class BusinessBoardController {
 	}
 	
 	//업무정보게시판  > 업무정보게시판  글쓰기 페이지 이동
-	@RequestMapping("/business_board_write.do")
+	@RequestMapping(value="/business_board_write.do", method=RequestMethod.GET)
 	public String business_board_write(){
 		return "board_business.business_board_write";
 	}
-
+	
+	@RequestMapping(value="/business_board_write.do", method=RequestMethod.POST)
+	public int business_board_write_Ok(Principal principal, BusinessBoard board){
+		String id= principal.getName();
+		System.out.println(id);
+		BusinessBoard business = businessboardservice.selectWrite(id);
+		board.setEmp_no(business.getEmp_no());
+		board.setEmp_name(business.getEmp_name());
+		board.setLow_dept_no(business.getLow_dept_no());
+		board.setLow_dept_name(business.getLow_dept_name());
+		
+		
+		
+		return 0;
+	}
 }

@@ -12,4 +12,5 @@ public interface BusinessBoardDAO {
 	int selectBoardCount();
 	BusinessBoard selectDetail(int no);
 	List<Re_BusinessBoard> selectReList(int no);
+	BusinessBoard selectWrite(String id);
 }
