@@ -68,9 +68,16 @@ public class BusinessBoardService {
 		return result;
 	}
 	
+	//덧글 insert 서비스 함수
 	public int insertReply(Re_BusinessBoard dto){
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
 		int result = businessboarddao.insertReply(dto);
 		return result;
+	}
+	
+	//조회수가 올라가는 서비스 함수
+	public void updateHit(int no){
+		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
+		businessboarddao.updateHit(no);
 	}
 }

@@ -16,4 +16,5 @@ public interface BusinessBoardDAO {
 	int selectRefer();
 	int insertArticle(BusinessBoard dto);
 	int insertReply(Re_BusinessBoard dto);
+	void updateHit(int no);
 }

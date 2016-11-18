@@ -49,4 +49,9 @@ insert into RE_BUSINESS(re_no, no, emp_no, emp_name, content, regdate)
 values(RE_BUSINESS_SEQ.nextval, #{no}, #{emp_no}, #{emp_name}, #{content}, to_char(sysdate, 'YYYY-MM-DD'))
 </insert>
 
+<!-- 글을 읽으면 hit가 추가되는 쿼리문 -->
+<update id="updateHit" parameterType="int">
+update business SET hit=hit+1 where no=#{no}
+</update>
+
 </mapper>

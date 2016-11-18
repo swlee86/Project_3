@@ -82,6 +82,7 @@ public class BusinessBoardController {
 		try{
 			businessboard = businessboardservice.selectDetail(no);
 			re_list = businessboardservice.selectReList(no);
+			businessboardservice.updateHit(no);
 		}catch(Exception e){
 			
 		}finally{
