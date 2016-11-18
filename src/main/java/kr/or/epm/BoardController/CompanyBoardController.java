@@ -57,10 +57,12 @@ public class CompanyBoardController {
         try{
         	
         	list = companyBoardService.selectBoard(cpage, pgsize);
-        	model.addAttribute("companyList", list);
+        	System.out.println("컴패니 컨트롤러 : "+list.size());
         	
         }catch (Exception e) {
         	e.getMessage();
+        }finally{
+        	model.addAttribute("companyList", list);
         }
 		
 		return "board_info.info_board_list";
