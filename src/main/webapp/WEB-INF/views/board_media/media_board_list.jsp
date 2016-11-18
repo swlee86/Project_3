@@ -36,71 +36,95 @@
             <div class="panel-heading">
                 	총 개시글 수 : <font color="coral">${totalcount}</font> 개
             </div>
-            <div class="panel-body">
-            	<div class="row" style="text-align:right; margin-right:5px;">
-            			<form action="media_board_list.do"  class="form-inline"  method="get">	
-                 			<select  class="form-control input-sm" name="f">
-                    			<option value="title">제목</option>
-                        		<option value="emp_name">작성자명</option>
-                    		 </select>
+				<div class="panel-body">
+					<div class="row text-right">
+						<div class="col-md-6"></div>
+						<form action="media_board_list.do" class="form-inline ">
+							<div class="col-md-2">
+								<div class="form-group">
+									<select class="form-control input-sm" name="f">
+										<option value="title">제목</option>
+										<option value="emp_name">작성자</option>
+									</select>
+								</div>
+							</div>
 
-
-							<div class="input-group">
-								<input type="text" class="form-control input-sm" name="q" /> <span
-									class="input-group-btn">
-									<button class="btn btn-sm btn-default" type="submit">
-										&nbsp;<span class="fa fa-search"></span>
-									</button>
-								</span>
+							<div class="col-md-4">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm" name="q" />
+										<span class="input-group-btn">
+											<button class="btn btn-default input-sm" type="submit"
+												style="color: #f05050">
+												<span class="fa fa-search"></span>
+											</button>
+										</span>
+									</div>
+								</div>
 							</div>
 						</form>
-                </div> 
-                
-                
-                          	
-                <br>     
-                <hr style="border:1px solid gray; margin-bottom:0px">
-                <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1" class="table  table-hover"   style="text-align:left">
-                    <thead>
-                    <tr style="background-color:#f6f6f6;">
-                        <th  style="text-align:center">번호</th>
-                        <th style="width:50%;">제목</th>
-                        <th>작성자명</th>
-                        <th>작성일시</th>
-                        <th>조회수</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    
-                    <c:forEach items="${list}"  var="n">
-                    	<tr>
-	                        <td  style="text-align:center">${n.no}</td>
-	                        <td>
-	                        	<a href="media_board_view.do?no=${n.no}">${n.title}<c:if test="${not empty file_name}">&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></c:if></a>
-	                        </td>
-	                        <td>${n.emp_name}</td>
-	                        <td>${n.regdate}</td>
-	                        <td>${n.hit}</td>
-                   	 	</tr>
-                    </c:forEach>
+					</div>
 
-                    </tbody>
-                </table>
-                <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button" class="btn w-xs btn-success" onclick="location.href='media_board_write.do'" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">글 등록</button>
-                </div>
-			</div>
 
-            </div>
-             <div class="panel-footer"  style="text-align:center;">
+					<br>
+					<hr style="border: 1px solid gray; margin-bottom: 0px">
+					<div class="table-responsive">
+						<table cellpadding="1" cellspacing="1" class="table  table-hover" style="text-align: left">
+							<thead>
+								<tr style="background-color: #f6f6f6;">
+									<th style="text-align: center">번호</th>
+									<th style="width: 50%;">제목</th>
+									<th>작성자명</th>
+									<th>작성일시</th>
+									<th>조회수</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<c:forEach items="${list}" var="n">
+									<tr>
+										<td style="text-align: center">${n.no}</td>
+										<td>
+											<a href="media_board_view.do?no=${n.no}&pg${pg}">${n.title}
+											<c:if test="${empty n.file_name}">
+												&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG">
+											</c:if></a>
+										</td>
+										<td>${n.emp_name}</td>
+										<td>${n.regdate}</td>
+										<td>${n.hit}</td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+						<div class="row" style="text-align: right; margin-right: 5px;">
+							<button type="button" class="btn w-xs btn-success" onclick="location.href='media_board_write.do'" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">글
+								등록</button>
+						</div>
+					</div>
+
+				</div>
+				<div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button>
-                    <button class="btn btn-default active">1</button>
-                    <button class="btn btn-default  ">2</button>
-                    <button class="btn btn-default">3</button>
-                    <button class="btn btn-default">4</button>
-                    <button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button>
+                	<c:if test="${pg>1}">
+                		<button type="button" class="btn btn-default" onclick="location.href='media_board_list.do?pg=${pg-1}&f=${field}&q=${query}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
+                	</c:if>
+                	
+                    <c:forEach var="i" begin="1" end="${pagecount}">
+                    	<c:choose>
+                    		<c:when test="${pg==i}">
+                    			<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
+                    		</c:when>
+                    		<c:otherwise>
+                    			 <button class="btn btn-default" onclick="location.href='media_board_list.do?pg=${i}&f=${field}&q=${query}'">${i}</button>
+                    		</c:otherwise>
+                    	</c:choose> 	
+                    </c:forEach>
+                    
+                   	<c:if test="${pg < pagecount}">
+                    	<button type="button" class="btn btn-default " onclick="location.href='media_board_list.do?pg=${pg+1}&f=${field}&q=${query}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
+                    </c:if>
                 </div>
               </div>
         </div> 
