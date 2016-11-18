@@ -1,5 +1,6 @@
 package kr.or.epm.BoardController;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.epm.Service.CompanyBoardService;
 import kr.or.epm.VO.Company;
+import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_detail;
 
 /*
  * 작성자 : 박성준
@@ -26,6 +29,10 @@ public class CompanyBoardController {
 	//회사정보 게시판  > 리스트페이지이동 
 	@RequestMapping("/info_board_list.do")
 	public String info_board_list(String pagesize, String currentpage, Model model) {
+		
+	
+		
+		
 		int totalcount = companyBoardService.selectBoardCount();
 		int pagecount = 0;
 
@@ -86,9 +93,15 @@ public class CompanyBoardController {
 	
 	
 	@RequestMapping(value="/CompanyBoardWrite.do", method=RequestMethod.POST)
-	public String test(String title, String infotext){
+	public String test(String title, String content, Principal principal){
 		
-		System.out.println("제목 : "+title + " / 내용 : "+infotext);
+		String id = principal.getName();
+		System.out.println("아이디  : "+id);
+		Emp_detail emp=companyBoardService.WriterStatus(id);
+		
+		System.out.println("유저 : " +emp.toString());
+		companyBoardService.insertInfoBoard(title, content);
+		
 		
 		return null;
 	}

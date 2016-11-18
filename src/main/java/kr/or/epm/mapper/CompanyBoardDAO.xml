@@ -18,4 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select no, emp_name,title, content, hit, regdate from company where no = #{no}
 	</select>
 	
+	<insert id="insertInfoBoard" >
+	<!-- 	insert into company (no,emp_no, emp_name, hit, title,content,regdate,file_name, del_check) values  -->
+	</insert>
+	
+	
+	<select id="selectEmpUserInfo" resultType="kr.or.epm.VO.Emp_detail">
+		select emp_no from emp_detail where id = #{id}
+	</select>
+	
 </mapper>

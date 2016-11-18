@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.CompanyBoardDAO;
 import kr.or.epm.VO.Company;
+import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_detail;
 
 /*
  * 작성자 : 박성준
@@ -49,4 +51,25 @@ public class CompanyBoardService {
 		int result = companyboarddao.selectBoardCount();
 		return result;
 	}
+	
+	
+	//회사 정보게시판 글쓰기
+	public int insertInfoBoard(String title, String content){
+		System.out.println("제목 : "+title+ " / 내용 : "+content);
+		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
+		int result = companyboarddao.insertInfoBoard(title, content);
+		
+		return 0;
+	}
+	
+	//글쓴이 정보 보기
+	public Emp_detail WriterStatus(String id){
+		System.out.println("넘어온 사번 : "+id);
+		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
+		Emp_detail emp = companyboarddao.selectEmpUserInfo(id);
+		
+		return emp;
+	}
+	
+	
 }
