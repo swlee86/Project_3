@@ -57,7 +57,7 @@ public class CompanyBoardController {
         try{
         	
         	list = companyBoardService.selectBoard(cpage, pgsize);
-        	System.out.println("컨트롤러 : "+list.size());
+        	model.addAttribute("companyList", list);
         	
         }catch (Exception e) {
         	e.getMessage();
