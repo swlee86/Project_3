@@ -40,9 +40,17 @@ public class BusinessBoardService {
 		return businessboard;
 	}
 	
+	//글을 조회할 때 딸려 있는 댓글 리스트를 함께 불러오는 서비스 함수
 	public List<Re_BusinessBoard> selectReList(int no){
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
 		List<Re_BusinessBoard> list = businessboarddao.selectReList(no);
 		return list;
+	}
+	
+	//BusinessBoard에 글을 쓰기 위해서 미리 필요한 데이터를 불러와서 BusinessDTO에 저장하는 서비스 함수
+	public BusinessBoard selectWrite(String id){
+		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
+		BusinessBoard businessboard = businessboarddao.selectWrite(id);
+		return businessboard;
 	}
 }
