@@ -38,16 +38,26 @@
             </div>
             <div class="panel-body">
             	<div class="row" style="text-align:right; margin-right:5px;">
-            			<form action="media_board_list.do"  class="form-inline"  method="get">
-            				<input type="hidden" name="pg" value="" />
+            			<form action="media_board_list.do"  class="form-inline"  method="get">	
                  			<select  class="form-control input-sm" name="f">
                     			<option value="title">제목</option>
                         		<option value="emp_name">작성자명</option>
-                    		 </select> 	
-                    		 <input type="text" class="form-control input-sm" name="q"/>
-                    		 <input class="btn btn-sm btn-default" type="submit" value="&nbsp;<span class="fa fa-search" ></span>">
-                		</form>
-                </div>           	
+                    		 </select>
+
+
+							<div class="input-group">
+								<input type="text" class="form-control input-sm" name="q" /> <span
+									class="input-group-btn">
+									<button class="btn btn-sm btn-default" type="submit">
+										&nbsp;<span class="fa fa-search"></span>
+									</button>
+								</span>
+							</div>
+						</form>
+                </div> 
+                
+                
+                          	
                 <br>     
                 <hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
