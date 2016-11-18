@@ -4,8 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.BusinessBoardDAO">
 
+
+<!-- business 게시판 글 리스트를 불러오는 쿼리문  -->
 <select id="selectList" resultType="kr.or.epm.VO.BusinessBoard">
-select no, title, emp_name, regdate, hit, low_dept_name from (select rownum rn, no, title, emp_name, regdate, hit, low_dept_name from business order by no desc) where rn between 1 and 5
+select no, title, emp_name, regdate, hit, low_dept_name from (select rownum rn, no, title, emp_name, regdate, hit, low_dept_name from business order by no desc) where rn between ${param1} and ${param2}
 </select >
 	
 <!-- business Board(business)의 총 갯수를 불러오는 쿼리문 -->
@@ -15,7 +17,7 @@ select count(*) from business
 
 <!-- business Board list에서 글을 클릭하면 글 내용을 불러오는 쿼리문 -->
 <select id="selectDetail" resultType="kr.or.epm.VO.BusinessBoard">
-select title, content, emp_name, regdate, low_dept_name from business where no=#{no}
+select no, title, content, emp_name, regdate, low_dept_name from business where no=#{no}
 </select>
 	
 <!-- business board list에서 글을 클릭하여 내용을 불러올 때 댓글 내용도 불러오는 쿼리문 -->	
@@ -38,6 +40,12 @@ select nvl(max(refer),0) from business
 <insert id="insertArticle" parameterType="kr.or.epm.VO.BusinessBoard">
 insert into business(no, emp_no, emp_name, low_dept_no, low_dept_name, refer, depth, step, hit, title, content, regdate, file_name)
 values(BUSINESS_SEQ.nextval, #{emp_no}, #{emp_name}, #{low_dept_no}, #{low_dept_name}, #{refer}, #{depth}, #{step}, #{hit}, #{title},#{content}, to_char(sysdate, 'YYYY-MM-DD'), #{file_name})
+</insert>
+
+<!-- 댓글 달 때 댓글을 인서트 하는 쿼리문 -->
+<insert id="insertReply" parameterType="kr.or.epm.VO.Re_BusinessBoard">
+insert into RE_BUSINESS(re_no, no, emp_no, emp_name, content, regdate)
+values(RE_BUSINESS_SEQ.nextval, #{no}, #{emp_no}, #{emp_name}, #{content}, to_char(sysdate, 'YYYY-MM-DD'))
 </insert>
 
 </mapper>

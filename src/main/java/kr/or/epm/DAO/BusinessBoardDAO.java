@@ -15,4 +15,5 @@ public interface BusinessBoardDAO {
 	Re_BusinessBoard selectWrite(String id);
 	int selectRefer();
 	int insertArticle(BusinessBoard dto);
+	int insertReply(Re_BusinessBoard dto);
 }

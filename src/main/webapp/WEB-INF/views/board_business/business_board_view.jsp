@@ -53,7 +53,7 @@
 						<div class="media-body">
 							<h5>${list.title}</h5>
 							 	${list.content}
-							 	
+							 	 글번호 :  ${list.no}
 							 	
 							<!-- Comments -->
 							<div class="forum-comments">
@@ -73,12 +73,13 @@
 								</div>
 								</c:forEach>
 								
-								<form>
+								<form action="#" method="post">
 									<div class="input-group">
-										<input type="text" class="form-control "
-											placeholder="Your comment"> <span
-											class="input-group-btn"> <input type="submit"
-											class="btn  btn-default" value=" 댓글 달기 ">
+										<input type="text" class="form-control " placeholder="Your comment" name="content">
+								<%-- 		<input type="hidden" value="${currentpage}" name="currentpage">
+										<input type="hidden" value="${pagesize}" name="pagesize"> --%>
+										<span class="input-group-btn"> 
+										<input type="submit" class="btn  btn-default" value=" 댓글 달기 ">
 										</span>
 									</div>
 								</form>
