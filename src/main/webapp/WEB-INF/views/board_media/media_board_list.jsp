@@ -34,17 +34,18 @@
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                	총 개시글 수 : <font color="coral">10</font> 개
+                	총 개시글 수 : <font color="coral">${totalcount}</font> 개
             </div>
             <div class="panel-body">
             	<div class="row" style="text-align:right; margin-right:5px;">
-            			<form action="" class="form-inline">
-                 			<select  class="form-control input-sm" >
-                    			<option >제목</option>
-                        		<option>작성자명</option>
+            			<form action="media_board_list.do"  class="form-inline"  method="get">
+            				<input type="hidden" name="pg" value="" />
+                 			<select  class="form-control input-sm" name="f">
+                    			<option value="title">제목</option>
+                        		<option value="emp_name">작성자명</option>
                     		 </select> 	
-                    		 <input type="text" class="form-control input-sm" name="s"/>
-                    		 <button class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
+                    		 <input type="text" class="form-control input-sm" name="q"/>
+                    		 <input class="btn btn-sm btn-default" type="submit" value="&nbsp;<span class="fa fa-search" ></span>">
                 		</form>
                 </div>           	
                 <br>     
