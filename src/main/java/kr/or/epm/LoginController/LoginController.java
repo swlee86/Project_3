@@ -41,6 +41,7 @@ public class LoginController {
 		
 		EmpJoinEmp_Detail empinfo = service.modifyInfo(id);
 		System.out.println("컨트롤러 : "+empinfo.toString());
+		model.addAttribute("emp",empinfo);
 		return "myinfo.editMyinfo";
 	}
 	

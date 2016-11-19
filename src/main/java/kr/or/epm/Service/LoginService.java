@@ -29,10 +29,13 @@ public class LoginService {
 		Emp_detail emp_detail = dao.selectEmp_no(id);
 		System.out.println("서비스 사번뽑기 : " +emp_detail.getEmp_no());
 		
+		System.out.println("사번 과 id : " +emp_detail.getEmp_no()+ " / "+id);
 		//두번째
-		//EmpJoinEmp_Detail emp = dao.selectEmpInfo();
-		//System.out.println(emp.toString());
-		return null;
+		String emp_no = emp_detail.getEmp_no();
+		EmpJoinEmp_Detail emp = dao.selectEmpInfo(emp_no, id);
+		
+		System.out.println("조인 최종 : " +emp.toString());
+		return emp;
 	}
 	
 	

@@ -39,21 +39,21 @@
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">사번</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" readonly="readonly" name="emp_no">
+									<input type="text" class="form-control" readonly="readonly" name="emp_no" value="${emp.emp_no}">
 								</div>
 							</div>
 
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">부서</label>
 								<div class="col-sm-7">
-									<input type="text" readonly="readonly" class="form-control" name="dept_name">
+									<input type="text" readonly="readonly" class="form-control" name="dept_name" value="${emp.dept_name}">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">이름</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control"  readonly="readonly" name="emp_name">
+									<input type="text" class="form-control"  readonly="readonly" name="emp_name" value="${emp.emp_name}">
 								</div>
 							</div>
 							

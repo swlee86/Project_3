@@ -4,6 +4,7 @@ public class EmpJoinEmp_Detail {
 
 	private String emp_no;
 	private String emp_name;
+	private String dept_name;
 	private String birth;
 	private String pic;
 	private String email;
@@ -19,6 +20,12 @@ public class EmpJoinEmp_Detail {
 	private String postcode;
 	
 	
+	public String getDept_name() {
+		return dept_name;
+	}
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
 	public String getLow_dept_no() {
 		return low_dept_no;
 	}
