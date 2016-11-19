@@ -1,5 +1,5 @@
 package kr.or.epm.DAO;
 
-public class LoginDAO {
+public interface LoginDAO {
 
 }
