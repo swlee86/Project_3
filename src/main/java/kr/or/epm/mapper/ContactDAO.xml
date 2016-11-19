@@ -17,6 +17,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
+	<!-- 주소록 등록 -->
+	<insert id="insertContact" parameterType="kr.or.epm.VO.Contact">
+		insert into contact(contact_no,
+		                    group_no, 
+		                    name, 
+		                    attach, 
+		                    birth, 
+		                    mail, 
+		                    pic, 
+		                    tel1, 
+		                    tel2, 
+		                    memo) 
+		       values(contact_seq.nextval,
+		              (select group_no from c_group where group_name=#{group_name}),
+		              #{name},
+		              #{attach},
+		              #{birth},
+		              #{mail},
+		              #{pic},
+		              #{tel1},
+		              #{tel2},
+		              #{memo})
+	</insert>
+	
+	
 	<!-- 상세조회 -->
 	<select id="selectContact_detail" resultType="kr.or.epm.VO.Contact">
 		select contact_no, c.group_no, group_name, name, attach, 
@@ -47,17 +72,79 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 
+	<!-- 현재 로그인한 사원이 갖고있는 그룹 목록 -->
+	<select id="selectEmpGroup_list" parameterType="String" resultType="kr.or.epm.VO.Contact">
+		select group_no,group_name 
+		from c_group 
+		where group_no 
+		in 
+		  (SELECT DISTINCT TRIM(REGEXP_SUBSTR(empgroup, '[^,]+', 1, LEVEL)) AS emp_groups
+		  FROM (SELECT (select distinct groups from emp_contact where emp_no=#{emp_no}) AS empgroup FROM DUAL)
+		  CONNECT BY INSTR(empgroup, ',', 1, LEVEL - 1) > 0)
+	</select>
+
+		<!-- groups 관리 -->	
 
 	<!-- 그룹에 작성한 이름의 그룹이 존재하는지 유효성 검사 -->
 	<select id="selectGroupCheck_name" parameterType="String" resultType="Integer">
 		select count(*) from c_group where group_name=#{group_name}
 	</select>
+		
 	
-	<!-- 그룹목록불러오기  / 위의 유효성 검사 결과가 0이면 작업진행-->
+	<!-- 그룹 추가 ,생성       or  그룹명 수정했을때 selectGroupCheck_name의 유효성 검사결과값이 1일때 -->
 	<insert id="insertGroup" parameterType="String">
-		insert into c_group(group_no,group_name) vlaues(c_group_seq.nextval,#{group_name})
+		insert into c_group(group_no,group_name) values(c_group_seq.nextval,#{group_name})
 	</insert>
 	
 	
+	
+	<!-- 그룹삭제/그룹 수정 될때 그 그룹에 포함된 사람들 목록 필요 -->
+	<!-- 포함된 사람들 뽑기 -->
+	<select id="selectInGroup_emp" parameterType="String" resultType="String">
+		select contact_no 
+		from(
+			select emp_no,c.contact_no,c.group_no,group_name,name 
+			from emp_contact e 
+			join contact c 
+				on e.contact_no=c.contact_no 
+			join c_group g 
+				on c.group_no = g.group_no) 
+			where group_no=#{group_no)
+	</select>
+	<!-- 그룹수정될때 그 그룹에 포함된 사람들 그룹 번호 변경 -->
+	<update id="updateEmp_ingroup" parameterType="String">
+		update contact set group_no = #{group_no} where contact_no=#{ingroup_emp}
+	</update>
+	
+	<!-- 그룹삭제될때 그 그룹에 포함된 사람들 삭제 -->
+	<!-- deleteEmpContact_ingroup와 deleteContact_ingroup 트랜잭션 필요  -->
+	<!-- selectInGroup_emp에 있는 사람들 emp_contact 에서 삭제 / 트랜잭션 필요 /list로 delete 여러번 들어와야함-->
+	<delete id="deleteEmpContact_ingroup" parameterType="String">
+		delete emp_contact where contact_no = #{ingroup_emp})		
+	</delete>
+	<!-- selectInGroup_emp에 있는 사람들 contact에서 삭제 /트랜잭션 필요 /list로 delete 여러번 들어와야함-->
+	<delete id="deleteContact_ingroup" parameterType="String">
+		delete contact where contact_no = #{ingroup_emp}
+	</delete>
+	
+	
+	<!-- 생성했던or삭제할or수정했던 그룹의 그룹번호 가져오기 (selectGroup_no)-->
+	<select id="selectGroup_no" parameterType="String" resultType="String">
+		select group_no from c_group where group_name=#{group_name}
+	</select>
+	
+	<!-- 가져온 그룹번호(selectGroup_no) groups에 추가하기 (그룹추가)-->
+	<update id="updateGroups_insert" parameterType="hashmap">
+		update emp_contact 
+		set groups = concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${selectGroup_no},') 
+		where emp_no=#{emp_no}
+	</update>
+	
+	<!-- 가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) -->
+	<update id="updateGroups_delete">
+		update emp_contact
+		set groups = (select replace((select distinct groups from emp_contact where emp_no=#{emp_no}),',${selectGroup_no}','') as result from dual) 
+    	where emp_no=#{emp_no}
+	</update>
 	
 </mapper>
