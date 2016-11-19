@@ -3,6 +3,7 @@ package kr.or.epm.Service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.LoginDAO;
@@ -20,7 +21,7 @@ public class LoginService {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//사용자 개인 정보 수정할 때 사용하는 메ㅓ드
+	//사용자 개인 정보 수정할 때 사용하는 메서드 (데이터 뿌려줌)
 	public EmpJoinEmp_Detail modifyInfo(String id){
 		
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
@@ -37,6 +38,18 @@ public class LoginService {
 		System.out.println("조인 최종 : " +emp.toString());
 		return emp;
 	}
+	
+	//form 이용 데이터 업데이트 할 때 사용하는 메서드 (데이터 입력)
+	public int updateInfo(EmpJoinEmp_Detail emp){
+		System.out.println("LoginService - : "+emp.toString());
+		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
+		
+		int result = dao.updateEmpInfo(emp);
+		
+		
+		return 0;
+	}
+	
 	
 	
 }

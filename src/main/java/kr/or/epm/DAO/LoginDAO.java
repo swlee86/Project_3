@@ -18,4 +18,7 @@ public interface LoginDAO {
 	//view 에 넘어온 사번 에 맞춰 정보 뿌려줌.
 	EmpJoinEmp_Detail selectEmpInfo(@Param("emp_no") String emp_no, @Param("id") String id);
 	
+	//업데이트 Emp 
+	int updateEmpInfo(EmpJoinEmp_Detail detail);
+	
 }

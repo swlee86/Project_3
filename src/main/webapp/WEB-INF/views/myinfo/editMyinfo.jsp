@@ -94,10 +94,10 @@
 								<br/>
 								<div class="col-sm-3"></div>
 								<div class=" col-sm-4">
-									<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소" name="addr" id="addr" value="${emp.addr}">
+									<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소" name="addr" id="addr">
 								</div>
 								<div class=" col-sm-3">
-									<input type="text" id="sample6_address2"  class="form-control"  placeholder="상세주소" name="addr_detail" id="addr_detail" value="${emp.addr_detail}">
+									<input type="text" id="sample6_address2"  class="form-control"  placeholder="상세주소" name="addr_detail" id="addr_detail">
 								</div>
 							</div>
 							

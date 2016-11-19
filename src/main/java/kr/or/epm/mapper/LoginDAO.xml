@@ -17,4 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on e.low_dept_no = l.low_dept_no
 	</select>
 	
+	<update id="updateEmpInfo" parameterType="kr.or.epm.VO.EmpJoinEmp_Detail">
+		update emp_detail set pwd = #{pwd}, bank=#{bank},postcode=#{postcode},addr=#{addr},addr_detail=#{addr_detail} where id = #{id}
+	</update> 
+	
 </mapper>

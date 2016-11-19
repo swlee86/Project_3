@@ -25,6 +25,9 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginview() {
 		System.out.println("로그인");
@@ -48,8 +51,11 @@ public class LoginController {
 	@RequestMapping(value="/editMyinfo.do", method=RequestMethod.POST)
 	public String editMyInfoModify(EmpJoinEmp_Detail infoDetail){
 		
-		System.out.println("포스트 요청시 호출 : "+infoDetail.toString());
+		infoDetail.setPwd(this.bCryptPasswordEncoder.encode(infoDetail.getPwd()));
 		
+		System.out.println("포스트 요청시 호출 : "+infoDetail.toString());
+		int result = service.updateInfo(infoDetail);
+		System.out.println("업뎃 여부 : "+result);
 		return null;
 	}
 

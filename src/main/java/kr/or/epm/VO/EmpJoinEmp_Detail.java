@@ -1,16 +1,17 @@
 package kr.or.epm.VO;
 
 public class EmpJoinEmp_Detail {
-
+	//emp
 	private String emp_no;
+	private String low_dept_no;
 	private String emp_name;
 	private String dept_name;
 	private String birth;
 	private String pic;
 	private String email;
-	private String low_dept_no;
 	private String cell_phone;
 	private String emp_tel;
+	//emp_detail
 	private String id;
 	private String pwd;
 	private String bank;
