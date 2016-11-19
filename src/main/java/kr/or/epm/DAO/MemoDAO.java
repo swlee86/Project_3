@@ -13,7 +13,7 @@ import kr.or.epm.VO.Memocolor;
 public interface MemoDAO {
 	
 	//현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 )
-	public List<Memo> selectMemo();
+	public List<Memo> selectMemo(String emp_no);
 		
 	//선택한 메모 상세 조회
 	public Memo selectMemo_detail(String memo_no);
@@ -22,7 +22,7 @@ public interface MemoDAO {
 	public Memocolor selectMemocolorList();
 	
 	//색상 선택
-	public Memocolor selectMemocolor();
+	public Memocolor selectMemocolor(String color_name);
 	
 	//메모 삭제
 	public int deleteMemo(String memo_no);

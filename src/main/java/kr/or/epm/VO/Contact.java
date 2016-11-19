@@ -18,6 +18,11 @@ public class Contact {
 	private String tel2;
 	private String memo;
 
+	
+	//추가 DTO 2016-11-18 
+	private String group_name;
+		
+		
 	public String getContact_no() {
 		return contact_no;
 	}
@@ -98,10 +103,20 @@ public class Contact {
 		this.memo = memo;
 	}
 
+	public String getGroup_name() {
+		return group_name;
+	}
+
+	public void setGroup_name(String group_name) {
+		this.group_name = group_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Contact [contact_no=" + contact_no + ", group_no=" + group_no + ", name=" + name + ", attach=" + attach
 				+ ", birth=" + birth + ", mail=" + mail + ", pic=" + pic + ", tel1=" + tel1 + ", tel2=" + tel2
-				+ ", memo=" + memo + "]";
+				+ ", memo=" + memo + ", group_name=" + group_name + "]";
 	}
+
+	
 }

@@ -19,7 +19,7 @@ public interface DraftDAO {
 	
 	
 	//현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 )
-	public List<Draft> selectDraft_rec();
+	public List<Draft> selectDraft_rec(String emp_no);
 	
 	//승인 처리
 	public int approveDraft(Draft dto);
@@ -42,5 +42,5 @@ public interface DraftDAO {
 	//결재라인
 	
 	//송신결재함 조회
-	public List<Draft> selectDraft(); 
+	public List<Draft> selectDraft(String emp_no); 
 }
