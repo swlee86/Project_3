@@ -16,9 +16,6 @@ public class Re_BusinessBoard {
 	private String low_dept_name;
 	
 	
-	
-	
-	
 	public String getLow_dept_no() {
 		return low_dept_no;
 	}
