@@ -66,7 +66,6 @@
 	</div>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade hmodal-success" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog  modal-sm">

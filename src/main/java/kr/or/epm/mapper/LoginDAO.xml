@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.epm.DAO.LoginDAO">
+	<!--사번 뽑는 아이디-->
+	<select id="selectEmp_no" resultType="kr.or.epm.VO.Emp_detail">
+		SELECT EMP_NO FROM EMP_DETAIL WHERE id = #{id}
+	</select>
+	
+	<select id="selectEmpInfo" parameterType="map" resultType="kr.or.epm.VO.EmpJoinEmp_Detail">
+		select e.emp_no, e.emp_name,l.dept_name, e.birth, e.pic, e.email, e.low_dept_no, e.cell_phone, d.id, d.pwd, d.bank, d.addr, d.addr_detail, d.account, d.postcode
+		from emp e join emp_detail d
+		on e.emp_no = #{emp_no} and d.ID = #{id} left join low_dept l
+		on e.low_dept_no = l.low_dept_no
+	</select>
+	
+</mapper>

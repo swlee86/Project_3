@@ -131,11 +131,7 @@ public class PageMoveController {
 	public String info_board_view() {
 		return "board_info.info_board_view";
 	}
-	//사원정보공유 게시판   > 리스트페이지이동
-	@RequestMapping("/free_board_list.do")
-	public String free_board_list() {
-		return "board_free.free_board_list";
-	}
+	
 	
 	//주소록 > 주소록 추가 페이지 이동
 	@RequestMapping("/enroll.do")
@@ -230,20 +226,6 @@ public class PageMoveController {
 		return "admin.adminclientView";
 	}
 
-
-	//자유게시판  > 자유게시판 상세 페이지 이동
-	@RequestMapping("/free_board_view.do")
-	public String free_board_view(){
-		return "board_free.free_board_view";
-	}
-	
-	//자유게시판  > 자유게시판 글쓰기 페이지 이동
-	@RequestMapping("/free_board_write.do")
-	public String free_board_write(){
-		return "board_free.free_board_write";
-	}
-
-	
 	
 	
 	
