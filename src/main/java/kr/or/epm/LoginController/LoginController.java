@@ -48,7 +48,7 @@ public class LoginController {
 	@RequestMapping(value="/editMyinfo.do", method=RequestMethod.POST)
 	public String editMyInfoModify(EmpJoinEmp_Detail infoDetail){
 		
-		
+		System.out.println("포스트 요청시 호출 : "+infoDetail.toString());
 		
 		return null;
 	}

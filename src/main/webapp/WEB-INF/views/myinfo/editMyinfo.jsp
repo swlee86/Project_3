@@ -34,12 +34,12 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<form class="form-horizontal" method="POST">
+					<form class="form-horizontal" method="POST" id="modifyForm">
  						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">사번</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" readonly="readonly" name="emp_no" value="${emp.emp_no}">
+									<input type="text" class="form-control" readonly="readonly" id="emp_no" name="emp_no" value="${emp.emp_no}">
 								</div>
 							</div>
 
@@ -60,21 +60,21 @@
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">아이디</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" readonly="readonly" name="id">
+									<input type="text" class="form-control" readonly="readonly" name="id" value="${emp.id}">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">비밀번호</label>
 								<div class="col-sm-7">
-									<input type="password" class="form-control" name="pwd">
+									<input type="password" class="form-control" name="pwd" id="pwd">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">비밀번호확인</label>
 								<div class="col-sm-7">
-									<input type="password" class="form-control"  value="">
+									<input type="password" class="form-control"  value="" id="repwd">
 								</div>
 								<span id="chkpass" style="color: blue;"></span>	
 							</div>
@@ -85,7 +85,7 @@
 								<label class="col-sm-3 control-label" style="text-align: right;">주소</label>
 								<div class="col-sm-7">
 									<div class="input-group">
-										<input type="text" id="sample6_postcode" class="form-control" placeholder="" name="postcode">
+										<input type="text" id="sample6_postcode" class="form-control" placeholder="" name="postcode" id="postcode" value="${emp.postcode}">
 										<span class="input-group-btn">
 											<input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-success "  value="우편번호 찾기">
 										</span> 			
@@ -94,37 +94,38 @@
 								<br/>
 								<div class="col-sm-3"></div>
 								<div class=" col-sm-4">
-									<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소" name="addr">
+									<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소" name="addr" id="addr" value="${emp.addr}">
 								</div>
 								<div class=" col-sm-3">
-									<input type="text" id="sample6_address2"  class="form-control"  placeholder="상세주소" name="addr_detail">
+									<input type="text" id="sample6_address2"  class="form-control"  placeholder="상세주소" name="addr_detail" id="addr_detail" value="${emp.addr_detail}">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">연락처</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" name="cell_phone">
+									<input type="text" class="form-control" name="cell_phone" value="${emp.cell_phone}" id="cell_phone">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">이메일</label>
 								<div class="col-sm-7">
-									<input type="email" class="form-control"  placeholder="example@gmail.com" name="email">
+									<input type="email" class="form-control"  placeholder="example@gmail.com" name="email" id="email" value="${emp.email}">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">은행</label>
 								<div class="col-sm-7">
-									<select class="form-control" name="bank">
-													<option>국민</option>
-													<option>신한</option>
-													<option>기업</option>
-													<option>SC은행</option>
-													<option>우체국</option>
-													<option>농협</option>
+									<select class="form-control" name="bank" id="bank">
+											<option>선택</option>
+											<option>국민</option>
+											<option>신한</option>
+											<option>기업</option>
+											<option>SC은행</option>
+											<option>우체국</option>
+											<option>농협</option>
 									</select>
 								</div>
 							</div>
@@ -132,7 +133,7 @@
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">계좌번호</label>
 								<div class="col-sm-7">
-									<input type="email" class="form-control"  placeholder="123456-22-123456" name="account">
+									<input type="text" class="form-control"  placeholder="123456-22-123456" name="account" id="account">
 								</div>
 							</div>
 							

@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT EMP_NO FROM EMP_DETAIL WHERE id = #{id}
 	</select>
 	
+	<!--뽑은 사번 아뒤 이용 개인정보 뿌리기-->
 	<select id="selectEmpInfo" parameterType="map" resultType="kr.or.epm.VO.EmpJoinEmp_Detail">
 		select e.emp_no, e.emp_name,l.dept_name, e.birth, e.pic, e.email, e.low_dept_no, e.cell_phone, d.id, d.pwd, d.bank, d.addr, d.addr_detail, d.account, d.postcode
 		from emp e join emp_detail d

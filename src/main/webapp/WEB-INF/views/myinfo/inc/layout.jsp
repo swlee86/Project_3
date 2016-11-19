@@ -66,5 +66,21 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+<script>
+	$(function(){
+		$('#modifyForm').submit(function(){
+			if($('#emp_no').val() == ""){
+				alert("사번 입력요망!");
+				return false;
+			}else if($('#pwd').val() == ""){
+				alert("비번 입력 요망 !");
+				return false;
+			
+			}else{
+				return true;
+			}
+		});
+	});
+</script>
 </body>
 </html>
