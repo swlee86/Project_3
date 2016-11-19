@@ -1,11 +1,15 @@
 package kr.or.epm.LoginController;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.or.epm.Service.LoginService;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 
 /*
@@ -18,6 +22,9 @@ import kr.or.epm.VO.EmpJoinEmp_Detail;
 @Controller
 public class LoginController {
 
+	@Autowired
+	private LoginService service;
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginview() {
 		System.out.println("로그인");
@@ -26,7 +33,14 @@ public class LoginController {
 
 	// 내정보수정 > 뷰페이지
 	@RequestMapping(value="/editMyinfo.do", method=RequestMethod.GET)
-	public String editMyinfo() {
+	public String editMyinfo(Principal principal, Model model) {
+		
+		//시큐리티를 이용한 아이디 뽑기
+		String id = principal.getName();
+		System.out.println("아이디  : "+id);
+		
+		EmpJoinEmp_Detail empinfo = service.modifyInfo(id);
+		System.out.println("컨트롤러 : "+empinfo.toString());
 		return "myinfo.editMyinfo";
 	}
 	
