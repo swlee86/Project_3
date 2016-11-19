@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -16,97 +17,84 @@
 					<li class="active"><span>Mailbox</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">사원 정보 공유 게시판</h2>
+			<h2 class="font-light m-b-xs">업무 정보 공유 게시판</h2>
 			<small>Show users list in nice and color panels</small>
 		</div>
 	</div>
 </div>
 
+
+
 <div class="content animate-panel">
-	<div class="row social-board">
+
+
+
+	<div class="row">
 		<div class="col-lg-12">
-			<div class="hpanel hgreen">
-				<div class="panel-body">
-					<div class="media social-profile clearfix">
-						<a class="pull-left"> <img src="images/a7.jpg"
-							alt="profile-picture">
-						</a>
-						<div class="media-body">
-							<h5>John Smith</h5>
-							<small class="text-muted">13.05.2015</small>
-						</div>
-					</div>
 
-					<div class="social-content m-t-md">
-						There are many variations of passages of Lorem Ipsum available,
-						but the majority have By injected humour, or randomised words
-						which don't look even slightly believable. There are many
-						variations of passages of Lorem Ipsum available, but the majority
-						have By injected humour, or randomised words which don't look even
-						slightly believable. There are many variations of passages of
-						Lorem Ipsum available, but the majority have By injected humour,
-						or randomised words which don't look even slightly believable.
-						There are many variations of passages of Lorem Ipsum available,
-						but the majority have By injected humour, or randomised words
-						which don't look even slightly believable. <img
-							class="img-responsive m-t-md" src="images/p2.jpg" alt="">
+			<div class="hpanel forum-box">
 
-					</div>
+				<div class="panel-heading">
+					<span class="pull-right"> <i class="fa fa-clock-o"> </i> :
+						${list.regdate}
+					</span> <span class="f"> 게시판 > 업무 정보 공유 게시판 > <span class="text-success">${list.low_dept_name}</span>
+					</span>
 				</div>
-				<div class="panel-footer">
-					<div class="social-talk">
-						<div class="media social-profile clearfix">
-							<a class="pull-left"> <img src="images/a1.jpg"
-								alt="profile-picture">
-							</a>
 
-							<div class="media-body">
-								<span class="font-bold">John Novak</span> <small
-									class="text-muted">21.03.2015</small>
 
-								<div class="social-content">
-									Injected humour, or randomised words which don't look even
-									slightly believable.<br> Injected humour, or randomised
-									words which don't look even slightly believable<br>.
-									Injected humour, or randomised <br>words which don't look
-									even slightly believable.<br> Injected humour, or
-									randomised words which don't look even slightly believable.
+				<div class="panel-body">
+					<div class="media">
+						<div class="media-image pull-left">
+							<img src="images/a6.jpg" alt="profile-picture">
+							<div class="author-info">
+								<strong>${list.emp_name}</strong><br> ${list.regdate}
+							</div>
+						</div>
+						<div class="media-body" style="height: 1000px;">
+							<h5>${list.title}</h5>
+							 	${list.content}
+							<!-- Comments -->
+							<div class="forum-comments">
+								<c:forEach var="re_list" items="${re_list}">
+								<div class="media">
+									<a class="pull-left"> <img src="images/a1.jpg" alt="profile-picture">
+									</a>
+
+									<div class="media-body">
+										<span class="font-bold">${re_list.emp_name}</span> <small
+											class="text-muted">${re_list.regdate }</small>
+
+										<div class="social-content">
+											${re_list.content}
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
-					</div>
-					<div class="social-talk">
-						<div class="media social-profile clearfix">
-							<a class="pull-left"> <img src="images/a3.jpg"
-								alt="profile-picture">
-							</a>
+								</c:forEach>
+								
+								<form action="free_reply_insert.do" method="post">
+									<div class="input-group">
+										<input type="text" class="form-control " placeholder="Your comment" name="content">
+										<input type="hidden" name="currentpage" value="${currentpage}">
+										<input type="hidden" name="pagesize" value="${pagesize}">
+										<input type="hidden" name="no" value="${list.no}">
+										<span class="input-group-btn"> 
+										<input type="submit" class="btn  btn-default" value=" 댓글 달기 ">
+										</span>
+									</div>
+								</form>
 
-							<div class="media-body">
-								<span class="font-bold">Mark Smith</span> <small
-									class="text-muted">14.04.2015</small>
-								<div class="social-content">Many desktop publishing
-									packages and web page editors.</div>
 							</div>
-						</div>
-					</div>
-					<br>
-					<div class="social-form">
-						<form>
-							<div class="input-group">
-								<input type="text" class="form-control"
-									placeholder="Your comment"> <span
-									class="input-group-btn"> <input type="submit"
-									class="btn btn-sm btn-default" value=" 댓글 달기 ">
-								</span>
+							<br>
+							<div class="row" style="text-align:center">
+								<a href="free_board_list.do?currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success" style="">뒤로 가기</button></a>
+								<a href="answerfree.do?no=${list.no}&currentpage=${currentpage}&pagesize=${pagesize}"><button type="button" class="btn btn-sm btn-success" style="">답글 쓰기</button></a>							
 							</div>
-						</form>
-						<br>
-						<div class="row" style="text-align:center">
-							<button type="button" class="btn btn-sm btn-success"  >뒤로 가기</button>
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
+
 </div>

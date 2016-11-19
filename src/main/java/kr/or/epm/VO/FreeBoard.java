@@ -5,7 +5,7 @@ package kr.or.epm.VO;
 작성자 :	김주희
 사용 목적 :	자유게시판에 대한 VO
 **/
-public class Free {
+public class FreeBoard {
 	private String no;
 	private String emp_no;
 	private String emp_name;

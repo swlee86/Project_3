@@ -30,7 +30,7 @@ public class BusinessBoardController {
 
 	//업무정보게시판  > 업무정보게시판  리스트 페이지 이동
 	@RequestMapping("/business_board_list.do")
-	public String em(Model mv, String pagesize, String currentpage){
+	public String business_board_list(Model mv, String pagesize, String currentpage){
 		int totalcount = businessboardservice.selectBoardCount();
 		int pagecount = 0;
 		System.out.println("처음 들어온 currentpage : " + currentpage);

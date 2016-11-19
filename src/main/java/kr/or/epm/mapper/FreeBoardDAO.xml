@@ -2,46 +2,65 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.epm.DAO.CompanyBoardDAO">
+<mapper namespace="kr.or.epm.DAO.FreeBoardDAO">
+
+
+<!-- Free 게시판 글 리스트를 불러오는 쿼리문  -->
+<select id="selectList" resultType="kr.or.epm.VO.FreeBoard">
+select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer from(select rownum rn, no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer from (select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer from free order by refer desc, step asc) order by rn) where rn between #{param1} and #{param2}
+
+</select >
 	
-	<!--회사 정보 게시판 게시글 수 읽어오기-->
-	<select id="selectBoardCount" resultType="int">
-		select count(*) from company
-	</select>
+<!-- Free Board(business)의 총 갯수를 불러오는 쿼리문 -->
+<select id="selectBoardCount" resultType="int">
+select count(*) from free
+</select>
+
+<!-- Free Board list에서 글을 클릭하면 글 내용을 불러오는 쿼리문 -->
+<!-- Free Board 글 내용에서 답글을 누르면 답글을 띄울 때 본문 내용을 에디터에 띄워주는 쿼리문 -->
+<select id="selectDetail" resultType="kr.or.epm.VO.FreeBoard">
+select no, title, content, emp_name, regdate, low_dept_name, refer, depth, step from free where no=#{no}
+</select>
 	
-	<!--회사 정보 게시판 리스트 읽어오기-->
-	<select id="selectCompanyList" resultType="kr.or.epm.VO.Company">
-		select no, emp_name,title, content, hit, regdate from company
-	</select>
-	
-	<select id="selectDetail" resultType="kr.or.epm.VO.Company">
-		select no, emp_name,title, content, hit, regdate from company where no = #{no}
-	</select>
-	
-	<!--게시판 글쓰기-->
-	<insert id="insertInfoBoard" parameterType="kr.or.epm.VO.Company">
-		insert into company (no,emp_no, emp_name, hit, title,content,regdate,file_name, del_check) 
-			values(
-						company_seq.nextval,
-						#{emp_no},
-						(select emp_name from emp where emp_no = #{emp_no}),
-						0,
-						#{title},
-						#{content},
-						to_char(sysdate,'yyyy-mm-dd'),
-						null,
-						0
-				  )
-	</insert>
-	
-	
-	<!--시큐리티를 이용, 사번 뽑아옴.-->
-	<select id="selectEmpUserInfo" resultType="kr.or.epm.VO.Emp_detail">
-		select emp_no from emp_detail where id = #{id}
-	</select>
-	
-	<!--제목 검색-->
-	<select id="selectSeacrchCompanyList" resultType="kr.or.epm.VO.Company">
-		select no, emp_name,title, content, hit, regdate from company WHERE title LIKE '%${param3}%'
-	</select>
+<!-- business board list에서 글을 클릭하여 내용을 불러올 때 댓글 내용도 불러오는 쿼리문 -->	
+<select id="selectReList" resultType="kr.or.epm.VO.Re_FreeBoard">
+select emp_name, content, regdate from (select rownum rn, emp_name, content, regdate from re_free where no=#{no} order by re_no asc)
+</select>
+
+<!-- 글을 쓰기 위해 필요한 데이터인 emp_no, emp_name, low_dept_no, low_dept_name을 불러온다 -->	
+<select id="selectWrite" resultType="kr.or.epm.VO.Re_FreeBoard">
+select e.emp_no, e.emp_name, l.low_dept_name, e.low_dept_no 
+from (select e.emp_no, e.low_dept_no, e.emp_name from emp e join 
+(select emp_no from emp_detail ed where id=#{id}) ed 
+on e.emp_no=ed.emp_no) e join low_dept l 
+on e.low_dept_no=l.low_dept_no
+</select>
+
+<!-- 글쓰기시 Refer 설정을 위해 최대 Refer 값을 불러온다 -->
+<select id="selectRefer" resultType="int">
+select nvl(max(refer),0) from free
+</select>
+
+
+<!-- 글쓰기 진행시 글을 인서트 하는 쿼리문 -->
+<insert id="insertArticle" parameterType="kr.or.epm.VO.BusinessBoard">
+insert into free(no, emp_no, emp_name, low_dept_no, low_dept_name, refer, depth, step, hit, title, content, regdate, file_name)
+values(FREE_SEQ.nextval, #{emp_no}, #{emp_name}, #{low_dept_no}, #{low_dept_name}, #{refer}, #{depth}, #{step}, #{hit}, #{title},#{content}, to_char(sysdate, 'YYYY-MM-DD'), #{file_name})
+</insert>
+
+<!-- 댓글 달 때 댓글을 인서트 하는 쿼리문 -->
+<insert id="insertReply" parameterType="kr.or.epm.VO.Re_FreeBoard">
+insert into RE_free(re_no, no, emp_no, emp_name, content, regdate)
+values(RE_FREE_SEQ.nextval, #{no}, #{emp_no}, #{emp_name}, #{content}, to_char(sysdate, 'YYYY-MM-DD'))
+</insert>
+
+<!-- 글을 읽으면 hit가 추가되는 쿼리문 -->
+<update id="updateHit" parameterType="int">
+update free SET hit=hit+1 where no=#{no}
+</update>
+
+<update id="updateStep" parameterType="int">
+update free set step=step+1, depth=depth+1 where refer=#{refer} 
+</update>
+
 </mapper>

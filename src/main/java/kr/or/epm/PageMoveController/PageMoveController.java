@@ -226,20 +226,6 @@ public class PageMoveController {
 		return "admin.adminclientView";
 	}
 
-
-	//자유게시판  > 자유게시판 상세 페이지 이동
-	@RequestMapping("/free_board_view.do")
-	public String free_board_view(){
-		return "board_free.free_board_view";
-	}
-	
-	//자유게시판  > 자유게시판 글쓰기 페이지 이동
-	@RequestMapping("/free_board_write.do")
-	public String free_board_write(){
-		return "board_free.free_board_write";
-	}
-
-	
 	
 	
 	
