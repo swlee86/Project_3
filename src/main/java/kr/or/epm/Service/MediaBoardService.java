@@ -15,9 +15,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.epm.DAO.MediaBoardDAO;
 import kr.or.epm.VO.Emp;
-import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.MediaBoardReply;
+import kr.or.epm.VO.Re_MediaBoard;
 
 @Service
 public class MediaBoardService {
@@ -70,24 +70,91 @@ public class MediaBoardService {
 	// 게시글 추가하는 함수
 	public int insertRow(MediaBoard mediaBoard, HttpServletRequest request) {
 		int result = 0;
-		CommonsMultipartFile multipartfile = null;
-		if (mediaBoard.getFile_name() != null) {
+	
+		if(mediaBoard.getFile_name() == null){
+			mediaBoard.setFile_name("null");
+		}
+/*		MultipartFile uploadfile = mediaBoard.getFile_name();
+		
+		if (uploadfile != null) {
 			String path = request.getRealPath("/media/upload");
 			String fullpath = path + "\\" + mediaBoard.getFile_name();
-
+			
+			
 			// 서버에 파일 쓰기 작업
-			FileOutputStream fs;
 			try {
-				fs = new FileOutputStream(fullpath);
-				fs.write(multipartfile.getBytes());
+				FileOutputStream fs = new FileOutputStream(fullpath);
+				fs.write();
 				fs.close();
+				File file = new File(fullpath);
+				uploadfile.tr
 			} catch (IOException e) {
 				System.out.println("insertRow()의 파일 업로드 :"+e.getMessage());
 			}
-			
 		}
+*/
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		result=mediaBoardDAO.insertRow(mediaBoard);
+		
+		if(result > 0){ //글쓰기 성공시
+			result = selectMaxNo();
+		}
+		return result;
+	}
+	
+	//현재글 번호 구하는 함수
+	public int selectMaxNo(){
+		int result = 0;
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		result = mediaBoardDAO.selectMaxNo(); //현재 글번호
+		System.out.println("현재 최고 글번호 : "+result);
+		return result;
+	}
+	
+	//삭제하는 함수
+	public int deleteRow(int no){
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		int result = mediaBoardDAO.deleteRow(no); 
+		return result;
+	}
 
-	MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);result=mediaBoardDAO.insertRow(mediaBoard);return result;
-}
-
+	//글 수정하는 함수
+	public int updateRow(MediaBoard mediaBoard) {
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		int result = mediaBoardDAO.updateRow(mediaBoard);
+		System.out.println("=> 처리결과 result : "+result);
+		return result;
+	}
+	
+	//댓글 다는 함수 
+	public int insertRowReply(Re_MediaBoard re_MediaBoard){
+		System.out.println("insertRowReply() 서비스 탐");
+		System.out.println("서비스 리플 : "+re_MediaBoard.toString());
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		int result = mediaBoardDAO.insertRowReply(re_MediaBoard);
+		System.out.println("=> 리플 처리결과 result : "+result);
+		return result;
+	}
+	
+	//댓글 뽑는 함수
+	public Re_MediaBoard selectRowReply(int no){
+		System.out.println("selectRowReply() 서비스 탐");
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		int re_no = selectMaxReNo();
+		Re_MediaBoard re_MediaBoard = new Re_MediaBoard();
+		System.out.println("no : "+no+"/ re_no:"+re_no);
+		re_MediaBoard = mediaBoardDAO.selectRowReply(no, re_no);
+		System.out.println("댓글 리턴 tostring" + re_MediaBoard.toString());
+		return re_MediaBoard;
+	}
+	
+	//현재 리플 번호 구하는 함수
+	public int selectMaxReNo(){
+		int result = 0;
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		result = mediaBoardDAO.selectMaxReNo(); //현재리플번호
+		System.out.println("현재 최고 리플번호 : "+result);
+		return result;
+	}
+	
 }

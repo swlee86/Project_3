@@ -39,11 +39,10 @@
 				<div class="panel-heading hbuilt">
 					<div class="p-xs">
 
-						
 							<div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 제 목 : </label>
 								<div class="col-sm-11">
-									<input type="text" class="form-control input-sm" name="title">
+									<input type="text" class="form-control input-sm" name="title" value="${list.title}">
 								</div>
 							</div>
 							<div class="form-group">
@@ -54,7 +53,7 @@
 										<button class="btn btn-default" id="clip" type="button">
 											<i class="fa fa-paperclip"></i>
 										</button>
-										<input type="file" name="file_name" id="clipfile" style="display:none;float:left" class="form-control input-xs">
+										<input type="file" name="file_name" id="clipfile" value="${list.file_name}" style="display:none;float:left" class="form-control input-xs">
 										
 								<!-- 		<button class="btn btn-default" id="img" type="button">
 											<i class="fa fa-image"></i>
@@ -70,7 +69,7 @@
 				</div>
 				<div class="panel-body no-padding">
 					<div>
-					<textarea rows="20" cols="20" id="content" name="content"  class="summernote"></textarea>
+					<textarea rows="20" cols="20" id="content" name="content"  class="summernote">${list.content}</textarea>
 					</div>
 				</div>
 
@@ -79,7 +78,7 @@
 					<div class="pull-right">
 						<div class="btn-group">
 							<button class="btn btn-default" type="submit">
-								<i class="fa fa-edit"></i> 글 등록
+								<i class="fa fa-edit"></i> 글 수정
 							</button>
 							<button class="btn btn-default" type="button" onclick="location.href='media_board_list.do'">
 								<i class="fa fa-refresh"></i> 목록으로
