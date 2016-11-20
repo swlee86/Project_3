@@ -54,7 +54,6 @@
                     <tr style="background-color:#f6f6f6;">
                         <th style="text-align:center">번호</th>
                         <th style="width:50%;">제목</th>
-                        <th>내용</th>
                         <th >작성자명</th>
                         <th >작성일시</th>
                         <th >조회수</th>
@@ -63,9 +62,8 @@
                     <tbody>
                  		<c:forEach var="list" items="${companyList}">
                  			<tr>
-                 				<td>${list.no}</td>
+                 				<td style="text-align:center">${list.no}</td>
                  				<td><a href="detailinfo_board_list.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">${list.title}</a></td>
-                 				<td>${list.content}</td>
                  				<td>관리자</td>
                  				<td>${list.regdate}</td>
                  				<td>${list.hit}</td>
