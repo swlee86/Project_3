@@ -18,7 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="updateEmpInfo" parameterType="kr.or.epm.VO.EmpJoinEmp_Detail">
-		update emp_detail set pwd = #{pwd}, bank=#{bank},postcode=#{postcode},addr=#{addr},addr_detail=#{addr_detail} where id = #{id}
+		update emp_detail set pwd = #{pwd}, bank=#{bank},account=#{account},postcode=#{postcode},addr=#{addr},addr_detail=#{addr_detail} where id = #{id}
 	</update> 
+	
+	<update id="updateEmp_Email" parameterType="map">
+			update emp set email= #{email}, cell_phone = #{cell_phone} where emp_no = #{emp_no}	
+	</update>
 	
 </mapper>

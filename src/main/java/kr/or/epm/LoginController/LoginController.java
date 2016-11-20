@@ -49,14 +49,38 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/editMyinfo.do", method=RequestMethod.POST)
-	public String editMyInfoModify(EmpJoinEmp_Detail infoDetail){
+	public String editMyInfoModify(EmpJoinEmp_Detail infoDetail, Model model){
 		
 		infoDetail.setPwd(this.bCryptPasswordEncoder.encode(infoDetail.getPwd()));
 		
 		System.out.println("포스트 요청시 호출 : "+infoDetail.toString());
-		int result = service.updateInfo(infoDetail);
-		System.out.println("업뎃 여부 : "+result);
-		return null;
+		
+		String link = null;
+		String msg = null;
+		int result=0;;
+		
+		try{
+		
+			result = service.updateInfo(infoDetail);
+		
+		}catch (Exception e) {
+		
+			System.out.println(e.getMessage());
+		
+		}finally{
+			if(result > 0){
+				link = "index.do";
+				msg = "정보수정 성공!";
+			}else{
+				link = "editMyinfo.do";
+				msg = "정보수정 실패!";
+			}
+			
+			model.addAttribute("link", link);
+			model.addAttribute("msg", msg);	
+		}
+		
+		return "myinfo.editMyinfo_Redirect";
 	}
 
 }

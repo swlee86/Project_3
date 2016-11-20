@@ -44,10 +44,24 @@ public class LoginService {
 		System.out.println("LoginService - : "+emp.toString());
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		
+		//사원 상세 정보 바꿀때 사용
 		int result = dao.updateEmpInfo(emp);
+		//Emp 테이블에 이메일 수정시 사용
+		String email = emp.getEmail();
+		String emp_no = emp.getEmp_no();
+		String cell_phone = emp.getCell_phone();
+		int result2 = dao.updateEmp_Email(email, emp_no , cell_phone);
 		
+		System.out.println("디테일 업데이트 : "+result  + "  /  emp 테이블 업데이트 : "+result2);
+	
+		int update;
+		if(result != 0 && result2 != 0){
+			update = 1;
+		}else{
+			update = 0;
+		}
 		
-		return 0;
+		return update;
 	}
 	
 	

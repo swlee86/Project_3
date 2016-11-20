@@ -85,7 +85,7 @@
 								<label class="col-sm-3 control-label" style="text-align: right;">주소</label>
 								<div class="col-sm-7">
 									<div class="input-group">
-										<input type="text" id="sample6_postcode" class="form-control" placeholder="" name="postcode" id="postcode" value="${emp.postcode}">
+										<input type="text" id="sample6_postcode" class="form-control" placeholder="" name="postcode" id="postcode">
 										<span class="input-group-btn">
 											<input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-success "  value="우편번호 찾기">
 										</span> 			
@@ -104,14 +104,14 @@
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">연락처</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" name="cell_phone" value="${emp.cell_phone}" id="cell_phone">
+									<input type="text" class="form-control" name="cell_phone" id="cell_phone">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">이메일</label>
 								<div class="col-sm-7">
-									<input type="email" class="form-control"  placeholder="example@gmail.com" name="email" id="email" value="${emp.email}">
+									<input type="email" class="form-control"  placeholder="example@gmail.com" name="email" id="email">
 								</div>
 							</div>
 							
