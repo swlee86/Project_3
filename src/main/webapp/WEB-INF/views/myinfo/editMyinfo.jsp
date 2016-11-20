@@ -85,7 +85,7 @@
 								<label class="col-sm-3 control-label" style="text-align: right;">주소</label>
 								<div class="col-sm-7">
 									<div class="input-group">
-										<input type="text" id="sample6_postcode" class="form-control" placeholder="" name="postcode" id="postcode">
+										<input type="text" id="sample6_postcode" class="form-control" placeholder="" name="postcode">
 										<span class="input-group-btn">
 											<input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-success "  value="우편번호 찾기">
 										</span> 			
@@ -94,10 +94,10 @@
 								<br/>
 								<div class="col-sm-3"></div>
 								<div class=" col-sm-4">
-									<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소" name="addr" id="addr">
+									<input type="text" id="sample6_address"  class="form-control"  placeholder="기본주소" name="addr">
 								</div>
 								<div class=" col-sm-3">
-									<input type="text" id="sample6_address2"  class="form-control"  placeholder="상세주소" name="addr_detail" id="addr_detail">
+									<input type="text" id="sample6_address2"  class="form-control"  placeholder="상세주소" name="addr_detail">
 								</div>
 							</div>
 							
