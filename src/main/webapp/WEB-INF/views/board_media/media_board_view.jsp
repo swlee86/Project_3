@@ -62,34 +62,43 @@
 							<div class="forum-comments">
 							
 								<c:forEach items="${relist}" var="n">
-									<div class="media">
+									<div class="media" >
 										<a class="pull-left"> <img src="${pageContext.request.contextPath}/images/a1.jpg" alt="이미지">
 										</a>
 	
 										<div class="media-body">
 											<span class="font-bold">${n.emp_name}</span> 
 											<small class="text-muted">${n.regdate}</small>
-	
+											<a href="#" id="replydelete">삭제</a>
 											<div class="social-content">
 												${n.content}
 											</div>
 										</div>
 									</div>
 								</c:forEach>
-							
-
-
-								<form>
-									<div class="input-group">
-										<input type="text" class="form-control " placeholder="Your comment"> <span class="input-group-btn"> 
-										<input type="submit" class="btn  btn-default" value=" 댓글 달기 ">
-										</span>
+									<div  id="replybody">
 									</div>
-								</form>
+
+
+								
+								<div class="input-group">
+									<input type="text" class="form-control " id="replytext" placeholder="Your comment"> 
+									<input type="hidden" id="no" value="${list.no}">
+									<span class="input-group-btn"> 
+										<input type="button" class="btn  btn-default" id="replysubmit" value=" 댓글 달기 ">
+									</span>
+								</div>
+							
 
 							</div>
 							<br>
-								<button type="button" onclick="location.href='history.back();'" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">뒤로 가기</button>
+								<div class=" pull-right">
+									<a href="media_board_list.do?pg=${pg}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">뒤로가기</a>
+									<%-- <c:if test="${list.empno ==pageContext.request.userPrincipal.name}"> --%>
+										<a href="media_board_update.do?no=${list.no}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정하기</a>
+										<a href="media_board_delete.do?no=${list.no}" class="btn btn-sm btn-default" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>
+									<%-- </c:if> --%>
+								</div>
 							</div>
 						</div>
 					</div>

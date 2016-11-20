@@ -3,7 +3,6 @@ package kr.or.epm.BoardController;
 import java.security.Principal;
 import java.util.List;
 
-import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.epm.Service.MediaBoardService;
 import kr.or.epm.VO.Emp;
-import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.MediaBoardReply;
-import kr.or.epm.VO.Re_BusinessBoard;
+import kr.or.epm.VO.Re_MediaBoard;
 
 
 /*
@@ -93,11 +92,6 @@ public class MediaBoardController {
 	@RequestMapping(value = "/media_board_view.do", method = RequestMethod.GET)
 	public String media_board_view(String no, String pg, Model model) {
 		System.out.println("media_board_view() 컨트롤러 탐");
-/*		
-		if(pg == null && pg.equals("")){
-			pg = "1";
-		}
-		*/
 		
 		System.out.println("no : "+ no + "pg : "+pg);
 		
@@ -130,23 +124,91 @@ public class MediaBoardController {
 				 
 		System.out.println(mediaBoard.getTitle()+"/"+mediaBoard.getContent()+"/");
 		System.out.println(mediaBoard.getFile_name());
+
+		result = mediaboardservice.insertRow(mediaBoard, request);
 		
-	/*	if(mediaBoard.getFile_name() == null){
-			mediaBoard.setFile_name("null");
-		}
-		*/
+		
+		System.out.println("=> 글번호result : "+result);
+		
 	
-/*		result = mediaboardservice.insertRow(mediaBoard, request);
-		System.out.println("result : "+result);
-		*/
-		/*
 		if(result > 0){
-			return "redirect:media_board_view.do?no="+.ge;
+			return "redirect:media_board_view.do?no="+result+"&pg=1";
 		}else{
-			return "resdirect";
+			return "redirect:media_board_list.do";
 		}
-		*/
-		return null;
 	}
+	
+	//언론게시판  > 삭제 처리
+	@RequestMapping(value = "/media_board_delete.do")
+	public String media_board_delete(String no) {
+		System.out.println("media_board_delete() 컨트롤러 탐");		
+		System.out.println("no : "+ no) ;
+		
+		mediaboardservice.deleteRow(Integer.parseInt(no));				
+		return "redirect:media_board_list.do";
+	}
+	
+	//언론게시판 > 수정페이지 이동
+	@RequestMapping(value = "/media_board_update.do", method = RequestMethod.GET)
+	public String media_board_update(String no, Model model) {
+		System.out.println("media_board_update() 컨트롤러 탐");
+		
+		MediaBoard list = mediaboardservice.selectDetail(Integer.parseInt(no));		
+		
+		model.addAttribute("list",list);
+		return "board_media.media_board_rewrite";
+	}
+	
+	//언론게시판 > 수정 처리
+	@RequestMapping(value = "/media_board_update.do", method = RequestMethod.POST)
+	public String media_board_update(MediaBoard mediaBoard, Model model, HttpServletRequest request) {
+		System.out.println("media_board_update()처리 컨트롤러 탐");
+		int result = 0;
+		
+		System.out.println("=>update 후 title :"+mediaBoard.getTitle()+"/내용: "+mediaBoard.getContent());
+		result = mediaboardservice.updateRow(mediaBoard);
+
+		System.out.println("=> 글번호update result : "+mediaBoard.getNo());
+		
+	
+		if(result > 0){
+			return "redirect:media_board_view.do?no="+mediaBoard.getNo();
+		}else{
+			return "redirect:board_media.media_board_list.do";
+		}
+	}
+	
+	//언론게시판 > 리플 등록 처리
+		@RequestMapping(value = "/media_board_reply.do" ,method=RequestMethod.POST)
+		public  @ResponseBody Re_MediaBoard media_board_reply(Principal principal, String replytext, String no, Model model) {
+			System.out.println("media_board_reply()처리 컨트롤러 탐");
+			int result = 0;
+			Re_MediaBoard re_MediaBoard = new Re_MediaBoard();
+			String id= principal.getName();
+			System.out.println("id : "+id);
+			System.out.println("replytext : " + replytext);
+			System.out.println("no : " + no);
+			
+			Emp info = mediaboardservice.selectInfoSearch(id);  //사번,이름 가져가기
+			
+			System.out.println("info사번 : "+ info.getEmp_no()+"/ info이름:"+info.getEmp_name());
+			re_MediaBoard.setEmp_no(info.getEmp_no());
+			re_MediaBoard.setEmp_name(info.getEmp_name());
+			re_MediaBoard.setContent(replytext);
+			re_MediaBoard.setNo(no);
+			
+			System.out.println("리플 내용 정보 : "+re_MediaBoard.toString());
+			
+			result = mediaboardservice.insertRowReply(re_MediaBoard); //댓글달기
+			
+			if(result > 0){ //댓글 성공시
+				re_MediaBoard = mediaboardservice.selectRowReply(Integer.parseInt(no));//댓글 뽑기
+				System.out.println("리플 객체 리턴 :" + re_MediaBoard.toString());
+				return re_MediaBoard;
+			}else{
+				return null;
+			}
+		}
+		
 	
 }

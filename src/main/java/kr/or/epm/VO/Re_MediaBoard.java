@@ -6,7 +6,7 @@ package kr.or.epm.VO;
  * 사용 목적 : 언론게시판 댓글에 대한 VO
  */
 
-public class Re_media {
+public class Re_MediaBoard {
 	private String re_no;
 	private String no;
 	private String emp_no;
