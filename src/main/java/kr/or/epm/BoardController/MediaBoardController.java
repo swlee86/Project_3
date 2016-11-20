@@ -1,8 +1,10 @@
 package kr.or.epm.BoardController;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.print.attribute.standard.Media;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.epm.Service.MediaBoardService;
+import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.MediaBoardReply;
+import kr.or.epm.VO.Re_BusinessBoard;
 
 
 /*
@@ -112,13 +117,36 @@ public class MediaBoardController {
 	
 	//언론게시판 > 글쓰기 처리
 	@RequestMapping(value = "/media_board_write.do", method = RequestMethod.POST)
-	public String media_board_write(MediaBoard mediaBoard , Model model) {
+	public String media_board_write(Principal principal, MediaBoard mediaBoard , Model model, HttpServletRequest request) {
 		System.out.println("media_board_write()처리 컨트롤러 탐");
+		int result = 0;
+		String id= principal.getName();
+		System.out.println("id : "+id);
 		
-		System.out.println(mediaBoard.getTitle()+"/"+mediaBoard.getContent()+"/"+mediaBoard.getFile_name());
+		Emp info = mediaboardservice.selectInfoSearch(id);  //사번,이름 가져가기
 		
+		mediaBoard.setEmp_no(info.getEmp_no());
+		mediaBoard.setEmp_name(info.getEmp_name());
+				 
+		System.out.println(mediaBoard.getTitle()+"/"+mediaBoard.getContent()+"/");
+		System.out.println(mediaBoard.getFile_name());
+		
+	/*	if(mediaBoard.getFile_name() == null){
+			mediaBoard.setFile_name("null");
+		}
+		*/
+	
+/*		result = mediaboardservice.insertRow(mediaBoard, request);
+		System.out.println("result : "+result);
+		*/
+		/*
+		if(result > 0){
+			return "redirect:media_board_view.do?no="+.ge;
+		}else{
+			return "resdirect";
+		}
+		*/
 		return null;
-		/*return "redirect:media_board_view.do?no="+.get;*/
 	}
 	
 }

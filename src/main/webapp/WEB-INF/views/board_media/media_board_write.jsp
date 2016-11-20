@@ -32,13 +32,14 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="hpanel email-compose">
+			<form method="post" action="" class="form-horizontal" enctype="multipart/form-data">
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
 				<div class="panel-heading hbuilt">
 					<div class="p-xs">
 
-						<form method="POST" action="media_board_write.do" class="form-horizontal">
+						
 							<div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 제 목 : </label>
 								<div class="col-sm-11">
@@ -53,7 +54,7 @@
 										<button class="btn btn-default" id="clip" type="button">
 											<i class="fa fa-paperclip"></i>
 										</button>
-										<input type="file" name="file_name" id="clipfile" style="display:block;float:left" class="form-control input-xs">
+										<input type="file" name="file_name" id="clipfile" style="display:none;float:left" class="form-control input-xs">
 										
 								<!-- 		<button class="btn btn-default" id="img" type="button">
 											<i class="fa fa-image"></i>
@@ -62,7 +63,7 @@
 									</div>
 								</div>
 							</div>
-						</form>
+						
 
 
 					</div>
@@ -89,6 +90,7 @@
 					<br>
 
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
