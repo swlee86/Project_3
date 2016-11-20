@@ -41,8 +41,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="panel-body"><!-- 
-					<a href="blog_details.html"></a> -->
+				<div class="panel-body">
+						<a href="info_board_fileDown.do?name=${company.file_name}">첨부파일 : ${company.file_name}</a>
 						${company.content}
 				</div>
 				<div class="panel-footer">

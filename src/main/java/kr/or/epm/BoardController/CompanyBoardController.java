@@ -1,17 +1,26 @@
 package kr.or.epm.BoardController;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.epm.Service.CompanyBoardService;
 import kr.or.epm.VO.Company;
-import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
 
 /*
@@ -25,6 +34,31 @@ public class CompanyBoardController {
 	
 	@Autowired
 	private CompanyBoardService companyBoardService;
+	
+	//파일 다운
+	@RequestMapping("/info_board_fileDown.do")
+	public void download(String name, HttpServletResponse response)
+			throws Exception {
+		File f = new File("C:/images/" + name);
+
+		String fname = new String(name.getBytes("utf-8"), "8859_1");
+		System.out.println(fname);
+
+		response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
+		FileInputStream fin = new FileInputStream(f);
+		// 출력 도구 얻기 :response.getOutputStream()
+		ServletOutputStream sout = response.getOutputStream();
+		byte[] buf = new byte[1024]; // 전체를 다읽지 않고 1204byte씩 읽어서
+		int size = 0;
+		while ((size = fin.read(buf, 0, buf.length)) != -1) // buffer 에 1024byte
+		// 담고
+		{ // 마지막 남아있는 byte 담고 그다음 없으면 탈출
+			sout.write(buf, 0, size); // 1kbyte씩 출력
+		}
+		fin.close();
+		sout.close();
+	}
+
 	
 	//회사정보 게시판  > 리스트페이지이동 
 	@RequestMapping(value="/info_board_list.do", method=RequestMethod.GET)
@@ -89,7 +123,18 @@ public class CompanyBoardController {
 	
 	//게시판 글쓰기
 	@RequestMapping(value="/CompanyBoardWrite.do", method=RequestMethod.POST)
-	public String test(String title, String content, Principal principal, Model model){
+	public String test(@RequestParam("uploadfile") MultipartFile file, String title, String content, Principal principal, Model model){
+		
+		File cFile = new File("C:/images/", file.getOriginalFilename());
+		try {
+			file.transferTo(cFile);
+			System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
+			System.out.println("겟 패스 : " +cFile.getPath());
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		String id = principal.getName();
 		System.out.println("아이디  : "+id);
@@ -100,6 +145,9 @@ public class CompanyBoardController {
 		company.setContent(content);
 		company.setEmp_no(emp.getEmp_no());
 		company.setTitle(title);
+		company.setFile_name(file.getOriginalFilename());
+		
+		System.out.println("회사 파일 업로드 한것 : "+company.getFile_name());
 		
 		String link = "";
 		String msg = "";

@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectDetail" resultType="kr.or.epm.VO.Company">
-		select no, emp_name,title, content, hit, regdate from company where no = #{no}
+		select no, emp_name,title, content, hit, file_name, regdate from company where no = #{no}
 	</select>
 	
 	<!--게시판 글쓰기-->
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						#{title},
 						#{content},
 						to_char(sysdate,'yyyy-mm-dd'),
-						null,
+						#{file_name},
 						0
 				  )
 	</insert>

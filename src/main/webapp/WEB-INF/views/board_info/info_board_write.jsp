@@ -28,7 +28,7 @@
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
-				<form method="POST" class="form-horizontal" action="CompanyBoardWrite.do">
+				<form method="POST" class="form-horizontal" action="CompanyBoardWrite.do" enctype="multipart/form-data">
 				<div class="panel-heading hbuilt">
 					<div class="p-xs">
 						
@@ -43,14 +43,12 @@
 								<label class="col-sm-1 control-label text-left"> 첨부 파일 :
 								</label>
 								<div class="col-sm-11">
-									<div class="btn-group">
+									<input type="file" name="uploadfile" class="btn btn-default">
+								<!-- 	<div class="btn-group">
 										<button class="btn btn-default">
 											<i class="fa fa-paperclip"></i>
 										</button>
-										<button class="btn btn-default">
-											<i class="fa fa-image"></i>
-										</button>
-									</div>
+									</div> -->
 								</div>
 							</div>
 					</div>

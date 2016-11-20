@@ -1,5 +1,7 @@
 package kr.or.epm.VO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
 작성일 :	2016 - 11 - 16
 작성자 :	김주희
@@ -13,9 +15,20 @@ public class Company {
 	private String title;
 	private String content;
 	private String regdate;
+	private MultipartFile uploadfile;
 	private String file_name;
 	private String del_check;
 	
+	
+	
+	public MultipartFile getUploadfile() {
+		return uploadfile;
+	}
+
+	public void setUploadfile(MultipartFile uploadfile) {
+		this.uploadfile = uploadfile;
+	}
+
 	public String getNo() {
 		return no;
 	}
