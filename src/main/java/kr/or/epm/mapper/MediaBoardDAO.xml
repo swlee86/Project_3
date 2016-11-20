@@ -39,4 +39,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where no = #{no} 
 		order by re_no asc 
 	</select>
+	
+	<!-- 회원 정보 부르기 -->
+	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">
+		select e.emp_name,e.emp_no
+		from  emp_detail d join emp e
+		on d. emp_no = e.emp_no
+		where d.id=#{id}
+	</select>
+	
+	<insert id="insertRow">
+		insert into media(media_seq.nextval, emp_no, emp_name, hit, title, content, regdate, file_name)
+				    values( #{seq}, #{emp_no}, #{emp_name}, 0, #{title}, #{content}, SYSDATE, #{file_name,jdbcType=VARCHAR})
+	</insert>
 </mapper>
