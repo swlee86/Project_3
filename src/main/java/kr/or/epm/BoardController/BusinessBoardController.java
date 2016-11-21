@@ -234,7 +234,7 @@ public class BusinessBoardController {
 		String msg = null;
 		int result = 0;
 		
-		/*businessboardservice.updateStep(refer);*/
+		businessboardservice.updateStep(refer, step);
 
 		if(business.getFile_name()==null){
 			business.setFile_name("0");

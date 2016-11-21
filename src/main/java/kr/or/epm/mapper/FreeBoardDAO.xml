@@ -59,8 +59,9 @@ values(RE_FREE_SEQ.nextval, #{no}, #{emp_no}, #{emp_name}, #{content}, to_char(s
 update free SET hit=hit+1 where no=#{no}
 </update>
 
+
 <update id="updateStep" parameterType="int">
-update free set step=step+1, depth=depth+1 where refer=#{refer} 
+update free set step=step+1, depth=depth+1 where refer=#{param1} and step>#{param2}
 </update>
 
 </mapper>

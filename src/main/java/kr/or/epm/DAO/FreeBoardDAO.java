@@ -19,5 +19,5 @@ public interface FreeBoardDAO {
 	int insertArticle(FreeBoard dto);
 	int insertReply(Re_FreeBoard dto);
 	void updateHit(int no);
-	void updateStep(int refer);
+	void updateStep(int refer, int step);
 }

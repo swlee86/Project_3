@@ -60,7 +60,7 @@ update business SET hit=hit+1 where no=#{no}
 </update>
 
 <update id="updateStep" parameterType="int">
-update business set step=step+1, depth=depth+1 where refer=#{refer} 
+update business set step=step+1, depth=depth+1 where refer=#{param1} and step>#{param2}
 </update>
 
 </mapper>

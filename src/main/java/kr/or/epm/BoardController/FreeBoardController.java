@@ -225,7 +225,7 @@ public class FreeBoardController {
 			String msg = null;
 			int result = 0;
 			
-			/*businessboardservice.updateStep(refer);*/
+			freeboardservice.updateStep(refer, step);
 
 			if(free.getFile_name()==null){
 					free.setFile_name("0");
