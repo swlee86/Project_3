@@ -44,4 +44,7 @@ public interface MediaBoardDAO {
 	
 	//리플 최대 no 구하는 함수
 	public int selectMaxReNo();
+	
+	//조회수 증가하는 함수
+	public int updateHit(int no);
 }

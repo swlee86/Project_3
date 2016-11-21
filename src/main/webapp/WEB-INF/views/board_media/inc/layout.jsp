@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+     
         <!--텍스트 에디터 사용시 추가해야할 css -->
     <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
     <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />
@@ -29,6 +31,8 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	
 	
 	<script>
 	$(function(){
@@ -108,6 +112,7 @@
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/summernote/dist/summernote.min.js"></script>
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 
@@ -134,7 +139,27 @@
         $('.summernote2').summernote({
             airMode: true,
         });
-
+		
+        $('.deletechk').click(function () {
+            swal({
+                        title: "삭제하시겠습니까?",
+                        text: "확인을 클릭할시 글이 삭제 됩니다.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "확인",
+                        cancelButtonText: "취소",
+                        closeOnConfirm: false,
+                        closeOnCancel: false },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal("삭제되었습니다.", "Your imaginary file has been deleted.", "success");
+                        } else {
+                            swal("취소되었습니다.", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+        });
+    
     });
 
 </script>
