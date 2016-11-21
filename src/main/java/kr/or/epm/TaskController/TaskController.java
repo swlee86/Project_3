@@ -86,15 +86,25 @@ public class TaskController {
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
 	public String taskWriteResult(Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content){
 		
+		//System.out.println("업무명 : "+task_name + " / 구분번호 : "+cg_no + " / 업무명 : "+cg_name + " / 수신자 사번 : "+rec_emp_no + " / 수신자 명 : "+rec_name + " / 기한 : "+deadline + " / 내용 : "+content);
+		
 		Task task = new Task();
+		task.setTask_name(task_name);
+		task.setCg_no(cg_no);
+		task.setCg_name(cg_name);
+		task.setRec_emp_no(rec_emp_no);
+		task.setRec_name(rec_name);
+		task.setDeadline(deadline);
+		task.setContent(content);
+		
+		List<Task_people> tlist = new ArrayList<Task_people>();
+		tlist.add(people);
 		
 		
-		System.out.println("업무명 : "+task_name + " / 구분번호 : "+cg_no + " / 업무명 : "+cg_name + " / 수신자 사번 : "+rec_emp_no + " / 수신자 명 : "+rec_name + " / 기한 : "+deadline + " / 내용 : "+content);
-		
-		Task_people tlist = new Task_people();
-		
-		System.out.println(tlist.toString());
-		
+		for(int i = 0; i < tlist.size(); i++){
+			System.out.println("task_no : "+tlist.get(i).getTask_no());
+			System.out.println("사번 : " +tlist.get(i).getEmp_no());
+		}
 		
 		return null;
 	}
