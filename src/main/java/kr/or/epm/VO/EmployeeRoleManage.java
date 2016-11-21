@@ -1,6 +1,6 @@
 package kr.or.epm.VO;
 
-public class AdminEmployeeRoleManage {
+public class EmployeeRoleManage {
 	private String emp_no;
 	private String emp_name;
 	private String cg_name;
@@ -10,7 +10,24 @@ public class AdminEmployeeRoleManage {
 	private String position_name;
 	private String rn;
 	private String id;
+	private int role_no;
+	private String role_name;
 	
+	
+	
+	
+	public int getRole_no() {
+		return role_no;
+	}
+	public void setRole_no(int role_no) {
+		this.role_no = role_no;
+	}
+	public String getRole_name() {
+		return role_name;
+	}
+	public void setRole_name(String role_name) {
+		this.role_name = role_name;
+	}
 	public String getRn() {
 		return rn;
 	}
@@ -74,10 +91,13 @@ public class AdminEmployeeRoleManage {
 	
 	@Override
 	public String toString() {
-		return "EmployeeManage [emp_no=" + emp_no + ", emp_name=" + emp_name + ", cg_name=" + cg_name + ", branch_name="
-				+ branch_name + ", dept_name=" + dept_name + ", low_dept_name=" + low_dept_name + ", position_name="
-				+ position_name + ", rn=" + rn + ", id=" + id + "]";
+		return "AdminEmployeeRoleManage [emp_no=" + emp_no + ", emp_name=" + emp_name + ", cg_name=" + cg_name
+				+ ", branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name=" + low_dept_name
+				+ ", position_name=" + position_name + ", rn=" + rn + ", id=" + id + ", role_no=" + role_no
+				+ ", role_name=" + role_name + "]";
 	}
+	
+	
 	
 	
 	

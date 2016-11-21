@@ -7,20 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.or.epm.Service.EmployeeManageService;
-import kr.or.epm.VO.EmployeeManage;
+import kr.or.epm.Service.EmployeeRoleManageService;
+import kr.or.epm.VO.EmployeeRoleManage;
+import kr.or.epm.VO.Role;
 
 @Controller
-public class EmployeeManageController {
-
-	@Autowired
-	private EmployeeManageService employeeManage;
+public class EmployeeRoleManageController {
 	
-	//관리자 > 사원관리 페이지를 열면서 데이터를 함께 불러오는 함수(페이징 처리 포함되어 있음)
-	@RequestMapping("/adminEmployeeManage.do")
-	public String adminEmployeeManage(Model mv, String pagesize, String currentpage){				
-		int totalcount = employeeManage.selectEmpCount();
-		
+	@Autowired
+	private EmployeeRoleManageService employeeRoleManage;
+	
+	
+	//관리자 > 회원관리 > 사원 권한 부여 페이지
+	@RequestMapping("/adminEmployeeRoleManage.do")
+	public String adminEmployeeRoleManage(Model mv, String pagesize, String currentpage){
+		System.out.println("사원 권한 페이지 시작");
+		int totalcount = employeeRoleManage.selectEmpRoleCount();
+		List<Role> rolelist = employeeRoleManage.selectRoleList();
+		System.out.println("사원 수 : " + totalcount);
 		int pagecount = 0;
 		System.out.println("처음 들어온 currentpage : " + currentpage);
 		
@@ -45,11 +49,10 @@ public class EmployeeManageController {
             pagecount = (totalcount/pgsize) + 1;
         }
 		
-		List<EmployeeManage> list = null;
-		
+		List<EmployeeRoleManage> list = null;	
 		
 		try{
-			 list = employeeManage.selectEmpManage(cpage, pgsize); 
+			 list = employeeRoleManage.selectEmpRoleManage(cpage, pgsize);
 			 System.out.println("list size chk : " +  list.size());
 		}catch(Exception e){
 			e.getMessage();
@@ -59,8 +62,9 @@ public class EmployeeManageController {
 			mv.addAttribute("psize", pgsize);
 			mv.addAttribute("pagecount", pagecount);
 			mv.addAttribute("totalcount", totalcount);
+			mv.addAttribute("rolelist", rolelist);
 		}
-		return "admin.adminEmployeeManage";
-	}
-	
+
+		return "admin.adminEmployeeRoleManage";
+	}	
 }

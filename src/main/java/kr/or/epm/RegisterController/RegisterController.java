@@ -45,6 +45,7 @@ public class RegisterController {
 		String data = null;			
 		try{
 			result = registerservice.insertEmp_detail(emp_detail);
+			registerservice.insertEmpRoleList(emp_detail.getEmp_no());
 		}catch(Exception e){
 			e.getMessage();
 		}finally{

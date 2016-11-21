@@ -36,5 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from low_dept
 	</select>
 	
+	<insert id="insertEmpRoleList" parameterType="int">
+		insert into emp_role(role_no, emp_no) values(99, #{emp_no})
+	</insert>
+	
 	
 </mapper>

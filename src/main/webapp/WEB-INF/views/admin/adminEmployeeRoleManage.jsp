@@ -31,7 +31,7 @@
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                	전체 사원: <font color="#ff757f">100</font> 명
+                	전체 사원: <font color="#ff757f">${totalcount}</font> 명
             </div>
             <div class="panel-body">
 					<div class="row text-right">
@@ -71,6 +71,7 @@
 
 				<br>     
                 <hr style="border:1px solid gray; margin-bottom:0px">
+                <form action="give_authority.do" method="post">
                 <div class="table-responsive">
                 <table cellpadding="1" cellspacing="1" class="table table-hover table-bordered table-condensed" >
                     <thead>
@@ -89,49 +90,34 @@
                     </thead>
                     
                     <tbody>
-                  
+                  	<c:forEach var="list" items="${list}">
                     <tr>
                     	<td style="text-align:center;padding-top:10px;"><input type="checkbox" class="i-checks" id="checkbox3"></td>
-                        <td  style="text-align:center;padding-top:10px;">2</td>
-                        <td  style="text-align:center;padding-top:10px;">wong303</td>
-                        <td  style="text-align:center;padding-top:10px;">91001111</td>
-                        <td  style="text-align:center;padding-top:10px;">박지은</td>
-                        <td  style="text-align:center;padding-top:10px;">본사</td>
-                        <td  style="text-align:center;padding-top:10px;">경영부</td>
-                        <td  style="text-align:center;padding-top:10px;">전문경영</td>
-                        <td  style="text-align:center;padding-top:10px;">부장</td>
+                        <td  style="text-align:center;padding-top:10px;">${list.rn}</td>
+                        <td  style="text-align:center;padding-top:10px;">${list.id}</td>
+                        <td  style="text-align:center;padding-top:10px;">${list.emp_no}</td>
+                        <td  style="text-align:center;padding-top:10px;">${list.emp_name}</td>
+                        <td  style="text-align:center;padding-top:10px;">${list.branch_name}</td>
+                        <td  style="text-align:center;padding-top:10px;">${list.dept_name}</td>
+                        <td  style="text-align:center;padding-top:10px;">${list.low_dept_name}</td>
+                        <td  style="text-align:center;padding-top:10px;">${list.position_name}</td>
                         <td>
                         	<select class="form-control input-sm">
-                        		<option value="0"  <c:if test="${0 == 0}">selected</c:if>> </option>
-                        		<option value="1"  <c:if test="${1 == 0}">selected</c:if>>role_master</option>
-                        		<option value="2"  <c:if test="${2 == 0}">selected</c:if>>role_manager</option>
+                        		<option value="0"  <c:if test="${0 == 0}">selected</c:if>>${list.role_name}</option>
+                        		<c:forEach var="role" items="${rolelist}">
+                        		<option value="${role.role_no}">${role.role_name}</option>
+                        		</c:forEach>
                         	</select>
                         </td>
                     </tr>
-                    <tr>
-                    	<td style="text-align:center;padding-top:10px;"><input type="checkbox" class="i-checks" id="checkbox3"></td>
-                        <td  style="text-align:center;padding-top:10px;">1</td>
-                        <td  style="text-align:center;padding-top:10px;">aaa123</td>
-                        <td  style="text-align:center;padding-top:10px;">91001112</td>
-                        <td  style="text-align:center;padding-top:10px;">박지은</td>
-                        <td  style="text-align:center;padding-top:10px;">본사</td>
-                        <td  style="text-align:center;padding-top:10px;">경영부</td>
-                        <td  style="text-align:center;padding-top:10px;">전문경영</td>
-                        <td  style="text-align:center;padding-top:10px;">부장</td>
-                       	<td>
-                       	 	<select class="form-control input-sm">
-                       	 		<option  <c:if test="${0 == 1}">selected</c:if>> </option>
-                        		<option  <c:if test="${1 == 1}">selected</c:if>>role_master</option>
-                        		<option  <c:if test="${2 == 1}">selected</c:if>>role_manager</option>
-                        	</select>
-                        </td>
-                    </tr>
+                    </c:forEach>
                     </tbody>
                 </table>    
 			</div>
 		    <div class="row" style="text-align:right; margin-right:5px;">
-            	<button type="button"  class="btn btn-sm btn-success" onclick="location.href='adminMakeMember.do'">사원 등록</button>
+            	<input type="submit"  class="btn btn-sm btn-success" value="권한 부여">
             </div>
+            </form>
 
             </div>
              <div class="panel-footer"  style="text-align:center;">
