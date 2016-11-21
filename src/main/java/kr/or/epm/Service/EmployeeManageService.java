@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.EmployeeManageDAO;
+import kr.or.epm.VO.Emp_his_cg;
 import kr.or.epm.VO.EmployeeManage;
+import kr.or.epm.VO.Position;
 
 @Service
 public class EmployeeManageService {
@@ -38,4 +40,6 @@ public class EmployeeManageService {
 		EmployeeManage result = employeemanage.selectDetail(emp_no);
 		return result;
 	}
+	
+	
 }

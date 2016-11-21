@@ -40,11 +40,9 @@
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">구분번호</th>
 	                    				<td colspan="3">
 	                    					<select class="form-control input-sm" name="cg_no">
-	                    						<option value="1" >정상근무</option>
-	                    						<option value="2" >연차휴가</option>
-	                    						<option value="3" >육아휴직</option>
-	                    						<option value="4" >출산휴가</option>
-	                    						<option value="5" >특별휴가</option>
+	                    					<c:forEach var="emphis" items="${emphis}">
+	                    						<option value="${emphis.cg_no }">${emphis.cg_name}</option>
+	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
 	                    			</tr>
@@ -52,13 +50,9 @@
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위번호</th>
 	                    				<td>
 	                    					<select class="form-control input-sm" id="position_no" name="position_no">
-	                    						<option value="1">지점장</option>
-	                    						<option value="2">부장</option>
-	                    						<option value="3">차장</option>
-	                    						<option value="4">과장</option>
-	                    						<option value="5">대리</option>
-	                    						<option value="6">주임</option>
-	                    						<option value="7">사원</option>
+	                    					<c:forEach var="plist" items="${plist}">
+	                    						<option value="${plist.position_no }">${plist.position_name}</option>
+	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서번호</th>

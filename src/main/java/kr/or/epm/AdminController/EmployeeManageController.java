@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.or.epm.Service.EmployeeManageService;
 import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_cg;
+import kr.or.epm.VO.Emp_his_cg;
 import kr.or.epm.VO.EmployeeManage;
 import kr.or.epm.VO.Low_dept;
+import kr.or.epm.VO.Position;
 
 @Controller
 public class EmployeeManageController {
@@ -70,6 +73,26 @@ public class EmployeeManageController {
 		return "admin.adminEmployeeManage";
 	}
 	
+	//사원 등록 페이지로 이동하는 함수
+	@RequestMapping("/adminMakeMember.do")
+	public String makeNewMember(Model mv){
+		List<Low_dept> list =null;
+		List<Emp_cg> empcglist = null;
+		List<Position> plist = null;
+		try{
+			list = registerservice.selectLowDeptNo();
+			empcglist = registerservice.selectEmpCgList();
+			plist = registerservice.selectPositionList();			
+		}catch(Exception e){
+			e.getMessage();
+		}finally{
+			mv.addAttribute("list", list);
+			mv.addAttribute("emphis", empcglist);
+			mv.addAttribute("plist", plist);
+		}
+		
+		return "admin.adminNewMember";
+	}
 
 	//관리자 > 사원관리 > 사원 등록에서 등록 버튼을 누르면 타게 되는 함수(인서트 처리를 담당한다)
 	@RequestMapping("/adminAddMember.do")
@@ -123,14 +146,20 @@ public class EmployeeManageController {
 		public String adminMemberUpdate(Model mv, String emp_no){		
 			List<Low_dept> list =null;
 			EmployeeManage result = null;
+			List<Emp_cg> empcglist = null;
+			List<Position> plist = null;
 			try{				
 				result = employeeManage.selectDetail(emp_no);
 				list = registerservice.selectLowDeptNo();				
+				empcglist = registerservice.selectEmpCgList();
+				plist = registerservice.selectPositionList();	
 			}catch(Exception e){
 				e.getMessage();
 			}finally{
 				mv.addAttribute("list", list);
-				mv.addAttribute("result", result);				
+				mv.addAttribute("result", result);	
+				mv.addAttribute("emphis", empcglist);
+				mv.addAttribute("plist", plist);
 			}
 			
 			return "admin.adminMemberUpdate";

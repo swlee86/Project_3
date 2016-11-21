@@ -36,9 +36,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from low_dept
 	</select>
 	
+	<!-- Role 테이블에서 해당 정보들을 모두 불러오는 쿼리 -->
 	<insert id="insertEmpRoleList" parameterType="int">
 		insert into emp_role(role_no, emp_no) values(99, #{emp_no})
 	</insert>
 	
+	<!-- 근무상태 테이블에서 해당 내용들을 모두 불러오는 쿼리 -->
+	<select id="selectEmpCgList" resultType="kr.or.epm.VO.Emp_cg">
+	select cg_no, cg_name from emp_cg
+	</select>
+	
+	<!-- 직위 정보를 모두 불러오는 쿼리 -->
+	<select id="selectPositionList" resultType="kr.or.epm.VO.Position">
+		select position_no, position_name from position
+	</select>
 	
 </mapper>

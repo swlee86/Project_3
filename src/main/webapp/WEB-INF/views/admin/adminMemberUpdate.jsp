@@ -39,20 +39,20 @@
 	                    				<td ><input type="text" class="form-control input-sm" id="emp_no" value="${result.emp_no}" readonly="readonly"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">구분번호</th>
 	                    				<td colspan="3">
-	                    					<select class="form-control input-sm">
-	                    						<option value="1" <c:if test="${1 == 1}">selected</c:if>>정상근무</option>
-	                    						<option value="2" <c:if test="${2 == 1}">selected</c:if>>연차휴가</option>
-	                    						<option value="3" <c:if test="${3 == 1}">selected</c:if>>육아휴직</option>
-	                    						<option value="4" <c:if test="${4 == 1}">selected</c:if>>출산휴가</option>
-	                    						<option value="5" <c:if test="${5 == 1}">selected</c:if>>특별휴가</option>
+	                    					<select class="form-control input-sm" name="cg_no">
+	                    					<c:forEach var="emphis" items="${emphis}">
+	                    						<option value="${emphis.cg_no }">${emphis.cg_name}</option>
+	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위번호</th>
 	                    				<td>
-	                    					<select class="form-control input-sm" id="position_no">
-	                    						<option value="0" <c:if test="${0 == 2}">selected</c:if>>대표</option>
+	                    					<select class="form-control input-sm" id="position_no" name="position_no">
+	                    					<c:forEach var="plist" items="${plist}">
+	                    						<option value="${plist.position_no }">${plist.position_name}</option>
+	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서번호</th>
