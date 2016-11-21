@@ -17,6 +17,8 @@ public class Memo {
 	//DTO 추가 2016-11-17 김주희
 	private String color;
 	private String color_name;
+	
+	
 	public String getMemo_no() {
 		return memo_no;
 	}

@@ -18,11 +18,7 @@ public class PageMoveController {
 		return "home.index";
 	}
 
-	// SideBar(aside.jsp) 개인 메모 클릭시 구동
-	@RequestMapping("/private_memo.do")
-	public String memoview() {
-		return "memo.private_notes";
-	}
+	
 
 	// SideBar(aside.jsp) 주소록 클릭시 구동
 	@RequestMapping("/contacts.do")
