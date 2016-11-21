@@ -114,7 +114,7 @@
                  	<li><a href="info_board_list.do">회사정보 게시판</a></li>
                  	<li><a href="media_board_list.do">언론 게시판</a></li>
                  	<li><a href="business_board_list.do">업무정보공유 게시판</a></li>
-                 	<li><a href="free_board_list.do">사원정보공유 게시판</a></li>
+                 	<li><a href="free_board_list.do">자유 게시판</a></li>
                 </ul>
             </li>
             <li>

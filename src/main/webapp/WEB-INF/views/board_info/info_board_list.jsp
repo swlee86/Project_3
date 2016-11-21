@@ -34,8 +34,23 @@
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                	총 개시글 수 : <font color="coral">${totalcount}</font> 개
+                	총 게시글 수 : <font color="coral">${totalcount}</font> 개
             </div>
+             <form name="list">
+				<select name="pagesize" onchange="submit()" class="form-control" style="width: 20%; margin-left: 80%">
+					<c:forEach var="i" begin="10" end="100" step="10">
+						<c:choose>
+							<c:when test="${psize == i}">
+								<option value='${i}' selected>${i}건</option>
+							</c:when>
+							<c:otherwise>
+								<option value='${i}'>${i}건</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</select>
+			</form>
+            
             <div class="panel-body">
             	<div class="row" style="text-align:right; margin-right:5px;">
             			<form id="searchForm" action="info_board_list.do" class="form-inline" method="POST">
@@ -63,7 +78,11 @@
                  		<c:forEach var="list" items="${companyList}">
                  			<tr>
                  				<td style="text-align:center">${list.no}</td>
-                 				<td><a href="detailinfo_board_list.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">${list.title}</a></td>
+                 				<td>
+                 					<a href="detailinfo_board_list.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">
+                 						${list.title} <c:if test="${list.file_name != null}"><img alt="file" src="images/fileimg.PNG"></c:if>
+                 					</a>
+                 				</td>
                  				<td>관리자</td>
                  				<td>${list.regdate}</td>
                  				<td>${list.hit}</td>
@@ -79,20 +98,29 @@
             </div>
              <div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
-                    <c:if test="${cpage>1}">
-                    	<a href="info_board_list.do?currentpage=${cpage-1}&pagesize=${psize}"><button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button></a>
+                  <c:if test="${cpage > 1}">
+                    	<button type="button" class="btn btn-default" onclick="location.href='info_board_list.do?currentpage=${cpage-1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
                     </c:if>
                     <c:forEach var="i" begin="1" end="${pagecount}" step="1">	
-						<a href="info_board_list.do?currentpage=${i}&pagesize=${psize}"><button class="btn btn-default">${i}</button></a>
+                    <c:choose>
+                    	<c:when test="${cpage==i}">
+                    		<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
+                    	</c:when>
+                    	<c:otherwise>
+							<button class="btn btn-default" onclick="location.href='info_board_list.do?currentpage=${i}&pagesize=${psize}'">${i}</button>                	
+                    	</c:otherwise>
+                    </c:choose>
 					</c:forEach>
-					<c:if test="${cpage>1}">
-                    	<a href="info_board_list.do?currentpage=${cpage+1}&pagesize=${psize}"><button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button></a>
+					<c:if test="${cpage < pagecount}">
+                    	<button type="button" class="btn btn-default" onclick="location.href='info_board_list.do?currentpage=${cpage+1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 	</c:if>
+            
                 
                 </div>
               </div>
         </div> 
             
+           
          
    </div>  
 </div>
