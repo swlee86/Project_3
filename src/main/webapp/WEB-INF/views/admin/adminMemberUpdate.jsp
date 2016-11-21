@@ -12,9 +12,9 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.do">Dashboard</a></li>
-					<li><span>Tables</span></li>
-					<li class="active"><span>DataTables</span></li>
+					<li><a href="index.do">관리자</a></li>
+					<li><span>사원 정보 관리</span></li>
+					<li class="active"><span>사원 정보 상세 페이지</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">사원 정보  상세 페이지</h2>
