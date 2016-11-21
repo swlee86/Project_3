@@ -345,6 +345,9 @@ ul {
 				}
 				
 				$('#cg_no').val(cg);
+				
+				
+				
 				return true;
 			});
 			

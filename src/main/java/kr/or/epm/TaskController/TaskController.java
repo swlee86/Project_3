@@ -87,7 +87,7 @@ public class TaskController {
 	
 	// 업무 > 업무 등록 페이지
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
-	public String taskWriteResult(Principal principal,Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content){
+	public String taskWriteResult(Principal principal,Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content, String sign){
 		
 		//1.먼저 아이디 뽑아와야함.
 		String id = principal.getName();
@@ -116,7 +116,7 @@ public class TaskController {
 		task.setSend_date(mTime);
 		task.setTask_step_no("0");
 		task.setStep_no("0");
-		
+		task.setSign(sign);
 		System.out.println(task.toString());
 
 		
