@@ -37,8 +37,12 @@
 				<div class="panel-heading">
 					<span class="pull-right"> <i class="fa fa-clock-o"> </i> :
 						${list.regdate}
-					</span> <span class="f"> 게시판 > 업무 정보 공유 게시판 > <span class="text-success">${list.low_dept_name}</span>
+					</span> 
+					<br/>
+					<span class="pull-right">첨부파일 ><a href="info_board_fileDown.do?name=${list.file_name}">${list.file_name}</a></span>
+					<span class="f"> 게시판 > 업무 정보 공유 게시판 > <span class="text-success">${list.low_dept_name}</span>
 					</span>
+					
 				</div>
 
 

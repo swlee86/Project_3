@@ -89,4 +89,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select max(to_number(re_no)) from re_media
 	</select>
 	
+	<!-- 조회수 증가 -->
+	<update id="updateHit">
+		update media set hit=hit+1 where no=#{no}
+	</update>
+	
 </mapper>

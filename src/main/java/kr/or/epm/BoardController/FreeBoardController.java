@@ -1,13 +1,21 @@
 package kr.or.epm.BoardController;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.epm.Service.FreeBoardService;
 import kr.or.epm.VO.FreeBoard;
@@ -97,9 +105,23 @@ public class FreeBoardController {
 		return "board_free.free_board_write";
 	}
 	
-	//글쓰기 누르면 인서트 시키는 서비스 함수
+	//글쓰기 누르면 인서트 시키는 서비스 함수 + 파일업로드
 	@RequestMapping(value="/free_board_write.do", method=RequestMethod.POST)
-	public String free_board_write_ok(Principal principal, FreeBoard board, Model mv){
+	public String free_board_write_ok(@RequestParam("uploadfile") MultipartFile file, Principal principal, FreeBoard board, Model mv){
+	
+		//파일 업로드 
+			File cFile = new File("C:/images/", file.getOriginalFilename());
+			try {
+				file.transferTo(cFile);
+				System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
+				System.out.println("겟 패스 : " +cFile.getPath());
+			} catch (IllegalStateException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+		
 		String id= principal.getName();
 		System.out.println(id);
 		Re_FreeBoard free = freeboardservice.selectWrite(id);
@@ -110,10 +132,7 @@ public class FreeBoardController {
 		board.setLow_dept_no(free.getLow_dept_no());
 		board.setLow_dept_name(free.getLow_dept_name());
 		board.setRefer(maxrefer+1);
-		
-		if(board.getFile_name()==null){
-			board.setFile_name("0");
-		}
+		board.setFile_name(file.getOriginalFilename());
 		
 		System.out.println(board.toString());
 		int result = 0;
@@ -147,6 +166,7 @@ public class FreeBoardController {
 			dto.setContent(dto.getContent());
 			dto.setNo(no);
 			dto.setContent(content);
+			
 			
 			System.out.println(dto.toString());
 			
@@ -216,7 +236,21 @@ public class FreeBoardController {
 		
 		//답변 인서트 컨트롤러 
 		@RequestMapping(value="/answerfree.do", method=RequestMethod.POST)
-		public String answerOk(Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth){
+		public String answerOk(@RequestParam("uploadfile") MultipartFile file, Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth){
+			
+			//파일 업로드 
+			File cFile = new File("C:/images/", file.getOriginalFilename());
+			try {
+				file.transferTo(cFile);
+				System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
+				System.out.println("겟 패스 : " +cFile.getPath());
+			} catch (IllegalStateException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			
 			System.out.println("답번쓰기 시작");
 			Re_FreeBoard dto = freeboardservice.selectWrite(principal.getName());
 			System.out.println("title : " + title + " / " + "content : " + content + "no : " + no + "refer : " + refer + "step : " + step);
@@ -242,6 +276,7 @@ public class FreeBoardController {
 			free.setLow_dept_no(dto.getLow_dept_no());
 			free.setDepth(depth+1);//부모글의 depth +1
 			free.setStep(step+1);	//부모글의 스텝번호+1
+			free.setFile_name(file.getOriginalFilename());
 			System.out.println(free.toString());
 			try{
 				
@@ -263,5 +298,30 @@ public class FreeBoardController {
 			return "board_free.free_redirect";
 		}
 
+		
+		//파일 다운
+		@RequestMapping("/FreeBoard_fileDown.do")
+		public void download(String name, HttpServletResponse response)
+				throws Exception {
+			File f = new File("C:/images/" + name);
+
+			String fname = new String(name.getBytes("utf-8"), "8859_1");
+			System.out.println(fname);
+
+			response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
+			FileInputStream fin = new FileInputStream(f);
+			// 출력 도구 얻기 :response.getOutputStream()
+			ServletOutputStream sout = response.getOutputStream();
+			byte[] buf = new byte[1024]; // 전체를 다읽지 않고 1204byte씩 읽어서
+			int size = 0;
+			while ((size = fin.read(buf, 0, buf.length)) != -1) // buffer 에 1024byte
+			// 담고
+			{ // 마지막 남아있는 byte 담고 그다음 없으면 탈출
+				sout.write(buf, 0, size); // 1kbyte씩 출력
+			}
+			fin.close();
+			sout.close();
+		}
+		
 
 }

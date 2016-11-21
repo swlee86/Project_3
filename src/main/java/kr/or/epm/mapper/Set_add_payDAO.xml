@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.Set_add_payDAO">
+
+	<!-- 전체 추가 급여 조회하기 -->
+	<select id="selectSetadd_pay" resultType="kr.or.epm.VO.Set_add_pay">
+		select a.position_no, a.set_date, a.add_pay
+		from set_add_pay a join (select position_no, max(set_date) as last
+                          		 from set_add_pay
+                     			 group by position_no) b
+		on a.position_no = b.position_no and a.set_date = b.last
+		order by position_no asc
+	</select>
+	
+	<!-- 직위별 추가 급여 조회하기 -->
+	<select id="selectSet_add_pay_position" resultType="kr.or.epm.VO.Set_add_pay">
+		select position_no, set_date, add_pay
+		from set_add_pay
+		where position_no = #{position_no}
+	</select>
+	
+	<!-- 추가 급여 수정하기 -->
+	<update id="updateSet_add_pay">
+		update set_add_pay
+		set set_date = to_char(sysdate, 'yyyy-mm-dd'),
+			position_no = #{position_no},
+			add_pay = #{add_pay}
+		where set_date = to_char(sysdate, 'yyyy-mm-dd') and
+			  position_no = #{position_no}
+	</update>
+	
+	<!-- 추가 급여 등록하기 -->
+	<insert id="insertSet_add_pay">
+		insert into set_add_pay(set_date, position_no, add_pay)
+		values(to_char(sysdate, 'yyyy-mm-dd'), #{position_no}, #{add_pay})
+	</insert>
+	
+</mapper>

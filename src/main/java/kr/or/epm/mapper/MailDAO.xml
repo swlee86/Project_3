@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.MailDAO">
+
+	<!-- 메일 작성하기 -->
+	<insert id="insertMail">
+		insert into mail(mail_no, sign, title, 
+						 mail_content, file_name, emp_no, 
+						 send_date, rec_name, rec_mail, 
+						 rec_date, rec_check, del_check, 
+						 rec_del_check)
+		values(mail_seq.nextval, '0', #{title}, 
+			   #{mail_content}, #{file_name, jdbcType=VARCHAR}, #{emp_no}, 
+			   to_char(sysdate, 'yyyy-mm-dd'), #{rec_name}, #{rec_mail}, 
+			   null, '0', '0', 
+			   '0')
+	</insert>
+	
+	<!-- 메일 중요설정 -->
+	<update id="updateMail_sign">
+		update mail
+		set sign = #{sign}
+		where mail_no = #{mail_no}
+	</update>
+	
+	<!-- 메일 상세보기 -->
+	<select id="selectMail_detail" resultType="kr.or.epm.VO.Mail">
+		select mail_no, sign, title, 
+			   mail_content, file_name, emp_no, 
+			   send_date, rec_name, rec_mail, 
+			   rec_date, rec_check
+		from mail
+		where mail_no = #{mail_no}
+	</select>
+	
+	<!-- 수신 메일 조회하기 -->
+	<select id="selectMail_rec" resultType="kr.or.epm.VO.Mail">
+		select mail_no, sign, title, 
+			   file_name, emp_no, send_date
+		from mail
+		where rec_mail = #{rec_mail} and 
+			  rec_del_check = '0'
+	</select>
+	
+	<!-- 수신일 데이터, 확인여부 데이터 삽입 -->
+	<update id="updateMail_rec">
+		update mail
+		set rec_check ='1', rec_date = to_char(sysdate, 'yyyy-mm-dd')
+		where mail_no = #{mail_no}
+	</update>
+	
+	<!-- 수신함에서 삭제하기 -->
+	<update id="deleteMail_rec">
+		update mail
+		set rec_del_check = '1'
+		where mail_no = #{mail_no}
+	</update>
+	
+	<!-- 송신 메일 조회하기 -->
+	<select id="selectMail">
+		select mail_no, title, file_name, 
+			   send_date, rec_name, rec_mail, 
+			   rec_date, rec_check
+		from mail
+		where emp_no = #{emp_no} and 
+			  del_check = '0'
+	</select>
+	
+	<!-- 송신함에서 삭제하기 -->
+	<update id="deleteMail">
+		update mail
+		set del_check = '1'
+		where mail_no = #{mail_no}
+	</update>
+	
+	<!-- 휴지통 조회하기 -->
+	<select id="selectMail_delete" resultType="kr.or.epm.VO.Mail">
+		select mail_no, title, file_name, 
+			   emp_no, send_date
+		from mail
+		where rec_del_check = '1'
+	</select>
+	
+	<!-- 휴지통 비우기 -->
+	<delete id="deleteMail_delete">
+	</delete>
+	
+	<!-- 휴지통에서 복원하기 -->
+	<update id="updateMail_re">
+		update mail
+		set rec_del_check = '0'
+		where mail_no = #{mail_no}
+	</update>
+</mapper>

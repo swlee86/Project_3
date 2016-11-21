@@ -32,7 +32,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="hpanel email-compose">
-			<form method="post" action="" class="form-horizontal" >  <!-- enctype="multipart/form-data" -->
+			<form method="post" action="" class="form-horizontal"  enctype="multipart/form-data">  
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
@@ -54,7 +54,7 @@
 										<button class="btn btn-default" id="clip" type="button">
 											<i class="fa fa-paperclip"></i>
 										</button>
-										<input type="file" name="file_name" id="clipfile" style="display:none;float:left" class="form-control input-xs">
+										<input type="file" name="uploadfile" id="clipfile" style="display:none;float:left" class="form-control input-xs">
 										
 								<!-- 		<button class="btn btn-default" id="img" type="button">
 											<i class="fa fa-image"></i>

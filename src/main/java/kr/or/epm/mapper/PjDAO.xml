@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.PjDAO">
+
+	<!-- 프로젝트 등록하기 -->
+	<insert id="insertPj">
+		insert into pj(pj_no, emp_no, pj_title, 
+					   pj_content, pj_start, pj_end, 
+					   pj_progress, rec_emp_no, rec_del_check,
+					   pj_step_no, step_no)
+		values(pj_seq.nextval, #{emp_no}, #{pj_title},
+			   #{pj_content}, #{pj_start}, #{pj_end},
+			   null, #{rec_emp_no}, '0',
+			   '2', '4')
+	</insert>
+	
+	<!-- 프로젝트 승인 대기함 조회하기 -->
+	<select id="selectPj_rec" resultType="kr.or.epm.VO.Pj">
+		select pj_no, p.emp_no, e.emp_name, 
+			   pj_title, pj_start, pj_end, 
+			   step_no
+		from pj p join emp e
+		on p.emp_no = e.emp_no
+		where rec_emp_no = #{rec_emp_no} and 
+			  rec_del_check = '0'
+	</select>
+	
+	<!-- 프로젝트 승인 대기함 상세보기 -->
+	<select id="selectPj_detail" resultType="kr.or.epm.VO.Pj">
+		select p.pj_no, p.emp_no, e.emp_name, 
+			   pj_title, pj_content, pj_start, 
+			   pj_end, step_no, d.emp_no
+		from pj p join emp e
+		on p.emp_no = e.emp_no
+  		left outer join (select distinct emp_no, d.pj_no
+                     	 from pjd_people p join pjd d
+                     	 on p.pjd_no = d.pjd_no
+                     	 where d.pj_no = #{pj_no}) d
+    	on p.pj_no = d.pj_no
+		where p.pj_no = #{pj_no}
+	</select>
+	
+	<!-- 프로젝트 승인 대기함에서 삭제하기 -->
+	<update id="deletePj_rec">
+		update pj
+		set rec_del_check = '1'
+		where pj_no = #{pj_no}
+	</update>
+	
+	<!-- 프로젝트 진행 단계 처리하기 -->
+	<update id="updatePj_step">
+		update pj
+		set pj_step_no = #{pj_step_no}
+		where pj_no = #{pj_no}
+	</update>
+	
+	<!-- 프로젝트 승인 처리하기 -->
+	<update id="updatePj_approval">
+		update pj
+		set step_no = #{step_no}
+		where pj_no = #{pj_no}
+	</update>
+	
+	<!-- 프로젝트 조회하기 -->
+	<select id="selectPj" resultType="kr.or.epm.VO.Pj">
+		select pj_no, p.emp_no, e.emp_name, 
+			   pj_title, pj_start, pj_end, 
+			   pj_progress, p.pj_step_no, s.pj_step_name
+		from pj p join emp e
+		on p.emp_no = e.emp_no
+		join pj_step s
+		on p.pj_step_no = s.pj_step_no
+		order by pj_start desc
+	</select>
+	
+	<!-- 내가 진행하는 프로젝트 조회하기 -->
+	<select id="selectPj_mine" resultType="kr.or.epm.VO.Pj">
+		select pj_no, p.emp_no, e.emp_name, 
+			   pj_title, pj_start, pj_end, 
+			   pj_progress, p.pj_step_no, s.pj_step_name
+		from pj p join emp e
+		on p.emp_no = e.emp_no
+		join pj_step s
+		on p.pj_step_no = s.pj_step_no
+		where p.emp_no = #{emp_no}
+		order by pj_start desc
+	</select>
+	
+</mapper>

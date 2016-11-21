@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.Conf_peopleDAO">
+
+	<!-- 회의 참여자 등록하기 -->
+	<insert id="insertConf_people">
+		insert into conf_people(conf_no, emp_no)
+		values(#{conf_no}, #{emp_no})
+	</insert>
+	
+	<!-- 회의 참여자 삭제하기 -->
+	<delete id="deleteConf_people">
+		delete from conf_people
+		where conf_no = #{conf_no} and
+			  emp_no = #{emp_no}
+	</delete>
+	
+	<!-- 회의 참여자 조회하기 -->
+	<select id="selectConf_people" resultType="kr.or.epm.VO.Conf_people">
+		select conf_no, c.emp_no, e.emp_name
+		from conf_people c join emp e
+		on c.emp_no = e.emp_no
+		where conf_no = #{conf_no}
+		order by emp_no asc
+	</select>
+	
+</mapper>

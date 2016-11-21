@@ -1,5 +1,7 @@
 package kr.or.epm.BoardController;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.epm.Service.MediaBoardService;
 import kr.or.epm.VO.Emp;
@@ -111,17 +115,34 @@ public class MediaBoardController {
 	
 	//언론게시판 > 글쓰기 처리
 	@RequestMapping(value = "/media_board_write.do", method = RequestMethod.POST)
-	public String media_board_write(Principal principal, MediaBoard mediaBoard , Model model, HttpServletRequest request) {
+	public String media_board_write(@RequestParam("uploadfile") MultipartFile file, Principal principal, MediaBoard mediaBoard , Model model, HttpServletRequest request) {
 		System.out.println("media_board_write()처리 컨트롤러 탐");
 		int result = 0;
 		String id= principal.getName();
 		System.out.println("id : "+id);
 		
+		 String path = request.getRealPath("/media/upload/");
+		 System.out.println("=====> path : "+path);
+		File cFile = new File(path, file.getOriginalFilename());
+		
+		try {
+			file.transferTo(cFile);
+			System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
+			System.out.println("getPath : " +cFile.getPath());
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
+		
 		Emp info = mediaboardservice.selectInfoSearch(id);  //사번,이름 가져가기
 		
 		mediaBoard.setEmp_no(info.getEmp_no());
 		mediaBoard.setEmp_name(info.getEmp_name());
-				 
+		mediaBoard.setFile_name(file.getOriginalFilename());
+		
 		System.out.println(mediaBoard.getTitle()+"/"+mediaBoard.getContent()+"/");
 		System.out.println(mediaBoard.getFile_name());
 
@@ -161,15 +182,33 @@ public class MediaBoardController {
 	
 	//언론게시판 > 수정 처리
 	@RequestMapping(value = "/media_board_update.do", method = RequestMethod.POST)
-	public String media_board_update(MediaBoard mediaBoard, Model model, HttpServletRequest request) {
+	public String media_board_update(@RequestParam("uploadfile") MultipartFile file, MediaBoard mediaBoard, Model model, HttpServletRequest request) {
 		System.out.println("media_board_update()처리 컨트롤러 탐");
 		int result = 0;
 		
-		System.out.println("=>update 후 title :"+mediaBoard.getTitle()+"/내용: "+mediaBoard.getContent());
+		//File cFile = new File("C:/images/", file.getOriginalFilename());
+		 String path = request.getRealPath("/media/upload/");
+		 System.out.println("=====> path : "+path);
+		File cFile = new File(path, file.getOriginalFilename());
+		
+		try {
+			file.transferTo(cFile);
+			System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
+			System.out.println("getPath : " +cFile.getPath());
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
+		mediaBoard.setFile_name(file.getOriginalFilename());
+		
+		System.out.println("=>update 후 title :"+mediaBoard.getTitle()+"/내용: "+mediaBoard.getContent()+"/ 파일 제목 : "+mediaBoard.getFile_name());
+		
 		result = mediaboardservice.updateRow(mediaBoard);
 
-		System.out.println("=> 글번호update result : "+mediaBoard.getNo());
-		
+		System.out.println("=> 글번호update result : "+mediaBoard.getNo());	
 	
 		if(result > 0){
 			return "redirect:media_board_view.do?no="+mediaBoard.getNo();

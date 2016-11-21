@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.Set_bonusDAO">
+	
+	<!-- 전체 상여금 조회하기 -->
+	<select id="selectSet_bonus" resultType="kr.or.epm.VO.Set_bonus">
+		select a.dept_no, a.set_date, a.bonus_percent, a.bonus_check
+		from set_bonus a join (select dept_no, max(set_date) as last
+                          	   from set_bonus
+                     		   group by dept_no) b
+		on a.dept_no = b.dept_no and a.set_date = b.last
+		order by dept_no asc
+	</select>
+	
+	<!-- 부서별 상여금 조회하기 -->
+	<select id="selectSet_bonus_dept" resultType="kr.or.epm.VO.Set_bonus">
+		select dept_no, set_date, bonus_percent, bonus_check
+		from set_bonus
+		where dept_no = #{dept_no}
+		order by set_date desc
+	</select>
+	
+	<!-- 상여금 지급 비율 및 지급 여부 수정하기 -->
+	<update id="updateSet_bonus">
+		update set_bonus
+		set dept_no = #{dept_no}, 
+			set_date = to_char(sysdate, 'yyyy-mm-dd'), 
+			bonus_percent = #{bonus_percent}, 
+			bonus_check = #{bonus_check}
+		where set_date = to_char(sydate, 'yyyy-mm-dd') and
+			  dept_no = #{dept_no}
+	</update>
+	
+	<!-- 상여금 지급 비율 및 지급 여부 등록하기 -->
+	<insert id="insertSet_bonus">
+		insert into set_bonus(set_date, dept_no, bonus_percent, bonus_check)
+		values(to_char(sysdate, 'yyyy-mm-dd'), #{dept_no}, #{bonus_percent}, #{bonus_check})
+	</insert>
+	
+</mapper>

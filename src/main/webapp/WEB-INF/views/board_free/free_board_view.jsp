@@ -17,7 +17,7 @@
 					<li class="active"><span>Mailbox</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">업무 정보 공유 게시판</h2>
+			<h2 class="font-light m-b-xs">자유 게시판</h2>
 			<small>Show users list in nice and color panels</small>
 		</div>
 	</div>
@@ -37,7 +37,10 @@
 				<div class="panel-heading">
 					<span class="pull-right"> <i class="fa fa-clock-o"> </i> :
 						${list.regdate}
-					</span> <span class="f"> 게시판 > 업무 정보 공유 게시판 > <span class="text-success">${list.low_dept_name}</span>
+					</span>
+					<br/>
+					<span class="pull-right">첨부파일 ><a href="info_board_fileDown.do?name=${list.file_name}">${list.file_name}</a></span>	
+					<span class="f"> 게시판 > 자유 게시판 > <span class="text-success">${list.low_dept_name}</span>
 					</span>
 				</div>
 
