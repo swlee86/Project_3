@@ -63,4 +63,9 @@ public class RegisterService {
 		String resultemp = registerDao.selectUsedId(id);
 		return resultemp;
 	}
+	
+	public void insertEmpRoleList(String emp_no){
+		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
+		registerDao.insertEmpRoleList(emp_no);
+	}
 }

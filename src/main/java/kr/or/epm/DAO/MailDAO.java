@@ -1,13 +1,8 @@
 package kr.or.epm.DAO;
 
 import java.util.List;
-import kr.or.epm.VO.Mail;
 
-/*
- * 작성일 : 2016-11-18
- * 작성자 : 백승아
- * 사용 목적 : 메일에 대한 DAO interface
-*/
+import kr.or.epm.VO.Mail;
 
 public interface MailDAO {
 	
@@ -43,4 +38,5 @@ public interface MailDAO {
 	
 	// 휴지통에서 복원하기
 	public int updateMail_re();
+
 }

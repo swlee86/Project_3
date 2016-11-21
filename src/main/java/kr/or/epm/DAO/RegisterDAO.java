@@ -24,5 +24,7 @@ public interface RegisterDAO {
 	
 	//사원정보 등록페이지 접근시 하위 부서번호를 읽어와서 뿌려주는 함수
 	List<Low_dept> selectLowDeptNo();
+	
+	void insertEmpRoleList(String id);
 
 }

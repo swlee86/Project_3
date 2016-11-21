@@ -29,7 +29,7 @@
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
-				<form method="post" class="form-horizontal">
+				<form method="post" class="form-horizontal" enctype="multipart/form-data">
 				<div class="panel-heading hbuilt">
 					<div class="p-xs">
 
@@ -44,12 +44,7 @@
 								</label>
 								<div class="col-sm-11">
 									<div class="btn-group">
-										<button class="btn btn-default" id="clip" type="button">
-											<i class="fa fa-paperclip"></i>
-										</button>
-										<button class="btn btn-default">
-											<i class="fa fa-image"></i>
-										</button>
+										<input type="file" class="btn btn-default" name="uploadfile">
 									</div>
 								</div>
 							</div>

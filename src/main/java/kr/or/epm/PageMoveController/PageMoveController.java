@@ -188,30 +188,30 @@ public class PageMoveController {
 	}
 	
 	//근태 관리 > 근태 
-	@RequestMapping("/Attendace.do")
-	public String Attendace(HttpServletRequest request, Model model){
+	@RequestMapping("/Commute.do")
+	public String Commute(HttpServletRequest request, Model model){
 		String ip =request.getRemoteAddr();
 		System.out.println("나의 아이피 : "+ip);
 		model.addAttribute("ip",ip);
-		return "TAttendance.TimeAttendaceMainView";
+		return "commute.TimeCommuteMainView";
 	}
 	
 	//월별 근태 보기
-	@RequestMapping("/AttendaceMonth.do")
-	public String AttendaceMonth(){
-		return "TAttendance.MonthAttendaceView";
+	@RequestMapping("/CommuteMonth.do")
+	public String CommuteMonth(){
+		return "commute.MonthCommuteView";
 	}
 	
 	//근태 신청서 쓰기
-	@RequestMapping("/AttendaceWrite.do")
-	public String AttendaceWrite(){
-		return "TAttendance.AttendaceWriteView";
+	@RequestMapping("/CommuteWrite.do")
+	public String CommuteWrite(){
+		return "commute.CommuteWriteView";
 	}
 	
 	//각기 다른 근태 보기
-	@RequestMapping("/AttendaceOther.do")
-	public String AttendaceOther(){
-		return "TAttendance.AttendaceOtherView";
+	@RequestMapping("/CommuteOther.do")
+	public String CommuteOther(){
+		return "commute.CommuteOtherView";
 	}
 	
 	//주소록  > 주소록 그룹 관리 페이지 이동
@@ -271,76 +271,6 @@ public class PageMoveController {
 	}
 	
 	
-	//업무 > 업무 등록 페이지 이동
-	@RequestMapping("/taskWrite.do")
-	public String taskWrite(){
-		return "task.taskWrite";
-	}
-	
-	//업무 > 업무 요청 페이지 이동 
-	@RequestMapping("/taskRequest.do")
-	public String taskRequest(){
-		return "task.taskRequest";
-	}
-
-	//업무요청 > 업무요청 수신 > 상세페이지
-	@RequestMapping("/taskRequest_Receive_Detail.do")
-	public String taskRequest_Receive_Detail(){
-		return "task.taskRequest_Receive_Detail";
-	}
-	
-	//업무 요청 > 업무요청 송신 > 상세페이지
-	@RequestMapping("/taskRequest_Transmit_Detail.do")
-	public String taskRequest_Transmit_Detail(){			
-		return "task.taskRequest_Transmit_Detail";
-	}
-	
-	//업무 요청 > 업무요청 참여 > 상세페이지
-	@RequestMapping("/taskRequest_Participation_Detail.do")
-	public String  taskRequest_Participation_Detail(){			
-		return "task. taskRequest_Participation_Detail";
-	}
-	
-	
-	//업무 > 업무보고 페이지 이동
-	@RequestMapping("/taskInform.do")
-	public String taskInform(){
-		return "task.taskInform";
-	}
-	
-	//업무 보고 > 업무보고 수신 > 상세페이지
-	@RequestMapping("/taskInform_Receive_Detail.do")
-	public String taskInform_Receive_Detail(){
-		return "task.taskInform_Receive_Detail";
-	}
-	
-	
-
-	//업무 보고 > 업무보고 송신 > 상세페이지
-	@RequestMapping("/taskInform_Transmit_Detail.do")
-	public String taskInform_Transmit_Detail(){			
-		return "task.taskInform_Transmit_Detail";
-	}	
-	
-	//업무  > 업무일지 페이지 이동
-	@RequestMapping("/taskLog.do")
-	public String taskLog(){
-		return "task.taskLog";
-	}
-	
-	//업무일지 > 업무 일지 수신 > 상세페이지
-	@RequestMapping("/taskLog_Receive_Detail.do")
-	public String taskLog_Receive_Detail(){			
-		return "task.taskLog_Receive_Detail";
-	}
-	
-	
-	
-	//업무일지 > 업무 일지 송신 > 상세페이지
-	@RequestMapping("/taskLog_Transmit_Detail.do")
-	public String taskLog_Transmit_Detail(){			
-		return "task.taskLog_Transmit_Detail";
-	}	
 	
 	
 	

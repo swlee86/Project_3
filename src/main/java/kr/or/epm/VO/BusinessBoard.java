@@ -1,5 +1,7 @@
 package kr.or.epm.VO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BusinessBoard {
 	private String no;
 	private String emp_no;
@@ -14,8 +16,14 @@ public class BusinessBoard {
 	private String content;
 	private String regdate;
 	private String file_name;
+	private MultipartFile uploadfile;
 	
-	
+	public MultipartFile getUploadfile() {
+		return uploadfile;
+	}
+	public void setUploadfile(MultipartFile uploadfile) {
+		this.uploadfile = uploadfile;
+	}
 	public String getNo() {
 		return no;
 	}
