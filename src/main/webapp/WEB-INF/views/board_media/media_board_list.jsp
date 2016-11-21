@@ -86,7 +86,7 @@
 										<td style="text-align: center">${n.no}</td>
 										<td>
 											<a href="media_board_view.do?no=${n.no}&pg${pg}">${n.title}
-											<c:if test="${empty n.file_name}">
+											<c:if test="${not empty n.file_name}">
 												&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG">
 											</c:if></a>
 										</td>

@@ -55,6 +55,14 @@
 						</div>
 						<div class="media-body">
 							<h5>${list.title}</h5>
+							<hr>
+							<c:if test="${not empty list.file_name}">
+								<!-- <img src="C:\images\${list.file_name}" alt="이미지" width="500px"> -->
+								<img src="${pageContext.request.contextPath}/media/upload/${list.file_name}"  style="max-width: 80%;height: auto;  border-radius: 0%; width: inherit;" alt="기사이미지" width="70%">
+								 <br><br>
+							</c:if>
+							 
+							dgss
 							${list.content}
 
 							
