@@ -230,6 +230,14 @@ ul {
 	//사원정보 뽑아서 담을 배열
 	var empInfoArray = new Array();
 	
+	//부서 선택시
+	var departcho;
+	//하위 부서 선택시
+	var low_deptNumber;
+	//사원
+	var empListNumber;
+	
+	var choose;
 	
 		$('#makeuserUpdateDate').datepicker(
 				{
@@ -284,8 +292,64 @@ ul {
 				type : "success"
 			});
 		});
+		
+		
+		//날짜 차이 구하는 함수
+	     function calDateRange(val1, val2)
+    {
+        var FORMAT = "-";
+        // FORMAT을 포함한 길이 체크
+        if (val1.length != 10 || val2.length != 10)
+            return null;
+        // FORMAT이 있는지 체크
+        if (val1.indexOf(FORMAT) < 0 || val2.indexOf(FORMAT) < 0)
+            return null;
+        // 년도, 월, 일로 분리
+        var start_dt = val1.split(FORMAT);
+        var end_dt = val2.split(FORMAT);
+        // 월 - 1(자바스크립트는 월이 0부터 시작하기 때문에...)
+        // Number()를 이용하여 08, 09월을 10진수로 인식하게 함.
+        start_dt[1] = (Number(start_dt[1]) - 1) + "";
+        end_dt[1] = (Number(end_dt[1]) - 1) + "";
 
+        var from_dt = new Date(start_dt[0], start_dt[1], start_dt[2]);
+        var to_dt = new Date(end_dt[0], end_dt[1], end_dt[2]);
+        var result = (to_dt.getTime() - from_dt.getTime());
+        var result1 = result/1000/60/60/24;
+        return result1;
+    }
+		
 		$(function() {
+			
+			$('#taskForm').submit(function(){
+				var startDate = $('#makeuserUpdateDate').val();
+				var lastDate = $('#makeuserUpdateDate2').val();
+				var result = calDateRange(startDate,lastDate);
+				alert("차이 결과 : "+result);
+				$('#deadline').val(result);
+				
+				
+				//라디오버튼
+				var st = $("input[type=radio][name=cg_noT]:checked").val();
+				alert("st??? : "+st);
+				var cg = '';
+				if(st == "업무요청"){
+					cg = 1;
+					$('#cg_name').val('업무요청');
+				}else if(st == "업무보고"){
+					cg = 2;
+					$('#cg_name').val('업무보고');
+				}else if(st == "업무일지"){
+					cg = 3;
+					$('#cg_name').val('업무일지');
+				}
+				
+				$('#cg_no').val(cg);
+				return true;
+			});
+			
+			
+			//참조자 아이콘 클릭시
 			$('#deptA').click(function() {
 
 						var litag = "<ul>";
@@ -294,7 +358,7 @@ ul {
 						$.ajax({
 							url : "taskWriteModal.do",
 							success : function(data) {
-
+								choose = 2;
 								var departMent = "";
 
 								$('#myModal6').modal();
@@ -306,7 +370,7 @@ ul {
 								console.log("departMent : " + departMent);
 
 								$.each(departMent, function(index) {
-									litag += "<li onclick='seeDepart(this)'>"
+									litag += "<li onclick='seeDepart(this,choose)'>"
 											+ departMent[index].branch_name
 											+ "</li>";
 								});
@@ -318,12 +382,49 @@ ul {
 							}
 						})
 					});
+			
+			
+			//수신자 아이콘 클릭시
+			$('#recIcon').click(function(){
+
+				var litag = "<ul>";
+				$('#organization').empty();
+				$('#empList').empty();
+				$.ajax({
+					url : "taskWriteModal.do",
+					success : function(data) {
+						choose = 1;
+						var departMent = "";
+
+						$('#myModal6').modal();
+						$.each(data, function(index) {
+
+							departMent = data[index];
+						});
+
+						console.log("departMent : " + departMent);
+
+						$.each(departMent, function(index) {
+							litag += "<li onclick='seeDepart(this, choose)'>"
+									+ departMent[index].branch_name
+									+ "</li>";
+						});
+
+						litag += "</ul>";
+
+						$('#organization').html(litag);
+
+					}
+				})
+			});
+			
 		});
 
 		//부서 출력 하는 아작스
-		function seeDepart(obj) {
-
-			alert("지점 리스트 클릭 !");
+		function seeDepart(obj, choose) {
+			//전역 부서 선택시
+		    departcho = choose;
+	
 			var name = $(obj).text();
 
 			$.ajax({
@@ -341,7 +442,7 @@ ul {
 
 					$.each(dept, function(index) {
 						$(obj).append(
-								"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this)'>"
+								"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,departcho)'>"
 										+ dept[index].dept_name + "</span>");
 					});
 
@@ -349,8 +450,11 @@ ul {
 			});
 		}
 
-		function seelow_Depart(obj) {
-
+		//하위 부서 클릭시
+		function seelow_Depart(obj,departcho) {
+			alert("부서 : "+choose);
+			
+			low_deptNumber= departcho;
 			var low_dept = $(obj).text();
 
 			$.ajax({
@@ -368,7 +472,7 @@ ul {
 
 					$.each(low_dept, function(index) {
 						$(obj).append(
-								"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this)'>"
+								"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,low_deptNumber)'>"
 								+ low_dept[index].low_dept_name + "</span>");
 
 					});
@@ -378,11 +482,22 @@ ul {
 		}
 		
 		//사원 뽑아오기
-		function seeEmpMember(obj){
+		function seeEmpMember(obj,low_deptNumber){
+			//체크
+			empListNumber = low_deptNumber;
+			alert("사원뽑기 : "+empListNumber);
+			
+			
 			//클릭한 text 값 뽑아옴.
 			var low_dept = $(obj).text();
 			alert("seeEmpMember : "+low_dept);
-			var makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+			var makeTable = "";
+			if(empListNumber ==1){
+			 makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
+			}else{
+			 makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+			}
+			
 			$.ajax(
 					{
 						url: "taskEmpModal.do",
@@ -396,7 +511,13 @@ ul {
 							});
 							
 							$.each(emp, function(index){
-								makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+								
+								if(empListNumber == 1){	
+									makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";	
+								}
+								else if(empListNumber == 2){
+									makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+								}
 							});
 							makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
 							$('#empList').empty();
@@ -409,8 +530,8 @@ ul {
 	
 		
 		//체크박스 선택후 버튼 클릭시 호출
-		function check(){
-			
+		function check(low_deptNumber){
+		
 			//체크박스 크기만큼 배열 생성
 			var checkResult = new Array();
 			$(":checkbox[name='chkbtn']:checked").each(function(pi,po){
@@ -421,29 +542,39 @@ ul {
 			});
 			console.log("사원 : "+empInfoArray);
 			
-			if(empInfoArray.length > 1){
-				console.log("if 내부 : " +empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
-				//화면에 보이는 input 은 그냥 때려넣음
-				$("#task_no").val(empInfoArray[0].emp_no);
-				$('#task_name').val(empInfoArray[0].emp_name);
-				
-				var input_no = "";
-				var input_name = "";
-				for(var i = 1; i < empInfoArray.length; i++){
-					input_no += "<input type='text' class='form-control' name='' value='"+empInfoArray[i].emp_no+"'>";
-					input_name +="<input type='text' class='form-control' name='' value='"+empInfoArray[i].emp_name+"'>";
+				if(empInfoArray.length > 1){
+					console.log("if 내부 : " +empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
+					//화면에 보이는 input 은 그냥 때려넣음
+					$("#task_no").val(empInfoArray[0].emp_no);
+					$('#task_name').val(empInfoArray[0].emp_name);
+					
+					var input_no = "";
+					var input_name = "";
+					for(var i = 1; i < empInfoArray.length; i++){
+						input_no += "<input type='text' class='form-control' name='emp_no' value='"+empInfoArray[i].emp_no+"'>";
+						input_name +="<input type='text' class='form-control' value='"+empInfoArray[i].emp_name+"'>";
+					}
+					$('#task_no_td').append(input_no);
+					$('#task_name_td').append(input_name);
+				}else{
+					$("#task_no").val(empInfoArray[0].emp_no);
+					$('#task_name').val(empInfoArray[0].emp_name);				
 				}
-				$('#task_no_td').append(input_no);
-				$('#task_name_td').append(input_name);
-				alert("하나 이상");
-			}else{
-				$("#task_no").val(empInfoArray[0].emp_no);
-				$('#task_name').val(empInfoArray[0].emp_name);
-				
-				alert("하나 ");
-			}
 			
 			$("#myModal6").modal("hide");
+		}
+		
+		//수신자 선택시
+		function recF(obj){
+			//수신자 사번
+			var rec_emp_no = $(obj).parent().parent().children().eq(0).html();
+			//수신자 이름
+			var rec_name = $(obj).parent().parent().children().eq(1).html();
+			
+			$('#rec_emp_no').val(rec_emp_no);
+			$('#rec_name').val(rec_name);
+			$('#myModal6').modal("hide");
+			
 		}
 		
 	</script>

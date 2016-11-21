@@ -10,6 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 업무 참여자에 대한 mapper
 -->
 
+	<select id="selectTask_No" resultType="String">
+			select max(task_no) from task_people
+	</select>
+
 	<!-- 업무 참여자 추가하기 -->
 	<insert id="insertTask_people">
 		insert into task_people(task_no, emp_no)
