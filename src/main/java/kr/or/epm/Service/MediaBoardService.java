@@ -48,7 +48,16 @@ public class MediaBoardService {
 	public MediaBoard selectDetail(int no) {
 		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
 		MediaBoard list = mediaBoardDAO.selectDetail(no);
+		updateHit(no);
 		return list;
+	}
+	
+	//조회수 증가하는 함수
+	public void updateHit(int no) {
+		System.out.println("updateHit() 서비스");
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		int result = mediaBoardDAO.updateHit(no);
+		System.out.println("조회수 restult : "+result);
 	}
 
 	// 게시판 상세글 리플 불러오는 함수
@@ -71,28 +80,10 @@ public class MediaBoardService {
 	public int insertRow(MediaBoard mediaBoard, HttpServletRequest request) {
 		int result = 0;
 	
-		if(mediaBoard.getFile_name() == null){
+	/*	if(mediaBoard.getFile_name() == null){
 			mediaBoard.setFile_name("null");
-		}
-/*		MultipartFile uploadfile = mediaBoard.getFile_name();
+		}*/
 		
-		if (uploadfile != null) {
-			String path = request.getRealPath("/media/upload");
-			String fullpath = path + "\\" + mediaBoard.getFile_name();
-			
-			
-			// 서버에 파일 쓰기 작업
-			try {
-				FileOutputStream fs = new FileOutputStream(fullpath);
-				fs.write();
-				fs.close();
-				File file = new File(fullpath);
-				uploadfile.tr
-			} catch (IOException e) {
-				System.out.println("insertRow()의 파일 업로드 :"+e.getMessage());
-			}
-		}
-*/
 		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
 		result=mediaBoardDAO.insertRow(mediaBoard);
 		
