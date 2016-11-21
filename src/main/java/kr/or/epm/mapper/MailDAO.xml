@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select mail_no, title, file_name, 
 			   emp_no, send_date
 		from mail
-		where rec_del_check = '1';
+		where rec_del_check = '1'
 	</select>
 	
 	<!-- 휴지통 비우기 -->
