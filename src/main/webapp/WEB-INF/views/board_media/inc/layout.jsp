@@ -36,10 +36,36 @@
 			console.log('클릭');
 			$('#clipfile').css('display','block');
 		});
-		$('#img').click(function(){
-			console.log('클릭');
-			$('#imgfile').css('display','block');
+
+		$('#replysubmit').click(function(){
+			console.log('리플버튼클릭함');
+			
+			if($('#replytext').val() == ""){
+				$('#replytext').focus();
+				alert('리플내용입력해주세요');
+				return false;
+			}
+				
+			$.ajax(
+				{
+					type : "post",
+					url  : "media_board_reply.do",
+					data : {
+						"replytext" : $('#replytext').val(),
+						"no" : $('#no').val()
+					},
+					success : function(data){
+						console.log(data);
+				 	
+					 	 if(data != null){
+					 		$('#replytext').val("");
+					 		$('#replybody').append('<div class="media"><a class="pull-left"> <img src="${pageContext.request.contextPath}/images/a1.jpg" alt="이미지"></a><div class="media-body"><span class="font-bold">'+data.emp_name+'</span><small class="text-muted">'+data.regdate+'</small><div class="social-content">'+data.content+'</div></div></div>');
+					 	}
+					}
+				}		
+			)
 		});
+		
 	});
 	
 	</script>

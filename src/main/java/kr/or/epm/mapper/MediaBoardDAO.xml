@@ -20,24 +20,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 from 
 					 	 (select no,emp_no,emp_name,hit,title,content,regdate,file_name
 					 	  from media 
-					 	  where ${param3} like '%${param4}%'  order by no desc
+					 	  where ${param3} like '%${param4}%'  order by to_number(no) desc
 						  ) n
 					) where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}
 	</select>
 	
 	<!-- 언론게시판 글 상세내용 -->
 	<select id="selectDetail" resultType="kr.or.epm.VO.MediaBoard">
-		select emp_name,title,content,regdate,file_name
+		select no, emp_no, emp_name, title, content, regdate, file_name
 		from media
 		where no = #{no}
 	</select>
 
 	<!-- 언론게시판 리플 글 보기-->
 	<select id="selectReList" resultType="kr.or.epm.VO.MediaBoardReply">
-		select emp_name, content, regdate
+		select re_no, no, emp_name, content, regdate
 		from re_media
 		where no = #{no} 
-		order by re_no asc 
+		order by to_number(re_no) asc
 	</select>
 	
 	<!-- 회원 정보 부르기 -->
@@ -48,8 +48,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where d.id=#{id}
 	</select>
 	
+	<!-- 게시글 추가 -->
 	<insert id="insertRow">
-		insert into media(media_seq.nextval, emp_no, emp_name, hit, title, content, regdate, file_name)
-				    values( #{seq}, #{emp_no}, #{emp_name}, 0, #{title}, #{content}, SYSDATE, #{file_name,jdbcType=VARCHAR})
+		insert into media(no, emp_no, emp_name, hit, title, content, regdate, file_name)
+				    values( media_seq.nextval, #{emp_no}, #{emp_name}, 0, #{title}, #{content}, to_char(sysdate, 'YYYY-MM-DD'), #{file_name,jdbcType=VARCHAR})
 	</insert>
+	
+	<!-- 최고no값 구하기 -->
+	<select id="selectMaxNo" resultType="int">
+		select max(to_number(no)) from media
+	</select>
+	
+	<!-- 글 제거 -->
+	<delete id="deleteRow">
+		delete media where no=#{no}
+	</delete>
+	
+	<!-- 글 수정 -->
+	<update id="updateRow">
+		update media
+		set title=#{title}, 
+			content=#{content}, 
+			file_name=#{file_name,jdbcType=VARCHAR}
+		where no=#{no}
+	</update>	
+	
+	<!-- 리플 다는 함수 -->
+	<insert id="insertRowReply">
+		insert into re_media(re_no, no, emp_no, emp_name, content, regdate)
+				    values(re_media_seq.nextval, #{no}, #{emp_no}, #{emp_name}, #{content}, to_char(sysdate, 'YYYY-MM-DD'))
+	</insert>
+	
+	<!-- 리플 뽑는 함수 -->
+	<select id="selectRowReply" resultType="kr.or.epm.VO.Re_MediaBoard">
+		select re_no, no, emp_no, content, regdate, emp_name from re_media where no = #{param1} and re_no = #{param2}
+	</select>
+	
+	<!-- 현재 리플 번호 -->
+	<select id="selectMaxReNo" resultType="int">
+		select max(to_number(re_no)) from re_media
+	</select>
+	
 </mapper>
