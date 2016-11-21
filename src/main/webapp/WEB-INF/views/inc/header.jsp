@@ -80,19 +80,19 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <a href="projects.html">
+                                    <a href="project_list.do">
                                         <i class="pe pe-7s-portfolio text-info"></i>
                                         <h5>Projects</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="mailbox.html">
+                                    <a href="mailbox.do">
                                         <i class="pe pe-7s-mail text-warning"></i>
                                         <h5>Email</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="contacts.html">
+                                    <a href="contacts.do">
                                         <i class="pe pe-7s-users text-success"></i>
                                         <h5>Contacts</h5>
                                     </a>
@@ -100,7 +100,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="forum.html">
+                                    <a href="free_board_list.do">
                                         <i class="pe pe-7s-comment text-info"></i>
                                         <h5>Forum</h5>
                                     </a>
@@ -108,7 +108,7 @@
                                 <td>
                                     <a href="analytics.do">
                                         <i class="pe pe-7s-graph1 text-danger"></i>
-                                        <h5>Analytics</h5>
+                                        <h5>Refund</h5>
                                     </a>
                                 </td>
                                 <td>
