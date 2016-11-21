@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.EmployeeManageDAO;
+import kr.or.epm.VO.Emp_his_cg;
 import kr.or.epm.VO.EmployeeManage;
+import kr.or.epm.VO.Position;
 
 @Service
 public class EmployeeManageService {
@@ -31,4 +33,13 @@ public class EmployeeManageService {
 		int result = employeemanage.selectEmpCount();
 		return result;
 	}
+	
+	//상세 정보를 불러오는 쿼리문
+	public EmployeeManage selectDetail(String emp_no){
+		EmployeeManageDAO employeemanage = sqlSession.getMapper(EmployeeManageDAO.class);
+		EmployeeManage result = employeemanage.selectDetail(emp_no);
+		return result;
+	}
+	
+	
 }

@@ -6,10 +6,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.epm.DAO.EmployeeManageDAO;
 import kr.or.epm.DAO.RegisterDAO;
 import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_cg;
 import kr.or.epm.VO.Emp_detail;
+import kr.or.epm.VO.Emp_his_cg;
 import kr.or.epm.VO.Low_dept;
+import kr.or.epm.VO.Position;
 
 @Service
 public class RegisterService {
@@ -27,7 +31,6 @@ public class RegisterService {
 		System.out.println(list.get(0).getLow_dept_name());
 		return list;
 	}
-	
 	
 	//관리자 > 사원 등록시 등록을 처리하는 함수(Emp에 insert)
 	public int insertEmp(Emp emp){
@@ -58,14 +61,31 @@ public class RegisterService {
 		return resultemp;
 	}
 	
+	//id를 사용해서 사번을 뽑아내는 서비스 함수
 	public String selectUsedId(String id){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
 		String resultemp = registerDao.selectUsedId(id);
 		return resultemp;
 	}
 	
+	//Role 리스트를 불러오는 서비스 함수
 	public void insertEmpRoleList(String emp_no){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
 		registerDao.insertEmpRoleList(emp_no);
 	}
+	
+	//근무 정보를 불러오는 쿼리문
+	public List<Emp_cg> selectEmpCgList(){
+		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
+		List<Emp_cg> list = registerDao.selectEmpCgList();
+		return list;
+	}
+	
+	//직위 정보를 모두 불러오는 테이블
+	public List<Position> selectPositionList(){
+		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
+		List<Position> result = registerDao.selectPositionList();
+		return result;
+	}
+	
 }

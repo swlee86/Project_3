@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.CommuteDAO">
 
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 근태에 대한 mapper
+-->
+
 	<!-- 본인의 근태 내역 조회하기 -->	
 	<select id="selectCommute" resultType="kr.or.epm.VO.Commute">
 		select commute_no, regdate, in_time, 

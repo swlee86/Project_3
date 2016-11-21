@@ -75,41 +75,15 @@
 							</div>
 						<div class="table-responsive">
 							<table class="table table-hover table-mailbox">
+									<c:forEach var="cplist" items="${companyList}">
 									<tr>
-                        				<td>3</td>
-                        				<td>Vosselsaar&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG"></td>
-                        				<td>박지은</td>
-                        				<td>16/11/06</td>
-                        				<td>22</td>
+                        				<td>${cplist.no}</td>
+                        				<td>${cplist.title }</td>
+                        				<td>${cplist.emp_name}</td>
+                        				<td>${cplist.regdate}</td>
+                        				<td>${cplist.hit}</td>
                     				</tr>
-                    				<tr>
-                        				<td>2</td>
-                        				<td><a href="info_board_view.do">Vosselaar</a></td>
-                        				<td>박지은</td>
-                        				<td>16/11/06</td>
-                        				<td>11</td>
-                    				</tr>
-                    				<tr>
-                        				<td>5</td>
-                        				<td>Vosselaar</td>
-                        				<td>박지은</td>
-                        				<td>16/11/06</td>
-                        				<td>11</td>
-                    				</tr>                 
-                    				<tr>
-                        				<td>5</td>
-                        				<td>Vosselaar</td>
-                        				<td>박지은</td>
-                        				<td>16/11/06</td>
-                        				<td>11</td>
-                    				</tr>        
-                    				<tr>
-                        				<td>1</td>
-                        				<td>Vosselaar&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG"></td>
-                        				<td>박지은</td>
-                        				<td>16/11/06</td>
-                        				<td>100</td>
-                    				</tr>
+                    				</c:forEach>
                     			</table>
 							</div>
 							<div class="small m-t-xl pull-right" >

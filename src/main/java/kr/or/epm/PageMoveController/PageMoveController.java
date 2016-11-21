@@ -1,28 +1,69 @@
 package kr.or.epm.PageMoveController;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.or.epm.Service.CompanyBoardService;
+import kr.or.epm.VO.Company;
 
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
 
 @Controller
 public class PageMoveController {
 
+	@Autowired
+	private CompanyBoardService companyBoardService;
+	
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
-	public String indexview() {
+	public String indexview(String pagesize, String currentpage, Model model) {
+		int totalcount = companyBoardService.selectBoardCount();
+		int pagecount = 0;
+
+		
+        if(pagesize == null || pagesize.trim().equals("")){
+            pagesize = "6"; 			// default 6건씩 
+        }
+        
+        if(currentpage == null || currentpage.trim().equals("")){
+            currentpage = "1";        //default 1 page
+        }
+        
+        int pgsize = Integer.parseInt(pagesize);  		// 10
+        int cpage = Integer.parseInt(currentpage);     //1
+                               
+        
+        if(totalcount % pgsize==0){        //전체 건수 , pagesize 
+            pagecount = totalcount/pgsize;
+        }else{
+            pagecount = (totalcount/pgsize) + 1;
+        }
+        
+        List<Company> list = null;
+        try{
+        	list = companyBoardService.selectBoard(cpage, pgsize);
+        }catch (Exception e) {
+        	e.printStackTrace();
+		}finally {
+			model.addAttribute("companyList", list);
+			model.addAttribute("cpage", cpage);
+			model.addAttribute("psize", pgsize);
+			model.addAttribute("pagecount", pagecount);
+			model.addAttribute("totalcount", totalcount);
+		}
+
+		
 		return "home.index";
 	}
 
-	// SideBar(aside.jsp) 개인 메모 클릭시 구동
-	@RequestMapping("/private_memo.do")
-	public String memoview() {
-		return "memo.private_notes";
-	}
+	
 
 	// SideBar(aside.jsp) 주소록 클릭시 구동
 	@RequestMapping("/contacts.do")
@@ -249,17 +290,8 @@ public class PageMoveController {
 	
 	
 	
-	//관리자 > 회원관리 > 회원 상세페이지 이동
-	@RequestMapping("/adminMemberDetail.do")
-	public String adminMemberDetail(){			
-		return "admin.adminMemberDetail";
-	}	
 	
-	//관리자 > 회원관리 > 회원 정보 수정 페이지 이동
-	@RequestMapping("/adminMemberUpdate.do")
-	public String adminMemberUpdate(){			
-		return "admin.adminMemberUpdate";
-	}		
+	
 	
 
 	//주소록 > 주소록 수정페이지 이동

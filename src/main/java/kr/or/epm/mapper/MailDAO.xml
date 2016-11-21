@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.MailDAO">
 
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 메일에 대한 mapper
+-->
+
 	<!-- 메일 작성하기 -->
 	<insert id="insertMail">
 		insert into mail(mail_no, sign, title, 

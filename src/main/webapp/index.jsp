@@ -53,7 +53,7 @@
             <p class="small">
                 	조금 더 편하게, 조금 더 쉽게, 업무에 필요한 모든 기능을 무료로 이용해보세요       
             </p>
-            <a href="#" class="btn btn-success btn-sm" style="width:130px; height:40px; font-size: 15px;">사용하기</a>
+            <a href="login.do" class="btn btn-success btn-sm" style="width:130px; height:40px; font-size: 15px;">사용하기</a>
         </div>
         <div class="heading-image animate-panel" data-child="img-animate" data-effect="fadeInRight">
             <p class="small">필요한 기능들만 쏙쏙 !!</p>

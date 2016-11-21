@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.or.epm.VO.Memo;
 import kr.or.epm.VO.Memocolor;
+import kr.or.epm.VO.Re_BusinessBoard;
 
 /**
 작성일 :	2016 - 11 - 17
@@ -12,6 +13,12 @@ import kr.or.epm.VO.Memocolor;
 **/
 public interface MemoDAO {
 	
+	//로그인한 아이디(사원번호)의 최고 글 넘버를 구함
+	String selectMaxNo(String emp_no);
+	
+	//현재 로그인한 아이디를 토대로 사번 조회
+	String  selectMemoEmpno(String id);
+	
 	//현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 )
 	public List<Memo> selectMemo(String emp_no);
 		
@@ -19,7 +26,7 @@ public interface MemoDAO {
 	public Memo selectMemo_detail(String memo_no);
 	
 	//메모 색상 목록
-	public Memocolor selectMemocolorList();
+	List<Memocolor> selectMemocolorList();
 	
 	//색상 선택
 	public Memocolor selectMemocolor(String color_name);
@@ -31,6 +38,6 @@ public interface MemoDAO {
 	public int updateMemo(Memo dto);
 	
 	//메모 생성,추가
-	public void insertMemo(Memo dto);
+	int insertMemo(Memo dto);
 	
 }

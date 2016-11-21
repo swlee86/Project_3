@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.Set_bonusDAO">
 	
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 상여금 설정에 대한 mapper
+-->
+
 	<!-- 전체 상여금 조회하기 -->
 	<select id="selectSet_bonus" resultType="kr.or.epm.VO.Set_bonus">
 		select a.dept_no, a.set_date, a.bonus_percent, a.bonus_check

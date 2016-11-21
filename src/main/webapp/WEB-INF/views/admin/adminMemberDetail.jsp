@@ -36,7 +36,7 @@
 	                    		<tbody>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사번</th>
-	                    				<td ><input type="text" class="form-control input-sm" id="emp_no" value="91001111" readonly></td>
+	                    				<td ><input type="text" class="form-control input-sm" id="emp_no" value="${result.emp_no}" readonly="readonly"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">구분번호</th>
 	                    				<td colspan="3">
 	                    					<select class="form-control input-sm" disabled>
@@ -49,39 +49,24 @@
 	                    				</td>
 	                    			</tr>
 	                    			<tr>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위번호</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위</th>
 	                    				<td>
 	                    					<select class="form-control input-sm" id="position_no" disabled>
 	                    						<option value="0" <c:if test="${0 == 2}">selected</c:if>>대표</option>
-	                    						<option value="1" <c:if test="${1 == 2}">selected</c:if>>지점장</option>
-	                    						<option value="2" <c:if test="${2 == 2}">selected</c:if>>부장</option>
-	                    						<option value="3" <c:if test="${3 == 2}">selected</c:if>>차장</option>
-	                    						<option value="4" <c:if test="${4 == 2}">selected</c:if>>과장</option>
-	                    						<option value="5" <c:if test="${5 == 2}">selected</c:if>>대리</option>
-	                    						<option value="6" <c:if test="${6 == 2}">selected</c:if>>주임</option>
-	                    						<option value="7" <c:if test="${7 == 2}">selected</c:if>>사원</option>
 	                    					</select>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서번호</th>
 	                    				<td colspan="3">
-	                    					<select class="form-control input-sm" id="position_no" id="low_dept_no" disabled>
-	                    						<option value="0" <c:if test="${0 == 6}">selected</c:if>>개발1팀</option>
-	                    						<option value="1" <c:if test="${1 == 6}">selected</c:if>>개발2팀</option>
-	                    						<option value="2" <c:if test="${2 == 6}">selected</c:if>>엽업1팀</option>
-	                    						<option value="3" <c:if test="${3 == 6}">selected</c:if>>엽업2팀</option>
-	                    						<option value="4" <c:if test="${4 == 6}">selected</c:if>>관리1팀</option>
-	                    						<option value="5" <c:if test="${5 == 6}">selected</c:if>>관리2팀</option>
-	                    						<option value="6" <c:if test="${6 == 6}">selected</c:if>>전문경영</option>
-	                    					</select>
+											<input type="text" class="form-control input-sm" id="dept_name" value="${result.branch_name}&nbsp;${result.dept_name}&nbsp;${result.low_dept_name}" readonly>
 	                    				</td>
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>이름</th>
-	                    				<td><input type="text" class="form-control input-sm" id="emp_name" value="박지은" readonly></td>
+	                    				<td><input type="text" class="form-control input-sm" id="emp_name" value="${result.emp_name}" readonly></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>생년월일</th>
 	                    				<td colspan="3">
 	                    					<div class="form-inline">
-												<input type="text" class="form-control input-sm" id="makeuserUpdateDate" value="1993-03-03" readonly> 
+												<input type="text" class="form-control input-sm" id="makeuserUpdateDate" value="${result.birth}" readonly> 
 											</div>
 	                    				</td>
 	                    			</tr>
@@ -89,19 +74,19 @@
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사내 연락처</th>
 	                    				<td>
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm" value="010-2808-1042" readonly>
+	                    						<input type="text" class="form-control input-sm" value="${result.cell_phone}" readonly>
 	                    					</div>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>연봉</th>
 	                    				<td style="width:20%">
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm" value="5000" readonly> 만원
+	                    						<input type="text" class="form-control input-sm" value="${result.salary}" readonly> 만원
 	                    					</div>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">잔여 휴가일수</th>
 	                    				<td style="width:20%">
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm" value="10000" readonly> 일
+	                    						<input type="text" class="form-control input-sm" value="${result.emp_break}" readonly> 일
 	                    					</div>
 	                    				</td>
 	                    			</tr>
@@ -109,7 +94,7 @@
 	                    	</table>
 							
 	                    	<div class="form-group" style="text-align:center">
-	                    		<input type="button" class="btn btn-success btn-sm" value="수정하기 " onclick="location.href='adminMemberUpdate.do'" style="margin-right:10px">
+	                    		<input type="button" class="btn btn-success btn-sm" value="수정하기 " onclick="location.href='adminMemberUpdate.do?emp_no=${result.emp_no}'" style="margin-right:10px">
 	                    		<input type="button" class="btn btn-success btn-sm" value="삭제하기 " style="margin-right:10px">
 	                    		<input type="button" class="btn btn-default btn-sm" value="뒤로가기">
 	                    	</div>

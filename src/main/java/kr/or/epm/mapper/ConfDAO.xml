@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.ConfDAO">
 
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 회의에 대한 mapper
+-->
+
 	<!-- 회의 등록하기 -->
 	<insert id="insertConf">
 		insert into conf(conf_no, emp_no, conf_start, 

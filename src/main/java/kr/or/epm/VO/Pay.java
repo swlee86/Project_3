@@ -15,6 +15,8 @@ public class Pay {
 	private int add_pay;
 	private int total_pay;
 	private String give_date;
+	
+	private int salary;
 
 	public String getPay_no() {
 		return pay_no;

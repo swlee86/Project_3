@@ -27,4 +27,9 @@ select rn, r.emp_no, r.emp_name, r.cg_name, r.branch_name, r.dept_name, r.low_de
 select count(*) from emp
 </select>
 
+<!-- 사원 상세 정보를 불러오는 쿼리문 -->
+<select id="selectDetail" parameterType="String" resultType="kr.or.epm.VO.EmployeeManage">
+select e.emp_no, e.emp_name, e.cell_phone, e.salary, e.emp_break, e.position_no, e.low_dept_name, e.dept_name, e.branch_name, e.birth,p.POSITION_NAME from (select emp_no, emp_name, cell_phone, salary, emp_break, position_no, low_dept_name, dept_name, branch_name, birth from(select emp_no, emp_name, cell_phone, salary, emp_break, position_no, low_dept_no,birth from emp where emp_no=#{emp_no}) e join low_dept l on e.low_dept_no=l.LOW_DEPT_NO) e join position p on e.position_no=p.POSITION_NO
+</select>
+
 </mapper>

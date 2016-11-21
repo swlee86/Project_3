@@ -41,15 +41,7 @@ public class AdminController {
 		return list;
 	}
 	
-	//사원 등록 페이지
-	@RequestMapping("/adminMakeMember.do")
-	public String makeNewMember(Model mv){
-		List<Low_dept> list =null;
-		list = registerservice.selectLowDeptNo();
-		
-		mv.addAttribute("list", list);
-		return "admin.adminNewMember";
-	}
+	
 	
 	
 	//관리자 > 지점보기 페이지
