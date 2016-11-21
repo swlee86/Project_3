@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.PjdDAO">
 
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 프로젝트 상세에 대한 mapper
+-->
+
 	<!-- 큰 프로젝트에 대한 프로젝트 상세 조회하기 -->
 	<select id="selectPjd" resultType="kr.or.epm.VO.Pjd">
 		select pjd_no, pjd_title, pjd_start, pjd_end, pj_step_name

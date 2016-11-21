@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.TaskDAO">
 
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 업무에 대한 mapper
+-->
+
 	<!-- 업무 등록하기 -->
 	<!-- task_step_no (2) : 미진행, step_no (4) : 미승인 -->
 	<insert id="insertTask">

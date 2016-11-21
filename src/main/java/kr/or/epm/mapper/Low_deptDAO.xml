@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.Low_deptDAO">
 
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 하위부서에 대한 mapper
+-->
+
 	<!-- 하위 부서 조회하기 -->
 	<select id="selectLow_dept" resultType="kr.or.epm.VO.Low_dept">
 		select branch_name, dept_name, low_dept_name

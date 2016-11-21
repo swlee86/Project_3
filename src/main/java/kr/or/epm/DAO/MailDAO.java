@@ -1,11 +1,13 @@
 package kr.or.epm.DAO;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
-
->>>>>>> MVN_baek
 import kr.or.epm.VO.Mail;
+
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 메일에 대한 DAO interface
+*/
 
 public interface MailDAO {
 	
@@ -19,9 +21,6 @@ public interface MailDAO {
 	public Mail selectMail_detail();
 	
 	// 수신 메일 조회하기
-<<<<<<< HEAD
-	public List<Mail> selectMail();
-=======
 	public List<Mail> selectMail_rec();
 	
 	// 메일 읽었을 때 수신일 데이터와 확인 여부데이터 삽입하기
@@ -44,5 +43,4 @@ public interface MailDAO {
 	
 	// 휴지통에서 복원하기
 	public int updateMail_re();
->>>>>>> MVN_baek
 }

@@ -4,6 +4,12 @@ import java.util.List;
 
 import kr.or.epm.VO.Pay;
 
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 급여에 대한 DAO interface
+*/
+
 public interface PayDAO {
 	
 	// 급여 지급일 이후 급여 등록하기
