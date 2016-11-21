@@ -29,7 +29,7 @@
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
-				<form method="post" class="form-horizontal">
+				<form method="post" class="form-horizontal" enctype="multipart/form-data">
 				<input type="hidden" value="${list.refer}" name="refer">
 				<input type="hidden" value="${list.step}" name="step">
 				<input type="hidden" value="${list.depth}" name="depth">
@@ -46,11 +46,7 @@
 								</label>
 								<div class="col-sm-11">
 									<div class="btn-group">
-										<input type="button" class="btn btn-default" value="파일">
-										
-										<button class="btn btn-default">
-											<i class="fa fa-image"></i>
-										</button>
+										<input type="file" name="uploadfile" class="btn btn-default">
 									</div>
 								</div>
 							</div>
