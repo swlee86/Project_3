@@ -28,7 +28,7 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form>
+						<form method="POST" enctype="multipart/form-data">
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
 									<tr>
@@ -88,7 +88,7 @@
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"> <i class="pe-7s-paperclip"></i> 파일업로드</th>
-										<td><input type="file"  class="form-control input-sm" ></td>
+										<td><input type="file" name="uploadfile" class="form-control input-sm"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -114,7 +114,14 @@
 				<h4 class="modal-title"><font color="#6a6c6f" size="4em"><b>수신자 선택</b></font></h4>
 			</div>
 			<div class="modal-body">
-				
+				<div class="row">
+					<div class="col-md-4" style="border: 1px solid gray;">
+						부서 리스트
+					</div>	
+					<div class="col-md-8">
+						사원리스트
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success btn-sm" data-dismiss="modal">선택</button>
