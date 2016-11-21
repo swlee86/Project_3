@@ -22,11 +22,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 승인자가 승인처리 -->
-	<update id="approveDraft" parameterType="kr.or.epm.VO.Draft">
+	<update id="approveDraftLine" parameterType="kr.or.epm.VO.Draft">
 		update draft_line 
 			set app_check=1, 
 				app_date=to_char(sysdate,'yyyy-mm-dd')
 		where draft_no=#{draft_no} and emp_no=#{emp_no}
+	</update>
+	
+	<!-- 결재 문서 별 승인처리 , 최종승인 -->
+	<update id="approveDraft" parameterType="kr.or.epm.VO.Draft">
+		update draft 
+			set step_no=(select step_no from approval where step_name='승인') 
+		where draft_no=#{draft_no}
 	</update>
 	
 	
@@ -114,4 +121,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by position_no desc
 	</select>
 	
+	
+	<!-- 결재라인에서  내가 포함된 미승인 결제들의 draft_no 목록 불러오기(내 차례인것만)-->
+	<select id="selectDraftLine_myturn" parameterType="String" resultType="String">
+		select draft_no 
+		from (select rownum, r.*
+		      from (select l.emp_no, draft_no, app_check,e.position_no,p.step
+		            from draft_line l 
+		            join emp e on l.emp_no=e.emp_no
+		            join position p on e.position_no = p.position_no
+		            where draft_no 
+		            in (select draft_no 
+		                from draft d 
+		                join approval a on d.step_no=a.step_no 
+		                where step_name='미승인') 
+		            order by p.step desc) r
+		      where app_check=0 and rownum in 1 ) s
+		where s.emp_no=#{emp_no}
+	</select>
 </mapper>
