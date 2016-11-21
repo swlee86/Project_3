@@ -54,7 +54,7 @@
 										<td>
 											<span class="input-group">
                      							<input type="text" class="form-control input-sm" />
-                        							<a type="button" class="btn btn-default input-group-addon"  data-toggle="modal" data-target="#myModal6" >
+                        							<a type="button" class="btn btn-default input-group-addon"  id="deptA">
                         								<span style="color:#fd7d86 "><i class="fa fa-user-plus"></i></span>
                         							</a>
 												</span> 
@@ -115,7 +115,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-4" style="border: 1px solid gray;">
+					<div class="col-md-4" style="border: 1px solid gray;" id="organization">
 						부서 리스트
 					</div>	
 					<div class="col-md-8">
