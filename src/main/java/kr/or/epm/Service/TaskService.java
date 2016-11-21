@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.OrganizationDAO;
+import kr.or.epm.DAO.Task_peopleDAO;
 import kr.or.epm.VO.Organization;
 
 @Service
@@ -16,6 +17,16 @@ public class TaskService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	//업무 페이지 처음 들어올때 히든에 task_no 넣어줌
+	public String selectTask_No(){
+		String task_No = "";
+		Task_peopleDAO taskDAO = sqlsession.getMapper(Task_peopleDAO.class);
+		task_No = taskDAO.selectTask_No();
+		int taskNumber = Integer.parseInt(task_No);
+		taskNumber += 1;
+		task_No = String.valueOf(taskNumber);
+		return task_No;
+	}
 	
 	//업무 등록시 / 모달->지점 이름 트리 구조
 	public List<Organization> selectDept(){

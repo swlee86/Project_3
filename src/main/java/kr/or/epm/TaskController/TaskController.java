@@ -1,4 +1,5 @@
 package kr.or.epm.TaskController;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.TaskService;
 import kr.or.epm.VO.Organization;
+import kr.or.epm.VO.Task;
+import kr.or.epm.VO.Task_people;
 
 /*
  * 작성자 : 박성준
@@ -28,7 +31,10 @@ public class TaskController {
 	
 	// 업무 > 업무 등록 페이지 이동
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.GET)
-	public String taskWrite() {
+	public String taskWrite(Model model) {
+		//업무 번호
+		String task_No = service.selectTask_No();
+		model.addAttribute("task_No", task_No);
 		return "task.taskWrite";
 	}
 
@@ -78,7 +84,27 @@ public class TaskController {
 	
 	// 업무 > 업무 등록 페이지
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
-	public String taskWriteResult(){
+	public String taskWriteResult(Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content){
+		
+		//System.out.println("업무명 : "+task_name + " / 구분번호 : "+cg_no + " / 업무명 : "+cg_name + " / 수신자 사번 : "+rec_emp_no + " / 수신자 명 : "+rec_name + " / 기한 : "+deadline + " / 내용 : "+content);
+		
+		Task task = new Task();
+		task.setTask_name(task_name);
+		task.setCg_no(cg_no);
+		task.setCg_name(cg_name);
+		task.setRec_emp_no(rec_emp_no);
+		task.setRec_name(rec_name);
+		task.setDeadline(deadline);
+		task.setContent(content);
+		
+		List<Task_people> tlist = new ArrayList<Task_people>();
+		tlist.add(people);
+		
+		
+		for(int i = 0; i < tlist.size(); i++){
+			System.out.println("task_no : "+tlist.get(i).getTask_no());
+			System.out.println("사번 : " +tlist.get(i).getEmp_no());
+		}
 		
 		return null;
 	}
