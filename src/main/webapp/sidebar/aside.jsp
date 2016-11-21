@@ -93,10 +93,10 @@
             <li>
                 <a href="#"><span class="nav-label">근태 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                	<li><a href="Attendace.do">일일 근태 등록</a></li>
-           			<li><a href="AttendaceMonth.do">월별 근태 조회</a></li>
-           			<li><a href="AttendaceWrite.do">휴가/외박 신청</a></li>
-           			<li><a href="AttendaceOther.do">각기다른 근태보기</a></li>
+                	<li><a href="Commute.do">일일 근태 등록</a></li>
+           			<li><a href="CommuteMonth.do">월별 근태 조회</a></li>
+           			<li><a href="CommuteWrite.do">휴가/외박 신청</a></li>
+           			<li><a href="CommuteOther.do">각기다른 근태보기</a></li>
                 </ul>
             </li>
             <li>

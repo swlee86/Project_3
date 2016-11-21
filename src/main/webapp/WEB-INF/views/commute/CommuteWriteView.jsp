@@ -44,13 +44,13 @@
 											<div class="form-group">
 												시작일 :			
 												<div class="input-group date">
-													<input type="text" class="form-control" id="writeOtherAttendace" value="" size="20px">
+													<input type="text" class="form-control" id="writeOtherCommute" value="" size="20px">
 													<span class="input-group-addon" style="color:#fd7d86 "><i class="fa fa-calendar"></i></span>
 												</div>
 												
 												&nbsp;&nbsp;~&nbsp;&nbsp; 종료일 :
 												<div class="input-group date">
-													<input type="text" class="form-control" id="writeOtherAttendace2" value="" size="20px">
+													<input type="text" class="form-control" id="writeOtherCommute2" value="" size="20px">
 													<span class="input-group-addon" style="color:#fd7d86 "><i class="fa fa-calendar"></i></span>
 												</div>
 												

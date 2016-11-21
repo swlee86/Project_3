@@ -39,7 +39,7 @@
 										<td>
 											<div class="form-group">				
 												<div class="input-group date">
-													<input type="text" class="form-control" id="writeOtherAttendace"
+													<input type="text" class="form-control" id="writeOtherCommute"
 														value="" size="20px"> <span
 														class="input-group-addon"><i
 														class="glyphicon glyphicon-calendar"></i></span>
