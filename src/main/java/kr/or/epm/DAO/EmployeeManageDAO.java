@@ -7,4 +7,5 @@ import kr.or.epm.VO.EmployeeManage;
 public interface EmployeeManageDAO {
 	List<EmployeeManage> selectEmpManage(int start, int end);
 	int selectEmpCount();
+	EmployeeManage selectDetail(String emp_no);
 }

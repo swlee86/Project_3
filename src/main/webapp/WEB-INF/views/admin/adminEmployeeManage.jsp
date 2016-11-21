@@ -116,17 +116,25 @@
             </div>
 
             </div>
-             <div class="panel-footer"  style="text-align:center;">
+               <div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
-                	<c:if test="${cpage>1}">
-                    <a href="adminEmployeeManage.do?currentpage=${cpage-1}&pagesize=${psize}"><button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button></a>
+					<c:if test="${cpage > 1}">
+                    	<button type="button" class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${cpage-1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
                     </c:if>
                     <c:forEach var="i" begin="1" end="${pagecount}" step="1">	
-							<a href="adminEmployeeManage.do?currentpage=${i}&pagesize=${psize}"><button class="btn btn-default">${i}</button></a>
+                    <c:choose>
+                    	<c:when test="${cpage==i}">
+                    		<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
+                    	</c:when>
+                    	<c:otherwise>
+							<button class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${i}&pagesize=${psize}'">${i}</button>                	
+                    	</c:otherwise>
+                    </c:choose>
 					</c:forEach>
-					<c:if test="${cpage>1}">
-                    <a href="adminEmployeeManage.do?currentpage=${cpage+1}&pagesize=${psize}"><button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button></a>
+					<c:if test="${cpage < pagecount}">
+                    	<button type="button" class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${cpage+1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 	</c:if>
+                
                 </div>
               </div>
         </div> 

@@ -31,4 +31,11 @@ public class EmployeeManageService {
 		int result = employeemanage.selectEmpCount();
 		return result;
 	}
+	
+	//상세 정보를 불러오는 쿼리문
+	public EmployeeManage selectDetail(String emp_no){
+		EmployeeManageDAO employeemanage = sqlSession.getMapper(EmployeeManageDAO.class);
+		EmployeeManage result = employeemanage.selectDetail(emp_no);
+		return result;
+	}
 }
