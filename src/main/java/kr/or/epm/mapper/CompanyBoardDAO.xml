@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--회사 정보 게시판 리스트 읽어오기-->
 	<select id="selectCompanyList" resultType="kr.or.epm.VO.Company">
-		select no, emp_name,title, content, hit, regdate from company order by no desc
+		select no, emp_name,title, content, hit, file_name, regdate from company order by no desc
 	</select>
 	
 	<select id="selectDetail" resultType="kr.or.epm.VO.Company">

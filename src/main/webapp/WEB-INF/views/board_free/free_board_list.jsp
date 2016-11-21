@@ -21,7 +21,7 @@
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                	업무 정보 공유 게시판
+                	자유 게시판
             </h2>
             <small>Show users list in nice and color panels</small>
         </div>
@@ -84,6 +84,9 @@
                         	&nbsp;&nbsp;&nbsp;
                         </c:forEach>
                         	<a href="free_board_view.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">${list.title}</a>&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG">
+                        <c:if test="${list.file_name != null}">
+                        		<img alt="file"  src="images/fileimg.PNG">
+                        </c:if>
                         </td>
                         <td>${list.emp_name}(${list.low_dept_name})</td>
                         <td>${list.regdate}</td>
