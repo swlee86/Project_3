@@ -51,17 +51,17 @@
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 수신자 사번</th>
-										<td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 참조자 사번</th>
+										<td id="task_no_td">
 											<span class="input-group">
-                     							<input type="text" class="form-control input-sm" />
+                     							<input type="text" class="form-control input-sm" id="task_no"/>
                         							<a type="button" class="btn btn-default input-group-addon"  id="deptA">
                         								<span style="color:#fd7d86 "><i class="fa fa-user-plus"></i></span>
                         							</a>
 												</span> 
 										</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 수신자명</th>
-										<td style="width:40%"><input type="text" class="form-control input-sm"></td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 참조자명</th>
+										<td style="width:40%" id="task_name_td"><input type="text" class="form-control input-sm" id="task_name"></td>
 									</tr>	
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 업무기한</th>

@@ -220,6 +220,17 @@ ul {
 	<!-- App scripts -->
 	<script src="scripts/homer.js"></script>
 	<script type="text/javascript">
+	
+	//스크립트 생성자
+	function empInfo(emp_no, emp_name){
+		this.emp_no = emp_no;
+		this.emp_name = emp_name;
+	}
+	
+	//사원정보 뽑아서 담을 배열
+	var empInfoArray = new Array();
+	
+	
 		$('#makeuserUpdateDate').datepicker(
 				{
 					changeMonth : true,
@@ -275,11 +286,11 @@ ul {
 		});
 
 		$(function() {
-			$('#deptA').click(
-					function() {
+			$('#deptA').click(function() {
 
 						var litag = "<ul>";
-
+						$('#organization').empty();
+						$('#empList').empty();
 						$.ajax({
 							url : "taskWriteModal.do",
 							success : function(data) {
@@ -371,7 +382,7 @@ ul {
 			//클릭한 text 값 뽑아옴.
 			var low_dept = $(obj).text();
 			alert("seeEmpMember : "+low_dept);
-			var makeTable = "<table class='table'><tr><th>사번</th><th>이름</th>";
+			var makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
 			$.ajax(
 					{
 						url: "taskEmpModal.do",
@@ -385,15 +396,54 @@ ul {
 							});
 							
 							$.each(emp, function(index){
-								makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+								makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
 							});
-							makeTable += "</table>";
+							makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
 							$('#empList').empty();
 							$('#empList').append(makeTable);
 						 }    
 						
 					}
 			      );
+		}
+	
+		
+		//체크박스 선택후 버튼 클릭시 호출
+		function check(){
+			
+			//체크박스 크기만큼 배열 생성
+			var checkResult = new Array();
+			$(":checkbox[name='chkbtn']:checked").each(function(pi,po){
+				//이름 
+				checkResult[pi] = po.value;
+				//사번
+				empInfoArray.push(new empInfo($(this).parent().next().html(),checkResult[pi]));
+			});
+			console.log("사원 : "+empInfoArray);
+			
+			if(empInfoArray.length > 1){
+				console.log("if 내부 : " +empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
+				//화면에 보이는 input 은 그냥 때려넣음
+				$("#task_no").val(empInfoArray[0].emp_no);
+				$('#task_name').val(empInfoArray[0].emp_name);
+				
+				var input_no = "";
+				var input_name = "";
+				for(var i = 1; i < empInfoArray.length; i++){
+					input_no += "<input type='text' class='form-control' name='' value='"+empInfoArray[i].emp_no+"'>";
+					input_name +="<input type='text' class='form-control' name='' value='"+empInfoArray[i].emp_name+"'>";
+				}
+				$('#task_no_td').append(input_no);
+				$('#task_name_td').append(input_name);
+				alert("하나 이상");
+			}else{
+				$("#task_no").val(empInfoArray[0].emp_no);
+				$('#task_name').val(empInfoArray[0].emp_name);
+				
+				alert("하나 ");
+			}
+			
+			$("#myModal6").modal("hide");
 		}
 		
 	</script>
