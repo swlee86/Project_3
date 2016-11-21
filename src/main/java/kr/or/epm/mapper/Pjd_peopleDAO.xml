@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.Pjd_peopleDAO">
+
+	<!-- 프로젝트 참여자 추가하기 -->
+	<insert id="insertPjd_people">
+		insert into pjd_people(pjd_no, emp_no)
+		values(#{pjd_no}, #{emp_no})
+	</insert>
+	
+	<!-- 프로젝트 참여자  삭제하기-->
+	<delete id="deletePjd_people">
+		delete from pjd_people
+		where pjd_no = #{pjd_no} and
+			  emp_no = #{emp_no}
+	</delete>
+	
+	<!-- 프로젝트 참여자 조회하기 -->
+	<select id="selectPjd_people" resultType="kr.or.epm.VO.Pjd_people">
+		select d.pj_no, p.pjd_no, emp_no
+		from pjd_people p join pjd d
+		on p.pjd_no = d.pjd_no
+		order by d.pj_no desc
+	</select>
+	
+</mapper>

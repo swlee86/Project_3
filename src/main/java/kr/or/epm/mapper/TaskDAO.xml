@@ -4,31 +4,125 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.TaskDAO">
 
-	<!-- 업무 요청 수신함 확인하기 / 보낸 날짜가 최신인 것부터 -->
-	<select id="selectTask" resultType="kr.or.epm.VO.Task">
+	<!-- 업무 등록하기 -->
+	<!-- task_step_no (2) : 미진행, step_no (4) : 미승인 -->
+	<insert id="insertTask">
+		insert into task(task_no, cg_no, sign, 
+						 task_name, deadline, content, 
+						 rec_emp_no, rec_name, rec_date, 
+						 emp_no, emp_name, send_date, 
+						 file_name, del_check, rec_del_check, 
+						 task_step_no, step_no)
+		values(task_seq.nextval, #{cg_no}, '0', 
+			   #{task_name}, #{deadline}, #{content}, 
+			   #{rec_emp_no}, #{rec_name}, null, 
+			   #{emp_no}, #{emp_name}, to_char(sysdate, 'yyyy-mm-dd'), 
+			   #{file_name, jdbcType=VARCHAR}, '0', '0', 
+			   '2', '4')
+	</insert>
+	
+	<!-- 업무 중요설정 -->
+	<update id="updateTask_sign">
+		update task
+		set sign = #{sign}
+		where task_no = #{task_no}
+	</update>
+	
+	<!-- 업무 수신함 확인하기 / 보낸 날짜가 최신 순서로 정렬 -->
+	<select id="selectTask_rec" resultType="kr.or.epm.VO.Task">
 		select task_no, cg_name, sign, 
-			   task_name, deadline, content, 
-			   rec_emp_no, rec_name, rec_date,
-			   emp_no, emp_name, send_date, 
-			   file_name, task_step_no, step_no
+			   task_name, deadline, emp_no, 
+			   emp_name, send_date, file_name, 
+			   step_no
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
-		where rec_emp_no = #{emp_no} and 
+		where rec_emp_no = #{rec_emp_no} and 
 			  rec_del_check = '0' and 
-			  t.cg_no = '1'
-		order by send_date desc;
+			  t.cg_no = #{cg_no}
+		order by send_date desc
 	</select>
 	
 	<!-- 업무 상세 조회하기 -->
 	<select id="selectTask_detail" resultType="kr.or.epm.VO.Task">
-		select task_no, cg_name, sign, 
+		select t.task_no, cg_name, sign, 
 			   task_name, deadline, content, 
 			   rec_emp_no, rec_name, rec_date, 
-			   emp_no, emp_name, send_date, 
-			   file_name, task_step_no, step_no
+			   t.emp_no, emp_name, send_date, 
+			   file_name, task_step_no, step_no,
+			   p.emp_no
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
-		where task_no = #{task_no};
+		left outer join task_people p
+		on t.task_no = p.task_no
+		where t.task_no = #{task_no};
 	</select>
+	
+	<!-- 수신함에서 읽었을 때 수신일 데이터 삽입하기 -->
+	<update id="updateTask_recDate">
+		update task
+    	set rec_date = to_char(sysdate, 'yyyy-mm-dd')
+    	where task_no = #{task_no}
+	</update>
 
+	<!-- 업무 승인 처리하기 -->
+	<update id="updateTask_approval">
+		update task
+		set step_no = #{step_no}
+		where task_no = #{task_no}
+	</update>
+	
+	<!-- 수신함에서 삭제하기 -->
+	<update id="deleteTask_rec">
+		update task
+		set rec_del_check = '1'
+		where task_no = #{task_no}
+	</update>
+	
+	<!-- 업무 송신함 확인하기 / 보낸 날짜가 최신 순서로 정렬 -->
+	<select id="selectTask" resultType="kr.or.epm.VO.Task">
+		select task_no, cg_name, task_name, 
+			   deadline, rec_emp_no, rec_name, 
+			   rec_date, send_date, file_name, 
+			   task_step_no, step_no
+		from task t join task_cg c 
+		on t.cg_no = c.cg_no
+		where emp_no = #{emp_no} and 
+			  del_check = '0' and 
+			  t.cg_no = #{cg_no}
+		order by send_date desc
+	</select>
+	
+	<!-- 송신함에서 삭제하기 -->
+	<update id="deleteTask">
+		update task
+		set del_check = '1'
+		where task_no = #{task_no}
+	</update>
+	
+	<!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
+	<select id="selectTask_people" resultType="kr.or.epm.VO.Task">
+		select task_no, cg_name, task_name,
+			   deadline, rec_emp_no, rec_name,
+			   emp_no, emp_name, file_name, 
+			   task_step_no
+		from task t join task_cg c
+		on t.cg_no = c.cg_no
+		left outer join (select task_no, emp_no
+                 		 from task_people
+                 		 where emp_no = #{emp_no}) p
+		on t.task_no = p.task_no
+		where rec_emp_no = #{rec_emp_no} and
+			  t.step_no = '1' and
+      		  t.cg_no = '1' or
+      		  p.emp_no is not null
+		order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
+	</select>
+	
+	<!-- 참여 업무 진행 처리하기 -->
+	<update id="updateTask_step">
+		update task
+		set task_step_no = #{task_step_no}
+		where task_no = #{task_no}
+	</update>
+	
 </mapper>

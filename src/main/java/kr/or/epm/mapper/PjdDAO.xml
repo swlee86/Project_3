@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.PjdDAO">
+
+	<!-- 큰 프로젝트에 대한 프로젝트 상세 조회하기 -->
+	<select id="selectPjd" resultType="kr.or.epm.VO.Pjd">
+		select pjd_no, pjd_title, pjd_start, pjd_end, pj_step_name
+		from pjd p join pj_step s
+		on p.pj_step_no = s.pj_step_no
+		where pj_no = #{pj_no}
+	</select>
+	
+	<!-- 프로젝트 상세 등록하기 -->
+	<insert id="insertPjd">
+		insert into pjd(pjd_no, pj_no, pjd_title, 
+					    pjd_content, pjd_start, pjd_end, 
+					    pj_step_no)
+		values(pjd_seq.nextval, #{pj_no}, #{pjd_title},
+			   #{pjd_content}, #{pjd_start}, #{pjd_end}, 
+			   '2')
+	</insert>
+	
+	<!-- 프로젝트 상세 수정하기 : TODO리스트 -->
+	<update id="updatePjd">
+		update pjd
+		set pjd_title = #{pjd_title},
+			pjd_content = #{pjd_content},
+			pjd_start = #{pjd_start},
+			pjd_end = #{pjd_end}
+		where pjd_no = #{pjd_no}
+	</update>
+	
+	<!-- 진행단게 처리하기 -->
+	<update id="updatePjd_step">
+		update pjd
+		set pj_step_no = #{pj_step_no}
+		where pjd_no = #{pjd_no}
+	</update>
+	
+	<!-- 진행률 계산하기 -->
+	<update id="updatePjd_progress">
+		update pj
+		set pj_progress = 0
+	</update>
+</mapper>
