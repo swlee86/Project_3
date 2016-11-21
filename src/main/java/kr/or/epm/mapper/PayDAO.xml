@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.PayDAO">
 
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 급여에 대한 mapper
+-->
+
 	<!-- 급여 등록하기 -->
 	<insert id="insertPay">
 		insert into pay(pay_no, emp_no, basic_pay, severance_pay, bonus, add_pay, total_pay, give_date, master_check)

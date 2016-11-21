@@ -9,6 +9,15 @@ package kr.or.epm.VO;
 public class Approval {
 	private String step_no;
 	private String step_name;
+	private String step;
+
+	public String getStep() {
+		return step;
+	}
+
+	public void setStep(String step) {
+		this.step = step;
+	}
 
 	public String getStep_no() {
 		return step_no;
@@ -28,6 +37,6 @@ public class Approval {
 
 	@Override
 	public String toString() {
-		return "Approval [step_no=" + step_no + ", step_name=" + step_name + "]";
+		return "Approval [step_no=" + step_no + ", step_name=" + step_name + ", step=" + step + "]";
 	}
 }

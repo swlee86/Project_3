@@ -41,7 +41,7 @@
 						<label class="form-control">월근태 사원 정보</label> <input type="text"
 							class="form-control" id="mydate2">
 						<button type="button" class="btn btn-sm btn-default"
-							id="addAttendace">
+							id="addCommute">
 							<span id="searchicon" class="fa fa-search"></span>
 						</button>
 					</form>

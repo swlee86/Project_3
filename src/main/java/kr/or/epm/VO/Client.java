@@ -16,6 +16,15 @@ public class Client {
 	private String tel;
 	private String memo;
 	private String emp_no;
+	private String emp_name;
+	
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
 
 	public String getClient_no() {
 		return client_no;
@@ -93,6 +102,6 @@ public class Client {
 	public String toString() {
 		return "Client [client_no=" + client_no + ", name=" + name + ", addr=" + addr + ", addr_detail=" + addr_detail
 				+ ", postcode=" + postcode + ", fax=" + fax + ", tel=" + tel + ", memo=" + memo + ", emp_no=" + emp_no
-				+ "]";
+				+ ", emp_name=" + emp_name + "]";
 	}
 }

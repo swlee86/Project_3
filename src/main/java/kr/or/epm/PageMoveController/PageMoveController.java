@@ -184,30 +184,30 @@ public class PageMoveController {
 	}
 	
 	//근태 관리 > 근태 
-	@RequestMapping("/Attendace.do")
-	public String Attendace(HttpServletRequest request, Model model){
+	@RequestMapping("/Commute.do")
+	public String Commute(HttpServletRequest request, Model model){
 		String ip =request.getRemoteAddr();
 		System.out.println("나의 아이피 : "+ip);
 		model.addAttribute("ip",ip);
-		return "TAttendance.TimeAttendaceMainView";
+		return "commute.TimeCommuteMainView";
 	}
 	
 	//월별 근태 보기
-	@RequestMapping("/AttendaceMonth.do")
-	public String AttendaceMonth(){
-		return "TAttendance.MonthAttendaceView";
+	@RequestMapping("/CommuteMonth.do")
+	public String CommuteMonth(){
+		return "commute.MonthCommuteView";
 	}
 	
 	//근태 신청서 쓰기
-	@RequestMapping("/AttendaceWrite.do")
-	public String AttendaceWrite(){
-		return "TAttendance.AttendaceWriteView";
+	@RequestMapping("/CommuteWrite.do")
+	public String CommuteWrite(){
+		return "commute.CommuteWriteView";
 	}
 	
 	//각기 다른 근태 보기
-	@RequestMapping("/AttendaceOther.do")
-	public String AttendaceOther(){
-		return "TAttendance.AttendaceOtherView";
+	@RequestMapping("/CommuteOther.do")
+	public String CommuteOther(){
+		return "commute.CommuteOtherView";
 	}
 	
 	//주소록  > 주소록 그룹 관리 페이지 이동

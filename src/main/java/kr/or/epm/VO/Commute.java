@@ -18,6 +18,15 @@ public class Commute {
 	private String acc_commute_time;
 	private String acc_add_time;
 	private String mgr_check;
+	private String emp_name;
+
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
 
 	public String getCommute_no() {
 		return commute_no;
@@ -112,6 +121,6 @@ public class Commute {
 		return "Commute [commute_no=" + commute_no + ", cg_no=" + cg_no + ", emp_no=" + emp_no + ", regdate=" + regdate
 				+ ", in_time=" + in_time + ", out_time=" + out_time + ", commute_time=" + commute_time + ", add_time="
 				+ add_time + ", acc_commute_time=" + acc_commute_time + ", acc_add_time=" + acc_add_time
-				+ ", mgr_check=" + mgr_check + "]";
+				+ ", mgr_check=" + mgr_check + ", emp_name=" + emp_name + "]";
 	}
 }

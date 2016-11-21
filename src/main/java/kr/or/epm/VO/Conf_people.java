@@ -9,6 +9,15 @@ package kr.or.epm.VO;
 public class Conf_people {
 	private String conf_no;
 	private String emp_no;
+	private String emp_name;
+
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
 
 	public String getConf_no() {
 		return conf_no;
@@ -28,6 +37,6 @@ public class Conf_people {
 
 	@Override
 	public String toString() {
-		return "Conf_people [conf_no=" + conf_no + ", emp_no=" + emp_no + "]";
+		return "Conf_people [conf_no=" + conf_no + ", emp_no=" + emp_no + ", emp_name=" + emp_name + "]";
 	}
 }

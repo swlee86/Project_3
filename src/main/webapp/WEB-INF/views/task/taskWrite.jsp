@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -54,7 +55,7 @@
 										<td>
 											<span class="input-group">
                      							<input type="text" class="form-control input-sm" />
-                        							<a type="button" class="btn btn-default input-group-addon"  data-toggle="modal" data-target="#myModal6" >
+                        							<a type="button" class="btn btn-default input-group-addon"  id="deptA">
                         								<span style="color:#fd7d86 "><i class="fa fa-user-plus"></i></span>
                         							</a>
 												</span> 
@@ -115,10 +116,10 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-4" style="border: 1px solid gray;">
-						부서 리스트
+					<div class="col-md-4" style="border: 1px solid gray;" id="organization">
+						
 					</div>	
-					<div class="col-md-8">
+					<div class="col-md-8" id="empList">
 						사원리스트
 					</div>
 				</div>

@@ -4,6 +4,12 @@ import java.util.List;
 
 import kr.or.epm.VO.Commute;
 
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 근태에 대한 DAO interface
+*/
+
 public interface CommuteDAO {
 	
 	// 본인의 근태 내역 조회하기
