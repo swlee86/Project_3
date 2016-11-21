@@ -187,32 +187,7 @@ public class PageMoveController {
 		return "salary.severancepay";
 	}
 	
-	//근태 관리 > 근태 
-	@RequestMapping("/Commute.do")
-	public String Commute(HttpServletRequest request, Model model){
-		String ip =request.getRemoteAddr();
-		System.out.println("나의 아이피 : "+ip);
-		model.addAttribute("ip",ip);
-		return "commute.TimeCommuteMainView";
-	}
 	
-	//월별 근태 보기
-	@RequestMapping("/CommuteMonth.do")
-	public String CommuteMonth(){
-		return "commute.MonthCommuteView";
-	}
-	
-	//근태 신청서 쓰기
-	@RequestMapping("/CommuteWrite.do")
-	public String CommuteWrite(){
-		return "commute.CommuteWriteView";
-	}
-	
-	//각기 다른 근태 보기
-	@RequestMapping("/CommuteOther.do")
-	public String CommuteOther(){
-		return "commute.CommuteOtherView";
-	}
 	
 	//주소록  > 주소록 그룹 관리 페이지 이동
 	@RequestMapping("/contaacts_group.do")

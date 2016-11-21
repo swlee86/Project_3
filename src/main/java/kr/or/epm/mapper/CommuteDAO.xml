@@ -33,13 +33,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 출근하기 : 일시 저장 / 아래 쿼리도 같이 돌려줘야 한다 -->
-	<insert id="insertCommute_in">
+	<insert id="insertCommute_in" parameterType="hashmap">
 		insert into commute(commute_no, emp_no, regdate, 
 							in_time, out_time, commute_time, 
 							add_time, acc_commute_time, acc_add_time, 
 							mgr_check)
-		values(commute_seq.nextval, #{emp_no}, to_char(sysdate, 'yyyy-mm'), 
-			   to_char(sysdate, 'hh24:mi'), null, null, 
+		values(commute_seq.nextval, #{emp_no}, to_char(sysdate, 'yyyy-mm-dd'), 
+			   #{in_time}, null, null, 
 			   null, null, null, 
 			   '0')
 	</insert>
@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 퇴근하기 : 근무 시간, 추가근무시간 저장 -->
-	<update id="updateCommute_out">
+	<update id="updateCommute_out2">
 		update commute
 		set out_time = to_char(sysdate, 'hh:mm'),
    			commute_time = out_time - in_time,
@@ -76,4 +76,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where commute_no = #{commute_no}
 	</update>
 	
+	<!-- 오늘 출근 내역 있는지 확인 -->
+	<select id="selectMyCommute_no" parameterType="String" resultType="String">
+		select commute_no from commute where emp_no=#{emp_no} and regdate=to_char(sysdate,'yyyy-mm-dd')
+	</select>
+	
+	
+	<!-- 퇴근하기 버튼  -->
+	<update id="updateCommute_out" parameterType="hashmap">
+		update commute set out_time = #{out_time} where commute_no=#{commute_no}
+	</update>
+	
+	<!-- commute_no에 따른 정보 조회(단일) -->
+	<select id="selectCommute_commuteno" resultType="kr.or.epm.VO.Commute">
+		select commute_no, emp_no, regdate, in_time, out_time,
+			   commute_time, add_time, acc_commute_time, acc_add_time, mgr_check 
+		from commute where commute_no=#{commute_no}
+	</select>
+	
+	<!-- 당일 하루 근무시간 -->
+	<update id="updateCommute_time" parameterType="hashmap">
+		update commute set commute_time = #{commute_time} where commute_no=#{commute_no}
+	</update>
 </mapper>

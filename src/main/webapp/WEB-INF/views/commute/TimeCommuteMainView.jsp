@@ -52,9 +52,9 @@
 									<div class="col-md-2">
 										<input class="btn btn-default" type="button" value="퇴근" id="endWorkBtn">
 									</div>
-									<div class="col-md-2">
+									<!-- <div class="col-md-2">
 										<input class="btn btn-default" type="button" value="조퇴" id="stopWorkBtn">
-									</div>
+									</div> -->
 								</div>
 							</form>
 						</div>
@@ -69,16 +69,16 @@
 								<th>성명</th>
 								<th>출근시각</th>
 								<th>퇴근시각</th>
-								<th>조퇴시각</th>
+								<!-- <th>조퇴시각</th> -->
 								<th>근무시간</th>
 							</tr>
 							<tr>
 								<td>테스트</td>
 								<td>박성준</td>
-								<td id="start"></td>
-								<td id="end"></td>
-								<td id="stop"></td>
-								<td id="workTime"></td>
+								<td id="start">${commute.in_time}</td>
+								<td id="end">${commute.out_time}</td>
+								<!-- <td id="stop"></td> -->
+								<td id="workTime">${commute.commute_time}</td>
 							</tr>
 						</table>
 					</div>
@@ -98,7 +98,7 @@
 	//전역변수 - 퇴근 날짜 시간
 	var endWorkStatus = new Date();
 	//전역변수 - 조퇴 날짜 시간
-	var stopWorkStatus = new Date();
+	/* var stopWorkStatus = new Date(); */
 
 	$(function() {
 
@@ -106,7 +106,8 @@
 		var stTime = $('#start').html();
 		//종료 시간
 		var endTime = $('#end').html();
-		workingTime(stTime, endTime);
+		
+		//workingTime(stTime, endTime);
 
 		//데이트피커
 		$('#mydate').datepicker(
@@ -125,48 +126,83 @@
 		//출근 버튼 클릭시 - ajax 로 현재시간 디비에 넣어줘야 함.
 		$('#startWorkBtn').click(function() {
 
-			var date = new Date();
-			//시간
-			var h = date.getHours();
-			h = checkTime(h);
-			//분
-			var m = date.getMinutes();
-			m = checkTime(m);
+			if(stTime==''){
+				var date = new Date();
+				//시간
+				var h = date.getHours();
+				h = checkTime(h);
+				//분
+				var m = date.getMinutes();
+				m = checkTime(m);
+				
+				//출근시간 전역 변수에 셋팅
+				startWorkStatus.setHours(h, m, 0, 0);
 
-			//출근시간 전역 변수에 셋팅
-			startWorkStatus.setHours(h, m, 0, 0);
+				$('#start').html(h + ":" + m);
 
-			$('#start').html(h + ":" + m);
+				//시작 시간
+				stTime = $('#start').html();
 
-			//시작 시간
-			stTime = $('#start').html();
-
-			//종료 시간
-			endTime = $('#end').html();
-			workingTime(stTime, endTime);
-
+				//종료 시간
+				//endTime = $('#end').html();
+				//workingTime(stTime, endTime);
+				
+				
+				$.ajax(
+						 {
+							url : "insertCommute_in.do",
+							data : {
+										in_time : $("#start").html(),
+										emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
+								   },
+							success : function(data){						
+							}
+						 }
+				)
+				
+				
+			}
+			
+	
 		});
 
 		//퇴근 버튼 클릭시 - ajax 로 현재 시간 디비에 넣어줘야 함.
 		$('#endWorkBtn').click(function() {
-			var date = new Date();
-			var h = date.getHours();
-			h = checkTime(h);
-			var m = date.getMinutes();
-			m = checkTime(m);
-			$('#end').html(h + ":" + m);
+			
+			if(stTime!='' && endTime==''){
+				var date = new Date();
+				var h = date.getHours();
+				h = checkTime(h);
+				var m = date.getMinutes();
+				m = checkTime(m);
+				$('#end').html(h + ":" + m);
 
-			endWorkStatus.setHours(h, m, 0, 0);
+				endWorkStatus.setHours(h, m, 0, 0);
 
-			//시작 시간
-			stTime = $('#start').html();
-			//종료 시간
-			endTime = $('#end').html();
-			workingTime(stTime, endTime);
+				//시작 시간
+				stTime = $('#start').html();
+				//종료 시간
+				endTime = $('#end').html();
+				workingTime(stTime, endTime);
+				
+				$.ajax(
+						 {
+							url : "updateCommute_out.do",
+							data : {
+										out_time : $("#end").html(),
+										emp_no : '91001050',
+								   },
+							success : function(data){						
+							}
+						 }
+				)
+				
+			}
+			
 		});
 		
 		//조퇴 버튼 클릭시 - ajax 로 현재 시간 디비에 넣어줘야 함.
-		$('#stopWorkBtn').click(function() {
+		/* $('#stopWorkBtn').click(function() {
 			var date = new Date();
 			var h = date.getHours();
 			h = checkTime(h);
@@ -181,18 +217,26 @@
 			//종료 시간
 			endTime = $('#end').html();
 			workingTime(stTime, endTime);
-		});
+		}); */
 
 	});
 
 	//근무시간 구하는 함수.
 	function workingTime(stTime, endTime) {
 
+		
+		var st = $('#start').html();
+		var h = st.substr(0,2);
+		var m = st.substr(3,5);
+		//alert("end : " +endWorkStatus);
+		//startWorkStatus = endWorkStatus;
+		startWorkStatus.setHours(h,m,0,0);
+
 		var st = stTime;
 		var et = endTime;
 
 		if (st != '' && et != '') {
-
+			
 			/* 	var sthour = st.substr(0,2);
 				//분
 				var stMin = st.substr(3,5);
@@ -204,19 +248,42 @@
 			 */
 			alert("전역 : " + endWorkStatus + "/" + startWorkStatus);
 
-			//분
-			var result = (endWorkStatus - startWorkStatus) / 60000;
-			checkTime(result);
-
+			
 			//시간
 			var resultHour = (endWorkStatus - startWorkStatus) / 60000 / 60;
 			var resultHour2 = Math.floor(resultHour);
+			
+			var tempHour = 60*resultHour2;
+			//alert("temp : " + tempHour);
+			
+			//분
+			var result = ((endWorkStatus - startWorkStatus) / 60000 -tempHour);
+			//alert("분 : " + result);
+			resultMin = checkTime(result);
 
-			alert("시간 ? " + resultHour2);
+		
 
-			var resultTime = resultHour2 + " : " + result;
+			//alert("시간 ? " + resultHour2);
+
+			var resultTime = resultHour2 + ":" + resultMin;
 
 			$('#workTime').html(resultTime);
+			
+			
+			$.ajax(
+					 {
+						url : "updateCommute_commutetime.do",
+						data : {
+									commute_time : $("#workTime").html(),
+									emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
+							   },
+						success : function(data){						
+						}
+					 }
+			)
+			
+			
+			
 		} else {
 			alert("else 탐");
 			$('#workTime').html("00:00");

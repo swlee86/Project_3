@@ -1,5 +1,6 @@
 package kr.or.epm.DAO;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kr.or.epm.VO.Commute;
@@ -16,12 +17,26 @@ public interface CommuteDAO {
 	public int updateCommute_mgr();
 	
 	// 출근하기 : 일시 저장
-	public int insertCommute_in();
+	// 수정 2016-11-21 김주희
+	public int insertCommute_in(HashMap map);
 	
 	// 누적 근무시간, 누적 추가근무시간 계산하기
 	public int updateCommute_acc();
 	
 	// 퇴근하기 : 근무 시간, 추가근무시간 저장
-	public int updateCommute_out();
+	public int updateCommute_out2(HashMap map);
 	
+	
+	//추가 2016-11-21 김주희
+	// 오늘 출근 내역 있는지 확인
+	public String selectMyCommute_no(String emp_no);
+	
+	// 퇴근하기버튼
+	public int updateCommute_out(HashMap map);
+	
+	// commute_no에 따른 정보 조회(단일)
+	public Commute selectCommute_commuteno(String commute_no);
+	
+	// 당일 하루 근무시간 업데이트
+	public int updateCommute_time(HashMap map);
 }
