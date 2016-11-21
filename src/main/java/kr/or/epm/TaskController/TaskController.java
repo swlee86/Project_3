@@ -1,5 +1,8 @@
 package kr.or.epm.TaskController;
+import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,9 +87,21 @@ public class TaskController {
 	
 	// 업무 > 업무 등록 페이지
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
-	public String taskWriteResult(Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content){
+	public String taskWriteResult(Principal principal,Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content){
+		
+		//1.먼저 아이디 뽑아와야함.
+		String id = principal.getName();
+		System.out.println("아이디  : "+id);
+		
+		//날짜
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+		Date currentTime = new Date( );
+		String mTime = mSimpleDateFormat.format( currentTime );
+		
 		
 		//System.out.println("업무명 : "+task_name + " / 구분번호 : "+cg_no + " / 업무명 : "+cg_name + " / 수신자 사번 : "+rec_emp_no + " / 수신자 명 : "+rec_name + " / 기한 : "+deadline + " / 내용 : "+content);
+		List<Task_people> tlist = new ArrayList<Task_people>();
+		tlist.add(people);
 		
 		Task task = new Task();
 		task.setTask_name(task_name);
@@ -96,10 +111,14 @@ public class TaskController {
 		task.setRec_name(rec_name);
 		task.setDeadline(deadline);
 		task.setContent(content);
+		task.setTask_no(tlist.get(0).getTask_no());
+		task.setRec_date(mTime);
+		task.setSend_date(mTime);
+		task.setTask_step_no("0");
+		task.setStep_no("0");
 		
-		List<Task_people> tlist = new ArrayList<Task_people>();
-		tlist.add(people);
-		
+		System.out.println(task.toString());
+
 		
 		for(int i = 0; i < tlist.size(); i++){
 			System.out.println("task_no : "+tlist.get(i).getTask_no());
