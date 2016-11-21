@@ -1,5 +1,7 @@
 package kr.or.epm.VO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /*
  * 작성일 : 2016-11-16
  * 작성자 : 백승아
@@ -22,7 +24,17 @@ public class Task {
 	private String file_name;
 	private String task_step_no;
 	private String step_no;
+	private MultipartFile uploadfile;
 	
+	
+	public MultipartFile getUploadfile() {
+		return uploadfile;
+	}
+
+	public void setUploadfile(MultipartFile uploadfile) {
+		this.uploadfile = uploadfile;
+	}
+
 	// 추가 변수
 	private String cg_name;
 	private String step_name;
