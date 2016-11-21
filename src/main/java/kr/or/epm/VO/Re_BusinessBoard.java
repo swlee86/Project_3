@@ -1,5 +1,7 @@
 package kr.or.epm.VO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
 작성일 :	2016 - 11 - 16
 작성자 :	김주희
@@ -14,8 +16,17 @@ public class Re_BusinessBoard {
 	private String regdate;
 	private String low_dept_no;
 	private String low_dept_name;
+	private MultipartFile uploadfile;
 	
 	
+	public MultipartFile getUploadfile() {
+		return uploadfile;
+	}
+
+	public void setUploadfile(MultipartFile uploadfile) {
+		this.uploadfile = uploadfile;
+	}
+
 	public String getLow_dept_no() {
 		return low_dept_no;
 	}
