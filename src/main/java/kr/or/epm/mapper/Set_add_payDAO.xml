@@ -6,7 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 전체 추가 급여 조회하기 -->
 	<select id="selectSetadd_pay" resultType="kr.or.epm.VO.Set_add_pay">
-	
+		select a.position_no, a.set_date, a.add_pay
+		from set_add_pay a join (select position_no, max(set_date) as last
+                          		 from set_add_pay
+                     			 group by position_no) b
+		on a.position_no = b.position_no and a.set_date = b.last
+		order by position_no asc
 	</select>
 	
 	<!-- 직위별 추가 급여 조회하기 -->

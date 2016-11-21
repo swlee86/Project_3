@@ -5,11 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.epm.DAO.Set_homepageDAO">
 	
 	<!-- 전체 홈페이지 접근 시간 조회하기 -->
-	<!-- noooooooooooooooooooooooooooooooooooooooooooooooooo -->
 	<select id="selectSet_homepage" resultType="kr.or.epm.VO.Set_homepage">
-		select low_dept_no, max(set_date) 
-		from set_homepage
-		group by low_dept_no
+		select a.low_dept_no, a.set_date, a.open, a.close
+		from set_homepage a join (select low_dept_no, max(set_date) as last
+                          		  from set_homepage
+                     			  group by low_dept_no) b
+		on a.low_dept_no = b.low_dept_no and a.set_date = b.last
+		order by low_dept_no asc
 	</select>
 	
 	<!-- 하위 부서별 홈페이지 접근 시간 조회하기 -->
