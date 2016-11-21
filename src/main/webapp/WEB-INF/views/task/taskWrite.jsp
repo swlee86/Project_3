@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -116,9 +117,9 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-4" style="border: 1px solid gray;" id="organization">
-						부서 리스트
+						
 					</div>	
-					<div class="col-md-8">
+					<div class="col-md-8" id="empList">
 						사원리스트
 					</div>
 				</div>
