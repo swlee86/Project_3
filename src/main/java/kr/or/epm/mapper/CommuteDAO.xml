@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.CommuteDAO">
+
+	<!-- 본인의 근태 내역 조회하기 -->	
+	<select id="selectCommute" resultType="kr.or.epm.VO.Commute">
+		select commute_no, regdate, in_time, 
+			   out_time, commute_time, add_time, 
+			   acc_commute_time, acc_add_time, mgr_check
+		from commute
+		where emp_no = #{emp_no}
+		order by regdate desc
+	</select>
+	
+	<!-- 금월 추가근무 확정 처리 조회하기 -->
+	<select id="selectCommute_mgr" resultType="kr.or.epm.VO.Commute">
+		select c.emp_no, e.emp_name, regdate, commute_time, add_time, mgr_check
+		from commute c join emp e
+		on c.emp_no = e.emp_no
+		where e.low_dept_no = #{low_dept_no}
+		order by regdate asc
+	</select>
+	
+	<!-- 확정 처리하기 : 월누적근무시간, 월누적추가근무시간 저장 -->
+	<update id="updateCommute_mgr">
+		update commute
+		set mgr_check = '1', 
+   			acc_commute_time = to_char(to_date(acc_commute_time) + to_date(commute_time)), 
+    		acc_add_time =  to_char(to_date(acc_add_time) + to_date(add_time))
+		where commute_no = '3'
+	</update>
+	
+	<!-- 출근하기 : 일시 저장 / 아래 쿼리도 같이 돌려줘야 한다 -->
+	<insert id="insertCommute_in">
+		insert into commute(commute_no, emp_no, regdate, 
+							in_time, out_time, commute_time, 
+							add_time, acc_commute_time, acc_add_time, 
+							mgr_check)
+		values(commute_seq.nextval, #{emp_no}, to_char(sysdate, 'yyyy-mm'), 
+			   to_char(sysdate, 'hh:mm'), null, null, 
+			   null, null, null, 
+			   '0')
+	</insert>
+	
+	<!-- 누적 근무시간, 누적 추가근무시간 계산하기 -->
+	<update id="updateCommute_acc">
+		update commute
+		set acc_commute_time = (select max(acc_commute_time)
+                        		from commute
+                        		where emp_no = #{emp_no} and
+                              		  regdate = #{regdate}),
+    	acc_add_time = (select max(acc_add_time)
+                    	from commute
+                    	where emp_no = #{emp_no} and
+                          	  regdate = #{regdate})
+		where commute_no = #{commute_no}
+	</update>
+	
+	<!-- 퇴근하기 : 근무 시간, 추가근무시간 저장 -->
+	<update id="updateCommute_out">
+		update commute
+		set out_time = to_char(sysdate, 'hh:mm'),
+   			commute_time = out_time - in_time,
+    		add_commute_time = (select to_date(t.out_time, 'hh:mm') - to_date(c.out_time, 'hh:mm')
+                        		from commute c join emp e
+                        		on c.emp_no = e.emp_no
+                        		join (select rownum, low_dept_no, out_time
+                              		  from (select low_dept_no, out_time
+                                    		from set_time
+                                    		where low_dept_no = #{low_dept_no}
+                                    		order by abs(trunc(to_date(to_char(sysdate, 'yyyy-mm-dd')) - to_date(set_date))))
+                              		  where rownum = 1) t
+                        	    on e.low_dept_no = t.low_dept_no)
+		where commute_no = #{commute_no}
+	</update>
+	
+</mapper>

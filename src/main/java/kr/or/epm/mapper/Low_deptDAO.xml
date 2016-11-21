@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.Low_deptDAO">
+
+	<!-- 하위 부서 조회하기 -->
+	<select id="selectLow_dept" resultType="kr.or.epm.VO.Low_dept">
+		select branch_name, dept_name, low_dept_name
+		from low_dept
+		where his_check = '1'
+		order by low_dept_name asc
+	</select>
+	
+	<!-- 하위 부서 상세 조회하기 -->
+	<select id="selectLow_dept_detail" resultType="kr.or.epm.VO.Low_dept">
+		select branch_name, dept_name, low_dept_name, 
+			   tel, fax
+		from low_dept
+		where low_dept_no = #{low_dept_no}
+	</select>
+	
+	<!-- 하위 부서 등록하기 -->
+	<insert id="insertLow_dept">
+		insert into low_dept(low_dept_no, dept_no, branch_name, 
+							 dept_name, low_dept_name, tel, 
+							 fax, pre_low_dept_no, his_check, 
+							 depth)
+		values(low_dept_seq.nextval, #{dept_no}, #{branch_name}, 
+			   #{dept_name}, #{low_dept_name}, #{tel}, 
+			   #{fax}, null, '1', 
+			   '2')
+	</insert>
+	
+	<!-- 하위 부서 수정하기, 아래 작업을 먼저 해야해 -->
+	<update id="updateLow_dept">
+		update low_dept
+		set low_dept_no = low_dept_seq.nextval
+    		dept_no = #{dept_no},
+    		branch_name = #{branch_name},
+    		dept_name = #{dept_name},
+    		low_dept_name = #{low_dept_name},
+    		tel = #{tel},
+    		fax = #{fax},
+    		pre_low_dept_no = low_dept_seq.currval -1,
+    		his_check = '1',
+    		depth = '2'
+		where low_dept_no = #{low_dept_no}
+	</update>
+	
+	<!-- 하위 부서 수정되면 최종 여부 0으로 변경하기 / 이전 하위 부서 등록하기 -->
+	<update id="updateLow_dept_his">
+		update low_dept
+		set his_check = '0'
+		where low_dept_no = #{low_dept_no}
+	</update>
+</mapper>

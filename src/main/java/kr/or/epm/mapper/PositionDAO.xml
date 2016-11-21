@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.PositionDAO">
+	
+	<!-- 직위 등록하기 -->
+	<insert id="insertPosition">
+		insert into position(position_no, position_name, step)
+		values(position_seq.nextval, #{position_name}, #{step})
+	</insert>
+	
+	<!-- 직위 수정하기 -->
+	<update id="updatePosition">
+		update position
+		set position_name = #{position_name}, 
+			step = #{step}
+		where position_no = #{position_no}
+	</update>
+	
+	<!-- 직위 조회하기 -->
+	<select id="selectPosition" resultType="kr.or.epm.VO.Position">
+		select position_name, step
+		from position
+		order by step asc
+	</select>
+	
+	<!-- 직위 상세 조회하기 -->
+	<select id="selectPosition_detail" resultType="kr.or.epm.VO.Position">
+		select position_no, position_name, step
+		from position
+		where position_no = #{position_no}
+	</select>
+	
+	<!-- 직위 삭제하기 -->
+	<delete id="deletePosition">
+		delete from position
+		where position_no = #{position_no}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.PayDAO">
+
+	<!-- 급여 등록하기 -->
+	<insert id="insertPay">
+		insert into pay(pay_no, emp_no, basic_pay, severance_pay, bonus, add_pay, total_pay, give_date, master_check)
+		values(pay_seq.nextval, #{emp_no}, #{basic_pay}, #{severance_pay}, #{bonus}, #{add_pay}, #{total_pay}, #{give_date}, '0')
+	</insert>
+
+	<!-- 본인의 급여 내역 조회하기 -->
+	<select id="selectPay_mine_all" resultType="kr.or.epm.VO.Pay">
+		select pay_no, basic_pay, bonus, add_pay, total_pay, give_date
+		from pay
+		where emp_no = #{emp_no}
+		order by give_date desc
+	</select>
+	
+	<!-- 예상 퇴직금 조회하기 -->
+	<select id=""></select>
+	
+	<!-- 본인의 금월 예상 급여 조회하기 -->
+	<select id="selectPay_mine" resultType="kr.or.epm.VO.Pay">
+		select pay_no, p.emp_no, e.salary, basic_pay, acc_commute_time, acc_add_time, p.add_pay, total_pay
+		from pay p join emp e
+		on p.emp_no = e.emp_no
+		join commute c
+		on p.emp_no = c.emp_no
+		join set_add_pay a
+		on e.position_no = a.position_no
+		where p.emp_no = #{emp_no}
+	</select>
+	
+	<!-- 전체 급여 내역 조회하기 -->
+	<select id="selectPay_all" resultType="kr.or.epm.VO.Pay">
+		select pay_no, p.emp_no, e.emp_name, basic_pay, bonus, add_pay, total_pay, give_date
+		from pay p join emp e
+		on p.emp_no = e.emp_no
+		order by give_date desc
+	</select>
+	
+	<!-- 전체 금월 예상 급여 조회하기 -->
+	<select id="selectPay">
+		select pay_no, p.emp_no, e.emp_name, basic_pay, bonus, add_pay, total_pay, give_date
+		from pay p join emp e
+		on p.emp_no = e.emp_no
+		where give_date is null
+		order by e.position_no
+	</select>
+	
+	<!-- 관리자] 급여 확정하기 -->
+	<update id="updatePay">
+		update pay
+		set master_check = '1'
+		where pay_no = #{pay_no}
+	</update>
+</mapper>
