@@ -240,6 +240,34 @@ $('.demo2').click(function(){
         type: "success"
     });
 });
+
+
+
+$(function(){
+	$('#deptA').click(function(){
+		
+		var litag = "<ul>";
+		
+		$.ajax( 
+				 {
+					url:"taskWriteModal.do",
+					success:function(data){
+						
+						$('#myModal6').modal();
+						
+						$.each(data,function(index){
+							litag += "<li onclick='liValue(this)'>"+data[index]+"</li>";
+						});
+						
+					}
+				 }
+			   )	
+		
+		
+		
+		
+	});
+});
 </script>
 </body>
 </html>

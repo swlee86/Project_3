@@ -1,9 +1,9 @@
 package kr.or.epm.TaskController;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.TaskService;
 
@@ -19,12 +19,24 @@ public class TaskController {
 	@Autowired
 	private TaskService service;
 
+	@Autowired
+	private View jsonview;
+	
 	// 업무 > 업무 등록 페이지 이동
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.GET)
 	public String taskWrite() {
 		return "task.taskWrite";
 	}
 
+	//업무 등록시 조직도 modal에 사용
+	@RequestMapping("/taskWriteModal.do")
+	public View deptTree(){
+		
+		//service.selectDept();
+		
+		return jsonview;
+	}
+	
 	// 업무 > 업무 등록 페이지
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
 	public String taskWriteResult(){
