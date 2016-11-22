@@ -55,39 +55,84 @@
   background: transparent;
   border-color: #e4e5e7;
 }
+.groupdiv .group-clicked{
+	background : #beebff;
+	border-radius : 2px;
+	box-shadow : inset 0 0 1px #999;
+}
 </style>
 
  <script>
+ 
+ 	function ajaxjieun(index) {
+ 		$.ajax(
+				{
+					type : "post",
+					url  : "contact_detail.do",
+					data : {
+						"contact_no" : $('#contact_no_'+index).val()
+					},
+					success : function(data){
+						console.log(data);
+						console.log("contact_no : "+data.contact_no);
+						$('#m_name').html(data.name);
+						$('#m_attach').html(data.attach);
+						$('#m_birth').html(data.birth);
+						$('#m_mail').html(data.mail);
+						$('#m_tel1').html(data.tel1);
+						$('#m_tel2').html(data.tel2);
+						$('#m_memo').html(data.memo);
+					}
+				}		
+			)
+ 	}
+ 
 	$(function(){
 		
 		var listsize = $('#listsize').val();
 		console.log("listsize  : "+listsize);
-
 		
 		if(listsize > 0){
 			$('#conmodal_0').click(function(){  //0 일떄
-				console.log("conmodal_0 : 클릭함 / "+ "주소록 번호 : "+);
+				console.log("conmodal_0 : 클릭함 / "+ "주소록 번호 : "+$('#contact_no_0').val());
+				ajaxjieun(0);
 			});	
 			
 			$('#conmodal_1').click(function(){  //1 일떄
-				console.log("conmodal_1 : 클릭함");
+				console.log("conmodal_1 : 클릭함 / "+ "주소록 번호 : "+$('#contact_no_1').val());
+				ajaxjieun(1);
 			});	
 			
 			
 			$('#conmodal_2').click(function(){  //2 일떄
-				console.log("conmodal_2 : 클릭함");
+				console.log("conmodal_2 : 클릭함 / "+ "주소록 번호 : "+$('#contact_no_2').val());
+				ajaxjieun(2);
 			});	
 			
 			
 			$('#conmodal_3').click(function(){  //3 일떄
-				console.log("conmodal_3 : 클릭함");
-			});	
+				console.log("conmodal_3 : 클릭함 / "+ "주소록 번호 : "+$('#contact_no_3').val());
+				ajaxjieun(3);
+			});			
 		}
 		
+		/* $("#group_${g.group_no}").click(function(event){
+			$('#group_${g.group_no}').addClass("group-clicked");
+		)}; */
+	
 		
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		/* 초성별 */
 		$('#all').click(function(){
 			console.log('all 탭 클릭함');
 			location.replace('contacts.do');
@@ -179,6 +224,8 @@
 			
 		});
 
+		
+		
 		
 	});
 	

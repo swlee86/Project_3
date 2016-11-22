@@ -219,7 +219,7 @@ public class MediaBoardController {
 	
 	//언론게시판 > 리플 등록 처리
 		@RequestMapping(value = "/media_board_reply.do" ,method=RequestMethod.POST)
-		public  @ResponseBody Re_MediaBoard media_board_reply(Principal principal, String replytext, String no, Model model) {
+		public  @ResponseBody Re_MediaBoard media_board_reply(Principal principal, String replytext, String no) {
 			System.out.println("media_board_reply()처리 컨트롤러 탐");
 			int result = 0;
 			Re_MediaBoard re_MediaBoard = new Re_MediaBoard();
