@@ -14,6 +14,7 @@ import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.TaskService;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
@@ -179,7 +180,22 @@ public class TaskController {
 
    //업무요청 > 업무요청 수신 > 상세페이지
    @RequestMapping("/taskRequest_Receive_Detail.do")
-   public String taskRequest_Receive_Detail(){
+   public String taskRequest_Receive_Detail(String task_no, Model model){
+	   
+	   System.out.println("선택하신 업무 번호 : "+task_no);
+	   
+	   //task 상세 조회 가져옴 (참조자 제외)
+	   Task task=service.selectTask_detail(task_no);
+	   
+	   //업무 참여자 조회하기 - 참여자 사번만 나옴.
+	   List<Task_people> taskPeopleList = service.selectTask_people(task_no);
+	   //완성된 업무 참여자 조회 리스트
+	   List<String> taskPeople = service.selectEmp_info(taskPeopleList);
+	   
+	   				//업무 관련 내용만 있음
+	   model.addAttribute("task", task);
+	   					//참조자
+	   model.addAttribute("taskPeople",taskPeople);
       return "task.taskRequest_Receive_Detail";
    }
    

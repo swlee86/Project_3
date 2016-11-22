@@ -60,8 +60,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on t.cg_no = c.cg_no
 		left outer join task_people p
 		on t.task_no = p.task_no
-		where t.task_no = #{task_no};
+		where t.task_no=#{task_no}
 	</select>
+	
+	
+	<!--업무 요청 수신 상세 보기 업무 내용만 있음-->
+	<select id="selectTask_receive_detail" resultType="kr.or.epm.VO.Task">
+	   select task_no, cg_no, sign, task_name, deadline, content, emp_name, file_name, task_step_no, step_no from task where task_no = #{task_no}
+	</select>
+	
+	
+	
 	
 	<!-- 수신함에서 읽었을 때 수신일 데이터 삽입하기 -->
 	<update id="updateTask_recDate">
