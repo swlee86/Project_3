@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
-import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.TaskService;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
@@ -39,10 +40,6 @@ public class TaskController {
    @Autowired
    private View jsonview;
    
-   @Autowired
-   private CommonService commonservice;
-   
-   
    // 업무 > 업무 등록 페이지 이동
    @RequestMapping(value = "/taskWrite.do", method = RequestMethod.GET)
    public String taskWrite(Model model) {
@@ -63,20 +60,20 @@ public class TaskController {
    
    //2.업무 등록시 조직도 지점 클릭시 부서 띄워줘야함
    @RequestMapping(value="/taskDeptModal.do", method=RequestMethod.GET)
-   public View downDeptTree(String branch_name, Model model){
+   public View downDeptTree(String branch_no, Model model){
 	  System.out.println("지점 클릭 시작함");
       System.out.println("컨트롤러 ");
       List<Organization> list = null;
-      list=service.selectdeptname(branch_name);
+      list=service.selectdeptname(branch_no);
       model.addAttribute("deptname", list);
       return jsonview;
    }
    
    //3.업무 등록시 조직도 부서 클릭시 하위부서 출력
    @RequestMapping("/tasklow_deptModal.do")
-   public View downlowDeptTree(String dept_name, Model model){
+   public View downlowDeptTree(String dept_no, Model model){
       List<Organization> list = null;
-      list = service.selectlowDept(dept_name);
+      list = service.selectlowDept(dept_no);
       for(int i =0; i < list.size(); i++){
          System.out.println("하위 부서 : " +list.get(i).getLow_dept_name());
       }
@@ -86,10 +83,10 @@ public class TaskController {
    
    //4.업무 등록시 조직도 하위 부서 클릭시 사원 정보 출력
    @RequestMapping("/taskEmpModal.do")
-   public View downEmpTree(String low_dept_name, Model model){
+   public View downEmpTree(String low_dept_no, Model model){
       System.out.println("이엠피 정보 컨트롤러");
       List<Organization> list = null;
-      list = service.selectEmpInfo(low_dept_name);
+      list = service.selectEmpInfo(low_dept_no);
       for(int i =0; i < list.size(); i++){
          System.out.println("사원정보: " +list.get(i).getEmp_name()+"/ 사번: "+list.get(i).getEmp_no());
       }
@@ -168,15 +165,13 @@ public class TaskController {
 	//업무 > 업무 요청 페이지 이동 > 수신탭
 	@RequestMapping("/taskRequest.do")
 	public String taskRequest(Principal principal, Model model){
-		
+		String cg_no = "1";
 		//로그인한 아이디 뽑아오기
 		String id = principal.getName();
 		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
 		System.out.println("업무 요청 페이지 이동 : " +emp.toString());
 		/////////////////////////////
 		String emp_no = emp.getEmp_no();
-		String cg_no = "1";
-	
 	    List<Task> list = service.selectTask_rec(emp_no, cg_no);
 		model.addAttribute("tasklist", list);
 		System.out.println("업무 요청 페이지> 수신탭");
@@ -185,7 +180,22 @@ public class TaskController {
 
    //업무요청 > 업무요청 수신 > 상세페이지
    @RequestMapping("/taskRequest_Receive_Detail.do")
-   public String taskRequest_Receive_Detail(){
+   public String taskRequest_Receive_Detail(String task_no, Model model){
+	   
+	   System.out.println("선택하신 업무 번호 : "+task_no);
+	   
+	   //task 상세 조회 가져옴 (참조자 제외)
+	   Task task=service.selectTask_detail(task_no);
+	   
+	   //업무 참여자 조회하기 - 참여자 사번만 나옴.
+	   List<Task_people> taskPeopleList = service.selectTask_people(task_no);
+	   //완성된 업무 참여자 조회 리스트
+	   List<String> taskPeople = service.selectEmp_info(taskPeopleList);
+	   
+	   				//업무 관련 내용만 있음
+	   model.addAttribute("task", task);
+	   					//참조자
+	   model.addAttribute("taskPeople",taskPeople);
       return "task.taskRequest_Receive_Detail";
    }
    
@@ -215,24 +225,63 @@ public class TaskController {
 		    model.addAttribute("link", link);
 			model.addAttribute("msg",msg);
 	   }
-	   
-	   
-	   return "task.taskRequest_redirect";
+		   return "task.taskRequest_redirect";
    }
    
    
+   //업무 요청 > 업무요청 송신 > 리스트 페이지
+   @RequestMapping("/taskRequest_Transmit_List.do")
+   public View taskRequest_Transmit_List(Model model, Principal principal){  
+	      
+	      //1.먼저 아이디 뽑아와야함.
+	      String id = principal.getName();
+	      System.out.println("아이디  : "+id);
+	      //아이디 통해 사번 얻어옴
+	      EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
+	      
+	      List<Task> selectMyTaskList = service.listTask(emp.getEmp_no(), "1");
+	      System.out.println(selectMyTaskList.get(1).toString());
+	      //핵심 입니다!!
+	      JSONArray jsonArray = new JSONArray();
+	      jsonArray.add(selectMyTaskList);
+	      model.addAttribute("json", jsonArray);
+	     
+	     return jsonview;
+   }
    
    
    //업무 요청 > 업무요청 송신 > 상세페이지
    @RequestMapping("/taskRequest_Transmit_Detail.do")
-   public String taskRequest_Transmit_Detail(){         
+   public String taskRequest_Transmit_Detail(String task_no, Model model){
+	
+	   System.out.println("넘어온 번호 : "+task_no);
+	   //업무 상세 보기
+	   Task task=service.selectTask_detail(task_no);
+	   System.out.println("업무 : "+task.toString());
+	   model.addAttribute("task", task);
+	   
       return "task.taskRequest_Transmit_Detail";
+   }
+   
+   //업무 요청 > 업무요청 참여 > 리스트 > 성준(11-22)
+   @RequestMapping("/taskRequest_Participation_List.do")
+   public View taskRequest_Participation_List(Principal principal,Model model){
+	 
+	   //1.먼저 아이디 뽑아와야함.
+       String id = principal.getName();
+       System.out.println("아이디  : "+id);
+       //아이디 통해 사번 얻어옴
+       EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
+	    
+       
+       
+	   return jsonview;
    }
    
    //업무 요청 > 업무요청 참여 > 상세페이지
    @RequestMapping("/taskRequest_Participation_Detail.do")
-   public String  taskRequest_Participation_Detail(){         
-      return "task. taskRequest_Participation_Detail";
+   public String taskRequest_Participation_Detail(){         
+      return "task.taskRequest_Participation_Detail";
    }
    
    
@@ -259,28 +308,10 @@ public class TaskController {
    // 2016-11-22
    // 백승아
    //업무  > 업무일지 수신 페이지 이동
-   @RequestMapping("/taskLog.do")
-   public String taskLog(Principal principal, Model model){
-	   
-	   System.out.println("업무 일지 수신페이지를 요청합니다");
-	   String cg_no = "3";
-	   
-	 // 로그인 id
-	 String id = principal.getName();
-	 String emp_no = commonservice.selectEmp_no(id);
-	 System.out.println("로그인한 사원의 emp_no : " + emp_no);
-	 
-	 // 글 개수 구하기
-	 int count = service.countTask(cg_no);
-	 model.addAttribute("count", count);
-	 
-	 // 목록 가져오기
-	 List<Task> list = service.selectTask_rec(emp_no, cg_no);
-	 model.addAttribute("list", list);
-	 		
+   @RequestMapping("/taskLog_rec.do")
+   public String taskLog(){
       return "task.taskLog";
    }
-   
    
    //업무일지 > 업무 일지 수신 > 상세페이지
    @RequestMapping("/taskLog_Receive_Detail.do")

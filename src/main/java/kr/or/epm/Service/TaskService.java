@@ -11,7 +11,6 @@ import kr.or.epm.DAO.ApprovalDAO;
 import kr.or.epm.DAO.OrganizationDAO;
 import kr.or.epm.DAO.TaskDAO;
 import kr.or.epm.DAO.Task_peopleDAO;
-import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
@@ -171,8 +170,7 @@ public class TaskService {
 		return serviceResultList;
 	}
 	
-	//업무 요청 > 송신 
-
+	//업무 요청 > 송신 > ?????????????????
 	public int countTask(String cg_no) {
 		
 		System.out.println("업무 글 개수 구하기");
@@ -189,10 +187,16 @@ public class TaskService {
 		int result = 0;
 		ApprovalDAO approvalDAO = sqlsession.getMapper(ApprovalDAO.class);
 		result = approvalDAO.updateApprovalTask(approval, task_no);
-		
-		
 		return result;
 	}
+	
+	//업무 요청 > 송신탭 > ajaxJson 용 
+	public List<Task> listTask(String emp_no, String cg_no){
+		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
+		List<Task> list = taskDAO.selectTask(emp_no, cg_no);
+		return list;
+	}
+	
 	
 	
 }
