@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.epm.DAO.ApprovalDAO;
 import kr.or.epm.DAO.OrganizationDAO;
 import kr.or.epm.DAO.TaskDAO;
 import kr.or.epm.DAO.Task_peopleDAO;
@@ -171,6 +172,17 @@ public class TaskService {
 		return serviceResultList;
 	}
 	
+	
+	//승인 여부 선택시 호출 되는 서비스 메서드
+	public int approval(String approval,String task_no){
+		
+		int result = 0;
+		ApprovalDAO approvalDAO = sqlsession.getMapper(ApprovalDAO.class);
+		result = approvalDAO.updateApprovalTask(approval, task_no);
+		
+		
+		return result;
+	}
 	
 	
 }

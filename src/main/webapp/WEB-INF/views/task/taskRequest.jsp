@@ -33,8 +33,8 @@
 				</div>
 
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" id="first">수신</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class="active"><a data-toggle="tab" href="#tab-1">수신</a></li>
+					<li class=""><a data-toggle="tab" href="#tab-2" id="song">송신</a></li>
 					<li class=""><a data-toggle="tab" href="#tab-3">참여</a></li>
 				</ul>
 
@@ -44,6 +44,7 @@
 						<div class="panel-body">
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="" class="form-inline">
+									
 									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
 										<tr>
 											<td width="10%"></td>
@@ -175,6 +176,7 @@
 
 					<!-- 송신 -->
 					<div id="tab-2" class="tab-pane">
+						벨류 : ${value}
 						<div class="panel-body">
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="" class="form-inline">
