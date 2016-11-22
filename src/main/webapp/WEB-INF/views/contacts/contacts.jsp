@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -11,13 +13,13 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
+					<li><a href="index.html">Home</a></li>
+					<!-- <li><span>App views</span></li> -->
 					<li class="active"><span>Contacts</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">전체 주소록</h2>
-			<small>Show users list in nice and color panels</small>
+			<h2 class="font-light m-b-xs">개인 주소록</h2>
+			<small>회원 마다 가질수 있는 주소록입니댜.</small>
 		</div>
 	</div>
 </div>
@@ -63,178 +65,128 @@
 
 		<div class="col-md-9">
 			<div class="hpanel">
-				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#tab-1"> ALL</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">가</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">나</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">다</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">라</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">마</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">바</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">사</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">아</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">자</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">차</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">카</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">타</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">파</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">하</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">A-Z</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">0-9</a></li>
+				<ul class="nav nav-tabs tabstyle">
+					<li class="<c:if test="${empty tapno}">active</c:if>"><a data-toggle="tab" href="#tab-1" id="all">ALL</a></li>
+					<li class="<c:if test="${2 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-2" id="ga">가</a></li> 
+					<li class="<c:if test="${3 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-3" id="na">나</a></li>
+					<li class="<c:if test="${4 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-4" id="da">다</a></li>
+					<li class="<c:if test="${5 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-5" id="la">라</a></li>
+					<li class="<c:if test="${6 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-6" id="ma">마</a></li>
+					<li class="<c:if test="${7 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-7" id="ba">바</a></li>
+					<li class="<c:if test="${8 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-8" id="sa">사</a></li>
+					<li class="<c:if test="${9 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-9" id="aa">아</a></li>
+					<li class="<c:if test="${10 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-10" id="ja">자</a></li>
+					<li class="<c:if test="${11 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-11" id="cha">차</a></li>
+					<li class="<c:if test="${12 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-12" id="ca">카</a></li>
+					<li class="<c:if test="${13 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-13" id="ta">타</a></li>
+					<li class="<c:if test="${14 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-14" id="pa">파</a></li>
+					<li class="<c:if test="${15 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-15" id="ha">하</a></li>
+					<li class="<c:if test="${16 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-16" id="alp">A-Z</a></li>
+					<li class="<c:if test="${17 == tapno}">active</c:if>"><a data-toggle="tab" href="#tab-17" id="num">0-9</a></li>
 				</ul>
-				<div class="tab-content">
-					<div id="tab-1" class="tab-pane active">
+				
+				
+				
+				
+				<div class="tab-content" >												
+					<div id="tab-${tapno}" class="tab-pane active" >
 						<div class="panel-body">
-							<div class="hpanel">
-								<div class="panel-heading hbuilt">
-									<div class="row text-right" >
-									 	<div class="col-md-6"></div> 
-										<form action="" class="form-inline ">
-										<div class="col-md-2">
-											<div class="form-group">
-												<select class="form-control input-sm">
-													<option>이름</option>
-													<option>회사명</option>
-													<option>메일</option>
-												</select>
-											</div>
-										</div>
-										
-										<div class="col-md-4">		
-											<div class="form-group">	
-												<div class="input-group">
-													<input type="text" class="form-control input-sm" name="s" />
-													<span class="input-group-btn">
-														<button class="btn btn-default input-sm" type="submit" style="color:#f05050">
-															<span class="fa fa-search"></span>
-														</button>
-													</span>
-												</div>
-											</div>
-											</div>
-										</form>
-									</div>
-									<hr>
-								</div>
-
-								<div class="panel-body">
-
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="hpanel hgreen contact-panelt">
-												<div class="panel-body">
-													<img alt="logo" class="img-circle m-b" src="images/profile.jpg" align="left">
-													<h4>
-														<a href="" data-toggle="modal" data-target="#myModal"><B>박지은</B></a>
-													</h4>
-													<p>
-														핸드폰 : 01012345678<br> 회사명 : 코스타<br> 메일 :
-														123@naver.com
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="hpanel hyellow contact-panelt">
-												<div class="panel-body">
-													<img alt="logo" class="img-circle m-b" src="images/a4.jpg" align="left">
-													<h4>
-														<B>박지은</B>
-													</h4>
-													<p>
-														핸드폰 : 01012345678<br> 회사명 : 코스타<br> 메일 :
-														123@naver.com
-													</p>
-												</div>
-											</div>
+							<div class="row text-right">
+								<div class="col-md-6"></div>
+								<form action="contacts.do" class="form-inline ">
+									<input type="hidden" name="tapno" value="${tapno}">
+									<div class="col-md-2">
+										<div class="form-group">
+											<select class="form-control input-sm" name="f">
+												<option value="name">이름</option>
+												<option value="attach">소속</option>
+											</select>
 										</div>
 									</div>
 
-
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="hpanel hblue contact-panelt">
-												<div class="panel-body">
-													<img alt="logo" class="img-circle m-b" src="images/a9.jpg" align="left">
-													<h4>
-														<B>박지은</B>
-													</h4>
-													<p>
-														핸드폰 : 01012345678<br> 회사명 : 코스타<br> 메일 :
-														123@naver.com
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="hpanel hviolet contact-panelt">
-												<div class="panel-body">
-													<img alt="logo" class="img-circle m-b" src="images/a5.jpg" align="left">
-													<h4>
-														<B>박지은</B>
-													</h4>
-													<p>
-														핸드폰 : 01012345678<br> 회사명 : 코d스타<br> 메일 :
-														123@naver.com
-													</p>
-												</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" class="form-control input-sm" name="q" />
+												<span class="input-group-btn">
+													<button class="btn btn-default input-sm" type="submit" style="color: #f05050">
+														<span class="fa fa-search"></span>
+													</button>
+												</span>
 											</div>
 										</div>
 									</div>
-
-								</div>
-
-
-
-								<div class="panel-footer" style="text-align: center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-default">
-											&nbsp;<i class="fa fa-chevron-left"></i>
-										</button>
-										<button class="btn btn-default active">1</button>
-										<button class="btn btn-default">2</button>
-										<button class="btn btn-default">3</button>
-										<button class="btn btn-default">4</button>
-										<button class="btn btn-default">5</button>
-										<button class="btn btn-default">6</button>
-										<button class="btn btn-default">7</button>
-										<button class="btn btn-default">8</button>
-										<button type="button" class="btn btn-default">
-											&nbsp;<i class="fa fa-chevron-right"></i>
-										</button>
-									</div>
-								</div>
-							
-							
+								</form>
 							</div>
+							<hr>
 
+
+							<div class="row">
+								<c:forEach items="${list}" var="n">
+									<div class="col-lg-6">
+										<div class="hpanel hblue contact-panelt">
+											<div class="panel-body">
+												<img alt="logo" class="img-circle m-b" src="images/profile.jpg" align="left">
+												<h4>
+													<a href="" data-toggle="modal" data-target="#myModal" id="conmodal${n.contact_no}"><B>${n.name}</B></a>
+												</h4>
+												<p>
+													<input type="text" id="contact_no" value="${n.contact_no}">
+													연락처1 : <c:if test="${not empty n.tel1}">${n.tel1}</c:if> <br> 
+													소속 : <c:if test="${not empty n.attach}">${n.attach}</c:if><br> 
+													메일 : <c:if test="${not empty n.mail}">${n.mail}</c:if>
+												</p>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
 						</div>
-					</div>
-					<div id="tab-2" class="tab-pane">
-						<div class="panel-body">
-							<strong>Donec quam felis</strong>
+						
+						<div class="panel-footer" style="text-align: center">
+							<div class="btn-group">
+								<c:if test="${pg>1}">
+									<a  class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${pg-1}&f=${field}&q=${query}">
+										&nbsp;<i class="fa fa-chevron-left"></i>
+									</a>
+								</c:if>
 
-							<p>Thousand unknown plants are noticed by me: when I hear the
-								buzz of the little world among the stalks, and grow familiar
-								with the countless indescribable forms of the insects and flies,
-								then I feel the presence of the Almighty, who formed us in his
-								own image, and the breath</p>
+								<c:forEach var="i" begin="1" end="${pagecount}">
+									<c:choose>
+										<c:when test="${pg==i}">
+											<button class="btn btn-default active" style="background-color: #DAD9FF">
+												<b>${i}</b>
+											</button>
+										</c:when>
+										<c:otherwise>
+											<a class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${i}&f=${field}&q=${query}">
+												${i}
+											</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 
-							<p>I am alone, and feel the charm of existence in this spot,
-								which was created for the bliss of souls like mine. I am so
-								happy, my dear friend, so absorbed in the exquisite sense of
-								mere tranquil existence, that I neglect my talents. I should be
-								incapable of drawing a single stroke at the present moment; and
-								yet.</p>
+								<c:if test="${pg < pagecount}">
+									<a class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${pg+1}&f=${field}&q=${query}">
+										&nbsp;<i class="fa fa-chevron-right"></i>
+									</a>
+								</c:if>
+							</div>
 						</div>
 					</div>
 				</div>
-
-
+				
 			</div>
 		</div>
 	</div>
 </div>
+
+
+
+
+
+
+
 
 <div class="modal fade hmodal-success" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">

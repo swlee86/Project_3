@@ -4,6 +4,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.ContactDAO">
 
+	
+	<!-- 등록인 사번 구하는 함수 -->
+	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">
+		select e.emp_no
+		from  emp_detail d join emp e
+		on d. emp_no = e.emp_no
+		where d.id=#{id}
+	</select>
+	
+
+	<!--  글 갯수 -->
+	<select id="selectCount" resultType="int"> 
+		select nvl(count(*),0) 
+		from emp_contact e join contact c on e.contact_no=c.contact_no 
+		where e.emp_no=#{param1} and (${param2} like '%${param3}%') and (name &gt;= #{param4} and name &lt;= #{param5})
+	</select>
+	
+		
+	
+	<!-- 리스트 -->
+	<select id="selectList" resultType="kr.or.epm.VO.Contact"> 
+		select contact_no, group_no, name, attach, birth, mail, pic, tel1, tel2, memo from
+					(select rownum num, n.contact_no,n.group_no,n.name,n.attach,n.birth,n.mail,n.pic,n.tel1,n.tel2,n.memo
+					 from 
+					 	 (select c.contact_no, c.group_no, c.name, c.attach, c.birth, c.mail, c.pic, c.tel1, c.tel2, c.memo
+					 	  from emp_contact e join contact c on e.contact_no=c.contact_no 
+					 	  where e.emp_no=#{param5} and (${param3} like '%${param4}%')  and(name &gt;= #{param6} and name &lt;= #{param7})
+					 	  order by to_number(contact_no) desc
+						  ) n
+					) where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}
+	</select>
+	
+	
+		
+
 	<!-- 그룹별 조회 -->
 	<select id="selectContact_group" resultType="kr.or.epm.VO.Contact">
 		select contact_no, c.group_no, group_name, name, attach, 

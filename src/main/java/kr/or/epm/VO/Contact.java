@@ -19,6 +19,8 @@ public class Contact {
 	private String memo;
 
 	
+	
+
 	//추가 DTO 2016-11-18 
 	private String group_name;
 		

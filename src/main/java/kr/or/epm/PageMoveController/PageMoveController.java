@@ -24,11 +24,7 @@ public class PageMoveController {
 		return "memo.private_notes";
 	}
 
-	// SideBar(aside.jsp) 주소록 클릭시 구동
-	@RequestMapping("/contacts.do")
-	public String contactsview() {
-		return "contacts.contacts";
-	}
+	
 
 	// SideBar(aside.jsp) 조직도 > 부서인원 클릭시 구동
 	@RequestMapping("/team_member.do")
@@ -133,11 +129,7 @@ public class PageMoveController {
 	}
 	
 	
-	//주소록 > 주소록 추가 페이지 이동
-	@RequestMapping("/enroll.do")
-	public String contacts() {
-		return "contacts.enroll";
-	}
+	
 	
 
 	//전자 결재 > 기안문작성 페이지이동
@@ -214,11 +206,7 @@ public class PageMoveController {
 		return "TAttendance.AttendaceOtherView";
 	}
 	
-	//주소록  > 주소록 그룹 관리 페이지 이동
-	@RequestMapping("/contaacts_group.do")
-	public String contaacts_group(){
-		return "contacts.contacts_group";
-	}
+	
 
 	// 관리자 메뉴 > 거래처 > 거래처 메뉴로 이동
 	@RequestMapping("/client.do")
@@ -357,11 +345,7 @@ public class PageMoveController {
 	}		
 	
 
-	//주소록 > 주소록 수정페이지 이동
-	@RequestMapping("/contacts_update.do")
-	public String contacts_update(){			
-		return "contacts.contacts_update";
-	}
+
 	
 	
 }
