@@ -38,9 +38,9 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<form class="form-inline" action="CommuteMonth.do" method="get">
+					<form class="form-inline" action="CommuteMonth.do" method="post">
 						<label class="form-control">월별 근태 내역 검색하기</label> 
-						<input type="text" class="form-control" id="select_date" name="select_date">
+						<input type="text" class="form-control" id="select_date" name="select_date" value="${select_year}-${select_month}">
 						<button type="submit" class="btn btn-sm btn-default" id="addCommute">
 							<span id="searchicon" class="fa fa-search"></span>
 						</button>
@@ -61,8 +61,8 @@
 						</div>
 						<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped"">
 							<tr>
-								<th>사번</th>
-								<th>성명</th>
+								<th style="text-align: center;">사번</th>
+								<th >성명</th>
 								<th>일시</th>
 								<th>출근시간</th>
 								<th>퇴근시간</th>
@@ -93,24 +93,3 @@
 	</div>
 </div>
 <script src="vendor/jquery/dist/jquery.min.js"></script>
-<script>
-	//Month 캘린더 실행
-	$(function() {
-		var currentYear = (new Date()).getFullYear();
-		var startYear = currentYear - 10;
-		var options = {
-			startYear : startYear,
-			finalYear : currentYear,
-			pattern : 'yyyy-mm',
-			monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
-					'9월', '10월', '11월', '12월' ]
-		};
-		//데이트피커
-		$('#select_date').monthpicker(options);
-		$('#searchicon').click(function() {
-			alert("선택한 날짜 : " + $('#select_date').val());
-
-		});
-
-	});
-</script>
