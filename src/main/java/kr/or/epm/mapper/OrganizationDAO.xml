@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 작성일 : 2016-11-20 작성자 : 백승아 사용 목적 : 조직도에 대한 mapper -->
 
 	<!--지점 리스트 뿌리기 -->
-	<select id="selectOrganization" resultType="kr.or.epm.VO.Organization">
+	<select id="selectBranch" resultType="kr.or.epm.VO.Organization">
 		select branch_name,
 		depth
 		from branch

@@ -5,6 +5,12 @@ import java.util.List;
 import kr.or.epm.VO.Organization;
 
 public interface OrganizationDAO {
+	
+	// 지점 출력하기
+	public List<Organization> selectBranch();
+	
+	// 부서 출력하기
+	public List<Organization> selectDept();
 
 	// 조직도 출력하기
 	public List<Organization> selectOrganization();
