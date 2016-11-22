@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						 emp_no, emp_name, send_date, 
 						 file_name, del_check, rec_del_check, 
 						 task_step_no, step_no)
-		values(task_seq.nextval, #{cg_no}, '0', 
+		values(#{task_no}, #{cg_no}, '0', 
 			   #{task_name}, #{deadline}, #{content}, 
 			   #{rec_emp_no}, #{rec_name}, null, 
 			   #{emp_no}, #{emp_name}, to_char(sysdate, 'yyyy-mm-dd'), 
@@ -92,9 +92,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   task_step_no, step_no
 		from task t join task_cg c 
 		on t.cg_no = c.cg_no
-		where emp_no = #{emp_no} and 
+		where emp_no = #{param1} and 
 			  del_check = '0' and 
-			  t.cg_no = #{cg_no}
+			  t.cg_no = #{param2}
 		order by send_date desc
 	</select>
 	

@@ -6,7 +6,7 @@ import kr.or.epm.VO.Task_people;
 public interface Task_peopleDAO {
 	
 	// 업무 참여자 추가하기
-	public int insertTask_people(List<Task_people> people);
+	public int insertTask_people(String task_no, String emp_no);
 	
 	// 업무 참여자 삭제하기
 	public int deleteTask_people();
