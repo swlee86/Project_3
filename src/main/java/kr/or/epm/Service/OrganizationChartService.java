@@ -32,6 +32,7 @@ public class OrganizationChartService {
 		list = organizationDAO.selectBranch();
 
 		for (int i = 0; i < list.size(); i++) {
+			System.out.println("지점 번호 : " + list.get(i).getBranch_no());
 			System.out.println("부서 이름 : " + list.get(i).getDept_name());
 			System.out.println("하위부서  이름 : " + list.get(i).getLow_dept_name());
 			System.out.println("지점 이름 : " + list.get(i).getBranch_name());
@@ -40,33 +41,33 @@ public class OrganizationChartService {
 	}
 
 	// 부서 이름 트리 구조
-	public List<Organization> selectChartdeptname(String branch_name) {
+	public List<Organization> selectChartdeptname(String branch_no) {
 		System.out.println("부서 이름 뽑으러 서비스 타러 왔음");
-		System.out.println("입력된 branch_name : " + branch_name);
+		System.out.println("입력된 branch_name : " + branch_no);
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
-		list = organizationDAO.selectDept(branch_name);
+		list = organizationDAO.selectDept(branch_no);
 		System.out.println("서비스단에서 나온 데이터 : " + list.size());
 		return list;
 	}
 
 	// 하위 부서 이름 트리 구조
-	public List<Organization> selectChartlowDept(String dept_name) {
+	public List<Organization> selectChartlowDept(String dept_no) {
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
-		System.out.println("서비스 : " + dept_name);
-		list = organizationDAO.selectlowDept(dept_name);
+		System.out.println("서비스 : " + dept_no);
+		list = organizationDAO.selectlowDept(dept_no);
 		return list;
 	}
 
 	// 사원 정보 이름 트리 구조
-	public List<Organization> selectEmpInfo(String low_dept_name) {
-		System.out.println("서비스 selectEmpInfo : " + low_dept_name);
+	public List<Organization> selectEmpInfo(String low_dept_no) {
+		System.out.println("서비스 selectEmpInfo : " + low_dept_no);
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
 
 		try{
-			list = organizationDAO.selectEmpInfo(low_dept_name);			
+			list = organizationDAO.selectEmpInfo(low_dept_no);			
 		}catch(Exception e){
 			e.getMessage();
 		}finally{

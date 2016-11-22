@@ -84,9 +84,12 @@
     		var litag = "<ul>";
     		$('#organization').empty();
     		$('#empList').empty();
+    		
+    		
     		$.ajax({
     			url : "oranicChartFirst.do",
     			success : function(data) {
+    				
     				choose = 1;
     				var departMent = "";
 
@@ -94,10 +97,10 @@
     					departMent = data[index];
     				});
 
-    				console.log("departMent : " + departMent);
-
     				$.each(departMent, function(index) {
-    					litag += "<li onclick='seeDepart(this, choose)'>"+departMent[index].branch_name+"</li>";
+    					litag += "<li onclick='seeDepart(this, "
+    				    litag +=departMent[index].branch_no
+    				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
     				});
     				litag +="</ul>";
 
@@ -120,7 +123,7 @@ function seeDepart(obj, choose) {
 		url : "deptOrganicChart.do",
 		type : "GET",
 		data : {
-			branch_name : name
+			branch_no : departcho
 		},
 		success : function(data) {
 			var dept;
@@ -131,7 +134,7 @@ function seeDepart(obj, choose) {
 
 			$.each(dept, function(index) {
 				$(obj).append(
-						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,departcho)'>"
+						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,"+dept[index].dept_no+")'>"
 								+ dept[index].dept_name + "</span>");
 			});
 		}
@@ -141,14 +144,12 @@ function seeDepart(obj, choose) {
 //하위 부서 클릭시
 function seelow_Depart(obj,departcho) {
 	alert("부서 : "+choose);
-	
-	low_deptNumber= departcho;
-	var low_dept = $(obj).text();
+	deptNumber= departcho;
 
 	$.ajax({
 		url : "low_deptOrgaicChart.do",
 		data : {
-			dept_name : low_dept
+			dept_no : deptNumber
 		},
 
 		success : function(data) {
@@ -157,12 +158,10 @@ function seelow_Depart(obj,departcho) {
 			$.each(data, function(index) {
 				low_dept = data[index];
 			});
-
 			$.each(low_dept, function(index) {
 				$(obj).append(
-						"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,low_deptNumber)'>"
+						"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,"+low_dept[index].low_dept_no+")'>"
 						+ low_dept[index].low_dept_name + "</span>");
-
 			});
 		}
 
@@ -171,22 +170,22 @@ function seelow_Depart(obj,departcho) {
 
 
 //사원 뽑아오기
-function seeEmpMember(obj,low_deptNumber){
+function seeEmpMember(obj,low_dept_no){
    //체크
-   empListNumber = low_deptNumber;
+   var empListNumber = low_dept_no;
    alert("사원뽑기 : "+empListNumber);
    
    
    //클릭한 text 값 뽑아옴.
    var low_dept = $(obj).text();
-   alert("seeEmpMember : "+low_dept);
+   alert("seeEmpMember : "+empListNumber);
    var makeTable = "";
    
    $.ajax(
          {
             url: "empChartMember.do",
             data:{
-                   low_dept_name: low_dept
+                   low_dept_no: empListNumber
                  },
             success:function(data){
                var emp = "";

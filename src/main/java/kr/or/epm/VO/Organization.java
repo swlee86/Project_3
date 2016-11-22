@@ -13,9 +13,38 @@ public class Organization {
 	
 	//11월 22일 이상원 추가(조직도에서 사용될 객체 추가)
 	private String cell_phone;
+	private String branch_no;
+	private String dept_no;
+	private String low_dept_no;
 	
 	
 	
+	
+	
+
+	public String getLow_dept_no() {
+		return low_dept_no;
+	}
+
+	public void setLow_dept_no(String low_dept_no) {
+		this.low_dept_no = low_dept_no;
+	}
+
+	public String getDept_no() {
+		return dept_no;
+	}
+
+	public void setDept_no(String dept_no) {
+		this.dept_no = dept_no;
+	}
+
+	public String getBranch_no() {
+		return branch_no;
+	}
+
+	public void setBranch_no(String branch_no) {
+		this.branch_no = branch_no;
+	}
 
 	public String getCell_phone() {
 		return cell_phone;
@@ -93,7 +122,10 @@ public class Organization {
 	public String toString() {
 		return "Organization [branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name="
 				+ low_dept_name + ", emp_name=" + emp_name + ", depth0=" + depth0 + ", depth1=" + depth1 + ", depth2="
-				+ depth2 + ", emp_no=" + emp_no + ", cell_phone=" + cell_phone + "]";
+				+ depth2 + ", emp_no=" + emp_no + ", cell_phone=" + cell_phone + ", branch_no=" + branch_no + "]";
 	}
+
+
+	
 
 }

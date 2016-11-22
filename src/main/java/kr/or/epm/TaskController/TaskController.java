@@ -58,20 +58,20 @@ public class TaskController {
    
    //2.업무 등록시 조직도 지점 클릭시 부서 띄워줘야함
    @RequestMapping(value="/taskDeptModal.do", method=RequestMethod.GET)
-   public View downDeptTree(String branch_name, Model model){
+   public View downDeptTree(String branch_no, Model model){
 	  System.out.println("지점 클릭 시작함");
       System.out.println("컨트롤러 ");
       List<Organization> list = null;
-      list=service.selectdeptname(branch_name);
+      list=service.selectdeptname(branch_no);
       model.addAttribute("deptname", list);
       return jsonview;
    }
    
    //3.업무 등록시 조직도 부서 클릭시 하위부서 출력
    @RequestMapping("/tasklow_deptModal.do")
-   public View downlowDeptTree(String dept_name, Model model){
+   public View downlowDeptTree(String dept_no, Model model){
       List<Organization> list = null;
-      list = service.selectlowDept(dept_name);
+      list = service.selectlowDept(dept_no);
       for(int i =0; i < list.size(); i++){
          System.out.println("하위 부서 : " +list.get(i).getLow_dept_name());
       }
@@ -81,10 +81,10 @@ public class TaskController {
    
    //4.업무 등록시 조직도 하위 부서 클릭시 사원 정보 출력
    @RequestMapping("/taskEmpModal.do")
-   public View downEmpTree(String low_dept_name, Model model){
+   public View downEmpTree(String low_dept_no, Model model){
       System.out.println("이엠피 정보 컨트롤러");
       List<Organization> list = null;
-      list = service.selectEmpInfo(low_dept_name);
+      list = service.selectEmpInfo(low_dept_no);
       for(int i =0; i < list.size(); i++){
          System.out.println("사원정보: " +list.get(i).getEmp_name()+"/ 사번: "+list.get(i).getEmp_no());
       }
