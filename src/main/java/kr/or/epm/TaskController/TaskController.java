@@ -89,6 +89,8 @@ public class TaskController {
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
 	public String taskWriteResult(Principal principal,Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content, String sign){
 		
+		System.out.println("업무 등록 폼");
+		
 		//1.먼저 아이디 뽑아와야함.
 		String id = principal.getName();
 		System.out.println("아이디  : "+id);
