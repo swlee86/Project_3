@@ -16,7 +16,11 @@ public interface TaskDAO {
 	public List<Task> selectTask_rec(String emp_no, String cg_no);
 	
 	// 업무 상세보기
-	public Task selectTask_detail();
+	public Task selectTask_detail(String task_no);
+	
+	//업무 요청 수신 상세 보기
+	public Task selectTask_receive_detail(String task_no);
+	
 	
 	// 수신함에서 읽었을 때 수신일 데이터 삽입하기
 	public int updateTask_recDate();

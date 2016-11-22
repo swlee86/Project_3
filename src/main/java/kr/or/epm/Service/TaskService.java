@@ -1,15 +1,16 @@
 package kr.or.epm.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.OrganizationDAO;
 import kr.or.epm.DAO.TaskDAO;
 import kr.or.epm.DAO.Task_peopleDAO;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
@@ -136,8 +137,42 @@ public class TaskService {
 		
 		return selectList;
 	}
-	//업무 요청 > 송신 
-
+	
+	//업무 요청 > 수신 > 상세보기 
+	public Task selectTask_detail(String task_no){
+		System.out.println("#######################################서비스 : "+task_no);
+		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
+		Task task = taskDAO.selectTask_receive_detail(task_no);
+		
+		System.out.println("서비스 새로만든 task  : " +task.toString());
+		return task;
+	}
+	
+	
+	//참여자 사번 뽑는 함수
+	public List<Task_people> selectTask_people(String task_no){
+		Task_peopleDAO task_peopleDAO = sqlsession.getMapper(Task_peopleDAO.class);
+		List<Task_people> task_peopleList =task_peopleDAO.selectTask_people(task_no);
+		return task_peopleList;
+	}
+	
+	//위에서 뽑은 참여자 사번을 이용하여 emp 정보를 뽑아옴
+	public List<String> selectEmp_info(List<Task_people> emp_no){
+		
+		Task_peopleDAO task_peopleDAO = sqlsession.getMapper(Task_peopleDAO.class);
+	
+		List<Task_people> serviceList = emp_no;
+		List<String> serviceResultList = new ArrayList<String>();
+		for(int i = 0; i < serviceList.size(); i++){
+			serviceResultList.add(task_peopleDAO.selectEmp_name(serviceList.get(i).getEmp_no()));
+		}
+		
+	
+		return serviceResultList;
+	}
+	
+	
+	
 }
 
 
