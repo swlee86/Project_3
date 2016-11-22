@@ -51,10 +51,10 @@ public class CommuteAjaxController {
 		return jsonview;
 	}
 	
-	//누적시간update
-	@RequestMapping("/updateCommute_acc.do")
-	public View UpdateCommute_acc(String emp_no){
-		Commute commute = commuteservice.selectCommute_acc(emp_no);
+	//추가시간update
+	@RequestMapping("/updateCommute_add.do")
+	public View UpdateCommute_add(String emp_no){
+		int i = commuteservice.updateCommute_add(emp_no);
 		//System.out.println("결과 : "+result);
 		return jsonview;
 	}
