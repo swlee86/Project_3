@@ -42,47 +42,35 @@ public class EmployeeRoleManageAjaxController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/give_authority.do", method=RequestMethod.POST)
 	@ResponseBody
-	public View adminEmployeeRoleGive(HttpServletRequest request, @RequestBody String param) {
-		System.out.println("########## 사원에게 권한을 부여합니다");
-	
-		List<Map<String,Object>> map = new ArrayList<Map<String,Object>>();
-		map = JSONArray.fromObject(param);
+	public View adminEmployeeRoleGive(HttpServletRequest request) {
+		System.out.println("사원에게 권한을 부여합니다");
 		
-		for(Map<String, Object> m : map) {
-			System.out.println(m.get("emp_no") + " : " + m.get("role_name"));
-		}
+		String str = request.getParameter("param");
 		
-		// System.out.println(checkboxValues.toString());
+		str.trim();
+		str.trim();
 		
-		//List<Emp_role> list = new ArrayList<Emp_role>();
-		//list.add(checkboxValues);
-		
-		//for (Emp_role emp_role : list) {
-		//	System.out.println("emp_name : " +emp_role.getRole_name());
-		//	System.out.println("emp_role : " +emp_role.getRole_no());
-		//	System.out.println("emp_no : " +emp_role.getEmp_no());
-		//}
-		
-		/*
+		List<Map<String,String>> map = new ArrayList<Map<String,String>>();
+		map = JSONArray.fromObject(str);
+
 		int result = 0;
-
-		System.out.println("찍어보자" + checkboxValues[0].toString());
-
-		for (int i = 0; i < checkboxValues.length; i++) {
+		
+		for(Map<String, String> m : map) {
+			System.out.println(m.get("emp_no") + " : " + m.get("role_name"));
+			
 			try {
-				result = employeeRoleManage.updateEmpRole();
+				result = employeeRoleManage.updateEmpRole(m.get("emp_no"), m.get("role_name"));
 			} catch (Exception e) {
 				e.getMessage();
 			} finally {
 				if (result > 0) {
-					System.out.println("########## 사원에게 권한 부여 성공");
+					System.out.println("사원에게 권한 부여 성공");
 				} else {
-					System.out.println("########## ERROR");
+					System.out.println("ERROR");
 				}
 			}
 		}
-
-		model.addAttribute("result",result);*/
+		
 		return jsonview;
 	}
 }
