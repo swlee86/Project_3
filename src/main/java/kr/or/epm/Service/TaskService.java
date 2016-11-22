@@ -124,11 +124,10 @@ public class TaskService {
 
 	}
 	
-	//업무 요청 > 수신 서비스
-	public List<Task> selectTask_rec(String emp_no){
+	//업무 요청, 일지 > 수신 서비스
+	public List<Task> selectTask_rec(String emp_no, String cg_no){
 		System.out.println("selectTask 서비스 : "+emp_no);
 		//업무 요청 페이지
-		String cg_no = "1";
 		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
 		
 		List<Task> selectList = taskDAO.selectTask_rec(emp_no, cg_no);
@@ -138,6 +137,15 @@ public class TaskService {
 	}
 	//업무 요청 > 송신 
 
+	public int countTask(String cg_no) {
+		
+		System.out.println("업무 글 개수 구하기");
+		
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		int count = dao.countTask(cg_no);
+		
+		return count;
+	};
 }
 
 

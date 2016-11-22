@@ -77,7 +77,7 @@
                 	<li><a href="taskWrite.do">업무 등록</a></li>
                     <li><a href="taskRequest.do">업무 요청</a></li>
                     <li><a href="taskInform.do">업무 보고</a></li>
-                    <li><a href="taskLog_rec.do">업무 일지</a></li>
+                    <li><a href="taskLog.do">업무 일지</a></li>
                 </ul>
             </li>
             <li>

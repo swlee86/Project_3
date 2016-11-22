@@ -131,4 +131,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where task_no = #{task_no}
 	</update>
 	
+	<!-- 글 개수 구하기 -->
+	<select id="countTask" resultType="Integer">
+		select count(task_no)
+		from task
+		where cg_no = #{cg_no}
+	</select>
+	
 </mapper>

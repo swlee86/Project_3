@@ -11,6 +11,7 @@ public class Common {
 	private String branch_name;
 	private String dept_name;
 	private String low_dept_name;
+	private String emp_no;
 
 	public String getBranch_name() {
 		return branch_name;

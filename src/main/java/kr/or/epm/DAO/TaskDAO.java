@@ -38,4 +38,7 @@ public interface TaskDAO {
 	
 	// 참여 업무 진행 처리하기
 	public int updateTask_step();
+	
+	// 글 개수 구하기
+	public int countTask(String cg_no);
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.TaskService;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
@@ -37,6 +38,10 @@ public class TaskController {
    
    @Autowired
    private View jsonview;
+   
+   @Autowired
+   private CommonService commonservice;
+   
    
    // 업무 > 업무 등록 페이지 이동
    @RequestMapping(value = "/taskWrite.do", method = RequestMethod.GET)
@@ -170,8 +175,9 @@ public class TaskController {
 		System.out.println("업무 요청 페이지 이동 : " +emp.toString());
 		/////////////////////////////
 		String emp_no = emp.getEmp_no();
+		String cg_no = "1";
 	
-	    List<Task> list = service.selectTask_rec(emp_no);
+	    List<Task> list = service.selectTask_rec(emp_no, cg_no);
 		model.addAttribute("tasklist", list);
 		System.out.println("업무 요청 페이지> 수신탭");
 		return "task.taskRequest";
@@ -219,10 +225,28 @@ public class TaskController {
    // 2016-11-22
    // 백승아
    //업무  > 업무일지 수신 페이지 이동
-   @RequestMapping("/taskLog_rec.do")
-   public String taskLog(){
+   @RequestMapping("/taskLog.do")
+   public String taskLog(Principal principal, Model model){
+	   
+	   System.out.println("업무 일지 수신페이지를 요청합니다");
+	   String cg_no = "3";
+	   
+	 // 로그인 id
+	 String id = principal.getName();
+	 String emp_no = commonservice.selectEmp_no(id);
+	 System.out.println("로그인한 사원의 emp_no : " + emp_no);
+	 
+	 // 글 개수 구하기
+	 int count = service.countTask(cg_no);
+	 model.addAttribute("count", count);
+	 
+	 // 목록 가져오기
+	 List<Task> list = service.selectTask_rec(emp_no, cg_no);
+	 model.addAttribute("list", list);
+	 		
       return "task.taskLog";
    }
+   
    
    //업무일지 > 업무 일지 수신 > 상세페이지
    @RequestMapping("/taskLog_Receive_Detail.do")
