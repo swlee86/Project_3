@@ -208,6 +208,7 @@ public class TaskController {
       return "task.taskInform_Transmit_Detail";
    }   
    
+   // 백승아
    //업무  > 업무일지 페이지 이동
    @RequestMapping("/taskLog.do")
    public String taskLog(){
