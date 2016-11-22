@@ -311,10 +311,10 @@ var checkboxValues = new Array();
 		location.href="adminSalaryManage.do";
 	});
 	
-	
-	
 	$('#giveBtn').click(function(){
-		alert("여기뜬다");
+		
+		var arr = new Array();
+		var obj = new Object();
 		
 		$("input[name='checkbox']:checked").each(function(i) {
 			
@@ -323,16 +323,22 @@ var checkboxValues = new Array();
 			var id = $(this).attr('id');
 			console.log("권한 : " + $("#selectRole"+id+" option:selected").text());
 			
-			checkboxValues.push(new multiCheck('0', $(this).parent().parent().next().next().next().text(), 
-											   $("#selectRole"+id+" option:selected").text()));
+			obj.emp_no = $(this).parent().parent().next().next().next().text();
+			obj.role_name = $("#selectRole"+id+" option:selected").text();
+			arr.push(obj);
+			
+			//checkboxValues.push(new multiCheck('0', $(this).parent().parent().next().next().next().text(), 
+			//								   $("#selectRole"+id+" option:selected").text()));
 		});
 		
-		var allData = {"data":checkboxValues};
+		// var allData = {"data":checkboxValues};
+		var param = JSON.stringify(arr);
 			$.ajax(
 					   {
 							url : "give_authority.do",
 							type: "post",
-							data : allData,
+							data : param,
+							dataType:"json",
 							success : function(data){
 								// alert("권한 부여 성공");
 								console.log("갔다옴");
