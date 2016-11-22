@@ -26,16 +26,15 @@
 
 	<div class="row">
 		<div class="col-md-3">
-			<div class="hpanel panel-group" id="accordion" role="tablist"
-				aria-multiselectable="true">
+			<div class="hpanel panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel-body">
-					<a data-toggle="collapse" data-parent="#accordion" href="#q1"
-						aria-expanded="true"> <i
-						class="fa fa-chevron-down pull-right text-muted"></i> 조직도
+					<a data-toggle="collapse" data-parent="#accordion" href="#organization" aria-expanded="true" id="organicSelect"> 
+					<i class="fa fa-chevron-down pull-right text-muted"></i> 조직도
 					</a>
-					<div id="q1" class="panel-collapse collapse">
-						<hr>
-						본사<br>&nbsp;└영업<br>&nbsp;&nbsp;└회계
+					<div>
+					<hr>
+					<div class="panel-collapse collapse" id="organization">
+					</div>
 					</div>
 				</div>
 			</div>
@@ -45,7 +44,7 @@
 			<div class="hpanel">
 			 <div class="border-top border-left border-right bg-light">
                         <div class="p-m">
-							<font size="4em"><b>부서정보</b> <i class="fa fa-list-alt"></i></font><br>
+						<font size="4em"><b>부서정보</b> <i class="fa fa-list-alt"></i></font><br>
                             <div>
                                 <span class="font-extra-bold">부서장 : </span>
                               	 박지은
@@ -65,8 +64,9 @@
                         </div>
                     </div>
 				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-4">
+					<div class="row" id="empList">
+						<!-- 
+						<div class="col-md-4"   id="empList">
 							<div class="hpanel hgreen contact-panel">
 								<div class="panel-body">
 									<img alt="logo" class="img-circle m-b" src="images/profile.jpg">
@@ -82,76 +82,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="hpanel hviolet contact-panel">
-								<div class="panel-body">
-									<img alt="logo" class="img-circle m-b" src="images/a2.jpg">
-									<h3>
-										<a href="">박지은 <span style="font-size: 15px">(201255122)</span></a>
-									</h3>
-									<div class="text-muted font-bold m-b-xs">(사단)한국소프트웨어기술진흥협회</div>
-									<p>
-										01020768626 <br> (사단)한국소프트웨어기술진흥협회 > 개발부 > 팀장
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="hpanel hblue contact-panel">
-								<div class="panel-body">
-									<img alt="logo" class="img-circle m-b" src="images/a3.jpg">
-									<h3>
-										<a href="">박지은<span style="font-size: 15px">(201255122)</span></a>
-									</h3>
-									<div class="text-muted font-bold m-b-xs">(사단)한국소프트웨어기술진흥협회</div>
-									<p>
-										01020768626 <br> (사단)한국소프트웨어기술진흥협회 > 개발부 > 팀장
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="hpanel hblue contact-panel">
-								<div class="panel-body">
-									<img alt="logo" class="img-circle m-b" src="images/a3.jpg">
-									<h3>
-										<a href="">박지은<span style="font-size: 15px">(201255122)</span></a>
-									</h3>
-									<div class="text-muted font-bold m-b-xs">(사단)한국소프트웨어기술진흥협회</div>
-									<p>
-										01020768626 <br> (사단)한국소프트웨어기술진흥협회 > 개발부 > 팀장
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="hpanel hblue contact-panel">
-								<div class="panel-body">
-									<img alt="logo" class="img-circle m-b" src="images/a3.jpg">
-									<h3>
-										<a href="">박지은<span style="font-size: 15px">(201255122)</span></a>
-									</h3>
-									<div class="text-muted font-bold m-b-xs">(사단)한국소프트웨어기술진흥협회</div>
-									<p>
-										01020768626 <br> (사단)한국소프트웨어기술진흥협회 > 개발부 > 팀장
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="hpanel hblue contact-panel">
-								<div class="panel-body">
-									<img alt="logo" class="img-circle m-b" src="images/a3.jpg">
-									<h3>
-										<a href="">박지은<span style="font-size: 15px">(201255122)</span></a>
-									</h3>
-									<div class="text-muted font-bold m-b-xs">(사단)한국소프트웨어기술진흥협회</div>
-									<p>
-										01020768626 <br> (사단)한국소프트웨어기술진흥협회 > 개발부 > 팀장
-									</p>
-								</div>
-							</div>
-						</div>
+							 -->
+
 					</div>
 				</div>
 			</div>

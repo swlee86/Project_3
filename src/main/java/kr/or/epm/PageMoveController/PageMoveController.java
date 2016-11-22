@@ -66,12 +66,6 @@ public class PageMoveController {
 
 	
 
-	// SideBar(aside.jsp) 조직도 > 부서인원 클릭시 구동
-	@RequestMapping("/team_member.do")
-	public String teammemberview() {
-		return "organization_chart.team_member";
-	}
-
 	// SideBar(aside.jsp) 프로젝트 > 전체 프로젝트 클릭시 구동
 	@RequestMapping("/projects.do")
 	public String projectlistview() {
