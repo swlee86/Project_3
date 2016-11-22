@@ -189,6 +189,40 @@ public class TaskController {
       return "task.taskRequest_Receive_Detail";
    }
    
+   //승인 처리 담당
+   @RequestMapping(value="/approval.do", method=RequestMethod.POST)
+   public String approval(String approval, String task_no, Model model){
+	   System.out.println("승인 처리 여부 : "+approval + " / 업무 번호 : "+task_no);
+	
+	   
+	   String link = null;
+	   String msg = null;
+	   int result = 0;
+	   try{
+		   result = service.approval(approval,task_no);
+	   }catch (Exception e) {
+		e.getMessage();
+	   }finally {
+		    if(result > 0){
+		    link = "taskRequest.do";
+		    msg = "업무 등록에 성공하였습니다.";
+		    }else{
+		    	 link = "taskRequest.do";
+				  msg = "업무 등록에 실패하였습니다.";
+				   
+		    }
+		    
+		    model.addAttribute("link", link);
+			model.addAttribute("msg",msg);
+	   }
+	   
+	   
+	   return "task.taskRequest_redirect";
+   }
+   
+   
+   
+   
    //업무 요청 > 업무요청 송신 > 상세페이지
    @RequestMapping("/taskRequest_Transmit_Detail.do")
    public String taskRequest_Transmit_Detail(){         
