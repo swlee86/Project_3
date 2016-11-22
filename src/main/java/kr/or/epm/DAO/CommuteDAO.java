@@ -53,4 +53,10 @@ public interface CommuteDAO {
 	// 추가근무시간 업데이트
 	public int updateCommute_addtime(HashMap map);
 	
+	// 이번달 하루 전 내역 조회
+	public Commute selectCommute_yesterday(String emp_no);
+	
+	// 누적시간 업데이트
+	public int updateCommute_acctime(HashMap map);
+	
 }

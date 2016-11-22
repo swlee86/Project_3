@@ -149,7 +149,7 @@ public class CommuteService {
 			
 			long date_add = date_emp.getTime()-date_dept.getTime();
 			
-			String add_time = "0:0";
+			String add_time = "00:00";
 			if(date_add > 0){
 				int date_add_hour = (int)(date_add/ 60000 / 60);
 	
@@ -158,10 +158,15 @@ public class CommuteService {
 				int date_add_min = (int)((date_add / 60000)-tempHour);
 				
 				String date_add_min_str=String.valueOf(date_add_min);
+				String date_add_hour_str=String.valueOf(date_add_hour);
+
 				if(date_add_min < 10){
 					date_add_min_str = "0"+date_add_min_str;
 				}
-				add_time = date_add_hour+":"+date_add_min_str;
+				if(date_add_hour < 10){
+					date_add_hour_str = "0"+date_add_hour_str;
+				}
+				add_time = date_add_hour_str+":"+date_add_min_str;
 				
 			}
 			
@@ -170,6 +175,122 @@ public class CommuteService {
 			map.put("commute_no", commute_no);
 			
 			result = dao.updateCommute_addtime(map);
+		}
+		return result;
+	}
+	
+	
+	//누적시간 업데이트
+	public int updateCommute_acc(String emp_no){
+		System.out.println("updateCommute_acc들어옴");
+		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
+		
+		String commute_no = dao.selectMyCommute_no(emp_no);
+		Commute commute_pre =null;
+		Commute commute_post =null;
+
+		int result = 0;
+		if(commute_no!=null){
+			commute_pre = dao.selectCommute_yesterday(emp_no);
+			String acc_commute_time_pre = null;
+			String acc_add_time_pre = null;
+			if(commute_pre !=null){
+				if(commute_pre.getAcc_add_time() != null && commute_pre.getAcc_commute_time() != null){
+					acc_commute_time_pre = commute_pre.getAcc_commute_time();
+					acc_add_time_pre = commute_pre.getAcc_add_time();
+				}else{
+					acc_commute_time_pre ="00:00";
+					acc_add_time_pre = "00:00";
+				}
+			}else{
+				acc_commute_time_pre ="00:00";
+				acc_add_time_pre = "00:00";
+			}
+	
+			String arrtemp1[] = acc_commute_time_pre.split(":");	
+			String acc_commute_time_pre_h =arrtemp1[0];
+			String acc_commute_time_pre_m =arrtemp1[1];
+
+			String arrtemp2[] = acc_add_time_pre.split(":");
+			String acc_add_time_pre_h =arrtemp2[0];
+			String acc_add_time_pre_m =arrtemp2[1];
+			
+			
+			commute_post = dao.selectCommute_commuteno(commute_no);
+
+			String acc_commute_time_post = null;
+			String acc_add_time_post = null;
+			if(commute_post.getAdd_time() == null && commute_post.getCommute_time() == null){
+				return 0;
+			}else{
+				acc_commute_time_post = commute_post.getCommute_time();
+				acc_add_time_post = commute_post.getAdd_time();
+			}
+			
+			String arrtemp3[] = acc_commute_time_post.split(":");
+			String acc_commute_time_post_h =arrtemp3[0];
+			String acc_commute_time_post_m =arrtemp3[1];
+
+		
+			String arrtemp4[] = acc_add_time_post.split(":");
+			String acc_add_time_post_h =arrtemp4[0];
+			String acc_add_time_post_m =arrtemp4[1];
+
+		
+			String commute_time_str = "00:00";
+			String add_time_str = "00:00";
+
+			
+			if(!(acc_commute_time_pre.equals("00:00")&&acc_commute_time_post.equals("00:00"))){
+								
+				int commute_time_h = Integer.parseInt(acc_commute_time_post_h) + Integer.parseInt(acc_commute_time_pre_h);				
+				int commute_time_m = Integer.parseInt(acc_commute_time_post_m) + Integer.parseInt(acc_commute_time_pre_m);				
+				
+				if(commute_time_m >= 60){
+					commute_time_m = commute_time_m-60;
+					commute_time_h++;
+				}
+				
+				String commute_time_h_str = String.valueOf(commute_time_h);
+				String commute_time_m_str = String.valueOf(commute_time_m);
+				if(commute_time_m < 10){
+					commute_time_m_str = "0"+commute_time_m_str;
+				}
+				if(commute_time_h < 10){
+					commute_time_h_str = "0"+commute_time_h_str;
+				}
+				commute_time_str = commute_time_h_str+":"+commute_time_m_str;
+			}
+			
+			if(!(acc_add_time_pre.equals("00:00")&&acc_add_time_post.equals("00:00"))){
+				int add_time_h = Integer.parseInt(acc_add_time_post_h) + Integer.parseInt(acc_add_time_pre_h);	
+				int add_time_m = Integer.parseInt(acc_add_time_post_m) + Integer.parseInt(acc_add_time_pre_m);
+				
+				if(add_time_m >= 60){
+					add_time_m = add_time_m-60;
+					add_time_h++;
+				}
+				
+				String add_time_h_str = String.valueOf(add_time_h);
+				String add_time_m_str = String.valueOf(add_time_m);
+				if(add_time_m < 10){
+					add_time_m_str = "0"+add_time_m_str;
+				}
+				if(add_time_h < 10){
+					add_time_h_str = "0"+add_time_h_str;
+				}
+				add_time_str = add_time_h_str+":"+add_time_m_str;			
+			}
+			
+			System.out.println("commute_time_str : "+commute_time_str);
+			System.out.println("add_time_str : "+add_time_str);
+
+			HashMap map = new HashMap();
+			map.put("acc_commute_time", commute_time_str);
+			map.put("acc_add_time", add_time_str);
+			map.put("commute_no", commute_no);
+			
+			result = dao.updateCommute_acctime(map);
 		}
 		return result;
 	}
