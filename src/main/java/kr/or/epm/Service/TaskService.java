@@ -30,10 +30,9 @@ public class TaskService {
 	
 	//업무 등록시 / 모달->지점 이름 트리 구조
 	public List<Organization> selectDept(){
-	
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
-		list = organizationDAO.selectOrganization();
+		list = organizationDAO.selectBranch();
 		
 		for(int i = 0; i < list.size(); i++){
 			System.out.println("부서 이름 : " +list.get(i).getDept_name());
