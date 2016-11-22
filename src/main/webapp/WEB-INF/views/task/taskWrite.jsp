@@ -81,7 +81,7 @@
                               <th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 참조자 사번</th>
                               <td id="task_no_td">
                                  <span class="input-group">
-                                          <input type="text" class="form-control input-sm" id="task_no"/>
+                                          <input type="text" class="form-control input-sm" id="task_no" name="emp_no"/>
                                              <a type="button" class="btn btn-default input-group-addon"  id="deptA">
                                                 <span style="color:#fd7d86 "><i class="fa fa-user-plus"></i></span>
                                              </a>

@@ -146,16 +146,28 @@ public class TaskController {
          System.out.println("사번 : " +tlist.get(i).getEmp_no());
       }
       
-      return null;
+      return "task.taskRequest";
    }
    
    
 
-   //업무 > 업무 요청 페이지 이동 
-   @RequestMapping("/taskRequest.do")
-   public String taskRequest(){
-      return "task.taskRequest";
-   }
+
+	//업무 > 업무 요청 페이지 이동 
+	@RequestMapping("/taskRequest.do")
+	public String taskRequest(Principal principal){
+		
+		//로그인한 아이디 뽑아오기
+		String id = principal.getName();
+		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
+		System.out.println("업무 요청 페이지 이동 : " +emp.toString());
+		/////////////////////////////
+		String emp_no = emp.getEmp_no();
+		service.selectTask(emp_no);
+		
+		
+		System.out.println("업무 요청 페이지");
+		return "task.taskRequest";
+	}
 
    //업무요청 > 업무요청 수신 > 상세페이지
    @RequestMapping("/taskRequest_Receive_Detail.do")
