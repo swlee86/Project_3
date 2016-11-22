@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -24,6 +24,7 @@
 </div>
 
 <div class="content animate-panel media-body">
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="hpanel">
@@ -32,7 +33,7 @@
 				</div>
 
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#tab-1">수신</a></li>
+					<li class="active"><a data-toggle="tab" id="first">수신</a></li>
 					<li class=""><a data-toggle="tab" href="#tab-2">송신</a></li>
 					<li class=""><a data-toggle="tab" href="#tab-3">참여</a></li>
 				</ul>
@@ -102,24 +103,26 @@
 										</tr>
 									</thead>
 									<tbody>
+								       <c:forEach var="list" items="${tasklist}">
 										<tr>
 											<td style="padding-top:12px;">
 												<input type="checkbox" style="margin-left:20px">
 											</td>
-											<td style="padding-top:12px;">2</td>
+											<td style="padding-top:12px;">${list.task_no}</td>
 											<td style="padding-top:12px;">
 												<div class="checkbox checkbox-danger" style="padding-top:0px;margin-top:0px;">
 													<input id="checkbox1" type="checkbox" checked ><label ></label>
 												</div>
 											</td>
-											<td style="padding-top:12px;"><a href="taskRequest_Receive_Detail.do">UI/UX 구현(클릭하세요)</a></td>
-											<td style="padding-top:12px;">2016-11-16</td>
-											<td style="padding-top:12px;">김주희</td>
-											<td style="padding-top:12px;"> 2016-11-15</td>
-
+											<td style="padding-top:12px;"><a href="taskRequest_Receive_Detail.do">${list.task_name}</a></td>
+											<td style="padding-top:12px;">${list.deadline}</td>
+											<td style="padding-top:12px;">${list.emp_name}</td>
+											<td style="padding-top:12px;">${list.send_date}</td>
+                                        
 											<td style="padding-top:12px;"><button class="btn btn-xs btn-warning2" >미승인</button></td>
 										</tr>
-										<tr>
+										</c:forEach>
+										<!-- <tr>
 											<td style="padding-top:12px;"><input type="checkbox" style="margin-left:20px"></td>
 											<td style="padding-top:12px;">4</td>
 											<td style="padding-top:12px;">
@@ -132,7 +135,7 @@
 											<td style="padding-top:12px;" >김주희</td>
 											<td style="padding-top:12px;">2016-11-15</td>
 											<td style="padding-top:12px;"> <button class="btn btn-xs btn-info">&nbsp;&nbsp;승인&nbsp;&nbsp;</button></td>
-										</tr>
+										</tr> -->
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
@@ -233,25 +236,19 @@
 										</tr>
 									</thead>
 									<tbody>
+									
 										<tr>
 											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>4</td>
-											<td><a href="taskRequest_Transmit_Detail.do">UI/UX 구현(클릭하세요)</a></td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
+											<td>${list.task_no}</td>
+											<td><a href="taskRequest_Transmit_Detail.do">${list.task_name}</a></td>
+											<td>${list.deadline}</td>
+											<td>${list.emp_name}</td>
+											<td>${list.send_date}</td>
 
 											<td><button class="btn btn-xs btn-warning2" >미승인</button></td>
 										</tr>
-										<tr>
-											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>4</td>
-											<td>DB 구현</td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td><button class="btn btn-xs btn-primary2">&nbsp;&nbsp;보류&nbsp;&nbsp;</button></td>
-										</tr>
+										
+										
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">

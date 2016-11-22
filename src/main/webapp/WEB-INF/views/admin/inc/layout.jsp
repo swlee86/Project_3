@@ -327,12 +327,15 @@ var checkboxValues = new Array();
 											   $("#selectRole"+id+" option:selected").text()));
 		});
 		
-		var allData = {"data":checkboxValues};
+		console.log("체크박스 벨류즈 : " +checkboxValues);
+		
 			$.ajax(
 					   {
 							url : "give_authority.do",
 							type: "post",
-							data : allData,
+							data : {
+										array : JSON.stringify(checkboxValues)
+							       },
 							success : function(data){
 								// alert("권한 부여 성공");
 								console.log("갔다옴");
