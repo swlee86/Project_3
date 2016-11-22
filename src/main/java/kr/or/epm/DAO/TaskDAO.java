@@ -13,7 +13,7 @@ public interface TaskDAO {
 	public int updateTask_sign();
 	
 	// 수신함 확인하기
-	public List<Task> selectTask_rec();
+	public List<Task> selectTask_rec(String emp_no, String cg_no);
 	
 	// 업무 상세보기
 	public Task selectTask_detail();

@@ -321,6 +321,11 @@ ul {
       
       $(function() {
          
+    	 $('#first').click(function(){
+    		alert("수신"); 
+    	 });
+    	  
+    	  
          $('#taskForm').submit(function(){
             var startDate = $('#makeuserUpdateDate').val();
             var lastDate = $('#makeuserUpdateDate2').val();

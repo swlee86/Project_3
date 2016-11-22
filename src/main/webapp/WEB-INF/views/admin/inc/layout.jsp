@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="vendor/clockpicker/dist/bootstrap-clockpicker.min.css" />
     <link rel="stylesheet"
 	href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
-    <link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
     
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -105,11 +104,16 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
-
-<!-- alert -->
-<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
-
 <script>
+
+//관리자가 사원에게 권한 부여
+function multiCheck(role_no, emp_no, role_name) {
+	this.role_no = role_no;
+	this.emp_no = emp_no;
+	this.role_name = role_name;
+}
+
+var checkboxValues = new Array();
 
 	//부서  -  부서 관리 페이지에서 지점 선택시
 	function departMentFuc(option){
@@ -307,40 +311,34 @@
 		location.href="adminSalaryManage.do";
 	});
 	
+	
+	
 	$('#giveBtn').click(function(){
-		
-		var arr = new Array();
+		alert("여기뜬다");
 		
 		$("input[name='checkbox']:checked").each(function(i) {
-
-			var obj = new Object();
 			
 			console.log("사번 : " + $(this).parent().parent().next().next().next().text());
 			
 			var id = $(this).attr('id');
 			console.log("권한 : " + $("#selectRole"+id+" option:selected").text());
 			
-			obj.emp_no = $(this).parent().parent().next().next().next().text();
-			obj.role_name = $("#selectRole"+id+" option:selected").text();
-			arr.push(obj);
-			
+			checkboxValues.push(new multiCheck('0', $(this).parent().parent().next().next().next().text(), 
+											   $("#selectRole"+id+" option:selected").text()));
 		});
 		
-		var param = JSON.stringify(arr);
+		console.log("체크박스 벨류즈 : " +checkboxValues);
+		
 			$.ajax(
 					   {
 							url : "give_authority.do",
 							type: "post",
 							data : {
-										param : param
-									},
-							dataType:"json",
+										array : JSON.stringify(checkboxValues)
+							       },
 							success : function(data){
-								swal({
-					                title: "권한부여",
-					                text: "권한부여에 성공하였습니다",
-					                type: "success"
-					            });
+								// alert("권한 부여 성공");
+								console.log("갔다옴");
 							}
 			           }
 			      );
