@@ -44,10 +44,18 @@ select role_no, role_name from role
 </delete> 
 -->
 
+<!-- 권한 부여 -->
 <update id="updateEmpRole">
 	update emp_role
 	set role_no = #{role_no}
 	where emp_no = #{emp_no}
 </update>
+
+<!-- role_name에 따른 role_no 가져오기 -->
+<select id="selectEmp_role_select" resultType="String">
+	select role_no
+	from role
+	where role_name = #{role_name}
+</select>
 
 </mapper>

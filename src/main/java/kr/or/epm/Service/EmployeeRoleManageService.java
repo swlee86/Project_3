@@ -17,11 +17,13 @@ public class EmployeeRoleManageService {
 	private SqlSession sqlSession;
 
 	// 권한을 부여
-	public int updateEmpRole() {
+	public int updateEmpRole(String emp_no, String role_name) {
 		EmployeeRoleManageDAO employeerolemanage = sqlSession.getMapper(EmployeeRoleManageDAO.class);
-		int result = employeerolemanage.updateEmpRole();
 		
-		return result;
+		String role_no = employeerolemanage.selectEmp_role_select(role_name);
+		int result2 = employeerolemanage.updateEmpRole(emp_no, role_no);
+		
+		return result2;
 	}
 	
 	// Emp_role 테이블의 열 갯수를 구하는 서비스 함수
