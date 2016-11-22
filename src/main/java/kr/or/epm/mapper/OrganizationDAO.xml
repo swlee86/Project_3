@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on d.branch_no = b.branch_no
 		where d.his_check
 		= '1' and d.branch_name = #{branch_name}
+	</select>
 
 	<!-- 조직도 출력하기 -->
 	<select id="selectOrganization">
@@ -39,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on l.low_dept_no = e.low_dept_no
 		
 	</select>
+	
 	<!-- 하위부서 -->
 	<select id="selectlowDept" resultType="kr.or.epm.VO.Organization">
 		select low_dept_name,
@@ -48,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		l.his_check = '1' and d.dept_name = #{dept_name}
 	</select>
+	
 	<!--사원 정보 -->
 	<select id="selectEmpInfo" resultType="kr.or.epm.VO.Organization">
 		select emp_no, emp_name

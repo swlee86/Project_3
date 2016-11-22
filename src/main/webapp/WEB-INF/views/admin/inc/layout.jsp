@@ -309,7 +309,7 @@
 	}
 	
 	$('#giveBtn').click(function(){
-		alert("여기뜬당0");
+		alert("여기뜬당");
 		
 		var checkboxValues = new Array();
 		
