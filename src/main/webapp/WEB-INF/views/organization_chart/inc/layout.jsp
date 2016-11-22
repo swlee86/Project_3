@@ -70,7 +70,6 @@
 <script>
 
     $(function () {
-
         $('.demo2').click(function(){
             swal({
                 title: "",
@@ -79,19 +78,18 @@
             });
         });
         
-    	//수신자 아이콘 클릭시
-    	$('#recIcon').click(function(){
-
+        
+    	//조직도 아이콘 클릭시
+    	$('#organicSelect').click(function(){
     		var litag = "<ul>";
     		$('#organization').empty();
     		$('#empList').empty();
     		$.ajax({
-    			url : "taskWriteModal.do",
+    			url : "oranicChartFirst.do",
     			success : function(data) {
     				choose = 1;
     				var departMent = "";
 
-    				$('#myModal6').modal();
     				$.each(data, function(index) {
 
     					departMent = data[index];
@@ -100,53 +98,15 @@
     				console.log("departMent : " + departMent);
 
     				$.each(departMent, function(index) {
-    					litag += "<li onclick='seeDepart(this, choose)'>"
-    							+ departMent[index].branch_name
-    							+ "</li>";
+    					litag += "<li onclick='seeDepart(this, choose)'>"+departMent[index].branch_name+"</li>";
     				});
-
-    				litag += "</ul>";
+    				litag +="</ul>";
 
     				$('#organization').html(litag);
 
     			}
     		})
     	});
-    	
-    	
-    	//참조자 아이콘 클릭시
-    	$('#deptA').click(function() {
-
-    				var litag = "<ul>";
-    				$('#organization').empty();
-    				$('#empList').empty();
-    				$.ajax({
-    					url : "taskWriteModal.do",
-    					success : function(data) {
-    						choose = 2;
-    						var departMent = "";
-
-    						$('#myModal6').modal();
-    						$.each(data, function(index) {
-
-    							departMent = data[index];
-    						});
-
-    						console.log("departMent : " + departMent);
-
-    						$.each(departMent, function(index) {
-    							litag += "<li onclick='seeDepart(this,choose)'>"
-    									+ departMent[index].branch_name
-    									+ "</li>";
-    						});
-
-    						litag += "</ul>";
-
-    						$('#organization').html(litag);
-
-    					}
-    				})
-    			});
     });
 
 
@@ -158,7 +118,7 @@ function seeDepart(obj, choose) {
 	var name = $(obj).text();
 
 	$.ajax({
-		url : "taskDeptModal.do",
+		url : "deptOrganicChart.do",
 		type : "GET",
 		data : {
 			branch_name : name
@@ -188,7 +148,7 @@ function seelow_Depart(obj,departcho) {
 	var low_dept = $(obj).text();
 
 	$.ajax({
-		url : "tasklow_deptModal.do",
+		url : "low_deptOrgaicChart.do",
 		data : {
 			dept_name : low_dept
 		},
@@ -209,6 +169,70 @@ function seelow_Depart(obj,departcho) {
 		}
 
 	});
+}
+
+
+//사원 뽑아오기
+function seeEmpMember(obj,low_deptNumber){
+   //체크
+   empListNumber = low_deptNumber;
+   alert("사원뽑기 : "+empListNumber);
+   
+   
+   //클릭한 text 값 뽑아옴.
+   var low_dept = $(obj).text();
+   alert("seeEmpMember : "+low_dept);
+   var makeTable = "";
+/* 
+   if(empListNumber ==1){
+    makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
+   }else{
+    makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+   }
+    */
+   
+   
+   $.ajax(
+         {
+            url: "empChartMember.do",
+            data:{
+                   low_dept_name: low_dept
+                 },
+            success:function(data){
+               var emp = "";
+               $.each(data, function(index){
+                  emp = data[index];
+               });
+               
+               $.each(emp, function(index){
+            	   makeTable+="<div class='col-md-4'>"
+            	   makeTable+="<div class='hpanel hgreen contact-panel'>"
+            	   makeTable+="<div class='panel-body'>"
+            	   makeTable+="<h3>"	   
+            	   makeTable+="<a href='' data-toggle='modal' data-target='#myModal'"+emp[index].emp_no+">"+emp[index].emp_name	
+            	   makeTable+="<span style='font-size: 15px'>"+emp[index].emp_no+"</span>"		
+            	   makeTable+="</a></h3>"            		
+            	   makeTable+="<div class='text-muted font-bold m-b-xs'>(사단)한국소프트웨어기술진흥협회</div>"   
+            	   makeTable+="<p>01020768626 <br> (사단)한국소프트웨어기술진흥협회 > 개발부 > 팀장</p></div></div></div>"
+            		   
+            	   
+                 /*  
+            	   
+            	   if(empListNumber == 1){   
+                     makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
+                  }
+                  else if(empListNumber == 2){
+                     makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+                  }
+            	    */
+               });
+              
+               $('#empList').empty();
+               $('#empList').append(makeTable);
+             }    
+            
+         }
+         );
 }
     
 </script>
