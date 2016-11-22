@@ -128,6 +128,23 @@
 		
 			
 		});
+		
+		//Month 캘린더 실행
+		$(function() {
+			var currentYear = (new Date()).getFullYear();
+			var startYear = currentYear - 10;
+			var options = {
+				startYear : startYear,
+				finalYear : currentYear,
+				pattern : 'yyyy-mm',
+				monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
+						'9월', '10월', '11월', '12월' ]
+			};
+			//데이트피커
+			$('#select_date').monthpicker(options);
+			
+
+		});
 	</script>
 
 

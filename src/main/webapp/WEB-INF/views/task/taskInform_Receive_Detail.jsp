@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -21,8 +22,6 @@
 		</div>
 	</div>
 </div>
-
-
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12">

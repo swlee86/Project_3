@@ -1,6 +1,8 @@
 package kr.or.epm.DAO;
 
 import java.util.List;
+
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Task_people;
 
 public interface Task_peopleDAO {
@@ -12,7 +14,10 @@ public interface Task_peopleDAO {
 	public int deleteTask_people();
 	
 	// 업무 참여자 조회하기
-	public List<Task_people> selectTask_people();
+	public List<Task_people> selectTask_people(String task_no);
+	
+	//실제 업무 참여자 이름, 사번
+	public String selectEmp_name(String emp_no);
 	
 	
 	//업무 번호 조회하기
