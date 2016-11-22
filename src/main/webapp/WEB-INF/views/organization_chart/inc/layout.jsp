@@ -78,9 +78,139 @@
                 type: "success"
             });
         });
+        
+    	//수신자 아이콘 클릭시
+    	$('#recIcon').click(function(){
 
+    		var litag = "<ul>";
+    		$('#organization').empty();
+    		$('#empList').empty();
+    		$.ajax({
+    			url : "taskWriteModal.do",
+    			success : function(data) {
+    				choose = 1;
+    				var departMent = "";
+
+    				$('#myModal6').modal();
+    				$.each(data, function(index) {
+
+    					departMent = data[index];
+    				});
+
+    				console.log("departMent : " + departMent);
+
+    				$.each(departMent, function(index) {
+    					litag += "<li onclick='seeDepart(this, choose)'>"
+    							+ departMent[index].branch_name
+    							+ "</li>";
+    				});
+
+    				litag += "</ul>";
+
+    				$('#organization').html(litag);
+
+    			}
+    		})
+    	});
+    	
+    	
+    	//참조자 아이콘 클릭시
+    	$('#deptA').click(function() {
+
+    				var litag = "<ul>";
+    				$('#organization').empty();
+    				$('#empList').empty();
+    				$.ajax({
+    					url : "taskWriteModal.do",
+    					success : function(data) {
+    						choose = 2;
+    						var departMent = "";
+
+    						$('#myModal6').modal();
+    						$.each(data, function(index) {
+
+    							departMent = data[index];
+    						});
+
+    						console.log("departMent : " + departMent);
+
+    						$.each(departMent, function(index) {
+    							litag += "<li onclick='seeDepart(this,choose)'>"
+    									+ departMent[index].branch_name
+    									+ "</li>";
+    						});
+
+    						litag += "</ul>";
+
+    						$('#organization').html(litag);
+
+    					}
+    				})
+    			});
     });
 
+
+//부서 출력 하는 아작스
+function seeDepart(obj, choose) {
+	//전역 부서 선택시
+    departcho = choose;
+
+	var name = $(obj).text();
+
+	$.ajax({
+		url : "taskDeptModal.do",
+		type : "GET",
+		data : {
+			branch_name : name
+		},
+		success : function(data) {
+			var dept;
+			console.log(data);
+			$.each(data, function(index) {
+				dept = data[index];
+			});
+
+			$.each(dept, function(index) {
+				$(obj).append(
+						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,departcho)'>"
+								+ dept[index].dept_name + "</span>");
+			});
+
+		}
+	});
+}
+
+//하위 부서 클릭시
+function seelow_Depart(obj,departcho) {
+	alert("부서 : "+choose);
+	
+	low_deptNumber= departcho;
+	var low_dept = $(obj).text();
+
+	$.ajax({
+		url : "tasklow_deptModal.do",
+		data : {
+			dept_name : low_dept
+		},
+
+		success : function(data) {
+
+			var low_dept = "";
+			$.each(data, function(index) {
+				low_dept = data[index];
+			});
+
+			$.each(low_dept, function(index) {
+				$(obj).append(
+						"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,low_deptNumber)'>"
+						+ low_dept[index].low_dept_name + "</span>");
+
+			});
+		}
+
+	});
+}
+    
 </script>
 
 </body>
