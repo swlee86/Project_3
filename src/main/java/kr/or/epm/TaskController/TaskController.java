@@ -66,6 +66,7 @@ public class TaskController {
       model.addAttribute("deptname", list);
       return jsonview;
    }
+   
    //3.업무 등록시 조직도 부서 클릭시 하위부서 출력
    @RequestMapping("/tasklow_deptModal.do")
    public View downlowDeptTree(String dept_name, Model model){

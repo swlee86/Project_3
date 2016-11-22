@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="normalheader transition animated fadeIn">
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
 			<a class="small-header-action" href="">
@@ -77,8 +77,7 @@
 
 
 <c:forEach var="elist" items="${elist}">
-<div class="modal fade hmodal-success" id="myModal${elist.emp_no}" tabindex="-1"
-	role="dialog" aria-hidden="true">
+<div class="modal fade hmodal-success" id="myModal${elist.emp_no}" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog  modal-sm">
 		<div class="modal-content">
 			<div class="color-line"></div>
@@ -86,17 +85,23 @@
 				<h4 class="modal-title">
 					<img alt="logo" class="img-circle m-b" src="images/a3.jpg" style="width: 82px; height: 82px;">
 				</h4>
-				<br> <font class="font-bold" size="2em"> <font
-					style="color: gray;">${elist.emp_name}&nbsp;${elist.emp_no}</font><br> <font
-					style="color: #9d9fa2">${elist.branch_name} > <br>${elist.dept_name} > ${elist.low_dept_name}
-				</font> <br> <font style="color: gray;">${elist.cell_phone}</font>
+				<br> <font class="font-bold" size="2em"> <font style="color: gray;">${elist.emp_name}&nbsp;${elist.emp_no}</font><br> 
+				<font style="color: #9d9fa2">${elist.branch_name} > <br>${elist.dept_name} > ${elist.low_dept_name}</font> 
+				<br> 
+				<font style="color: gray;">${elist.cell_phone}</font>
 				</font>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-sm"
-					data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary btn-sm demo2">주소록
-					등록</button>
+				<form action="chartAddConact" method="post">
+				<input type="hidden" name="emp_no" value="${elist.emp_no}">
+				<input type="hidden" name="emp_name" value="${elist.emp_name}">
+				<input type="hidden" name="branch_name" value="${elist.branch_name}">
+				<input type="hidden" name="low_dept_name" value="${elist.low_dept_name}">
+				<input type="hidden" name="dept_name" value="${elist.dept_name}">
+				<input type="hidden" name="cell_phone" value="${elist.cell_phone}">
+				<button type="button" class="btn btn-default btn-sm"data-dismiss="modal">닫기</button>
+				<button type="submit" class="btn btn-primary btn-sm demo2">주소록 등록</button>
+				</form>
 			</div>
 		</div>
 	</div>

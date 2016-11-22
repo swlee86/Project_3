@@ -188,24 +188,12 @@ public class PageMoveController {
 	public String severancepay(){
 		return "salary.severancepay";
 	}
-	
-	
-	
-	
 
 	// 관리자 메뉴 > 거래처 > 거래처 메뉴로 이동
 	@RequestMapping("/client.do")
 	public String clientView() {
 		return "admin.adminclientView";
 	}
-
-	
-	
-	
-
-
-	
-	
 
 	//탈퇴
 	@RequestMapping("/withdrawal.do")
@@ -242,16 +230,6 @@ public class PageMoveController {
 	public String findPwResult(){
 		return "find.findPW_Result";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 	
 	
 }
