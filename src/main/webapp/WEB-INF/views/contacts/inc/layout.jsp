@@ -22,14 +22,14 @@
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 
 <!-- App styles -->
-<link rel="stylesheet"
-	href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
+
 <!--jQuery UI CSS-->
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-	type="text/css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 
 <style>
 .contact-panelt h3 {
@@ -51,8 +51,108 @@
 	height: 75px;
 	margin-right: 30px;
 }
+.tabstyle > li a:hover {
+  background: transparent;
+  border-color: #e4e5e7;
+}
 </style>
 
+ <script>
+	$(function(){
+		$('#all').click(function(){
+			console.log('all 탭 클릭함');
+			location.replace('contacts.do');
+		});
+		
+		$('#ga').click(function(){
+			console.log('가 탭 클릭함');
+			location.replace('contacts.do?tapno=2');
+		});
+		
+		$('#na').click(function(){
+			console.log('나 탭 클릭함');
+			location.replace('contacts.do?tapno=3');
+		});
+		
+		$('#da').click(function(){
+			console.log('다 탭 클릭함');
+			location.replace('contacts.do?tapno=4');
+		});
+		
+		$('#la').click(function(){
+			console.log('라 탭 클릭함');
+			location.replace('contacts.do?tapno=5');
+		});
+		
+		$('#ma').click(function(){
+			console.log('마 탭 클릭함');
+			location.replace('contacts.do?tapno=6');
+		});
+		
+		$('#ba').click(function(){
+			console.log('바 탭 클릭함');
+			location.replace('contacts.do?tapno=7');
+		});
+		
+		$('#sa').click(function(){
+			console.log('사 탭 클릭함');
+			location.replace('contacts.do?tapno=8');
+		});
+		
+		$('#aa').click(function(){
+			console.log('아 탭 클릭함');
+			location.replace('contacts.do?tapno=9');
+		});
+		
+		$('#ja').click(function(){
+			console.log('자 탭 클릭함');
+			location.replace('contacts.do?tapno=10');
+		});
+		
+		$('#cha').click(function(){
+			console.log('차 탭 클릭함');
+			location.replace('contacts.do?tapno=11');
+		});
+		
+		$('#ca').click(function(){
+			console.log('카 탭 클릭함');
+			location.replace('contacts.do?tapno=12');
+		});
+		
+		$('#ta').click(function(){
+			console.log('타 탭 클릭함');
+			location.replace('contacts.do?tapno=13');
+		});
+		
+		$('#pa').click(function(){
+			console.log('파 탭 클릭함');
+			location.replace('contacts.do?tapno=14');
+		});
+		
+		$('#ha').click(function(){
+			console.log('하 탭 클릭함');
+			location.replace('contacts.do?tapno=15');
+		});
+		
+		$('#alp').click(function(){
+			console.log('알파벳 탭 클릭함');
+			location.replace('contacts.do?tapno=16');
+		});
+		
+		$('#num').click(function(){
+			console.log('숫자 탭 클릭함');
+			location.replace('contacts.do?tapno=17');
+		});
+		
+		$('#conmodal').click(function(){
+			console.log('모달클릭함');  //비동기로 저보가져옴
+			console.log('클릭한 번호 :'+$('#contact_no').val());
+			
+		});
+		
+	});
+	
+	</script> 
 </head>
 <body class="fixed-navbar fixed-sidebar">
 

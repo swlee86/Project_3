@@ -22,9 +22,6 @@
 	</div>
 </div>
 
-
-
-
 <div class="content animate-panel">
 	<div class="row">
 	
@@ -64,14 +61,9 @@
 						</form>
 					</div>
 
-
-
-
-
-
 				<br>     
                 <hr style="border:1px solid gray; margin-bottom:0px">
-                <form action="give_authority.do" method="post">
+                <form action="" method="post">
                 <div class="table-responsive">
                 <table cellpadding="1" cellspacing="1" class="table table-hover table-bordered table-condensed" >
                     <thead>
@@ -92,17 +84,19 @@
                     <tbody>
                   	<c:forEach var="list" items="${list}">
                     <tr>
-                    	<td style="text-align:center;padding-top:10px;"><input type="checkbox" class="i-checks" id="checkbox3"></td>
+                    	<td style="text-align:center;padding-top:10px;">
+                    	<input type="checkbox" class="i-checks" name="checkbox" id="${list.rn}                                                                                                                                                                                                                                                                                                                                                      ">
+                    	</td>
                         <td  style="text-align:center;padding-top:10px;">${list.rn}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.id}</td>
-                        <td  style="text-align:center;padding-top:10px;">${list.emp_no}</td>
+                        <td  style="text-align:center;padding-top:10px;" id="emp_no">${list.emp_no}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.emp_name}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.branch_name}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.dept_name}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.low_dept_name}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.position_name}</td>
                         <td>
-                        	<select class="form-control input-sm">
+                        	<select class="form-control input-sm" id="selectRole">
                         		<option value="0"  <c:if test="${0 == 0}">selected</c:if>>${list.role_name}</option>
                         		<c:forEach var="role" items="${rolelist}">
                         		<option value="${role.role_no}">${role.role_name}</option>
@@ -115,7 +109,7 @@
                 </table>    
 			</div>
 		    <div class="row" style="text-align:right; margin-right:5px;">
-            	<input type="submit"  class="btn btn-sm btn-success" value="권한 부여">
+            	<input type="submit" class="btn btn-sm btn-success" id="giveBtn" value="권한 부여">
             </div>
             </form>
 
@@ -124,7 +118,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button>
                     <button class="btn btn-default active">1</button>
-                    <button class="btn btn-default  ">2</button>
+                    <button class="btn btn-default">2</button>
                     <button class="btn btn-default">3</button>
                     <button class="btn btn-default">4</button>
                     <button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button>

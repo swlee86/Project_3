@@ -2,7 +2,6 @@ package kr.or.epm.PageMoveController;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,11 +64,7 @@ public class PageMoveController {
 
 	
 
-	// SideBar(aside.jsp) 주소록 클릭시 구동
-	@RequestMapping("/contacts.do")
-	public String contactsview() {
-		return "contacts.contacts";
-	}
+	
 
 	// SideBar(aside.jsp) 조직도 > 부서인원 클릭시 구동
 	@RequestMapping("/team_member.do")
@@ -105,30 +100,6 @@ public class PageMoveController {
 	@RequestMapping("/calendar_schedule.do")
 	public String calendar_scheduleview() {
 		return "schedule.calendar_schedule";
-	}
-
-	// SideBar(aside.jsp) 메일 서비스 > 메일함 클릭시 구동
-	@RequestMapping("/mailbox.do")
-	public String mailboxview() {
-		return "mail.mailbox";
-	}
-
-	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
-	@RequestMapping("/mailbox_compose.do")
-	public String mailbox_composeview() {
-		return "mail.mailbox_compose";
-	}
-
-	//메일 > 보낸메일함 페이지이동 
-	@RequestMapping("/mailbox_send.do")
-	public String mailbox_send() {
-		return "mail.mailbox_send";
-	}
-	
-	//메일 > 휴지통 페이지이동 
-	@RequestMapping("/mailbox_trash.do")
-	public String mailbox_trash() {
-		return "mail.mailbox_trash";
 	}
 	
 	// SideBar(aside.jsp) 인사관리 > 사원정보(관리자) 클릭시 구동
@@ -174,11 +145,7 @@ public class PageMoveController {
 	}
 	
 	
-	//주소록 > 주소록 추가 페이지 이동
-	@RequestMapping("/enroll.do")
-	public String contacts() {
-		return "contacts.enroll";
-	}
+	
 	
 
 	//전자 결재 > 기안문작성 페이지이동
@@ -230,11 +197,7 @@ public class PageMoveController {
 	
 	
 	
-	//주소록  > 주소록 그룹 관리 페이지 이동
-	@RequestMapping("/contaacts_group.do")
-	public String contaacts_group(){
-		return "contacts.contacts_group";
-	}
+	
 
 	// 관리자 메뉴 > 거래처 > 거래처 메뉴로 이동
 	@RequestMapping("/client.do")
@@ -294,11 +257,7 @@ public class PageMoveController {
 	
 	
 
-	//주소록 > 주소록 수정페이지 이동
-	@RequestMapping("/contacts_update.do")
-	public String contacts_update(){			
-		return "contacts.contacts_update";
-	}
+
 	
 	
 }

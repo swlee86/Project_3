@@ -16,6 +16,14 @@ public class EmployeeRoleManageService {
 	@Autowired
 	private SqlSession sqlSession;
 
+	// 권한을 부여
+	public int updateEmpRole() {
+		EmployeeRoleManageDAO employeerolemanage = sqlSession.getMapper(EmployeeRoleManageDAO.class);
+		int result = employeerolemanage.updateEmpRole();
+		
+		return result;
+	}
+	
 	// Emp_role 테이블의 열 갯수를 구하는 서비스 함수
 	public int selectEmpRoleCount() {
 		EmployeeRoleManageDAO employeerolemanage = sqlSession.getMapper(EmployeeRoleManageDAO.class);
