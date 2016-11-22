@@ -3,8 +3,10 @@ package kr.or.epm.DAO;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.or.epm.VO.C_group;
 import kr.or.epm.VO.Contact;
 import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_contact;
 
 /**
 작성일 :	2016 - 11 - 18
@@ -23,16 +25,24 @@ public interface ContactDAO {
 	public Emp selectInfoSearch(String id);
 	
 	
+	//현재 로그인한 사원이 갖고있는 그룹 목록
+	public List<C_group> selectEmpGroup_list(String emp_no);
+		
+	//주소록테이블 등록
+	public int insertContact(Contact contact);
 	
+	//개인 주소록 테이블 등록
+	public int insertEmpContact(Emp_contact emp_contact);
 	
+	//현재 최고 글번호
+	public int selectMaxContact_No(String name);
 	
 	
 	
 	//그룹별 조회
 	public List<Contact> selectContact_group(HashMap map);
 			
-	//주소록 등록
-	public int insertContact(Contact dto);
+
 	
 	//상세 조회
 	public Contact selectContact_detail(String contact_no);
@@ -45,9 +55,7 @@ public interface ContactDAO {
 	public int deleteContact(String contact_no);
 
 
-	//현재 로그인한 사원이 갖고있는 그룹 목록
-	public List<Contact> selectEmpGroup_list(String emp_no);
-		
+
 		
 		
 	/*--------------그룹관리------------------------*/

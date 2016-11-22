@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -11,13 +12,13 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
+					<li><a href="index.html">Home</a></li>
+					<!-- <li><span>App views</span></li> -->
 					<li class="active"><span>Contacts</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">개인 주소록 그룹 관리</h2>
-			<small>Show users list in nice and color panels</small>
+			<h2 class="font-light m-b-xs">개인 주소록</h2>
+			<small>회원 마다 가질수 있는 주소록입니댜.</small>
 		</div>
 	</div>
 </div>
@@ -75,17 +76,23 @@
 					<div class="row">
 						<div class="col-md-5">
 							<div class="col-md-11">
-								<div class="row" style=" border: 1px solid #ddd; height:300px">
-									ddd그룹
+								<div class="row groupdiv" style=" border: 1px solid #ddd; height:300px">
+									<ul>
+										<c:forEach items="${grouplist}" var="g">
+											<li>
+												<a href="#" class="" id="group_${g.group_no}">${g.group_name}</a>
+											</li>
+										</c:forEach> 
+									</ul>
 								</div>
 								<br>
 								<div class="row">
-									<button type="button" style="background-color:#363636; " class="btn  btn-primary btn-sm btn-block"> 선택 </button>
+									<button type="button" style="background-color:#363636; " class="btn  btn-primary btn-sm btn-block"> 개인 주소록 그룹 등록 </button>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-7">
-				
+							<form method="post" action="">
 							 	<table  class="table table-bordered">
 							 			<tr>
 							 				<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:20%"><font color="#f05050">*</font> 그룹명</th>
@@ -93,15 +100,14 @@
 							 			</tr>			 				
 							 	</table>
 							 	<div class="row text-right" style="margin-right:5px;">
-							 		<button type="button" class="btn  btn-success btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"> 등록 </button>
-							 		<button type="button" class="btn btn-default btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"> 수정 </button>
-							 		<button type="button" class="btn  btn-default btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"> 삭제 </button>	
+							 		<input type="submit" class="btn  btn-success btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px" value="저장">
+							 		<!-- <button type="button" class="btn  btn-default btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"> 삭제 </button>	 -->
 							 	</div>
-							
+							</form>
 						</div>
 					</div>
 				</div>
-				<div class="panel-footer" style="text-align: center;">footer</div>
+				<div class="panel-footer" style="text-align: center;">&nbsp;</div>
 			</div>
 		</div>
 	</div>

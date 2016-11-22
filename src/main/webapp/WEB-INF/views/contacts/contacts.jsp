@@ -29,7 +29,7 @@
 		<div class="col-md-3">
 			<div class="hpanel panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel-body">
-					<button type="button" class="btn w-xs btn-success btn-block"onclick="location.href='enroll.do'">주소록 등록</button>
+					<a class="btn w-xs btn-success btn-block" href="enroll.do">주소록 등록</a>
 				</div>
 				<div class="panel-body">
 					<h4 class="m-t-none m-b-none">
@@ -53,9 +53,9 @@
 					</div>
 				</div>
 				<div class="panel-body" style="text-align: center">
-					<button type="button" class="btn w-xs btn-outline btn-success btn-block"onclick="location.href='contaacts_group.do'">
+					<a class="btn w-xs btn-outline btn-success btn-block" href="contacts_group.do">
 						주소록 그룹 관리
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -160,9 +160,9 @@
 															<a href="" data-toggle="modal" data-target="#myModal" id="conmodal_${n}"><B>${list[n].name}</B></a>
 														</h4>
 														<p>
-															id : conmodal_${n}<br>
-															주소록 번호(contact_no_${n}) : ${list[n].contact_no} 
-																						<input type="hidden" id="contact_no_${n}" value="${list[n].contact_no}"><Br> 
+															<%-- id : conmodal_${n}<br> --%>
+															<%-- 주소록 번호(contact_no_${n}) : ${list[n].contact_no}  --%>
+															<input type="hidden" id="contact_no_${n}" value="${list[n].contact_no}"> 
 															연락처1 : <c:if test="${not empty list[n].tel1}">${list[n].tel1}</c:if>
 															<br> 소속 : <c:if test="${not empty list[n].attach}">${list[n].attach}</c:if>
 															<br> 메일 : <c:if test="${not empty list[n].mail}">${list[n].mail}</c:if>
@@ -234,25 +234,25 @@
 				<table class="table  table-condensed  table-bordered">
 					<tr>
 						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">이름</td>
-						<td>박지d=d은</td>
+						<td id="m_name"></td>
 						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">소속</td>
-						<td>코스타</td>
+						<td id="m_attach"></td>
 					</tr>
 					<tr>
 						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">생년월일</td>
-						<td>1993.03.03</td>
+						<td id="m_birth"></td>
 						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">메일</td>
-						<td>wong_303@naver.com</td>
+						<td id="m_mail"></td>
 					</tr>
 					<tr>
 						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">연락처1</td>
-						<td>010-2808-1024</td>
+						<td id="m_tel1"></td>
 						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">연락처2</td>
-						<td>02-280-1024</td>
+						<td id="m_tel2"></td>
 					</tr>
 					<tr>
 						<td style="background-color:#f9f9f9;text-align:right;font-weight:600;padding-right:10px">메모</td>
-						<td colspan="3">착한사람</td>
+						<td id="m_memo" colspan="3"></td>
 					</tr>
 				</table>
 			</div>
