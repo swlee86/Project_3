@@ -325,19 +325,17 @@ var checkboxValues = new Array();
 			
 			checkboxValues.push(new multiCheck('0', $(this).parent().parent().next().next().next().text(), 
 											   $("#selectRole"+id+" option:selected").text()));
-			
-			console.log("배열 : " +checkboxValues);
 		});
+		
+		var allData = {"data":checkboxValues};
 			$.ajax(
 					   {
 							url : "give_authority.do",
 							type: "post",
-							data : 
-									{
-								checkboxValues : checkboxValues
-									},
+							data : allData,
 							success : function(data){
-								alert("권한 부여 성공");
+								// alert("권한 부여 성공");
+								console.log("갔다옴");
 							}
 			           }
 			      );
