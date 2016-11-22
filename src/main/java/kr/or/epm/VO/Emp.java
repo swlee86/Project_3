@@ -19,6 +19,17 @@ public class Emp {
 	private String email;
 	private String cell_phone;
 	private String emp_tel;
+	
+	
+	private String position_name;
+	
+	public String getPosition_name() {
+		return position_name;
+	}
+
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
+	}
 
 	public String getEmp_no() {
 		return emp_no;
@@ -121,6 +132,6 @@ public class Emp {
 		return "Emp [emp_no=" + emp_no + ", cg_no=" + cg_no + ", position_no=" + position_no + ", low_dept_no="
 				+ low_dept_no + ", emp_break=" + emp_break + ", salary=" + salary + ", emp_name=" + emp_name
 				+ ", birth=" + birth + ", pic=" + pic + ", email=" + email + ", cell_phone=" + cell_phone + ", emp_tel="
-				+ emp_tel + "]";
+				+ emp_tel + ", position_name=" + position_name + "]";
 	}
 }

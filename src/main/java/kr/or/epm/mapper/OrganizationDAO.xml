@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 하위부서 -->
    <select id="selectlowDept" resultType="kr.or.epm.VO.Organization">
-      select low_dept_name,
+      select low_dept_name, low_dept_no
       l.depth
       from low_dept l join dept d
       on l.dept_no = d.dept_no
@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!--사원 정보 -->
    <select id="selectEmpInfo" resultType="kr.or.epm.VO.Organization">
-      select emp_no, emp_name, birth
+      select emp_no, emp_name
       from emp e join low_dept d
       on d.low_dept_no = e.low_dept_no
       where d.low_dept_no = #{low_dept_no}
