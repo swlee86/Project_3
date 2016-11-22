@@ -59,6 +59,35 @@
 
  <script>
 	$(function(){
+		
+		var listsize = $('#listsize').val();
+		console.log("listsize  : "+listsize);
+
+		
+		if(listsize > 0){
+			$('#conmodal_0').click(function(){  //0 일떄
+				console.log("conmodal_0 : 클릭함 / "+ "주소록 번호 : "+);
+			});	
+			
+			$('#conmodal_1').click(function(){  //1 일떄
+				console.log("conmodal_1 : 클릭함");
+			});	
+			
+			
+			$('#conmodal_2').click(function(){  //2 일떄
+				console.log("conmodal_2 : 클릭함");
+			});	
+			
+			
+			$('#conmodal_3').click(function(){  //3 일떄
+				console.log("conmodal_3 : 클릭함");
+			});	
+		}
+		
+		
+		
+		
+		
 		$('#all').click(function(){
 			console.log('all 탭 클릭함');
 			location.replace('contacts.do');
@@ -149,6 +178,7 @@
 			console.log('클릭한 번호 :'+$('#contact_no').val());
 			
 		});
+
 		
 	});
 	

@@ -120,9 +120,11 @@
 							</div>
 							<hr>
 
-
-							<div class="row">
-								<c:forEach items="${list}" var="n">
+							
+							<%-- listsize: ${listsize}
+							list[0] : ${list[0].name} --%>
+					<%-- 		<div class="row">
+								<c:forEach  items="${list}" var="n" > 
 									<div class="col-lg-6">
 										<div class="hpanel hblue contact-panelt">
 											<div class="panel-body">
@@ -131,7 +133,7 @@
 													<a href="" data-toggle="modal" data-target="#myModal" id="conmodal${n.contact_no}"><B>${n.name}</B></a>
 												</h4>
 												<p>
-													<input type="text" id="contact_no" value="${n.contact_no}">
+													<input type="text" id="contact_no" value="${n.contact_no}">		
 													연락처1 : <c:if test="${not empty n.tel1}">${n.tel1}</c:if> <br> 
 													소속 : <c:if test="${not empty n.attach}">${n.attach}</c:if><br> 
 													메일 : <c:if test="${not empty n.mail}">${n.mail}</c:if>
@@ -140,7 +142,40 @@
 										</div>
 									</div>
 								</c:forEach>
+							</div> --%>
+							
+							<div class="row">
+								<input type="hidden" id="listsize" value="${listsize}">					
+								<c:choose>
+									<c:when test="${listsize == 0}">
+									
+									</c:when>
+									<c:otherwise>
+										<c:forEach begin="0" end="${listsize-1}" step="1" var="n">
+											<div class="col-lg-6">
+												<div class="hpanel hblue contact-panelt">
+													<div class="panel-body">
+														<img alt="logo" class="img-circle m-b" src="images/profile.jpg" align="left">
+														<h4>
+															<a href="" data-toggle="modal" data-target="#myModal" id="conmodal_${n}"><B>${list[n].name}</B></a>
+														</h4>
+														<p>
+															id : conmodal_${n}<br>
+															주소록 번호(contact_no_${n}) : ${list[n].contact_no} 
+																						<input type="hidden" id="contact_no_${n}" value="${list[n].contact_no}"><Br> 
+															연락처1 : <c:if test="${not empty list[n].tel1}">${list[n].tel1}</c:if>
+															<br> 소속 : <c:if test="${not empty list[n].attach}">${list[n].attach}</c:if>
+															<br> 메일 : <c:if test="${not empty list[n].mail}">${list[n].mail}</c:if>
+														</p>
+													</div>
+												</div>
+											</div>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</div>
+							
+							
 						</div>
 						
 						<div class="panel-footer" style="text-align: center">
