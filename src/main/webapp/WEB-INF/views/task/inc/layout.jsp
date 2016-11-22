@@ -321,11 +321,6 @@ ul {
       
       $(function() {
          
-    	 $('#first').click(function(){
-    		alert("수신"); 
-    	 });
-    	  
-    	  
          $('#taskForm').submit(function(){
             var startDate = $('#makeuserUpdateDate').val();
             var lastDate = $('#makeuserUpdateDate2').val();
@@ -361,7 +356,6 @@ ul {
          
          //참조자 아이콘 클릭시
          $('#deptA').click(function() {
-
                   var litag = "<ul>";
                   $('#organization').empty();
                   $('#empList').empty();
@@ -373,7 +367,6 @@ ul {
 
                         $('#myModal6').modal();
                         $.each(data, function(index) {
-
                            departMent = data[index];
                         });
 
@@ -381,7 +374,7 @@ ul {
 
                         $.each(departMent, function(index) {
                            litag += "<li onclick='seeDepart(this,choose)'>"
-                                 + departMent[index].branch_name
+                                 + departMent[index].branch_name+"("+departMent[index].branch_no+")"
                                  + "</li>";
                         });
 
@@ -415,12 +408,10 @@ ul {
                   console.log("departMent : " + departMent);
 
                   $.each(departMent, function(index) {
-                     litag += "<li onclick='seeDepart(this, choose)'>"
-                           + departMent[index].branch_name
-                           + "</li>";
-                  });
-
-                  litag += "</ul>";
+                		litag += "<li onclick='seeDepart(this, choose)'>"+departMent[index].branch_name+"</li>";
+  					});
+  					litag +="</ul>";
+                  
 
                   $('#organization').html(litag);
 
@@ -434,8 +425,10 @@ ul {
       function seeDepart(obj, choose) {
          //전역 부서 선택시
           departcho = choose;
-   
-         var name = $(obj).text();
+         
+   		 console.log('데이터 : ' + departcho);
+         
+   		  var name = $(obj).text();
 
          $.ajax({
             url : "taskDeptModal.do",
@@ -482,8 +475,7 @@ ul {
 
                $.each(low_dept, function(index) {
                   $(obj).append(
-                        "<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,low_deptNumber)'>"
-                        + low_dept[index].low_dept_name + "</span>");
+                        "<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,low_deptNumber)'>"+ low_dept[index].low_dept_name+low_dept[index].low_dept_"</span>");
 
                });
             }
@@ -497,6 +489,7 @@ ul {
          empListNumber = low_deptNumber;
          alert("사원뽑기 : "+empListNumber);
          
+         console.log(obj);
          
          //클릭한 text 값 뽑아옴.
          var low_dept = $(obj).text();

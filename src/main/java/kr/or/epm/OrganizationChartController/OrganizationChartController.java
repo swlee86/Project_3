@@ -12,6 +12,12 @@ import org.springframework.web.servlet.View;
 import kr.or.epm.Service.OrganizationChartService;
 import kr.or.epm.VO.Organization;
 
+/*
+ * 작성자 : 이상원
+ * 작성일 : 2016-11-22
+ * 목   적 : 조직도 관련 컨트롤러
+ */
+
 @Controller
 public class OrganizationChartController {
 	
@@ -24,6 +30,15 @@ public class OrganizationChartController {
 		// SideBar(aside.jsp) 조직도 > 부서인원 클릭시 구동
 		@RequestMapping("/team_member.do")
 		public String teammemberview(Model model) {
+			//최초에 모든 사원정보를 불러와서 modal 창 id를 구성시킴
+			List<Organization> elist = null;
+			try{
+				elist = organizationchart.selectEmpInfoAll();				
+			}catch(Exception e){
+				e.getMessage();
+			}finally{
+				model.addAttribute("elist", elist);
+			}
 			return "organization_chart.team_member";
 		}
 		

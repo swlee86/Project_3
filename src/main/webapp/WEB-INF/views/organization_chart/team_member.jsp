@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="normalheader transition animated fadeIn">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
 			<a class="small-header-action" href="">
@@ -65,24 +66,6 @@
                     </div>
 				<div class="panel-body">
 					<div class="row" id="empList">
-						<!-- 
-						<div class="col-md-4"   id="empList">
-							<div class="hpanel hgreen contact-panel">
-								<div class="panel-body">
-									<img alt="logo" class="img-circle m-b" src="images/profile.jpg">
-									<h3>
-										<a href="" data-toggle="modal" data-target="#myModal1">박지은
-											<span style="font-size: 15px">(201255122)</span>
-										</a>
-									</h3>
-									<div class="text-muted font-bold m-b-xs">(사단)한국소프트웨어기술진흥협회</div>
-									<p>
-										01020768626 <br> (사단)한국소프트웨어기술진흥협회 > 개발부 > 팀장
-									</p>
-								</div>
-							</div>
-						</div>
-							 -->
 
 					</div>
 				</div>
@@ -93,29 +76,34 @@
 
 
 
-
-<div class="modal fade hmodal-success" id="myModal1" tabindex="-1"
-	role="dialog" aria-hidden="true">
+<c:forEach var="elist" items="${elist}">
+<div class="modal fade hmodal-success" id="myModal${elist.emp_no}" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog  modal-sm">
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center">
 				<h4 class="modal-title">
-					<img alt="logo" class="img-circle m-b" src="images/a3.jpg"
-						style="width: 82px; height: 82px;">
+					<img alt="logo" class="img-circle m-b" src="images/a3.jpg" style="width: 82px; height: 82px;">
 				</h4>
-				<br> <font class="font-bold" size="2em"> <font
-					style="color: gray;">박지은 (201255122)</font><br> <font
-					style="color: #9d9fa2">(사단)한국소프트웨어기술진흥협회 > <br>개발부 > 팀장
-				</font> <br> <font style="color: gray;">01020768626</font>
+				<br> <font class="font-bold" size="2em"> <font style="color: gray;">${elist.emp_name}&nbsp;${elist.emp_no}</font><br> 
+				<font style="color: #9d9fa2">${elist.branch_name} > <br>${elist.dept_name} > ${elist.low_dept_name}</font> 
+				<br> 
+				<font style="color: gray;">${elist.cell_phone}</font>
 				</font>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-sm"
-					data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary btn-sm demo2">주소록
-					등록</button>
+				<form action="chartAddConact" method="post">
+				<input type="hidden" name="emp_no" value="${elist.emp_no}">
+				<input type="hidden" name="emp_name" value="${elist.emp_name}">
+				<input type="hidden" name="branch_name" value="${elist.branch_name}">
+				<input type="hidden" name="low_dept_name" value="${elist.low_dept_name}">
+				<input type="hidden" name="dept_name" value="${elist.dept_name}">
+				<input type="hidden" name="cell_phone" value="${elist.cell_phone}">
+				<button type="button" class="btn btn-default btn-sm"data-dismiss="modal">닫기</button>
+				<button type="submit" class="btn btn-primary btn-sm demo2">주소록 등록</button>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
+</c:forEach>
