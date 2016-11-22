@@ -324,9 +324,11 @@ ul {
 			$('#taskForm').submit(function(){
 				var startDate = $('#makeuserUpdateDate').val();
 				var lastDate = $('#makeuserUpdateDate2').val();
-				var result = calDateRange(startDate,lastDate);
-				alert("차이 결과 : "+result);
-				$('#deadline').val(result);
+				
+				//var result = calDateRange(startDate,lastDate);
+				//alert("차이 결과 : "+result);
+				
+				$('#deadline').val(lastDate);
 				
 				
 				//라디오버튼

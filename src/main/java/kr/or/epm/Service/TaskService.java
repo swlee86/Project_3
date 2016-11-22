@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.OrganizationDAO;
+import kr.or.epm.DAO.TaskDAO;
 import kr.or.epm.DAO.Task_peopleDAO;
 import kr.or.epm.VO.Organization;
+import kr.or.epm.VO.Task;
+import kr.or.epm.VO.Task_people;
 
 @Service
 public class TaskService {
@@ -76,5 +79,25 @@ public class TaskService {
 			return list;
 		}
 	
+		//업무등록 submit 버튼 클릭시
+		public int TaskInsert(Task task){
+			int result = 0;
+			
+			System.out.println("서비스 : "+task.toString());
+			
+			//업무 등록 관련 Task인터페이스
+			TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
+			int insertResult = taskDAO.insertTask(task);
+			System.out.println("인설트 결과 : "+insertResult);
+			return result;
+		}
+		//업무 등록시 참조자 insert
+		public int insertTask_people(List<Task_people> taskpeople){
+			int result =0;
+			Task_peopleDAO dao = sqlsession.getMapper(Task_peopleDAO.class);
+			int peopleresult = dao.insertTask_people(taskpeople);
+			System.out.println("업무 참여자 인설트 결과"+peopleresult);
+			return result;
+		}
 	
 }

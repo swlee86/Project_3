@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.TaskService;
+import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
@@ -28,7 +30,11 @@ public class TaskController {
 
 	@Autowired
 	private TaskService service;
-
+	
+	//로그인 정보 가져오기 위한 것.
+	@Autowired 
+	private LoginService loginservice;
+	
 	@Autowired
 	private View jsonview;
 	
@@ -94,6 +100,8 @@ public class TaskController {
 		//1.먼저 아이디 뽑아와야함.
 		String id = principal.getName();
 		System.out.println("아이디  : "+id);
+		//아이디 통해 사번 얻어옴
+		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
 		
 		//날짜
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
@@ -106,6 +114,8 @@ public class TaskController {
 		tlist.add(people);
 		
 		Task task = new Task();
+		task.setEmp_no(emp.getEmp_no());
+		task.setEmp_name(emp.getEmp_name());
 		task.setTask_name(task_name);
 		task.setCg_no(cg_no);
 		task.setCg_name(cg_name);
@@ -119,8 +129,16 @@ public class TaskController {
 		task.setTask_step_no("0");
 		task.setStep_no("0");
 		task.setSign(sign);
-		System.out.println(task.toString());
 
+		//task 등록
+		int taskresult = service.TaskInsert(task);
+		System.out.println("컨트롤러 task 업무 등록 : "+taskresult);
+		
+		//tast_people 등록
+		
+		int task_peopleresult = service.insertTask_people(tlist);
+		System.out.println("컨트롤러 업무참여자 등록 결과 "+ task_peopleresult);
+		
 		
 		for(int i = 0; i < tlist.size(); i++){
 			System.out.println("task_no : "+tlist.get(i).getTask_no());
