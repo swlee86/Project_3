@@ -224,10 +224,166 @@
 			
 		});
 
+	    //참조자 아이콘 클릭시
+        $('#organization_add').click(function() {
+       		  var  empSelectNumber = 1;
+                 var litag = "<ul>";
+                 $('#organization').empty();
+                 $('#empList').empty();
+                 
+             	$.ajax({
+       			url : "taskWriteModal.do",
+       			success : function(data) {
+       				 $('#myModal6').modal();
+       				choose = 1;
+       				var departMent = "";
+
+       				$.each(data, function(index) {
+       					departMent = data[index];
+       				});
+
+       				$.each(departMent, function(index) {
+       					litag += "<li onclick='seeDepart(this,"
+       						litag +=empSelectNumber +","
+           				    litag +=departMent[index].branch_no
+           				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+           				});
+       				litag +="</ul>";
+
+       				$('#organization').html(litag);
+
+       			}
+       		})
+        });
+		
+		
+		
+		
+		
 		
 		
 		
 	});
+	
+	
+	 //부서 출력 하는 아작스
+    function seeDepart(obj, empSelectNumber, choose) {
+    	//전역 부서 선택시
+        departcho = choose;
+
+    	var name = $(obj).text();
+
+    	$.ajax({
+    		url : "taskDeptModal.do",
+    		type : "GET",
+    		data : {
+    			branch_no : departcho
+    		},
+    		success : function(data) {
+    			var dept;
+    			console.log(data);
+    			$.each(data, function(index) {
+    				dept = data[index];
+    			});
+
+    			$.each(dept, function(index) {
+    				$(obj).append(
+    						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,"+empSelectNumber+","+dept[index].dept_no+")'>"
+    						+dept[index].dept_name + "</span>");
+    			});
+    		}
+    	});
+    }
+
+    //하위 부서 클릭시
+    function seelow_Depart(obj,empSelectNumber,departcho) {
+    	alert("부서 : "+departcho);
+    	deptNumber= departcho;
+
+    	$.ajax({
+    		url : "tasklow_deptModal.do",
+    		data : {
+    			dept_no : deptNumber
+    		},
+
+    		success : function(data) {
+
+    			var low_dept = "";
+    			$.each(data, function(index) {
+    				low_dept = data[index];
+    			});
+    			$.each(low_dept, function(index) {
+    				$(obj).append(
+    						"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,"+empSelectNumber+","+low_dept[index].low_dept_no+")'>"
+    						+ low_dept[index].low_dept_name + "</span>");
+    			});
+    		}
+
+    	});
+    }
+    
+    //사원 뽑아오기
+    function seeEmpMember(obj,empSelectNumber,low_dept_no){
+       //체크
+       var empListNumber = low_dept_no;
+ 		 alert("사원뽑기 : "+empListNumber);
+       
+       console.log(obj);
+       
+       //클릭한 text 값 뽑아옴.
+       var low_dept = $(obj).text();
+       alert("taskEmpModal : "+low_dept);
+       alert("selectNo : " + empSelectNumber);
+       var makeTable = "";
+       if(empSelectNumber == 1){
+        makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
+       }else{
+        makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+       }
+       
+       $.ajax(
+             {
+                url: "taskEmpModal.do",
+                data:{
+              	  low_dept_no: empListNumber
+                     },
+                success:function(data){
+              	  var emp = "";
+                    $.each(data, function(index){
+                       emp = data[index];
+                       console.log(emp);
+                   });
+                   
+                   $.each(emp, function(index){
+                      if(empSelectNumber == 1){   
+                         makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
+                      }
+                      else if(empSelectNumber == 2){
+                         makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+                      }
+                   });
+                   makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+                   $('#empList').empty();
+                   $('#empList').append(makeTable);
+                 }    
+                
+             }
+             );
+    }
+
+    
+    //주소록 선택시
+    function recF(obj){
+       //수신자 사번
+       var emp_no = $(obj).parent().parent().children().eq(0).html();
+       var name = $(obj).parent().parent().children().eq(1).html();
+       
+       
+       
+       
+       $('#name').val(name);
+       $('#myModal6').modal("hide");
+    }
 	
 	</script> 
 </head>

@@ -39,9 +39,9 @@
 										<td>	
 											<div class="form-group">	
 												<div class="input-group">
-													<input type="text" class="form-control input-sm" placeholder="이름을 입력하세요." name="name" />
+													<input type="text" class="form-control input-sm" placeholder="이름을 입력하세요." name="name" id="name" />
 													<span class="input-group-btn">
-														<button class="btn btn-default input-sm" type="button">
+														<button class="btn btn-default input-sm" type="button" id="organization_add">
 															<font style="color:#fd7d86 "> <span class="fa fa-user-plus"></span></font>
 														</button>
 													</span>
@@ -112,4 +112,33 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+
+
+
+
+
+<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog modal-md">
+      <div class="modal-content">
+         <div class="color-line"></div>
+         <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
+            <h4 class="modal-title"><font color="#6a6c6f" size="4em"><b>사원 선택</b></font></h4>
+         </div>
+         <div class="modal-body">
+            <div class="row">
+               <div class="col-md-4" style="border: 1px solid gray;" id="organization">
+                  
+               </div>   
+               <div class="col-md-8" id="empList">
+                  사원리스트
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+         </div>
+      </div>
+   </div>
 </div>
