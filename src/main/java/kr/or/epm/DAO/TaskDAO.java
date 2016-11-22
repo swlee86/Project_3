@@ -28,7 +28,7 @@ public interface TaskDAO {
 	public int deleteTask_rec();
 	
 	// 송신함 확인하기
-	public List<Task> selectTask();
+	public List<Task> selectTask(String emp_no, String cg_no);
 	
 	// 송신함에서 삭제하기
 	public int deleteTask();

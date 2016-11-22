@@ -11,13 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<select id="selectTask_No" resultType="String">
-			select max(task_no) from task_people
+		   SELECT max(task_no) FROM task
 	</select>
 
 	<!-- 업무 참여자 추가하기 -->
-	<insert id="insertTask_people" parameterType="kr.or.epm.VO.Task_people">
+	<insert id="insertTask_people">
 		insert into task_people(task_no, emp_no)
-		values(#{task_no}, #{emp_no})
+		values(#{param1}, #{param2})
 	</insert>
 	
 	<!-- 업무 참여자 삭제하기 -->

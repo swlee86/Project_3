@@ -95,7 +95,7 @@ public class TaskController {
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
 	public String taskWriteResult(Principal principal,Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content, String sign){
 		
-		System.out.println("업무 등록 폼");
+		System.out.println("###########################################################업무 등록 폼");
 		
 		//1.먼저 아이디 뽑아와야함.
 		String id = principal.getName();
@@ -112,6 +112,7 @@ public class TaskController {
 		//System.out.println("업무명 : "+task_name + " / 구분번호 : "+cg_no + " / 업무명 : "+cg_name + " / 수신자 사번 : "+rec_emp_no + " / 수신자 명 : "+rec_name + " / 기한 : "+deadline + " / 내용 : "+content);
 		List<Task_people> tlist = new ArrayList<Task_people>();
 		tlist.add(people);
+		
 		
 		Task task = new Task();
 		task.setEmp_no(emp.getEmp_no());
@@ -135,24 +136,33 @@ public class TaskController {
 		System.out.println("컨트롤러 task 업무 등록 : "+taskresult);
 		
 		//tast_people 등록
+		for(int i = 0; i < tlist.size(); i++){
+			System.out.println("tlist task_no : "+tlist.get(i).getTask_no());
+			System.out.println("사번 : " +tlist.get(i).getEmp_no());
+		}
 		
 		int task_peopleresult = service.insertTask_people(tlist);
 		System.out.println("컨트롤러 업무참여자 등록 결과 "+ task_peopleresult);
 		
-		
-		for(int i = 0; i < tlist.size(); i++){
-			System.out.println("task_no : "+tlist.get(i).getTask_no());
-			System.out.println("사번 : " +tlist.get(i).getEmp_no());
-		}
-		
-		return null;
+		return "task.taskRequest";
 	}
 	
 	
 
 	//업무 > 업무 요청 페이지 이동 
 	@RequestMapping("/taskRequest.do")
-	public String taskRequest(){
+	public String taskRequest(Principal principal){
+		
+		//로그인한 아이디 뽑아오기
+		String id = principal.getName();
+		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
+		System.out.println("업무 요청 페이지 이동 : " +emp.toString());
+		/////////////////////////////
+		String emp_no = emp.getEmp_no();
+		service.selectTask(emp_no);
+		
+		
+		System.out.println("업무 요청 페이지");
 		return "task.taskRequest";
 	}
 
