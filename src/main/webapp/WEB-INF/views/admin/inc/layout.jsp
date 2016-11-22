@@ -106,6 +106,15 @@
 <script src="scripts/homer.js"></script>
 <script>
 
+//관리자가 사원에게 권한 부여
+function multiCheck(role_no, emp_no, role_name) {
+	this.role_no = role_no;
+	this.emp_no = emp_no;
+	this.role_name = role_name;
+}
+
+var checkboxValues = new Array();
+
 	//부서  -  부서 관리 페이지에서 지점 선택시
 	function departMentFuc(option){
 		alert("셀렉트 변환 : "+option);
@@ -302,22 +311,22 @@
 		location.href="adminSalaryManage.do";
 	});
 	
-	// 관리자가 사원에게 권한 부여
-	function multiCheck(emp_no, role_name) {
-		this.emp_no = emp_no;
-		this.role_name = role_name;
-	}
+	
 	
 	$('#giveBtn').click(function(){
-		alert("여기뜬당");
-		
-		var checkboxValues = new Array();
+		alert("여기뜬다");
 		
 		$("input[name='checkbox']:checked").each(function(i) {
-			checkboxValues.push(new multiCheck($('#emp_no').contents().first().text(), $('#selectRole option:selected').text()));
-			console.log($('#emp_no').contents().first().text());
-			console.log(multiCheck.emp_no);
-			console.log(checkboxValues);
+			
+			console.log("사번 : " + $(this).parent().parent().next().next().next().text());
+			
+			var id = $(this).attr('id');
+			console.log("권한 : " + $("#selectRole"+id+" option:selected").text());
+			
+			checkboxValues.push(new multiCheck('0', $(this).parent().parent().next().next().next().text(), 
+											   $("#selectRole"+id+" option:selected").text()));
+			
+			console.log("배열 : " +checkboxValues);
 		});
 			$.ajax(
 					   {
@@ -325,7 +334,7 @@
 							type: "post",
 							data : 
 									{
-										checkboxValues : checkboxValues,
+								checkboxValues : checkboxValues
 									},
 							success : function(data){
 								alert("권한 부여 성공");
@@ -333,32 +342,6 @@
 			           }
 			      );
 		});
-	 
-	 /* 
-	 $('#giveBtn').click(function(){
-			alert("여기뜬당44444");
-			
-			var checkboxValues = [];
-			$("input[name='checkbox']:checked").each(function(i) {
-				var checkData = {"emp_no":$('#emp_no').contents().first().text(), "role_name":$('#selectRole option:selected').text()}
-				checkboxValues.push(checkData); 
-			});
-			
-			jQuery.ajaxSettings.traditional = true;
-				$.ajax(
-						   {
-								url : "give_authority.do",
-								type: "post",
-								data : 
-										{
-											checkboxValues : checkboxValues,
-										},
-								success : function(data){
-									alert("권한 부여 성공");
-								}
-				           }
-				      );
-			}); */
 </script>
 </body>
 </html>
