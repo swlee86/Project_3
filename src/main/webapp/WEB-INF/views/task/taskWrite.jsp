@@ -29,27 +29,55 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form method="POST" enctype="multipart/form-data">
+						<form id="taskForm" method="POST" enctype="multipart/form-data">
+						<input type="hidden" name="task_no" value="${task_No}">
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 업무명</th>
-										<td colspan="3"><input type="text" class="form-control input-sm"></td>
+										<td colspan="3"><input type="text" class="form-control input-sm" name="task_name"></td>
+									</tr>
+									<tr>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 중요도</th>
+										<td colspan="3">
+											<div class="radio radio-success radio-inline">
+												<input type="radio" id="sign" name="sign" value="0"><label for="sign">중요</label>
+											</div>
+											<div class="radio radio-success radio-inline">
+												<input type="radio" id="sign2" name="sign" value="1"><label for="sign2">안중요</label>
+											</div>
+										</td>
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 업무형태</th>
 										<td colspan="3">
 											<div class="radio radio-success radio-inline">
-												<input type="radio" id="inlineRadio1" value="" name="task_cg" checked><label for="inlineRadio1">업무 요청</label>
+												<input type="radio" id="inlineRadio1" name="cg_noT" value="업무요청"><label for="inlineRadio1">업무 요청</label>
 											</div>
 											<div class="radio radio-success radio-inline">
-												<input type="radio" id="inlineRadio2" value="" name="task_cg"><label for="inlineRadio2">업무 보고</label>
+												<input type="radio" id="inlineRadio2" name="cg_noT" value="업무보고"><label for="inlineRadio2">업무 보고</label>
 											</div>
 											<div class="radio radio-success radio-inline">
-												<input type="radio" id="inlineRadio3" value="" name="task_cg"><label for="inlineRadio3">업무 일지</label>
+												<input type="radio" id="inlineRadio3" name="cg_noT" value="업무일지"><label for="inlineRadio3">업무 일지</label>
 											</div>
+											<!--구분 번호 -->
+											<input type="hidden" name="cg_no" id="cg_no">
+											<input type="hidden" name="cg_name" id="cg_name">
 										</td>
 									</tr>
+									<tr>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 수신자 사번</th>
+										<td id="rec_no_td">
+											<span class="input-group">
+                     							<input type="text" class="form-control input-sm" id="rec_emp_no" name="rec_emp_no"/>
+                        							<a type="button" class="btn btn-default input-group-addon"  id="recIcon">
+                        								<span style="color:#fd7d86 "><i class="fa fa-user-plus"></i></span>
+                        							</a>
+												</span> 
+										</td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 수신자 명</th>
+										<td style="width:40%" id="rec_name_td"><input type="text" class="form-control input-sm" id="rec_name" name="rec_name"></td>
+									</tr>	
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 참조자 사번</th>
 										<td id="task_no_td">
@@ -76,6 +104,7 @@
 												<input type="text" class="form-control input-sm"  id="makeuserUpdateDate2"> 
 												<span class="input-group-addon" style="color:#fd7d86 "><i class="fa fa-calendar"></i></span>
 												</div>
+												<input type="hidden" name="deadline" id="deadline">
 											</div> 
 										</td>
 									</tr>																
@@ -84,7 +113,7 @@
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="coral">*</font> 내용</th>
 										<td>
-											<textarea cols="10" rows="10" class="form-control" ></textarea>
+											<textarea cols="10" rows="10" class="form-control" name="content"></textarea>
 										</td>
 									</tr>
 									<tr>
@@ -94,7 +123,7 @@
 								</tbody>
 							</table>
 							<div class="row" style="text-align:right;margin-right:10px;">
-								<input type="button"  class="btn btn-sm btn-success demo2" value=" 저장 " style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+								<input type="submit" id="submitBtn"  class="btn btn-sm btn-success demo2" value="요청" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 							</div>
 						</div>
 						</form>	
@@ -125,7 +154,6 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-success btn-sm" data-dismiss="modal">선택</button>
 				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
