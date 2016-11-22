@@ -10,6 +10,10 @@ import kr.or.epm.VO.Set_time;
  * 작성일 : 2016-11-18
  * 작성자 : 백승아
  * 사용 목적 : 근태에 대한 DAO interface
+ * 
+ * 작성일 : 2016-11-22
+ * 작성자 : 김주희
+ * 사용 목적 : 근태에 대한 DAO interface 추가수정
 */
 
 public interface CommuteDAO {
@@ -58,5 +62,8 @@ public interface CommuteDAO {
 	
 	// 누적시간 업데이트
 	public int updateCommute_acctime(HashMap map);
+	
+	// 이번달 내역 조회
+	public List<Commute> selectCommute_month(HashMap map);
 	
 }

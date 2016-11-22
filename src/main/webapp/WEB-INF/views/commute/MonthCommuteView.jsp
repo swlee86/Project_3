@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
 .ui-datepicker-calendar {
@@ -37,11 +38,10 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<form class="form-inline">
-						<label class="form-control">월근태 사원 정보</label> <input type="text"
-							class="form-control" id="mydate2">
-						<button type="button" class="btn btn-sm btn-default"
-							id="addCommute">
+					<form class="form-inline" action="CommuteMonth.do" method="get">
+						<label class="form-control">월별 근태 내역 검색하기</label> 
+						<input type="text" class="form-control" id="select_date" name="select_date">
+						<button type="submit" class="btn btn-sm btn-default" id="addCommute">
 							<span id="searchicon" class="fa fa-search"></span>
 						</button>
 					</form>
@@ -53,34 +53,38 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-				<!-- 	<div class="row">
-						<div class="col-sm-8">
-							<label>첫번쨰</label>
-						</div>
-						<div class="col-sm-2">
-							<label>두번째</label>
-						</div>
-						<div class="col-sm-2">
-							<label>세번째</label>
-						</div>
-					</div> -->
+			
 					<br />
 					<div class="table-responsive">
-						<table cellpadding="1" cellspacing="1"
-							class="table table-bordered table-striped"">
+						<div>
+							<label>${select_year}년 ${select_month}월 근태내역</label>
+						</div>
+						<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped"">
 							<tr>
 								<th>사번</th>
 								<th>성명</th>
-								<th>직급</th>
-								<th>부서</th>
+								<th>일시</th>
+								<th>출근시간</th>
+								<th>퇴근시간</th>
+								<th>근무시간</th>
+								<th>추가근무시간</th>
+								<th>총 누적 근무시간</th>
+								<th>총 누적 추가근무시간</th>
 							</tr>
-							<tr>
-								<td>001</td>
-								<td>박성준</td>
-								<td>관리자</td>
-								<td>우리부서</td>
-							</tr>
-
+							
+							<c:forEach var="list" items="${CommuteList}">
+								<tr>
+									<td>${list.emp_no}</td>
+									<td>${list.emp_name}</td>
+									<td>${list.regdate}</td>
+									<td>${list.in_time}</td>
+									<td>${list.out_time}</td>
+									<td>${list.commute_time}</td>
+									<td>${list.add_time}</td>
+									<td>${list.acc_commute_time}</td>
+									<td>${list.acc_add_time}</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 				</div>
@@ -97,15 +101,14 @@
 		var options = {
 			startYear : startYear,
 			finalYear : currentYear,
-			pattern : 'yy-mm',
+			pattern : 'yyyy-mm',
 			monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
 					'9월', '10월', '11월', '12월' ]
 		};
 		//데이트피커
-		$('#mydate2').monthpicker(options);
+		$('#select_date').monthpicker(options);
 		$('#searchicon').click(function() {
-			var date = $('#mydate2').val();
-			alert("선택한 날짜 : " + date);
+			alert("선택한 날짜 : " + $('#select_date').val());
 
 		});
 
