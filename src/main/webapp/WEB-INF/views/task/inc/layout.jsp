@@ -295,7 +295,7 @@ ul {
 		
 		
 		//날짜 차이 구하는 함수
-	     function calDateRange(val1, val2)
+	    function calDateRange(val1, val2)
     {
         var FORMAT = "-";
         // FORMAT을 포함한 길이 체크
@@ -573,11 +573,9 @@ ul {
 			var rec_emp_no = $(obj).parent().parent().children().eq(0).html();
 			//수신자 이름
 			var rec_name = $(obj).parent().parent().children().eq(1).html();
-			
 			$('#rec_emp_no').val(rec_emp_no);
 			$('#rec_name').val(rec_name);
 			$('#myModal6').modal("hide");
-			
 		}
 		
 	</script>
