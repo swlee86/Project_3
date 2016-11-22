@@ -42,9 +42,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   step_no
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
-		where rec_emp_no = #{rec_emp_no} and 
+		where rec_emp_no = #{param1} and 
 			  rec_del_check = '0' and 
-			  t.cg_no = #{cg_no}
+			  t.cg_no = #{param2}
 		order by send_date desc
 	</select>
 	

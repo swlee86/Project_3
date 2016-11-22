@@ -249,8 +249,9 @@
 			//분
 			var result = ((endWorkStatus - startWorkStatus) / 60000 -tempHour);
 			resultMin = checkTime(result);
+			resultHour = checkTime(resultHour2);
 
-			var resultTime = resultHour2 + ":" + resultMin;
+			var resultTime = resultHour + ":" + resultMin;
 
 			$('#workTime').html(resultTime);
 			
@@ -269,6 +270,17 @@
 													emp_no : '91001050',
 											   },
 										success : function(data){
+											$.ajax(
+													 {
+														url : "updateCommute_acc.do",
+														data : {
+																	emp_no : '91001050',
+															   },
+														success : function(data){
+															
+														}
+													 }
+											)
 										}
 									 }
 							)

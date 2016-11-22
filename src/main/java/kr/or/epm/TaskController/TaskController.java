@@ -95,7 +95,7 @@ public class TaskController {
    
    // 업무 > 업무 등록 페이지
    @RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
-   public String taskWriteResult(Principal principal,Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content, String sign){
+   public String taskWriteResult(Principal principal,Task_people people, String task_name,String cg_no,String cg_name, String rec_emp_no, String rec_name, String deadline, String content, String sign, Model model){
       
       System.out.println("업무 등록 폼");
       
@@ -147,15 +147,22 @@ public class TaskController {
          System.out.println("사번 : " +tlist.get(i).getEmp_no());
       }
       
-      return "task.taskRequest";
+      String link = null;
+	  String msg = null;
+	  link = "taskRequest.do";
+	  msg = "업무 등록에 성공하였습니다.";
+      
+	  model.addAttribute("link", link);
+	  model.addAttribute("msg",msg);
+	  return "task.taskRequest_redirect";
    }
    
    
 
 
-	//업무 > 업무 요청 페이지 이동 
+	//업무 > 업무 요청 페이지 이동 > 수신탭
 	@RequestMapping("/taskRequest.do")
-	public String taskRequest(Principal principal){
+	public String taskRequest(Principal principal, Model model){
 		
 		//로그인한 아이디 뽑아오기
 		String id = principal.getName();
@@ -163,10 +170,10 @@ public class TaskController {
 		System.out.println("업무 요청 페이지 이동 : " +emp.toString());
 		/////////////////////////////
 		String emp_no = emp.getEmp_no();
-		service.selectTask(emp_no);
-		
-		
-		System.out.println("업무 요청 페이지");
+	
+	    List<Task> list = service.selectTask_rec(emp_no);
+		model.addAttribute("tasklist", list);
+		System.out.println("업무 요청 페이지> 수신탭");
 		return "task.taskRequest";
 	}
 
@@ -209,6 +216,7 @@ public class TaskController {
       return "task.taskInform_Transmit_Detail";
    }   
    
+   // 백승아
    //업무  > 업무일지 페이지 이동
    @RequestMapping("/taskLog.do")
    public String taskLog(){

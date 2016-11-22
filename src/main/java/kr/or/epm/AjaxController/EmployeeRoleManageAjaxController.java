@@ -3,6 +3,9 @@ package kr.or.epm.AjaxController;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.JsonArray;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
+import jdk.nashorn.internal.runtime.JSONFunctions;
 import kr.or.epm.Service.EmployeeRoleManageService;
 import kr.or.epm.VO.Emp_role;
 
@@ -34,19 +38,19 @@ public class EmployeeRoleManageAjaxController {
 
 	// 관리자 > 회원관리 > 사원 권한 부여 페이지 > 사원 권한 부여하기
 	@RequestMapping(value="/give_authority.do", method=RequestMethod.POST)
-	public View adminEmployeeRoleGive(@RequestParam(value="data") List<Emp_role> params, Model model) {
+	public View adminEmployeeRoleGive(String array,Model model) {
+	
+
+	System.out.println("제바"+array.toString());
+	
+	
 		System.out.println("########## 사원에게 권한을 부여합니다");
-		System.out.println(params.toString());
-		
-		//List<Emp_role> list = new ArrayList<Emp_role>();
-		//list.add(checkboxValues);
-		
-		//for (Emp_role emp_role : list) {
-		//	System.out.println("emp_name : " +emp_role.getRole_name());
-		//	System.out.println("emp_role : " +emp_role.getRole_no());
-		//	System.out.println("emp_no : " +emp_role.getEmp_no());
-		//}
-		
+		/*for (Emp_role emp_role : list) {
+			System.out.println("emp_name : " +emp_role.getRole_name());
+			System.out.println("emp_role : " +emp_role.getRole_no());
+			System.out.println("emp_no : " +emp_role.getEmp_no());
+		}
+		*/
 		/*
 		int result = 0;
 

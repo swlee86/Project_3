@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	작성일 : 2016-11-20
 	작성자 : 백승아
 	사용 목적 : 근태에 대한 mapper
+	
 -->
 
 	<!-- 본인의 근태 내역 조회하기 -->	
@@ -44,8 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							in_time, out_time, commute_time, 
 							add_time, acc_commute_time, acc_add_time, 
 							mgr_check)
-		values(commute_seq.nextval, #{emp_no}, to_char(sysdate, 'yyyy-mm'), 
-			   to_char(sysdate, 'yyyy-mm-dd hh24:mi'), null, null, 
+		values(commute_seq.nextval, #{emp_no}, to_char(sysdate, 'yyyy-mm-dd'), 
+			   #{in_time}, null, null, 
 			   null, null, null, 
 			   '0')
 	</insert>
@@ -126,5 +127,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	<!-- 이번달 하루 전 내역 조회  -->
+	<select id="selectCommute_yesterday" parameterType="String" resultType="kr.or.epm.VO.Commute">
+    	select commute_no,emp_no,regdate,in_time,out_time,
+		       commute_time,add_time,acc_commute_time, acc_add_time,mgr_check 
+		from commute 
+		where substr(regdate,0,4)=(to_char(sysdate,'yyyy')) 
+		      and substr(regdate,6,2)=(to_char(sysdate,'mm')) 
+		      and substr(regdate,9,2)=(to_char(sysdate,'dd')-1) 
+		      and emp_no=#{emp_no} 
+		order by substr(regdate,9,2) desc
+	</select>
 	
+	
+	<!-- 누적시간 업데이트 -->
+	<update id="updateCommute_acctime" parameterType="hashmap">
+		update commute set acc_commute_time=#{acc_commute_time} , acc_add_time=#{acc_add_time} where commute_no=#{commute_no}
+	</update>
 </mapper>

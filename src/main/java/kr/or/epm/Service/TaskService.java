@@ -124,19 +124,19 @@ public class TaskService {
 
 	}
 	
-	//업무 요청 서비스
-	public List<Task> selectTask(String emp_no){
+	//업무 요청 > 수신 서비스
+	public List<Task> selectTask_rec(String emp_no){
 		System.out.println("selectTask 서비스 : "+emp_no);
 		//업무 요청 페이지
 		String cg_no = "1";
 		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
 		
-		List<Task> selectList = taskDAO.selectTask(emp_no, cg_no);
-		System.out.println("셀렉트 리스트 : "+selectList.size());
+		List<Task> selectList = taskDAO.selectTask_rec(emp_no, cg_no);
+		System.out.println("수신함 셀렉트 리스트 : "+selectList.size());
 		
-		return null;
+		return selectList;
 	}
-	
+	//업무 요청 > 송신 
 
 }
 

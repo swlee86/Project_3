@@ -19,8 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select dept_name, d.depth
       from dept d join branch b
       on d.branch_no = b.branch_no
-      where d.his_check
-      = '1' and d.branch_name = #{branch_name}
+      where d.his_check = '1' and d.branch_name = #{branch_name}
    </select>
 
    <!-- 조직도 출력하기 -->
@@ -47,8 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       l.depth
       from low_dept l join dept d
       on l.dept_no = d.dept_no
-      where
-      l.his_check = '1' and d.dept_name = #{dept_name}
+      where l.his_check = '1' and d.dept_name = #{dept_name}
    </select>
    
    <!--사원 정보 -->
