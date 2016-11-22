@@ -13,6 +13,12 @@ import org.springframework.web.servlet.View;
 import kr.or.epm.DAO.OrganizationDAO;
 import kr.or.epm.VO.Organization;
 
+/*
+ * 작성자 : 이상원
+ * 작성일 : 2016-11-22
+ * 목   적 : 조직도 관련 서비스 페이지
+ */
+
 @Service
 public class OrganizationChartService {
 
@@ -59,9 +65,26 @@ public class OrganizationChartService {
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
 
-		list = organizationDAO.selectEmpInfo(low_dept_name);
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println("이름 : " + list.get(i).getEmp_name() + " / 사번 : " + list.get(i).getEmp_no());
+		try{
+			list = organizationDAO.selectEmpInfo(low_dept_name);			
+		}catch(Exception e){
+			e.getMessage();
+		}finally{
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println("이름 : " + list.get(i).getEmp_name() + " / 사번 : " + list.get(i).getEmp_no());
+			}			
+		}
+		return list;
+	}
+	
+	// 사원 정보 전부 불러오는 서비스 함수
+	public List<Organization> selectEmpInfoAll() {
+		List<Organization> list = null;
+		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);		
+		try{
+			list= organizationDAO.selectEmpInfoAll();
+		}catch(Exception e){
+			e.getMessage();
 		}
 		return list;
 	}

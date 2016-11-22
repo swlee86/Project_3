@@ -135,7 +135,6 @@ function seeDepart(obj, choose) {
 						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,departcho)'>"
 								+ dept[index].dept_name + "</span>");
 			});
-
 		}
 	});
 }
@@ -183,14 +182,6 @@ function seeEmpMember(obj,low_deptNumber){
    var low_dept = $(obj).text();
    alert("seeEmpMember : "+low_dept);
    var makeTable = "";
-/* 
-   if(empListNumber ==1){
-    makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
-   }else{
-    makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
-   }
-    */
-   
    
    $.ajax(
          {
@@ -202,6 +193,7 @@ function seeEmpMember(obj,low_deptNumber){
                var emp = "";
                $.each(data, function(index){
                   emp = data[index];
+                  console.log(emp);
                });
                
                $.each(emp, function(index){
@@ -209,22 +201,16 @@ function seeEmpMember(obj,low_deptNumber){
             	   makeTable+="<div class='hpanel hgreen contact-panel'>"
             	   makeTable+="<div class='panel-body'>"
             	   makeTable+="<h3>"	   
-            	   makeTable+="<a href='' data-toggle='modal' data-target='#myModal'"+emp[index].emp_no+">"+emp[index].emp_name	
+            	   makeTable+="<a href='' data-toggle='modal' data-target="	
+            	   makeTable+="#myModal"
+            	   makeTable+=emp[index].emp_no
+            	   makeTable+=">"+emp[index].emp_name
             	   makeTable+="<span style='font-size: 15px'>"+emp[index].emp_no+"</span>"		
             	   makeTable+="</a></h3>"            		
-            	   makeTable+="<div class='text-muted font-bold m-b-xs'>(사단)한국소프트웨어기술진흥협회</div>"   
-            	   makeTable+="<p>01020768626 <br> (사단)한국소프트웨어기술진흥협회 > 개발부 > 팀장</p></div></div></div>"
-            		   
+            	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp[index].branch_name+"</div>"   
+            	   makeTable+="<p>01020768626 <br>"+emp[index].branch_name+" > "+ emp[index].dept_name+" > "+emp[index].low_dept_name+"</p></div></div></div>"
             	   
-                 /*  
-            	   
-            	   if(empListNumber == 1){   
-                     makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
-                  }
-                  else if(empListNumber == 2){
-                     makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
-                  }
-            	    */
+
                });
               
                $('#empList').empty();

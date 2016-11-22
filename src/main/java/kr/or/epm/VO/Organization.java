@@ -10,6 +10,20 @@ public class Organization {
 	private int depth1;
 	private int depth2;
 	private String emp_no;
+	
+	//11월 22일 이상원 추가(조직도에서 사용될 객체 추가)
+	private String cell_phone;
+	
+	
+	
+
+	public String getCell_phone() {
+		return cell_phone;
+	}
+
+	public void setCell_phone(String cell_phone) {
+		this.cell_phone = cell_phone;
+	}
 
 	public String getBranch_name() {
 		return branch_name;
@@ -79,6 +93,7 @@ public class Organization {
 	public String toString() {
 		return "Organization [branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name="
 				+ low_dept_name + ", emp_name=" + emp_name + ", depth0=" + depth0 + ", depth1=" + depth1 + ", depth2="
-				+ depth2 + ", emp_no=" + emp_no + "]";
+				+ depth2 + ", emp_no=" + emp_no + ", cell_phone=" + cell_phone + "]";
 	}
+
 }
