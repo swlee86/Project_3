@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.or.epm.VO.Contact;
+import kr.or.epm.VO.Emp;
 
 /**
 작성일 :	2016 - 11 - 18
@@ -11,7 +12,22 @@ import kr.or.epm.VO.Contact;
 사용 목적 :	주소록 DAO
 **/
 public interface ContactDAO {
+	
+	//전체 그룹 조회
+	public List<Contact> selectList(int cpage, int pagesize, String field, String query, String emp_no, String start, String end);
+	
+	//갯수 구하기
+	public int selectCount(String emp_no, String field, String query, String start, String end);
 
+	//등록인 정보 구하기
+	public Emp selectInfoSearch(String id);
+	
+	
+	
+	
+	
+	
+	
 	//그룹별 조회
 	public List<Contact> selectContact_group(HashMap map);
 			
@@ -88,5 +104,6 @@ public interface ContactDAO {
 	
 	//가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) - emp_no, selectGroup_no 필요
 	public int updateGroups_delete(HashMap map);
+
 
 }

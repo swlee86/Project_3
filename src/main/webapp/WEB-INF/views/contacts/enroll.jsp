@@ -51,7 +51,7 @@
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%;padding-top:15px;">생년월일</th>
 										<td>
 											<div class="form-inline">
-												<input type="text" class="form-control" id="addenrollDate">
+												<input type="text" class="form-control " id="addenrollDate">
 											</div>
 										</td>
 									</tr>
@@ -90,11 +90,12 @@
 								</tbody>
 							</table>
 							
-							<div class=" pull-right" style="text-align:center;">
-								<input type="submit"  class="btn btn-sm btn-success" value="등 록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+							
+						</div>
+						<div class=" pull-right" style="text-align:center;">
+								<input type="submit"  class="btn btn-sm btn-success" value="등ㅇ록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 								<input type="button"  onclick="location.href='contacts.do'" class="btn btn-sm btn-default"  value="취 소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 							</div>
-						</div>
 						</form>	
 					</div>
 				</div>
