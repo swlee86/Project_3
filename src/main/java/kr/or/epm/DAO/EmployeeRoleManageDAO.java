@@ -9,4 +9,10 @@ public interface EmployeeRoleManageDAO {
 	List<EmployeeRoleManage> selectEmpRoleManage(int start, int end);
 	int selectEmpRoleCount();
 	List<Role> selectRoleList();
+	
+	public int updateEmpRole();
+	/*
+	public int insertEmpRole();
+	public int deleteEmpRole();
+	*/
 }

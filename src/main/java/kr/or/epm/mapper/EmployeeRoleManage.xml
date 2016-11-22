@@ -32,4 +32,22 @@ select count(*) from emp_role
 select role_no, role_name from role
 </select>
 
+<!-- 
+<insert id="insertEmpRole">
+	insert into emp_role(role_no, emp_no)
+	values(#{role_no}, #{emp_no})
+</insert>
+
+<delete id="deleteEmpRole">
+	delete from emp_role
+	where emp_no = #{emp_no} and role_no = #{role_no}
+</delete> 
+-->
+
+<update id="updateEmpRole">
+	update emp_role
+	set role_no = #{role_no}
+	where emp_no = #{emp_no}
+</update>
+
 </mapper>
