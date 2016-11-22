@@ -216,9 +216,10 @@ public class TaskController {
       return "task.taskInform_Transmit_Detail";
    }   
    
+   // 2016-11-22
    // 백승아
-   //업무  > 업무일지 페이지 이동
-   @RequestMapping("/taskLog.do")
+   //업무  > 업무일지 수신 페이지 이동
+   @RequestMapping("/taskLog_rec.do")
    public String taskLog(){
       return "task.taskLog";
    }
@@ -228,8 +229,6 @@ public class TaskController {
    public String taskLog_Receive_Detail(){         
       return "task.taskLog_Receive_Detail";
    }
-   
-   
    
    //업무일지 > 업무 일지 송신 > 상세페이지
    @RequestMapping("/taskLog_Transmit_Detail.do")

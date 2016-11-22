@@ -2,6 +2,7 @@ package kr.or.epm.AjaxController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.json.JsonArray;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.View;
 import jdk.nashorn.internal.runtime.JSONFunctions;
 import kr.or.epm.Service.EmployeeRoleManageService;
 import kr.or.epm.VO.Emp_role;
+import net.sf.json.JSONArray;
 
 /*
  * 작성자 : 백승아
@@ -37,40 +39,34 @@ public class EmployeeRoleManageAjaxController {
 	private EmployeeRoleManageService employeeRoleManage;
 
 	// 관리자 > 회원관리 > 사원 권한 부여 페이지 > 사원 권한 부여하기
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/give_authority.do", method=RequestMethod.POST)
-	public View adminEmployeeRoleGive(String array,Model model) {
-	
-
-	System.out.println("제바"+array.toString());
-	
-	
-		System.out.println("########## 사원에게 권한을 부여합니다");
-		/*for (Emp_role emp_role : list) {
-			System.out.println("emp_name : " +emp_role.getRole_name());
-			System.out.println("emp_role : " +emp_role.getRole_no());
-			System.out.println("emp_no : " +emp_role.getEmp_no());
-		}
-		*/
-		/*
-		int result = 0;
-
-		System.out.println("찍어보자" + checkboxValues[0].toString());
-
-		for (int i = 0; i < checkboxValues.length; i++) {
-			try {
-				result = employeeRoleManage.updateEmpRole();
-			} catch (Exception e) {
-				e.getMessage();
-			} finally {
-				if (result > 0) {
-					System.out.println("########## 사원에게 권한 부여 성공");
-				} else {
-					System.out.println("########## ERROR");
-				}
-			}
-		}
-
-		model.addAttribute("result",result);*/
-		return jsonview;
-	}
+    public View adminEmployeeRoleGive(HttpServletRequest request) {
+        System.out.println("사원에게 권한을 부여합니다");
+        String str = request.getParameter("param");
+        str.trim();
+        str.trim();
+        List<Map<String,String>> map = new ArrayList<Map<String,String>>();
+        map = JSONArray.fromObject(str);
+        int result = 0;
+        
+        for(Map<String, String> m : map) {
+            System.out.println(m.get("emp_no") + " : " + m.get("role_name"));
+            
+            try {
+                result = employeeRoleManage.updateEmpRole(m.get("emp_no"), m.get("role_name"));
+            } catch (Exception e) {
+                e.getMessage();
+            } finally {
+                if (result > 0) {
+                    System.out.println("사원에게 권한 부여 성공");
+                } else {
+                    System.out.println("ERROR");
+                }
+            }
+        }
+        
+        return jsonview;
+    }
 }
+
