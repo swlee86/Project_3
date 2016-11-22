@@ -78,7 +78,7 @@
 									<c:forEach var="cplist" items="${companyList}">
 									<tr>
                         				<td>${cplist.no}</td>
-                        				<td>${cplist.title }</td>
+                        				<td><a href="detailinfo_board_list.do?no=${cplist.no}&currentpage=1&pagesize=10">${cplist.title }</a></td>
                         				<td>${cplist.emp_name}</td>
                         				<td>${cplist.regdate}</td>
                         				<td>${cplist.hit}</td>
