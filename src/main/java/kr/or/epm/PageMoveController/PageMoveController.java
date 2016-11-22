@@ -144,10 +144,6 @@ public class PageMoveController {
 		return "board_info.info_board_view";
 	}
 	
-	
-	
-	
-
 	//전자 결재 > 기안문작성 페이지이동
 	@RequestMapping("/sanction_list.do")
 	public String sanction_list() {
