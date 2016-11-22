@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	작성자 : 백승아
 	사용 목적 : 근태에 대한 mapper
 	
+	
+	작성일 : 2016-11-22
+	작성자 : 김주희
+	사용 목적 : 근태에 대한 mapper 추가수정
 -->
 
 	<!-- 본인의 근태 내역 조회하기 -->	
@@ -144,4 +148,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateCommute_acctime" parameterType="hashmap">
 		update commute set acc_commute_time=#{acc_commute_time} , acc_add_time=#{acc_add_time} where commute_no=#{commute_no}
 	</update>
+	
+	<!-- 이번달 내역 조회  -->
+	<select id="selectCommute_month" parameterType="hashmap" resultType="kr.or.epm.VO.Commute">
+		select commute_no,c.emp_no, emp_name, regdate,in_time,out_time,
+		       commute_time,add_time,acc_commute_time, acc_add_time,mgr_check 
+		from commute c
+		join emp e
+		on c.emp_no = e.emp_no
+		where substr(regdate,0,4)=#{select_year} 
+		      and substr(regdate,6,2)=#{select_month}
+		      and e.emp_no=#{emp_no}
+		order by substr(regdate,9,2) desc
+	</select>
 </mapper>
