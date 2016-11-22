@@ -91,7 +91,6 @@
     				var departMent = "";
 
     				$.each(data, function(index) {
-
     					departMent = data[index];
     				});
 
