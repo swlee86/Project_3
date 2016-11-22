@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.CommuteService;
+import kr.or.epm.VO.Commute;
+import kr.or.epm.VO.Set_time;
 
 
 /*
@@ -46,6 +48,14 @@ public class CommuteAjaxController {
 	public View UpdateCommute_commutetime(String commute_time,String emp_no){
 		int result = commuteservice.updateCommute_time(commute_time,emp_no);
 		System.out.println("결과 : "+result);
+		return jsonview;
+	}
+	
+	//누적시간update
+	@RequestMapping("/updateCommute_acc.do")
+	public View UpdateCommute_acc(String emp_no){
+		Commute commute = commuteservice.selectCommute_acc(emp_no);
+		//System.out.println("결과 : "+result);
 		return jsonview;
 	}
 }

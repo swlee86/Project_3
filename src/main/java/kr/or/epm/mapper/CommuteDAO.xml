@@ -104,4 +104,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateCommute_time" parameterType="hashmap">
 		update commute set commute_time = #{commute_time} where commute_no=#{commute_no}
 	</update>
+	
+	<!-- 부서별 출퇴근시간(최신) -->
+	<select id="selectSetTime" parameterType="String" resultType="kr.or.epm.VO.Set_time">
+		select in_time,out_time from (select rownum,in_time,out_time 
+		      from set_time 
+		      where low_dept_no =(select distinct(low_dept_no) 
+		                          from commute c 
+		                          join emp e 
+		                          on c.emp_no=e.emp_no 
+		                          where e.emp_no='91001050') 
+		      order by set_date asc) 
+		where rownum=1
+	</select>
 </mapper>

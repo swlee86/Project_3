@@ -192,9 +192,14 @@
 										out_time : $("#end").html(),
 										emp_no : '91001050',
 								   },
-							success : function(data){						
+							success : function(data){			
+								
+								
+								
+								
+								}
 							}
-						 }
+						 
 				)
 				
 			}
@@ -277,7 +282,21 @@
 									commute_time : $("#workTime").html(),
 									emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
 							   },
-						success : function(data){						
+						success : function(data){	
+							
+							$.ajax(
+									 {
+										url : "updateCommute_acc.do",
+										data : {
+													out_time : $("#end").html(),
+													emp_no : '91001050',
+											   },
+										success : function(data){
+										}
+									 }
+							)
+							
+							
 						}
 					 }
 			)

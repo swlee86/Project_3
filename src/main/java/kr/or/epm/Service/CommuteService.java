@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.CommuteDAO;
 import kr.or.epm.VO.Commute;
+import kr.or.epm.VO.Set_time;
 
 
 
@@ -106,15 +107,33 @@ public class CommuteService {
 		
 		//근태테이블에서 출근했는지 조회
 		String commute_no = dao.selectMyCommute_no(emp_no);
+		System.out.println("commute_no : " + commute_no);
 		Commute commute = null;
 		if(commute_no!=null){
 			//commute_no로 오늘의 근태 정보 가져오기
 			commute = dao.selectCommute_commuteno(commute_no);
 			
+			System.out.println(commute.toString());
 		}
 		
 		return commute;
 	}
 	
-	
+	//누적시간 업데이트
+	public Commute selectCommute_acc(String emp_no){
+		System.out.println("selectCommute_acc들어옴");
+		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
+		
+		String commute_no = dao.selectMyCommute_no(emp_no);
+		Commute commute =null;
+		if(commute_no!=null){
+			Set_time set_time = dao.selectSetTime(emp_no);
+			//System.out.println("set_time : in_time : "+set_time.getIn_time()+"/ out_time : "+set_time.getOut_time());
+			
+			//in_time, ou_time 가져와서 비교 후 추가시간 계산
+			//누적시간 계산
+			
+		}
+		return null;
+	}
 }
