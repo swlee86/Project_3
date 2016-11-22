@@ -272,8 +272,9 @@ public class TaskController {
        System.out.println("아이디  : "+id);
        //아이디 통해 사번 얻어옴
        EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
-	    
-       
+	    //내가 참조된 업무 번호 얻어옴.
+       List<Task_people> list = service.selectTaskRequest_Participation_people(emp.getEmp_no());
+       System.out.println(list.size());
        
 	   return jsonview;
    }

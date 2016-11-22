@@ -140,6 +140,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where task_no = #{task_no}
 	</update>
 	
+	<!--내게 참조한 모든 업무 보기-->
+	<select id="selectTask_people_ForMe" resultType="kr.or.epm.VO.Task_people">
+		  select Task_NO, EMP_NO from task_people where emp_no = #{emp_no}
+	</select>
+	
 	<!-- 글 개수 구하기 -->
 	<select id="countTask" resultType="Integer">
 		select count(task_no)

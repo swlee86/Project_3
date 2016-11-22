@@ -198,6 +198,14 @@ public class TaskService {
 	}
 	
 	
+	//업무 요청 > 참여 탭 > ajaxJson 용
+	public List<Task_people> selectTaskRequest_Participation_people(String emp_no){
+		System.out.println("서비스 emp_no : "+emp_no);
+		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
+		List<Task_people> list = taskDAO.selectTask_people_ForMe(emp_no);
+		return list;
+	}
+	
 	
 }
 
