@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.TaskService;
-import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
@@ -39,6 +39,10 @@ public class TaskController {
    @Autowired
    private View jsonview;
    
+   @Autowired
+   private CommonService commonservice;
+   
+   
    // 업무 > 업무 등록 페이지 이동
    @RequestMapping(value = "/taskWrite.do", method = RequestMethod.GET)
    public String taskWrite(Model model) {
@@ -59,20 +63,20 @@ public class TaskController {
    
    //2.업무 등록시 조직도 지점 클릭시 부서 띄워줘야함
    @RequestMapping(value="/taskDeptModal.do", method=RequestMethod.GET)
-   public View downDeptTree(String branch_no, Model model){
+   public View downDeptTree(String branch_name, Model model){
 	  System.out.println("지점 클릭 시작함");
       System.out.println("컨트롤러 ");
       List<Organization> list = null;
-      list=service.selectdeptname(branch_no);
+      list=service.selectdeptname(branch_name);
       model.addAttribute("deptname", list);
       return jsonview;
    }
    
    //3.업무 등록시 조직도 부서 클릭시 하위부서 출력
    @RequestMapping("/tasklow_deptModal.do")
-   public View downlowDeptTree(String dept_no, Model model){
+   public View downlowDeptTree(String dept_name, Model model){
       List<Organization> list = null;
-      list = service.selectlowDept(dept_no);
+      list = service.selectlowDept(dept_name);
       for(int i =0; i < list.size(); i++){
          System.out.println("하위 부서 : " +list.get(i).getLow_dept_name());
       }
@@ -82,10 +86,10 @@ public class TaskController {
    
    //4.업무 등록시 조직도 하위 부서 클릭시 사원 정보 출력
    @RequestMapping("/taskEmpModal.do")
-   public View downEmpTree(String low_dept_no, Model model){
+   public View downEmpTree(String low_dept_name, Model model){
       System.out.println("이엠피 정보 컨트롤러");
       List<Organization> list = null;
-      list = service.selectEmpInfo(low_dept_no);
+      list = service.selectEmpInfo(low_dept_name);
       for(int i =0; i < list.size(); i++){
          System.out.println("사원정보: " +list.get(i).getEmp_name()+"/ 사번: "+list.get(i).getEmp_no());
       }
@@ -171,8 +175,9 @@ public class TaskController {
 		System.out.println("업무 요청 페이지 이동 : " +emp.toString());
 		/////////////////////////////
 		String emp_no = emp.getEmp_no();
+		String cg_no = "1";
 	
-	    List<Task> list = service.selectTask_rec(emp_no);
+	    List<Task> list = service.selectTask_rec(emp_no, cg_no);
 		model.addAttribute("tasklist", list);
 		System.out.println("업무 요청 페이지> 수신탭");
 		return "task.taskRequest";
@@ -180,22 +185,7 @@ public class TaskController {
 
    //업무요청 > 업무요청 수신 > 상세페이지
    @RequestMapping("/taskRequest_Receive_Detail.do")
-   public String taskRequest_Receive_Detail(String task_no, Model model){
-	   
-	   System.out.println("선택하신 업무 번호 : "+task_no);
-	   
-	   //task 상세 조회 가져옴 (참조자 제외)
-	   Task task=service.selectTask_detail(task_no);
-	   
-	   //업무 참여자 조회하기 - 참여자 사번만 나옴.
-	   List<Task_people> taskPeopleList = service.selectTask_people(task_no);
-	   //완성된 업무 참여자 조회 리스트
-	   List<String> taskPeople = service.selectEmp_info(taskPeopleList);
-	   
-	   				//업무 관련 내용만 있음
-	   model.addAttribute("task", task);
-	   					//참조자
-	   model.addAttribute("taskPeople",taskPeople);
+   public String taskRequest_Receive_Detail(){
       return "task.taskRequest_Receive_Detail";
    }
    
@@ -232,20 +222,37 @@ public class TaskController {
       return "task.taskInform_Transmit_Detail";
    }   
    
+   // 2016-11-22
    // 백승아
-   //업무  > 업무일지 페이지 이동
+   //업무  > 업무일지 수신 페이지 이동
    @RequestMapping("/taskLog.do")
-   public String taskLog(){
+   public String taskLog(Principal principal, Model model){
+	   
+	   System.out.println("업무 일지 수신페이지를 요청합니다");
+	   String cg_no = "3";
+	   
+	 // 로그인 id
+	 String id = principal.getName();
+	 String emp_no = commonservice.selectEmp_no(id);
+	 System.out.println("로그인한 사원의 emp_no : " + emp_no);
+	 
+	 // 글 개수 구하기
+	 int count = service.countTask(cg_no);
+	 model.addAttribute("count", count);
+	 
+	 // 목록 가져오기
+	 List<Task> list = service.selectTask_rec(emp_no, cg_no);
+	 model.addAttribute("list", list);
+	 		
       return "task.taskLog";
    }
+   
    
    //업무일지 > 업무 일지 수신 > 상세페이지
    @RequestMapping("/taskLog_Receive_Detail.do")
    public String taskLog_Receive_Detail(){         
       return "task.taskLog_Receive_Detail";
    }
-   
-   
    
    //업무일지 > 업무 일지 송신 > 상세페이지
    @RequestMapping("/taskLog_Transmit_Detail.do")

@@ -28,4 +28,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where l.low_dept_no = #{low_dept_no}
 	</select>
 	
+	<select id="selectEmp_no" resultType="String">
+		select emp_no
+		from emp_detail
+		where id = #{id}
+	</select>
+	
 </mapper>

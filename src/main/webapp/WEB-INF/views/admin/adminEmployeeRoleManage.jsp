@@ -84,7 +84,7 @@
                     <tbody>
                   	<c:forEach var="list" items="${list}">
                     <tr>
-                    	<td style="text-align:center;padding-top:10px;" id="333">
+                    	<td style="text-align:center;padding-top:10px;">
                     		<input type="checkbox" class="i-checks" name="checkbox" id="${list.rn}">
                     	</td>
                         <td  style="text-align:center;padding-top:10px;">${list.rn}</td>
