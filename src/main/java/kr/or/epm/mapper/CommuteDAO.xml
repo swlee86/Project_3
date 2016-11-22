@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							add_time, acc_commute_time, acc_add_time, 
 							mgr_check)
 		values(commute_seq.nextval, #{emp_no}, to_char(sysdate, 'yyyy-mm'), 
-			   to_char(sysdate, 'hh24:mi'), null, null, 
+			   to_char(sysdate, 'yyyy-mm-dd hh24:mi'), null, null, 
 			   null, null, null, 
 			   '0')
 	</insert>

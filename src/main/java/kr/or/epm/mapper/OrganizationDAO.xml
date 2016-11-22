@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	작성자 : 백승아
 	사용 목적 : 조직도에 대한 mapper
 -->
+
 	<!-- 조직도 출력하기 -->
 	<select id="selectOrganization">
 		select b.branch_name, b.depth, d.dept_name, d.depth, l.low_dept_name, l.depth, e.emp_no, e.emp_name
