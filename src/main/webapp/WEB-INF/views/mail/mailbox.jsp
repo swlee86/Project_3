@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -86,8 +87,8 @@
 											<input type="checkbox"><label></label>
 										</div>
 									</th>
+									<th>읽음/안읽음</th>
 									<th>제목</th>
-									<th>내용</th>
 									<th>보낸사람</th>
 									<th class="text-right mail-date">시간</th>
 								</tr>
@@ -96,17 +97,22 @@
 								</tr>
 							</thead>
 							<tbody>
+							
+								<c:forEach var="list" items="${mlist}">
 								<tr>
 									<td class="">
 										<div class="checkbox checkbox-single checkbox-success">
-											<input type="checkbox"> <label></label>
+											<input type="checkbox"><label></label>
 										</div>
 									</td>
-									<td><a href="#">Marshall Horne</a></td>
-									<td><a href="mail_detail.do">클릭해보세여여여요요</a><span class="text-right mail-date"><i class="fa fa-paperclip"></i></span></td>
-									<td>박성준</td>
-									<td class="text-right mail-date">2016-11-14 23:15</td>
+									<td><a href="#">${list.sign}</a></td>
+									<td><a href="mail_detail.do">${list.title}</a><span class="text-right mail-date"><i class="fa fa-paperclip"></i></span></td>
+									<td>${list.emp_name}</td>
+									<td class="text-right mail-date">${list.send_date}</td>
 								</tr>
+								</c:forEach>
+							
+							
 							</tbody>
 						</table>
 					</div>

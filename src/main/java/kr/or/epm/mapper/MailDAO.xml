@@ -43,11 +43,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 수신 메일 조회하기 -->
 	<select id="selectMail_rec" resultType="kr.or.epm.VO.Mail">
+		select r.mail_no, r.sign, r.title, 
+			   r.file_name, r.emp_no, r.send_date, e.emp_name
+		from
+		(
 		select mail_no, sign, title, 
 			   file_name, emp_no, send_date
 		from mail
 		where rec_mail = #{rec_mail} and 
 			  rec_del_check = '0'
+		) r join emp e on r.emp_no=e.emp_no
 	</select>
 	
 	<!-- 수신일 데이터, 확인여부 데이터 삽입 -->
