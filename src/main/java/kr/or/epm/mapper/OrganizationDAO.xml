@@ -79,4 +79,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where l.low_dept_no = #{low_dept_no}
    </select>
 
+   <!--조직도에서 띄워 줄 modal 창에 나오는 사원 정보 쿼리(작성자 : 이상원)-->
+   <select id="selectEmpInfoAll" resultType="kr.or.epm.VO.Organization">
+      select emp_no, emp_name, branch_name, dept_name, low_dept_name, cell_phone
+      from emp e join low_dept d
+      on d.low_dept_no = e.low_dept_no
+   </select>
+   
+
 </mapper>

@@ -321,11 +321,6 @@ ul {
       
       $(function() {
          
-    	 $('#first').click(function(){
-    		alert("수신"); 
-    	 });
-    	  
-    	  
          $('#taskForm').submit(function(){
             var startDate = $('#makeuserUpdateDate').val();
             var lastDate = $('#makeuserUpdateDate2').val();
@@ -413,14 +408,10 @@ ul {
                   console.log("departMent : " + departMent);
 
                   $.each(departMent, function(index) {
-                     litag += "<li onclick='seeDepart(this, "
-                     litag += departMent[index].branch_no
-                     litag += ")'>"
-                     litag += departMent[index].branch_name+"/"+departMent[index].branch_no
-                     litag += "</li>";"
-                  });
-
-                  litag += "</ul>";
+                		litag += "<li onclick='seeDepart(this, choose)'>"+departMent[index].branch_name+"</li>";
+  					});
+  					litag +="</ul>";
+                  
 
                   $('#organization').html(litag);
 
