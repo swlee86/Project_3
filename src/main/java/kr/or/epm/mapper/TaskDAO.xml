@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 업무 등록하기 -->
 	<!-- task_step_no (2) : 미진행, step_no (4) : 미승인 -->
-	<insert id="insertTask">
+	<insert id="insertTask" parameterType="kr.or.epm.VO.Task">
 		insert into task(task_no, cg_no, sign, 
 						 task_name, deadline, content, 
 						 rec_emp_no, rec_name, rec_date, 

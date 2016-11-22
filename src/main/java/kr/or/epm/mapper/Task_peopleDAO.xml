@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 업무 참여자 추가하기 -->
-	<insert id="insertTask_people">
+	<insert id="insertTask_people" parameterType="kr.or.epm.VO.Task_people">
 		insert into task_people(task_no, emp_no)
 		values(#{task_no}, #{emp_no})
 	</insert>

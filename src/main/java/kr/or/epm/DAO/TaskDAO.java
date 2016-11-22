@@ -7,7 +7,7 @@ import kr.or.epm.VO.Task;
 public interface TaskDAO {
 	
 	// 업무 등록하기
-	public int insertTask();
+	public int insertTask(Task task);
 	
 	// 업무 중요설정
 	public int updateTask_sign();
