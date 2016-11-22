@@ -159,11 +159,7 @@
 							}
 						 }
 				)
-				
-				
 			}
-			
-	
 		});
 
 		//퇴근 버튼 클릭시 - ajax 로 현재 시간 디비에 넣어줘야 함.
@@ -194,16 +190,10 @@
 								   },
 							success : function(data){			
 								
-								
-								
-								
 								}
-							}
-						 
+							} 
 				)
-				
 			}
-			
 		});
 		
 		//조퇴 버튼 클릭시 - ajax 로 현재 시간 디비에 넣어줘야 함.
@@ -229,19 +219,16 @@
 	//근무시간 구하는 함수.
 	function workingTime(stTime, endTime) {
 
-		
 		var st = $('#start').html();
 		var h = st.substr(0,2);
 		var m = st.substr(3,5);
-		//alert("end : " +endWorkStatus);
-		//startWorkStatus = endWorkStatus;
+
 		startWorkStatus.setHours(h,m,0,0);
 
 		var st = stTime;
 		var et = endTime;
 
-		if (st != '' && et != '') {
-			
+		if (st != '' && et != '') {	
 			/* 	var sthour = st.substr(0,2);
 				//분
 				var stMin = st.substr(3,5);
@@ -253,27 +240,19 @@
 			 */
 			alert("전역 : " + endWorkStatus + "/" + startWorkStatus);
 
-			
 			//시간
 			var resultHour = (endWorkStatus - startWorkStatus) / 60000 / 60;
 			var resultHour2 = Math.floor(resultHour);
 			
 			var tempHour = 60*resultHour2;
-			//alert("temp : " + tempHour);
 			
 			//분
 			var result = ((endWorkStatus - startWorkStatus) / 60000 -tempHour);
-			//alert("분 : " + result);
 			resultMin = checkTime(result);
-
-		
-
-			//alert("시간 ? " + resultHour2);
 
 			var resultTime = resultHour2 + ":" + resultMin;
 
 			$('#workTime').html(resultTime);
-			
 			
 			$.ajax(
 					 {
@@ -282,27 +261,20 @@
 									commute_time : $("#workTime").html(),
 									emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
 							   },
-						success : function(data){	
-							
+						success : function(data){							
 							$.ajax(
 									 {
-										url : "updateCommute_acc.do",
+										url : "updateCommute_add.do",
 										data : {
-													out_time : $("#end").html(),
 													emp_no : '91001050',
 											   },
 										success : function(data){
 										}
 									 }
 							)
-							
-							
 						}
 					 }
 			)
-			
-			
-			
 		} else {
 			alert("else 탐");
 			$('#workTime').html("00:00");

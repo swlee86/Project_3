@@ -50,6 +50,7 @@ public interface CommuteDAO {
 	// 부서별 출퇴근시간(최신) 
 	public Set_time selectSetTime(String emp_no);
 	
-	//
+	// 추가근무시간 업데이트
+	public int updateCommute_addtime(HashMap map);
 	
 }

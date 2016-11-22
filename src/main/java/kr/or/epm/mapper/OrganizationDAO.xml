@@ -4,59 +4,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.OrganizationDAO">
 
-	<!-- 작성일 : 2016-11-20 작성자 : 백승아 사용 목적 : 조직도에 대한 mapper -->
+   <!-- 작성일 : 2016-11-20 작성자 : 백승아 사용 목적 : 조직도에 대한 mapper -->
 
-	<!--지점 리스트 뿌리기 -->
-	<select id="selectBranch" resultType="kr.or.epm.VO.Organization">
-		select branch_name,
-		depth
-		from branch
-		where his_check = '1'
-	</select>
+   <!--지점 리스트 뿌리기 -->
+   <select id="selectBranch" resultType="kr.or.epm.VO.Organization">
+      select branch_name,
+      depth
+      from branch
+      where his_check = '1'
+   </select>
 
-	<!--부서 -->
-	<select id="selectDept" resultType="kr.or.epm.VO.Organization">
-		select dept_name, d.depth
-		from dept d join branch b
-		on d.branch_no = b.branch_no
-		where d.his_check
-		= '1' and d.branch_name = #{branch_name}
-	</select>
+   <!--부서 -->
+   <select id="selectDept" resultType="kr.or.epm.VO.Organization">
+      select dept_name, d.depth
+      from dept d join branch b
+      on d.branch_no = b.branch_no
+      where d.his_check
+      = '1' and d.branch_name = #{branch_name}
+   </select>
 
-	<!-- 조직도 출력하기 -->
-	<select id="selectOrganization">
-		select b.branch_name, b.depth, d.dept_name, d.depth, l.low_dept_name, l.depth, e.emp_no, e.emp_name
-		from (select branch_no, branch_name, depth
-      		  from branch
-      		  where his_check = '1') b join (select dept_no, branch_no, dept_name, depth
-                                     		 from dept
-                                     		 where his_check = '1') d
-	    on b.branch_no = d.branch_no
-		join (select low_dept_no, dept_no, low_dept_name, depth
-      		  from low_dept
-      		  where his_check = '1') l
-		on d.dept_no = l.dept_no
-		join emp e
-		on l.low_dept_no = e.low_dept_no
-		
-	</select>
-	
-	<!-- 하위부서 -->
-	<select id="selectlowDept" resultType="kr.or.epm.VO.Organization">
-		select low_dept_name,
-		l.depth
-		from low_dept l join dept d
-		on l.dept_no = d.dept_no
-		where
-		l.his_check = '1' and d.dept_name = #{dept_name}
-	</select>
-	
-	<!--사원 정보 -->
-	<select id="selectEmpInfo" resultType="kr.or.epm.VO.Organization">
-		select emp_no, emp_name
-		from emp e join low_dept d
-		on d.low_dept_no = e.low_dept_no
-		where d.low_dept_name = #{low_dept_name}
-	</select>
+   <!-- 조직도 출력하기 -->
+   <select id="selectOrganization">
+      select b.branch_name, b.depth, d.dept_name, d.depth, l.low_dept_name, l.depth, e.emp_no, e.emp_name
+      from (select branch_no, branch_name, depth
+              from branch
+              where his_check = '1') b join (select dept_no, branch_no, dept_name, depth
+                                            from dept
+                                            where his_check = '1') d
+       on b.branch_no = d.branch_no
+      join (select low_dept_no, dept_no, low_dept_name, depth
+              from low_dept
+              where his_check = '1') l
+      on d.dept_no = l.dept_no
+      join emp e
+      on l.low_dept_no = e.low_dept_no
+      
+   </select>
+   
+   <!-- 하위부서 -->
+   <select id="selectlowDept" resultType="kr.or.epm.VO.Organization">
+      select low_dept_name,
+      l.depth
+      from low_dept l join dept d
+      on l.dept_no = d.dept_no
+      where
+      l.his_check = '1' and d.dept_name = #{dept_name}
+   </select>
+   
+   <!--사원 정보 -->
+   <select id="selectEmpInfo" resultType="kr.or.epm.VO.Organization">
+      select emp_no, emp_name
+      from emp e join low_dept d
+      on d.low_dept_no = e.low_dept_no
+      where d.low_dept_name = #{low_dept_name}
+   </select>
 
 </mapper>

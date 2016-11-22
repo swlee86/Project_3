@@ -84,8 +84,8 @@
                     <tbody>
                   	<c:forEach var="list" items="${list}">
                     <tr>
-                    	<td style="text-align:center;padding-top:10px;">
-                    	<input type="checkbox" class="i-checks" name="checkbox" id="${list.rn}                                                                                                                                                                                                                                                                                                                                                      ">
+                    	<td style="text-align:center;padding-top:10px;" id="333">
+                    		<input type="checkbox" class="i-checks" name="checkbox" id="${list.rn}">
                     	</td>
                         <td  style="text-align:center;padding-top:10px;">${list.rn}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.id}</td>
@@ -96,7 +96,7 @@
                         <td  style="text-align:center;padding-top:10px;">${list.low_dept_name}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.position_name}</td>
                         <td>
-                        	<select class="form-control input-sm" id="selectRole">
+                        	<select class="form-control input-sm" id="selectRole${list.rn}" name="selectRole">
                         		<option value="0"  <c:if test="${0 == 0}">selected</c:if>>${list.role_name}</option>
                         		<c:forEach var="role" items="${rolelist}">
                         		<option value="${role.role_no}">${role.role_name}</option>
@@ -109,7 +109,7 @@
                 </table>    
 			</div>
 		    <div class="row" style="text-align:right; margin-right:5px;">
-            	<input type="submit" class="btn btn-sm btn-success" id="giveBtn" value="권한 부여">
+            	<input type="button" class="btn btn-sm btn-success" id="giveBtn" value="권한 부여">
             </div>
             </form>
 
