@@ -38,13 +38,20 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<form class="form-inline" action="CommuteMonth.do" method="post">
-						<label class="form-control">월별 근태 내역 검색하기</label> 
-						<input type="text" class="form-control" id="select_date" name="select_date" value="${select_year}-${select_month}">
-						<button type="submit" class="btn btn-sm btn-default" id="addCommute">
-							<span id="searchicon" class="fa fa-search"></span>
-						</button>
-					</form>
+					<div class="row" style="background-color: #f3f3f3; height: 60px;">
+					<br>
+						<form class="form-inline" action="CommuteMonth.do" method="post">
+							<div class="col-md-offset-1 col-md-1">
+								<b>근무년월</b>
+							</div>
+							<div class=" col-md-4">
+								<input type="text" class="form-control input-sm" id="select_date" name="select_date" value="${select_year}-${select_month}">
+								<button type="submit" class="btn btn-sm btn-default" id="addCommute" style="background-color: #f07070; color:white" >
+									<span id="searchicon" class="fa fa-search"></span>&nbsp;검색&nbsp;
+								</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -56,36 +63,37 @@
 			
 					<br />
 					<div class="table-responsive">
-						<div>
-							<label>${select_year}년 ${select_month}월 근태내역</label>
-						</div>
-						<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped"">
-							<tr>
-								<th style="text-align: center;">사번</th>
-								<th >성명</th>
-								<th>일시</th>
-								<th>출근시간</th>
-								<th>퇴근시간</th>
-								<th>근무시간</th>
-								<th>추가근무시간</th>
-								<th>총 누적 근무시간</th>
-								<th>총 누적 추가근무시간</th>
-							</tr>
-							
-							<c:forEach var="list" items="${CommuteList}">
-								<tr>
-									<td>${list.emp_no}</td>
-									<td>${list.emp_name}</td>
-									<td>${list.regdate}</td>
-									<td>${list.in_time}</td>
-									<td>${list.out_time}</td>
-									<td>${list.commute_time}</td>
-									<td>${list.add_time}</td>
-									<td>${list.acc_commute_time}</td>
-									<td>${list.acc_add_time}</td>
+						
+						<div class="table-responsive">
+							<table cellpadding="1" cellspacing="1" class="table table-bordered table-hover"">
+								<tr colspan="9" height="20px;"><h4>${select_year}년 ${select_month}월 근태현황</h4></tr>
+								<tr style="background-color: #f6f6f6;">
+									<th style="text-align: center;">사번</th>
+									<th style="text-align: center;">성명</th>
+									<th style="text-align: center;">일시</th>
+									<th style="text-align: center;">출근시간</th>
+									<th style="text-align: center;">퇴근시간</th>
+									<th style="text-align: center;">근무시간</th>
+									<th style="text-align: center;">추가근무시간</th>
+									<th style="text-align: center;">총 누적 근무시간</th>
+									<th style="text-align: center;">총 누적 추가근무시간</th>
 								</tr>
-							</c:forEach>
-						</table>
+								
+								<c:forEach var="list" items="${CommuteList}">
+									<tr>
+										<td style="text-align: center;">${list.emp_no}</td>
+										<td style="text-align: center;">${list.emp_name}</td>
+										<td style="text-align: center;">${list.regdate}</td>
+										<td style="text-align: center;">${list.in_time}</td>
+										<td style="text-align: center;">${list.out_time}</td>
+										<td style="text-align: center;">${list.commute_time}</td>
+										<td style="text-align: center;">${list.add_time}</td>
+										<td style="text-align: center;">${list.acc_commute_time}</td>
+										<td style="text-align: center;">${list.acc_add_time}</td>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>	
 					</div>
 				</div>
 			</div>
