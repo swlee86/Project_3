@@ -32,8 +32,8 @@
 				</div>
 
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#tab-1">수신</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class="active"><a data-toggle="tab" href="#tab-1" id="informSuTab">수신</a></li>
+					<li class=""><a data-toggle="tab" href="#tab-2" id="informSongTab">송신</a></li>
 				</ul>
 
 				<div class="tab-content">
