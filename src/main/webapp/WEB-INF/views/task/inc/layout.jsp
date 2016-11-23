@@ -378,7 +378,18 @@ ul {
       
       
       $(function() {
-         
+    	  //업무 보고 송신
+    	  $('#informSongTab').click(function(){
+    		 $.ajax(
+    				  {
+    			 		url:"taskInform_song.do",
+    			 		success : function(data){
+    			 			console.log("아작스 : " +data);
+    			 		}
+    		          }
+    		       );	    
+    	  });
+    	  
     	  //송신 탭 클릭 시 
     	  $('#sendTab').click(function(){
     		  $.ajax(
