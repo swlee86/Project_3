@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<!-- 행아웃 필요 스크립트 -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <aside id="menu">
     <div id="navigation">
         <div class="profile-picture">
@@ -37,7 +41,7 @@
 		<!-- <span class="label label-success pull-right">버튼달고 싶으면 여기에 메세지 입력</span> -->
         <ul class="nav" id="side-menu">
             <li class="active">
-                <a href="index.html"> <span class="nav-label">Main</span> <span class="label label-success pull-right"></span> </a>
+                <a href="index.do"> <span class="nav-label">Main</span> <span class="label label-success pull-right"></span> </a>
             </li>
             <li>
                 <a href="private_memo.do"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right"></span> </a>
@@ -60,6 +64,12 @@
                     <li><a href="mailbox_send.do">보낸메일함 (수신 확인)</a></li>
                     <li><a href="#">스팸 메일 관리</a></li>
                     <li><a href="mailbox_trash.do">휴지통</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><span class="nav-label">회의</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li style="text-align: center;"><div class="g-hangout" data-render="createhangout"></div></li>
                 </ul>
             </li>
             <li>
