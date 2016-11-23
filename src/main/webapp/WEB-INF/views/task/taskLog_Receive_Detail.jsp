@@ -36,7 +36,7 @@
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">제목</th>
 										<td style="width:40%">${detail.task_name}</td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">승인상태</th>
-										<td style="width:40%"><button class="btn btn-xs btn-warning2">${detail.step_no}</button></td>
+										<td style="width:40%"><button class="btn btn-xs btn-warning2">${detail.step_name}</button></td>
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">수신자</th>

@@ -210,34 +210,14 @@
 											<th>NO</th>
 											<th width="30%">업무명</th>
 											<th>업무기한</th>
-											<th>요청자</th>
-											<th>요청일</th>
-											<th>승인단계</th>
-											<th>확인결과</th>
+											<th>수신자</th>
+											<th>송신일</th>
+											<th>승인결과</th>
+											<th>수신확인</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>4</td>
-											<td><a href="taskInform_Transmit_Detail.do">UI/UX 구현(클릭하세요)</a></td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td><button class="btn btn-xs btn-info">&nbsp;&nbsp;승인&nbsp;&nbsp;</button></td>
-		
-											<td><font color="blue">&nbsp;&nbsp;<b>확인</b>&nbsp;&nbsp;</font></td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>4</td>
-											<td>DB 구현</td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td><button class="btn btn-xs btn-primary2">&nbsp;&nbsp;보류&nbsp;&nbsp;</button></td>
-											<td><font color="blue">&nbsp;&nbsp;<b>확인</b>&nbsp;&nbsp;</font></td>
-										</tr>
+									<tbody id="secondSongTbody">
+										
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">

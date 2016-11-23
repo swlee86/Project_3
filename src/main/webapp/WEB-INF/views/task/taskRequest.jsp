@@ -244,8 +244,7 @@
 											<td>${list.deadline}</td>
 											<td>${list.emp_name}</td>
 											<td>${list.send_date}</td>
-
-											<td><button class="btn btn-xs btn-warning2">미승인</button></td>
+											<td><button class="btn btn-xs btn-warning2">${list.step_name}</button></td>
 										</tr>
 										
 										
