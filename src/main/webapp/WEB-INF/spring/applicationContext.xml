@@ -73,7 +73,9 @@
 
 	<!-- transaction start -->
    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-         <property name="dataSource" ref="driverManagerDataSource" />  <!-- 바꿔줌 -->
+         <property name="dataSource" ref="driverManagerDataSource" /> 
     </bean>
     <!-- transaction end -->
+    
+
 </beans>
