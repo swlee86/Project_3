@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -28,52 +28,52 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="hpanel">
-				<div class="panel-heading">
-					<c:set var="count" value="${ count }"/>
-					전체 : <font color="coral">${ count }</font> 개
-				</div>
-
 				<ul class="nav nav-tabs" id="tabs">
 					<li class="active"><a data-toggle="tab" href="#tab-1">수신</a></li>
 					<li class=""><a data-toggle="tab" href="#tab-2">송신</a></li>
 				</ul>
-
 				<div class="tab-content" id="printTask">
-				<!-- 수신 -->
+					<!-- 수신 -->
 					<div id="tab-1" class="tab-pane active">
 						<div class="panel-body">
+							<div class="panel-heading">
+								<c:set var="count" value="${ count }" />
+								전체 : <font color="coral">${ count }</font> 개
+							</div>
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="taskLog_search.do" class="form-inline">
-									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
-									
+									<table style="margin-top: 10px; margin-bottom: 10px;"
+										width="100%">
+
 										<!-- 하나로 합쳐보기 -->
 										<tr>
-											<th style="text-align: right; padding-right: 20px;">
-												<select class="form-control input-sm" name="selectSearch" id="selectSearch" onchange="search()">
+											<th style="text-align: right; padding-right: 20px;"><select
+												class="form-control input-sm" name="selectSearch"
+												id="selectSearch" onchange="search()">
 													<option value="task_no">NO</option>
 													<option value="task_name">업무명</option>
 													<option value="deadline">업무기한</option>
 													<option value="emp_no">송신자</option>
 													<option value="send_date">송신일</option>
-												</select>
-											</th>
-											
+											</select></th>
+
 											<td>
-											<div id="searchInput">
-												<input type="text" class="form-control input-sm" 
-												width="90%" style="height: 27px;" name="input" id="input">
-											</div>
+												<div id="searchInput">
+													<input type="text" class="form-control input-sm"
+														width="90%" style="height: 27px;" name="input" id="input">
+												</div>
 											</td>
-											
+
 											<td>
 												<button class="btn btn-sm"
 													style="background-color: #f07070; color: white"
 													type="submit">
 													<span class="fa fa-search"></span>&nbsp; 검색 &nbsp;
 												</button>
-												
+
 												<button class="btn btn-sm"
-													style="background-color: #f07070; color: white" onclick="window.location.href='taskLog.do'">
+													style="background-color: #f07070; color: white"
+													onclick="window.location.href='taskLog.do'">
 													<span class="fa fa-search"></span>&nbsp; 전체보기&nbsp;
 												</button>
 											</td>
@@ -89,7 +89,7 @@
 								<table cellpadding="1" cellspacing="1" class="table table-hover">
 									<thead>
 										<tr>
-											<th><input type="checkbox" style="margin-left:20px"></th>
+											<th><input type="checkbox" style="margin-left: 20px"></th>
 											<th>NO</th>
 											<th>중요</th>
 											<th width="30%">업무명</th>
@@ -100,46 +100,50 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="list" items="${ list }">
-										<tr>
-											<td>
-												<input type="checkbox" style="margin-left:20px" name="checkbox" id="${ list.task_no }">
-											</td>
-											<td>${ list.task_no }</td>
-											<td>
-												<div class="checkbox checkbox-danger" style="padding-top:0px;margin-top:0px;">
-													<input type="checkbox" disabled <c:if test="${ list.sign == '1' }"> checked </c:if>>
-													<label></label>
-												</div>
-											</td>
-											<td><a href="taskLog_Receive_Detail.do" <c:if test="${ list.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if> >${ list.task_name }</a></td>
-											<td>${ list.deadline }</td>
-											<td>${ list.emp_name }</td>
-											<td>${ list.send_date }</td>
-											<td>
-												<c:choose>
-													<c:when test="${ list.step_no == '4'}">
-														<button class="btn btn-xs btn-warning2" >미승인</button>
-													</c:when>
-													<c:when test="${ list.step_no == '1'}">
-														<button class="btn btn-xs btn-info" >승인</button>
-													</c:when>
-													<c:when test="${ list.step_no == '3' }">
-														<button class="btn btn-xs btn-primary2">보류</button>
-													</c:when>
-												</c:choose>
-											</td>
-										</tr>
-									</c:forEach>
+										<c:forEach var="list" items="${ list }">
+											<tr>
+												<td><input type="checkbox" style="margin-left: 20px"
+													name="checkbox" id="${ list.task_no }"></td>
+												<td>${ list.task_no }</td>
+												<td>
+													<div class="checkbox checkbox-danger"
+														style="padding-top: 0px; margin-top: 0px;">
+														<input type="checkbox" disabled
+															<c:if test="${ list.sign == '1' }"> checked </c:if>>
+														<label></label>
+													</div>
+												</td>
+												<td><a href="taskLog_Receive_Detail.do"
+													<c:if test="${ list.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>${ list.task_name }</a></td>
+												<td>${ list.deadline }</td>
+												<td>${ list.emp_name }</td>
+												<td>${ list.send_date }</td>
+												<td><c:choose>
+														<c:when test="${ list.step_no == '4'}">
+															<button class="btn btn-xs btn-warning2">미승인</button>
+														</c:when>
+														<c:when test="${ list.step_no == '1'}">
+															<button class="btn btn-xs btn-info">승인</button>
+														</c:when>
+														<c:when test="${ list.step_no == '3' }">
+															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+													</c:choose></td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
-									<button class="btn btn-sm btn-default demo4" id="removeBtn" style="padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;">업무삭제</button>
+									<button class="btn btn-sm btn-success "
+										style="padding-right: 15px; padding-left: 15px; font-weight: bold; font-size: 13px;"
+										onclick="window.location.href='taskWrite.do'">업무 등록</button>
+									<button class="btn btn-sm btn-default demo4" id="removeBtn"
+										style="padding-right: 15px; padding-left: 15px; font-weight: bold; font-size: 13px;">업무삭제</button>
 								</div>
 							</div>
 						</div>
-						<div class="panel-footer" style="text-align: center;background-color:#f5f5f5">
+						<div class="panel-footer"
+							style="text-align: center; background-color: #f5f5f5">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default">
 									&nbsp;<i class="fa fa-chevron-left"></i>
@@ -173,7 +177,8 @@
 						<div class="panel-body">
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="" class="form-inline">
-									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
+									<table style="margin-top: 10px; margin-bottom: 10px;"
+										width="100%">
 										<tr>
 											<td width="10%"></td>
 											<th style="text-align: right; padding-right: 20px;">수신자
@@ -186,8 +191,10 @@
 											<td>
 												<div class="form-inline">
 													<div class="input-group date">
-														<input type="text" class="form-control input-sm"  id="makeuserUpdateDate"> 
-														<span class="input-group-addon" style="color:#fd7d86 "><i class="fa fa-calendar"></i></span>
+														<input type="text" class="form-control input-sm"
+															id="makeuserUpdateDate"> <span
+															class="input-group-addon" style="color: #fd7d86"><i
+															class="fa fa-calendar"></i></span>
 													</div>
 												</div>
 											</td>
@@ -221,7 +228,7 @@
 								<table cellpadding="1" cellspacing="1" class="table table-hover">
 									<thead>
 										<tr>
-											<th><input type="checkbox" style="margin-left:20px"></th>
+											<th><input type="checkbox" style="margin-left: 20px"></th>
 											<th>NO</th>
 											<th width="30%">업무명</th>
 											<th>업무기한</th>
@@ -232,51 +239,50 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="list2" items="${ list2 }">
-										<tr>
-											<td>
-											<input type="checkbox" style="margin-left:20px" name="checkbox2" id="${ list2.task_no }">
-											</td>
-											<td>${ list2.task_no }</td>
-											<td><a href="taskLog_Transmit_Detail.do">${ list2.task_name }</a></td>
-											<td>${ list2.deadline }</td>
-											<td>${ list2.rec_name }</td>
-											<td>${ list2.send_date }</td>
-											<td>
-												<c:choose>
-													<c:when test="${ list2.step_no == '4'}">
-														<button class="btn btn-xs btn-warning2">미승인</button>
-													</c:when>
-													<c:when test="${ list2.step_no == '1'}">
-														<button class="btn btn-xs btn-info">승인</button>
-													</c:when>
-													<c:when test="${ list2.step_no == '3' }">
-														<button class="btn btn-xs btn-primary2">보류</button>
-													</c:when>
-												</c:choose>
-											</td>
-		
-											<td>
-												<c:choose>
-													<c:when test="${ list2.rec_date == null }">
-														<font color="red"><b>미확인</b></font>
-													</c:when>
-													<c:when test="${ list2.rec_date != null }">
-														<font color="blue"><b>확인</b></font>
-													</c:when>
-												</c:choose>
-											</td>
-										</tr>
+										<c:forEach var="list2" items="${ list2 }">
+											<tr>
+												<td><input type="checkbox" style="margin-left: 20px"
+													name="checkbox2" id="${ list2.task_no }"></td>
+												<td>${ list2.task_no }</td>
+												<td><a href="taskLog_Transmit_Detail.do">${ list2.task_name }</a></td>
+												<td>${ list2.deadline }</td>
+												<td>${ list2.rec_name }</td>
+												<td>${ list2.send_date }</td>
+												<td><c:choose>
+														<c:when test="${ list2.step_no == '4'}">
+															<button class="btn btn-xs btn-warning2">미승인</button>
+														</c:when>
+														<c:when test="${ list2.step_no == '1'}">
+															<button class="btn btn-xs btn-info">승인</button>
+														</c:when>
+														<c:when test="${ list2.step_no == '3' }">
+															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+													</c:choose></td>
+
+												<td><c:choose>
+														<c:when test="${ list2.rec_date == null }">
+															<font color="red"><b>미확인</b></font>
+														</c:when>
+														<c:when test="${ list2.rec_date != null }">
+															<font color="blue"><b>확인</b></font>
+														</c:when>
+													</c:choose></td>
+											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
-									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
+									<button type="button" class="btn btn-sm btn-success "
+										style="padding-right: 15px; padding-left: 15px; font-weight: bold; font-size: 13px;"
+										onclick="window.location.href='taskWrite.do'">업무 등록</button>
+									<button type="button" class="btn btn-sm btn-default demo4"
+										style="padding-right: 15px; padding-left: 15px; font-weight: bold; font-size: 13px;">업무삭제</button>
 								</div>
 							</div>
 						</div>
-							<div class="panel-footer" style="text-align: center;background-color:#f5f5f5">
+						<div class="panel-footer"
+							style="text-align: center; background-color: #f5f5f5">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default">
 									&nbsp;<i class="fa fa-chevron-left"></i>
