@@ -241,7 +241,7 @@ function seeEmpMember(obj,low_dept_no){
             	   makeTable+="<span style='font-size: 15px'>"+emp[index].emp_no+"</span>"		
             	   makeTable+="</a></h3>"            		
             	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp[index].branch_name+"</div>"   
-            	   makeTable+="<p>01020768626 <br>"+emp[index].branch_name+" > "+ emp[index].dept_name+" > "+emp[index].low_dept_name+"</p></div></div></div>"
+            	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp[index].cell_phone+"<br>"+emp[index].branch_name+">"+emp[index].dept_name+" > "+emp[index].low_dept_name+"</p></div></div></div>"
             	   
 
                });

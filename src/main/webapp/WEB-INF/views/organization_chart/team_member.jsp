@@ -92,13 +92,15 @@
 				</font>
 			</div>
 			<div class="modal-footer">
-				<form action="chartAddConact" method="post">
+				<form action="addContact.do" method="post">
 				<input type="hidden" name="emp_no" value="${elist.emp_no}">
-				<input type="hidden" name="emp_name" value="${elist.emp_name}">
-				<input type="hidden" name="branch_name" value="${elist.branch_name}">
-				<input type="hidden" name="low_dept_name" value="${elist.low_dept_name}">
-				<input type="hidden" name="dept_name" value="${elist.dept_name}">
-				<input type="hidden" name="cell_phone" value="${elist.cell_phone}">
+				<input type="hidden" name="name" value="${elist.emp_name}">
+				<input type="hidden" name="attach" value="${elist.branch_name}&nbsp;${elist.dept_name}&nbsp;${elist.low_dept_name}">
+				<input type="hidden" name="tel1" value="${elist.cell_phone}">
+				<input type="hidden" name="tel2" value="${elist.emp_tel}">
+				<input type="hidden" name="birth" value="${elist.birth}">
+				<input type="hidden" name="pic" value="${elist.pic}">
+				<input type="hidden" name="mail" value="${elist.email}">
 				<button type="button" class="btn btn-default btn-sm"data-dismiss="modal">닫기</button>
 				<button type="submit" class="btn btn-primary btn-sm demo2">주소록 등록</button>
 				</form>
