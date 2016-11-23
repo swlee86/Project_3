@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.ContactService;
@@ -117,8 +115,8 @@ public class OrganizationChartController {
 			String emp_no = emp.getEmp_no();//사번
 			System.out.println("emp_no:"+emp_no);
 			
-			contact.setGroup_no("2");
-			contact.setGroup_name("회사");
+			contact.setGroup_no("1");
+			/*contact.setGroup_name("회사");*/
 			
 			System.out.println("contact.tostring() : "+contact.toString());
 			int result = contactService.insertContact(contact); //주소록 테이블에 삽입 => 현재 글번호리턴

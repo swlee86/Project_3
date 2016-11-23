@@ -77,6 +77,7 @@ public class ContactService {
 	public int insertContact(Contact contact){
 		System.out.println("insertContact() 서비스 ");
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
+		System.out.println("Service Contact 데이터 : " + contact.toString());
 		int result = contactDAO.insertContact(contact);
 		System.out.println("insert문 결과 restult : "+ result);
 		result = selectMaxContact_No(contact.getName());
