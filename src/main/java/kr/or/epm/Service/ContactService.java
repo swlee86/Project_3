@@ -131,10 +131,14 @@ public class ContactService {
 			System.out.println("존재여부 result : "+result);
 			
 			if(result > 0){  //1:존재 ->그룹번호뽑기
+				
 				group_no= selectGroup_no(group_name);
+				System.out.println("그룹번호찾기 : " + group_no);
 			}else if(result == 0){  //0:존재x->그룹추가
+				System.out.println("그룹추가");
 				insertGroup(group_name); //그룹추가
-				group_no = selectGroup_no(group_name);//그룹번호		
+				group_no = selectGroup_no(group_name);//그룹번호	
+				System.out.println("그룹번호찾기 : " + group_no);
 			}
 			
 			//groups에 update 처리
@@ -168,12 +172,15 @@ public class ContactService {
 	// 개인주소록테이블 update(그룹번호 추가 + 전체 )
 	public int updateGroups_insert(String emp_no, String group_no){
 		System.out.println("updateGroups_insert() 서비스");
+		System.out.println("emp_no : "+emp_no+"/ group_no : "+group_no);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("emp_no", emp_no);
 		map.put("group_no", group_no);
 	
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
-		int result = contactDAO.updateGroups_insert(map);
+		int result = 0;
+		System.out.println("hashmap : " + map.toString());
+		result = contactDAO.updateGroups_insert(map);
 		
 		System.out.println("처리 result : "+result);
 		return result;
