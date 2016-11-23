@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on t.cg_no = c.cg_no
 		left outer join task_people p
 		on t.task_no = p.task_no
-		where t.task_no=#{task_no}
+		where t.task_no = #{task_no}
 	</select>
 	
 	
