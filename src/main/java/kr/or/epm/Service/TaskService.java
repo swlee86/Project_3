@@ -128,6 +128,7 @@ public class TaskService {
 	//업무 요청, 일지 > 수신 서비스
 	public List<Task> selectTask_rec(String emp_no, String cg_no){
 		System.out.println("selectTask 서비스 : "+emp_no);
+		
 		//업무 요청 페이지
 		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
 		
@@ -172,15 +173,56 @@ public class TaskService {
 	
 	//업무 요청 > 송신 
 
-	public int countTask(String cg_no) {
+	// 업무 글 개수 구하기
+	public int countTask(String emp_no, String cg_no, String RecSend) {
 		
 		System.out.println("업무 글 개수 구하기");
-		
+		System.out.println("cg_no : " + cg_no);
+
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
-		int count = dao.countTask(cg_no);
+		int count = 0;
+		
+		if(RecSend.equals("Rec")) {
+			count = dao.countTask_rec(emp_no, cg_no);
+		} else if(RecSend.equals("Send")) {
+			count = dao.countTask(emp_no, cg_no);
+		}
 		
 		return count;
 	};
+	
+	// 수신함에서 업무 삭제하기
+	public int deleteTask(String task_no) {
+		
+		System.out.println("업무 삭제하기");
+		System.out.println("task_no : " + task_no);
+		
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		int result = dao.deleteTask_rec(task_no);
+				
+		return result;
+	}
+	
+	// 업무 송신함 목록 가져오기
+	public List<Task> selectTask(String emp_no, String cg_no){
+		
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		
+		List<Task> selectList = dao.selectTask(emp_no, cg_no);
+		
+		return selectList;
+	}
+	
+	// 검색하기
+	public List<Task> searchTask(String emp_no, String cg_no, String key, String value) {
+		
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		
+		List<Task> searchList = dao.searchTask(emp_no, cg_no, key, value);
+		System.out.println("sql 결과값 : " + searchList.size());
+		
+		return searchList;
+	}
 }
 
 

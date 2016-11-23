@@ -239,6 +239,41 @@ ul {
    
    var choose;
    
+   // 업무 삭제하기
+   function removeTask() {
+	   console.log("삭제해볼까나");
+	    
+	   var arr = new Array();
+
+		$("input[name='checkbox']:checked").each(function(i) {
+			
+
+			console.log("글번호 : " + $(this).attr('id'));
+			
+			var task_no = $(this).attr('id');
+			console.log("task_no : " + task_no);
+			
+           arr.push(task_no);
+
+		});
+		
+		console.log(arr);
+		
+			$.ajax(
+					   {
+							url : "task_remove.do",
+							type: "post",
+							data : {
+										arr : arr
+							       },
+							success : function(data){
+								console('업무 삭제 완료했습니다');
+							}
+			           }
+			      );
+		}
+   
+   
       $('#makeuserUpdateDate').datepicker(
             {
                changeMonth : true,
@@ -279,6 +314,7 @@ ul {
             closeOnCancel : false
          }, function(isConfirm) {
             if (isConfirm) {
+            	removeTask();
                swal("삭제되었습니다", "선택하신 업무가 삭제되었습니다", "success");
             } else {
                swal("취소되었습니다.", "선택하신 업무가 유지됩니다 :)", "error");
@@ -575,6 +611,24 @@ ul {
          $('#myModal6').modal("hide");
       }
       
+      // 검색하기
+      function search() {
+    	  var selected = $('#selectSearch option:selected').val();
+    	  console.log("선택된 값 : " + selected);
+    	  
+    	  if(selected == 'deadline' || selected == 'send_date') {
+    		  var data = "<div class='form-inline'>";
+    		  data += "<div class='input-group date'>";
+    		  data += "<input type='text' class='form-control input-sm' name='input' id='input'>";
+    		  data += "<span class='input-group-addon' style='color:#fd7d86'><i class='fa fa-calendar'></i></span>";
+    		  data += "</div></div>";
+    		  $('#searchInput').empty().append(data);
+    	  } else {
+    		  var data = "<input type='text' class='form-control input-sm'";
+    		  data += "width='90%' style='height: 27px;' name='input' id='input'>";
+    		  $('#searchInput').empty().append(data);
+    	  }
+      }
    </script>
 </body>
 </html>
