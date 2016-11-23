@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.epm.DAO.ApprovalDAO;
 import kr.or.epm.DAO.OrganizationDAO;
 import kr.or.epm.DAO.TaskDAO;
 import kr.or.epm.DAO.Task_peopleDAO;
@@ -199,6 +200,8 @@ public class TaskService {
 		
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		int result = dao.deleteTask_rec(task_no);
+		
+		System.out.println("결과값 : " + result);
 				
 		return result;
 	}
@@ -223,6 +226,32 @@ public class TaskService {
 		
 		return searchList;
 	}
+
+	//승인 여부 선택시 호출 되는 서비스 메서드
+	public int approval(String approval,String task_no){
+		
+		int result = 0;
+		ApprovalDAO approvalDAO = sqlsession.getMapper(ApprovalDAO.class);
+		result = approvalDAO.updateApprovalTask(approval, task_no);
+		return result;
+	}
+
+	//업무 요청 > 송신탭 > ajaxJson 용 
+	public List<Task> listTask(String emp_no, String cg_no){
+		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
+		List<Task> list = taskDAO.selectTask(emp_no, cg_no);
+		return list;
+	}
+
+	//업무 요청 > 참여 탭 > ajaxJson 용
+	public List<Task_people> selectTaskRequest_Participation_people(String emp_no){
+		System.out.println("서비스 emp_no : "+emp_no);
+		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
+		List<Task_people> list = taskDAO.selectTask_people_ForMe(emp_no);
+		return list;
+	}
+
 }
+
 
 

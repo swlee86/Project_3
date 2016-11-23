@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/static_custom.css">
+    <!-- alert 창 -->
+	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
 <!--jQuery UI CSS-->
 <link rel="stylesheet"
@@ -104,16 +106,11 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+
+<!-- alert -->
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+
 <script>
-
-//관리자가 사원에게 권한 부여
-function multiCheck(role_no, emp_no, role_name) {
-	this.role_no = role_no;
-	this.emp_no = emp_no;
-	this.role_name = role_name;
-}
-
-var checkboxValues = new Array();
 
 	//부서  -  부서 관리 페이지에서 지점 선택시
 	function departMentFuc(option){
@@ -313,42 +310,46 @@ var checkboxValues = new Array();
 	
 	$('#giveBtn').click(function(){
 		
-		var arr = new Array();
-		var obj = new Object();
+    	var arr = new Array();
+
+	
+	$("input[name='checkbox']:checked").each(function(i) {
 		
-		$("input[name='checkbox']:checked").each(function(i) {
-			
-			console.log("사번 : " + $(this).parent().parent().next().next().next().text());
-			
-			var id = $(this).attr('id');
-			console.log("권한 : " + $("#selectRole"+id+" option:selected").text());
-			
-			obj.emp_no = $(this).parent().parent().next().next().next().text();
-			obj.role_name = $("#selectRole"+id+" option:selected").text();
-			arr.push(obj);
-			
-			//checkboxValues.push(new multiCheck('0', $(this).parent().parent().next().next().next().text(), 
-			//								   $("#selectRole"+id+" option:selected").text()));
-		});
+        var obj = new Object();
+
+		console.log("사번 : " + $(this).parent().parent().next().next().next().text());
 		
-		// var allData = {"data":checkboxValues};
-		var param = JSON.stringify(arr);
-		alert(param);
-			$.ajax(
-					   {
-							url : "give_authority.do",
-							type: "POST",
-							data : {
+		var id = $(this).attr('id');
+		console.log("권한 : " + $("#selectRole"+id+" option:selected").text());
+		
+		obj.emp_no = $(this).parent().parent().next().next().next().text();
+		obj.role_name = $("#selectRole"+id+" option:selected").text();
+		
+        arr.push(obj);
+
+	});
+	
+    var param = JSON.stringify(arr);
+    
+		$.ajax(
+				   {
+						url : "give_authority.do",
+						type: "post",
+						data : {
 									param : param
-								   },
-							dataType:"json",
-							success : function(data){
-								// alert("권한 부여 성공");
-								console.log("갔다옴");
-							}
-			           }
-			      );
-		});
+						       },
+						success : function(data){
+                            swal({
+                                title: "권한부여",
+                                text: "권한부여에 성공하였습니다",
+                                type: "success"
+                            });	
+                            
+                            window.location.reload();
+						}
+		           }
+		      );
+	});
 </script>
 </body>
 </html>

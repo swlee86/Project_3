@@ -4,6 +4,9 @@ package kr.or.epm.VO;
  * 작성일 : 2016-11-16
  * 작성자 : 백승아
  * 사용 목적 : 프로젝트에 대한 VO
+ *
+ * 수정일 : 2016-11-22
+ * 작성자 : 김주희
  */
 
 public class Pj {
@@ -16,7 +19,10 @@ public class Pj {
 	private int pj_progress;
 	private String pj_step_no;
 	private String step_no;
-
+	private String emp_name;
+	private String pj_step_name;
+	private String dept_name;
+	
 	public String getPj_no() {
 		return pj_no;
 	}
@@ -89,10 +95,40 @@ public class Pj {
 		this.step_no = step_no;
 	}
 
+	
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+
+	
+	public String getPj_step_name() {
+		return pj_step_name;
+	}
+
+	public void setPj_step_name(String pj_step_name) {
+		this.pj_step_name = pj_step_name;
+	}
+
+	
+	public String getDept_name() {
+		return dept_name;
+	}
+
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Pj [pj_no=" + pj_no + ", emp_no=" + emp_no + ", pj_title=" + pj_title + ", pj_content=" + pj_content
 				+ ", pj_start=" + pj_start + ", pj_end=" + pj_end + ", pj_progress=" + pj_progress + ", pj_step_no="
-				+ pj_step_no + ", step_no=" + step_no + "]";
+				+ pj_step_no + ", step_no=" + step_no + ", emp_name=" + emp_name + ", pj_step_name=" + pj_step_name
+				+ ", dept_name=" + dept_name + "]";
 	}
+
+	
 }

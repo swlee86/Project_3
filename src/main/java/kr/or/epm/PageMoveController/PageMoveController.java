@@ -63,26 +63,7 @@ public class PageMoveController {
 	}
 
 	
-
 	
-
-	// SideBar(aside.jsp) 프로젝트 > 전체 프로젝트 클릭시 구동
-	@RequestMapping("/projects.do")
-	public String projectlistview() {
-		return "project.projects";
-	}
-	
-	// SideBar(aside.jsp) 프로젝트 > 진행중인 프로젝트 클릭시 구동
-	@RequestMapping("/project_list.do")
-	public String projectview() {
-		return "project.project_list";
-	}
-	
-	//프로젝트 생성하기
-	@RequestMapping(value="/projectMake.do", method=RequestMethod.GET)
-	public String projectMake(){
-		return "project.projectMakeForm";
-	}
 	
 	// SideBar(aside.jsp) 일정관리 > 일정등록 클릭시 구동
 	@RequestMapping("/registration_schedule.do")

@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.json.JsonArray;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
-import com.fasterxml.jackson.core.JsonParser;
-
+import jdk.nashorn.internal.runtime.JSONFunctions;
 import kr.or.epm.Service.EmployeeRoleManageService;
 import kr.or.epm.VO.Emp_role;
 import net.sf.json.JSONArray;
@@ -39,58 +41,32 @@ public class EmployeeRoleManageAjaxController {
 	// 관리자 > 회원관리 > 사원 권한 부여 페이지 > 사원 권한 부여하기
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/give_authority.do", method=RequestMethod.POST)
-	@ResponseBody
-	public View adminEmployeeRoleGive(HttpServletRequest request) {
-		String param = request.getParameter("param");
-		System.out.println("########## 사원에게 권한을 부여합니다"+param.toString());
-		
-		JSONArray jsonArray = new JSONArray();
-		jsonArray.add(param);
-		
-		for (Object object : jsonArray) {
-			System.out.println(object.toString());
-		}
-		List<Emp_role> list = new ArrayList<Emp_role>();
-		
-		
-		/*List<Map<String,Object>> map = new ArrayList<Map<String,Object>>();
-		map = JSONArray.fromObject(param);
-		
-		for(Map<String, Object> m : map) {
-			System.out.println(m.get("emp_no") + " : " + m.get("role_name"));
-		}
-		*/
-		// System.out.println(checkboxValues.toString());
-		
-		//List<Emp_role> list = new ArrayList<Emp_role>();
-		//list.add(checkboxValues);
-		
-		//for (Emp_role emp_role : list) {
-		//	System.out.println("emp_name : " +emp_role.getRole_name());
-		//	System.out.println("emp_role : " +emp_role.getRole_no());
-		//	System.out.println("emp_no : " +emp_role.getEmp_no());
-		//}
-		
-		/*
-		int result = 0;
-
-		System.out.println("찍어보자" + checkboxValues[0].toString());
-
-		for (int i = 0; i < checkboxValues.length; i++) {
-			try {
-				result = employeeRoleManage.updateEmpRole();
-			} catch (Exception e) {
-				e.getMessage();
-			} finally {
-				if (result > 0) {
-					System.out.println("########## 사원에게 권한 부여 성공");
-				} else {
-					System.out.println("########## ERROR");
-				}
-			}
-		}
-
-		model.addAttribute("result",result);*/
-		return jsonview;
-	}
+    public View adminEmployeeRoleGive(HttpServletRequest request) {
+        System.out.println("사원에게 권한을 부여합니다");
+        String str = request.getParameter("param");
+        str.trim();
+        str.trim();
+        List<Map<String,String>> map = new ArrayList<Map<String,String>>();
+        map = JSONArray.fromObject(str);
+        int result = 0;
+        
+        for(Map<String, String> m : map) {
+            System.out.println(m.get("emp_no") + " : " + m.get("role_name"));
+            
+            try {
+                result = employeeRoleManage.updateEmpRole(m.get("emp_no"), m.get("role_name"));
+            } catch (Exception e) {
+                e.getMessage();
+            } finally {
+                if (result > 0) {
+                    System.out.println("사원에게 권한 부여 성공");
+                } else {
+                    System.out.println("ERROR");
+                }
+            }
+        }
+        
+        return jsonview;
+    }
 }
+
