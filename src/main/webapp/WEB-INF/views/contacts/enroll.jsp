@@ -69,7 +69,10 @@
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">사진등록</th>
-										<td colspan="3"><input type="file"  class="form-control input-sm" id="uploadfile" name="uploadfile"></td>
+										<td colspan="3">
+											<input type="file"  class="form-control input-sm" id="uploadfile" name="uploadfile">
+											<input type="hidden" name="empimg" id="empimg">
+										</td>
 									</tr>
 									<tr >
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%; padding-top:45px;">주소록 그룹</th>

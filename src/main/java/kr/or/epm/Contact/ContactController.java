@@ -191,7 +191,8 @@ public class ContactController {
 	@RequestMapping(value = "/enroll.do",method = RequestMethod.POST)
 	public String enroll(@RequestParam("uploadfile") MultipartFile file, Principal principal, Contact contact, Model model, HttpServletRequest request) {
 		System.out.println("enroll()처리 컨트롤 탐");
-			
+		System.out.println("contact.empimg : " + contact.getEmpimg());
+		
 		String path = request.getRealPath("/contacts/upload/");
 		System.out.println("=====> path : "+path);
 		File cFile = new File(path, file.getOriginalFilename());
@@ -208,6 +209,10 @@ public class ContactController {
 		
 		System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
 		contact.setPic(file.getOriginalFilename());
+		
+		if(contact.getEmpimg() != null){
+			contact.setPic(contact.getEmpimg());
+		}
 
 
 		String id= principal.getName();
