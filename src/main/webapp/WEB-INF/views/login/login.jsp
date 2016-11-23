@@ -37,14 +37,15 @@
 												type="password" title="Please enter your password"
 												placeholder="******" required="" value="" name="password"
 												id="password" class="form-control"> <span
-												class="help-block small">Yur strong password</span>
+												class="help-block small">Your strong password</span>
 										</div>
 										<div class="checkbox">
 											<input type="checkbox" class="i-checks" checked> 
 												<label style="color: black;">로그인상태 유지</label>
-											<p class="help-block small">(if this is a private
-												computer)</p>
+											<p class="help-block small">(if this is a private computer)</p>
 										</div>
+										<div class="g-signin2" data-onsuccess="onSignIn"></div>
+										
 										<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
 										<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
 										<a class="btn btn-default btn-block" href="findId.do">아이디 찾기</a>
@@ -60,3 +61,23 @@
 	</div>
 	</header>
 	<div class="heading-image animate-panel" data-child="img-animate" data-effect="fadeInRight" style="height: 100%;"></div>
+	
+	
+	<script>
+	function onSignIn(googleUser) {
+		  var profile = googleUser.getBasicProfile();
+		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  console.log('Name: ' + profile.getName());
+		  console.log('Image URL: ' + profile.getImageUrl());
+		  console.log('Email: ' + profile.getEmail());
+	
+		}
+	
+	  function signOut() {
+		    var auth2 = gapi.auth2.getAuthInstance();
+		    auth2.signOut().then(function () {
+		      console.log('User signed out.');
+		    });
+		  }
+
+	</script>

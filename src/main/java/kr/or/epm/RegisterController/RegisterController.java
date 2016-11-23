@@ -31,6 +31,7 @@ public class RegisterController {
 	//회원가입 클릭시 view 페이지 보여주는 함수
 	@RequestMapping(value="/addMember.do", method=RequestMethod.GET)
 	public String insertMember(){
+
 		System.out.println("회원 가입");
 		return "register.addMember";
 	}
