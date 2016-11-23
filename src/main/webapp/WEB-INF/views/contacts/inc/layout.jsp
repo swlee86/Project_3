@@ -451,6 +451,7 @@
 							$('#tel1').val(data.emp_tel);
 							$('#tel2').val(data.cell_phone);
 						 	$('#empimg').val(data.pic); 
+						 	console.log();
 						 	$('#uploadfile').hide();
 							$('#myModal6').modal("hide");
 						}

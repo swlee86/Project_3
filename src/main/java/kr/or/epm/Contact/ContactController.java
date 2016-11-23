@@ -193,7 +193,7 @@ public class ContactController {
 		System.out.println("enroll()처리 컨트롤 탐");
 		System.out.println("contact.empimg : " + contact.getEmpimg());
 		
-		String path = request.getRealPath("/contacts/upload/");
+		String path = request.getRealPath("/img/upload/");
 		System.out.println("=====> path : "+path);
 		File cFile = new File(path, file.getOriginalFilename());
 		
@@ -207,7 +207,7 @@ public class ContactController {
 			e1.printStackTrace();
 		}
 		
-		System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
+		System.out.println("file.getOriginalFilename() :"+ file.getOriginalFilename());
 		contact.setPic(file.getOriginalFilename());
 		
 		if(contact.getEmpimg() != null){
@@ -222,7 +222,7 @@ public class ContactController {
 		String emp_no = emp.getEmp_no();//사번
 		System.out.println("emp_no:"+emp_no);
 		
-		System.out.println("contact.tostring() : "+contact.toString());
+		System.out.println("@@@@contact.tostring() : "+contact.toString());
 		
 		int result = contactService.insertContact(contact); //주소록 테이블에 삽입 => 현재 글번호리턴
 		
