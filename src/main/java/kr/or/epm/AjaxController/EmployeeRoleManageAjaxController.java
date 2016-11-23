@@ -53,44 +53,6 @@ public class EmployeeRoleManageAjaxController {
 		List<Emp_role> list = new ArrayList<Emp_role>();
 		
 		
-		/*List<Map<String,Object>> map = new ArrayList<Map<String,Object>>();
-		map = JSONArray.fromObject(param);
-		
-		for(Map<String, Object> m : map) {
-			System.out.println(m.get("emp_no") + " : " + m.get("role_name"));
-		}
-		*/
-		// System.out.println(checkboxValues.toString());
-		
-		//List<Emp_role> list = new ArrayList<Emp_role>();
-		//list.add(checkboxValues);
-		
-		//for (Emp_role emp_role : list) {
-		//	System.out.println("emp_name : " +emp_role.getRole_name());
-		//	System.out.println("emp_role : " +emp_role.getRole_no());
-		//	System.out.println("emp_no : " +emp_role.getEmp_no());
-		//}
-		
-		/*
-		int result = 0;
-
-		System.out.println("찍어보자" + checkboxValues[0].toString());
-
-		for (int i = 0; i < checkboxValues.length; i++) {
-			try {
-				result = employeeRoleManage.updateEmpRole();
-			} catch (Exception e) {
-				e.getMessage();
-			} finally {
-				if (result > 0) {
-					System.out.println("########## 사원에게 권한 부여 성공");
-				} else {
-					System.out.println("########## ERROR");
-				}
-			}
-		}
-
-		model.addAttribute("result",result);*/
 		return jsonview;
 	}
 }
