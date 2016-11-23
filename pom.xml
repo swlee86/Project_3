@@ -278,7 +278,6 @@
           <classifier>jdk13</classifier>    
       </dependency>
 		
-		
  <dependency>
 	<groupId>com.googlecode.json-simple</groupId>
 	<artifactId>json-simple</artifactId>

@@ -289,6 +289,29 @@ public class ContactController {
 			return url;
 		}
 		
-
-	
+		//주소록 > 주소록 그룹 수정 처리
+		@RequestMapping( value="/contacts_group_update.do", method = RequestMethod.POST)
+		public String contacts_group_update(Principal principal, String group_name, Model model){
+			System.out.println("contacts_group_update() 컨트롤 탐");
+			System.out.println("group_name : "+group_name);
+			
+			/*String id= principal.getName();
+			System.out.println("id : "+id);
+			Emp emp = contactService.selectInfoSearch(id);  //사번,이름 가져가기
+			
+			String emp_no = emp.getEmp_no();//사번
+			System.out.println("emp_no:"+emp_no);
+				
+			String url ="redirect:contacts_group.do";
+			
+			try{
+				url = contactService.selectGroupCheck_name(group_name, emp_no); //트랜잭션 ㄱㄱ //1:존재 ->그룹번호뽑기 /0:존재x->그룹추가 => groups에 추가 
+			}catch (Exception e) {
+				System.out.println("contacts_group_insert() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
+			}
+			
+			return url;*/
+			
+			return null;
+		}
 }

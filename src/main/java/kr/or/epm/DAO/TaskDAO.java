@@ -3,7 +3,6 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Task;
-import kr.or.epm.VO.Task_people;
 
 public interface TaskDAO {
 	
@@ -30,12 +29,10 @@ public interface TaskDAO {
 	public int updateTask_approval();
 	
 	// 수신함에서 삭제하기
-	public int deleteTask_rec();
+	public int deleteTask_rec(String task_no);
 	
-	// 탭 메뉴 > 송신함 확인하기
+	// 송신함 확인하기
 	public List<Task> selectTask(String emp_no, String cg_no);
-	// 탭 메뉴 > 참여 리스트 보고
-	public List<Task_people> selectTask_people_ForMe(String emp_no);
 	
 	// 송신함에서 삭제하기
 	public int deleteTask();
@@ -46,8 +43,16 @@ public interface TaskDAO {
 	// 참여 업무 진행 처리하기
 	public int updateTask_step();
 	
-	// 글 개수 구하기
-	public int countTask(String cg_no);
-
+	// 수신함에서 글 개수 구하기
+	public int countTask_rec(String emp_no, String cg_no);
+	
+	// 송신함에서 글 개수 구하기
+	public int countTask(String emp_no, String cg_no);
+	
+	// 수신함에서 검색하기 (따로)
+	public List<Task> searchTask(String emp_no, String cg_no, String key, String value);
+	
+	// 수신함에서 검색한 글의 개수 구하기 (따로)
+	public int countTask_search();
 	
 }
