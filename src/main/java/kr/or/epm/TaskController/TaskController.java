@@ -351,7 +351,7 @@ public class TaskController {
 	 System.out.println("로그인한 사원의 emp_no : " + emp_no);
 	 
 	 // 글 개수 구하기
-	 int count = service.countTask(cg_no, emp_no, RecSend);
+	 int count = service.countTask(emp_no, cg_no, RecSend);
 	 System.out.println("수신함 글 개수 : " + count);
 	 model.addAttribute("count", count);
 	 
@@ -366,8 +366,8 @@ public class TaskController {
 	 // 로그인 id 받아오기
 	 
 	 // 송신함 글 개수 구하기
-	 RecSend = "Rec";
-	 int count2 = service.countTask(cg_no, emp_no, RecSend);
+	 RecSend = "Send";
+	 int count2 = service.countTask(emp_no, cg_no, RecSend);
 	 System.out.println("송신함 글 개수 : " + count2);
 	 model.addAttribute("count2", count2);
 	 

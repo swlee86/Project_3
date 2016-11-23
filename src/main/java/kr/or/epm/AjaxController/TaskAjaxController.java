@@ -46,14 +46,6 @@ public class TaskAjaxController {
 
 		System.out.println("업무를 삭제합니다");
 		
-//		request가 넘어오지 않는다 > fail
-//		String str = request.getParameter("arr");
-//		System.out.println("str : " + str);
-		
-//		for(String task_no : str) {
-//			service.deleteTask(task_no);
-//		}
-		
 		for(int i=0; i<arr.size(); i++) {
 			System.out.println("넘어온 값 : " + arr.get(i));
 			String task_no = arr.get(i);

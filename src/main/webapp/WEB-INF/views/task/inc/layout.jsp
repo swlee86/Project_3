@@ -720,11 +720,12 @@ ul {
     		  data += "<input type='text' class='form-control input-sm' name='input' id='input'>";
     		  data += "<span class='input-group-addon' style='color:#fd7d86'><i class='fa fa-calendar'></i></span>";
     		  data += "</div></div>";
-    		  $('#searchInput').empty().append(data);
+    		  $('#searchInput').empty().html(data);
     	  } else {
     		  var data = "<input type='text' class='form-control input-sm'";
     		  data += "width='90%' style='height: 27px;' name='input' id='input'>";
-    		  $('#searchInput').empty().append(data);
+    		  
+    		  $('#searchInput').empty().html(data);
     	  }
       }
    </script>
