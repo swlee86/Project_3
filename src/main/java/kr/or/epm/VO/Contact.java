@@ -17,9 +17,17 @@ public class Contact {
 	private String tel1;
 	private String tel2;
 	private String memo;
+	private String empimg;
+	
+	
 
-	
-	
+	public String getEmpimg() {
+		return empimg;
+	}
+
+	public void setEmpimg(String empimg) {
+		this.empimg = empimg;
+	}
 
 	//추가 DTO 2016-11-18 
 	private String group_name;
