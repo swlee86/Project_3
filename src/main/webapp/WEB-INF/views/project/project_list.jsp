@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -45,8 +47,8 @@
 						class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th>프로젝트이름</th>
 								<th>책임자</th>
+								<th>부서</th>
 								<th>제목</th>
 								<th>내용</th>
 								<th>시작일</th>
@@ -55,58 +57,43 @@
 								<th>진행단계</th>
 							</tr>
 						</thead>
+						
 						<tbody>
-							<tr>
-								<td><a href="projects.do">애플펜</a></td>
-								<td>박성준</td>
-								<td>파인애플펜</td>
-								<td>애플 + 펜 = 파인애플펜</td>
-								<td>2016-11-10</td>
-								<td>2016-11-20</td>
-								<td>
-									<div
-										class="progress m-t-xs full progress-striped progress-small">
-										<div style="width: 25%" aria-valuemax="100" aria-valuemin="0"
-											aria-valuenow="25" role="progressbar"
-											class=" progress-bar progress-bar-warning active "></div>
-									</div>
-								</td>
-								<td><span class="label label-info" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">진행</span></td>
-							</tr>
-							<tr>
-								<td>펜애플</td>
-								<td>박성준</td>
-								<td>펜파인애플</td>
-								<td>펜애플 + 애플 = 펜파인애플펜</td>
-								<td>2016-11-10</td>
-								<td>2016-12-20</td>
-								<td>
-									<div
-										class="progress m-t-xs full progress-striped progress-small">
-										<div style="width: 50%" aria-valuemax="100" aria-valuemin="0"
-											aria-valuenow="50" role="progressbar"
-											class=" progress-bar progress-bar-warning active "></div>
-									</div>
-								</td>
-								<td><span class="label label-primary" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">완료</span></td>
-							</tr>
-							<tr>
-								<td>펜투애플</td>
-								<td>박성준호우</td>
-								<td>펜파인애플투투</td>
-								<td>펜애플 + 애플 = 펜파파파인애플펜</td>
-								<td>2016-10-10</td>
-								<td>2016-12-25</td>
-								<td>
-									<div
-										class="progress m-t-xs full progress-striped progress-small">
-										<div style="width: 75%" aria-valuemax="100" aria-valuemin="0"
-											aria-valuenow="75" role="progressbar"
-											class=" progress-bar progress-bar-warning active "></div>
-									</div>
-								</td>
-								<td><span class="label label-danger"	style="margin-top: -5px; width: 20%;padding-left:10px;padding-right:10px;">미진행</span></td>
-							</tr>
+							<c:forEach  var="list" items="${pjlist}">
+								<tr>
+									<td>${list.emp_name}</td>
+									<td>${list.dept_name}</td>
+									<td>${list.pj_title}</td>
+									<td>${list.pj_content}</td>
+									<td>${list.pj_start}</td>
+									<td>${list.pj_end}</td>
+									<td>
+										<div class="progress m-t-xs full progress-striped ">
+											<div style="width:${list.pj_progress}%" aria-valuemax="100" aria-valuemin="0"
+												aria-valuenow="${list.pj_progress}%" role="progressbar"
+												class="progress-bar progress-bar-warning active">${list.pj_progress}%</div>
+										</div>
+									</td>
+									
+									<td>
+										<c:if test="${list.pj_step_name=='진행'}">
+											<span class="label label-success" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">진행</span>
+										</c:if>
+										<c:if test="${list.pj_step_name=='미진행'}">
+											<span class="label label-primary" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">미진행</span>
+										</c:if>
+										<c:if test="${list.pj_step_name=='완료'}">
+											<span class="label label-default" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">완료</span>
+										</c:if>
+										<c:if test="${list.pj_step_name=='중단'}">
+											<span class="label label-danger" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">중단</span>
+										</c:if>
+										<c:if test="${list.pj_step_name=='보류'}">
+											<span class="label label-warning" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">보류</span>
+										</c:if>
+									</td>
+								</tr>			
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -120,3 +107,4 @@
 		</div>
 	</div>
 </div>
+
