@@ -19,7 +19,7 @@ public class Contact {
 	private String memo;
 	private String empimg;
 	
-	
+
 
 	public String getEmpimg() {
 		return empimg;

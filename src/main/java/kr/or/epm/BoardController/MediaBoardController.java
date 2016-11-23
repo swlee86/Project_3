@@ -121,7 +121,7 @@ public class MediaBoardController {
 		String id= principal.getName();
 		System.out.println("id : "+id);
 		
-		 String path = request.getRealPath("/media/upload/");
+		 String path = request.getRealPath("/img/upload/");
 		 System.out.println("=====> path : "+path);
 		File cFile = new File(path, file.getOriginalFilename());
 		
