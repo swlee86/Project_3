@@ -109,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 가져온 그룹번호(selectGroup_no) groups에 추가하기 (그룹추가)-->
 	<update id="updateGroups_insert" parameterType="hashmap">
 		update emp_contact 
-		set groups = concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${selectGroup_no},') 
+		set groups = concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${group_no},') 
 		where emp_no=#{emp_no}
 	</update>
 	
