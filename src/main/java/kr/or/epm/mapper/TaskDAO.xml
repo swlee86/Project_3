@@ -140,8 +140,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 참여 업무 진행 처리하기 -->
 	<update id="updateTask_step">
 		update task
-		set task_step_no = #{task_step_no}
-		where task_no = #{task_no}
+		set task_step_no = #{param2}
+		where task_no = #{param1}
 	</update>
 	
 	<!-- 수신 글 개수 구하기 -->

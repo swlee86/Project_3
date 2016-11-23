@@ -317,9 +317,21 @@ public class TaskController {
    @RequestMapping(value="/taskRequest_Participation_Detail.do", method=RequestMethod.POST)
    public String taskRequest_Participation_Detail(String hidden_task_no, Model model, String approval){
 	   //approval 업무 진행 단계  / hidden_task_no - 업무 번호
-	   System.out.println("버튼 클릭 : "+approval+ " / no? : "+hidden_task_no);
+	   System.out.println("버튼 클릭 : "+approval+ " / no : "+hidden_task_no);
 	   
-	   return null;
+	   int result = service.updateTaskRequest_Participation_step(hidden_task_no, approval);
+	   String link = "";
+	   String msg = "";
+	   if(result > 0) {
+		  msg = "업데이트 성공!";
+		  link = "taskRequest.do";
+	   } else {
+		   msg = "업데이트 실패!";
+		   link = "taskRequest.do";   
+	   }
+	   model.addAttribute("msg",msg);
+	   model.addAttribute("link",link);
+	   return "task.taskRequest_redirect";
    }
    
    
