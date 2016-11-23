@@ -81,7 +81,7 @@
         
     	//조직도 아이콘 클릭시
     	$('#organicSelect').click(function(){
-    		var litag = "<ui>";
+    		var litag = "<ui style='list-style:none;''>";
     		
     		$('#organization').empty();
     		$('#empList').empty();
