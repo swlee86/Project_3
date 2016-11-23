@@ -381,14 +381,18 @@ public class TaskController {
 	}
 
 	// 업무 보고 > 업무보고 수신 > 상세페이지
-	@RequestMapping("/taskInform_Receive_Detail.do")
-	public String taskInform_Receive_Detail() {
+	@RequestMapping("/taskInform_Detail_rec.do")
+	public String taskInform_Receive_Detail(String task_no) {
+		System.out.println("task_no : " + task_no);
+		
 		return "task.taskInform_Receive_Detail";
 	}
 
 	// 업무 보고 > 업무보고 송신 > 상세페이지
-	@RequestMapping("/taskInform_Transmit_Detail.do")
-	public String taskInform_Transmit_Detail() {
+	@RequestMapping("/taskInform_Detail.do")
+	public String taskInform_Transmit_Detail(String task_no) {
+		System.out.println("task_no : " + task_no);
+		
 		return "task.taskInform_Transmit_Detail";
 	}
 
