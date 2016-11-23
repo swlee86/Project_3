@@ -60,11 +60,6 @@
 	border-radius : 2px;
 	box-shadow : inset 0 0 1px #999;
 }
-.groupdiv ul > li a:hover {
-	background : #e7f4f9;
-	border-radius : 2px;
-	box-shadow : inset 0 0 1px #ccc;
-}
 </style>
 
  <script>
@@ -121,37 +116,10 @@
 			});			
 		}
 		
-		/*주소록 그룹관리*/
-		$('#contact_group_enroll_btn').click(function(){
-			console.log('contact_group_enroll_btn 클릭');
-			$('#group_name').val('');
-			$('#contact_group_from').attr('action','contacts_group_insert.do');//???
-			$('#contact_group_from_submit').val('저장');
-			$('#contact_group_delete_btn').hide();
-			$('#contact_group_from').show();
-		});
-		
-		$('#contact_group_from').hide();
-		
-		console.log("grouplistsize : "+$('#grouplistsize').val());
-		
-		var id;
-		
-		$('.contact_group_class').click(function(){
-			console.log('.contact_group_class 클릭');
-			console.log('id값 : ' + $(this).attr('id') );
-			id = $(this).attr('id');
-			console.log('그룹명 : ' + $('#'+id).html());
-			
-			$('.contact_group_class').removeClass("group-clicked");
-			$('#'+id).addClass("group-clicked");
-			$('#contact_group_from').show();
-			$('#group_name').val($('#'+id).html());
-			$('#contact_group_from').attr('action','contacts_group_update.do');
-			$('#contact_group_from_submit').val('수정');
-			$('#contact_group_delete_btn').show();
-		});
-
+		/* $("#group_${g.group_no}").click(function(event){
+			$('#group_${g.group_no}').addClass("group-clicked");
+		)}; */
+	
 		
 		
 		
