@@ -43,7 +43,8 @@ public interface ContactDAO {
 	
 	
 	
-	
+	//그룹 이름 수정시 , 주소록 그룹 번호 수정
+	public int updateContact_GroupNo(String group_no,String pre_group_no);
 	
 	
 	
@@ -122,9 +123,10 @@ public interface ContactDAO {
 	public int updateGroups_insert(HashMap<String, String> map);
 	
 	//가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) - emp_no, selectGroup_no 필요
-	public int updateGroups_delete(HashMap map);
+	public int updateGroups_delete(HashMap<String, String> map);
 
 
-
+	//
+	public int updateGroups_delete_change(String emp_no,String group_no);
 
 }
