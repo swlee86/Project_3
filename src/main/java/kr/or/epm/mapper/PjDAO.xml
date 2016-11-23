@@ -69,16 +69,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where pj_no = #{pj_no}
 	</update>
 	
-	<!-- 프로젝트 조회하기 -->
+	<!-- 프로젝트 조회하기(승인처리된것들만) -->
 	<select id="selectPj" resultType="kr.or.epm.VO.Pj">
-		select pj_no, p.emp_no, e.emp_name, 
-			   pj_title, pj_start, pj_end, 
-			   pj_progress, p.pj_step_no, s.pj_step_name
+		select pj_no, p.emp_no, e.emp_name, l.dept_name, pj_title, pj_content, pj_start, 
+		       pj_end, pj_progress, p.pj_step_no, s.pj_step_name
 		from pj p join emp e
-		on p.emp_no = e.emp_no
-		join pj_step s
-		on p.pj_step_no = s.pj_step_no
-		order by pj_start desc
+			  on p.emp_no = e.emp_no
+			join pj_step s
+			  on p.pj_step_no = s.pj_step_no
+	    join low_dept l
+	      on e.low_dept_no = l.low_dept_no
+			where p.step_no = (select step_no from approval where step_name='승인')
+			order by s.step asc, pj_start desc
 	</select>
 	
 	<!-- 내가 진행하는 프로젝트 조회하기 -->
