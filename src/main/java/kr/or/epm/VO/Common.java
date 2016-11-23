@@ -13,6 +13,14 @@ public class Common {
 	private String low_dept_name;
 	private String emp_no;
 
+	public String getEmp_no() {
+		return emp_no;
+	}
+
+	public void setEmp_no(String emp_no) {
+		this.emp_no = emp_no;
+	}
+
 	public String getBranch_name() {
 		return branch_name;
 	}
@@ -40,6 +48,6 @@ public class Common {
 	@Override
 	public String toString() {
 		return "Common [branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name=" + low_dept_name
-				+ "]";
+				+ ", emp_no=" + emp_no + "]";
 	}
 }

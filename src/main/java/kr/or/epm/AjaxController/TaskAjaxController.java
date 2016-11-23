@@ -42,13 +42,22 @@ public class TaskAjaxController {
 
 	// 업무 삭제하기
 	@RequestMapping(value = "/task_remove.do", method = RequestMethod.POST)
-	public View task_remove(String[] arr) {
+	public View task_remove(@RequestParam(value="arr[]") List<String> arr) {
 
 		System.out.println("업무를 삭제합니다");
-		String str = request.getParameter("arr");
-		System.out.println("str : " + str);
 		
-		for(String task_no : str) {
+//		request가 넘어오지 않는다 > fail
+//		String str = request.getParameter("arr");
+//		System.out.println("str : " + str);
+		
+//		for(String task_no : str) {
+//			service.deleteTask(task_no);
+//		}
+		
+		for(int i=0; i<arr.size(); i++) {
+			System.out.println("넘어온 값 : " + arr.get(i));
+			String task_no = arr.get(i);
+			
 			service.deleteTask(task_no);
 		}
 		
