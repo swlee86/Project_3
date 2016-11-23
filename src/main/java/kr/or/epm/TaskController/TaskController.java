@@ -335,9 +335,28 @@ public class TaskController {
    }
    
    
-   //업무 > 업무보고 페이지 이동
+   //업무 > 업무보고 수신 페이지 이동
    @RequestMapping("/taskInform.do")
-   public String taskInform(){
+   public String taskInform(Principal principal, Model model){
+	   System.out.println("업무 보고 수신페이지를 요청합니다");
+	   String cg_no = "2";
+	   String RecSend = "Rec";
+	   
+	 // 로그인 id
+	 String id = principal.getName();
+	 System.out.println("id : " + id);
+	 String emp_no = commonservice.selectEmp_no(id);
+	 System.out.println("로그인한 사원의 emp_no : " + emp_no);
+	 
+	 // 글 개수 구하기
+	 int count = service.countTask(emp_no, cg_no, RecSend);
+	 System.out.println("수신함 글 개수 : " + count);
+	 model.addAttribute("count", count);
+	 
+	 // 목록 가져오기
+	 List<Task> list = service.selectTask_rec(emp_no, cg_no);
+	 model.addAttribute("list", list);
+	   
       return "task.taskInform";
    }
    
