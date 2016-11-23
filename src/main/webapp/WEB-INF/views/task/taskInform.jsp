@@ -101,7 +101,7 @@
 											<th>확인결과</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="taskInformTobody">
 										
 										
 										
