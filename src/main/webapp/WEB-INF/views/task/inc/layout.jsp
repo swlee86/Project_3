@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,138 +22,138 @@
 <link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
 <link rel="stylesheet"
-   href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+	href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
 <link rel="stylesheet" href="vendor/select2-3.5.2/select2.css" />
 <link rel="stylesheet"
-   href="vendor/select2-bootstrap/select2-bootstrap.css" />
+	href="vendor/select2-bootstrap/select2-bootstrap.css" />
 
 
 
 <!-- App styles -->
 <link rel="stylesheet"
-   href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+	href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 
 
 <!--jQuery UI CSS-->
 <link rel="stylesheet"
-   href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-   type="text/css" />
+	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+	type="text/css" />
 
 <!-- jquery ui -->
 <link rel="stylesheet"
-   href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-   type="text/css" />
+	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+	type="text/css" />
 
 
 
 <style>
 span.sty {
-   clear: both;
+	clear: both;
 }
 
 label.sty {
-   width: 100px;
-   margin-right: 30px;
-   border-radius: 3px;
-   border: 1px solid #ccc;
-   color: #999;
+	width: 100px;
+	margin-right: 30px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	color: #999;
 }
 
 /* hide input */
 input.radio:empty {
-   margin-left: -2999px;
+	margin-left: -2999px;
 }
 
 input[type="radio"] {
-   visibility: hidden;
+	visibility: hidden;
 }
 
 /* style label */
 input.radio:empty ~ label {
-   position: relative;
-   float: left;
-   line-height: 2.5em;
-   text-indent: 3.25em;
-   margin-top: 2em;
-   cursor: pointer;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
+	position: relative;
+	float: left;
+	line-height: 2.5em;
+	text-indent: 3.25em;
+	margin-top: 2em;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 input.radio:empty ~ label:before {
-   position: absolute;
-   display: block;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   content: '';
-   width: 0.1em;
-   background: white;
-   border-radius: 3px 0 0 3px;
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 0.1em;
+	background: white;
+	border-radius: 3px 0 0 3px;
 }
 
 /* toggle hover */
 input.radio:hover:not (:checked ) ~ label:before {
-   content: '';
-   text-indent: .9em;
-   color: red;
-   width: 0.1em;
+	content: '';
+	text-indent: .9em;
+	color: red;
+	width: 0.1em;
 }
 
 input.radioa:hover:not (:checked ) ~ label {
-   color: #3498db;
+	color: #3498db;
 }
 
 input.radior:hover:not (:checked ) ~ label {
-   color: #e67e22;
+	color: #e67e22;
 }
 
 input.radiow:hover:not (:checked ) ~ label {
-   color: #a86ebf;
+	color: #a86ebf;
 }
 
 input.radioa:checked ~ label:before {
-   content: '승인';
-   text-indent: .9em;
-   width: 100%;
-   color: white;
-   text-align: center;
-   padding-left: 10px;
-   background-color: #3498db;
+	content: '승인';
+	text-indent: .9em;
+	width: 100%;
+	color: white;
+	text-align: center;
+	padding-left: 10px;
+	background-color: #3498db;
 }
 
 input.radior:checked ~ label:before {
-   content: '거부';
-   text-indent: .9em;
-   width: 100%;
-   color: white;
-   text-align: center;
-   background-color: #e67e22;
+	content: '거부';
+	text-indent: .9em;
+	width: 100%;
+	color: white;
+	text-align: center;
+	background-color: #e67e22;
 }
 
 input.radiow:checked ~ label:before {
-   content: '보류';
-   text-indent: .9em;
-   width: 100%;
-   color: white;
-   text-align: center;
-   background-color: #a86ebf;
+	content: '보류';
+	text-indent: .9em;
+	width: 100%;
+	color: white;
+	text-align: center;
+	background-color: #a86ebf;
 }
 
 input.radio:checked ~ label {
-   color: white;
+	color: white;
 }
 
 input.radio:focus ~ label:before {
-   box-shadow: 0 0 0 3px #999;
+	box-shadow: 0 0 0 3px #999;
 }
 
 ul {
-   padding-left: 0px;
+	padding-left: 0px;
 }
 </style>
 
@@ -164,62 +164,62 @@ ul {
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
-   <!-- Simple splash screen-->
-   <div class="splash">
-      <div class="color-line"></div>
-      <div class="splash-title">
-         <h1>2PM</h1>
-         <p>Now loading...</p>
-         <div class="spinner">
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
-         </div>
-      </div>
-   </div>
+	<!-- Simple splash screen-->
+	<div class="splash">
+		<div class="color-line"></div>
+		<div class="splash-title">
+			<h1>2PM</h1>
+			<p>Now loading...</p>
+			<div class="spinner">
+				<div class="rect1"></div>
+				<div class="rect2"></div>
+				<div class="rect3"></div>
+				<div class="rect4"></div>
+				<div class="rect5"></div>
+			</div>
+		</div>
+	</div>
 
-   <!--[if lt IE 7]>
+	<!--[if lt IE 7]>
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-   <!-- Header -->
-   <tiles:insertAttribute name="header" />
+	<!-- Header -->
+	<tiles:insertAttribute name="header" />
 
-   <!-- Navigation -->
-   <tiles:insertAttribute name="sidebar" />
+	<!-- Navigation -->
+	<tiles:insertAttribute name="sidebar" />
 
-   <!-- Main Wrapper -->
-   <div id="wrapper">
-      <tiles:insertAttribute name="content" />
+	<!-- Main Wrapper -->
+	<div id="wrapper">
+		<tiles:insertAttribute name="content" />
 
-      <!-- Right sidebar -->
-      <tiles:insertAttribute name="rightsidebar" />
+		<!-- Right sidebar -->
+		<tiles:insertAttribute name="rightsidebar" />
 
-      <!-- Footer-->
-      <tiles:insertAttribute name="footer" />
+		<!-- Footer-->
+		<tiles:insertAttribute name="footer" />
 
-   </div>
+	</div>
 
-   <!-- Vendor scripts -->
-   <script src="vendor/jquery/dist/jquery.min.js"></script>
-   <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
-   <script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
-   <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-   <script src="vendor/jquery-flot/jquery.flot.js"></script>
-   <script src="vendor/jquery-flot/jquery.flot.resize.js"></script>
-   <script src="vendor/jquery-flot/jquery.flot.pie.js"></script>
-   <script src="vendor/flot.curvedlines/curvedLines.js"></script>
-   <script src="vendor/jquery.flot.spline/index.js"></script>
-   <script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
-   <script src="vendor/iCheck/icheck.min.js"></script>
-   <script src="vendor/peity/jquery.peity.min.js"></script>
-   <script src="vendor/sparkline/index.js"></script>
-   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
-   <!-- App scripts -->
-   <script src="scripts/homer.js"></script>
-   <script type="text/javascript">
+	<!-- Vendor scripts -->
+	<script src="vendor/jquery/dist/jquery.min.js"></script>
+	<script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+	<script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
+	<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="vendor/jquery-flot/jquery.flot.js"></script>
+	<script src="vendor/jquery-flot/jquery.flot.resize.js"></script>
+	<script src="vendor/jquery-flot/jquery.flot.pie.js"></script>
+	<script src="vendor/flot.curvedlines/curvedLines.js"></script>
+	<script src="vendor/jquery.flot.spline/index.js"></script>
+	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
+	<script src="vendor/iCheck/icheck.min.js"></script>
+	<script src="vendor/peity/jquery.peity.min.js"></script>
+	<script src="vendor/sparkline/index.js"></script>
+	<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+	<!-- App scripts -->
+	<script src="scripts/homer.js"></script>
+	<script type="text/javascript">
    
    //스크립트 생성자
    function empInfo(emp_no, emp_name){
@@ -238,41 +238,6 @@ ul {
    var empListNumber;
    
    var choose;
-   
-   // 업무 삭제하기
-   function removeTask() {
-	   console.log("삭제해볼까나");
-	    
-	   var arr = new Array();
-
-		$("input[name='checkbox']:checked").each(function(i) {
-			
-
-			console.log("글번호 : " + $(this).attr('id'));
-			
-			var task_no = $(this).attr('id');
-			console.log("task_no : " + task_no);
-			
-           arr.push(task_no);
-
-		});
-		
-		console.log(arr);
-		
-			$.ajax(
-					   {
-							url : "task_remove.do",
-							type: "post",
-							data : {
-										arr : arr
-							       },
-							success : function(data){
-								console('업무 삭제 완료했습니다');
-							}
-			           }
-			      );
-		}
-   
    
       $('#makeuserUpdateDate').datepicker(
             {
@@ -314,7 +279,6 @@ ul {
             closeOnCancel : false
          }, function(isConfirm) {
             if (isConfirm) {
-            	removeTask();
                swal("삭제되었습니다", "선택하신 업무가 삭제되었습니다", "success");
             } else {
                swal("취소되었습니다.", "선택하신 업무가 유지됩니다 :)", "error");
@@ -355,8 +319,104 @@ ul {
         return result1;
     }
       
+   
+      //송신탭 >  업무 제목 클릭시
+      function sendTab_task_no(obj){
+    	  //업무 이름 (span) > 부모 td > 이전 형제 td > 첫번째 자식 > 텍스트 노드 선택
+    	  console.log(obj.parentNode.previousSibling.firstChild.nodeValue);
+    	  var task_no = obj.parentNode.previousSibling.firstChild.nodeValue;
+    	  location.href="taskRequest_Transmit_Detail.do?task_no="+task_no;
+      }
+      
+      //참여탭 > 업무 제목 클릭시
+      function particTab_task_no(obj){
+    	  //업무 이름 (span) > 부모 td > 이전 형제 td > 첫번째 자식 > 텍스트 노드 선택
+    	  console.log(obj.parentNode.previousSibling.firstChild.nodeValue);
+    	  var task_no = obj.parentNode.previousSibling.firstChild.nodeValue;
+    	  alert("참여 업무번호 : "+task_no);
+    	  location.href="taskRequest_Participation_Detail.do?task_no="+task_no;
+      }
+      
+      
       $(function() {
+    	  
          
+    	  //송신 탭 클릭 시 
+    	  $('#sendTab').click(function(){
+    		  $.ajax(
+    					{
+    			  			url : "taskRequest_Transmit_List.do",
+    			  			dataType : 'json',
+    			  			success : function(data){
+    			  				var table="";
+    			  				console.log(data.json[0].length);
+    			  				var array = data.json[0];
+    			  				console.log(array);
+    			  				for(var i = 0; i < data.json[0].length; i++){
+    			  					table += "<tr>";			
+    			  					table += "<td><input type='checkbox' style='margin-left:20px'></td>"
+    			  					table+="<td>"+array[i].task_no+"</td>";
+    			  					table+="<td><span onclick='sendTab_task_no(this);'>"+array[i].task_name+"</span></td>";
+    			  					table+="<td>"+array[i].deadline+"</td>";
+    			  					table+="<td>"+array[i].rec_name+"</td>";
+    			  					table+="<td>"+array[i].send_date+"</td>";
+    			  					table+="<td>"+array[i].step_no+"</td>";
+    			  					table +="</tr>";
+    			  				}
+    			  				$('#secondTbody').html(table);
+    			  			}
+    		  			}
+    				);
+    	  });
+    	  
+    	  //참여 탭 클릭 시
+    	  $('#partnerTab').click(function(){
+    		  $.ajax(
+    					{
+    						url : "taskRequest_Participation_List.do",
+    					    success : function(data){
+    					    	var table = "";
+    					    	var array = data.list;
+    					    	console.log("참여 : "+data.list.length);
+    					    	for(var i = 0; i < data.list.length; i++){
+    					    		table += "<tr>";			
+    			  					table += "<td><input type='checkbox' style='margin-left:20px'></td>"
+    			  					table+="<td>"+array[i].task_no+"</td>";
+    			  					table+="<td><span onclick='particTab_task_no(this);'>"+array[i].task_name+"</span></td>";
+    			  					table+="<td>"+array[i].deadline+"</td>";
+    			  					table+="<td>"+array[i].emp_name+"</td>";
+    			  					table+="<td>"+array[i].send_date+"</td>";
+    			  					table+="<td>진행률</td>";
+    			  					table +="</tr>";
+    					    	}
+    					    	$('#thirdBody').html(table);
+    					    }
+    					}  
+    		        )
+    	  });
+    	  
+    	  //기본배열 넘기기 테스트
+    	/*   $('#test').click(function(){
+    		 alert("테스트!!");
+    		 var array = new Array();
+    		 array.push("헬로");
+    		 array.push("하이");
+    		 console.log(array);
+    		// jQuery.ajaxSettings.traditional = true;
+    		 $.ajax(
+    				 {
+    					url:"test.do",
+    					data :{
+    						array : array
+    					},
+    					success : function(data){
+    						alert("성공")
+    					}
+    				 }
+    			   ); 
+    		 
+    	  }); */
+    	  
          $('#taskForm').submit(function(){
             var startDate = $('#makeuserUpdateDate').val();
             var lastDate = $('#makeuserUpdateDate2').val();
@@ -611,24 +671,9 @@ ul {
          $('#myModal6').modal("hide");
       }
       
-      // 검색하기
-      function search() {
-    	  var selected = $('#selectSearch option:selected').val();
-    	  console.log("선택된 값 : " + selected);
-    	  
-    	  if(selected == 'deadline' || selected == 'send_date') {
-    		  var data = "<div class='form-inline'>";
-    		  data += "<div class='input-group date'>";
-    		  data += "<input type='text' class='form-control input-sm' name='input' id='input'>";
-    		  data += "<span class='input-group-addon' style='color:#fd7d86'><i class='fa fa-calendar'></i></span>";
-    		  data += "</div></div>";
-    		  $('#searchInput').empty().append(data);
-    	  } else {
-    		  var data = "<input type='text' class='form-control input-sm'";
-    		  data += "width='90%' style='height: 27px;' name='input' id='input'>";
-    		  $('#searchInput').empty().append(data);
-    	  }
-      }
+      
+    
+      
    </script>
 </body>
 </html>
