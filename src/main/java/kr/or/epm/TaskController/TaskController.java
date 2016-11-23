@@ -382,16 +382,22 @@ public class TaskController {
 
 	// 업무 보고 > 업무보고 수신 > 상세페이지
 	@RequestMapping("/taskInform_Detail_rec.do")
-	public String taskInform_Receive_Detail(String task_no) {
-		System.out.println("task_no : " + task_no);
+	public String taskInform_Receive_Detail(String task_no, Model model) {
+		System.out.println("Controller] 업무 보고 수신 상세페이지");
+
+		Task task = service.selectTask_detail(task_no);
+		model.addAttribute("detail", task);
 		
 		return "task.taskInform_Receive_Detail";
 	}
 
 	// 업무 보고 > 업무보고 송신 > 상세페이지
 	@RequestMapping("/taskInform_Detail.do")
-	public String taskInform_Transmit_Detail(String task_no) {
-		System.out.println("task_no : " + task_no);
+	public String taskInform_Transmit_Detail(String task_no, Model model) {
+		System.out.println("Controller] 업무 보고 송신 상세페이지");
+
+		Task task = service.selectTask_detail(task_no);
+		model.addAttribute("detail", task);
 		
 		return "task.taskInform_Transmit_Detail";
 	}
@@ -488,7 +494,11 @@ public class TaskController {
 
 	// 업무일지 > 업무 일지 송신 > 상세페이지
 	@RequestMapping("/taskLog_Transmit_Detail.do")
-	public String taskLog_Transmit_Detail() {
+	public String taskLog_Transmit_Detail(String task_no, Model model) {
+		System.out.println("Controller] 업무 일지 송신 상세페이지");
+
+		Task task = service.selectTask_detail(task_no);
+		model.addAttribute("detail", task);
 		return "task.taskLog_Transmit_Detail";
 	}
 
