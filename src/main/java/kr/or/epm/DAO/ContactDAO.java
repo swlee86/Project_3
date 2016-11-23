@@ -38,6 +38,17 @@ public interface ContactDAO {
 	public int selectMaxContact_No(String name);
 	
 	
+	//사내 사원 정보 부르는 함수
+	public Emp selectEmpInfo(String emp_no);
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//그룹별 조회
 	public List<Contact> selectContact_group(HashMap map);
@@ -108,10 +119,12 @@ public interface ContactDAO {
 	public String selectGroup_no(String group_name);
 	
 	//가져온 그룹번호(selectGroup_no) groups에 추가하기 (그룹추가) - emp_no, selectGroup_no 필요
-	public int updateGroups_insert(HashMap map);
+	public int updateGroups_insert(HashMap<String, String> map);
 	
 	//가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) - emp_no, selectGroup_no 필요
 	public int updateGroups_delete(HashMap map);
+
+
 
 
 }

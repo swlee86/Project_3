@@ -36,16 +36,16 @@
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">제목</th>
-										<td style="width: 40%">UI/UX 구현</td>
+										<td style="width: 40%">${task.task_name}</td>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">승인상태</th>
 										<td style="width: 40%"><button
-												class="btn btn-xs btn-warning2">미승인</button></td>
+												class="btn btn-xs btn-warning2">${task.step_no}</button></td>
 									</tr>
 									<tr>
 										<th
-											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">지시자</th>
-										<td>김주희 사원</td>
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">수신자</th>
+										<td>${task.rec_name}</td>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">지시부서</th>
 										<td>개발팀</td>
@@ -53,10 +53,10 @@
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">담당자</th>
-										<td>박지은</td>
+										<td>${task.emp_name}</td>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">업무기한</th>
-										<td>2016-11-16</td>
+										<td>${task.deadline}</td>
 									</tr>
 									<tr>
 										<th
@@ -75,7 +75,8 @@
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">내용</th>
-										<td colspan="3">업<br>무<Br> 내<Br>용
+										<td colspan="3">
+											${task.content}
 										</td>
 									</tr>
 								</table>

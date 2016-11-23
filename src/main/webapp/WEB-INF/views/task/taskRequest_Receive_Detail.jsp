@@ -31,14 +31,24 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form>
+						<form action="approval.do" method="POST">
+						<input type="hidden" name="task_no" value="${task.task_no}">
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px">
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">제목</th>
 										<td style="width:40%">${task.task_name}</td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">승인상태</th>
-										<td style="width:40%"><button class="btn btn-xs btn-warning2">${task.step_no}</button></td>
+										<td style="width:40%">
+											 
+												<c:choose>
+										        	<c:when test="${task.step_no==1}"><button class="btn btn-xs btn-info">승인</button></c:when>
+										        	<c:when test="${task.step_no==2}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
+										        	<c:when test="${task.step_no==3}">보류</c:when>
+										     	    <c:otherwise><button class="btn btn-xs btn-warning2">미승인</button></c:otherwise>
+										        </c:choose>
+										    
+										</td>
 									</tr>
 									
 									<tr>

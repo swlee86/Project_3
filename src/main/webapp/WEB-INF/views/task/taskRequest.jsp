@@ -33,9 +33,9 @@
 				</div>
 
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" id="first">수신</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">송신</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-3">참여</a></li>
+					<li class="active"><a data-toggle="tab" href="#tab-1" id="recevieTab">수신</a></li>
+					<li class=""><a data-toggle="tab" href="#tab-2" id="sendTab">송신</a></li>
+					<li class=""><a data-toggle="tab" href="#tab-3" id="partnerTab">참여</a></li>
 				</ul>
 
 				<div class="tab-content">
@@ -44,6 +44,7 @@
 						<div class="panel-body">
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="" class="form-inline">
+									
 									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
 										<tr>
 											<td width="10%"></td>
@@ -230,22 +231,22 @@
 											<th>NO</th>
 											<th width="30%">업무명</th>
 											<th>업무기한</th>
-											<th>요청자</th>
+											<th>수신자</th>
 											<th>요청일</th>
 											<th>승인단계</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="secondTbody">
 									
 										<tr>
 											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>${list.task_no}</td>
+											<td><span id=""></span></td>
 											<td><a href="taskRequest_Transmit_Detail.do">${list.task_name}</a></td>
 											<td>${list.deadline}</td>
 											<td>${list.emp_name}</td>
 											<td>${list.send_date}</td>
 
-											<td><button class="btn btn-xs btn-warning2" >미승인</button></td>
+											<td><button class="btn btn-xs btn-warning2">미승인</button></td>
 										</tr>
 										
 										

@@ -379,8 +379,6 @@
        var name = $(obj).parent().parent().children().eq(1).html();
        
        
-       
-       
        $('#name').val(name);
        $('#myModal6').modal("hide");
     }
