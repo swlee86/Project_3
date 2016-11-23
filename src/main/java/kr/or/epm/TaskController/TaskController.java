@@ -4,14 +4,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.LoginService;
@@ -20,6 +25,7 @@ import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
+import net.sf.json.JSON;
 
 /*
  * 작성자 : 박성준
@@ -258,11 +264,23 @@ public class TaskController {
 	   //업무 상세 보기
 	   Task task=service.selectTask_detail(task_no);
 	   System.out.println("업무 : "+task.toString());
-	   model.addAttribute("task", task);
+	 
 	   
+	    //업무 참여자 조회하기 - 참여자 사번만 나옴.
+	   List<Task_people> taskPeopleList = service.selectTask_people(task_no);
+	   //완성된 업무 참여자 조회 리스트
+	   List<String> taskPeople = service.selectEmp_info(taskPeopleList);
+	   
+	   model.addAttribute("task", task);
+	   model.addAttribute("taskPeople",taskPeople);
       return "task.taskRequest_Transmit_Detail";
    }
    
+/*   @RequestMapping("/test.do")
+   public View Test(@RequestParam(value="array[]") List<String> array){
+	  System.out.println("테스트 : "+array.size());
+	   return jsonview;
+   }*/
    //업무 요청 > 업무요청 참여 > 리스트 > 성준(11-22)
    @RequestMapping("/taskRequest_Participation_List.do")
    public View taskRequest_Participation_List(Principal principal,Model model){
@@ -272,19 +290,29 @@ public class TaskController {
        System.out.println("아이디  : "+id);
        //아이디 통해 사번 얻어옴
        EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
-	    //내가 참조된 업무 번호 얻어옴.
+	    //내가 참조된 업무 번호 얻어옴. - > task_no  + emp_no 있음
        List<Task_people> list = service.selectTaskRequest_Participation_people(emp.getEmp_no());
-       System.out.println(list.size());
        
+       List<Task> taskList = new ArrayList<Task>();
+       for(int i = 0; i < list.size(); i++){
+    	   taskList.add(service.selectTask_detail(list.get(i).getTask_no()));
+    	   System.out.println("포문 : "+taskList.get(i).toString());
+       }
+       
+       model.addAttribute("list",taskList);
 	   return jsonview;
    }
    
    //업무 요청 > 업무요청 참여 > 상세페이지
    @RequestMapping("/taskRequest_Participation_Detail.do")
-   public String taskRequest_Participation_Detail(){         
+   public String taskRequest_Participation_Detail(String task_no, Model model){
+	   System.out.println("참여 업무번호: "+task_no);
+	   Task task=service.selectTask_detail(task_no);
+	   model.addAttribute("partictask", task);
+	   
       return "task.taskRequest_Participation_Detail";
    }
-   
+  
    
    //업무 > 업무보고 페이지 이동
    @RequestMapping("/taskInform.do")

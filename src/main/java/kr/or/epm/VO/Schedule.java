@@ -15,7 +15,6 @@ public class Schedule {
 	private String sch_end;
 	private String sch_content;
 	private String step_no;
-
 	
 	//추가 DTO 2016-11-18
 	private String cg_color;
