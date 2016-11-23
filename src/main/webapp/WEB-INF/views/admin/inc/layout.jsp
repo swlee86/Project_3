@@ -333,11 +333,14 @@ var checkboxValues = new Array();
 		
 		// var allData = {"data":checkboxValues};
 		var param = JSON.stringify(arr);
+		alert(param);
 			$.ajax(
 					   {
 							url : "give_authority.do",
-							type: "post",
-							data : param,
+							type: "POST",
+							data : {
+									param : param
+								   },
 							dataType:"json",
 							success : function(data){
 								// alert("권한 부여 성공");

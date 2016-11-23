@@ -63,7 +63,7 @@
 
 				<br>     
                 <hr style="border:1px solid gray; margin-bottom:0px">
-                <form action="" method="post">
+                <form action="">
                 <div class="table-responsive">
                 <table cellpadding="1" cellspacing="1" class="table table-hover table-bordered table-condensed" >
                     <thead>

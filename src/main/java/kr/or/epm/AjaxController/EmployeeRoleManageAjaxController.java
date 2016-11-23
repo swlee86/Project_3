@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.json.JsonArray;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
+
+import com.fasterxml.jackson.core.JsonParser;
 
 import kr.or.epm.Service.EmployeeRoleManageService;
 import kr.or.epm.VO.Emp_role;
@@ -42,16 +40,26 @@ public class EmployeeRoleManageAjaxController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/give_authority.do", method=RequestMethod.POST)
 	@ResponseBody
-	public View adminEmployeeRoleGive(HttpServletRequest request, @RequestBody String param) {
-		System.out.println("########## 사원에게 권한을 부여합니다");
-	
-		List<Map<String,Object>> map = new ArrayList<Map<String,Object>>();
+	public View adminEmployeeRoleGive(HttpServletRequest request) {
+		String param = request.getParameter("param");
+		System.out.println("########## 사원에게 권한을 부여합니다"+param.toString());
+		
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.add(param);
+		
+		for (Object object : jsonArray) {
+			System.out.println(object.toString());
+		}
+		List<Emp_role> list = new ArrayList<Emp_role>();
+		
+		
+		/*List<Map<String,Object>> map = new ArrayList<Map<String,Object>>();
 		map = JSONArray.fromObject(param);
 		
 		for(Map<String, Object> m : map) {
 			System.out.println(m.get("emp_no") + " : " + m.get("role_name"));
 		}
-		
+		*/
 		// System.out.println(checkboxValues.toString());
 		
 		//List<Emp_role> list = new ArrayList<Emp_role>();
