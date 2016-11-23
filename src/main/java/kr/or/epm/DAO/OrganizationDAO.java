@@ -2,6 +2,9 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import kr.or.epm.VO.Contact;
+import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Organization;
 
 public interface OrganizationDAO {
@@ -33,4 +36,15 @@ public interface OrganizationDAO {
     //조직도에 사용될 모든 사원정보 출력하기
     public List<Organization> selectEmpInfoAll();
 
+	//등록인 정보 구하기
+	public Emp selectInfoSearch(String id);
+
+	//주소록테이블 등록
+	public int insertContact(Contact contact);
+	
+	//현재 최고 글번호
+	public int selectMaxContact_No(String name);
+	
+	//개인 주소록 테이블 등록
+	public int insertEmpContact(Emp_contact emp_contact);
 }

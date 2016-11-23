@@ -110,7 +110,7 @@ public class OrganizationChartController {
 				
 			String id= principal.getName();
 			System.out.println("id : "+id);
-			Emp emp = contactService.selectInfoSearch(id);  //사번,이름 가져가기
+			Emp emp = organizationchart.selectInfoSearchEmp(id);  //사번,이름 가져가기
 			
 			String emp_no = emp.getEmp_no();//사번
 			System.out.println("emp_no:"+emp_no);
@@ -119,7 +119,7 @@ public class OrganizationChartController {
 			/*contact.setGroup_name("회사");*/
 			
 			System.out.println("contact.tostring() : "+contact.toString());
-			int result = contactService.insertContact(contact); //주소록 테이블에 삽입 => 현재 글번호리턴
+			int result = organizationchart.insertContactFromOrganization(contact); //주소록 테이블에 삽입 => 현재 글번호리턴
 			
 
 			if(result > 0){  //개인주소록 추가될때 
@@ -128,7 +128,7 @@ public class OrganizationChartController {
 				emp_contact.setEmp_no(emp_no);
 				emp_contact.setContact_no(String.valueOf(result));
 				
-				contactService.insertEmpContact(emp_contact);  //개인주소록 테이블 삽입
+				organizationchart.insertPrivateContact(emp_contact); //개인주소록 테이블 삽입
 			}
 			
 			return "organization_chart.team_member";
