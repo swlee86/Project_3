@@ -36,16 +36,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 업무 수신함 확인하기 / 보낸 날짜가 최신 순서로 정렬 -->
 	<select id="selectTask_rec" resultType="kr.or.epm.VO.Task">
-		select task_no, cg_name, sign, 
-			   task_name, deadline, emp_no, 
-			   emp_name, send_date, file_name, 
-			   step_no
+		select task_no, cg_name, sign,
+       		   task_name, deadline, emp_no,
+       		   emp_name, send_date, file_name,
+       		   t.step_no, a.step_name, a.step, rec_date
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
+    	join approval a
+    	on t.step_no = a.step_no
 		where rec_emp_no = #{param1} and 
 			  rec_del_check = '0' and 
 			  t.cg_no = #{param2}
-		order by send_date desc
+    	order by a.step desc
 	</select>
 	
 	<!-- 업무 상세 조회하기 -->
@@ -66,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--업무 요청 수신 상세 보기 업무 내용만 있음-->
 	<select id="selectTask_receive_detail" resultType="kr.or.epm.VO.Task">
-	   select task_no, cg_no, sign, task_name, deadline, content, emp_name, file_name, task_step_no, step_no from task where task_no = #{task_no}
+	   select task_no, cg_no, sign, task_name, deadline, content, emp_name, rec_name, emp_no, send_date, file_name, task_step_no, step_no from task where task_no = #{task_no}
 	</select>
 	
 	
@@ -98,13 +100,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select task_no, cg_name, task_name, 
 			   deadline, rec_emp_no, rec_name, 
 			   rec_date, send_date, file_name, 
-			   task_step_no, step_no
+			   task_step_no, t.step_no, a.step_name, a.step
 		from task t join task_cg c 
 		on t.cg_no = c.cg_no
+    	join approval a
+    	on t.step_no = a.step_no
 		where emp_no = #{param1} and 
 			  del_check = '0' and 
 			  t.cg_no = #{param2}
-		order by send_date desc
+    	order by a.step desc
 	</select>
 	
 	<!-- 송신함에서 삭제하기 -->
@@ -140,16 +144,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where task_no = #{task_no}
 	</update>
 	
-	<!--내게 참조한 모든 업무 보기-->
-	<select id="selectTask_people_ForMe" resultType="kr.or.epm.VO.Task_people">
-		  select Task_NO, EMP_NO from task_people where emp_no = #{emp_no}
+	<!-- 수신 글 개수 구하기 -->
+	<select id="countTask_rec" resultType="Integer">
+		select count(task_no)
+		from task
+		where cg_no = #{param2} and rec_emp_no = #{param1} and rec_del_check = '0'
 	</select>
 	
-	<!-- 글 개수 구하기 -->
+	<!-- 송신 글 개수 구하기 -->
 	<select id="countTask" resultType="Integer">
 		select count(task_no)
 		from task
-		where cg_no = #{cg_no}
+		where cg_no = #{param2} and emp_no = #{param1} and del_check = '0'
 	</select>
 	
+	<!-- 수신함에서 검색하기 -->
+	<select id="searchTask" resultType="kr.or.epm.VO.Task">
+		select task_no, cg_name, sign,
+       		   task_name, deadline, emp_no,
+       		   emp_name, send_date, file_name,
+       		   t.step_no, a.step_name, a.step, rec_date
+		from task t join task_cg c
+		on t.cg_no = c.cg_no
+    	join approval a
+    	on t.step_no = a.step_no
+		where rec_emp_no = #{param1} and 
+			  rec_del_check = '0' and 
+			  t.cg_no = #{param2} and
+        	  ${param3} like '%${param4}%'
+    	order by a.step desc
+	</select>
+	
+	<!-- 수신함에서 검색한 글의 개수 구하기 -->
+	<select id="countTask_search" resultType="Integer">
+		select count(task_no)
+		from task t join task_cg c
+		on t.cg_no = c.cg_no
+		where rec_emp_no = #{param1} and 
+			  rec_del_check = '0' and 
+			  t.cg_no = #{param2} and
+        	  #{param3} like '%${param4}%'
+    	order by a.step desc
+	</select>
 </mapper>

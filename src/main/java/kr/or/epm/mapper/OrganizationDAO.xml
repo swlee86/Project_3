@@ -6,6 +6,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
    <!-- 작성일 : 2016-11-20 작성자 : 백승아 사용 목적 : 조직도에 대한 mapper -->
 
+	<!--개인 주소록테이블  등록 -->
+	<insert id="insertEmpContact">
+		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(SELECT (select distinct groups from emp_contact where emp_no=#{emp_no}) AS empgroup FROM DUAL))
+	</insert>
+	
+	
+	<!-- 최근 글  번호-->
+	<select id="selectMaxContact_No" resultType="int">
+		select max(to_number(contact_no)) from contact where name = #{name}
+	</select>
+	
+	<!-- 등록인 사번 구하는 함수 -->
+	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">
+		select e.emp_no
+		from  emp_detail d join emp e
+		on d. emp_no = e.emp_no
+		where d.id=#{id}
+	</select>
+	
+	
+	<!-- 주소록테이블 등록 -->
+	<insert id="insertContact" parameterType="kr.or.epm.VO.Contact">
+		insert into contact(contact_no, group_no, name, attach, birth, mail, pic, tel1, tel2, memo) 
+		values(contact_seq.nextval,#{group_no}, #{name}, #{attach, jdbcType=VARCHAR}, #{birth, jdbcType=VARCHAR}, #{mail, jdbcType=VARCHAR}, #{pic, jdbcType=VARCHAR}, #{tel1}, #{tel2}, #{memo, jdbcType=VARCHAR})
+	</insert>
+
    <!--지점 리스트 뿌리기 -->
    <select id="selectBranch" resultType="kr.or.epm.VO.Organization">
       select branch_name, branch_no, depth
@@ -49,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!--사원 정보 -->
    <select id="selectEmpInfo" resultType="kr.or.epm.VO.Organization">
-      select emp_no, emp_name, birth, branch_name, low_dept_name, dept_name
+      select emp_no, emp_name, birth, branch_name, low_dept_name, dept_name, cell_phone
       from emp e join low_dept d
       on d.low_dept_no = e.low_dept_no
       where d.low_dept_no = #{low_dept_no}
@@ -81,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
    <!--조직도에서 띄워 줄 modal 창에 나오는 사원 정보 쿼리(작성자 : 이상원)-->
    <select id="selectEmpInfoAll" resultType="kr.or.epm.VO.Organization">
-      select emp_no, emp_name, branch_name, dept_name, low_dept_name, cell_phone
+      select emp_no, emp_name, branch_name, dept_name, low_dept_name, cell_phone, pic, email, emp_tel, birth
       from emp e join low_dept d
       on d.low_dept_no = e.low_dept_no
    </select>

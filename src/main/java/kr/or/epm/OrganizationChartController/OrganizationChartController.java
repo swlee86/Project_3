@@ -1,6 +1,11 @@
 package kr.or.epm.OrganizationChartController;
 
+import java.io.File;
+import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.Service.ContactService;
 import kr.or.epm.Service.OrganizationChartService;
+import kr.or.epm.VO.Contact;
+import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Organization;
 
 /*
@@ -23,6 +32,9 @@ public class OrganizationChartController {
 	
 	   @Autowired
 	   private OrganizationChartService organizationchart;
+	   
+	   @Autowired
+	   private ContactService contactService;
 	   
 	   @Autowired
 	   private View jsonview;
@@ -90,6 +102,37 @@ public class OrganizationChartController {
 	      return jsonview;
 	   }
 
+	   
+		//주소록 추가  > 외부인 등록 처리 
+		@RequestMapping(value = "/addContact.do",method = RequestMethod.POST)
+		public String addContact(Principal principal, Contact contact, Model model) {
+			System.out.println("addContact()처리 컨트롤 탐");
+				
+			String id= principal.getName();
+			System.out.println("id : "+id);
+			Emp emp = organizationchart.selectInfoSearchEmp(id);  //사번,이름 가져가기
+			
+			String emp_no = emp.getEmp_no();//사번
+			System.out.println("emp_no:"+emp_no);
+			
+			contact.setGroup_no("1");
+			/*contact.setGroup_name("회사");*/
+			
+			System.out.println("contact.tostring() : "+contact.toString());
+			int result = organizationchart.insertContactFromOrganization(contact); //주소록 테이블에 삽입 => 현재 글번호리턴
+			
+
+			if(result > 0){  //개인주소록 추가될때 
+				
+				Emp_contact emp_contact = new Emp_contact();
+				emp_contact.setEmp_no(emp_no);
+				emp_contact.setContact_no(String.valueOf(result));
+				
+				organizationchart.insertPrivateContact(emp_contact); //개인주소록 테이블 삽입
+			}
+			
+			return "organization_chart.team_member";
+		}
 
 }
 

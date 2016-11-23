@@ -32,22 +32,14 @@
 					<a class="btn w-xs btn-success btn-block" href="enroll.do">주소록 등록</a>
 				</div>
 				<div class="panel-body">
-					<h4 class="m-t-none m-b-none">
-						<a href="#">전체 주소록</a>
+					<h4 class="m-t-none m-b-none" style="font-size:1em">
+						<a href="contacts.do">전체 주소록</a>
 					</h4>
 				</div>
 				<div class="panel-body">
-					<a data-toggle="collapse" data-parent="#accordion" href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i> 사내 주소록 그룹
+					<a data-toggle="collapse" data-parent="#accordion" href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
 					</a>
 					<div id="q1" class="panel-collapse collapse">
-						<hr>
-						그룹
-					</div>
-				</div>
-				<div class="panel-body">
-					<a data-toggle="collapse" data-parent="#accordion" href="#q2" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i> 개인 주소록 그룹
-					</a>
-					<div id="q2" class="panel-collapse collapse">
 						<hr>
 						그룹
 					</div>
@@ -155,7 +147,8 @@
 											<div class="col-lg-6">
 												<div class="hpanel hblue contact-panelt">
 													<div class="panel-body">
-														<img alt="logo" class="img-circle m-b" src="images/profile.jpg" align="left">
+													/images/profile.jpg  :  ${list[n].pic}
+														<img alt="logo" class="img-circle m-b" src="${pageContext.request.contextPath}/img/upload/${list[n].pic}" align="left">
 														<h4>
 															<a href="" data-toggle="modal" data-target="#myModal" id="conmodal_${n}"><B>${list[n].name}</B></a>
 														</h4>

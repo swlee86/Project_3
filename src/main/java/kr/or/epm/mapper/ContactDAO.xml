@@ -76,6 +76,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
+	<!-- 사내사원 정보 -->
+	<select id="selectEmpInfo" resultType="kr.or.epm.VO.Emp">
+		select emp_name, birth, pic, email, cell_phone, emp_tel from emp where emp_no=#{emp_no}
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	
 	<!-- 그룹에 작성한 이름의 그룹이 존재하는지 유효성 검사 -->
 	<select id="selectGroupCheck_name" parameterType="String" resultType="Integer">
@@ -87,6 +98,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertGroup" parameterType="String">
 		insert into c_group(group_no,group_name) values(c_group_seq.nextval,#{group_name})
 	</insert>
+	
+	
+	<!-- 생성했던or삭제할or수정했던 그룹의 그룹번호 가져오기 (selectGroup_no)-->
+	<select id="selectGroup_no" parameterType="String" resultType="String">
+		select group_no from c_group where group_name=#{group_name}
+	</select>
+	
+	
+	<!-- 가져온 그룹번호(selectGroup_no) groups에 추가하기 (그룹추가)-->
+	<update id="updateGroups_insert" parameterType="hashmap">
+		update emp_contact 
+		set groups = concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${group_no},') 
+		where emp_no=#{emp_no}
+	</update>
+	
+	
 	
 	
 	
@@ -180,17 +207,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	
-	<!-- 생성했던or삭제할or수정했던 그룹의 그룹번호 가져오기 (selectGroup_no)-->
-	<select id="selectGroup_no" parameterType="String" resultType="String">
-		select group_no from c_group where group_name=#{group_name}
-	</select>
+
 	
-	<!-- 가져온 그룹번호(selectGroup_no) groups에 추가하기 (그룹추가)-->
-	<update id="updateGroups_insert" parameterType="hashmap">
-		update emp_contact 
-		set groups = concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${selectGroup_no},') 
-		where emp_no=#{emp_no}
-	</update>
+
 	
 	<!-- 가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) -->
 	<update id="updateGroups_delete">

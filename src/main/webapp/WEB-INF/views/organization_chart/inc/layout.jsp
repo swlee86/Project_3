@@ -81,7 +81,8 @@
         
     	//조직도 아이콘 클릭시
     	$('#organicSelect').click(function(){
-    		var litag = "<ul>";
+    		var litag = "<ui style='list-style:none;''>";
+    		
     		$('#organization').empty();
     		$('#empList').empty();
     		
@@ -101,10 +102,17 @@
     					litag += "<li onclick='seeDepart(this, "
     				    litag +=departMent[index].branch_no
     				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+    					litag +="</ul>";
+    					
+    					litag+="<div id='dept_div"
+    					litag+=departMent[index].branch_no
+    					litag+="'></div>";
+    					
+    					
     				});
-    				litag +="</ul>";
-
-    				$('#organization').html(litag);
+    		
+    					$('#organization').html(litag);
+    					
 
     			}
     		})
@@ -116,7 +124,11 @@
 function seeDepart(obj, choose) {
 	//전역 부서 선택시
     departcho = choose;
-
+	var div_id = "dept_div"+choose;
+	$("#"+div_id).empty();
+	var litag = "<ui>";
+	
+	console.log(div_id);
 	var name = $(obj).text();
 
 	$.ajax({
@@ -133,10 +145,24 @@ function seeDepart(obj, choose) {
 			});
 
 			$.each(dept, function(index) {
+					litag += "<li onclick='seelow_Depart(this, "
+				    litag +=dept[index].dept_no
+				    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
+					litag +="</ul>";
+					
+					litag+="<div id='low_dept_div"
+					litag+=dept[index].dept_no
+					litag+="'></div>";
+				
+				
+				/* 
 				$(obj).append(
 						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,"+dept[index].dept_no+")'>"
 								+ dept[index].dept_name + "</span>");
+				
+				 */
 			});
+			$("#"+div_id).html(litag);
 		}
 	});
 }
@@ -145,7 +171,10 @@ function seeDepart(obj, choose) {
 function seelow_Depart(obj,departcho) {
 	alert("부서 : "+choose);
 	deptNumber= departcho;
-
+	var litag = "<ui>";
+	var div_id = "low_dept_div"+departcho;
+	$("#"+div_id).empty();
+	
 	$.ajax({
 		url : "low_deptOrgaicChart.do",
 		data : {
@@ -159,10 +188,16 @@ function seelow_Depart(obj,departcho) {
 				low_dept = data[index];
 			});
 			$.each(low_dept, function(index) {
-				$(obj).append(
-						"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,"+low_dept[index].low_dept_no+")'>"
-						+ low_dept[index].low_dept_name + "</span>");
+				litag += "<li onclick='seeEmpMember(this, "
+				litag +=low_dept[index].low_dept_no
+				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+				litag +="</ul>";
+					
+				
 			});
+			
+			$("#"+div_id).html(litag);
+			
 		}
 
 	});
@@ -206,7 +241,7 @@ function seeEmpMember(obj,low_dept_no){
             	   makeTable+="<span style='font-size: 15px'>"+emp[index].emp_no+"</span>"		
             	   makeTable+="</a></h3>"            		
             	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp[index].branch_name+"</div>"   
-            	   makeTable+="<p>01020768626 <br>"+emp[index].branch_name+" > "+ emp[index].dept_name+" > "+emp[index].low_dept_name+"</p></div></div></div>"
+            	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp[index].cell_phone+"<br>"+emp[index].branch_name+">"+emp[index].dept_name+" > "+emp[index].low_dept_name+"</p></div></div></div>"
             	   
 
                });

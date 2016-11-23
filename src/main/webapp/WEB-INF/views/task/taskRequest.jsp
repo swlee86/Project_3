@@ -24,7 +24,6 @@
 </div>
 
 <div class="content animate-panel media-body">
-
 	<div class="row">
 		<div class="col-md-12">
 			<div class="hpanel">
@@ -140,7 +139,7 @@
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='#'" >업무 등록</button>
+									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
 									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
 								</div>
 							</div>
@@ -253,7 +252,7 @@
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='#'" >업무 등록</button>
+									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
 									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
 								</div>
 							</div>
@@ -345,42 +344,17 @@
 											<th>NO</th>
 											<th width="30%">업무명</th>
 											<th>업무기한</th>
-											<th>요청자</th>
+											<th>수신자</th>
 											<th>요청일</th>
 											<th>진행율</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>4</td>
-											<td><a href="taskRequest_Participation_Detail.do">UI/UX 구현</a></td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td>
-												<div class="progress m-t-xs full progress-striped progress-small" >
-													<div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class=" progress-bar progress-bar-warning active"></div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>4</td>
-											<td>DB 구현</td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td>
-												<div class="progress m-t-xs full progress-striped progress-small">
-													<div style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" role="progressbar" class=" progress-bar progress-bar-warning active "></div>
-												</div>
-											</td>
-										</tr>
+									<tbody id="thirdBody">
+										
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='#'" >업무 등록</button>
+									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
 									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
 								</div>
 							</div>

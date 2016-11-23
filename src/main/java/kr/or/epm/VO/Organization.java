@@ -16,11 +16,47 @@ public class Organization {
 	private String branch_no;
 	private String dept_no;
 	private String low_dept_no;
+	private String birth;
+	private String pic;
+	private String email;
+	private String emp_tel;
 	
 	
 	
 	
 	
+
+	public String getEmp_tel() {
+		return emp_tel;
+	}
+
+	public void setEmp_tel(String emp_tel) {
+		this.emp_tel = emp_tel;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
 
 	public String getLow_dept_no() {
 		return low_dept_no;

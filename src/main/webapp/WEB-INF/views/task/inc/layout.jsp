@@ -328,6 +328,16 @@ ul {
     	  location.href="taskRequest_Transmit_Detail.do?task_no="+task_no;
       }
       
+      //참여탭 > 업무 제목 클릭시
+      function particTab_task_no(obj){
+    	  //업무 이름 (span) > 부모 td > 이전 형제 td > 첫번째 자식 > 텍스트 노드 선택
+    	  console.log(obj.parentNode.previousSibling.firstChild.nodeValue);
+    	  var task_no = obj.parentNode.previousSibling.firstChild.nodeValue;
+    	  alert("참여 업무번호 : "+task_no);
+    	  location.href="taskRequest_Participation_Detail.do?task_no="+task_no;
+      }
+      
+      
       $(function() {
     	  
          
@@ -365,11 +375,47 @@ ul {
     					{
     						url : "taskRequest_Participation_List.do",
     					    success : function(data){
-    					    	
+    					    	var table = "";
+    					    	var array = data.list;
+    					    	console.log("참여 : "+data.list.length);
+    					    	for(var i = 0; i < data.list.length; i++){
+    					    		table += "<tr>";			
+    			  					table += "<td><input type='checkbox' style='margin-left:20px'></td>"
+    			  					table+="<td>"+array[i].task_no+"</td>";
+    			  					table+="<td><span onclick='particTab_task_no(this);'>"+array[i].task_name+"</span></td>";
+    			  					table+="<td>"+array[i].deadline+"</td>";
+    			  					table+="<td>"+array[i].emp_name+"</td>";
+    			  					table+="<td>"+array[i].send_date+"</td>";
+    			  					table+="<td>진행률</td>";
+    			  					table +="</tr>";
+    					    	}
+    					    	$('#thirdBody').html(table);
     					    }
     					}  
     		        )
     	  });
+    	  
+    	  //기본배열 넘기기 테스트
+    	/*   $('#test').click(function(){
+    		 alert("테스트!!");
+    		 var array = new Array();
+    		 array.push("헬로");
+    		 array.push("하이");
+    		 console.log(array);
+    		// jQuery.ajaxSettings.traditional = true;
+    		 $.ajax(
+    				 {
+    					url:"test.do",
+    					data :{
+    						array : array
+    					},
+    					success : function(data){
+    						alert("성공")
+    					}
+    				 }
+    			   ); 
+    		 
+    	  }); */
     	  
          $('#taskForm').submit(function(){
             var startDate = $('#makeuserUpdateDate').val();

@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.DAO.ContactDAO;
 import kr.or.epm.DAO.OrganizationDAO;
+import kr.or.epm.VO.Contact;
+import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Organization;
 
 /*
@@ -89,5 +93,47 @@ public class OrganizationChartService {
 		}
 		return list;
 	}
+	
+	//로그인한 사원정보 부르는 함수
+	public Emp selectInfoSearchEmp(String id) {
+		System.out.println("selectInfoSearch() 서비스");
+		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
+		Emp emp = organizationDAO.selectInfoSearch(id);
+		System.out.println("emp 사번 : "+ emp.getEmp_no());
+		return emp;
+	}
+
+	//주소록테이블에 추가하는 함수
+	public int insertContactFromOrganization(Contact contact){
+		System.out.println("insertContact() 서비스 ");
+		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
+		System.out.println("Service Contact 데이터 : " + contact.toString());
+		System.out.println("이름 데이터 : " + contact.getName());
+		int result = organizationDAO.insertContact(contact);
+		System.out.println("insert문 결과 restult : "+ result);
+		result = selectMax_No(contact.getName());
+		return result;
+	}
+	
+	//현재 주소록의 최고 높은 번호를 구하는 함수
+	public int selectMax_No(String name){
+		System.out.println("selectMaxContact_No() 서비스");
+		System.out.println("name : " + name);
+		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
+		int result = organizationDAO.selectMaxContact_No(name);
+		System.out.println("최고 글 번호 result : "+ result);
+		return result;
+	}
+	
+
+	//개인 주소록에 추가하는 함수
+	public int insertPrivateContact(Emp_contact emp_contact){
+		System.out.println("insertEmpContact() 서비스");
+		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
+		int result = organizationDAO.insertEmpContact(emp_contact);
+		System.out.println("개인 주소록 추가 결과 result : "+ result);
+		return result; 
+	}
+	
 
 }

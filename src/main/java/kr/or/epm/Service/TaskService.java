@@ -7,10 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.or.epm.DAO.ApprovalDAO;
 import kr.or.epm.DAO.OrganizationDAO;
 import kr.or.epm.DAO.TaskDAO;
 import kr.or.epm.DAO.Task_peopleDAO;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
@@ -128,6 +128,7 @@ public class TaskService {
 	//업무 요청, 일지 > 수신 서비스
 	public List<Task> selectTask_rec(String emp_no, String cg_no){
 		System.out.println("selectTask 서비스 : "+emp_no);
+		
 		//업무 요청 페이지
 		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
 		
@@ -170,43 +171,58 @@ public class TaskService {
 		return serviceResultList;
 	}
 	
-	//업무 요청 > 송신 > ?????????????????
-	public int countTask(String cg_no) {
+	//업무 요청 > 송신 
+
+	// 업무 글 개수 구하기
+	public int countTask(String emp_no, String cg_no, String RecSend) {
 		
 		System.out.println("업무 글 개수 구하기");
-		
+		System.out.println("cg_no : " + cg_no);
+
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
-		int count = dao.countTask(cg_no);
+		int count = 0;
+		
+		if(RecSend.equals("Rec")) {
+			count = dao.countTask_rec(emp_no, cg_no);
+		} else if(RecSend.equals("Send")) {
+			count = dao.countTask(emp_no, cg_no);
+		}
 		
 		return count;
 	};
 	
-	//승인 여부 선택시 호출 되는 서비스 메서드
-	public int approval(String approval,String task_no){
+	// 수신함에서 업무 삭제하기
+	public int deleteTask(String task_no) {
 		
-		int result = 0;
-		ApprovalDAO approvalDAO = sqlsession.getMapper(ApprovalDAO.class);
-		result = approvalDAO.updateApprovalTask(approval, task_no);
+		System.out.println("업무 삭제하기");
+		System.out.println("task_no : " + task_no);
+		
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		int result = dao.deleteTask_rec(task_no);
+				
 		return result;
 	}
 	
-	//업무 요청 > 송신탭 > ajaxJson 용 
-	public List<Task> listTask(String emp_no, String cg_no){
-		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
-		List<Task> list = taskDAO.selectTask(emp_no, cg_no);
-		return list;
+	// 업무 송신함 목록 가져오기
+	public List<Task> selectTask(String emp_no, String cg_no){
+		
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		
+		List<Task> selectList = dao.selectTask(emp_no, cg_no);
+		
+		return selectList;
 	}
 	
-	
-	//업무 요청 > 참여 탭 > ajaxJson 용
-	public List<Task_people> selectTaskRequest_Participation_people(String emp_no){
-		System.out.println("서비스 emp_no : "+emp_no);
-		TaskDAO taskDAO = sqlsession.getMapper(TaskDAO.class);
-		List<Task_people> list = taskDAO.selectTask_people_ForMe(emp_no);
-		return list;
+	// 검색하기
+	public List<Task> searchTask(String emp_no, String cg_no, String key, String value) {
+		
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		
+		List<Task> searchList = dao.searchTask(emp_no, cg_no, key, value);
+		System.out.println("sql 결과값 : " + searchList.size());
+		
+		return searchList;
 	}
-	
-	
 }
 
 

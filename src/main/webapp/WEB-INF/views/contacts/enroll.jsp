@@ -57,19 +57,22 @@
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">소속</th>
-										<td><input type="text"  class="form-control input-sm" placeholder="회사명을 입력하세요." name="attach"></td>
+										<td><input type="text"  class="form-control input-sm" placeholder="회사명을 입력하세요." id="attach" name="attach"></td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">메일</th>
-										<td><input type="text" class="form-control input-sm" placeholder="메일을 입력하세요." name="mail"></td>
+										<td><input type="text" class="form-control input-sm" placeholder="메일을 입력하세요." id="mail" name="mail"></td>
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">집/개인 전화번호</th>
-										<td><input type="text" class="form-control input-sm" placeholder="연락처를 입력하세요." name="tel1"></td>
+										<td><input type="text" class="form-control input-sm" placeholder="연락처를 입력하세요." id="tel1" name="tel1"></td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">휴대폰번호</th>
-										<td><input type="text"  class="form-control input-sm" placeholder="연락처를 입력하세요." name="tel2"></td>
+										<td><input type="text"  class="form-control input-sm" placeholder="연락처를 입력하세요." id="tel2" name="tel2"></td>
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">사진등록</th>
-										<td colspan="3"><input type="file"  class="form-control input-sm" name="uploadfile"></td>
+										<td colspan="3">
+											<input type="file"  class="form-control input-sm" id="uploadfile" name="uploadfile">
+											 <input type="hidden" name="empimg" id="empimg"> 
+										</td>
 									</tr>
 									<tr >
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%; padding-top:45px;">주소록 그룹</th>

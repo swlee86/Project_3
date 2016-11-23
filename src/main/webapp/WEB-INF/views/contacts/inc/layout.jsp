@@ -60,6 +60,11 @@
 	border-radius : 2px;
 	box-shadow : inset 0 0 1px #999;
 }
+.groupdiv ul > li a:hover {
+	background : #e7f4f9;
+	border-radius : 2px;
+	box-shadow : inset 0 0 1px #ccc;
+}
 </style>
 
  <script>
@@ -116,11 +121,37 @@
 			});			
 		}
 		
-		/* $("#group_${g.group_no}").click(function(event){
-			$('#group_${g.group_no}').addClass("group-clicked");
-		)}; */
-	
+
+		/*주소록 그룹관리*/
+		$('#contact_group_enroll_btn').click(function(){
+			console.log('contact_group_enroll_btn 클릭');
+			$('#group_name').val('');
+			$('#contact_group_from').attr('action','contacts_group_insert.do');//???
+			$('#contact_group_from_submit').val('저장');
+			$('#contact_group_delete_btn').hide();
+			$('#contact_group_from').show();
+		});
 		
+		$('#contact_group_from').hide();
+		
+		console.log("grouplistsize : "+$('#grouplistsize').val());
+		
+		var id;
+		
+		$('.contact_group_class').click(function(){
+			console.log('.contact_group_class 클릭');
+			console.log('id값 : ' + $(this).attr('id') );
+			id = $(this).attr('id');
+			console.log('그룹명 : ' + $('#'+id).html());
+			
+			$('.contact_group_class').removeClass("group-clicked");
+			$('#'+id).addClass("group-clicked");
+			$('#contact_group_from').show();
+			$('#group_name').val($('#'+id).html());
+			$('#contact_group_from').attr('action','contacts_group_update.do');
+			$('#contact_group_from_submit').val('수정');
+			$('#contact_group_delete_btn').show();
+		});
 		
 		
 		
@@ -226,10 +257,10 @@
 
 	    //참조자 아이콘 클릭시
         $('#organization_add').click(function() {
-       		  var  empSelectNumber = 1;
-                 var litag = "<ul>";
-                 $('#organization').empty();
-                 $('#empList').empty();
+       		var  empSelectNumber = 1;
+			var litag = "<ui style='list-style:none;''>";   		
+    		$('#organization').empty();
+    		$('#empList').empty();
                  
              	$.ajax({
        			url : "taskWriteModal.do",
@@ -245,10 +276,14 @@
        				$.each(departMent, function(index) {
        					litag += "<li onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
-           				    litag +=departMent[index].branch_no
-           				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+       						litag +=departMent[index].branch_no
+        				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+        					litag +="</ul>";
+        					
+        					litag+="<div id='dept_div"
+        					litag+=departMent[index].branch_no
+        					litag+="'></div>";
            				});
-       				litag +="</ul>";
 
        				$('#organization').html(litag);
 
@@ -270,6 +305,9 @@
     function seeDepart(obj, empSelectNumber, choose) {
     	//전역 부서 선택시
         departcho = choose;
+		var div_id = "dept_div"+choose;
+		$("#"+div_id).empty();
+		var litag = "<ui>";
 
     	var name = $(obj).text();
 
@@ -287,18 +325,29 @@
     			});
 
     			$.each(dept, function(index) {
-    				$(obj).append(
-    						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,"+empSelectNumber+","+dept[index].dept_no+")'>"
-    						+dept[index].dept_name + "</span>");
+    				litag += "<li onclick='seelow_Depart(this, "
+    					litag +=empSelectNumber+","
+    				    litag +=dept[index].dept_no
+    				    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
+    					litag +="</ul>";
+    					
+    					litag+="<div id='low_dept_div"
+    					litag+=dept[index].dept_no
+    					litag+="'></div>";
     			});
+    			
+    			$("#"+div_id).html(litag);
     		}
     	});
     }
 
     //하위 부서 클릭시
     function seelow_Depart(obj,empSelectNumber,departcho) {
-    	alert("부서 : "+departcho);
+    	alert("부서 : "+choose);
     	deptNumber= departcho;
+    	var litag = "<ui>";
+    	var div_id = "low_dept_div"+departcho;
+    	$("#"+div_id).empty();
 
     	$.ajax({
     		url : "tasklow_deptModal.do",
@@ -313,10 +362,14 @@
     				low_dept = data[index];
     			});
     			$.each(low_dept, function(index) {
-    				$(obj).append(
-    						"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,"+empSelectNumber+","+low_dept[index].low_dept_no+")'>"
-    						+ low_dept[index].low_dept_name + "</span>");
+    				litag += "<li onclick='seeEmpMember(this, "
+    				litag += empSelectNumber+","
+    				litag +=low_dept[index].low_dept_no
+    				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+    				litag +="</ul>";
+    				
     			});
+    			$("#"+div_id).html(litag);
     		}
 
     	});
@@ -379,10 +432,32 @@
        var name = $(obj).parent().parent().children().eq(1).html();
        
        
-       
-       
-       $('#name').val(name);
-       $('#myModal6').modal("hide");
+       console.log("emp_no : "+ emp_no);
+		
+       $.ajax(
+				{
+					type : "post",
+					url  : "contact_fam_insert.do",
+					data : {
+						"emp_no" : emp_no
+					},
+					success : function(data){
+						console.log("data : " + data);
+						if(data != null){
+							$('#name').val(name);
+							$('#addenrollDate').val(data.birth);
+							$('#attach').val('사내 사원');
+							$('#mail').val(data.email);
+							$('#tel1').val(data.emp_tel);
+							$('#tel2').val(data.cell_phone);
+						 	$('#empimg').val(data.pic); 
+						 	console.log();
+						 	$('#uploadfile').hide();
+							$('#myModal6').modal("hide");
+						}
+					}
+				}		
+			)
     }
 	
 	</script> 

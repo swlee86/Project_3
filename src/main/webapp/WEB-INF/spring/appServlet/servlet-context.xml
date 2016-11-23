@@ -30,6 +30,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	                 
+	                 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	
