@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -28,7 +28,7 @@
 		<div class="col-md-12">
 			<div class="hpanel">
 				<div class="panel-heading">
-					전체 : <font color="coral">10</font> 개
+					전체 : <font color="coral">${count}</font> 개
 				</div>
 
 				<ul class="nav nav-tabs">
@@ -103,23 +103,19 @@
 									</thead>
 									<tbody id="taskInformTobody">
 										
-										
-										
-										<tr>
-											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td>4</td>
-											<td>
-												<div class="checkbox checkbox-danger"  style="padding-top:0px;margin-top:0px">
-													<input id="checkbox2" type="checkbox"><label ></label>
-												</div>
-											</td>
-											<td>DB 구현</td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td><button class="btn btn-xs btn-info">&nbsp;&nbsp;승인&nbsp;&nbsp;</button></td>
-											<td><font color="blue">&nbsp;&nbsp;<b>확인</b>&nbsp;&nbsp;</font></td>
-										</tr>
+										<c:forEach var="inform" items="${list}">
+											<tr>
+												<td><input type="checkbox" style="margin-left:20px;"></td>
+												<td>${inform.task_no}</td>
+												<td>${inform.sign}</td>
+												<td><a href="taskInform_Detail_rec.do?task_no=${inform.task_no}">${inform.task_name}</a></td>
+												<td>${inform.deadline}</td>
+												<td>${inform.emp_name}</td>
+												<td>${inform.send_date}</td>
+												<td>${inform.step_no}</td>
+												<td>${inform.rec_date}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
