@@ -35,11 +35,6 @@ import kr.or.epm.VO.Emp_contact;
 		return "contacts.contacts_update";
 	}
 	
-	//주소록  > 주소록 그룹 관리 페이지 이동
-	@RequestMapping("/contaacts_group.do")
-	public String contaacts_group(){
-		return "contacts.contacts_group";
-	}
  */
 @Controller
 public class ContactController {
@@ -192,7 +187,7 @@ public class ContactController {
 		return "contacts.enroll";
 	}
 	
-	//주소록 추가  처리 함수
+	//주소록 추가  > 외부인 등록 처리 
 	@RequestMapping(value = "/enroll.do",method = RequestMethod.POST)
 	public String enroll(@RequestParam("uploadfile") MultipartFile file, Principal principal, Contact contact, Model model, HttpServletRequest request) {
 		System.out.println("enroll()처리 컨트롤 탐");
@@ -241,7 +236,18 @@ public class ContactController {
 	}
 	
 	
-	//주소록  > 주소록 그룹 관리 페이지 이동
+	//주소록 추가> 사내사원 정보불러오기 
+	@RequestMapping(value = "/contact_fam_insert.do", method = RequestMethod.POST)
+	public @ResponseBody Emp contact_fam_insert(String emp_no){
+		System.out.println("contact_fam_insert() 컨트롤 탐");	
+		System.out.println("emp_no : "+ emp_no);
+		
+		Emp emp = contactService.selectEmpInfo(emp_no);	
+		return emp;
+	}
+	
+	
+		//주소록  > 주소록 그룹 관리 페이지 이동
 		@RequestMapping( value="/contacts_group.do", method = RequestMethod.GET)
 		public String contacts_group(Principal principal, Model model){
 			System.out.println("contacts_group() 컨트롤 탐");
@@ -254,16 +260,16 @@ public class ContactController {
 			System.out.println("emp_no:"+emp_no);
 			List<C_group> list = contactService.selectEmpGroup_list(emp_no);
 			
-			model.addAttribute("grouplist", list);
-			
-			
+			model.addAttribute("grouplist", list);	
+			model.addAttribute("grouplistsize", list.size());
 			return "contacts.contacts_group";
 		}
 		
 		//주소록 > 주소록 그룹 추가 처리
 		@RequestMapping( value="/contacts_group_insert.do", method = RequestMethod.POST)
-		public String contacts_group_insert(Principal principal, Model model){
+		public String contacts_group_insert(Principal principal, String group_name, Model model){
 			System.out.println("contacts_group_insert() 컨트롤 탐");
+			System.out.println("group_name : "+group_name);
 			
 			String id= principal.getName();
 			System.out.println("id : "+id);
@@ -271,12 +277,18 @@ public class ContactController {
 			
 			String emp_no = emp.getEmp_no();//사번
 			System.out.println("emp_no:"+emp_no);
-			List<C_group> list = contactService.selectEmpGroup_list(emp_no);
+				
+			String url ="redirect:contacts_group.do";
 			
-			model.addAttribute("grouplist", list);
+			try{
+				url = contactService.selectGroupCheck_name(group_name, emp_no); //트랜잭션 ㄱㄱ //1:존재 ->그룹번호뽑기 /0:존재x->그룹추가 => groups에 추가 
+			}catch (Exception e) {
+				System.out.println("contacts_group_insert() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
+			}
 			
-			
-			return "redirect:contacts_group.do";
+			return url;
 		}
+		
+
 	
 }

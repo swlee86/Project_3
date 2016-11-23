@@ -77,7 +77,7 @@
 										<div class="media-body">
 											<span class="font-bold">${n.emp_name}</span> 
 											<small class="text-muted">${n.regdate}</small>
-											<a href="#" id="replydelete">삭제</a>
+											<!-- <a href="#" id="replydelete">삭제</a> -->
 											<div class="social-content">
 												${n.content}
 											</div>

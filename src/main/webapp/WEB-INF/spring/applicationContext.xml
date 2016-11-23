@@ -71,4 +71,9 @@
 	<mvc:resources location="/WEB-INF/resource/js/" mapping="/js/**" />
 	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 
+	 <bean id="transactionManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  	 	<property name="dataSource" ref="driverManagerDataSource" />  <!-- 바꿔줌 -->
+    </bean>
+    
+
 </beans>

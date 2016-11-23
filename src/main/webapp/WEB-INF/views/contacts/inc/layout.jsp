@@ -60,6 +60,11 @@
 	border-radius : 2px;
 	box-shadow : inset 0 0 1px #999;
 }
+.groupdiv ul > li a:hover {
+	background : #e7f4f9;
+	border-radius : 2px;
+	box-shadow : inset 0 0 1px #ccc;
+}
 </style>
 
  <script>
@@ -116,18 +121,38 @@
 			});			
 		}
 		
-		/* $("#group_${g.group_no}").click(function(event){
-			$('#group_${g.group_no}').addClass("group-clicked");
-		)}; */
-	
 		
+		/*주소록 그룹관리*/
+		$('#contact_group_enroll_btn').click(function(){
+			console.log('contact_group_enroll_btn 클릭');
+			$('#group_name').val('');
+			$('#contact_group_from').attr('action','contacts_group_insert.do');//???
+			$('#contact_group_from_submit').val('저장');
+			$('#contact_group_delete_btn').hide();
+			$('#contact_group_from').show();
+		});
 		
+		$('#contact_group_from').hide();
 		
+		console.log("grouplistsize : "+$('#grouplistsize').val());
 		
+		var id;
 		
-		
-		
-		
+		$('.contact_group_class').click(function(){
+			console.log('.contact_group_class 클릭');
+			console.log('id값 : ' + $(this).attr('id') );
+			id = $(this).attr('id');
+			console.log('그룹명 : ' + $('#'+id).html());
+			
+			$('.contact_group_class').removeClass("group-clicked");
+			$('#'+id).addClass("group-clicked");
+			$('#contact_group_from').show();
+			$('#group_name').val($('#'+id).html());
+			$('#contact_group_from').attr('action','contacts_group_update.do');
+			$('#contact_group_from_submit').val('수정');
+			$('#contact_group_delete_btn').show();
+		});
+
 		
 		
 		
@@ -257,12 +282,6 @@
         });
 		
 		
-		
-		
-		
-		
-		
-		
 	});
 	
 	
@@ -358,9 +377,6 @@
                       if(empSelectNumber == 1){   
                          makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
                       }
-                      else if(empSelectNumber == 2){
-                         makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
-                      }
                    });
                    makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
                    $('#empList').empty();
@@ -377,12 +393,30 @@
        //수신자 사번
        var emp_no = $(obj).parent().parent().children().eq(0).html();
        var name = $(obj).parent().parent().children().eq(1).html();
-       
-       
-       
-       
-       $('#name').val(name);
-       $('#myModal6').modal("hide");
+       console.log("emp_no : "+ emp_no);
+		
+       $.ajax(
+				{
+					type : "post",
+					url  : "contact_fam_insert.do",
+					data : {
+						"emp_no" : emp_no
+					},
+					success : function(data){
+						console.log("data : " + data);
+						if(data != null){
+							$('#name').val(name);
+							$('#addenrollDate').val(data.birth);
+							$('#attach').val('사내 사원');
+							$('#mail').val(data.email);
+							$('#tel1').val(data.emp_tel);
+							$('#tel2').val(data.cell_phone);
+						/* 	$('#uploadfile').val(); */
+							$('#myModal6').modal("hide");
+						}
+					}
+				}		
+			)
     }
 	
 	</script> 
