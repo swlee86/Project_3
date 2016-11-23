@@ -78,15 +78,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 사내사원 정보 -->
 	<select id="selectEmpInfo" resultType="kr.or.epm.VO.Emp">
-		select emp_name, birth, pic, email, cell_phone, emp_tel from emp where emp_no=#{emp_no}
+		select emp_name, birth, pic, email, cell_phone, emp_tel, branch_name, dept_name,low_dept_name from emp e join low_dept l on e.low_dept_no=l.low_dept_no where emp_no=#{emp_no}
 	</select>
 	
-	
-	
-	
-	
-	
-	
+
 	
 	<!-- 그룹에 작성한 이름의 그룹이 존재하는지 유효성 검사 -->
 	<select id="selectGroupCheck_name" parameterType="String" resultType="Integer">
@@ -111,6 +106,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update emp_contact 
 		set groups = concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${group_no},') 
 		where emp_no=#{emp_no}
+	</update>
+	
+	
+	
+	
+	
+	<!-- 그룹삭제/그룹 수정 될때 그 그룹에 포함된 사람들 목록 필요 -->
+	<!-- 포함된 사람들 뽑기 -->
+	<select id="selectInGroup_emp" parameterType="String" resultType="String">
+		select contact_no 
+		from(
+			select emp_no,c.contact_no,c.group_no,group_name,name 
+			from emp_contact e 
+			join contact c 
+				on e.contact_no=c.contact_no 
+			join c_group g 
+				on c.group_no = g.group_no) 
+			where group_no=#{group_no)
+	</select>
+	
+	
+	<!-- 그룹수정될때 그 그룹에 포함된 사람들 그룹 번호 변경 -->
+	<update id="updateEmp_ingroup" parameterType="String">
+		update contact set group_no = #{group_no} where contact_no=#{ingroup_emp}
 	</update>
 	
 	
@@ -177,23 +196,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	<!-- 그룹삭제/그룹 수정 될때 그 그룹에 포함된 사람들 목록 필요 -->
-	<!-- 포함된 사람들 뽑기 -->
-	<select id="selectInGroup_emp" parameterType="String" resultType="String">
-		select contact_no 
-		from(
-			select emp_no,c.contact_no,c.group_no,group_name,name 
-			from emp_contact e 
-			join contact c 
-				on e.contact_no=c.contact_no 
-			join c_group g 
-				on c.group_no = g.group_no) 
-			where group_no=#{group_no)
-	</select>
-	<!-- 그룹수정될때 그 그룹에 포함된 사람들 그룹 번호 변경 -->
-	<update id="updateEmp_ingroup" parameterType="String">
-		update contact set group_no = #{group_no} where contact_no=#{ingroup_emp}
-	</update>
+
 	
 	<!-- 그룹삭제될때 그 그룹에 포함된 사람들 삭제 -->
 	<!-- deleteEmpContact_ingroup와 deleteContact_ingroup 트랜잭션 필요  -->

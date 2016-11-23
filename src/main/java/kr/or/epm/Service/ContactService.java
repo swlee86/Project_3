@@ -186,5 +186,44 @@ public class ContactService {
 		System.out.println("처리 result : "+result);
 		return result;
 	}
+
+
+	//개인 주소록 테이블 추가
+	@Transactional
+	public String selectGroupCheck_name(String group_name, String emp_no, String pre_group_no) throws Exception{
+		System.out.println("selectGroupCheck_name() 서비스");
+		System.out.println("group_name : "+group_name+"/ emp_no: "+emp_no + "/pre_group_no: "+pre_group_no);
+		
+		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
+	
+		String group_no= null;
+		int result = -1;
+		
+		try{
+			result = contactDAO.selectGroupCheck_name(group_name); //존재시 1이상 /없으면 0
+			System.out.println("존재여부 result : "+result);
+			
+			if(result > 0){  //1:존재 ->그룹번호뽑기
+				group_no= selectGroup_no(group_name);
+				System.out.println("그룹번호찾기 : " + group_no);
+			}else if(result == 0){  //0:존재x->그룹추가
+				System.out.println("그룹추가");
+				insertGroup(group_name); //그룹추가
+				group_no = selectGroup_no(group_name);//그룹번호	
+				System.out.println("그룹번호찾기 : " + group_no);
+			}
+			
+			//pre_group_no>group_no 로 바꿔야대
+			
+			//groups에 update 처리
+			updateGroups_insert(emp_no, group_no);
+
+		}catch(Exception e){
+			System.out.println("selectGroupCheck_name(group_name,emp_no,pre_group_no) 트랜잭션 오류" + e.getMessage());
+			throw e; //롤백
+		}
+		
+		return "redirect:contacts_group.do";
+	}
 	
 }

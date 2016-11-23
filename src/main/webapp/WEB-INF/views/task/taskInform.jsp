@@ -40,49 +40,49 @@
 				<!-- 수신 -->
 					<div id="tab-1" class="tab-pane active">
 						<div class="panel-body">
-							<div class="row" style="background-color: #f3f3f3;">
-								<form action="" class="form-inline">
-									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
+								<div class="row" style="background-color: #f3f3f3;">
+								<form action="taskLog_Inform.do" class="form-inline">
+									<table style="margin-top: 10px; margin-bottom: 10px;"
+										width="100%">
+
+										<!-- 하나로 합쳐보기 -->
 										<tr>
-											<td width="10%"></td>
-											<th style="text-align: right; padding-right: 20px;">요청자
-											</th>
-											<td><input type="text" class="form-control input-sm"
-												style="width: 60%; height: 27px;"></td>
-											<td width="10%"></td>
-											<th style="text-align: right; padding-right: 20px;">업무기한
-											</th>
+											<th style="text-align: right; padding-right: 20px;"><select
+												class="form-control input-sm" name="selectSearch"
+												id="selectSearch" onchange="search()">
+													<option value="task_no">NO</option>
+													<option value="task_name">업무명</option>
+													<option value="deadline">업무기한</option>
+													<option value="emp_no">송신자</option>
+													<option value="send_date">송신일</option>
+											</select></th>
+
 											<td>
-												<div class="form-inline">
-													<div class="input-group date">
-														<input type="text" class="form-control input-sm"  id="makeuserUpdateDate"> 
-														<span class="input-group-addon" style="color:#fd7d86 "><i class="fa fa-calendar"></i></span>
-													</div>
+												<div id="searchInput">
+													<input type="text" class="form-control input-sm"
+														width="90%" style="height: 27px;" name="input" id="input">
 												</div>
 											</td>
-										</tr>
-										<tr>
-											<td colspan="7">&nbsp;</td>
-										</tr>
-										<tr>
-											<td></td>
-											<th style="text-align: right; padding-right: 20px;">업무명
-											</th>
-											<td><input type="text" class="form-control input-sm"
-												width="100%" style="width: 100%; height: 27px;"></td>
-											<td></td>
-											<td></td>
-											<td><button class="btn btn-sm"
+
+											<td>
+												<button class="btn btn-sm"
 													style="background-color: #f07070; color: white"
 													type="submit">
 													<span class="fa fa-search"></span>&nbsp; 검색 &nbsp;
-												</button></td>
-											<td></td>
+												</button>
+
+												<button class="btn btn-sm"
+													style="background-color: #f07070; color: white"
+													onclick="window.location.href='taskLog.do'">
+													<span class="fa fa-search"></span>&nbsp; 전체보기&nbsp;
+												</button>
+											</td>
 										</tr>
 									</table>
 								</form>
 							</div>
 
+							
 
 							<br>
 							<hr style="border: 1px solid gray; margin-bottom: 0px">
@@ -102,23 +102,9 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>
-												<input type="checkbox" style="margin-left:20px">
-											</td>
-											<td>4</td>
-											<td>
-												<div class="checkbox checkbox-danger" style="padding-top:0px;margin-top:0px;">
-													<input id="checkbox1" type="checkbox" checked ><label ></label>
-												</div>
-											</td>
-											<td><a href="taskInform_Receive_Detail.do">UI/UX 구현(클릭하세요)</a></td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td><button class="btn btn-xs btn-warning2" >미승인</button></td>
-											<td><font color="red"><b>미확인</b></font></td>
-										</tr>
+										
+										
+										
 										<tr>
 											<td><input type="checkbox" style="margin-left:20px"></td>
 											<td>4</td>
@@ -137,7 +123,7 @@
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='#'" >업무 등록</button>
+									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
 									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
 								</div>
 							</div>
@@ -174,49 +160,49 @@
 					<!-- 송신 -->
 					<div id="tab-2" class="tab-pane">
 						<div class="panel-body">
-							<div class="row" style="background-color: #f3f3f3;">
-								<form action="" class="form-inline">
-									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
+								<div class="row" style="background-color: #f3f3f3;">
+								<form action="taskInform_search.do" class="form-inline">
+									<table style="margin-top: 10px; margin-bottom: 10px;"
+										width="100%">
+
+										<!-- 하나로 합쳐보기 -->
 										<tr>
-											<td width="10%"></td>
-											<th style="text-align: right; padding-right: 20px;">요청자
-											</th>
-											<td><input type="text" class="form-control input-sm"
-												style="width: 60%; height: 27px;"></td>
-											<td width="10%"></td>
-											<th style="text-align: right; padding-right: 20px;">업무기한
-											</th>
+											<th style="text-align: right; padding-right: 20px;"><select
+												class="form-control input-sm" name="selectSearch"
+												id="selectSearch" onchange="search()">
+													<option value="task_no">NO</option>
+													<option value="task_name">업무명</option>
+													<option value="deadline">업무기한</option>
+													<option value="emp_no">송신자</option>
+													<option value="send_date">송신일</option>
+											</select></th>
+
 											<td>
-												<div class="form-inline">
-													<div class="input-group date">
-														<input type="text" class="form-control input-sm"  id="makeuserUpdateDate"> 
-														<span class="input-group-addon" style="color:#fd7d86 "><i class="fa fa-calendar"></i></span>
-													</div>
+												<div id="searchInput">
+													<input type="text" class="form-control input-sm"
+														width="90%" style="height: 27px;" name="input" id="input">
 												</div>
 											</td>
-										</tr>
-										<tr>
-											<td colspan="7">&nbsp;</td>
-										</tr>
-										<tr>
-											<td></td>
-											<th style="text-align: right; padding-right: 20px;">업무명
-											</th>
-											<td><input type="text" class="form-control input-sm"
-												width="100%" style="width: 100%; height: 27px;"></td>
-											<td></td>
-											<td></td>
-											<td><button class="btn btn-sm"
+
+											<td>
+												<button class="btn btn-sm"
 													style="background-color: #f07070; color: white"
 													type="submit">
 													<span class="fa fa-search"></span>&nbsp; 검색 &nbsp;
-												</button></td>
-											<td></td>
+												</button>
+
+												<button class="btn btn-sm"
+													style="background-color: #f07070; color: white"
+													onclick="window.location.href='taskLog.do'">
+													<span class="fa fa-search"></span>&nbsp; 전체보기&nbsp;
+												</button>
+											</td>
 										</tr>
 									</table>
 								</form>
 							</div>
 
+								
 
 							<br>
 							<hr style="border: 1px solid gray; margin-bottom: 0px">

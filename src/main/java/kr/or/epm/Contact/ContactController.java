@@ -192,35 +192,43 @@ public class ContactController {
 	public String enroll(@RequestParam("uploadfile") MultipartFile file, Principal principal, Contact contact, Model model, HttpServletRequest request) {
 		System.out.println("enroll()처리 컨트롤 탐");
 		System.out.println("contact.empimg : " + contact.getEmpimg());
+		System.out.println("contact.tostirng() : "+contact.toString());
+		System.out.println("contact.getEmpimg() null아니지?(사내):"+(contact.getEmpimg() != null) +"/ null 이니?(외부):"+(contact.getEmpimg() == null)+"공백이란 같아?:"+(contact.getEmpimg().equals(""))+" 길이:"+(contact.getEmpimg().length()));
 		
-		String path = request.getRealPath("/img/upload/");
-		System.out.println("=====> path : "+path);
-		File cFile = new File(path, file.getOriginalFilename());
 		
-		try {
-			file.transferTo(cFile);
-			System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
-			System.out.println("getPath : " +cFile.getPath());
-		} catch (IllegalStateException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
-		System.out.println("file.getOriginalFilename() :"+ file.getOriginalFilename());
-		contact.setPic(file.getOriginalFilename());
-		
-		if(contact.getEmpimg() != null){
-			contact.setPic(contact.getEmpimg());
-		}
-
-
 		String id= principal.getName();
 		System.out.println("id : "+id);
 		Emp emp = contactService.selectInfoSearch(id);  //사번,이름 가져가기
 		
 		String emp_no = emp.getEmp_no();//사번
 		System.out.println("emp_no:"+emp_no);
+		
+		
+		String path = request.getRealPath("/img/upload/");
+		System.out.println("=====> path : "+path);
+		File cFile = new File(path, file.getOriginalFilename()+"_"+emp_no+".png");
+		
+		
+		System.out.println("@@@file.getOriginalFilename()_번호 :"+ file.getOriginalFilename()+"_"+emp_no+".png");
+		contact.setPic(file.getOriginalFilename()+"_"+emp_no+".png");
+		
+		if(!contact.getEmpimg().equals("")){
+			System.out.println("if문 탐 / 사내 정보사진");
+			contact.setPic(contact.getEmpimg());
+		}else if(contact.getEmpimg().equals("")){
+			System.out.println("if문 안탐 / 외부사진");			
+			try {
+				file.transferTo(cFile);
+				System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
+				System.out.println("getPath : " +cFile.getPath());
+			} catch (IllegalStateException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}	
+		}
+
+		System.out.println("@@@contact.getpic() : " + contact.getPic());
 		
 		System.out.println("@@@@contact.tostring() : "+contact.toString());
 		
@@ -296,27 +304,25 @@ public class ContactController {
 		
 		//주소록 > 주소록 그룹 수정 처리
 		@RequestMapping( value="/contacts_group_update.do", method = RequestMethod.POST)
-		public String contacts_group_update(Principal principal, String group_name, Model model){
+		public String contacts_group_update(Principal principal, String group_name, String pre_group_no, Model model){
 			System.out.println("contacts_group_update() 컨트롤 탐");
-			System.out.println("group_name : "+group_name);
+			System.out.println("group_name : "+group_name + " pre_group_no : "+pre_group_no);
 			
-			/*String id= principal.getName();
+			String id= principal.getName();
 			System.out.println("id : "+id);
 			Emp emp = contactService.selectInfoSearch(id);  //사번,이름 가져가기
 			
 			String emp_no = emp.getEmp_no();//사번
-			System.out.println("emp_no:"+emp_no);
-				
+			System.out.println("emp_no:"+emp_no);	
+			
 			String url ="redirect:contacts_group.do";
 			
 			try{
-				url = contactService.selectGroupCheck_name(group_name, emp_no); //트랜잭션 ㄱㄱ //1:존재 ->그룹번호뽑기 /0:존재x->그룹추가 => groups에 추가 
+				url = contactService.selectGroupCheck_name(group_name, emp_no, pre_group_no); 
 			}catch (Exception e) {
-				System.out.println("contacts_group_insert() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
+				System.out.println("contacts_group_update() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
 			}
 			
-			return url;*/
-			
-			return null;
+			return url;
 		}
 }

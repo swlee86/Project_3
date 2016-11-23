@@ -70,7 +70,7 @@
 												<c:when test="${g.group_no == 1}"></c:when>
 												<c:otherwise>
 													<li>
-														<a href="#" class="contact_group_class" id="group_${g.group_no}">${g.group_name}</a>
+														<a href="#" class="contact_group_class" id="${g.group_no}">${g.group_name}</a>
 													</li>
 												</c:otherwise>
 											</c:choose>
@@ -86,11 +86,14 @@
 						</div>
 						
 						<div class="col-md-7" id="contact_group_from">
-							<form method="post" action="contacts_group_insert.do">
+							<form method="post" action="contacts_group_insert.do" id="contact_group_from_action">
 							 	<table  class="table table-bordered">
 							 			<tr>
 							 				<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:20%"><font color="#f05050">*</font> 그룹명</th>
-											<td><input type="text" name="group_name" id="group_name"class="form-control  input-sm" ></td>
+											<td>
+												<input type="text" name="group_name" id="group_name"class="form-control  input-sm" >
+												<input type="hidden" name="pre_group_no" id="pre_group_no" value="">
+											</td>
 							 			</tr>			 				
 							 	</table>
 							 	<div class="row text-right" style="margin-right:5px;">
