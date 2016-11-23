@@ -357,7 +357,7 @@ public class TaskController {
 
 	// 업무 > 업무보고 송신 페이지
 	@RequestMapping("/taskInform_song.do")
-	public String taskInform_send(Principal principal, Model model) {
+	public View taskInform_send(Principal principal, Model model) {
 		System.out.println("업무 보고 송신페이지를 요청합니다");
 		String cg_no = "2";
 		String RecSend = "Send";
@@ -377,7 +377,7 @@ public class TaskController {
 		List<Task> list = service.selectTask(emp_no, cg_no);
 		model.addAttribute("list", list);
 
-		return "task.taskInform";
+		return jsonview;
 	}
 
 	// 업무 보고 > 업무보고 수신 > 상세페이지
@@ -477,7 +477,12 @@ public class TaskController {
 
 	// 업무일지 > 업무 일지 수신 > 상세페이지
 	@RequestMapping("/taskLog_Receive_Detail.do")
-	public String taskLog_Receive_Detail() {
+	public String taskLog_Receive_Detail(String task_no, Model model) {
+		System.out.println("Controller] 업무 일지 수신 상세페이지");
+		
+		Task task = service.selectTask_detail(task_no);
+		model.addAttribute("detail", task);
+		
 		return "task.taskLog_Receive_Detail";
 	}
 
