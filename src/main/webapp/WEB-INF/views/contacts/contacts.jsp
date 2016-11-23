@@ -147,7 +147,7 @@
 											<div class="col-lg-6">
 												<div class="hpanel hblue contact-panelt">
 													<div class="panel-body">
-													/images/profile.jpg  :  ${list[n].pic}
+													<%-- /images/profile.jpg  :  ${list[n].pic} --%>
 														<img alt="logo" class="img-circle m-b" src="${pageContext.request.contextPath}/img/upload/${list[n].pic}" align="left">
 														<h4>
 															<a href="" data-toggle="modal" data-target="#myModal" id="conmodal_${n}"><B>${list[n].name}</B></a>

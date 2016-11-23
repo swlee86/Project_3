@@ -126,10 +126,11 @@
 		$('#contact_group_enroll_btn').click(function(){
 			console.log('contact_group_enroll_btn 클릭');
 			$('#group_name').val('');
-			$('#contact_group_from').attr('action','contacts_group_insert.do');//???
+			$('#contact_group_from_action').attr('action','contacts_group_insert.do');//???
 			$('#contact_group_from_submit').val('저장');
 			$('#contact_group_delete_btn').hide();
 			$('#contact_group_from').show();
+			$('#pre_group_no').hide();
 		});
 		
 		$('#contact_group_from').hide();
@@ -140,7 +141,7 @@
 		
 		$('.contact_group_class').click(function(){
 			console.log('.contact_group_class 클릭');
-			console.log('id값 : ' + $(this).attr('id') );
+			console.log('그룹번호: ' + $(this).attr('id') );
 			id = $(this).attr('id');
 			console.log('그룹명 : ' + $('#'+id).html());
 			
@@ -148,7 +149,9 @@
 			$('#'+id).addClass("group-clicked");
 			$('#contact_group_from').show();
 			$('#group_name').val($('#'+id).html());
-			$('#contact_group_from').attr('action','contacts_group_update.do');
+			$('#contact_group_from_action').attr('action','contacts_group_update.do');
+			$('#pre_group_no').show();
+			$('#pre_group_no').val(id);
 			$('#contact_group_from_submit').val('수정');
 			$('#contact_group_delete_btn').show();
 		});
@@ -443,15 +446,15 @@
 					},
 					success : function(data){
 						console.log("data : " + data);
+						console.log("data.pic : " + data.pic);
 						if(data != null){
 							$('#name').val(name);
 							$('#addenrollDate').val(data.birth);
-							$('#attach').val('사내 사원');
+							$('#attach').val(data.branch_name+' '+data.dept_name+' '+data.low_dept_name);
 							$('#mail').val(data.email);
 							$('#tel1').val(data.emp_tel);
 							$('#tel2').val(data.cell_phone);
 						 	$('#empimg').val(data.pic); 
-						 	console.log();
 						 	$('#uploadfile').hide();
 							$('#myModal6').modal("hide");
 						}
