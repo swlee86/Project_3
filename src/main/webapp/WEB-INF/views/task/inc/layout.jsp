@@ -47,6 +47,8 @@
    type="text/css" />
 
 
+    <!-- alert 창 -->
+	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
 <style>
 span.sty {
@@ -219,6 +221,10 @@ ul {
    <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
    <!-- App scripts -->
    <script src="scripts/homer.js"></script>
+   
+	<!-- alert -->
+	<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+
    <script type="text/javascript">
    
    //스크립트 생성자
@@ -247,11 +253,10 @@ ul {
 
 		$("input[name='checkbox']:checked").each(function(i) {
 			
-
-			console.log("글번호 : " + $(this).attr('id'));
+			// console.log("글번호 : " + $(this).attr('id'));
 			
 			var task_no = $(this).attr('id');
-			console.log("task_no : " + task_no);
+			// console.log("task_no : " + task_no);
 			
            arr.push(task_no);
 
@@ -265,10 +270,7 @@ ul {
 							type: "post",
 							data : {
 										arr : arr
-							       },
-							success : function(data){
-								console('업무 삭제 완료했습니다');
-							}
+							       }
 			           }
 			      );
 		}
@@ -316,6 +318,7 @@ ul {
             if (isConfirm) {
             	removeTask();
                swal("삭제되었습니다", "선택하신 업무가 삭제되었습니다", "success");
+               window.location.reload();
             } else {
                swal("취소되었습니다.", "선택하신 업무가 유지됩니다 :)", "error");
             }

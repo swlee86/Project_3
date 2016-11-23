@@ -200,6 +200,8 @@ public class TaskService {
 		
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		int result = dao.deleteTask_rec(task_no);
+		
+		System.out.println("결과값 : " + result);
 				
 		return result;
 	}
