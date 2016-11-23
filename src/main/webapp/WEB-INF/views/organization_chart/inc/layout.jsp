@@ -109,7 +109,6 @@
     					litag+="'></div>";
     					
     					
-    					/* litag+="<div></div>"; */
     				});
     		
     					$('#organization').html(litag);
