@@ -303,14 +303,23 @@ public class TaskController {
        model.addAttribute("list",taskList);
 	   return jsonview;
    }
-   //업무 요청 > 업무요청 참여 > 상세페이지
-   @RequestMapping("/taskRequest_Participation_Detail.do")
+   //업무 요청 > 업무요청 참여 > 상세페이지 > 리스트 > 박성준
+   @RequestMapping(value="/taskRequest_Participation_Detail.do", method=RequestMethod.GET)
    public String taskRequest_Participation_Detail(String task_no, Model model){
 	   System.out.println("참여 업무번호: "+task_no);
 	   Task task=service.selectTask_detail(task_no);
 	   model.addAttribute("partictask", task);
-	   
+	   model.addAttribute("hidden", task_no);
       return "task.taskRequest_Participation_Detail";
+   }
+   
+   //업무 요청 > 업무요청 참여 > 상세페이지 > 서브밋 > 박성준
+   @RequestMapping(value="/taskRequest_Participation_Detail.do", method=RequestMethod.POST)
+   public String taskRequest_Participation_Detail(String hidden_task_no, Model model, String approval){
+	   //approval 업무 진행 단계  / hidden_task_no - 업무 번호
+	   System.out.println("버튼 클릭 : "+approval+ " / no? : "+hidden_task_no);
+	   
+	   return null;
    }
    
    
