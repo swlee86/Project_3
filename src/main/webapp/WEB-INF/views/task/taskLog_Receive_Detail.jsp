@@ -34,35 +34,31 @@
 							<table cellpadding="1" cellspacing="1" class="table table-bordered " >
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">제목</th>
-										<td style="width:40%">UI/UX 구현</td>
+										<td style="width:40%">${detail.task_name}</td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">승인상태</th>
-										<td style="width:40%"><button class="btn btn-xs btn-warning2">미승인</button></td>
+										<td style="width:40%"><button class="btn btn-xs btn-warning2">${detail.step_no}</button></td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">지시자</th>
-										<td>김주희 사원</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">지시부서</th>
-										<td>개발팀</td>
-									</tr>	
-									<tr>
-										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">담당자</th>
-										<td >박지은</td>
+										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">수신자</th>
+										<td >${detail.rec_name}</td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">업무기한</th>
-										<td >2016-11-16 </td>
+										<td >${detail.deadline}</td>
 									</tr>	
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">업무 참여자</th>
-										<td colspan="3">이지은 대리<br>김지은 주임</td>
+										<td colspan="3">
+											
+										</td>
 									</tr>	
 																									
 									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">첨부파일</th>
-										<td colspan="3">업무 내용.hwp</td>
+										<td colspan="3">${detail.file_name}</td>
 									</tr>
 							
 									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">내용</th>
-										<td colspan="3">업<br>무<Br> 내<Br>용</td>
+										<td colspan="3">${detail.content}</td>
 									</tr>
 								</table>
 
