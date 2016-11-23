@@ -194,12 +194,9 @@ public class TaskController {
    //업무요청 > 업무요청 수신 > 상세페이지
    @RequestMapping("/taskRequest_Receive_Detail.do")
    public String taskRequest_Receive_Detail(String task_no, Model model){
-	   
 	   System.out.println("선택하신 업무 번호 : "+task_no);
-	   
 	   //task 상세 조회 가져옴 (참조자 제외)
 	   Task task=service.selectTask_detail(task_no);
-	   
 	   //업무 참여자 조회하기 - 참여자 사번만 나옴.
 	   List<Task_people> taskPeopleList = service.selectTask_people(task_no);
 	   //완성된 업무 참여자 조회 리스트
@@ -266,13 +263,10 @@ public class TaskController {
    //업무 요청 > 업무요청 송신 > 상세페이지
    @RequestMapping("/taskRequest_Transmit_Detail.do")
    public String taskRequest_Transmit_Detail(String task_no, Model model){
-	
 	   System.out.println("넘어온 번호 : "+task_no);
 	   //업무 상세 보기
 	   Task task=service.selectTask_detail(task_no);
 	   System.out.println("업무 : "+task.toString());
-	 
-	   
 	    //업무 참여자 조회하기 - 참여자 사번만 나옴.
 	   List<Task_people> taskPeopleList = service.selectTask_people(task_no);
 	   //완성된 업무 참여자 조회 리스트
@@ -309,7 +303,6 @@ public class TaskController {
        model.addAttribute("list",taskList);
 	   return jsonview;
    }
-   
    //업무 요청 > 업무요청 참여 > 상세페이지
    @RequestMapping("/taskRequest_Participation_Detail.do")
    public String taskRequest_Participation_Detail(String task_no, Model model){

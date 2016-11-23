@@ -186,4 +186,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	  #{param3} like '%${param4}%'
     	order by a.step desc
 	</select>
+
+	<!--내게 참조한 모든 업무 보기-->
+	<select id="selectTask_people_ForMe" resultType="kr.or.epm.VO.Task_people">
+		  select Task_NO, EMP_NO from task_people where emp_no = #{emp_no}
+	</select>
+
 </mapper>

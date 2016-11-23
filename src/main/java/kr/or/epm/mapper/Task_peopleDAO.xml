@@ -37,4 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by emp_no asc
 	</select>
 	
+	<!-- 사원이름 -->
+	<select id="selectEmp_name" resultType="String">
+	   select emp_name from emp where emp_no=#{emp_no}
+	</select>
 </mapper>
