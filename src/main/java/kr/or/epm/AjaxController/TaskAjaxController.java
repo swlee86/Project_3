@@ -42,7 +42,7 @@ public class TaskAjaxController {
 
 	// 업무 삭제하기
 	@RequestMapping(value = "/task_remove.do", method = RequestMethod.POST)
-	public View task_remove(String[] arr) {
+	public View task_remove(HttpServletRequest request) {
 
 		System.out.println("업무를 삭제합니다");
 		String str = request.getParameter("arr");
