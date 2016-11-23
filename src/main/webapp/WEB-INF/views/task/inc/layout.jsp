@@ -378,7 +378,35 @@ ul {
       
       
       $(function() {
-         
+    	  //업무 보고 송신
+    	  $('#informSongTab').click(function(){
+    		 $.ajax(
+    				  {
+    			 		url:"taskInform_song.do",
+    			 		success : function(data){
+    			 			var alist = data.list;
+    			 			console.log("리스트 머냐 : " +alist[0].task_no);
+    			 			var table = "";
+    			 			for(var i = 0; i < data.list.length; i++){
+    			 				table += "<tr>";			
+			  					table += "<td><input type='checkbox' style='margin-left:20px'></td>"
+			  					table+="<td>"+alist[i].task_no+"</td>";
+			  					table+="<td><span onclick='particTab_task_no(this);'>"+alist[i].task_name+"</span></td>";
+			  					table+="<td>"+alist[i].deadline+"</td>";
+			  					table+="<td>"+alist[i].rec_name+"</td>";
+			  					table+="<td>"+alist[i].send_date+"</td>";
+			  					table+="<td>"+alist[i].step_name+"</td>";
+			  					table+="<td>수신확인들어올곳</td>";
+			  					table +="</tr>";
+    			 			}
+    			 			
+    			 			$('#secondSongTbody').html(table);
+    			 			
+    			 		}
+    		          }
+    		       );	    
+    	  });
+    	  
     	  //송신 탭 클릭 시 
     	  $('#sendTab').click(function(){
     		  $.ajax(
@@ -719,8 +747,10 @@ ul {
     		  data += "<div class='input-group date'>";
     		  data += "<input type='text' class='form-control input-sm' name='input' id='input'>";
     		  data += "<span class='input-group-addon' style='color:#fd7d86'><i class='fa fa-calendar'></i></span>";
+    		  
     		  data += "</div></div>";
     		  $('#searchInput').empty().html(data);
+    		  calendarIcon();
     	  } else {
     		  var data = "<input type='text' class='form-control input-sm'";
     		  data += "width='90%' style='height: 27px;' name='input' id='input'>";
@@ -728,6 +758,25 @@ ul {
     		  $('#searchInput').empty().html(data);
     	  }
       }
+      
+      
+      function calendarIcon(){
+    	  var text = $('#searchInput').children().first().children().first().children().first().datepicker({
+    		  changeMonth : true,
+              dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
+                    '일요일' ],
+              dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+              monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
+                    '9', '10', '11', '12' ],
+              monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+                    '8월', '9월', '10월', '11월', '12월' ],
+              dateFormat : 'yy-mm-dd',
+              changeYear : true
+    		  
+    	  });
+    	  
+      }
+      
    </script>
 </body>
 </html>

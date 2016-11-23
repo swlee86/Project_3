@@ -19,9 +19,8 @@ public interface TaskDAO {
 	// 업무 상세보기
 	public Task selectTask_detail(String task_no);
 	
-	//업무 요청 수신 상세 보기
+	// 업무 요청 수신 상세 보기
 	public Task selectTask_receive_detail(String task_no);
-	
 	
 	// 수신함에서 읽었을 때 수신일 데이터 삽입하기
 	public int updateTask_recDate();
@@ -34,6 +33,7 @@ public interface TaskDAO {
 	
 	// 송신함 확인하기
 	public List<Task> selectTask(String emp_no, String cg_no);
+	
 	// 탭 메뉴 > 참여 리스트 보고
 	public List<Task_people> selectTask_people_ForMe(String emp_no);
 	
@@ -44,7 +44,7 @@ public interface TaskDAO {
 	public List<Task> selectTask_people();
 	
 	// 참여 업무 진행 처리하기
-	public int updateTask_step();
+	public int updateTask_step(String task_no, String task_step_no);
 	
 	// 수신함에서 글 개수 구하기
 	public int countTask_rec(String emp_no, String cg_no);
