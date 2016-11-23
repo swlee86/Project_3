@@ -317,15 +317,46 @@ public class TaskController {
    @RequestMapping(value="/taskRequest_Participation_Detail.do", method=RequestMethod.POST)
    public String taskRequest_Participation_Detail(String hidden_task_no, Model model, String approval){
 	   //approval 업무 진행 단계  / hidden_task_no - 업무 번호
-	   System.out.println("버튼 클릭 : "+approval+ " / no? : "+hidden_task_no);
+	   System.out.println("버튼 클릭 : "+approval+ " / no : "+hidden_task_no);
 	   
-	   return null;
+	   int result = service.updateTaskRequest_Participation_step(hidden_task_no, approval);
+	   String link = "";
+	   String msg = "";
+	   if(result > 0) {
+		  msg = "업데이트 성공!";
+		  link = "taskRequest.do";
+	   } else {
+		   msg = "업데이트 실패!";
+		   link = "taskRequest.do";   
+	   }
+	   model.addAttribute("msg",msg);
+	   model.addAttribute("link",link);
+	   return "task.taskRequest_redirect";
    }
    
    
-   //업무 > 업무보고 페이지 이동
+   //업무 > 업무보고 수신 페이지 이동
    @RequestMapping("/taskInform.do")
-   public String taskInform(){
+   public String taskInform(Principal principal, Model model){
+	   System.out.println("업무 보고 수신페이지를 요청합니다");
+	   String cg_no = "2";
+	   String RecSend = "Rec";
+	   
+	 // 로그인 id
+	 String id = principal.getName();
+	 System.out.println("id : " + id);
+	 String emp_no = commonservice.selectEmp_no(id);
+	 System.out.println("로그인한 사원의 emp_no : " + emp_no);
+	 
+	 // 글 개수 구하기
+	 int count = service.countTask(emp_no, cg_no, RecSend);
+	 System.out.println("수신함 글 개수 : " + count);
+	 model.addAttribute("count", count);
+	 
+	 // 목록 가져오기
+	 List<Task> list = service.selectTask_rec(emp_no, cg_no);
+	 model.addAttribute("list", list);
+	   
       return "task.taskInform";
    }
    

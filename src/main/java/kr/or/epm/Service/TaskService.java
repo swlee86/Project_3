@@ -250,6 +250,22 @@ public class TaskService {
 		List<Task_people> list = taskDAO.selectTask_people_ForMe(emp_no);
 		return list;
 	}
+	
+	// 진행상태 수정
+	public int updateTaskRequest_Participation_step(String task_no, String task_step_no) {
+		System.out.println("SERVICE] 진행상태를 수정합니다");
+		System.out.println("task_no : " + task_no);
+		System.out.println("task_step_no : " + task_step_no);
+		
+		int result =0;
+		
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		result = dao.updateTask_step(task_no, task_step_no);
+		
+		System.out.println("결과 값 : " + result);
+		
+		return result;
+	}
 
 }
 
