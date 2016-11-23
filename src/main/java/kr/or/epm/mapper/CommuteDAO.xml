@@ -101,9 +101,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- commute_no에 따른 정보 조회(단일) -->
 	<select id="selectCommute_commuteno" resultType="kr.or.epm.VO.Commute">
-		select commute_no, emp_no, regdate, in_time, out_time,
+		select commute_no, e.emp_no, emp_name, regdate, in_time, out_time,
 			   commute_time, add_time, acc_commute_time, acc_add_time, mgr_check 
-		from commute where commute_no=#{commute_no}
+		from commute c 
+	    join emp e
+	    on c.emp_no = e.emp_no
+	    where commute_no=#{commute_no}
 	</select>
 	
 	<!-- 당일 하루 근무시간 -->

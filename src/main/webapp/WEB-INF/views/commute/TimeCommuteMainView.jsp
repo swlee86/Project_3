@@ -68,15 +68,13 @@
 								<th>성명</th>
 								<th>출근시각</th>
 								<th>퇴근시각</th>
-								<!-- <th>조퇴시각</th> -->
 								<th>근무시간</th>
 							</tr>
 							<tr>
-								<td>테스트</td>
-								<td>박성준</td>
+								<td>${commute.emp_no}</td>
+								<td>${commute.emp_name}</td>
 								<td id="start">${commute.in_time}</td>
 								<td id="end">${commute.out_time}</td>
-								<!-- <td id="stop"></td> -->
 								<td id="workTime">${commute.commute_time}</td>
 							</tr>
 						</table>
@@ -237,7 +235,7 @@
 				var enMin = et.substr(3,5);
 				
 			 */
-			alert("전역 : " + endWorkStatus + "/" + startWorkStatus);
+			//alert("전역 : " + endWorkStatus + "/" + startWorkStatus);
 
 			//시간
 			var resultHour = (endWorkStatus - startWorkStatus) / 60000 / 60;
@@ -287,7 +285,7 @@
 					 }
 			)
 		} else {
-			alert("else 탐");
+			//alert("else 탐");
 			$('#workTime').html("00:00");
 		}
 
