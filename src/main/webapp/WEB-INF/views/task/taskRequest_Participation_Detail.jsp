@@ -30,7 +30,8 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form>
+						<form method="POST">
+							<input type="hidden" name="hidden_task_no" value="${hidden}">
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered " style="margin-bottom:0px" >
 									<tr>
@@ -95,20 +96,32 @@
 										<th colspan="2" style="background-color:#f9fafc;font-weight:bold;color:#111;font-size:1.2em;padding-left:20px;">처리 내역</th>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%;padding-top:40px;">진행 단계</th>
+										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%;padding-top:20px;">진행 단계</th>
 										<td>
 											<div class="form-inline">
-													<input type="button"  class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal1"  value="진행" style="margin-right:5px;width:70px;">
-													<input type="button"  class="btn btn-sm btn-default" data-toggle="modal" data-target="#myModal2" value="미진행"style="margin-right:5px;width:70px;" >
-													<input type="button"  class="btn btn-sm btn-default" data-toggle="modal" data-target="#myModal3" value="보류" style="margin-right:5px;width:70px;">
-													<input type="button"  class="btn btn-sm btn-default" data-toggle="modal" data-target="#myModal4"  value="완료" style="margin-right:5px;width:70px;">
-													<input type="button"  class="btn btn-sm btn-default" data-toggle="modal" data-target="#myModal5" value="중단"style="margin-right:5px;width:70px;" >
+										     	<span class="sty"> 
+													<input type="radio" name="approval" id="approv" value="1" class="radio radioa" /> 
+													<label class="sty" for="approv">진행</label>
+												</span> 
+												<span  class="sty"> 
+													<input type="radio" name="approval" id="reject" value="2" class="radio radior" /> 
+													<label class="sty" for="reject" >미진행</label>
+												</span> 
+												<span  class="sty"> 
+													<input type="radio" name="approval" id="wait" value="3" class="radio radiow" /> 
+													<label class="sty" for="wait">보류</label>
+												</span>
+												<span  class="sty"> 
+													<input type="radio" name="approval" id="finish" value="4" class="radio radiow" /> 
+													<label class="sty" for="finish">완료</label>
+												</span>
+												<span  class="sty"> 
+													<input type="radio" name="approval" id="stop" value="5" class="radio radiow" /> 
+													<label class="sty" for="stop">중단</label>
+												</span>
+											
+											
 											</div>
-											<div class="progress m-t-xs full progress-striped">
-								                        <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class=" progress-bar progress-bar-warning active ">
-								                            75%
-								                        </div>
-								            </div>
 										</td>
 									</tr>
 								</table>
@@ -116,8 +129,8 @@
 
 
 								<div  class=" pull-right" style="text-align: center; margin-right: 10px;">
-									<input type="submit" class="btn btn-sm btn-success" onclick="window.location.href='taskRequest.do'" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px" value="처리하기"> 
-									<input type="button" class="btn btn-sm btn-default" onclick="window.location.href='taskRequest.do'" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px" value="뒤로가기">
+									<input type="submit" class="btn btn-sm btn-success" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px" value="처리하기"> 
+									<input type="button" class="btn btn-sm btn-default" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px" value="뒤로가기">
 								</div>
 								
 							</div>
