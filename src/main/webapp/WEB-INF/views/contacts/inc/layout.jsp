@@ -153,6 +153,7 @@
 			$('#pre_group_no').show();
 			$('#pre_group_no').val(id);
 			$('#contact_group_from_submit').val('수정');
+			$('#contact_group_delete_btn').attr('href','contacts_group_delete.do?group_no='+id);
 			$('#contact_group_delete_btn').show();
 		});
 		

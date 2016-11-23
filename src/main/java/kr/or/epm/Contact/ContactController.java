@@ -325,4 +325,28 @@ public class ContactController {
 			
 			return url;
 		}
+		
+		//주소록 > 주소 그룹 삭제 처리
+		@RequestMapping( value="/contacts_group_delete.do", method = RequestMethod.GET)
+		public String contacts_group_delete(Principal principal, String group_no, Model model){
+			System.out.println("contacts_group_delete() 컨트롤 탐");
+			System.out.println("group_no : "+group_no );
+			
+			String id= principal.getName();
+			System.out.println("id : "+id);
+			Emp emp = contactService.selectInfoSearch(id);  //사번,이름 가져가기
+			
+			String emp_no = emp.getEmp_no();//사번
+			System.out.println("emp_no:"+emp_no);	
+			
+			String url ="redirect:contacts_group.do";
+			
+			try{
+				//url = contactService.selectGroupCheck_name(group_name, emp_no, pre_group_no); 
+			}catch (Exception e) {
+				System.out.println("contacts_group_delete() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
+			}
+			
+			return url;
+		}
 }
