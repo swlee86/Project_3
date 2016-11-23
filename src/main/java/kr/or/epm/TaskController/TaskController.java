@@ -356,7 +356,7 @@ public class TaskController {
 	}
 
 	// 업무 > 업무보고 송신 페이지
-	@RequestMapping("/taskInform.do")
+	@RequestMapping("/taskInform_song.do")
 	public String taskInform_send(Principal principal, Model model) {
 		System.out.println("업무 보고 송신페이지를 요청합니다");
 		String cg_no = "2";
