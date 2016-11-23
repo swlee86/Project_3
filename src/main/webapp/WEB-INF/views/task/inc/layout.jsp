@@ -719,8 +719,10 @@ ul {
     		  data += "<div class='input-group date'>";
     		  data += "<input type='text' class='form-control input-sm' name='input' id='input'>";
     		  data += "<span class='input-group-addon' style='color:#fd7d86'><i class='fa fa-calendar'></i></span>";
+    		  
     		  data += "</div></div>";
     		  $('#searchInput').empty().html(data);
+    		  calendarIcon();
     	  } else {
     		  var data = "<input type='text' class='form-control input-sm'";
     		  data += "width='90%' style='height: 27px;' name='input' id='input'>";
@@ -728,6 +730,25 @@ ul {
     		  $('#searchInput').empty().html(data);
     	  }
       }
+      
+      
+      function calendarIcon(){
+    	  var text = $('#searchInput').children().first().children().first().children().first().datepicker({
+    		  changeMonth : true,
+              dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
+                    '일요일' ],
+              dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+              monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
+                    '9', '10', '11', '12' ],
+              monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+                    '8월', '9월', '10월', '11월', '12월' ],
+              dateFormat : 'yy-mm-dd',
+              changeYear : true
+    		  
+    	  });
+    	  
+      }
+      
    </script>
 </body>
 </html>

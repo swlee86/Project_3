@@ -102,23 +102,9 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>
-												<input type="checkbox" style="margin-left:20px">
-											</td>
-											<td>4</td>
-											<td>
-												<div class="checkbox checkbox-danger" style="padding-top:0px;margin-top:0px;">
-													<input id="checkbox1" type="checkbox" checked ><label ></label>
-												</div>
-											</td>
-											<td><a href="taskInform_Receive_Detail.do">UI/UX 구현(클릭하세요)</a></td>
-											<td>2016-11-16</td>
-											<td>김주희</td>
-											<td>2016-11-15</td>
-											<td><button class="btn btn-xs btn-warning2" >미승인</button></td>
-											<td><font color="red"><b>미확인</b></font></td>
-										</tr>
+										
+										
+										
 										<tr>
 											<td><input type="checkbox" style="margin-left:20px"></td>
 											<td>4</td>
@@ -137,7 +123,7 @@
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='#'" >업무 등록</button>
+									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
 									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
 								</div>
 							</div>
