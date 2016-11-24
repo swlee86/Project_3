@@ -2,6 +2,8 @@ package kr.or.epm.LoginController;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -43,7 +45,7 @@ public class LoginController {
 	
 	//구글 로그인을 하면 해당 정보를 가지고 회원가입/로그인으로 화면을 redirection 시키는 함수
 	@RequestMapping(value = "/loginToken.do")
-	public View googleloginview(String id, String name, String imgurl, String email, Model model){
+	public View googleloginview(String id, String name, String imgurl, String email, Model model, HttpSession session){
 		System.out.println("구글 로그인 데이터 저장");
 		System.out.println("구글 id " + id);
 		System.out.println("구글 Name " + name);
@@ -61,6 +63,8 @@ public class LoginController {
 			 System.out.println("아이디가 없네요 ㅠㅠ");
 			 iddata="아이디가 존재하지 않습니다. 가입 후 이용하세요";
 			 model.addAttribute("iddata", iddata);
+			 model.addAttribute("googleloginid", id);
+			 session.setAttribute("googleApiKey", id);
 		 }else{
 			 model.addAttribute("iddata", iddata);
 		 }

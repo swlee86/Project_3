@@ -1,6 +1,8 @@
 package kr.or.epm.RegisterController;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -30,9 +32,11 @@ public class RegisterController {
 	
 	//회원가입 클릭시 view 페이지 보여주는 함수
 	@RequestMapping(value="/addMember.do", method=RequestMethod.GET)
-	public String insertMember(){
-
+	public String insertMember(HttpSession session, Model model){
+		String google = (String)session.getAttribute("googleApiKey");
+		System.out.println("세션 넘어감?  : " + google);
 		System.out.println("회원 가입");
+		model.addAttribute("registerGoogle", google);
 		return "register.addMember";
 	}
 	

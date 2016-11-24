@@ -79,6 +79,7 @@
 			  ,data:"id="+profile.getId()+"&name="+profile.getName()+"&imgurl="+profile.getImageUrl()+"&email="+profile.getEmail()
 			  ,success:function(result){
 				console.log("data : " + result.iddata);
+				console.log("googleloginid : " + result.googleloginid);
 					 $('#username').val(result.iddata);
 			  }
 			 });

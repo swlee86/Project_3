@@ -84,6 +84,7 @@
 											<div class=" col-lg-6">
 												<input type="text" value="" id="account" class="form-control" name="account">
 											</div>
+											<input type="hidden" value="${registerGoogle}" name="googleapiid">
 											</div>
 										</div>						
 									</div>
