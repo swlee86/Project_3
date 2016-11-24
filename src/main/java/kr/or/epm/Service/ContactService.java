@@ -214,8 +214,16 @@ public class ContactService {
 			}
 			
 			//pre_group_no>group_no 로 바꿔야대
+			contactDAO.updateContact_GroupNo(group_no, pre_group_no);
 			
-			//groups에 update 처리
+			//내 groups에 수정 전 그룹 번호 삭제(emp_contact) -> 예전 그룹번호 삭제
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("emp_no", emp_no);
+			map.put("pre_group_no", pre_group_no);
+			contactDAO.updateGroups_delete(map);
+			
+			
+			//groups에  새 그룹번호 추가 -> update 처리
 			updateGroups_insert(emp_no, group_no);
 
 		}catch(Exception e){
@@ -227,3 +235,4 @@ public class ContactService {
 	}
 	
 }
+

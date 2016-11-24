@@ -21,11 +21,26 @@ public class ProjectService {
 	
 	// 모든 프로젝트 목록 출력
 	public List<Pj> selectPjlist_all(){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		List<Pj> list = null;	
+		list= dao.selectPj();		
+		return list;
+	}
+	
+	
+	// 카테고리별 프로젝트 목록 출력 (승인된 것만 )
+	public List<Pj> selectPjlist_ctg(String select_ctg,String emp_no){
 		
 		PjDAO dao = sqlsession.getMapper(PjDAO.class);
-			
-		List<Pj> list= dao.selectPj();
-			
+		List<Pj> list =null;
+		
+		if(select_ctg.equals("all")){
+			list = dao.selectPj();
+		}else if(select_ctg.equals("write")){
+			list = dao.selectPj_write(emp_no);
+		}else if(select_ctg.equals("include")){
+			list = dao.selectPj_include(emp_no);
+		}
 		return list;
 	}
 	

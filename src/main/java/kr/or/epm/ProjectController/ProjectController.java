@@ -37,7 +37,7 @@ public class ProjectController {
 		
 		List<Pj> pjlist = null;
 		pjlist = projectservice.selectPjlist_all();
-		
+	
 		model.addAttribute("pjlist",pjlist);
 		
 		return "project.project_list";
