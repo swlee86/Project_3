@@ -48,6 +48,7 @@
 										<div class="g-signin2" data-onsuccess="onSignIn" style="display: block;"></div>
 										</div>
 										<hr>
+										<a class="btn btn-default btn-block" href="#" onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글 로그아웃</a>
 										<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
 										<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
 										<a class="btn btn-default btn-block" href="findId.do">아이디 찾기</a>

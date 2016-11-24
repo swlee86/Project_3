@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.RegisterService;
+import kr.or.epm.Util.Util;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
 
@@ -24,6 +27,10 @@ import kr.or.epm.VO.Emp_detail;
 @Controller
 public class RegisterController {
 
+
+	@Autowired
+	private LoginService service;
+	
 	@Autowired
 	private RegisterService registerservice;
 	
@@ -34,10 +41,30 @@ public class RegisterController {
 	@RequestMapping(value="/addMember.do", method=RequestMethod.GET)
 	public String insertMember(HttpSession session, Model model){
 		String google = (String)session.getAttribute("googleApiKey");
+		String googlemail = (String)session.getAttribute("googlemail");
+		String data="";
+		String answer="";
 		System.out.println("세션 넘어감?  : " + google);
 		System.out.println("회원 가입");
-		model.addAttribute("registerGoogle", google);
-		return "register.addMember";
+		model.addAttribute("registerGoogleId", google);
+		model.addAttribute("registerGoogleMail", googlemail);
+		
+		//db에 저장 되어 있는 구글 아이디 탐색
+		 String iddata = service.selectGoogleLoginData(google);
+		 boolean test = Util.isEmpty(iddata);
+		
+		 if(test!=true){
+			 data="아이디가 존재합니다. 다른 아이디로 가입하시려면 구글 로그아웃 후 이용하세요";
+			 answer = "login.do";
+			 model.addAttribute("data", data);
+			 model.addAttribute("answer", answer);
+			 return "register.registerRedirect";
+		 }else{
+			model.addAttribute("registerGoogleId", google);
+			model.addAttribute("registerGoogleMail", googlemail);
+			return "register.addMember";
+		 }
+		 
 	}
 	
 	//register를 누르면 회원가입을 시도하는 함수

@@ -52,8 +52,6 @@ public class LoginController {
 		System.out.println("구글 imgurl " + imgurl);
 		System.out.println("구글 email " + email);
 		
-		//최후 리턴시킬 url
-		String url = null;
 		 
 		//db에 저장 되어 있는 구글 아이디 탐색
 		 String iddata = service.selectGoogleLoginData(id);
@@ -64,9 +62,16 @@ public class LoginController {
 			 iddata="아이디가 존재하지 않습니다. 가입 후 이용하세요";
 			 model.addAttribute("iddata", iddata);
 			 model.addAttribute("googleloginid", id);
+			 
+			 //매칭되는 아이디가 없을시 가입에 필요한 객체를 session 정보에 담음
 			 session.setAttribute("googleApiKey", id);
+			 session.setAttribute("googlemail", email);
 		 }else{
 			 model.addAttribute("iddata", iddata);
+			 
+			 //로그인 데이터와 맞는 아이디가 있으면 정보를 session에 담음
+			 session.setAttribute("googleApiKey", id);
+			 session.setAttribute("googlemail", email);
 		 }
 
 		return jsonview;

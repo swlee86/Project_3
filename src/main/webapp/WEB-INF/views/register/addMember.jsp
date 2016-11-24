@@ -67,6 +67,12 @@
 
 											</div>
 										</div>
+										<div class="form-group col-lg-12">
+											<label style="color: black;">Email</label>
+											<div class="input-group">
+												<input type="text" value="${registerGoogleMail}" id="email" class="form-control" name="email" readonly="readonly">																					
+											</div>
+										</div>
 										
 										<div class="form-group col-lg-12">
 											<label style="color: black;">계좌번호</label> 
@@ -84,7 +90,7 @@
 											<div class=" col-lg-6">
 												<input type="text" value="" id="account" class="form-control" name="account">
 											</div>
-											<input type="hidden" value="${registerGoogle}" name="googleapiid">
+											<input type="hidden" value="${registerGoogleId}" name="googleapiid">
 											</div>
 										</div>						
 									</div>
