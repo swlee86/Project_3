@@ -25,4 +25,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			update emp set email= #{email}, cell_phone = #{cell_phone} where emp_no = #{emp_no}	
 	</update>
 	
+	
+	<select id="selectGoogleLoginData" parameterType="String" resultType="kr.or.epm.VO.EmpJoinEmp_Detail">
+		select id, pwd from emp_detail where googleapiid=#{id}
+	</select>
+	
 </mapper>

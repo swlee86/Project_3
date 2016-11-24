@@ -24,6 +24,7 @@ public interface LoginDAO {
 	//emp 테이블에  정보수정시 email 변경함.
 	int updateEmp_Email(@Param("email") String email, @Param("emp_no") String emp_no, @Param("cell_phone") String cell_phone);
 	
-	
+	//구글 로그인 id로 아이디 비밀번호 데이터 받아오기
+	EmpJoinEmp_Detail selectGoogleLoginData(String id);
 	
 }

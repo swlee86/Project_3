@@ -26,9 +26,8 @@
 									<form action="${pageContext.request.contextPath}/login" id="loginForm" method="POST" name="f">
 										<div class="form-group">
 											<label class="control-label" for="username" style="color: black;">아이디</label> <input
-												type="text" placeholder="example@gmail.com"
-												title="Please enter you username" required="" value=""
-												name="username" id="username" class="form-control">
+												type="text" title="Please enter you username" required="" value=""
+												name="username" id="username" class="form-control" readonly="readonly">
 											<span class="help-block small">Your unique username to
 												app</span>
 										</div>
@@ -46,6 +45,8 @@
 										</div>
 										<div class="g-signin2" data-onsuccess="onSignIn"></div>
 										
+										<button type="button" onclick="location.href='googlelogin.do'">Google LogIn</button>
+																		
 										<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
 										<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
 										<a class="btn btn-default btn-block" href="findId.do">아이디 찾기</a>
@@ -70,8 +71,18 @@
 		  console.log('Name: ' + profile.getName());
 		  console.log('Image URL: ' + profile.getImageUrl());
 		  console.log('Email: ' + profile.getEmail());
-	
-		}
+		  
+		  $.ajax({
+			  type:"POST"
+			  ,url:"loginToken.do" //세션 생성페이지 (setAttribute...)
+			  ,data:"id="+profile.getId()+"&name="+profile.getName()+"&imgurl="+profile.getImageUrl()+"&email="+profile.getEmail()
+			  ,success:function(result){
+				console.log("data : " + result.iddata);
+				 $('#username').val(result.iddata);
+
+			  }
+			 });
+	}
 	
 	  function signOut() {
 		    var auth2 = gapi.auth2.getAuthInstance();

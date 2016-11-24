@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.LoginService;
+import kr.or.epm.Util.Util;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 
 /*
@@ -21,7 +23,11 @@ import kr.or.epm.VO.EmpJoinEmp_Detail;
 
 @Controller
 public class LoginController {
-
+	
+	
+	@Autowired
+	private View jsonview;
+	
 	@Autowired
 	private LoginService service;
 	
@@ -32,6 +38,35 @@ public class LoginController {
 	public String loginview() {
 		System.out.println("로그인");
 		return "login.login";
+	}
+	
+	
+	//구글 로그인을 하면 해당 정보를 가지고 회원가입/로그인으로 화면을 redirection 시키는 함수
+	@RequestMapping(value = "/loginToken.do")
+	public View googleloginview(String id, String name, String imgurl, String email, Model model){
+		System.out.println("구글 로그인 데이터 저장");
+		System.out.println("구글 id " + id);
+		System.out.println("구글 Name " + name);
+		System.out.println("구글 imgurl " + imgurl);
+		System.out.println("구글 email " + email);
+		
+		//최후 리턴시킬 url
+		String url = null;
+		 
+		//db에 저장 되어 있는 구글 아이디 탐색
+		 EmpJoinEmp_Detail idpwd = service.selectGoogleLoginData(id);
+		 String chk = null;
+		 chk = idpwd.getId();
+		 boolean test = Util.isEmpty(chk);
+		 
+		 if(test==true){
+			 url = "register.addMember";	
+		 }else{
+			model.addAttribute("iddata", chk);
+		 }
+
+		return jsonview;
+
 	}
 
 	// 내정보수정 > 뷰페이지
