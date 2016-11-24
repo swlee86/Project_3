@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 	<header id="page-top">
 		<div class="container">
 			<div class="heading">
@@ -26,7 +27,7 @@
 									<form action="${pageContext.request.contextPath}/login" id="loginForm" method="POST" name="f">
 										<div class="form-group">
 											<label class="control-label" for="username" style="color: black;">아이디</label> <input
-												type="text" title="Please enter you username" required="" value=""
+												type="text" title="Please enter you username" required="" value="구글 로그인 후 이용하세요"
 												name="username" id="username" class="form-control" readonly="readonly">
 											<span class="help-block small">Your unique username to
 												app</span>
@@ -43,10 +44,10 @@
 												<label style="color: black;">로그인상태 유지</label>
 											<p class="help-block small">(if this is a private computer)</p>
 										</div>
-										<div class="g-signin2" data-onsuccess="onSignIn"></div>
-										
-										<button type="button" onclick="location.href='googlelogin.do'">Google LogIn</button>
-																		
+										<div style="text-align: center;">
+										<div class="g-signin2" data-onsuccess="onSignIn" style="display: block;"></div>
+										</div>
+										<hr>
 										<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
 										<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
 										<a class="btn btn-default btn-block" href="findId.do">아이디 찾기</a>
@@ -78,8 +79,7 @@
 			  ,data:"id="+profile.getId()+"&name="+profile.getName()+"&imgurl="+profile.getImageUrl()+"&email="+profile.getEmail()
 			  ,success:function(result){
 				console.log("data : " + result.iddata);
-				 $('#username').val(result.iddata);
-
+					 $('#username').val(result.iddata);
 			  }
 			 });
 	}

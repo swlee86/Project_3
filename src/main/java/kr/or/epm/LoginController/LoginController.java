@@ -54,15 +54,15 @@ public class LoginController {
 		String url = null;
 		 
 		//db에 저장 되어 있는 구글 아이디 탐색
-		 EmpJoinEmp_Detail idpwd = service.selectGoogleLoginData(id);
-		 String chk = null;
-		 chk = idpwd.getId();
-		 boolean test = Util.isEmpty(chk);
+		 String iddata = service.selectGoogleLoginData(id);
+		 boolean test = Util.isEmpty(iddata);
 		 
 		 if(test==true){
-			 url = "register.addMember";	
+			 System.out.println("아이디가 없네요 ㅠㅠ");
+			 iddata="아이디가 존재하지 않습니다. 가입 후 이용하세요";
+			 model.addAttribute("iddata", iddata);
 		 }else{
-			model.addAttribute("iddata", chk);
+			 model.addAttribute("iddata", iddata);
 		 }
 
 		return jsonview;

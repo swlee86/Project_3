@@ -68,11 +68,11 @@ public class LoginService {
 	}
 	
 	//구글 로그인 id 데이터를 db에서 비교해오는 서비스 함수
-	public EmpJoinEmp_Detail selectGoogleLoginData(String id){
+	public String selectGoogleLoginData(String id){
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
-		EmpJoinEmp_Detail ed = dao.selectGoogleLoginData(id);
-		System.out.println(ed.toString());
-			return ed;			
+		String iddata = dao.selectGoogleLoginData(id);
+		System.out.println(iddata);
+		return iddata;			
 		
 	}
 	
