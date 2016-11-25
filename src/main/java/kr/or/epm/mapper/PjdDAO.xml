@@ -8,14 +8,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	작성일 : 2016-11-20
 	작성자 : 백승아
 	사용 목적 : 프로젝트 상세에 대한 mapper
+	
+	수정일 : 2016-11-25
+	작성자 : 김주희
 -->
 
 	<!-- 큰 프로젝트에 대한 프로젝트 상세 조회하기 -->
-	<select id="selectPjd" resultType="kr.or.epm.VO.Pjd">
-		select pjd_no, pjd_title, pjd_start, pjd_end, pj_step_name
-		from pjd p join pj_step s
-		on p.pj_step_no = s.pj_step_no
-		where pj_no = #{pj_no}
+	<select id="selectPjd" parameterType="String" resultType="kr.or.epm.VO.Pjd">
+		select rownum,e.emp_name,pjd_no,d.pj_no,pjd_title,
+				pjd_content,pjd_start,pjd_end,
+				d.pj_step_no, pj_step_name 
+			from pjd d join pj_step s
+				on d.pj_step_no = s.pj_step_no
+	    join emp e
+	      on (select emp_no from pj where pj_no=#{pj_no}) = e.emp_no
+	  	where d.pj_no = #{pj_no}
+	  	order by pjd_end asc
 	</select>
 	
 	<!-- 프로젝트 상세 등록하기 -->
@@ -50,4 +58,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update pj
 		set pj_progress = 0
 	</update>
+	
+	<!-- 상세의 참여자 사진 조회하기 -->
+	<select id="selectPeople" parameterType="String" resultType="kr.or.epm.VO.Pjd_people">
+		select pjd_no, p.emp_no, pic 
+		from pjd_people p 
+		join emp e 
+		on p.emp_no = e.emp_no 
+		where pjd_no=#{pjd_no}
+	</select>
+	
 </mapper>

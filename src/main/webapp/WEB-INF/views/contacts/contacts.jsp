@@ -15,7 +15,7 @@
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<!-- <li><span>App views</span></li> -->
-					<li class="active"><span>Contacts - ${group}</span></li>
+					<li class="active"><span>Contacts</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">개인 주소록 </h2>
@@ -39,11 +39,19 @@
 				<div class="panel-body">
 					<a data-toggle="collapse" data-parent="#accordion"  href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
 					</a>
-					<div id="q1" class="panel-collapse collapse groupdiv" id="accordiongroup" >
-						<hr>
+					<div id="q1" class="panel-collapse collapse groupdiv" id="accordiongroup" style="display:block">
+						<br>
 						<ul>
 							<c:forEach items="${grouplist}" var="g">
-								<li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	
+								<c:choose>
+									<c:when test="${g.group_no == 1}"></c:when> 
+									<c:otherwise>
+											<li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	
+									</c:otherwise>
+								</c:choose>
+								
+								
+								<%-- <li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	 --%>
 							</c:forEach>
 						</ul>
 						
@@ -57,7 +65,7 @@
 			</div>
 		</div>
 	<input type="hidden" id="groupnumber" value="${group}">
-
+<%-- 	<input type="hidden" id="contactmsg" value="${contactmsg}"> --%>
 
 
 		<div class="col-md-9">
@@ -204,7 +212,7 @@
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center" style="height:180px;padding-top:25px">
-				<h4 class="modal-title"><img alt="logo" class="img-circle m-b" src="images/a4.jpg"></h4>
+				<h4 class="modal-title"><img alt="logo" id="m_img" class="img-circle m-b" ></h4>
 			</div>
 			<div class="modal-body">
 				<table class="table  table-condensed  table-bordered">
@@ -234,7 +242,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">닫기</button>
-				<button type="button" class="btn btn-success btn-sm" onclick="modifyGroup();" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정</button>
+				<a href="" id="contact_modla_update" class="btn btn-success btn-sm"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정</a>
 				<a  href="" id="contact_modla_delete" class="btn btn-success btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제</a>
 			</div>
 		</div>

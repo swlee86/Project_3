@@ -146,7 +146,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	
+	<!-- 주소록 상세조회 삭제  / 트랜잭션 필요-->
+	<delete id="deleteEmpContact" >
+		delete emp_contact where contact_no=#{param1} and emp_no=#{param2}		
+	</delete>
+	<delete id="deleteContact" parameterType="String">
+		delete contact where contact_no=#{contact_no}
+	</delete>
 	
 	
 	
@@ -188,7 +194,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	
+	<select id="selectContact_count" parameterType="String" resultType="int">
+		select nvl(count(*),0) 
+		from emp_contact 
+		where emp_no=#{emp_no}
+	</select>
 	
 	
 	
@@ -219,21 +229,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 주소록 상세조회 수정 -->
 	<update id="updateContact_detail" parameterType="kr.or.epm.VO.Contact">
 		update contact 
-		set group_no = (select group_no from c_group where group_name=#{group_name}), name=#{name}, attach=#{attach}, 
-		    birth =#{birth}, mail =#{mail}, pic=#{pic}, 
+		set group_no = #{group_no}, name=#{name}, attach=#{attach}, 
+		    birth =#{birth}, mail =#{mail}, pic=#{pic,jdbcType=VARCHAR}, 
 		    tel1=#{tel1}, tel2=#{tel2}, memo=#{memo} 
 		where contact_no=#{contact_no}
 	</update>
 	
 
 
-	<!-- 주소록 상세조회 삭제  / 트랜잭션 필요-->
-	<delete id="deleteEmpContact" parameterType="String">
-		delete emp_contact where contact_no=#{contact_no}			
-	</delete>
-	<delete id="deleteContact" parameterType="String">
-		delete contact where contact_no=#{contact_no}
-	</delete>
+
 
 
 

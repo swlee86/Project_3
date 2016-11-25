@@ -48,7 +48,8 @@ public interface ContactDAO {
 	
 	
 	
-	
+	//사원이 가지고 있는 주소록 갯수
+	public int selectContact_count(String emp_no);
 	
 	
 	//그룹별 조회
@@ -60,10 +61,10 @@ public interface ContactDAO {
 	public Contact selectContact_detail(String contact_no);
 	
 	//주소록 상세조회 수정
-	public int updateContact_detail(Contact dto);
+	public int updateContact_detail(Contact contact);
 	
 	//주소록 상세조회 삭제  / 트랜잭션 필요
-	public int deleteEmpContact(String contact_no);	
+	public int deleteEmpContact(String contact_no, String emp_no);	
 	public int deleteContact(String contact_no);
 
 

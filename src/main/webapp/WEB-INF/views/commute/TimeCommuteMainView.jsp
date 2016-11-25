@@ -71,8 +71,8 @@
 								<th>근무시간</th>
 							</tr>
 							<tr>
-								<td>${commute.emp_no}</td>
-								<td>${commute.emp_name}</td>
+								<td id="commute_empno">${commute.emp_no}</td>
+								<td id="commute_empname">${commute.emp_name}</td>
 								<td id="start">${commute.in_time}</td>
 								<td id="end">${commute.out_time}</td>
 								<td id="workTime">${commute.commute_time}</td>
@@ -149,10 +149,15 @@
 						 {
 							url : "insertCommute_in.do",
 							data : {
-										in_time : $("#start").html(),
-										emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
+										in_time : $("#start").html()
+										//,emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
 								   },
-							success : function(data){						
+							success : function(data){	
+								console.log("@@@@@@@@@@@@data: "+data + "/ data.emp : "+data.emp);
+								console.log("data.emp.emp_no : "+data.emp.emp_no);
+								console.log("data.emp.emp_name : "+data.emp.emp_name);
+								$('#commute_empno').html(data.emp.emp_no);
+								$('#commute_empname').html(data.emp.emp_name);
 							}
 						 }
 				)
@@ -182,8 +187,8 @@
 						 {
 							url : "updateCommute_out.do",
 							data : {
-										out_time : $("#end").html(),
-										emp_no : '91001050',
+										out_time : $("#end").html()
+										/* ,emp_no : '91001050', */
 								   },
 							success : function(data){			
 								
@@ -249,29 +254,33 @@
 			resultHour = checkTime(resultHour2);
 
 			var resultTime = resultHour + ":" + resultMin;
-
+	
 			$('#workTime').html(resultTime);
+			var emp_no_val;
 			
 			$.ajax(
 					 {
 						url : "updateCommute_commutetime.do",
 						data : {
-									commute_time : $("#workTime").html(),
-									emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
+									commute_time : $("#workTime").html()
+									//,emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
 							   },
-						success : function(data){							
+						success : function(data){	
+							console.log("updateCommute_commutetime ajax : "+data.emp_no);
+							emp_no_val = data.emp_no;
+							
 							$.ajax(
 									 {
 										url : "updateCommute_add.do",
 										data : {
-													emp_no : '91001050',
+													emp_no : emp_no_val
 											   },
 										success : function(data){
 											$.ajax(
 													 {
 														url : "updateCommute_acc.do",
 														data : {
-																	emp_no : '91001050',
+																	emp_no : emp_no_val
 															   },
 														success : function(data){
 															

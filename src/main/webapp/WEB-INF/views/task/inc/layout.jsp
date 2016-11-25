@@ -41,12 +41,6 @@
    href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
    type="text/css" />
 
-<!-- jquery ui -->
-<link rel="stylesheet"
-   href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-   type="text/css" />
-
-
     <!-- alert 창 -->
 	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
