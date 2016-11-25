@@ -20,8 +20,6 @@ public interface PayDAO {
 	
 	//본인 급여 월별 조회하기
 	public Pay selectPay_mine_Monthly(String emp_no, String give_date);
-	//급여 지급일 조회하기
-	public List<String> selectGive_date(String emp_no);
 	
 	// 예상 퇴직금 조회하기
 	

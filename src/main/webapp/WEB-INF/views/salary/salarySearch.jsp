@@ -60,7 +60,7 @@
 					 <hr style="border:1px solid gray; margin-bottom:0px">
 					<div class="table-responsive">
 						<table cellpadding="1" cellspacing="1"
-							class="table table-bordered table-condensed">
+							class="table table-bordered table-condensed" id="payResultDiv">
 						  <c:forEach var="list" items="${list}">
 							<tr style="background-color:#f9fafc">
 								<th>지급기준일</th>
