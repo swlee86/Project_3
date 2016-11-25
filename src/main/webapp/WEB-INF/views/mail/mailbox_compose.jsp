@@ -31,7 +31,7 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form class="form-inline">
+						<form class="form-inline" action="mailsend.do" method="post">
 							<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1"
 									class="table table-bordered ">
@@ -42,7 +42,7 @@
 										<td>
 											<div class="form-group">
 												<div class="input-group date">
-													<input type="text" class="form-control input-sm" size="100%">
+													<input type="text" class="form-control input-sm" size="100%" name="subjects">
 												</div>
 											</div>
 										</td>
@@ -54,21 +54,15 @@
 									</tr>
 									<tr>
 										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
-											color="coral"></font><span style="color:white">수신자 명</span></th>
-										<td><input type="text" class="form-control input-sm" size="100%"></td>
-									</tr>
-									<tr>
-										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
 											color="coral"></font><span style="color:white">수신자 메일</span></th>
-										<td><input type="email" class="form-control input-sm" placeholder="example@naver.com" size="100%"></td>
+										<td><input type="email" class="form-control input-sm" placeholder="example@naver.com" size="100%" name="recipients"></td>
 									</tr>
 									<tr>
 										<th
 											style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%">
 											<font color="coral">*</font><span style="color:white">내용</span>
 										</th>
-										<td><textarea class="form-control" cols="10" rows="10"
-												style="width: 100%"></textarea></td>
+										<td><textarea class="form-control" cols="10" rows="10" style="width: 100%" name="bodys"></textarea></td>
 									</tr>
 								</table>
 								
