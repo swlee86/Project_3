@@ -266,7 +266,7 @@ public class TaskController {
 		List<Task_people> taskPeopleList = service.selectTask_people(task_no);
 		// 완성된 업무 참여자 조회 리스트
 		List<String> taskPeople = service.selectEmp_info(taskPeopleList);
-
+		
 		model.addAttribute("task", task);
 		model.addAttribute("taskPeople", taskPeople);
 		return "task.taskRequest_Transmit_Detail";
@@ -277,6 +277,7 @@ public class TaskController {
 	 * Test(@RequestParam(value="array[]") List<String> array){
 	 * System.out.println("테스트 : "+array.size()); return jsonview; }
 	 */
+	
 	// 업무 요청 > 업무요청 참여 > 리스트 > 성준(11-22)
 	@RequestMapping("/taskRequest_Participation_List.do")
 	public View taskRequest_Participation_List(Principal principal, Model model) {
