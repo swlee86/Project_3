@@ -2,14 +2,18 @@ package kr.or.epm.LoginController;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.LoginService;
+import kr.or.epm.Util.Util;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 
 /*
@@ -21,7 +25,11 @@ import kr.or.epm.VO.EmpJoinEmp_Detail;
 
 @Controller
 public class LoginController {
-
+	
+	
+	@Autowired
+	private View jsonview;
+	
 	@Autowired
 	private LoginService service;
 	
@@ -32,6 +40,42 @@ public class LoginController {
 	public String loginview() {
 		System.out.println("로그인");
 		return "login.login";
+	}
+	
+	
+	//구글 로그인을 하면 해당 정보를 가지고 회원가입/로그인으로 화면을 redirection 시키는 함수
+	@RequestMapping(value = "/loginToken.do")
+	public View googleloginview(String id, String name, String imgurl, String email, Model model, HttpSession session){
+		System.out.println("구글 로그인 데이터 저장");
+		System.out.println("구글 id " + id);
+		System.out.println("구글 Name " + name);
+		System.out.println("구글 imgurl " + imgurl);
+		System.out.println("구글 email " + email);
+		
+		 
+		//db에 저장 되어 있는 구글 아이디 탐색
+		 String iddata = service.selectGoogleLoginData(id);
+		 boolean test = Util.isEmpty(iddata);
+		 
+		 if(test==true){
+			 System.out.println("아이디가 없네요 ㅠㅠ");
+			 iddata="아이디가 존재하지 않습니다. 가입 후 이용하세요";
+			 model.addAttribute("iddata", iddata);
+			 model.addAttribute("googleloginid", id);
+			 
+			 //매칭되는 아이디가 없을시 가입에 필요한 객체를 session 정보에 담음
+			 session.setAttribute("googleApiKey", id);
+			 session.setAttribute("googlemail", email);
+		 }else{
+			 model.addAttribute("iddata", iddata);
+			 
+			 //로그인 데이터와 맞는 아이디가 있으면 정보를 session에 담음
+			 session.setAttribute("googleApiKey", id);
+			 session.setAttribute("googlemail", email);
+		 }
+
+		return jsonview;
+
 	}
 
 	// 내정보수정 > 뷰페이지

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import kr.or.epm.DAO.LoginDAO;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Emp_detail;
@@ -17,6 +19,7 @@ import kr.or.epm.VO.Emp_detail;
  */
 @Service
 public class LoginService {
+
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -62,6 +65,15 @@ public class LoginService {
 		}
 		
 		return update;
+	}
+	
+	//구글 로그인 id 데이터를 db에서 비교해오는 서비스 함수
+	public String selectGoogleLoginData(String id){
+		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
+		String iddata = dao.selectGoogleLoginData(id);
+		System.out.println(iddata);
+		return iddata;			
+		
 	}
 	
 	

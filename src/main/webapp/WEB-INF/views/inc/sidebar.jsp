@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!-- 행아웃 필요 스크립트 -->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <aside id="menu">
     <div id="navigation">
