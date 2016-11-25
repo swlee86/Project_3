@@ -103,7 +103,7 @@ public class TaskController {
 
 	// 업무 > 업무 등록
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
-	public String taskWriteOk(Principal principal, Task_people people, Task task, Model model) {
+	public String taskWriteOk(Principal principal, List<Task_people> people, Task task, Model model) {
 
 		System.out.println("CONTROLLER] 업무 등록");
 
@@ -121,9 +121,9 @@ public class TaskController {
 		String emp_name = "";
 		String task_no = "";
 	
-		List<Task_people> peopleList = new ArrayList<Task_people>();
-		peopleList.add(people);
-		System.out.println("참여자 선택 인원 : " + peopleList.size());
+//		List<Task_people> peopleList = new ArrayList<Task_people>();
+//		peopleList.add(people);
+		System.out.println("참여자 선택 인원 : " + people.size());
 		
 		try {
 			// 업무에 송신자 사번, 송신자 이름 담기
@@ -132,15 +132,18 @@ public class TaskController {
 			task.setEmp_name(emp_name);
 			
 			// 업무 등록하기
-			result1 = service.insertTask(task);
+//			result1 = service.insertTask(task);
 			
-			if(result1 > 0) {
-				System.out.println("업무 등록에 성공했습니다");
-				task_no = service.selectTask_no();
-			}
+//			if(result1 > 0) {
+//				System.out.println("업무 등록에 성공했습니다");
+//				task_no = service.selectTask_no();
+//				System.out.println("등록하려고 하는 업무 번호는 : " + task_no);
+//			}
 			
 			// 업무 참여자 등록하기
-			result2 = service.insertTask_people(task_no, peopleList);
+//			result2 = service.insertTask_people(task_no, peopleList);
+			
+			
 		} catch (Exception e) {
 			e.getMessage();
 		} finally {
