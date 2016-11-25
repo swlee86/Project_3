@@ -313,7 +313,6 @@ public class TaskController {
 		return jsonview;
 	}
 
-<<<<<<< HEAD
 	// 업무 요청 > 송신 > 상세
 	@RequestMapping("/taskRequest_detail.do")
 	public String taskRequest_detail(String task_no, Model model) {
@@ -328,10 +327,6 @@ public class TaskController {
 		return "task.taskRequest_detail";
 	}
 
-	// 업무 요청 > 참여
-	@RequestMapping("/taskRequest_participation.do")
-	public View taskRequest_participation(Principal principal, Model model) {
-=======
 	// 업무 요청 > 업무요청 송신 > 상세페이지
 	@RequestMapping("/taskRequest_Transmit_Detail.do")
 	public String taskRequest_Transmit_Detail(String task_no, Model model) {
@@ -343,22 +338,15 @@ public class TaskController {
 		List<Task_people> taskPeopleList = service.selectTask_people(task_no);
 		// 완성된 업무 참여자 조회 리스트
 		List<String> taskPeople = service.selectEmp_info(taskPeopleList);
-		
 		model.addAttribute("task", task);
 		model.addAttribute("taskPeople", taskPeople);
 		return "task.taskRequest_Transmit_Detail";
 	}
 
-	/*
-	 * @RequestMapping("/test.do") public View
-	 * Test(@RequestParam(value="array[]") List<String> array){
-	 * System.out.println("테스트 : "+array.size()); return jsonview; }
-	 */
-	
+
 	// 업무 요청 > 업무요청 참여 > 리스트 > 성준(11-22)
 	@RequestMapping("/taskRequest_Participation_List.do")
 	public View taskRequest_Participation_List(Principal principal, Model model) {
->>>>>>> 33912c57f0ecd26a5a1eb62a7865a7f76cf6d13c
 
 		System.out.println("CONTROLLER] 업무 요청 참여 페이지");
 
