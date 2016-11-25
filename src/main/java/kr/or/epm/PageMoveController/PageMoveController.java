@@ -149,22 +149,7 @@ public class PageMoveController {
 		return "chart.chartMoney_View";
 	}
 	
-	//급여 관리 > 급여 항목 설정
-	@RequestMapping("/salarySetting.do")
-	public String salrySetting(){
-		return "salary.salarySetting";
-	}
 	
-	//급여 관리> 급여 조회(개인)
-	@RequestMapping("/salarySearch.do")
-	public String salarySearch(){
-		return "salary.salarySearch";
-	}
-	//급여 관리 > 퇴직금 계산
-	@RequestMapping("/severancepay.do")
-	public String severancepay(){
-		return "salary.severancepay";
-	}
 
 	// 관리자 메뉴 > 거래처 > 거래처 메뉴로 이동
 	@RequestMapping("/client.do")
