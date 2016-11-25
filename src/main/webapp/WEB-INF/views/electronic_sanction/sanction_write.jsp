@@ -101,7 +101,7 @@
 											id="sanction_cg">
 												<option value="0">선택</option>
 												<option value="1">협조문</option>
-												<option value="2">대외발생</option>
+												<option value="2">대외발신 공문</option>
 												<option value="3">휴가</option>
 										</select></td>
 									</tr>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- 채팅 테스트용 아이디 세션 -->
 <%session.setAttribute("id", "PSJ"); %>
@@ -32,39 +33,28 @@
 						<div class="table-responsive">
 						<table class="table table-hover table-mailbox">
 							<tbody>
+							<c:choose>
+							<c:when test="${null eq maillist }">
+								<div><h6>메일의 경우 보안 관계상 메일 읽기에서 한 번 더 로그인 후 조회 가능합니다</h6></div>
+							</c:when>
+							<c:otherwise>
+							<c:forEach var="maillist" items="${maillist}">
 								<tr>
-									<td class="">
-										<div class="checkbox">
-											<input type="checkbox"> <label></label>
-										</div>
-									</td>
-									<td><a href="#">Henry Patterson</a></td>
-									<td><a href="#">Aliquam nec justo interdum, ornare minon, elementum lacus.</a></td>
+								<c:choose>
+									<c:when test="${maillist.emp_no eq '=?UTF-8?Q?Google_=EC=BB=A4=EB=AE=A4=EB=8B=88=ED=8B=B0=ED=8C=80?= <googlecommunityteam-noreply@google.com>'}">
+										<td><a href="#">googlecommunityteam-noreply@google.com</a></td>
+									</c:when>
+									<c:otherwise>
+										<td><a href="#">${maillist.emp_no}</a></td>
+									</c:otherwise>
+                        		</c:choose>
+									<td><a href="#" onClick="javascript:window.open('${pageContext.request.contextPath}/mail/data/${maillist.mail_content}.html','popup','scrollbars=no, resizable=no, width=500px,height=800px')">${maillist.title}</a></td>
 									<td><i class="fa fa-paperclip"></i></td>
-									<td class="text-right mail-date">Thu, Aug 06</td>
+									<td class="text-right mail-date">${maillist.rec_check}</td>
 								</tr>
-								<tr class="unread">
-									<td class="">
-										<div class="checkbox checkbox-single checkbox-success">
-											<input type="checkbox" checked> <label></label>
-										</div>
-									</td>
-									<td><a href="#">Joseph Hurley</a></td>
-									<td><a href="#">Nullam tempus leo id urna sagittisblandit.</a></td>
-									<td><i class="fa fa-paperclip"></i></td>
-									<td class="text-right mail-date">Sun, Aug 10</td>
-								</tr>
-								<tr class="active">
-									<td class="">
-										<div class="checkbox">
-											<input type="checkbox"> <label></label>
-										</div>
-									</td>
-									<td><a href="#">Grant Franco</a></td>
-									<td><a href="#">Etiam maximus tellus a turpis tempormollis.</a></td>
-									<td></td>
-									<td class="text-right mail-date">Mon, Oct 19</td>
-								</tr>
+						</c:forEach>
+						</c:otherwise>
+						</c:choose>
 							</tbody>
 						</table>
 						</div>
