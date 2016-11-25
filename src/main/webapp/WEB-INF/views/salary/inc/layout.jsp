@@ -129,6 +129,32 @@
 		$('#selectedYear').css('display', 'none');
 
 		
+
+		//날짜 차이 구하는 함수
+		function calDateRange(val1, val2)
+		    {
+		        var FORMAT = "-";
+		        // FORMAT을 포함한 길이 체크
+		        if (val1.length != 10 || val2.length != 10)
+		            return null;
+		        // FORMAT이 있는지 체크
+		        if (val1.indexOf(FORMAT) < 0 || val2.indexOf(FORMAT) < 0)
+		            return null;
+		        // 년도, 월, 일로 분리
+		        var start_dt = val1.split(FORMAT);
+		        var end_dt = val2.split(FORMAT);
+		        // 월 - 1(자바스크립트는 월이 0부터 시작하기 때문에...)
+		        // Number()를 이용하여 08, 09월을 10진수로 인식하게 함.
+		        start_dt[1] = (Number(start_dt[1]) - 1) + "";
+		        end_dt[1] = (Number(end_dt[1]) - 1) + "";
+
+		        var from_dt = new Date(start_dt[0], start_dt[1], start_dt[2]);
+		        var to_dt = new Date(end_dt[0], end_dt[1], end_dt[2]);
+		        var result = (to_dt.getTime() - from_dt.getTime());
+		        var result1 = result/1000/60/60/24;
+		        return result1;
+		    }
+		
 		
 	
 		$(function() {
@@ -268,7 +294,17 @@
 
 				var date = $('#selectDate').val();
 				
-
+				var ardate = date.split("-");
+				var makeDate = new Date(ardate[0],ardate[1],ardate[2]);				
+				makeDate=getFormatDate(makeDate);
+				
+				console.log("#########minus : "+makeDate + " ##### date : "+date);
+				
+				
+				//3개월 뺀 날짜 결과
+				var result = calDateRange(makeDate,date);
+				
+				
 				if (option == '' || date == '') {
 					alert("조회할 조건을 선택하세요");
 				} else {
@@ -277,13 +313,16 @@
 						url : "sevSearch.do",
 						data : {
 							select : option,
-							date : date
+							date : date,
+							minusDate : result
 						},
 						success : function(data) {
 							console.log(data);
 							$('#jung').html();
 							$('#total').html();
 							$('#severance_pay').html();
+							
+							
 							
 							$('#jung').html(data.date);
 							//$('#total').html(data.list.total_pay);
@@ -296,6 +335,26 @@
 			});
 
 		});
+		
+		//날짜 포맷 형식 맞출때 사용 하는 첫번째 함수.
+		function getFormatDate(date){
+			var year = date.getFullYear();                               
+			var month = date.getMonth()-3;
+			
+			if(month <= 0){
+				year = year -1;
+				month = (12+date.getMonth())-3;
+				month = month >= 10 ? month : '0' + month; 
+			}
+
+			month = month >= 10 ? month : '0' + month; 
+			
+			var day = date.getDate();  
+			day = day >= 10 ? day : '0' + day;       
+			return  year + '-' + month + '-' + day;
+		}
+
+		
 	</script>
 
 </body>
