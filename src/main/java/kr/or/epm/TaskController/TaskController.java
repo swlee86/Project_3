@@ -247,7 +247,6 @@ public class TaskController {
 		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
 
 		List<Task> selectMyTaskList = service.listTask(emp.getEmp_no(), "1");
-		System.out.println(selectMyTaskList.get(1).toString());
 		// 핵심 입니다!!
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.add(selectMyTaskList);
