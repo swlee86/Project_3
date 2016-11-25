@@ -18,7 +18,7 @@
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">주소록 등록</h2>
-			<small>Show users list in nice and color panels</small>
+			<small>사내/외부 사람을 등록할 수 있습니다.</small>
 		</div>
 	</div>
 </div>
@@ -79,11 +79,12 @@
 										<td colspan="3">
 											
 											<select  class="form-control input-sm"  style="height:80px" size="3" name="group_no">
+												<option value="1" selected>선택없음</option>
 													<c:forEach items="${grouplist}" var="g">
 														<c:choose>
-															<c:when test="${g.group_no == 1}">
-																<option value="${g.group_no}" selected>${g.group_name}</option>
-															</c:when>
+															 <c:when test="${g.group_no == 1}">
+																<%-- <option value="${g.group_no}" selected>${g.group_name}</option> --%>
+															</c:when> 
 															<c:otherwise>
 																<option value="${g.group_no}">${g.group_name}</option>
 															</c:otherwise>

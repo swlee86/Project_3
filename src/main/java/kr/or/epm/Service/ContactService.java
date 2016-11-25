@@ -149,8 +149,7 @@ public class ContactService {
 		}catch(Exception e){
 			System.out.println("selectGroupCheck_name() 트랜잭션 오류" + e.getMessage());
 			throw e; //롤백
-		}
-		
+		}	
 		return "redirect:contacts_group.do";
 	}
 	
@@ -261,6 +260,46 @@ public class ContactService {
 		}
 		
 		return "redirect:contacts_group.do";
+	}
+
+	//주소록 상세 삭제
+	@Transactional
+	public String deleteEmpContact(String contact_no, String emp_no) throws Exception{
+		System.out.println("deleteEmpContact 서비스 탐");
+		System.out.println("contact_no:"+contact_no +"/ emp_no:"+emp_no);
+		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
+		
+		try{
+			int result = contactDAO.deleteEmpContact(contact_no, emp_no);
+			System.out.println("deleteEmpContact(emp_contact 삭제) : " + result);
+			int result2 = contactDAO.deleteContact(contact_no);
+			System.out.println("deleteContact(contacts 삭제) : "+result2);
+		}catch(Exception e){
+			System.out.println("deleteEmpContact 트랜잭션 오류" + e.getMessage());
+			throw e; //롤백
+		}
+		return "redirect:contacts.do";
+	}
+
+
+	
+	//주소록 수정
+	public int updateContact(Contact contact) {
+		System.out.println("updateContact 서비스탐");
+		System.out.println("contact tostring : "+contact.toString());
+		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
+		int result = contactDAO.updateContact_detail(contact);
+		System.out.println("restult :" + result);
+		return result;
+	}
+	
+	//주소록 갯수
+	public int selectContact_count(String emp_no){
+		System.out.println("selectContact_count 서비스탐");
+		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
+		int result = contactDAO.selectContact_count(emp_no);
+		System.out.println("result : "+result );
+		return result;
 	}
 	
 }

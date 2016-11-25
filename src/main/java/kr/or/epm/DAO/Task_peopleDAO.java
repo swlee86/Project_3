@@ -19,7 +19,6 @@ public interface Task_peopleDAO {
 	//실제 업무 참여자 이름, 사번
 	public String selectEmp_name(String emp_no);
 	
-	
 	//업무 번호 조회하기
 	public String selectTask_No();
 	

@@ -62,14 +62,14 @@
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">업무
 											참여자</th>
-										<td colspan="3">이지은 대리<br>김지은 주임
+										<td colspan="3">
 										</td>
 									</tr>
 
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">첨부파일</th>
-										<td colspan="3">업무 내용.hwp</td>
+										<td colspan="3">${task.file_name }</td>
 									</tr>
 
 									<tr>
