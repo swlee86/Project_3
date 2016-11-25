@@ -37,7 +37,7 @@
 						<div class="media-body">
 							<small>작성자 : <span class="font-bold">관리자
 									</span>
-							</small> <br /> <small class="text-muted">${company.regdate}</small>
+							</small><br/><span>제목 : ${company.title}(<small class="text-muted">${company.regdate}</small>)</span> <br/> 
 						</div>
 					</div>
 				</div>
