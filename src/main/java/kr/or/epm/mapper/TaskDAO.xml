@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						 emp_no, emp_name, send_date, 
 						 file_name, del_check, rec_del_check, 
 						 task_step_no, step_no)
-		values(#{task_no}, #{cg_no}, '0', 
+		values(task_seq.nextval, #{cg_no}, '0', 
 			   #{task_name}, #{deadline}, #{content}, 
 			   #{rec_emp_no}, #{rec_name}, null, 
 			   #{emp_no}, #{emp_name}, to_char(sysdate, 'yyyy-mm-dd'), 
