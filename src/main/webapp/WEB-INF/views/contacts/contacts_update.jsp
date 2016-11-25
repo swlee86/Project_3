@@ -18,10 +18,11 @@
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">주소록 수정</h2>
-			<small>Show users list in nice and color panels</small>
+			<small>저장된 주소록 정보를 수정 할 수 있습니다.</small>
 		</div>
 	</div>
 </div>
+
 
 
 <div class="content animate-panel">
@@ -30,87 +31,82 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form>
+						<form action="" method="post" enctype="multipart/form-data">  
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 								<tbody>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%; padding-top:15px;">이름</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%; padding-top:15px;"><font color="#f05050">* </font>이름</th>
 										<td>	
 											<div class="form-group">	
 												<div class="input-group">
-													<input type="text" class="form-control input-sm" placeholder="이름을 입력하세요." value="박지은"/>
+													<input type="text" class="form-control input-sm" placeholder="이름을 입력하세요." name="name" id="name"  value="${contact.name}"/>
 													<span class="input-group-btn">
-														<button class="btn btn-default input-sm" type="button">
+														<button class="btn btn-default input-sm" type="button" id="organization_add">
 															<font style="color:#fd7d86 "> <span class="fa fa-user-plus"></span></font>
 														</button>
 													</span>
 												</div>
 											</div>
 										</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%;padding-top:15px;">생년월일</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%;padding-top:15px;">생년월일</th>
 										<td>
 											<div class="form-inline">
-											<select  class="form-control input-sm">
-												<c:forEach begin="1960" end="1999" var="i" >
-													<option value="i" <c:if test="${i==1993}">selected</c:if>>${i}</option>
-												</c:forEach>
-											</select>
-											년 &nbsp;
-											<select  class="form-control input-sm">
-												<c:forEach begin="1" end="12" var="i">
-													<option value="i" <c:if test="${i==3}">selected</c:if>>${i}</option>
-												</c:forEach>
-											</select>
-											월&nbsp;
-											<select  class="form-control input-sm">
-												<c:forEach begin="1" end="12" var="i">
-													<option value="i" <c:if test="${i==3}">selected</c:if>>${i}</option>
-												</c:forEach>
-											</select>
-											일
+												<input type="text" class="form-control " id="addenrollDate" name="birth" value="${contact.birth}">
 											</div>
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5;text-align:right;padding-right:30px; width:10%">소속</th>
-										<td><input type="text"  class="form-control input-sm" placeholder="회사명을 입력하세요." value="코스타"></td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">메일</th>
-										<td><input type="text" class="form-control input-sm" placeholder="메일을 입력하세요." value="wong303@naver.com"></td>
+										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">소속</th>
+										<td><input type="text"  class="form-control input-sm" placeholder="회사명을 입력하세요." id="attach" name="attach" value="${contact.attach}"></td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">메일</th>
+										<td><input type="text" class="form-control input-sm" placeholder="메일을 입력하세요." id="mail" name="mail" value="${contact.mail}"></td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">연락처1</th>
-										<td><input type="text" class="form-control input-sm" placeholder="연락처를 입력하세요." value="010-2808-1042"></td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">연락처2</th>
-										<td><input type="email"  class="form-control input-sm" placeholder="연락처를 입력하세요." value="02-280-1042"></td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">집/개인 전화번호</th>
+										<td><input type="text" class="form-control input-sm" placeholder="연락처를 입력하세요." id="tel1" name="tel1" value="${contact.tel1}"></td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">휴대폰번호</th>
+										<td><input type="text"  class="form-control input-sm" placeholder="연락처를 입력하세요." id="tel2" name="tel2" value="${contact.tel2}"></td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%">사진등록</th>
-										<td colspan="3"><input type="file"  class="form-control input-sm"></td>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">사진등록</th>
+										<td colspan="3">
+											<div class="form-inline">
+												<input type="file"  class="form-control input-sm" id="uploadfile" name="uploadfile">
+												 <input type="hidden" name="empimg" id="empimg" value=""> 
+												 <input type="hidden" id="empimgload" value="${contact.pic}">
+												 <input type="checkbox" class="form-control input-sm" id="contact_img_update" >사진 유지
+											 </div>
+										</td>
+										
 									</tr>
 									<tr >
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%; padding-top:45px;">주소록 그룹</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%; padding-top:45px;">주소록 그룹</th>
 										<td colspan="3">
-											<select  class="form-control input-sm"  style="height:100px" size="5">
-													<option>선택안함</option>
-													<option>인사팀그룹</option>
-													<option>영업팀그룹</option>
+											
+											<select  class="form-control input-sm"  style="height:80px" size="3" name="group_no">
+													<option value="1"  <c:if test="${1 == contact.group_no}">selected</c:if>>선택없음</option>
+													<c:forEach items="${grouplist}" var="g">
+														<option value="${g.group_no}" <c:if test="${g.group_no == contact.group_no}">selected</c:if>>${g.group_name}</option>
+													</c:forEach>
 											</select>
 										</td>
 									</tr>
 									<tr >
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:30px; width:10%; padding-top:20px;">메모</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%; padding-top:20px;">메모</th>
 										<td colspan="3">
-											<textarea class="form-control">착한사람</textarea>
+											<textarea class="form-control" name="memo">${contact.memo}</textarea>
 										</td>
 									</tr>									
 								</tbody>
 							</table>
-							<div class=" pull-right" style="text-align:center;">
-								<input type="submit"  class="btn btn-sm btn-success" value="등 록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+							
+							
+						</div>
+						<div class=" pull-right" style="text-align:center;">
+								<input type="submit"  class="btn btn-sm btn-success" value="등록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 								<input type="button"  onclick="location.href='contacts.do'" class="btn btn-sm btn-default"  value="취 소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 							</div>
-						</div>
 						</form>	
 					</div>
 				</div>
@@ -119,4 +115,33 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+
+
+
+
+
+<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog modal-md">
+      <div class="modal-content">
+         <div class="color-line"></div>
+         <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
+            <h4 class="modal-title"><font color="#6a6c6f" size="4em"><b>사원 선택</b></font></h4>
+         </div>
+         <div class="modal-body">
+            <div class="row">
+               <div class="col-md-4" style="border: 1px solid gray;" id="organization">
+                  
+               </div>   
+               <div class="col-md-8" id="empList">
+                  사원리스트
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+         </div>
+      </div>
+   </div>
 </div>

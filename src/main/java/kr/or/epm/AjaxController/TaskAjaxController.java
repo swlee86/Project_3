@@ -40,18 +40,34 @@ public class TaskAjaxController {
 	@Autowired
 	private TaskService service;
 
-	// 업무 삭제하기
-	@RequestMapping(value = "/task_remove.do", method = RequestMethod.POST)
-	public View task_remove(@RequestParam(value="arr[]") List<String> arr) {
+	// 업무 > 수신 > 중요 설정하기
+	@RequestMapping("/taskSign")
+	public View taskSign(String task_no, String sign, Model model) {
 
-		System.out.println("CONTROLLER] 업무를 삭제합니다");
-		
-		for(int i=0; i<arr.size(); i++) {
-			System.out.println("넘어온 task_no : " + arr.get(i));
-			String task_no = arr.get(i);
-			
-			service.deleteTask(task_no);
+		System.out.println("CONTROLLER] 업무 요청 수신 > 중요 설정하기");
+		System.out.println("선택한 업무 번호 : " + task_no);
+		System.out.println("선택한 중요설정 : " + sign);
+
+		// redirect
+		String link = "taskRequest.do";
+		String msg = null;
+
+		int result = 0;
+		try {
+			result = service.updateTask_sign(task_no, sign);
+		} catch (Exception e) {
+			e.getMessage();
+		} finally {
+			if (result > 0) {
+				msg = "중요 설정 처리에 성공하였습니다";
+			} else {
+				msg = "중요 설정 처리에 실패하였습니다";
+			}
 		}
+
+		model.addAttribute("link", link);
+		model.addAttribute("msg", msg);
+
 		return jsonview;
 	}
 }

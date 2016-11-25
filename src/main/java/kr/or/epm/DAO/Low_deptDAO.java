@@ -7,7 +7,7 @@ import kr.or.epm.VO.Low_dept;
 /*
  * 작성일 : 2016-11-18
  * 작성자 : 백승아
- * 사용 목적 : 회의에 대한 DAO interface
+ * 사용 목적 : 하위부서에 대한 DAO interface
 */
 
 public interface Low_deptDAO {

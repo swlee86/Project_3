@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
 <!-- App styles -->
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -79,7 +80,7 @@
 					},
 					success : function(data){
 						console.log(data);
-						console.log("contact_no : "+data.contact_no);
+						console.log("ㄴcontact_no : "+data.contact_no);
 						$('#m_name').html(data.name);
 						$('#m_attach').html(data.attach);
 						$('#m_birth').html(data.birth);
@@ -87,14 +88,25 @@
 						$('#m_tel1').html(data.tel1);
 						$('#m_tel2').html(data.tel2);
 						$('#m_memo').html(data.memo);
-						$('#contact_modla_delete').attr('href','contacts_delete.do?contact_no'+data.contact_no);
+						$('#m_img').attr('src','${pageContext.request.contextPath}/img/upload/'+data.pic);
+						$('#contact_modla_delete').attr('href','contacts_delete.do?contact_no='+data.contact_no);
+						$('#contact_modla_update').attr('href','contacts_update.do?contact_no='+data.contact_no);
 					}
 				}		
 			)
  	}
- 
+ 	
+
+ 	
  	//상세보기
 	$(function(){
+		
+/* 		if($('#contactmsg').val() == -1){
+			 swal({
+	                title: "주소록 그룹 관리를 할 수 없습니다.",
+	                text: "주소록에 한명 이상의 사람을 넣어주세요."
+	            });
+		} */
 		
 		var listsize = $('#listsize').val();
 		console.log("listsize  : "+listsize);
@@ -173,6 +185,21 @@
 		});
 		
 		
+		
+		//수정 사진 유지 확인
+		//contact_img_update
+		$('#contact_img_update').change(function(){
+			 if($("#contact_img_update").is(":checked")){
+		            console.log("사진유지 : "+$('#empimgload').val());
+		            $('#empimg').val($('#empimgload').val());   
+					$('#uploadfile').hide();
+		        }else{
+		        	 console.log("사진유지안함");
+		        	 $('#uploadfile').show(); 
+		        	 $('#empimg').val(''); 
+		 			 $('#empimg').hide();
+		        }
+		});
 		
 		
 		
@@ -467,7 +494,7 @@
 					},
 					success : function(data){
 						console.log("data : " + data);
-						console.log("data.pic : " + data.pic);
+						console.log("조직도 data.pic : " + data.pic);
 						if(data != null){
 							$('#name').val(name);
 							$('#addenrollDate').val(data.birth);
@@ -533,13 +560,14 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
+	<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 	<!-- App scripts -->
 	<script src="scripts/homer.js"></script>
 
 	<script>
-	function modifyGroup(){	
+/* 	function modifyGroup(){	
 		location.href = "contacts_update.do";
-	}
+	} */
 	$(function(){
 		
 	$('#addenrollDate').datepicker({

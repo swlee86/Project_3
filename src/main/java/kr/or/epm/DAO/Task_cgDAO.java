@@ -4,6 +4,12 @@ import java.util.List;
 
 import kr.or.epm.VO.Task_cg;
 
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 업무 구분에 대한 DAO interface
+*/
+
 public interface Task_cgDAO {
 	
 	// 업무 구분 단계 조회하기

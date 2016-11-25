@@ -7,6 +7,13 @@ import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Organization;
 
+/*
+ * 작성자 : 백승아
+ * 작성일 : 2016-11-23
+ * 사용목적 : 조직도에 대한 DAO interface
+ * 
+*/
+
 public interface OrganizationDAO {
 	
 	// 지점 출력하기
@@ -25,12 +32,15 @@ public interface OrganizationDAO {
 	public String selectOrganization_emp_no(String low_dept_no);
 		
 	// 부서 출력하기
+	// 사용
 	public List<Organization> selectDept(String branch_no);
 	
 	// 하위 부서 출력하기
+	// 사용
 	public List<Organization> selectlowDept(String dept_no);
 	
 	// 사원정보 출력하기
+	// 사용
 	public List<Organization> selectEmpInfo(String low_dept_no);
 	
     //조직도에 사용될 모든 사원정보 출력하기

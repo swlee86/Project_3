@@ -11,7 +11,6 @@ import kr.or.epm.VO.Conf;
 
 public interface ConfDAO {
 	
-	
 	// 회의 등록하기
 	public int insertConf();
 	

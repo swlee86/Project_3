@@ -23,6 +23,6 @@ public interface ApprovalDAO {
 	// 승인 진행 단계 삭제하기
 	public int deleteApproval();
 	
-	public int updateApprovalTask(String step_no, String task_no);
-	
+	// 업무 승인 단계 수정하기
+	public int updateApproval_Task();
 }
