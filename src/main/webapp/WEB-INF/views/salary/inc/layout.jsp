@@ -280,13 +280,14 @@
 							date : date
 						},
 						success : function(data) {
+							console.log(data);
 							$('#jung').html();
 							$('#total').html();
 							$('#severance_pay').html();
 							
-							$('#jung').html(data.select);
-							$('#total').html(data.total);
-							$('#severance_pay').html(data.outMoney);
+							$('#jung').html(data.date);
+							//$('#total').html(data.list.total_pay);
+							//$('#severance_pay').html(data.outMoney);
 							
 						}
 
