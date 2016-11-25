@@ -520,7 +520,7 @@ ul {
          //참조자 아이콘 클릭시
          $('#deptA').click(function() {
         	var empSelectNumber = 2;
- 			var litag = "<ui style='list-style:none;''>";   		
+ 			var litag = "<ui style='list-style:none;'>";   		
      		$('#organization').empty();
      		$('#empList').empty();
                   
