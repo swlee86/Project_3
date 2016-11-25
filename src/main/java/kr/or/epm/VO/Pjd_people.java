@@ -10,7 +10,8 @@ public class Pjd_people {
 	private String pj_no;
 	private String pjd_no;
 	private String emp_no;
-
+	private String pic;
+	
 	public String getPj_no() {
 		return pj_no;
 	}
@@ -34,9 +35,19 @@ public class Pjd_people {
 	public void setEmp_no(String emp_no) {
 		this.emp_no = emp_no;
 	}
+	
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 
 	@Override
 	public String toString() {
-		return "Pjd_people [pj_no=" + pj_no + ", pjd_no=" + pjd_no + ", emp_no=" + emp_no + "]";
+		return "Pjd_people [pj_no=" + pj_no + ", pjd_no=" + pjd_no + ", emp_no=" + emp_no + ", pic=" + pic + "]";
 	}
+
+	
 }
