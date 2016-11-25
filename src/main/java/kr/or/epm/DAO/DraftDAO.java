@@ -13,11 +13,10 @@ import kr.or.epm.VO.Office;
 작성자 :	김주희
 사용 목적 :	전자결재 DAO
 **/
+
 public interface DraftDAO {
 	
 	//사번을통해 부서, 이름을 추출하는건 공통 dao에서
-	
-	
 	
 	//현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 )
 	public List<Draft> selectDraft_rec(String emp_no);
