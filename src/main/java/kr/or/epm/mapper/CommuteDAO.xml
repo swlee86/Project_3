@@ -134,15 +134,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
-	<!-- 이번달 하루 전 내역 조회  -->
+	<!-- 이번 달 내역 중 가장 최근 내역조회  -->
 	<select id="selectCommute_yesterday" parameterType="String" resultType="kr.or.epm.VO.Commute">
     	select commute_no,emp_no,regdate,in_time,out_time,
-		       commute_time,add_time,acc_commute_time, acc_add_time,mgr_check 
+		       commute_time,add_time,acc_commute_time, acc_add_time,mgr_check
 		from commute 
-		where substr(regdate,0,4)=(to_char(sysdate,'yyyy')) 
-		      and substr(regdate,6,2)=(to_char(sysdate,'mm')) 
-		      and substr(regdate,9,2)=(to_char(sysdate,'dd')-1) 
-		      and emp_no=#{emp_no} 
+		where acc_add_time = (select max(acc_add_Time) from commute) 
+		                     and acc_commute_time = (select max(acc_commute_time) from commute)
+		                     and emp_no=#{emp_no}
+		                     and substr(regdate,0,4) = (to_char(sysdate,'yyyy'))
+		                     and substr(regdate,6,2) = (to_char(sysdate,'mm'))
 		order by substr(regdate,9,2) desc
 	</select>
 	
@@ -163,5 +164,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      and substr(regdate,6,2)=#{select_month}
 		      and e.emp_no=#{emp_no}
 		order by substr(regdate,9,2) desc
+	</select>
+	
+	<!-- 회원 정보 가져오기 -->
+	<select id="selectempinfo" parameterType="String" resultType="kr.or.epm.VO.Commute">
+		 select emp_name,emp_no from emp where emp_no = #{emp_no}
 	</select>
 </mapper>
