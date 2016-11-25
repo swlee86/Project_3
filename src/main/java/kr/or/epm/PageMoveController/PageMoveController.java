@@ -2,6 +2,9 @@ package kr.or.epm.PageMoveController;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.or.epm.MailController.ReceiveMailImap;
 import kr.or.epm.Service.CompanyBoardService;
+import kr.or.epm.Util.Util;
 import kr.or.epm.VO.Company;
+import kr.or.epm.VO.Mail;
 
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
 
@@ -22,13 +28,10 @@ public class PageMoveController {
 	
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
-	public String indexview(String pagesize, String currentpage, Model model) {
-		int totalcount = companyBoardService.selectBoardCount();
-		int pagecount = 0;
-
-		
-        if(pagesize == null || pagesize.trim().equals("")){
-            pagesize = "6"; 			// default 6건씩 
+	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, HttpSession session) {	
+///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
+		if(pagesize == null || pagesize.trim().equals("")){
+            pagesize = "5"; 			// default 5건씩 
         }
         
         if(currentpage == null || currentpage.trim().equals("")){
@@ -38,24 +41,44 @@ public class PageMoveController {
         int pgsize = Integer.parseInt(pagesize);  		// 10
         int cpage = Integer.parseInt(currentpage);     //1
                                
-        
-        if(totalcount % pgsize==0){        //전체 건수 , pagesize 
-            pagecount = totalcount/pgsize;
-        }else{
-            pagecount = (totalcount/pgsize) + 1;
-        }
-        
         List<Company> list = null;
+        
+        
+        /////////////////////////인덱스에 띄워 줄 메일 내용 구하기 시작////////////////////////////////////////////////////
+        
+    	//메인에 띄워 줄 메일 토탈 카운트 구하기
+        List<Mail> mail =  null;
+		String mailid = (String)session.getAttribute("googlemail");
+        String sessionchk=(String)session.getAttribute("mailusedata");
+        boolean test = Util.isEmpty(sessionchk);
+        
+ 	    String saveFolder="/mail/data";
+ 	    String filePath = request.getRealPath(saveFolder); 
+        
+ 		if(test==true){
+ 			String msg = "메일은 보안 관계상 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("msg", msg);
+ 			
+ 		}else{
+ 			try {
+				mail =  ReceiveMailImap.doit(mailid, sessionchk, filePath, pgsize, cpage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				model.addAttribute("maillist", mail);
+			}
+ 		}       
+        
         try{
         	list = companyBoardService.selectBoard(cpage, pgsize);
+        	
         }catch (Exception e) {
         	e.printStackTrace();
 		}finally {
 			model.addAttribute("companyList", list);
+			
 			model.addAttribute("cpage", cpage);
 			model.addAttribute("psize", pgsize);
-			model.addAttribute("pagecount", pagecount);
-			model.addAttribute("totalcount", totalcount);
 		}
 
 		

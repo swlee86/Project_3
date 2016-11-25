@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,7 @@ import kr.or.epm.VO.Emp_detail;
  */
 
 @Controller
+@Transactional
 public class RegisterController {
 
 	@Autowired
@@ -40,10 +42,11 @@ public class RegisterController {
 	@RequestMapping(value="/addMember.do", method=RequestMethod.GET)
 	public String insertMember(HttpSession session, Model model){
 		String google = (String)session.getAttribute("googleApiKey");
-		String googlemail = (String)session.getAttribute("");
+		String googlemail = (String)session.getAttribute("googlemail");
 		String data="";
 		String answer="";
 		System.out.println("세션 넘어감?  : " + google);
+		System.out.println("고객 메일 : " + googlemail);
 		System.out.println("회원 가입");
 		model.addAttribute("registerGoogleId", google);
 		model.addAttribute("registerGoogleMail", googlemail);
@@ -67,20 +70,29 @@ public class RegisterController {
 	}
 	
 	//register를 누르면 회원가입을 시도하는 함수
+	@Transactional
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
-	public String insertMemberOk(Emp_detail emp_detail, Model mv){
+	public String insertMemberOk(Emp_detail emp_detail, Model mv, String email){
 		System.out.println("회원 가입 처리 중...");
 		emp_detail.setPwd(this.bCryptPasswordEncoder.encode(emp_detail.getPwd()));;
-		int result = 0;
+		Emp emp = new Emp();
+		emp.setEmail(email);
+		emp.setEmp_no(emp_detail.getEmp_no());
+		System.out.println("Emp 데이터 : " + emp);
+		int resultempdetail = 0;
+		int resultemp = 0;
 		String answer = null;
 		String data = null;			
 		try{
-			result = registerservice.insertEmp_detail(emp_detail);
+			resultempdetail = registerservice.insertEmp_detail(emp_detail);
+			registerservice.updateEmail(emp);
 			registerservice.insertEmpRoleList(emp_detail.getEmp_no());
+			System.out.println("resultInsert" + resultempdetail);
+			System.out.println("resultUpdate : " + resultemp);
 		}catch(Exception e){
 			e.getMessage();
 		}finally{
-			if(result>0){
+			if(resultempdetail>0){
 				System.out.println("반영 성공");
 				answer = "index.do";
 				data = "회원 가입에 성공하였습니다.";

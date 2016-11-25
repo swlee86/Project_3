@@ -41,7 +41,7 @@ public class MailController {
 	// SideBar(aside.jsp) 메일 서비스 > 메일함 클릭시 구동
 	@RequestMapping("/mailbox.do")
 	public String mailboxview(Model mv, HttpSession session, HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage) {
-       int totalcount = 0;
+       int Mailtotalcount = 0;
        String mailid = (String)session.getAttribute("googlemail");
 	   String sessionchk=(String)session.getAttribute("mailusedata");
        boolean test = Util.isEmpty(sessionchk);
@@ -51,7 +51,7 @@ public class MailController {
 
 		
 		}else{
-    	    totalcount = ReceiveMailImap.countMail(mailid, sessionchk);
+			Mailtotalcount = ReceiveMailImap.countMail(mailid, sessionchk);
     	    int pagecount = 0;
     	    
     	    if(pagesize == null || pagesize.trim().equals("")){
@@ -66,24 +66,22 @@ public class MailController {
             int cpage = Integer.parseInt(currentpage);     //1
 	        
 
-            if(totalcount % pgsize==0){        //전체 건수 , pagesize 
-                pagecount = totalcount/pgsize;
+            if(Mailtotalcount % pgsize==0){        //전체 건수 , pagesize 
+                pagecount = Mailtotalcount/pgsize;
             }else{
-                pagecount = (totalcount/pgsize) + 1;
+                pagecount = (Mailtotalcount/pgsize) + 1;
             }
     		
              
     	   String saveFolder="/mail/data";
     	   String filePath = request.getRealPath(saveFolder); 
     	   System.out.println("경로 : " + filePath);
-    	       	   System.out.println("메일함 메일 정보 : " + mailid);
+    	   System.out.println("메일함 메일 정보 : " + mailid);
     	   List<Mail> mail =  null;
     	   try{
 
     			mail =  ReceiveMailImap.doit(mailid, sessionchk, filePath, pgsize, cpage);
     		   
-    		   System.out.println("메일 사이즈 : " + mail.size());
-    		   System.out.println("메일 데이터 : " +mail.get(0));
     	   }catch(Exception e){
     		   e.printStackTrace();
     	   }finally{
@@ -91,7 +89,7 @@ public class MailController {
     		   mv.addAttribute("cpage", cpage);
    			  mv.addAttribute("psize", pgsize);
    			  mv.addAttribute("pagecount", pagecount);
-   			  mv.addAttribute("totalcount", totalcount);
+   			  mv.addAttribute("totalcount", Mailtotalcount);
     	   }
     	   return "mail.mailbox";
     	   
