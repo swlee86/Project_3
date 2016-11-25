@@ -88,6 +88,17 @@ public class TaskService {
 		return result;
 	}
 
+	// 업무 등록 > 참여자 등록을 위해 task_no 불러오기
+	public String selectTask_no() {
+		System.out.println("SERVICE] 업무 참여자 등록을 위해 task_no를 불러옵니다");
+
+		Task_peopleDAO dao = sqlsession.getMapper(Task_peopleDAO.class);
+		String task_no = "";
+		task_no = dao.selectTask_No();
+		
+		return task_no;
+	}
+	
 	// 업무 등록 > 참여자 등록
 	// 사용
 	public int insertTask_people(String task_no, List<Task_people> peopleList) {
