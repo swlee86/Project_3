@@ -42,7 +42,7 @@
 					<div id="tab-1" class="tab-pane active">
 						<div class="panel-body">
 							<div class="row" style="background-color: #f3f3f3;">
-								<form action="taskLog_Request.do" class="form-inline">
+								<form action="taskRequest.do" class="form-inline">
 									<table style="margin-top: 10px; margin-bottom: 10px;"
 										width="100%">
 
@@ -74,7 +74,7 @@
 
 												<button class="btn btn-sm"
 													style="background-color: #f07070; color: white"
-													onclick="window.location.href='taskLog.do'">
+													onclick="window.location.href='taskRequest.do'">
 													<span class="fa fa-search"></span>&nbsp; 전체보기&nbsp;
 												</button>
 											</td>
@@ -113,7 +113,7 @@
 													<input id="checkbox1" type="checkbox" checked ><label ></label>
 												</div>
 											</td>
-											<td style="padding-top:12px;"><a href="taskRequest_Receive_Detail.do?task_no=${list.task_no}">${list.task_name}</a></td>
+											<td style="padding-top:12px;"><a href="taskRequest_rec_detail?task_no=${list.task_no}">${list.task_name}</a></td>
 											<td style="padding-top:12px;">${list.deadline}</td>
 											<td style="padding-top:12px;">${list.emp_name}</td>
 											<td style="padding-top:12px;">${list.send_date}</td>

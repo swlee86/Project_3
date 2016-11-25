@@ -37,11 +37,11 @@
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사번</th>
 	                    				<td ><input type="text" class="form-control input-sm" id="emp_no" value="${result.emp_no}" readonly="readonly"></td>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">구분번호</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">근무 상태</th>
 	                    				<td colspan="3">
 	                    					<select class="form-control input-sm" name="cg_no">
-	                    					<c:forEach var="emphis" items="${emphis}">
-	                    						<option value="${emphis.cg_no }">${emphis.cg_name}</option>
+	                    					<c:forEach var="emphis" items="${empCg}">
+	                    						<option value="${empCg.cg_no}">${empCg.cg_name}</option>
 	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
