@@ -107,8 +107,6 @@ public class TaskController {
 
 		System.out.println("CONTROLLER] 업무 등록");
 
-		String task_no = task.getTask_no();
-
 		String link = "taskRequest.do";
 		String msg = null;
 
