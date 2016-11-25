@@ -68,9 +68,11 @@
 											</div>
 										</div>
 										<div class="form-group col-lg-12">
-											<label style="color: black;">Email</label>
-											<div class="input-group">
+											<label style="color: black;">E-mail</label>
+											<div class="row">
+											<div class="col-lg-12">
 												<input type="text" value="${registerGoogleMail}" id="email" class="form-control" name="email" readonly="readonly">																					
+											</div>
 											</div>
 										</div>
 										

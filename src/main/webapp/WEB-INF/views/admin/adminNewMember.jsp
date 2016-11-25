@@ -68,13 +68,13 @@
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>이름</th>
 	                    				<td><input type="text" class="form-control input-sm" name="emp_name"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>생년월일</th>
-	                    				<td >
+	                    				<td colspan="3">
 	                    					<div class="form-inline">
-												<input type="text" class="form-control input-sm" name="birth" id="makeuserDate"> 
+												<input type="text" class="form-control input-sm" name="birth"  id="makeuserDate"> 
 											</div>
 	                    				</td>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">이메일</th>
-	                    				<td><input type="text" class="form-control input-sm" name="email"></td>
+	                    				<!-- <th style="width:10%; text-align: right; background-color:#f5f5f5">이메일</th> 
+	                    				<td><input type="text" class="form-control input-sm" name="email"></td>-->
 	                    			</tr>
 	                    			
 	                    			<tr>
