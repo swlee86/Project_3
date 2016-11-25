@@ -26,7 +26,6 @@ import kr.or.epm.VO.Emp_detail;
  */
 
 @Controller
-@Transactional
 public class RegisterController {
 
 	@Autowired
@@ -70,7 +69,6 @@ public class RegisterController {
 	}
 	
 	//register를 누르면 회원가입을 시도하는 함수
-	@Transactional
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
 	public String insertMemberOk(Emp_detail emp_detail, Model mv, String email){
 		System.out.println("회원 가입 처리 중...");
@@ -81,26 +79,39 @@ public class RegisterController {
 		System.out.println("Emp 데이터 : " + emp);
 		int resultempdetail = 0;
 		int resultemp = 0;
+		int resultrole = 0;
 		String answer = null;
 		String data = null;			
 		try{
 			resultempdetail = registerservice.insertEmp_detail(emp_detail);
-			registerservice.updateEmail(emp);
-			registerservice.insertEmpRoleList(emp_detail.getEmp_no());
-			System.out.println("resultInsert" + resultempdetail);
-			System.out.println("resultUpdate : " + resultemp);
+			System.out.println("데이터 인서트!!" + resultempdetail);			
 		}catch(Exception e){
 			e.getMessage();
 		}finally{
-			if(resultempdetail>0){
-				System.out.println("반영 성공");
-				answer = "index.do";
-				data = "회원 가입에 성공하였습니다.";
-			}else{
-				System.out.println("반영 실패");
-				answer = "addMember.do";
-				data = "회원 가입에 실패 하였습니다.";
+			try{
+				resultemp = registerservice.updateEmail(emp);
+				System.out.println("이메일 업데이트!! : " + resultemp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				try{
+					resultrole = registerservice.insertEmpRoleList(emp_detail.getEmp_no());
+					System.out.println("룰 등록 : " + resultrole);
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally{
+					if(resultrole>0){
+						System.out.println("반영 성공");
+						answer = "index.do";
+						data = "회원 가입에 성공하였습니다.";
+					}else{
+						System.out.println("반영 실패");
+						answer = "login.do";
+						data = "회원 가입에 실패 하였습니다.";
+					}					
+				}
 			}
+			
 			mv.addAttribute("data", data);
 			mv.addAttribute("answer", answer);
 		}

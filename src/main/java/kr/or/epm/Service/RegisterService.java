@@ -77,9 +77,10 @@ public class RegisterService {
 	}
 	
 	//Role 리스트를 불러오는 서비스 함수
-	public void insertEmpRoleList(String emp_no){
+	public int insertEmpRoleList(String emp_no){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
-		registerDao.insertEmpRoleList(emp_no);
+		int result = registerDao.insertEmpRoleList(emp_no);
+		return result;
 	}
 	
 	//근무 정보를 불러오는 쿼리문

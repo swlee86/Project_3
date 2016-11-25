@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.Service.ProjectDetailService;
 import kr.or.epm.Service.ProjectService;
 import kr.or.epm.VO.Pj;
+import kr.or.epm.VO.Pjd_people;
 
 /*
  * 작성자 : 김주희
@@ -26,7 +28,8 @@ public class ProjectAjaxController {
 	private View jsonview;
 	@Autowired
 	private ProjectService projectservice;
-	
+	@Autowired
+	private ProjectDetailService projectdetailservice;
 	
 	//리스트에서 선택한 옵션으로 view 동기화시키기
 	@RequestMapping("/select_pjlist.do")
@@ -36,6 +39,18 @@ public class ProjectAjaxController {
 
 		List<Pj> result = projectservice.selectPjlist_ctg(select_ctg, emp_no);
 		model.addAttribute("project", result);
+		
+		return jsonview; 
+	}
+	
+	//참여자 자세히 보기(modal)
+	@RequestMapping("/pjd_people.do")
+	public View pjd_people(String emp_no, Model model){
+		System.out.println("pjd_people");
+			
+		Pjd_people result = projectdetailservice.pjd_people(emp_no);
+
+		model.addAttribute("data",result);
 		
 		return jsonview; 
 	}

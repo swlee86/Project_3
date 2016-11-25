@@ -61,11 +61,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 상세의 참여자 사진 조회하기 -->
 	<select id="selectPeople" parameterType="String" resultType="kr.or.epm.VO.Pjd_people">
-		select pjd_no, p.emp_no, pic 
-		from pjd_people p 
-		join emp e 
-		on p.emp_no = e.emp_no 
-		where pjd_no=#{pjd_no}
+		select pjd_no, p.emp_no, e.emp_name, d.branch_name, d.dept_name, d.low_dept_name, cell_phone,pic
+			from pjd_people p 
+			join emp e 
+			on p.emp_no = e.emp_no 
+			join low_dept d
+	    on e.low_dept_no = d.low_dept_no
+	    where pjd_no=#{pjd_no}
 	</select>
+	
+	<!-- 상세의 참여자 조회하기(modal) -->
+	<select id="selectPeople_info" parameterType="String" resultType="kr.or.epm.VO.Pjd_people">
+		select pjd_no, p.emp_no, e.emp_name, d.branch_name, d.dept_name, d.low_dept_name, cell_phone,pic
+			from pjd_people p 
+			join emp e 
+			on p.emp_no = e.emp_no 
+			join low_dept d
+	    on e.low_dept_no = d.low_dept_no
+	    where p.emp_no=#{emp_no}
+	</select>
+	
+	
 	
 </mapper>

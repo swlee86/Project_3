@@ -31,7 +31,7 @@ public interface RegisterDAO {
 	List<Low_dept> selectLowDeptNo();
 	
 	//RoleList를 뽑아내는 함수
-	void insertEmpRoleList(String id);
+	int insertEmpRoleList(String id);
 
 	//근무상태 코드 테이블에서 해당 정보들을 모두 불러오는 함수
 	List<Emp_cg> selectEmpCgList();
