@@ -426,7 +426,7 @@ ul {
     			  					table+="<td>"+array[i].deadline+"</td>";
     			  					table+="<td>"+array[i].rec_name+"</td>";
     			  					table+="<td>"+array[i].send_date+"</td>";
-    			  					table+="<td>"+array[i].step_no+"</td>";
+    			  					table+="<td>"+array[i].step_name+"</td>";
     			  					table +="</tr>";
     			  				}
     			  				$('#secondTbody').html(table);
@@ -452,7 +452,7 @@ ul {
     			  					table+="<td>"+array[i].deadline+"</td>";
     			  					table+="<td>"+array[i].emp_name+"</td>";
     			  					table+="<td>"+array[i].send_date+"</td>";
-    			  					table+="<td>진행상태</td>";
+    			  					table+="<td>"+array[i].task_step_name+"</td>";
     			  					table +="</tr>";
     					    	}
     					    	$('#thirdBody').empty();

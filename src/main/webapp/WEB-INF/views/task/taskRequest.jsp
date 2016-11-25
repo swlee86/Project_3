@@ -244,7 +244,7 @@
 											<td>${list.deadline}</td>
 											<td>${list.emp_name}</td>
 											<td>${list.send_date}</td>
-											<td><button class="btn btn-xs btn-warning2">${list.step_name}</button></td>
+											<td><button class="btn btn-xs btn-warning2">${list.send_date}</button></td>
 										</tr>
 										
 										
@@ -346,7 +346,7 @@
 											<th>업무기한</th>
 											<th>수신자</th>
 											<th>요청일</th>
-											<th>진행율</th>
+											<th>진행단계</th>
 										</tr>
 									</thead>
 									<tbody id="thirdBody">
