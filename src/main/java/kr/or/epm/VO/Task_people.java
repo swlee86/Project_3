@@ -10,6 +10,15 @@ public class Task_people {
 	private String task_no;
 	private String emp_no;
 	private String emp_name;
+	private String[] peopleList;
+	
+	public String[] getPeopleList() {
+		return peopleList;
+	}
+
+	public void setPeopleList(String[] peopleList) {
+		this.peopleList = peopleList;
+	}
 
 	public String getEmp_name() {
 		return emp_name;
