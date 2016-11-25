@@ -290,11 +290,22 @@ public class ContactController {
 			
 			String emp_no = emp.getEmp_no();//사번
 			System.out.println("emp_no:"+emp_no);
-			List<C_group> list = contactService.selectEmpGroup_list(emp_no);
 			
-			model.addAttribute("grouplist", list);	
-			model.addAttribute("grouplistsize", list.size());
-			return "contacts.contacts_group";
+			String url = null;
+			int result = contactService.selectContact_count(emp_no);
+			System.out.println("가지고 있는 주소록 수 : "+result);
+			
+			if(result > 0){
+				List<C_group> list = contactService.selectEmpGroup_list(emp_no);
+				model.addAttribute("grouplist", list);	
+				model.addAttribute("grouplistsize", list.size());
+				url="contacts.contacts_group";
+			}else{
+				System.out.println("주소록 가지는 사람이 없어서 안되!!");
+				url="redirect:contacts.do";
+			}
+			
+			return url;
 		}
 		
 		//주소록 > 주소록 그룹 추가 처리
@@ -373,7 +384,7 @@ public class ContactController {
 		@RequestMapping( value="/contacts_delete.do")
 		public String contacts_delete(Principal principal, String contact_no, Model model){
 			System.out.println("contacts_delete() 컨트롤 탐");
-			System.out.println("삭제할 contact_no : "+contact_no );
+			System.out.println("@삭제할 contact_no : "+contact_no );
 			
 			String id= principal.getName();
 			System.out.println("id : "+id);
@@ -382,14 +393,89 @@ public class ContactController {
 			String emp_no = emp.getEmp_no();//사번
 			System.out.println("emp_no:"+emp_no);	
 			
-			String url ="redirect:contacts_group.do";
+			String url ="redirect:contacts.do";
 			
 			try{
-				//url = contactService.updateGroups_delete_change(emp_no, group_no);
+				url = contactService.deleteEmpContact(contact_no, emp_no);
 			}catch (Exception e) {
 				System.out.println("contacts_delete() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
 			}
 			
 			return url;
 		}
+		
+		//주소록 > 주소록 수정 페이지이동
+		@RequestMapping( value="/contacts_update.do", method = RequestMethod.GET)
+		public String contacts_update(Principal principal, String contact_no, Model model){
+			System.out.println("contacts_update 컨트롤탐");
+			System.out.println("contact_no : "+contact_no);			
+			
+			Contact contact = contactService.selectContact_detail(contact_no);
+			
+			String id= principal.getName();
+			System.out.println("id : "+id);
+			Emp emp = contactService.selectInfoSearch(id);  //사번,이름 가져가기
+			
+			String emp_no = emp.getEmp_no();//사번
+			System.out.println("emp_no:"+emp_no);
+			List<C_group> list = contactService.selectEmpGroup_list(emp_no);
+			
+			model.addAttribute("contact",contact);
+			model.addAttribute("grouplist", list);
+			return "contacts.contacts_update";
+		}
+		
+		//주소록 > 주소록 수정 처리
+		@RequestMapping( value="/contacts_update.do", method = RequestMethod.POST)
+		public String contacts_update(@RequestParam("uploadfile") MultipartFile file,Principal principal, Contact contact, Model model, HttpServletRequest request){
+			System.out.println("contacts_update 처리 컨트롤 탐");
+			System.out.println("contact.empimg : " + contact.getEmpimg());
+			System.out.println("contact.tostirng() : "+contact.toString());
+			System.out.println("contact.getEmpimg() null아니지?(사내):"+(contact.getEmpimg() != null) +"/ null 이니?(외부):"+(contact.getEmpimg() == null)+"공백이란 같아?:"+(contact.getEmpimg().equals(""))+" 길이:"+(contact.getEmpimg().length()));
+			
+			
+			String id= principal.getName();
+			System.out.println("id : "+id);
+			Emp emp = contactService.selectInfoSearch(id);  //사번,이름 가져가기
+			
+			String emp_no = emp.getEmp_no();//사번
+			System.out.println("emp_no:"+emp_no);
+			
+			
+			String path = request.getRealPath("/img/upload/");
+			System.out.println("=====> path : "+path);
+			File cFile = new File(path, file.getOriginalFilename()+"_"+emp_no+".png");
+			System.out.println("@@@file.getOriginalFilename()_번호 :"+ file.getOriginalFilename()+"_"+emp_no+".png");
+			contact.setPic(file.getOriginalFilename()+"_"+emp_no+".png");
+			
+	
+			
+			if(!contact.getEmpimg().equals("")){
+				System.out.println("if문 탐 / 사내 정보사진");
+				contact.setPic(contact.getEmpimg());
+			}else if(contact.getEmpimg().equals("")){
+				System.out.println("if문 안탐 / 외부사진");			
+				try {
+					file.transferTo(cFile);
+					System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
+					System.out.println("getPath : " +cFile.getPath());
+				} catch (IllegalStateException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}	
+			}
+
+			System.out.println("@@@contact.getpic() : " + contact.getPic());
+			
+			System.out.println("@@@@contact.tostring() : "+contact.toString());
+			
+			int result = contactService.updateContact(contact); 
+			System.out.println("결과 : "+result);
+			
+			return "redirect:contacts.do";
+		}
+		
+		
+
 }

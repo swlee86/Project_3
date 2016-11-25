@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Pjd;
+import kr.or.epm.VO.Pjd_people;
 
 /*
  * 작성일 : 2016-11-18
@@ -13,7 +14,7 @@ import kr.or.epm.VO.Pjd;
 public interface PjdDAO {
 	
 	// 큰 프로젝트에 대한 프로젝트 상세 조회하기
-	public List<Pjd> selectPjd();
+	public List<Pjd> selectPjd(String pj_no);
 	
 	// 프로젝트 상세 등록하기
 	public int insertPjd();
@@ -26,4 +27,7 @@ public interface PjdDAO {
 	
 	// 진행률 계산하기
 	public int updatePjd_progress();
+	
+	// 상세의 참여자 사진 조회하기
+	public List<Pjd_people> selectPeople(String pjd_no);
 }

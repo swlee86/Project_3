@@ -1,6 +1,7 @@
 package kr.or.epm.CommuteController;
 
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import kr.or.epm.Service.CommuteService;
 
@@ -20,6 +23,7 @@ import kr.or.epm.VO.Commute;
  * 작성일 : 2016-11-21
  * 목  적 : Commute 컨트롤러 (근태)
  */
+import kr.or.epm.VO.Emp;
 
 @Controller
 public class CommuteController {
@@ -29,13 +33,18 @@ public class CommuteController {
 	
 	//일일 근태 등록 페이지로 이동
 	@RequestMapping("/Commute.do")
-	public String Commute(HttpServletRequest request, Model model){
+	public String Commute(Principal principal, HttpServletRequest request, Model model){
 		String ip =request.getRemoteAddr();
+
 		System.out.println("나의 아이피 : "+ip);
 		
 		Commute commute =null;
 		
-		String emp_no = "91001050";
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		Emp emp = commuteservice.selectInfoSearch(id);
+		
+		String emp_no = emp.getEmp_no();
 		commute =  commuteservice.selectCommute_today(emp_no); // 임시로 emp_no를 91001050로 테스트
 		if(commute == null){
 			System.out.println("null임");
@@ -52,12 +61,18 @@ public class CommuteController {
 		
 	//월별 근태 보기(월별 근태 조회페이지)
 	@RequestMapping("/CommuteMonth.do")
-	public String CommuteMonth(HttpServletRequest request, String select_date, Model model){
+	public String CommuteMonth(Principal principal, HttpServletRequest request, String select_date, Model model){
 		
-		String emp_no = "91001050"; // 테스트용
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		Emp emp = commuteservice.selectInfoSearch(id);
+		
+		String emp_no = emp.getEmp_no(); // 테스트용
 
 		
 		String ip =request.getRemoteAddr();
+	
+		
 		String select_year=null; 
 		String select_month=null;
 		if(select_date!=null){

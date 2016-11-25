@@ -41,12 +41,6 @@
    href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
    type="text/css" />
 
-<!-- jquery ui -->
-<link rel="stylesheet"
-   href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-   type="text/css" />
-
-
     <!-- alert 창 -->
 	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
@@ -426,7 +420,7 @@ ul {
     			  					table+="<td>"+array[i].deadline+"</td>";
     			  					table+="<td>"+array[i].rec_name+"</td>";
     			  					table+="<td>"+array[i].send_date+"</td>";
-    			  					table+="<td>"+array[i].step_no+"</td>";
+    			  					table+="<td>"+array[i].step_name+"</td>";
     			  					table +="</tr>";
     			  				}
     			  				$('#secondTbody').html(table);
@@ -436,7 +430,7 @@ ul {
     	  });
     	  
     	  //참여 탭 클릭 시
-    	  $('#partnerTab').click(function(){
+    	  $('#taskRequestpartnerTab').click(function(){
     		  $.ajax(
     					{
     						url : "taskRequest_Participation_List.do",
@@ -452,9 +446,10 @@ ul {
     			  					table+="<td>"+array[i].deadline+"</td>";
     			  					table+="<td>"+array[i].emp_name+"</td>";
     			  					table+="<td>"+array[i].send_date+"</td>";
-    			  					table+="<td>진행률</td>";
+    			  					table+="<td>"+array[i].task_step_name+"</td>";
     			  					table +="</tr>";
     					    	}
+    					    	$('#thirdBody').empty();
     					    	$('#thirdBody').html(table);
     					    }
     					}  
@@ -519,7 +514,7 @@ ul {
          //참조자 아이콘 클릭시
          $('#deptA').click(function() {
         	var empSelectNumber = 2;
- 			var litag = "<ui style='list-style:none;''>";   		
+ 			var litag = "<ui style='list-style:none;'>";   		
      		$('#organization').empty();
      		$('#empList').empty();
                   

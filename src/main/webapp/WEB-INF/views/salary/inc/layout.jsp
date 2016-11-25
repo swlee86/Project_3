@@ -30,8 +30,6 @@
 <link rel="stylesheet"
 	href="vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
 <link rel="stylesheet"
-	href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
-<link rel="stylesheet"
 	href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
 
 <!-- App styles -->
@@ -96,8 +94,6 @@
 	<script src="vendor/sparkline/index.js"></script>
 	<script src="vendor/moment/min/moment.min.js"></script>
 	<script src="vendor/fullcalendar/dist/fullcalendar.min.js"></script>
-	<script
-		src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
 	<script src="vendor/select2-3.5.2/select2.min.js"></script>
 	<script src="vendor/moment/moment.js"></script>
 	<script
@@ -176,12 +172,11 @@
 					url : "MonthlysalSearch.do",
 					data : {
 						date : date,
-						option : option
 					},
 					success : function(data) {
-						$('#payResultDiv').empty();
-						console.log(data.payDTO);
+						$('#payResultDiv').empty();				
 						var table = "";
+						table+="<table cellpadding='1' cellspacing='1' class='table table-bordered table-condensed'>"
 						table += "<tr><th style='background-color:#f9fafc'>지급기준일</th>";			
 	  					table +="<td>"+data.payDTO.give_date+"</td>"
 	  					table+="<th style='background-color:#f9fafc'>지급총액</th>";
@@ -190,11 +185,13 @@
 	  					table+="<td></td>";
 	  					table+="<th style='background-color:#f9fafc'>실지급액</th>";
 	  					table+="<td></td>";
-	  					table +="</tr>";
+	  					table +="</tr></table>";
 					
 	  					$('#payResultDiv').html(table);
 					},error : function(){
 						alert("조회하신 데이터가 없습니다.");
+						$('#payResultDiv').empty();				
+						
 					}
 				}
 
@@ -212,29 +209,70 @@
 							url:"YearlysalSearch.do",
 							data:{
 								date: date,
-								option:option
-							     },
+							    },
 							success:function(data){
-								alert("ajax Year success 선택한 날짜: "+data.date);
-							}     
+								$('#payResultDiv').empty();
+								console.log(data.YearlyPay.length);
+								//alert("ajax Year success 선택한 날짜: "+data.YearlyPay[0].give_date);
+								
+								if(data.YearlyPay.length !=0){
+									
+								var table = "";
+								table+="<table cellpadding='1' cellspacing='1'class='table table-bordered table-condensed'>"
+	    			 			for(var i = 0; i < data.YearlyPay.length; i++){
+
+	    			 				table += "<tr><th style='background-color:#f9fafc'>지급기준일</th>";	
+	    		  					table +="<td>"+data.YearlyPay[i].give_date+"</td>"
+	    		  					table+="<th style='background-color:#f9fafc'>지급총액</th>";
+	    		  					table+="<td>"+data.YearlyPay[i].total_pay+"</td>";
+	    		  					table+="<th style='background-color:#f9fafc'>공제총액</th>";
+	    		  					table+="<td></td>";
+	    		  					table+="<th style='background-color:#f9fafc'>실지급액</th>";
+	    		  					table+="<td></td>";
+	    		  					
+	    			 			}
+								table +="</tr></table>";
+	    			 			$('#payResultDiv').html(table);
+	    			 			}else{
+	    			 				alert("조회하신 데이터가 없습니다.");
+									$('#payResultDiv').empty();	
+	    			 			}
+								
+							},
+							error:function(){
+								alert("조회하신 데이터가 없습니다.");
+								$('#payResultDiv').empty();		
+							} 
 						}
 					  );
 				
 			});
 			
 			//퇴직금 계산 조회시 사용하는 datepicker
-			$('#selectDate').datepicker();
+			$('#selectDate').datepicker({
+				changeMonth : true,
+	               dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
+	                     '일요일' ],
+	               dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+	               monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
+	                     '9', '10', '11', '12' ],
+	               monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+	                     '8월', '9월', '10월', '11월', '12월' ],
+	               dateFormat : 'yy-mm-dd',
+	               changeYear : true
+			});
 			
 			//퇴직금 계산 조회버튼 클릭
 			$('#sevSearchbtn').click(function() {
 				var option = $("#selected option:selected").val();
 
 				var date = $('#selectDate').val();
+				
 
 				if (option == '' || date == '') {
 					alert("조회할 조건을 선택하세요");
 				} else {
-
+					alert("option: "+option +" /date "+date);
 					$.ajax({
 						url : "sevSearch.do",
 						data : {
@@ -242,8 +280,14 @@
 							date : date
 						},
 						success : function(data) {
-							alert('퇴직금 조회');
-							$('#sevResult').html("data: " + data.select);
+							$('#jung').html();
+							$('#total').html();
+							$('#severance_pay').html();
+							
+							$('#jung').html(data.select);
+							$('#total').html(data.total);
+							$('#severance_pay').html(data.outMoney);
+							
 						}
 
 					});

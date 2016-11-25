@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.or.epm.VO.Commute;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Set_time;
 
 /*
@@ -55,7 +56,7 @@ public interface CommuteDAO {
 	public Set_time selectSetTime(String emp_no);
 	
 	// 추가근무시간 업데이트
-	public int updateCommute_addtime(HashMap map);
+	public int updateCommute_addtime(HashMap<String,String> map);
 	
 	// 이번달 하루 전 내역 조회
 	public Commute selectCommute_yesterday(String emp_no);
@@ -68,5 +69,8 @@ public interface CommuteDAO {
 	
 	//회원정보가져오기
 	public Commute selectempinfo(String emp_no);
+
+	//아이디로 회원정보 가져오기
+	public Emp selectInfoSearch(String id);
 	
 }
