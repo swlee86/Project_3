@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="updateEmail" parameterType="kr.or.epm.VO.Emp">
-		update emp set email=${email} where emp_no=${emp_no}
+		update emp set email='${email}' where emp_no=${emp_no}
 	</update>
 	
 	<!-- 회원가입에서 해당 사번이 사용 가능한지 확인하는 쿼리문 -->
