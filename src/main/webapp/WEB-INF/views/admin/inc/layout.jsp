@@ -313,6 +313,8 @@
     	var arr = new Array();
 
 	
+    // 백승아
+    // 사원 권한 부여
 	$("input[name='checkbox']:checked").each(function(i) {
 		
         var obj = new Object();
