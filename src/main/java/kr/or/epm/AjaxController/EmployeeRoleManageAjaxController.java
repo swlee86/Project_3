@@ -42,7 +42,9 @@ public class EmployeeRoleManageAjaxController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/give_authority.do", method=RequestMethod.POST)
     public View adminEmployeeRoleGive(HttpServletRequest request) {
-        System.out.println("사원에게 권한을 부여합니다");
+		
+        System.out.println("CONTROLLER] 사원에게 권한을 부여합니다");
+        
         String str = request.getParameter("param");
         str.trim();
         str.trim();
@@ -65,7 +67,6 @@ public class EmployeeRoleManageAjaxController {
                 }
             }
         }
-        
         return jsonview;
     }
 }

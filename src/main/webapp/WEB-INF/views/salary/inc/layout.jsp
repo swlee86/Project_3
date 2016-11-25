@@ -169,7 +169,7 @@
 				var option = $("#salarysearch option:selected").val();
 
 				alert("선택한 날짜 : " + date);
-
+				
 				$.ajax(
 
 				{
@@ -179,7 +179,22 @@
 						option : option
 					},
 					success : function(data) {
-						alert('ajax Month success :' + data.date);
+						$('#payResultDiv').empty();
+						console.log(data.payDTO);
+						var table = "";
+						table += "<tr><th style='background-color:#f9fafc'>지급기준일</th>";			
+	  					table +="<td>"+data.payDTO.give_date+"</td>"
+	  					table+="<th style='background-color:#f9fafc'>지급총액</th>";
+	  					table+="<td>"+data.payDTO.total_pay+"</td>";
+	  					table+="<th style='background-color:#f9fafc'>공제총액</th>";
+	  					table+="<td></td>";
+	  					table+="<th style='background-color:#f9fafc'>실지급액</th>";
+	  					table+="<td></td>";
+	  					table +="</tr>";
+					
+	  					$('#payResultDiv').html(table);
+					},error : function(){
+						alert("조회하신 데이터가 없습니다.");
 					}
 				}
 
