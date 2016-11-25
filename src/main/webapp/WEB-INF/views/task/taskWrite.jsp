@@ -29,7 +29,6 @@
             <div class="panel-body">
                <div class="table-responsive">
                   <form id="taskForm" method="POST" enctype="multipart/form-data">
-                  <input type="hidden" name="task_no" value="${task_No}">
                   <div class="table-responsive">
                      <table cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
                            <tr>
@@ -61,7 +60,6 @@
                                  </div>
                                  <!--구분 번호 -->
                                  <input type="hidden" name="cg_no" id="cg_no">
-                                 <input type="hidden" name="cg_name" id="cg_name">
                               </td>
                            </tr>
                            <tr>

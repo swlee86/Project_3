@@ -88,34 +88,17 @@
 								</table>	
 								<br>
 									
-									
-								<table cellpadding="1" cellspacing="1" class="table table-bordered ">	
-									
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 매수</th>
-										<td><input type="text"  class="form-control input-sm" size="20px"></td>
-									</tr>
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 제출사유</th>
-										<td>
-											<textarea cols="10" rows="10" class="form-control" ></textarea>
-										</td>
-									</tr>
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"> <i class="pe-7s-paperclip"></i> 파일업로드</th>
-										<td><input type="file"  class="form-control input-sm" ></td>
-									</tr>
-								</tbody>
-							</table>
+								<!-- 셀렉트 선택에 따라 맞는 문서 양식 뿌려줌. -->	
+								<table cellpadding="1" cellspacing="1" class="table table-bordered" id="documentTable">	
+								
+								</table>
+								
+								
 							<div class=" pull-right" style="text-align:center;">
 								<input type="submit"  class="btn btn-sm btn-success" value="결재 요청" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 								<input type="button"   onclick="location.href='sanction_list.do'" class="btn btn-sm btn-default"  value="취 소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 							</div>
 							
-							<!-- <div class="row" style="text-align:right;margin-right:10px;">
-								<input type="submit"  class="btn w-xs btn-primary" value="결재 요청" style="margin-right:10px;">
-								<input type="button"  onclick="location.href='sanction_list.do'" class="btn w-xs btn-default"  value="취 소">
-							</div> -->
 						</div>
 						</form>	
 					</div>

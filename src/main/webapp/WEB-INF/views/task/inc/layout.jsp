@@ -494,13 +494,11 @@ ul {
             var cg = '';
             if(st == "업무요청"){
                cg = 1;
-               $('#cg_name').val('업무요청');
             }else if(st == "업무보고"){
                cg = 2;
-               $('#cg_name').val('업무보고');
             }else if(st == "업무일지"){
                cg = 3;
-               $('#cg_name').val('업무일지');
+   
             }
             
             $('#cg_no').val(cg);

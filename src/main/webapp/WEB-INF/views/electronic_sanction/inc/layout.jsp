@@ -415,7 +415,9 @@ $(function(){
 	});
 	
 	
-	
+	$('#documentTable').click(function(){
+		
+	});
 	
 });
 </script>
