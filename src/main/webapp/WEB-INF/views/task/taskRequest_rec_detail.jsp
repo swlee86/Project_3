@@ -37,14 +37,14 @@
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px">
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">제목</th>
-										<td style="width:40%">${task.task_name}</td>
+										<td style="width:40%">${detail.task_name}</td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">승인상태</th>
 										<td style="width:40%">
 											 
 												<c:choose>
-										        	<c:when test="${task.step_no==1}"><button class="btn btn-xs btn-info">승인</button></c:when>
-										        	<c:when test="${task.step_no==2}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
-										        	<c:when test="${task.step_no==3}">보류</c:when>
+										        	<c:when test="${detail.step_no==1}"><button class="btn btn-xs btn-info">승인</button></c:when>
+										        	<c:when test="${detail.step_no==2}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
+										        	<c:when test="${detail.step_no==3}">보류</c:when>
 										     	    <c:otherwise><button class="btn btn-xs btn-warning2">미승인</button></c:otherwise>
 										        </c:choose>
 										    
@@ -53,15 +53,15 @@
 									
 									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">담당자</th>
-										<td >${task.emp_name}</td>
+										<td >${detail.emp_name}</td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">업무기한</th>
-										<td >${task.deadline}</td>
+										<td >${detail.deadline}</td>
 									</tr>	
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">업무 참여자</th>
 										<td colspan="3">
-											<c:forEach var="list" items="${taskPeople}">
-												 <span>${list}</span><br/>
+											<c:forEach var="list" items="${peopledetail}">
+												 <span>${list.emp_name}</span><br/>
 											</c:forEach>
 										</td>
 									</tr>	
@@ -70,8 +70,8 @@
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">첨부파일</th>
 										<td colspan="3">
 											<c:choose>
-												<c:when test="${task.file_name != null}">
-													${task.file_name}	
+												<c:when test="${detail.file_name != null}">
+													${detail.file_name}	
 												</c:when>
 												<c:otherwise>
 													<small>첨부파일 없음</small>
@@ -83,7 +83,7 @@
 									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">내용</th>
 										<td colspan="3">
-											${task.content}
+											${detail.content}
 										</td>
 									</tr>
 								</table>		
