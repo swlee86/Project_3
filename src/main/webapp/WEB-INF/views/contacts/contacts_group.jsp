@@ -26,7 +26,7 @@
 
 <div class="content animate-panel">
 	<div class="row">
-		<div class="col-md-3">
+		<!-- <div class="col-md-3">
 			<div class="hpanel panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel-body">
 					<a class="btn w-xs btn-success btn-block" href="enroll.do">주소록 등록</a>
@@ -50,8 +50,45 @@
 					</a>
 				</div>
 			</div>
+		</div> -->
+		
+		<div class="col-md-3">
+			<div class="hpanel panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="panel-body">
+					<a class="btn w-xs btn-success btn-block" href="enroll.do">주소록 등록</a>
+				</div>
+				<div class="panel-body">
+					<h4 class="m-t-none m-b-none" style="font-size:1em">
+						<a href="contacts.do">전체 주소록</a>
+					</h4>
+				</div>
+				<div class="panel-body">
+					<a data-toggle="collapse" data-parent="#accordion"  href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
+					</a>
+					<div id="q1" class="panel-collapse collapse groupdiv" id="accordiongroup" >
+						
+						<ul>
+							<c:forEach items="${grouplist}" var="g">
+								<c:choose>
+									<c:when test="${g.group_no == 1}"></c:when> 
+									<c:otherwise>
+											<li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	
+									</c:otherwise>
+								</c:choose>
+		
+								<%-- <li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	 --%>
+							</c:forEach>
+						</ul>
+						
+					</div>
+				</div>
+				<div class="panel-body" style="text-align: center">
+					<a class="btn w-xs btn-outline btn-success btn-block" href="contacts_group.do">
+						주소록 그룹 관리
+					</a>
+				</div>
+			</div>
 		</div>
-
 
 
 
