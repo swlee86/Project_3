@@ -4,6 +4,12 @@ import java.util.List;
 
 import kr.or.epm.VO.Task_step;
 
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 업무 진행 단계에 대한 DAO interface
+*/
+
 public interface Task_stepDAO {
 
 	// 업무 진행 단계 조회하기

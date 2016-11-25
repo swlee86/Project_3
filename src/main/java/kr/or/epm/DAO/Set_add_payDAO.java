@@ -5,6 +5,12 @@ import java.util.List;
 import kr.or.epm.VO.Set_add_pay;
 import kr.or.epm.VO.Set_pay;
 
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 추가 급여 설정에 대한 DAO interface
+*/
+
 public interface Set_add_payDAO {
 	
 	// 전체 추가 급여 조회하기
