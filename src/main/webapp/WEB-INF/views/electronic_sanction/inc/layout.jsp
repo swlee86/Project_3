@@ -71,7 +71,10 @@
 	
 	<!--전자결재 script  -->
 	<script src="js/electronic_sanction/electronic_sanction.js"></script>
-
+	
+	<!--우편번호 API-->
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
 	<!-- App scripts -->
 	<script src="scripts/homer.js"></script>
 <!--월별 캘린더.-->  
