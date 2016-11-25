@@ -36,17 +36,6 @@
                               <td colspan="3"><input type="text" class="form-control input-sm" name="task_name"></td>
                            </tr>
                            <tr>
-                              <th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 중요도</th>
-                              <td colspan="3">
-                                 <div class="radio radio-success radio-inline">
-                                    <input type="radio" id="sign" name="sign" value="0"><label for="sign">중요</label>
-                                 </div>
-                                 <div class="radio radio-success radio-inline">
-                                    <input type="radio" id="sign2" name="sign" value="1"><label for="sign2">안중요</label>
-                                 </div>
-                              </td>
-                           </tr>
-                           <tr>
                               <th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 업무형태</th>
                               <td colspan="3">
                                  <div class="radio radio-success radio-inline">

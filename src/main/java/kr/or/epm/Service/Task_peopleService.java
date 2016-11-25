@@ -27,10 +27,8 @@ public class Task_peopleService {
 		
 		System.out.println("SERVICE] 업무 상세 참여자 데이터를 불러옵니다");
 		System.out.println("넘겨진 task_no  " + task_no);
-		
 		Task_peopleDAO taskpeopledao = sqlsession.getMapper(Task_peopleDAO.class);
 		List<Task_people> list = taskpeopledao.selectTask_people(task_no);
-		
 		return list;
 	}
 }
