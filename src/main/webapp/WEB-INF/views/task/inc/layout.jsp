@@ -452,9 +452,10 @@ ul {
     			  					table+="<td>"+array[i].deadline+"</td>";
     			  					table+="<td>"+array[i].emp_name+"</td>";
     			  					table+="<td>"+array[i].send_date+"</td>";
-    			  					table+="<td>진행률</td>";
+    			  					table+="<td>진행상태</td>";
     			  					table +="</tr>";
     					    	}
+    					    	$('#thirdBody').empty();
     					    	$('#thirdBody').html(table);
     					    }
     					}  
