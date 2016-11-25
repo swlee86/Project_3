@@ -38,10 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!--업무 승인 진행 단계-->
-	<update id="updateApprovalTask">
+	<update id="updateApproval_Task">
 		update task
-		set step_no = #{param1}
-		where task_no = #{param2}
+		set step_no = #{param2}
+		where task_no = #{param1}
 	</update>
 	
 </mapper>

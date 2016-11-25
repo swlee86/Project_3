@@ -22,4 +22,7 @@ public interface CommonDAO {
 	// 로그인한 id로 사원 emp_no 가져오기
 	public String selectEmp_no(String id);
 	
+	// 로그인한 id로 사원 emp_name 가져오기
+	public String selectEmp_name(String id);
+	
 }

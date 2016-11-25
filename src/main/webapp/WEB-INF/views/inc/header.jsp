@@ -41,7 +41,7 @@
 					</c:if>
 					<c:if test="${not empty pageContext.request.userPrincipal}">
 						<li>
-							<a href="${pageContext.request.contextPath}/logout">Logout</a>
+							<a href="${pageContext.request.contextPath}/logout" id="logout">Logout</a>
 						</li>
 					</c:if>
 					<li>
@@ -216,6 +216,5 @@
 $('#birthDay').click(function(){
 	$('#birthModal').modal();
 });
-
 </script>
     

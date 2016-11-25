@@ -1,6 +1,7 @@
 package kr.or.epm.AjaxController;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,11 +86,45 @@ public class SalaryAjaxController {
 
 	// 퇴직금 조회
 	@RequestMapping("/sevSearch.do")
-	public View sevSearch(String select, String date, Model model) {
+	public View sevSearch(String select, String date, Principal principal, Model model) {
 		System.out.println("select :" + select + "/date: " + date);
-		model.addAttribute("select", select);
-		model.addAttribute("total","15");
-		model.addAttribute("outMoney","15000000");
+		
+		int year =0;
+		int month=0;
+		List<Pay> list = new ArrayList<Pay>();
+		
+		String id = principal.getName();
+		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
+		
+		try{
+		String[] selectdate =date.split("-");
+		
+		
+		//System.out.println("split : "+selectdate[i]);
+		   month = Integer.parseInt(selectdate[1]);
+		   System.out.println("선택한 월 : "+month);
+		   
+		   if(month-3>0){
+			  	for(int i=1; i<4; i++){
+			   		int currentdate = month-i;
+			   		System.out.println("current date: "+currentdate);
+			   		//String give_date=selectdate[0]+"-"+currentdate;
+			   		//System.out.println("give_date: "+give_date);
+			   		//Pay pay = payservice.selectPay_mine_Monthly(emp.getEmp_no(), give_date);
+			   		//list.add(pay);
+			   }
+		    }
+		
+		
+		
+		}catch (Exception e) {
+			e.getMessage();
+		}finally {
+			model.addAttribute("list", list);
+			model.addAttribute("date", date);
+			System.out.println("list size: "+list.size());
+		}
+		
 		return jsonview;
 	}
 

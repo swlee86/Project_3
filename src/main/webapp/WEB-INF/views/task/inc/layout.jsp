@@ -494,13 +494,11 @@ ul {
             var cg = '';
             if(st == "업무요청"){
                cg = 1;
-               $('#cg_name').val('업무요청');
             }else if(st == "업무보고"){
                cg = 2;
-               $('#cg_name').val('업무보고');
             }else if(st == "업무일지"){
                cg = 3;
-               $('#cg_name').val('업무일지');
+   
             }
             
             $('#cg_no').val(cg);
@@ -713,7 +711,7 @@ ul {
       
       //체크박스 선택후 버튼 클릭시 호출
       function check(low_deptNumber){
-      
+      	
          //체크박스 크기만큼 배열 생성
          var checkResult = new Array();
          $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
@@ -722,8 +720,8 @@ ul {
             //사번
             empInfoArray.push(new empInfo($(this).parent().next().html(),checkResult[pi]));
          });
-         console.log("사원 : "+empInfoArray);
-         
+         console.log("사원  정보#############: "+empInfoArray);
+         console.log("배열 싸이즈 ############ : "+empInfoArray.length);
             if(empInfoArray.length > 1){
                console.log("if 내부 : " +empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
                //화면에 보이는 input 은 그냥 때려넣음

@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자의 사원등록에서 등록시 처리되는 insert 쿼리문 -->
 	<insert id="insertEmp" parameterType="kr.or.epm.VO.Emp">
-		INSERT INTO emp(emp_no, cg_no, position_no, low_dept_no, emp_name, birth, salary ,emp_break, cell_phone, email)
-	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break}, #{cell_phone}, #{email})
+		INSERT INTO emp(emp_no, cg_no, position_no, low_dept_no, emp_name, birth, salary ,emp_break, cell_phone)
+	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break}, #{cell_phone})
 	</insert>
 	
 	<!-- 회원 가입시 인서트 처리되는 쿼리문 -->
@@ -15,6 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO emp_detail(emp_no, id, pwd, bank, addr, addr_detail, account ,postcode, googleapiid)
 	    VALUES(#{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode}, #{googleapiid})
 	</insert>
+	
+	<update id="updateEmail" parameterType="kr.or.epm.VO.Emp">
+		update emp set email=${email} where emp_no=${emp_no}
+	</update>
 	
 	<!-- 회원가입에서 해당 사번이 사용 가능한지 확인하는 쿼리문 -->
 	<select id="selectEmpno" parameterType="String" resultType="String">

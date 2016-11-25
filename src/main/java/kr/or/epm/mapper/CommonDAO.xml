@@ -34,4 +34,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{id}
 	</select>
 	
+	<select id="selectEmp_name" resultType="String">
+		select emp_name
+		from emp_detail d join emp e
+		on d.emp_no = e.emp_no
+		where id = #{id}
+	</select>
+	
 </mapper>

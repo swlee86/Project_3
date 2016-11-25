@@ -1,8 +1,13 @@
 package kr.or.epm.DAO;
 
 import java.util.List;
-
 import kr.or.epm.VO.Pj_step;
+
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 프로젝트 단계에 대한 DAO interface
+*/
 
 public interface Pj_stepDAO {
 
