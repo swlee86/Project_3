@@ -18,6 +18,7 @@ public interface TaskDAO {
 	public int insertTask(Task task);
 	
 	// 업무 중요설정
+	// 사용
 	public int updateTask_sign(String task_no, String sign);
 	
 	// 수신함 확인하기
