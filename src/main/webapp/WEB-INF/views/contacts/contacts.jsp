@@ -15,10 +15,10 @@
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<!-- <li><span>App views</span></li> -->
-					<li class="active"><span>Contacts</span></li>
+					<li class="active"><span>Contacts - ${group}</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">개인 주소록</h2>
+			<h2 class="font-light m-b-xs">개인 주소록 </h2>
 			<small>회원 마다 가질수 있는 주소록입니댜.</small>
 		</div>
 	</div>
@@ -37,11 +37,16 @@
 					</h4>
 				</div>
 				<div class="panel-body">
-					<a data-toggle="collapse" data-parent="#accordion" href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
+					<a data-toggle="collapse" data-parent="#accordion"  href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
 					</a>
-					<div id="q1" class="panel-collapse collapse">
+					<div id="q1" class="panel-collapse collapse groupdiv" id="accordiongroup" >
 						<hr>
-						그룹
+						<ul>
+							<c:forEach items="${grouplist}" var="g">
+								<li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	
+							</c:forEach>
+						</ul>
+						
 					</div>
 				</div>
 				<div class="panel-body" style="text-align: center">
@@ -51,7 +56,7 @@
 				</div>
 			</div>
 		</div>
-
+	<input type="hidden" id="groupnumber" value="${group}">
 
 
 
@@ -87,6 +92,7 @@
 								<div class="col-md-6"></div>
 								<form action="contacts.do" class="form-inline ">
 									<input type="hidden" name="tapno" value="${tapno}">
+									<input type="hidden" name="group" value="${group}">
 									<div class="col-md-2">
 										<div class="form-group">
 											<select class="form-control input-sm" name="f">
@@ -112,29 +118,6 @@
 							</div>
 							<hr>
 
-							
-							<%-- listsize: ${listsize}
-							list[0] : ${list[0].name} --%>
-					<%-- 		<div class="row">
-								<c:forEach  items="${list}" var="n" > 
-									<div class="col-lg-6">
-										<div class="hpanel hblue contact-panelt">
-											<div class="panel-body">
-												<img alt="logo" class="img-circle m-b" src="images/profile.jpg" align="left">
-												<h4>
-													<a href="" data-toggle="modal" data-target="#myModal" id="conmodal${n.contact_no}"><B>${n.name}</B></a>
-												</h4>
-												<p>
-													<input type="text" id="contact_no" value="${n.contact_no}">		
-													연락처1 : <c:if test="${not empty n.tel1}">${n.tel1}</c:if> <br> 
-													소속 : <c:if test="${not empty n.attach}">${n.attach}</c:if><br> 
-													메일 : <c:if test="${not empty n.mail}">${n.mail}</c:if>
-												</p>
-											</div>
-										</div>
-									</div>
-								</c:forEach>
-							</div> --%>
 							
 							<div class="row">
 								<input type="hidden" id="listsize" value="${listsize}">					
@@ -174,7 +157,7 @@
 						<div class="panel-footer" style="text-align: center">
 							<div class="btn-group">
 								<c:if test="${pg>1}">
-									<a  class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${pg-1}&f=${field}&q=${query}">
+									<a  class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${pg-1}&f=${field}&q=${query}&group=${group}">
 										&nbsp;<i class="fa fa-chevron-left"></i>
 									</a>
 								</c:if>
@@ -187,7 +170,7 @@
 											</button>
 										</c:when>
 										<c:otherwise>
-											<a class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${i}&f=${field}&q=${query}">
+											<a class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${i}&f=${field}&q=${query}&group=${group}">
 												${i}
 											</a>
 										</c:otherwise>
@@ -195,7 +178,7 @@
 								</c:forEach>
 
 								<c:if test="${pg < pagecount}">
-									<a class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${pg+1}&f=${field}&q=${query}">
+									<a class="btn btn-default" href="contacts.do?tapno=${tapno}&pg=${pg+1}&f=${field}&q=${query}&group=${group}">
 										&nbsp;<i class="fa fa-chevron-right"></i>
 									</a>
 								</c:if>
@@ -252,7 +235,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">닫기</button>
 				<button type="button" class="btn btn-success btn-sm" onclick="modifyGroup();" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정</button>
-				<button type="button" class="btn btn-success btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제</button>
+				<a  href="" id="contact_modla_delete" class="btn btn-success btn-sm" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제</a>
 			</div>
 		</div>
 	</div>

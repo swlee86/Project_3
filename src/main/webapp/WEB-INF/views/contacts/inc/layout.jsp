@@ -87,11 +87,13 @@
 						$('#m_tel1').html(data.tel1);
 						$('#m_tel2').html(data.tel2);
 						$('#m_memo').html(data.memo);
+						$('#contact_modla_delete').attr('href','contacts_delete.do?contact_no'+data.contact_no);
 					}
 				}		
 			)
  	}
  
+ 	//상세보기
 	$(function(){
 		
 		var listsize = $('#listsize').val();
@@ -123,6 +125,7 @@
 		
 
 		/*주소록 그룹관리*/
+		//그룹추가
 		$('#contact_group_enroll_btn').click(function(){
 			console.log('contact_group_enroll_btn 클릭');
 			$('#group_name').val('');
@@ -138,7 +141,7 @@
 		console.log("grouplistsize : "+$('#grouplistsize').val());
 		
 		var id;
-		
+		//그룹수정
 		$('.contact_group_class').click(function(){
 			console.log('.contact_group_class 클릭');
 			console.log('그룹번호: ' + $(this).attr('id') );
@@ -158,99 +161,116 @@
 		});
 		
 		
+		//목록 -> 주소록 그룹
+		$('.contact_list_group_class').click(function(){
+			console.log('.contact_list_group_class 클릭');
+			console.log('그룹번호: ' + $(this).attr('id') );
+			id = $(this).attr('id');
+			console.log('그룹명 : ' + $('#'+id).html());
+			$('.contact_list_group_class').removeClass("group-clicked");
+			$('#'+id).addClass("group-clicked");
+			$('#'+id).attr('href','contacts.do?group='+id);  
+		});
 		
 		
 		
 		
 		
+		//그룹이름 
+		var groupnumber = $('#groupnumber').val();
+		console.log("groupnumber : "+groupnumber);
+
+		$('#'+groupnumber).addClass("group-clicked");
 		
-		
-		
+ 	/* 	if(groupnumber > 0){
+ 			$('#accordiongroup').css('display','block');
+		}
+		 */
 		
 		/* 초성별 */
 		$('#all').click(function(){
 			console.log('all 탭 클릭함');
-			location.replace('contacts.do');
+			location.replace('contacts.do?group='+groupnumber);
 		});
 		
 		$('#ga').click(function(){
 			console.log('가 탭 클릭함');
-			location.replace('contacts.do?tapno=2');
+			location.replace('contacts.do?tapno=2&group='+groupnumber);
 		});
 		
 		$('#na').click(function(){
 			console.log('나 탭 클릭함');
-			location.replace('contacts.do?tapno=3');
+			location.replace('contacts.do?tapno=3&group='+groupnumber);
 		});
 		
 		$('#da').click(function(){
 			console.log('다 탭 클릭함');
-			location.replace('contacts.do?tapno=4');
+			location.replace('contacts.do?tapno=4&group='+groupnumber);
 		});
 		
 		$('#la').click(function(){
 			console.log('라 탭 클릭함');
-			location.replace('contacts.do?tapno=5');
+			location.replace('contacts.do?tapno=5&group='+groupnumber);
 		});
 		
 		$('#ma').click(function(){
 			console.log('마 탭 클릭함');
-			location.replace('contacts.do?tapno=6');
+			location.replace('contacts.do?tapno=6&group='+groupnumber);
 		});
 		
 		$('#ba').click(function(){
 			console.log('바 탭 클릭함');
-			location.replace('contacts.do?tapno=7');
+			location.replace('contacts.do?tapno=7&group='+groupnumber);
 		});
 		
 		$('#sa').click(function(){
 			console.log('사 탭 클릭함');
-			location.replace('contacts.do?tapno=8');
+			location.replace('contacts.do?tapno=8&group='+groupnumber);
 		});
 		
 		$('#aa').click(function(){
 			console.log('아 탭 클릭함');
-			location.replace('contacts.do?tapno=9');
+			location.replace('contacts.do?tapno=9&group='+groupnumber);
 		});
 		
 		$('#ja').click(function(){
 			console.log('자 탭 클릭함');
-			location.replace('contacts.do?tapno=10');
+			location.replace('contacts.do?tapno=10&group='+groupnumber);
 		});
 		
 		$('#cha').click(function(){
 			console.log('차 탭 클릭함');
-			location.replace('contacts.do?tapno=11');
+			location.replace('contacts.do?tapno=11&group='+groupnumber);
 		});
 		
 		$('#ca').click(function(){
 			console.log('카 탭 클릭함');
-			location.replace('contacts.do?tapno=12');
+			location.replace('contacts.do?tapno=12&group='+groupnumber);
 		});
 		
 		$('#ta').click(function(){
 			console.log('타 탭 클릭함');
-			location.replace('contacts.do?tapno=13');
+			location.replace('contacts.do?tapno=13&group='+groupnumber);
 		});
 		
 		$('#pa').click(function(){
 			console.log('파 탭 클릭함');
-			location.replace('contacts.do?tapno=14');
+			location.replace('contacts.do?tapno=14&group='+groupnumber);
 		});
 		
 		$('#ha').click(function(){
 			console.log('하 탭 클릭함');
-			location.replace('contacts.do?tapno=15');
+			location.replace('contacts.do?tapno=15&group='+groupnumber);
 		});
 		
 		$('#alp').click(function(){
 			console.log('알파벳 탭 클릭함');
-			location.replace('contacts.do?tapno=16');
+			location.replace('contacts.do?tapno=16&group='+groupnumber);
 		});
 		
 		$('#num').click(function(){
 			console.log('숫자 탭 클릭함');
-			location.replace('contacts.do?tapno=17');
+			location.replace('contacts.do?tapno=17&group='+groupnumber);
 		});
 		
 		$('#conmodal').click(function(){
