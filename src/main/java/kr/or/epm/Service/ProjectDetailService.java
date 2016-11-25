@@ -54,5 +54,16 @@ public class ProjectDetailService {
 		}
 			return result;
 	}
+	
+	// 참여자 자세히 보기
+	public Pjd_people pjd_people(String emp_no){
+		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
+		
+		Pjd_people people = null;
+		people = dao.selectPeople_info(emp_no);
+	
+		return people;
+	}
+		
 }
 	
