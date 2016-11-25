@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +104,7 @@ public class TaskController {
 
 	// 업무 > 업무 등록
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
-	public String taskWriteOk(Principal principal, Task_people people, Task task, Model model) {
+	public String taskWriteOk(Principal principal, Task task, String emp_no, Model model) {
 
 		System.out.println("CONTROLLER] 업무 등록");
 
@@ -116,20 +117,20 @@ public class TaskController {
 		// 로그인 id
 		String id = principal.getName();
 		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		String myemp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + myemp_no);
 		String emp_name = "";
 		String task_no = "";
-	
-		List<Task_people> peopleList = new ArrayList<Task_people>();
-		peopleList.add(people);
-		System.out.println("참여자 선택 인원 : " + peopleList.size());
+
+		// 넘어오는 emp_no들 분리
+		String[] people = emp_no.split(",");
+		System.out.println("선택된 참여자 인원 : " + people.length);
 		
 		try {
 			// 업무에 송신자 사번, 송신자 이름 담기
-			task.setEmp_no(emp_no);
+			task.setEmp_no(myemp_no);
 			emp_name = commonservice.selectEmp_name(id);
-			task.setEmp_name(emp_name);
+			task.setEmp_name(myemp_no);
 			
 			// 업무 등록하기
 			result1 = service.insertTask(task);
@@ -137,10 +138,12 @@ public class TaskController {
 			if(result1 > 0) {
 				System.out.println("업무 등록에 성공했습니다");
 				task_no = service.selectTask_no();
+				System.out.println("등록하려고 하는 업무 번호는 : " + task_no);
 			}
 			
 			// 업무 참여자 등록하기
-			result2 = service.insertTask_people(task_no, peopleList);
+			result2 = service.insertTask_people(task_no, people);
+			
 		} catch (Exception e) {
 			e.getMessage();
 		} finally {

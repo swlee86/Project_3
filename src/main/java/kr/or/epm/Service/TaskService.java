@@ -101,18 +101,18 @@ public class TaskService {
 	
 	// 업무 등록 > 참여자 등록
 	// 사용
-	public int insertTask_people(String task_no, List<Task_people> peopleList) {
+	public int insertTask_people(String task_no, String[] peopleList) {
 
 		System.out.println("SERVICE] 업무 참여자를 등록합니다");
 		System.out.println("넘겨진 task_no : " + task_no);
-		System.out.println("넘겨진 task_people 인원 : " + peopleList.size());
+		System.out.println("넘겨진 task_people 인원 : " + peopleList.length);
 		
 		int result = 0;
 		
 		Task_peopleDAO dao = sqlsession.getMapper(Task_peopleDAO.class);
 		
-		for(int i=0; i<peopleList.size(); i++) {
-			result = dao.insertTask_people(task_no, peopleList.get(i).getEmp_no());
+		for(int i=0; i<peopleList.length; i++) {
+			result = dao.insertTask_people(task_no, peopleList[i]);
 		}
 		
 		return result;

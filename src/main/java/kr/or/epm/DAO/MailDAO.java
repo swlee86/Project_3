@@ -44,5 +44,8 @@ public interface MailDAO {
 	
 	// 휴지통에서 복원하기
 	public int updateMail_re();
+	
+	//발송 내역 저장하기
+	int insertSendMail(Mail mail);
 
 }

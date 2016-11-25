@@ -240,6 +240,7 @@ ul {
    var choose;
    
    // 업무 삭제하기
+   // 송/수신 나눠야 하는데 일단 보류
    function removeTask() {
 	   console.log("삭제해볼까나");
 	    
@@ -358,7 +359,7 @@ ul {
     	  //업무 이름 (span) > 부모 td > 이전 형제 td > 첫번째 자식 > 텍스트 노드 선택
     	  console.log(obj.parentNode.previousSibling.firstChild.nodeValue);
     	  var task_no = obj.parentNode.previousSibling.firstChild.nodeValue;
-    	  location.href="taskRequest_Transmit_Detail.do?task_no="+task_no;
+    	  location.href="taskRequest_detail.do?task_no="+task_no;
       }
       
       //참여탭 > 업무 제목 클릭시
@@ -367,7 +368,7 @@ ul {
     	  console.log(obj.parentNode.previousSibling.firstChild.nodeValue);
     	  var task_no = obj.parentNode.previousSibling.firstChild.nodeValue;
     	  alert("참여 업무번호 : "+task_no);
-    	  location.href="taskRequest_Participation_Detail.do?task_no="+task_no;
+    	  location.href="taskRequest_participation_detail.do?task_no="+task_no;
       }
       
       
@@ -376,7 +377,7 @@ ul {
     	  $('#informSongTab').click(function(){
     		 $.ajax(
     				  {
-    			 		url:"taskInform_song.do",
+    			 		url:"taskInform.do",
     			 		success : function(data){
     			 			var alist = data.list;
     			 			console.log("리스트 머냐 : " +alist[0].task_no);
@@ -405,7 +406,7 @@ ul {
     	  $('#sendTab').click(function(){
     		  $.ajax(
     					{
-    			  			url : "taskRequest_Transmit_List.do",
+    			  			url : "taskRequest.do",
     			  			dataType : 'json',
     			  			success : function(data){
     			  				var table="";
@@ -433,7 +434,7 @@ ul {
     	  $('#taskRequestpartnerTab').click(function(){
     		  $.ajax(
     					{
-    						url : "taskRequest_Participation_List.do",
+    						url : "taskRequest_participation.do",
     					    success : function(data){
     					    	var table = "";
     					    	var array = data.list;

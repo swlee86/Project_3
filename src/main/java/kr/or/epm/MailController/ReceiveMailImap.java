@@ -89,7 +89,7 @@ public class ReceiveMailImap {
             //특정 번호 사이의 메일을 받아오고 싶다면 getMessageByUID를 사용하면 됩니다. UIDFolder.LASTUID를 이용하면 해당 폴더의 마지막 메일 번호를 알아서 알려줍니다.
             Message messages[] = uf.getMessagesByUID(previousUID + 1, UIDFolder.LASTUID);
             
-            //System.out.println(messages.length);
+            System.out.println(messages.length);
        
           /* for (int i = 0; i < messages.length; ++i) {*/
           /*  for (int i = 0; i < messages.length; ++i) {*/
