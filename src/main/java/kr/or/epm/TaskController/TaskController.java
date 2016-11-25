@@ -123,6 +123,7 @@ public class TaskController {
 
 		List<Task_people> peopleList = new ArrayList<Task_people>();
 		peopleList.add(people);
+		System.out.println("참여자 선택 인원 : " + peopleList.size());
 		
 		try {
 			// 업무에 송신자 사번, 송신자 이름 담기
