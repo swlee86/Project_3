@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.CommuteDAO;
 import kr.or.epm.VO.Commute;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Set_time;
 
 
@@ -118,14 +119,17 @@ public class CommuteService {
 	
 	//추가시간 업데이트
 	public int updateCommute_add(String emp_no){
-		System.out.println("updateCommute_add들어옴");
+		System.out.println("updateCommute_add서비스 들어옴");
+		System.out.println("------------------------------\nupdateCommute_add emp_no : "+emp_no);
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		String commute_no = dao.selectMyCommute_no(emp_no);
+		System.out.println("@@commute_no : "+commute_no);
 		Commute commute =null;
 		int result = 0;
 		if(commute_no!=null){
 			Set_time set_time = dao.selectSetTime(emp_no);
+			System.out.println("@@Set_time : "+set_time.toString());
 			
 			String out_time_dept = set_time.getOut_time();
 			
@@ -134,6 +138,7 @@ public class CommuteService {
 			
 			
 			commute = dao.selectCommute_commuteno(commute_no);
+			System.out.println("commute : "+ commute.toString());
 			
 			String out_time_emp = commute.getOut_time();
 			
@@ -171,11 +176,12 @@ public class CommuteService {
 				
 			}
 			
-			HashMap map = new HashMap();
+			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("add_time", add_time);
 			map.put("commute_no", commute_no);
 			
 			result = dao.updateCommute_addtime(map);
+			System.out.println("result : "+result);
 		}
 		return result;
 	}
@@ -328,4 +334,15 @@ public class CommuteService {
 		return commute;
 		
 	}
+	
+	//아이디로 회원정보가져오기
+	public Emp selectInfoSearch(String id) {
+		System.out.println("selectInfoSearch서비스 들어옴");
+		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
+		Emp emp =  dao.selectInfoSearch(id);
+		System.out.println("@@@@emp tostirng : "+emp.toString());
+		return emp;
+	}
+	
+
 }

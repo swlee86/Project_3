@@ -170,4 +170,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectempinfo" parameterType="String" resultType="kr.or.epm.VO.Commute">
 		 select emp_name,emp_no from emp where emp_no = #{emp_no}
 	</select>
+	
+	<!-- 아이디로 회원 정보 가져오기 -->
+	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">
+		select e.emp_no,e.emp_name
+		from  emp_detail d join emp e
+		on d. emp_no = e.emp_no
+		where d.id=#{id}
+	</select>
 </mapper>
