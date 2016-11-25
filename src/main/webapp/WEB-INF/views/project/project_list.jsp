@@ -37,14 +37,14 @@
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<select class="form-control">
-						<option>전체보기</option>
-						<option>내것만</option>
+					<select class="form-control" id="ctg" onchange="selectCtg()">
+						<option value="all">전체</option>
+						<option value="write">내가 작성한 프로젝트</option>
+						<option value="include">내가 포함된 프로젝트</option>
 					</select>
 				</div>
-				<div class="table-responsive">
-					<table cellpadding="1" cellspacing="1"
-						class="table table-bordered table-striped">
+				<div class="table-responsive" id="projectList">
+					<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
 								<th>책임자</th>
@@ -56,8 +56,6 @@
 								<th>진행률</th>
 								<th>진행단계</th>
 							</tr>
-						</thead>
-						
 						<tbody>
 							<c:forEach  var="list" items="${pjlist}">
 								<tr>
@@ -67,6 +65,8 @@
 									<td>${list.pj_content}</td>
 									<td>${list.pj_start}</td>
 									<td>${list.pj_end}</td>
+									
+									
 									<td>
 										<div class="progress m-t-xs full progress-striped ">
 											<div style="width:${list.pj_progress}%" aria-valuemax="100" aria-valuemin="0"
@@ -108,3 +108,68 @@
 	</div>
 </div>
 
+
+
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script>
+function selectCtg(){
+	
+	var makeTable = "";
+
+	 makeTable = 
+		 "<table cellpadding='1' cellspacing='1' class='table table-bordered table-striped'><thead>"+
+		 "<tr><th>책임자</th><th>부서</th><th>제목</th><th>내용</th><th>시작일</th><th>종료일</th><th>진행률</th><th>진행단계</th></tr>"+
+		 "</thead><tbody>";
+		 
+	var select_ctg = document.getElementById("ctg").value;
+		$.ajax({
+					url : "select_pjlist.do",
+	               	data : {
+	            	   		select_ctg : select_ctg,
+			               },
+					success : function(data){
+						
+						//console.log(data);
+	                     $('#projectList').empty();
+
+	                     var project ="";
+							$.each(data.project, function(index){
+								project = data.project[index];
+								console.log(index +":" +project.pj_step_name);
+							});
+		                     
+							$.each(data.project, function(index){
+		                           makeTable += "<tr><td>"+data.project[index].emp_name+"</td><td>"+data.project[index].dept_name +
+		                           "</td><td>"+data.project[index].pj_title+"</td><td>"+data.project[index].pj_content+
+		                           "</td><td>"+data.project[index].pj_start+"</td><td>"+data.project[index].pj_end+"</td>"+
+		      
+		                           "<td><div class='progress m-t-xs full progress-striped'><div style='width:" + 
+		                           data.project[index].pj_progress+"%' aria-valuemax='100' aria-valuemin='0'aria-valuenow='"+
+		                           data.project[index].pj_progress+" role='progressbar' class='progress-bar progress-bar-warning active'>"+
+		                           data.project[index].pj_progress+"%</div></div></td><td>";
+		                           
+		                           
+		                           if(data.project[index].pj_step_name == "진행"){
+		                        	   makeTable += "<span class='label label-success' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>진행</span>"
+		                           } if(data.project[index].pj_step_name == "미진행"){
+		                        	   makeTable += "<span class='label label-primary' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>미진행</span>"
+		                           } if(data.project[index].pj_step_name == "완료"){
+		                        	   makeTable += "<span class='label label-default' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>완료</span>"
+		                           } if(data.project[index].pj_step_name == "중단"){
+		                        	   makeTable += "<span class='label label-danger' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>중단</span>"
+		                           } if(data.project[index].pj_step_name == "보류"){
+		                        	   makeTable += "<span class='label label-danger' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>보류</span>"
+		                           }
+
+		                           makeTable += "</td></tr>";
+		                           
+		                     }); 
+		                     makeTable += "</tbody></table>";
+		                     $('#projectList').empty();
+		                     $('#projectList').append(makeTable);
+		                     
+					} 
+		});
+	}
+
+</script>

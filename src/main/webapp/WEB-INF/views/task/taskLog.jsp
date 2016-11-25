@@ -112,7 +112,7 @@
 														<label></label>
 													</div>
 												</td>
-												<td><a href="taskLog_Receive_Detail.do"
+												<td><a href="taskLog_Receive_Detail.do?task_no=${list.task_no}"
 													<c:if test="${ list.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>${ list.task_name }</a></td>
 												<td>${ list.deadline }</td>
 												<td>${ list.emp_name }</td>

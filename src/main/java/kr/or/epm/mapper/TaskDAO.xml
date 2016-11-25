@@ -56,13 +56,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   task_name, deadline, content, 
 			   rec_emp_no, rec_name, rec_date, 
 			   t.emp_no, emp_name, send_date, 
-			   file_name, task_step_no, step_no,
-			   p.emp_no
+			   file_name, task_step_no, t.step_no,
+			   p.emp_no, step_name
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
+    	join approval a
+    	on t.step_no = a.step_no
 		left outer join task_people p
 		on t.task_no = p.task_no
-		where t.task_no=#{task_no}
+		where t.task_no = #{task_no}
 	</select>
 	
 	
@@ -140,8 +142,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 참여 업무 진행 처리하기 -->
 	<update id="updateTask_step">
 		update task
-		set task_step_no = #{task_step_no}
-		where task_no = #{task_no}
+		set task_step_no = #{param2}
+		where task_no = #{param1}
 	</update>
 	
 	<!-- 수신 글 개수 구하기 -->

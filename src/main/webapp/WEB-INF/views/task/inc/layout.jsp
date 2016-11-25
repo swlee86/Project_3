@@ -378,7 +378,35 @@ ul {
       
       
       $(function() {
-         
+    	  //업무 보고 송신
+    	  $('#informSongTab').click(function(){
+    		 $.ajax(
+    				  {
+    			 		url:"taskInform_song.do",
+    			 		success : function(data){
+    			 			var alist = data.list;
+    			 			console.log("리스트 머냐 : " +alist[0].task_no);
+    			 			var table = "";
+    			 			for(var i = 0; i < data.list.length; i++){
+    			 				table += "<tr>";			
+			  					table += "<td><input type='checkbox' style='margin-left:20px'></td>"
+			  					table+="<td>"+alist[i].task_no+"</td>";
+			  					table+="<td><span onclick='particTab_task_no(this);'>"+alist[i].task_name+"</span></td>";
+			  					table+="<td>"+alist[i].deadline+"</td>";
+			  					table+="<td>"+alist[i].rec_name+"</td>";
+			  					table+="<td>"+alist[i].send_date+"</td>";
+			  					table+="<td>"+alist[i].step_name+"</td>";
+			  					table+="<td>수신확인들어올곳</td>";
+			  					table +="</tr>";
+    			 			}
+    			 			
+    			 			$('#secondSongTbody').html(table);
+    			 			
+    			 		}
+    		          }
+    		       );	    
+    	  });
+    	  
     	  //송신 탭 클릭 시 
     	  $('#sendTab').click(function(){
     		  $.ajax(

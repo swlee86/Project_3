@@ -109,6 +109,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	<!-- 그룹 수정시  cotacts에서  주소록 설정수정-->
+	<update id="updateContact_GroupNo" > 
+	   update (
+                select e.emp_no,c.name,c.group_no
+                from contact c join emp_contact e 
+                on c.contact_no = e.contact_no 
+                where e.emp_no=11111111
+              ) 
+      set group_no = #{param1} 
+      where group_no=#{param2} 
+	
+	</update>
+	
+		<!-- 가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) -->
+	<update id="updateGroups_delete" parameterType="hashmap">
+		update emp_contact
+		set groups = (select replace((select distinct groups from emp_contact where emp_no=#{emp_no}),',${pre_group_no}','') as result from dual) 
+    	where emp_no=#{emp_no}
+	</update>
+	
+	
+		
+	<!-- 삭제시 : 주소록에서 삭제 그룹번호를 가진 그룹번호를 1(선택없음)으로 바꿈 -->
+	<update id="updateGroups_delete_change">
+		update (
+                select e.emp_no,c.name,c.group_no
+                from contact c join emp_contact e 
+                on c.contact_no = e.contact_no 
+                where e.emp_no=#{param1}
+              ) 
+      set group_no = #{param2} 
+      where group_no='1'; 
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -133,10 +184,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
-	
-	
-	
-	
+
 	
 	
 	
@@ -214,11 +262,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	
-	<!-- 가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) -->
-	<update id="updateGroups_delete">
-		update emp_contact
-		set groups = (select replace((select distinct groups from emp_contact where emp_no=#{emp_no}),',${selectGroup_no}','') as result from dual) 
-    	where emp_no=#{emp_no}
-	</update>
+
 	
 </mapper>

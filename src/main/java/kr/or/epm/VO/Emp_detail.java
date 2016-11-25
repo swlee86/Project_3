@@ -15,6 +15,17 @@ public class Emp_detail {
 	private String addr_detail;
 	private String account;
 	private String postcode;
+	private String googleapiid;
+
+	
+	
+	public String getGoogleapiid() {
+		return googleapiid;
+	}
+
+	public void setGoogleapiid(String googleapiid) {
+		this.googleapiid = googleapiid;
+	}
 
 	public String getEmp_no() {
 		return emp_no;
@@ -83,6 +94,10 @@ public class Emp_detail {
 	@Override
 	public String toString() {
 		return "Emp_detail [emp_no=" + emp_no + ", id=" + id + ", pwd=" + pwd + ", bank=" + bank + ", addr=" + addr
-				+ ", addr_detail=" + addr_detail + ", account=" + account + ", postcode=" + postcode + "]";
+				+ ", addr_detail=" + addr_detail + ", account=" + account + ", postcode=" + postcode + ", googleapiid="
+				+ googleapiid + "]";
 	}
+
+	
+	
 }

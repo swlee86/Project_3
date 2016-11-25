@@ -19,8 +19,16 @@ public class EmpJoinEmp_Detail {
 	private String addr_detail;
 	private String account;
 	private String postcode;
+	private String googleapid;
 	
 	
+	
+	public String getGoogleapid() {
+		return googleapid;
+	}
+	public void setGoogleapid(String googleapid) {
+		this.googleapid = googleapid;
+	}
 	public String getDept_name() {
 		return dept_name;
 	}
