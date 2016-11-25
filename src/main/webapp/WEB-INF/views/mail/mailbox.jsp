@@ -82,14 +82,8 @@
 						<table class="table table-hover table-mailbox">
 							<thead>
 								<tr>
-									<th>
-										<div class="checkbox checkbox-single checkbox-success">
-											<input type="checkbox"><label></label>
-										</div>
-									</th>
-									<th>읽음/안읽음</th>
-									<th>제목</th>
 									<th>보낸사람</th>
+									<th>제목</th>
 									<th class="text-right mail-date">시간</th>
 								</tr>
 								<tr>
@@ -98,19 +92,17 @@
 							</thead>
 							<tbody>
 							
-								<c:forEach var="list" items="${mlist}">
+								<c:forEach var="list" items="${maillist}">
 								<tr>
-									<td class="">
-										<div class="checkbox checkbox-single checkbox-success">
-											<input type="checkbox"><label></label>
-										</div>
-									</td>
-									<td><a href="#">${list.sign}</a></td>
-									<td><a href="mail_detail.do">${list.title}</a><span class="text-right mail-date"><i class="fa fa-paperclip"></i></span></td>
-									<td>${list.emp_name}</td>
-									<td class="text-right mail-date">${list.send_date}</td>
+									<td>${list.emp_no}</td>
+									<td><a href="#" onClick="javascript:window.open('${pageContext.request.contextPath}/mail/data/${list.mail_content}.html','popup','scrollbars=no, resizable=no, width=500px,height=800px')">${list.title}</a><span class="text-right mail-date"><i class="fa fa-paperclip"></i></span></td>
+									<td class="text-right mail-date">${list.rec_check}</td>
 								</tr>
+								<tr id="mailload"></tr>
 								</c:forEach>
+								<tr>
+									<td colspan="3"><a href="#" onclick="location.href='mailbox.do?page=${usepage}'">다음 메일</a></td>
+								</tr>
 							
 							
 							</tbody>
@@ -119,8 +111,29 @@
 				</div>
 				<div class="panel-footer">
 						<input type="button" class="btn btn-sm btn-success" value="메일쓰기" id="writeMailBtn" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
-						<input type="button" onclick="location.href='contacts.do'" class="btn btn-sm btn-default" value="삭제하기" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+						<input type="button" class="btn btn-sm btn-default" value="삭제하기" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 				</div>
+				<div class="panel-footer"  style="text-align:center;">
+                <div class="btn-group">
+					<c:if test="${cpage > 1}">
+                    	<button type="button" class="btn btn-default" onclick="location.href='mailbox.do?currentpage=${cpage-1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
+                    </c:if>
+                    <c:forEach var="i" begin="1" end="${pagecount}" step="1">	
+                    <c:choose>
+                    	<c:when test="${cpage==i}">
+                    		<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
+                    	</c:when>
+                    	<c:otherwise>
+							<button class="btn btn-default" onclick="location.href='mailbox.do?currentpage=${i}&pagesize=${psize}'">${i}</button>                	
+                    	</c:otherwise>
+                    </c:choose>
+					</c:forEach>
+					<c:if test="${cpage < pagecount}">
+                    	<button type="button" class="btn btn-default" onclick="location.href='mailbox.do?currentpage=${cpage+1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
+                	</c:if>
+                
+                </div>
+              </div>
 			</div>
 		</div>
 	</div>
