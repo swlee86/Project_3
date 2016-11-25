@@ -121,6 +121,7 @@ public class TaskController {
 		String emp_no = commonservice.selectEmp_no(id);
 		System.out.println("로그인한 사원의 emp_no : " + emp_no);
 		String emp_name = "";
+		String task_no = "";
 
 		List<Task_people> peopleList = new ArrayList<Task_people>();
 		peopleList.add(people);
@@ -133,7 +134,12 @@ public class TaskController {
 			
 			// 업무 등록하기
 			result1 = service.insertTask(task);
-
+			
+			if(result1 > 0) {
+				System.out.println("업무 등록에 성공했습니다");
+				task_no = service.selectTask_no();
+			}
+			
 			// 업무 참여자 등록하기
 			result2 = service.insertTask_people(task_no, peopleList);
 		} catch (Exception e) {
