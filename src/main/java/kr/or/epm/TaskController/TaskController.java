@@ -120,7 +120,7 @@ public class TaskController {
 		System.out.println("로그인한 사원의 emp_no : " + emp_no);
 		String emp_name = "";
 		String task_no = "";
-
+	
 		List<Task_people> peopleList = new ArrayList<Task_people>();
 		peopleList.add(people);
 		System.out.println("참여자 선택 인원 : " + peopleList.size());
