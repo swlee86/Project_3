@@ -83,9 +83,9 @@
                 <a href="#"><span class="nav-label">업무관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="taskWrite.do">업무 등록</a></li>
-                    <li><a href="taskRequest.do">업무 요청</a></li>
-                    <li><a href="taskInform.do">업무 보고</a></li>
-                    <li><a href="taskLog.do">업무 일지</a></li>
+                    <li><a href="taskRequest_rec.do">업무 요청</a></li>
+                    <li><a href="taskInform_rec.do">업무 보고</a></li>
+                    <li><a href="taskLog_rec.do">업무 일지</a></li>
                 </ul>
             </li>
             <li>
@@ -104,7 +104,7 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="Commute.do">일일 근태 등록</a></li>
            			<li><a href="CommuteMonth.do">월별 근태 조회</a></li>
-           			<li><a href="CommuteOther.do">각기다른 근태보기</a></li>
+           			<!-- <li><a href="CommuteOther.do">각기다른 근태보기</a></li> -->
                 </ul>
             </li>
             <li>

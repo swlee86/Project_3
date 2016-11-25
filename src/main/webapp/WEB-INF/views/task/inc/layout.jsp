@@ -494,13 +494,11 @@ ul {
             var cg = '';
             if(st == "업무요청"){
                cg = 1;
-               $('#cg_name').val('업무요청');
             }else if(st == "업무보고"){
                cg = 2;
-               $('#cg_name').val('업무보고');
             }else if(st == "업무일지"){
                cg = 3;
-               $('#cg_name').val('업무일지');
+   
             }
             
             $('#cg_no').val(cg);
@@ -514,7 +512,7 @@ ul {
          //참조자 아이콘 클릭시
          $('#deptA').click(function() {
         	var empSelectNumber = 2;
- 			var litag = "<ui style='list-style:none;''>";   		
+ 			var litag = "<ui style='list-style:none;'>";   		
      		$('#organization').empty();
      		$('#empList').empty();
                   

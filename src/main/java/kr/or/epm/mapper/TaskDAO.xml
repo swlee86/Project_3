@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						 emp_no, emp_name, send_date, 
 						 file_name, del_check, rec_del_check, 
 						 task_step_no, step_no)
-		values(#{task_no}, #{cg_no}, '0', 
+		values(task_seq.nextval, #{cg_no}, '0', 
 			   #{task_name}, #{deadline}, #{content}, 
 			   #{rec_emp_no}, #{rec_name}, null, 
 			   #{emp_no}, #{emp_name}, to_char(sysdate, 'yyyy-mm-dd'), 
@@ -30,11 +30,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 업무 중요설정 -->
 	<update id="updateTask_sign">
 		update task
-		set sign = #{sign}
-		where task_no = #{task_no}
+		set sign = #{param2}
+		where task_no = #{param1}
 	</update>
 	
-	<!-- 업무 수신함 확인하기 / 보낸 날짜가 최신 순서로 정렬 -->
+	<!-- 업무 수신함 확인하기 -->
 	<select id="selectTask_rec" resultType="kr.or.epm.VO.Task">
 		select task_no, cg_name, sign,
        		   task_name, deadline, emp_no,
@@ -50,54 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	order by a.step desc
 	</select>
 	
-	<!-- 업무 상세 조회하기 -->
-	<select id="selectTask_detail" resultType="kr.or.epm.VO.Task">
-		select t.task_no, cg_name, sign, 
-			   task_name, deadline, content, 
-			   rec_emp_no, rec_name, rec_date, 
-			   t.emp_no, emp_name, send_date, 
-			   file_name, task_step_no, t.step_no,
-			   p.emp_no, step_name
-		from task t join task_cg c
-		on t.cg_no = c.cg_no
-    	join approval a
-    	on t.step_no = a.step_no
-		left outer join task_people p
-		on t.task_no = p.task_no
-		where t.task_no = #{task_no}
-	</select>
-	
-	
-	<!--업무 요청 수신 상세 보기 업무 내용만 있음-->
-	<select id="selectTask_receive_detail" resultType="kr.or.epm.VO.Task">
-	   select task_no, cg_no, sign, task_name, deadline, content, emp_name, rec_name, emp_no, send_date, file_name, task_step_no, step_no from task where task_no = #{task_no}
-	</select>
-	
-	
-	
-	
-	<!-- 수신함에서 읽었을 때 수신일 데이터 삽입하기 -->
-	<update id="updateTask_recDate">
-		update task
-    	set rec_date = to_char(sysdate, 'yyyy-mm-dd')
-    	where task_no = #{task_no}
-	</update>
-
-	<!-- 업무 승인 처리하기 -->
-	<update id="updateTask_approval">
-		update task
-		set step_no = #{step_no}
-		where task_no = #{task_no}
-	</update>
-	
-	<!-- 수신함에서 삭제하기 -->
-	<update id="deleteTask_rec">
-		update task
-		set rec_del_check = '1'
-		where task_no = #{task_no}
-	</update>
-	
-	<!-- 업무 송신함 확인하기 / 보낸 날짜가 최신 순서로 정렬 -->
+	<!-- 업무 송신함 확인하기 -->
 	<select id="selectTask" resultType="kr.or.epm.VO.Task">
 		select task_no, cg_name, task_name, 
 			   deadline, rec_emp_no, rec_name, 
@@ -113,6 +66,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	order by a.step desc
 	</select>
 	
+	<!-- 업무 상세 조회하기 -->
+	<select id="selectTask_detail" resultType="kr.or.epm.VO.Task">
+		select t.task_no, cg_name, sign, 
+			   task_name, deadline, content, 
+			   rec_emp_no, rec_name, rec_date, 
+			   t.emp_no, emp_name, send_date, 
+			   file_name, task_step_name, step_name
+		from task t join task_cg c
+		on t.cg_no = c.cg_no
+    	join approval a
+    	on t.step_no = a.step_no
+		where t.task_no = #{task_no}
+	</select>
+	
+	<!--업무 요청 수신 상세 보기 업무 내용만 있음-->
+	<select id="selectTask_receive_detail" resultType="kr.or.epm.VO.Task">
+	   select task_no, cg_no, sign, task_name, deadline, content, emp_name, rec_name, emp_no, send_date, file_name, task_step_no, step_no from task where task_no = #{task_no}
+	</select>
+	
+	<!-- 수신함에서 읽었을 때 수신일 데이터 삽입하기 -->
+	<update id="updateTask_recDate">
+		update task
+    	set rec_date = to_char(sysdate, 'yyyy-mm-dd')
+    	where task_no = #{task_no}
+	</update>
+
+	<!-- 업무 승인 처리하기 -->
+	<update id="updateTask_approval">
+		update task
+		set step_no = #{param2}
+		where task_no = #{param1}
+	</update>
+	
+	<!-- 수신함에서 삭제하기 -->
+	<update id="deleteTask_rec">
+		update task
+		set rec_del_check = '1'
+		where task_no = #{task_no}
+	</update>
+	
 	<!-- 송신함에서 삭제하기 -->
 	<update id="deleteTask">
 		update task
@@ -123,19 +116,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
 	<select id="selectTask_people" resultType="kr.or.epm.VO.Task">
 		select t.task_no, cg_name, task_name,
-      		   deadline, rec_emp_no, rec_name,
+       		   deadline, rec_emp_no, rec_name,
        		   t.emp_no, emp_name, file_name, 
-       		   task_step_no
+       		   task_step_name
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
+    	join task_step s
+    	on t.task_step_no = s.task_step_no
 		left outer join (select task_no, emp_no
                  		 from task_people
                  		 where emp_no = #{emp_no}) p
 		on t.task_no = p.task_no
 		where t.step_no = '1' and
-          t.cg_no = '1' and
-          rec_emp_no = #{emp_no} or
-          p.emp_no is not null
+          	  t.cg_no = '1' and
+          	  rec_emp_no = #{emp_no} or
+          	  p.emp_no is not null
 		order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
 	</select>
 	

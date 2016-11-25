@@ -11,7 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<select id="selectTask_No" resultType="String">
-		   SELECT max(task_no) FROM task
+		   SELECT max(task_no) 
+		   FROM task
 	</select>
 
 	<!-- 업무 참여자 추가하기 -->
@@ -28,7 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 업무 참여자 조회하기 -->
-	<!-- A사원이 어떤 업무에 참여했나를 조회할 경우 -->
 	<select id="selectTask_people" resultType="kr.or.epm.VO.Task_people">
 		select task_no, t.emp_no, e.emp_name
 		from task_people t join emp e

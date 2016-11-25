@@ -61,7 +61,7 @@
 								<tr>
 									<td>${list.emp_name}</td>
 									<td>${list.dept_name}</td>
-									<td>${list.pj_title}</td>
+									<td><a href="projectDetail.do?pj_no=${list.pj_no}">${list.pj_title}</a></td>
 									<td>${list.pj_content}</td>
 									<td>${list.pj_start}</td>
 									<td>${list.pj_end}</td>
