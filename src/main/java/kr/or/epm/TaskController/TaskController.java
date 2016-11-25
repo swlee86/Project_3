@@ -120,11 +120,17 @@ public class TaskController {
 		System.out.println("id : " + id);
 		String emp_no = commonservice.selectEmp_no(id);
 		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		String emp_name = "";
 
 		List<Task_people> peopleList = new ArrayList<Task_people>();
 		peopleList.add(people);
-
+		
 		try {
+			// 업무에 송신자 사번, 송신자 이름 담기
+			task.setEmp_no(emp_no);
+			emp_name = commonservice.selectEmp_name(id);
+			task.setEmp_name(emp_name);
+			
 			// 업무 등록하기
 			result1 = service.insertTask(task);
 

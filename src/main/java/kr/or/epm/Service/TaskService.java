@@ -81,7 +81,6 @@ public class TaskService {
 	public int insertTask(Task task) {
 		
 		System.out.println("SERVICE] 업무를 등록합니다");
-		System.out.println("넘겨진 task_no : " + task.getTask_no());
 		
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		int result = dao.insertTask(task);
