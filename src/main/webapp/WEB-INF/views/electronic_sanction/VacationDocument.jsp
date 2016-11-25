@@ -15,12 +15,23 @@
 			</select></td>
 		</tr>
 		<tr>
-			<th
-				style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">문서번호</th>
-			<td style="width: 40%"><input type="text" class="form-control"></td>
-			<th
-				style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">기안일자</th>
-			<td style="width: 40%"><input type="text" class="form-control"></td>
+		     <th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font>신청 기간</th>
+			<td colspan="3">
+				<div class="form-inline">
+					<div class="input-group date">
+						<input type="text" class="form-control input-sm"
+							id="vacationStartDate"> <span class="input-group-addon"
+							style="color: #fd7d86"><i class="fa fa-calendar"></i></span>
+					</div>
+					&nbsp; ~ &nbsp;
+					<div class="input-group date">
+						<input type="text" class="form-control input-sm"
+							id="vacationEndDate"> <span class="input-group-addon"
+							style="color: #fd7d86"><i class="fa fa-calendar"></i></span>
+					</div>
+				</div>
+			</td>	
 		</tr>
+		
 	</table>
 </div>

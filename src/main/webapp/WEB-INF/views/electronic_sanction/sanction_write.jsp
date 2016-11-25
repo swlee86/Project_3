@@ -28,7 +28,7 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form>
+						<form id="documentForm" method="POST">
 							<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1"
 									class="table table-bordered ">

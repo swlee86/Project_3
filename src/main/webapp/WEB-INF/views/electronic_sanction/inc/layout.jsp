@@ -27,6 +27,11 @@
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 
+
+<!--jQuery UI CSS-->
+<link rel="stylesheet"
+   href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+   type="text/css" />
 </head>
 <body class="fixed-navbar fixed-sidebar">
 

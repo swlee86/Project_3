@@ -12,7 +12,11 @@ public class SanctionController {
 	public String CooperationDocument(){
 		return "electronic_sanction/CooperationDocument";
 	}
-	
+	//대외협조공문 페이지
+	@RequestMapping("/office.do")
+	public String office(){
+		return "electronic_sanction/office";
+	}
 	
 	
 	//휴가 문서 페이지
