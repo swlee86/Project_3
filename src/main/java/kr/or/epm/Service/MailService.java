@@ -21,4 +21,10 @@ public class MailService {
 		List<Mail> list = maildao.selectMail();
 		return list;
 	}
+	
+	public int insertSendMail(Mail mail){
+		MailDAO maildao = sqlsession.getMapper(MailDAO.class);
+		int result = maildao.insertSendMail(mail);
+		return result;
+	}
 }

@@ -101,8 +101,15 @@ public class MailController {
 
 	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
 	@RequestMapping("/mailbox_compose.do")
-	public String mailbox_composeview() {
+	public String mailbox_composeview(HttpSession session) {
+		String sessionchk = (String) session.getAttribute("mailusedata");
+		boolean test = Util.isEmpty(sessionchk);
+
+		if (test == true) {
+			return "redirect:maillogin.do";
+		}else{			
 		return "mail.mailbox_compose";
+		}
 	}
 
 	//메일 > 보낸메일함 페이지이동 
