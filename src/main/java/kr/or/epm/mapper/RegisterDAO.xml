@@ -16,6 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    VALUES(#{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode}, #{googleapiid})
 	</insert>
 	
+	<update id="updateEmail" parameterType="kr.or.epm.VO.Emp">
+		update emp set email=${email} where emp_no=${emp_no}
+	</update>
+	
 	<!-- 회원가입에서 해당 사번이 사용 가능한지 확인하는 쿼리문 -->
 	<select id="selectEmpno" parameterType="String" resultType="String">
 		select emp_no from emp where emp_no=#{emp_no}

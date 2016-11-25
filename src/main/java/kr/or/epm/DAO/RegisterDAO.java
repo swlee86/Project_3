@@ -12,6 +12,9 @@ public interface RegisterDAO {
 	//회원가입시에 insert 함수
 	int insertEmp_detail(Emp_detail emp_detail);
 	
+	//회원 가입시에 Emp 테이블의 email을 업데이트 하는 함수
+	int updateEmail(Emp emp);
+	
 	//관리자 > 사원정보 등록 페이지에서 기본 사원정보를 등록하는 함수 
 	int insertEmp(Emp emp);
 	

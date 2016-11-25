@@ -94,7 +94,14 @@
 							
 								<c:forEach var="list" items="${maillist}">
 								<tr>
-									<td>${list.emp_no}</td>
+								<c:choose>
+									<c:when test="${list.emp_no eq '=?UTF-8?Q?Google_=EC=BB=A4=EB=AE=A4=EB=8B=88=ED=8B=B0=ED=8C=80?= <googlecommunityteam-noreply@google.com>'}">
+										<td><a href="#">googlecommunityteam-noreply@google.com</a></td>
+									</c:when>
+									<c:otherwise>
+										<td><a href="#">${list.emp_no}</a></td>
+									</c:otherwise>
+								</c:choose>
 									<td><a href="#" onClick="javascript:window.open('${pageContext.request.contextPath}/mail/data/${list.mail_content}.html','popup','scrollbars=no, resizable=no, width=500px,height=800px')">${list.title}</a><span class="text-right mail-date"><i class="fa fa-paperclip"></i></span></td>
 									<td class="text-right mail-date">${list.rec_check}</td>
 								</tr>
