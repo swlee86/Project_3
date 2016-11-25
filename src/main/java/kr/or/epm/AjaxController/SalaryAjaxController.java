@@ -63,9 +63,23 @@ public class SalaryAjaxController {
 
 	// 연도별 급여 조회
 	@RequestMapping("/YearlysalSearch.do")
-	public View YearlysalarySearch(String date, String option, Model model) {
-		System.out.println("연도별 date :" + date + "/ select: " + option);
-		model.addAttribute("date", date);
+	public View YearlysalarySearch(Principal principal, String date, Model model) {
+		System.out.println("연도별 date :" + date);
+		
+		String id = principal.getName();
+		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
+		
+		List<Pay> Yearly_pay = null;
+		
+		try {
+			Yearly_pay = payservice.selectPay_mine_Yearly(emp.getEmp_no(), date);
+			System.out.println("연도별 급여 조회 list: "+Yearly_pay.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			model.addAttribute("YearlyPay", Yearly_pay);
+		}
+	 
 		return jsonview;
 	}
 
@@ -74,6 +88,8 @@ public class SalaryAjaxController {
 	public View sevSearch(String select, String date, Model model) {
 		System.out.println("select :" + select + "/date: " + date);
 		model.addAttribute("select", select);
+		model.addAttribute("total","15");
+		model.addAttribute("outMoney","15000000");
 		return jsonview;
 	}
 
