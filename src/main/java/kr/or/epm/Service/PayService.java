@@ -25,18 +25,14 @@ public class PayService {
 	}
 	//월별 급여 조회
 	public Pay selectPay_mine_Monthly(String emp_no, String give_date){
+		System.out.println("월별 급여 조회 서비스 부분 : "+emp_no);
 		PayDAO payDao = sqlsession.getMapper(PayDAO.class);
-		Pay pay = payDao.selectPay_mine_Monthly(emp_no, give_date);
+		Pay pay=payDao.selectPay_mine_Monthly(emp_no, give_date);
+		
+		
 		System.out.println("월별 급여 : "+pay.toString());
 		
 		return pay;
 	}
-	//급여 지급일 조회
-	public List<String> selectGive_date(String emp_no){
-		PayDAO payDao = sqlsession.getMapper(PayDAO.class);
-		List<String> date = payDao.selectGive_date(emp_no);
-		System.out.println("급여지급일 : "+date);
-		return date;
-	}
-	
+
 }

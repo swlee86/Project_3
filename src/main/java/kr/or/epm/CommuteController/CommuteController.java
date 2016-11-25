@@ -37,6 +37,12 @@ public class CommuteController {
 		
 		String emp_no = "91001050";
 		commute =  commuteservice.selectCommute_today(emp_no); // 임시로 emp_no를 91001050로 테스트
+		if(commute == null){
+			System.out.println("null임");
+			commute = commuteservice.selectempinfo(emp_no);			
+		}else{
+			System.out.println("null아님");
+		}
 		
 		model.addAttribute("commute",commute);
 		model.addAttribute("ip",ip);
