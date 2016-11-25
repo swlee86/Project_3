@@ -15,9 +15,28 @@ public class EmployeeManage {
 	private int salary;
 	private int emp_break;
 	
+	private String cg_no;
+	private String position_no;
+	private String low_dept_no;
 	
-	
-	
+	public String getLow_dept_no() {
+		return low_dept_no;
+	}
+	public void setLow_dept_no(String low_dept_no) {
+		this.low_dept_no = low_dept_no;
+	}
+	public String getPosition_no() {
+		return position_no;
+	}
+	public void setPosition_no(String position_no) {
+		this.position_no = position_no;
+	}
+	public String getCg_no() {
+		return cg_no;
+	}
+	public void setCg_no(String cg_no) {
+		this.cg_no = cg_no;
+	}
 	public int getEmp_break() {
 		return emp_break;
 	}
