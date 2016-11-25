@@ -436,7 +436,7 @@ ul {
     	  });
     	  
     	  //참여 탭 클릭 시
-    	  $('#partnerTab').click(function(){
+    	  $('#taskRequestpartnerTab').click(function(){
     		  $.ajax(
     					{
     						url : "taskRequest_Participation_List.do",
