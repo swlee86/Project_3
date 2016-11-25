@@ -518,16 +518,16 @@ ul {
          
          //참조자 아이콘 클릭시
          $('#deptA').click(function() {
-        		  var  empSelectNumber = 1;
-                  var litag = "<ul>";
-                  $('#organization').empty();
-                  $('#empList').empty();
+        	var empSelectNumber = 2;
+ 			var litag = "<ui style='list-style:none;''>";   		
+     		$('#organization').empty();
+     		$('#empList').empty();
                   
               	$.ajax({
         			url : "taskWriteModal.do",
         			success : function(data) {
         				 $('#myModal6').modal();
-        				choose = 1;
+        				choose = 2;
         				var departMent = "";
 
         				$.each(data, function(index) {
@@ -535,14 +535,18 @@ ul {
         				});
 
         				$.each(departMent, function(index) {
-        					litag += "<li onclick='seeDepart(this,"
-        						litag +=empSelectNumber +","
-            				    litag +=departMent[index].branch_no
+           					litag += "<li onclick='seeDepart(this,"
+           						litag +=empSelectNumber +","
+           						litag +=departMent[index].branch_no
             				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-            				});
-        				litag +="</ul>";
+            					litag +="</ul>";
+            					
+            					litag+="<div id='dept_div"
+            					litag+=departMent[index].branch_no
+            					litag+="'></div>";
+               				});
 
-        				$('#organization').html(litag);
+           				$('#organization').html(litag);
 
         			}
         		})
@@ -551,9 +555,9 @@ ul {
          
          //수신자 아이콘 클릭시
          $('#recIcon').click(function(){
-        	var empSelectNumber = 2;
-            var litag = "<ul>";
-            $('#organization').empty();
+        	var empSelectNumber = 1;
+ 			var litag = "<ui style='list-style:none;''>";   		
+        	$('#organization').empty();
             $('#empList').empty();
             $.ajax({
                url : "taskWriteModal.do",
@@ -570,11 +574,16 @@ ul {
                   console.log("departMent : " + departMent);
 
                   $.each(departMent, function(index) {
-  					litag += "<li onclick='seeDepart(this,"
-						litag +=empSelectNumber +","
-    				    litag +=departMent[index].branch_no
-    				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-      				});
+     					litag += "<li onclick='seeDepart(this,"
+       						litag +=empSelectNumber +","
+       						litag +=departMent[index].branch_no
+        				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+        					litag +="</ul>";
+        					
+        					litag+="<div id='dept_div"
+        					litag+=departMent[index].branch_no
+        					litag+="'></div>";
+                  });
                   
 
                   $('#organization').html(litag);
@@ -588,8 +597,11 @@ ul {
       //부서 출력 하는 아작스
       function seeDepart(obj, empSelectNumber, choose) {
       	//전역 부서 선택시
-          departcho = choose;
-
+        departcho = choose;
+  		var div_id = "dept_div"+choose;
+		$("#"+div_id).empty();
+		var litag = "<ui>";
+	
       	var name = $(obj).text();
 
       	$.ajax({
@@ -606,19 +618,28 @@ ul {
       			});
 
       			$.each(dept, function(index) {
-      				$(obj).append(
-      						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,"+empSelectNumber+","+dept[index].dept_no+")'>"
-      						+dept[index].dept_name + "</span>");
+      				
+      				litag += "<li onclick='seelow_Depart(this, "
+    					litag +=empSelectNumber+","
+    				    litag +=dept[index].dept_no
+    				    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
+    					litag +="</ul>";
+    					
+    					litag+="<div id='low_dept_div"
+    					litag+=dept[index].dept_no
+    					litag+="'></div>";
       			});
+      			$("#"+div_id).html(litag);
       		}
       	});
       }
 
       //하위 부서 클릭시
-      function seelow_Depart(obj,empSelectNumber,departcho) {
-      	alert("부서 : "+departcho);
-      	deptNumber= departcho;
-
+      function seelow_Depart(obj,empSelectNumber,departcho) {	
+    	deptNumber= departcho;
+    	var litag = "<ui>";
+    	var div_id = "low_dept_div"+departcho;
+    	$("#"+div_id).empty();
       	$.ajax({
       		url : "tasklow_deptModal.do",
       		data : {
@@ -632,10 +653,14 @@ ul {
       				low_dept = data[index];
       			});
       			$.each(low_dept, function(index) {
-      				$(obj).append(
-      						"<br>&nbsp;&nbsp&nbsp;&nbsp;<span onclick='seeEmpMember(this,"+empSelectNumber+","+low_dept[index].low_dept_no+")'>"
-      						+ low_dept[index].low_dept_name + "</span>");
+    				litag += "<li onclick='seeEmpMember(this, "
+        				litag += empSelectNumber+","
+        				litag +=low_dept[index].low_dept_no
+        				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+        				litag +="</ul>";
+		
       			});
+    			$("#"+div_id).html(litag);
       		}
 
       	});
