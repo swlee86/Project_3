@@ -171,9 +171,9 @@
 						</div>
 					</div>
 					
-<%-- 
+ 
 
-
+	
 					<!-- 송신 -->
 					<div id="tab-2" class="tab-pane">
 						<div class="panel-body">
@@ -376,11 +376,6 @@
 							</div>
 						</div>
 					</div>
-					
-					
-					
-					 --%>
-					 
 					 
 				</div>
 			</div>
