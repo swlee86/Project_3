@@ -67,7 +67,6 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
-	<script src="electronic_sanction/"></script>
 	
 	<!--전자결재 script  -->
 	<script src="js/electronic_sanction/electronic_sanction.js"></script>
