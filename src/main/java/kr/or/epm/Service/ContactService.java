@@ -21,13 +21,13 @@ public class ContactService {
 	private SqlSession sqlSession;
 	
 	//전체 주소록 리스트불러오는 함수
-	public List<Contact> selectList(int cpage, int pagesize, String field, String query, String emp_no,String start, String end) {
+	public List<Contact> selectList(int cpage, int pagesize, String field, String query, String emp_no,String start, String end, String group) {
 		int pgstart = cpage * pagesize - (pagesize - 1);
 		int pgend = cpage * pagesize;
 		System.out.println("pgstart :"+pgstart + " /pgend:" + pgend);
-
+		System.out.println("group : "+group);
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
-		List<Contact> list = contactDAO.selectList(cpage, pagesize, field, query, emp_no,start,end);
+		List<Contact> list = contactDAO.selectList(cpage, pagesize, field, query, emp_no,start,end,group);
 		System.out.println("***********list 사이즈 : "+ list.size());
 		return list;
 	}
@@ -35,11 +35,12 @@ public class ContactService {
 
 	
 	//전체글 갯수 구하는 함수
-	public int selectCount(String emp_no, String field, String query, String start, String end) {
+	public int selectCount(String emp_no, String field, String query, String start, String end, String group) {
 		System.out.println("selectCount() 서비스");
+		System.out.println("group : "+group);
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
 		int totalcount = 0;
-		totalcount = contactDAO.selectCount(emp_no, field, query,start ,end);
+		totalcount = contactDAO.selectCount(emp_no, field, query,start ,end, group);
 		System.out.println("탭별 totalcount : "+ totalcount +"찾는 키워드("+start+"~"+end+")");
 		return totalcount;
 	}
@@ -228,6 +229,34 @@ public class ContactService {
 
 		}catch(Exception e){
 			System.out.println("selectGroupCheck_name(group_name,emp_no,pre_group_no) 트랜잭션 오류" + e.getMessage());
+			throw e; //롤백
+		}
+		
+		return "redirect:contacts_group.do";
+	}
+	
+	//주소록 그룹  번호 1(선택없음)로변경
+	@Transactional
+	public String updateGroups_delete_change(String emp_no,String group_no) throws Exception{
+		System.out.println("updateGroups_delete_change 서비스 탐");
+		System.out.println("emp_no:"+emp_no+"/ group_no:"+group_no);
+		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
+		
+		int result = -1;
+		int result2 = 0;
+		
+		try{
+			result = contactDAO.updateGroups_delete_change(emp_no, group_no);
+			System.out.println("1로 변경 result : "+result);
+			
+			
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("emp_no", emp_no);
+			map.put("pre_group_no", group_no);
+			result2 = contactDAO.updateGroups_delete(map);
+			System.out.println("그룹 삭제 result2 : "+result2);
+		}catch(Exception e){
+			System.out.println("updateGroups_delete_change 트랜잭션 오류" + e.getMessage());
 			throw e; //롤백
 		}
 		

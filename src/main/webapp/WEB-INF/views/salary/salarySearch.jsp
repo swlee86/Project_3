@@ -27,7 +27,7 @@
 					<div id="selectedYear">
 						<select class="form-control" id="Yearly">
 							<c:forEach begin="1960" end="2016" var="i" >
-									<option value=i>${i}</option>
+									<option value=${i}>${i}</option>
 							</c:forEach>
 						</select>
 						<button type="button" class="btn btn-sm btn-default" id="YearlySal">
@@ -61,16 +61,18 @@
 					<div class="table-responsive">
 						<table cellpadding="1" cellspacing="1"
 							class="table table-bordered table-condensed">
+						  <c:forEach var="list" items="${list}">
 							<tr style="background-color:#f9fafc">
 								<th>지급기준일</th>
-								<td>2016-11-25</td>
+								<td>${list.give_date}</td>
 								<th>지급총액</th>
-								<td>20.000.000</td>
+								<td>${list.total_pay}</td>
 								<th>공제총액</th>
-								<td>1.000.000</td>
+								<td>공제총액</td>
 								<th>실지급액</th>
-								<td>19.000.000</td>
+								<td>실지급액</td>
 							</tr>
+						  </c:forEach>
    						</table>
 					</div>
 				</div>

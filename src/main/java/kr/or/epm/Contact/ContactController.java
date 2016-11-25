@@ -44,7 +44,7 @@ public class ContactController {
 	
 	// SideBar(aside.jsp) 주소록 클릭시 구동
 	@RequestMapping(value = "/contacts.do")
-	public String contacts(Principal principal, String pg , String f , String q , Model model, String tapno){
+	public String contacts(Principal principal, String pg , String f , String q , Model model, String tapno, String group){
 		System.out.println("contacts() 컨트롤러 탐");
 		
 		String id= principal.getName();
@@ -57,6 +57,7 @@ public class ContactController {
 		
 		String start = "0";
 		String end = "힣";
+		
 		
 		if(tapno !=null && !tapno.equals("")){
 			if(tapno.equals("2")){
@@ -110,6 +111,16 @@ public class ContactController {
 			}	
 		}
 		
+		String group_result = null;
+		
+		if(group == null || group.equals("")){
+			group_result = group;
+			group = " like '%%' ";
+		}else{
+			group_result = group;
+			group = " = '"+group+"' ";
+		}
+		
 		System.out.println("start : "+start +"/  end:"+end);
 
 		
@@ -133,7 +144,7 @@ public class ContactController {
 			query = q;
 		}
 		
-		totalcount = contactService.selectCount(emp_no, field, query, start, end);  //전체 갯수 구하는 함수
+		totalcount = contactService.selectCount(emp_no, field, query, start, end, group);  //전체 갯수 구하는 함수
 
 		System.out.println("cpage:"+cpage+"/ field:"+field+"/ query:"+query+ "/ totalcount:"+totalcount);
 		
@@ -145,7 +156,15 @@ public class ContactController {
 		
 	    System.out.println("pagecount : " + pagecount);
 		
-		list = contactService.selectList(cpage, pagesize, field, query, emp_no,start,end);
+		list = contactService.selectList(cpage, pagesize, field, query, emp_no,start,end, group);
+		
+		//주소록 그룹
+		List<C_group> grouplist = contactService.selectEmpGroup_list(emp_no);
+
+		
+		model.addAttribute("grouplist", grouplist);	
+		model.addAttribute("grouplistsize", grouplist.size());
+		model.addAttribute("group",group_result);
 		
 		model.addAttribute("f",field);
 		model.addAttribute("q",query);
@@ -330,7 +349,7 @@ public class ContactController {
 		@RequestMapping( value="/contacts_group_delete.do", method = RequestMethod.GET)
 		public String contacts_group_delete(Principal principal, String group_no, Model model){
 			System.out.println("contacts_group_delete() 컨트롤 탐");
-			System.out.println("group_no : "+group_no );
+			System.out.println("삭제할 group_no : "+group_no );
 			
 			String id= principal.getName();
 			System.out.println("id : "+id);
@@ -342,9 +361,33 @@ public class ContactController {
 			String url ="redirect:contacts_group.do";
 			
 			try{
-				//url = contactService.selectGroupCheck_name(group_name, emp_no, pre_group_no); 
+				url = contactService.updateGroups_delete_change(emp_no, group_no);
 			}catch (Exception e) {
 				System.out.println("contacts_group_delete() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
+			}
+			
+			return url;
+		}
+		
+		//주소록 > 주소록 정보 삭제 
+		@RequestMapping( value="/contacts_delete.do")
+		public String contacts_delete(Principal principal, String contact_no, Model model){
+			System.out.println("contacts_delete() 컨트롤 탐");
+			System.out.println("삭제할 contact_no : "+contact_no );
+			
+			String id= principal.getName();
+			System.out.println("id : "+id);
+			Emp emp = contactService.selectInfoSearch(id);  //사번,이름 가져가기
+			
+			String emp_no = emp.getEmp_no();//사번
+			System.out.println("emp_no:"+emp_no);	
+			
+			String url ="redirect:contacts_group.do";
+			
+			try{
+				//url = contactService.updateGroups_delete_change(emp_no, group_no);
+			}catch (Exception e) {
+				System.out.println("contacts_delete() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
 			}
 			
 			return url;

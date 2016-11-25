@@ -16,10 +16,10 @@ import kr.or.epm.VO.Emp_contact;
 public interface ContactDAO {
 	
 	//전체 그룹 조회
-	public List<Contact> selectList(int cpage, int pagesize, String field, String query, String emp_no, String start, String end);
+	public List<Contact> selectList(int cpage, int pagesize, String field, String query, String emp_no, String start, String end, String group);
 	
 	//갯수 구하기
-	public int selectCount(String emp_no, String field, String query, String start, String end);
+	public int selectCount(String emp_no, String field, String query, String start, String end, String group);
 
 	//등록인 정보 구하기
 	public Emp selectInfoSearch(String id);
@@ -126,7 +126,7 @@ public interface ContactDAO {
 	public int updateGroups_delete(HashMap<String, String> map);
 
 
-	//
+	//그룹번호를 1(선택없음)로 바꿈
 	public int updateGroups_delete_change(String emp_no,String group_no);
 
 }

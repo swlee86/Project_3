@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCount" resultType="int"> 
 		select nvl(count(*),0) 
 		from emp_contact e join contact c on e.contact_no=c.contact_no 
-		where e.emp_no=#{param1} and (${param2} like '%${param3}%') and (name &gt;= #{param4} and name &lt;= #{param5})
+		where e.emp_no=#{param1} and (${param2} like '%${param3}%') and (name &gt;= #{param4} and name &lt;= #{param5}) and (group_no ${param6})
 	</select>
 	
 		
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 from 
 					 	 (select c.contact_no, c.group_no, c.name, c.attach, c.birth, c.mail, c.pic, c.tel1, c.tel2, c.memo
 					 	  from emp_contact e join contact c on e.contact_no=c.contact_no 
-					 	  where e.emp_no=#{param5} and (${param3} like '%${param4}%')  and(name &gt;= #{param6} and name &lt;= #{param7})
+					 	  where e.emp_no=#{param5} and (${param3} like '%${param4}%')  and(name &gt;= #{param6} and name &lt;= #{param7}) and (group_no ${param8})
 					 	  order by to_number(contact_no) desc
 						  ) n
 					) where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}
@@ -122,7 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</update>
 	
-		<!-- 가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) -->
+	<!-- 가져온 그룹번호(selectGroup_no) group에서 삭제하기 (그룹삭제) -->
 	<update id="updateGroups_delete" parameterType="hashmap">
 		update emp_contact
 		set groups = (select replace((select distinct groups from emp_contact where emp_no=#{emp_no}),',${pre_group_no}','') as result from dual) 
@@ -131,16 +131,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 		
-	<!-- 삭제시 : 주소록에서 삭제 그룹번호를 가진 그룹번호를 1(선택없음)으로 바꿈 -->
+	<!--주소록에서 삭제 그룹번호를 가진 그룹번호를 1(선택없음)으로 바꿈 -->
 	<update id="updateGroups_delete_change">
-		update (
-                select e.emp_no,c.name,c.group_no
-                from contact c join emp_contact e 
-                on c.contact_no = e.contact_no 
-                where e.emp_no=#{param1}
+	update (
+               select e.emp_no,c.name,c.group_no
+               from contact c join emp_contact e 
+               on c.contact_no = e.contact_no 
+               where e.emp_no = #{param1}
               ) 
-      set group_no = #{param2} 
-      where group_no='1'; 
+      set group_no = '1' 
+      where group_no = #{param2}
 	</update>
 	
 	
