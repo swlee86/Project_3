@@ -73,6 +73,8 @@ function calDateRange(val1, val2)
         return result1;
     }
 
+
+
 $(function() {
 	
 	
@@ -97,16 +99,14 @@ $(function() {
 			alert("문서 종류를 선택해 주세요 !");
 			return false;
 		}
-		
-		
-		
 	});
 	
+
 	//sanction_Modal  - > 모달 아이콘.
 	//결재자 아이콘 클릭시 - > 트리 구조.	
 	$('#draft_Ok_Icon').click(function(){
 		var empSelectNumber = 1;
-			var litag = "<ui style='list-style:none;''>";   		
+		var litag = "<ui style='list-style:none;''>";   		
     	$('#organization').empty();
         $('#empList').empty();
         $.ajax({
@@ -317,7 +317,7 @@ $(function() {
 
     function seeDepart(obj, empSelectNumber, choose) {
     	//전역 부서 선택시
-      departcho = choose;
+        departcho = choose;
 		var div_id = "dept_div"+choose;
 		$("#"+div_id).empty();
 		var litag = "<ui>";
@@ -354,6 +354,7 @@ $(function() {
     	});
     }
 
+    var dept_Name = "";
     //하위 부서 클릭시
     function seelow_Depart(obj,empSelectNumber,departcho) {	
   	deptNumber= departcho;
@@ -378,7 +379,7 @@ $(function() {
       				litag +=low_dept[index].low_dept_no
       				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
       				litag +="</ul>";
-		
+      				dept_Name = low_dept[index].low_dept_name;	
     			});
   			$("#"+div_id).html(litag);
     		}
@@ -401,9 +402,13 @@ $(function() {
        alert("taskEmpModal : "+low_dept);
        alert("selectNo : " + empSelectNumber);
        
-      
-       
-       var makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+       var makeTable ="";
+       if(empSelectNumber != 3){
+    	   makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+       }else{
+    	    makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
+       }
+     
        $.ajax(
              {
                 url: "taskEmpModal.do",
@@ -427,6 +432,9 @@ $(function() {
                       }
                       else if(empSelectNumber == 2){
                          makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+                        //협조문 쓸때 사용하는 것.
+                      }else if(empSelectNumber == 3){
+                    	  makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
                       }
                    });
                    makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
@@ -488,7 +496,7 @@ $(function() {
       	 
       	  
       //참조자 부분	  
-       }else{
+       }else if(checkNumber == 2){
        
           if(empInfoArray.length > 1){
              console.log("if 내부 : " +empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
@@ -517,18 +525,53 @@ $(function() {
        	
 			empInfoArray = new Array();
           $("#myModal6").modal("hide");
-       }   
+       }  
           
     }
     
     //수신자 선택시
     function recF(obj){
-       //수신자 사번
-       var rec_emp_no = $(obj).parent().parent().children().eq(0).html();
        //수신자 이름
        var rec_name = $(obj).parent().parent().children().eq(1).html();
-       $('#rec_emp_no').val(rec_emp_no);
-       $('#rec_name').val(rec_name);
-       $('#myModal6').modal("hide");
+       $('#CooperationDepartInput').val(dept_Name);
+       $('#CooperationNameInput').val(rec_name);
+       $('#CooperationModal').modal("hide");
+    }
+    
+  //협조문 - 부서 선택 버튼 클릭시///////////////////////////////////////////////////////////////////////////
+    function CooperationBtnFunction(){
+    	
+    	var empSelectNumber = 3;
+		var litag = "<ui style='list-style:none;'>";   		
+ 		$('#organization').empty();
+ 		$('#empList').empty();
+              
+          	$.ajax({
+    			url : "taskWriteModal.do",
+    			success : function(data) {
+    				 $('#CooperationModal').modal();
+    				choose = 2;
+    				var departMent = "";
+
+    				$.each(data, function(index) {
+    					departMent = data[index];
+    				});
+
+    				$.each(departMent, function(index) {
+       					litag += "<li onclick='seeDepart(this,"
+       						litag +=empSelectNumber +","
+       						litag +=departMent[index].branch_no
+        				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+        					litag +="</ul>";
+        					
+        					litag+="<div id='dept_div"
+        					litag+=departMent[index].branch_no
+        					litag+="'></div>";
+           				});
+
+       				$('#organization').html(litag);
+
+    			}
+    		});
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
