@@ -315,4 +315,17 @@ public class CommuteService {
 		return list;
 		
 	}
+	
+	
+	
+	//회원정보
+	public Commute selectempinfo(String emp_no){
+		System.out.println("selectempinfo들어옴");
+		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
+		
+		Commute commute = null;
+		commute = dao.selectempinfo(emp_no);
+		return commute;
+		
+	}
 }
