@@ -29,7 +29,7 @@ import net.sf.json.JSONArray;
  * 작성일 : 2016-11-23
  * 사용목적 : 업무 Ajax 컨트롤러
  * 
- */
+*/
 
 @Controller
 public class TaskAjaxController {
@@ -44,16 +44,14 @@ public class TaskAjaxController {
 	@RequestMapping(value = "/task_remove.do", method = RequestMethod.POST)
 	public View task_remove(@RequestParam(value="arr[]") List<String> arr) {
 
-		System.out.println("업무를 삭제합니다");
+		System.out.println("CONTROLLER] 업무를 삭제합니다");
 		
 		for(int i=0; i<arr.size(); i++) {
-			System.out.println("넘어온 값 : " + arr.get(i));
+			System.out.println("넘어온 task_no : " + arr.get(i));
 			String task_no = arr.get(i);
 			
 			service.deleteTask(task_no);
 		}
-		
 		return jsonview;
 	}
-	
 }

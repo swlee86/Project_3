@@ -38,7 +38,7 @@ public class PayController {
 			return "salary.salarySetting";
 		}
 		
-		//급여 관리> 급여 조회(개인)
+		//급여 관리> 급여 조회(개인) 
 		@RequestMapping("/salarySearch.do")
 		public String salarySearch(Principal principal, Model model){
 			String id = principal.getName();

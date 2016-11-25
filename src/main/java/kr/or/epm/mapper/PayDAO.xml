@@ -26,13 +26,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--월별 급여 조회  -->
 	<select id="selectPay_mine_Monthly" resultType="kr.or.epm.VO.Pay">
-		select pay_no, basic_pay, bonus, add_pay, total_pay, give_date
+		select pay_no, emp_no, basic_pay, bonus, add_pay, total_pay, give_date
+		from pay
+		where emp_no = #{param1} and give_date like '%${param2}%'
+	</select>
+	<!--연도별 급여 조회  -->
+	<select id="selectPay_mine_Yearly" resultType="kr.or.epm.VO.Pay">
+		select pay_no, emp_no, basic_pay, bonus, add_pay, total_pay, give_date
 		from pay
 		where emp_no = #{param1} and give_date like '%${param2}%'
 	</select>
 	<!--급여 지급일 조회  -->
 	<select id="selectGive_date" resultType="String">
-		select give_date from pay where emp_no=#{emp_no}
+		select give_date from pay where emp_no=#{param1} and give_date like '%${param2}%'
 	</select>
 	
 	<!-- 예상 퇴직금 조회하기 -->

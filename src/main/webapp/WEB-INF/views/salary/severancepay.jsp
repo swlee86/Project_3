@@ -64,15 +64,15 @@
                 <table cellpadding="1" cellspacing="1" class="table table-hover table-bordered table-condensed" >
                        <tr style="background-color:#f9fafc">
                          <th style="width:15%; style="text-align:center;">정산일자</th>
-                         <td>2016-11-16</td>
+                         <td><span id="jung"></span></td>
                          </tr>
                          <tr>
                          <th style="width:15%; style="text-align:center;">총근무월수</th>
-                         <td>11</td>
+                         <td><span id="total"></span></td>
                          </tr>
                          <tr>
                          <th style="width:15%; style="text-align:center;">퇴직금</th>
-                         <td>1.000.000</td>
+                         <td><span id="severance_pay"></span></td>
                          </tr>
                          
 				</table>

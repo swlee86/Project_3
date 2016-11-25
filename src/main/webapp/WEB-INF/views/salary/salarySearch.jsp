@@ -58,7 +58,7 @@
 						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여정보
 					</h4>
 					 <hr style="border:1px solid gray; margin-bottom:0px">
-					<div class="table-responsive">
+					<div class="table-responsive" id="payResultDiv">
 						<table cellpadding="1" cellspacing="1"
 							class="table table-bordered table-condensed">
 						  <c:forEach var="list" items="${list}">

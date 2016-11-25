@@ -66,4 +66,7 @@ public interface CommuteDAO {
 	// 이번달 내역 조회
 	public List<Commute> selectCommute_month(HashMap map);
 	
+	//회원정보가져오기
+	public Commute selectempinfo(String emp_no);
+	
 }
