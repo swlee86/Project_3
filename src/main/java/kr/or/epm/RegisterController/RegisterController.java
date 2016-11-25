@@ -27,7 +27,6 @@ import kr.or.epm.VO.Emp_detail;
 @Controller
 public class RegisterController {
 
-
 	@Autowired
 	private LoginService service;
 	
@@ -41,7 +40,7 @@ public class RegisterController {
 	@RequestMapping(value="/addMember.do", method=RequestMethod.GET)
 	public String insertMember(HttpSession session, Model model){
 		String google = (String)session.getAttribute("googleApiKey");
-		String googlemail = (String)session.getAttribute("googlemail");
+		String googlemail = (String)session.getAttribute("");
 		String data="";
 		String answer="";
 		System.out.println("세션 넘어감?  : " + google);

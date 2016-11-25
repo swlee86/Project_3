@@ -27,6 +27,11 @@
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 
+
+<!--jQuery UI CSS-->
+<link rel="stylesheet"
+   href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+   type="text/css" />
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -62,7 +67,14 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
-
+	<script src="electronic_sanction/"></script>
+	
+	<!--전자결재 script  -->
+	<script src="js/electronic_sanction/electronic_sanction.js"></script>
+	
+	<!--우편번호 API-->
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
 	<!-- App scripts -->
 	<script src="scripts/homer.js"></script>
 <!--월별 캘린더.-->  
