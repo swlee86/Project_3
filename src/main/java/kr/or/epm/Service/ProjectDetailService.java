@@ -31,7 +31,14 @@ public class ProjectDetailService {
 		list= dao.selectPjd(pj_no);
 		for(int i = 0; i < list.size(); i++){
 		System.out.println(list.get(i).toString());
+			String content = list.get(i).getPjd_content();
+			if(content.length() > 40){
+				content = content.substring(0, 40) + " ...... ";
+				list.get(i).setPjd_content(content);
+			}
 		}
+		
+		
 		return list;
 	}
 	
@@ -64,6 +71,15 @@ public class ProjectDetailService {
 	
 		return people;
 	}
+	
+	//상세내역가져오기(단일)
+	public Pjd selectPjd_detail(String pjd_no){
+		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
 		
+		Pjd result = null;
+		result = dao.selectPjd_Detail(pjd_no);
+		
+		return result;
+	}
 }
 	
