@@ -162,6 +162,7 @@ public class MailController {
 		return "mail.mailbox_compose";
 		}
 	}
+	
 
 	//메일 > 보낸메일함 페이지이동 
 	@RequestMapping("/mailbox_send.do")
