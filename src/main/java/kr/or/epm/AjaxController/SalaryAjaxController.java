@@ -1,7 +1,10 @@
 package kr.or.epm.AjaxController;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +95,8 @@ public class SalaryAjaxController {
 		int year =0;
 		int month=0;
 		List<Pay> list = new ArrayList<Pay>();
-		
+		long diffDays=0;
+		 
 		String id = principal.getName();
 		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
 		
@@ -119,12 +123,27 @@ public class SalaryAjaxController {
 			   		
 			   		String give_date=selectdate[0]+"-"+zeroDate;
 			   		//System.out.println("give_date: "+give_date);
+			   		//최근 3개월 월별 급여 조회
 			   		Pay pay = payservice.selectPay_mine_Monthly(emp.getEmp_no(), give_date);
 			   		list.add(pay);
 			   		
 			   }
 		    }
-		    
+		   //재직일수
+		   String regdate = payservice.selectRegdate(emp.getEmp_no());
+		   System.out.println("regdate: "+regdate +"선택한 날짜: "+date);
+		  
+		   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		   
+		    Date beginDate = formatter.parse(regdate);
+		    Date endDate = formatter.parse(date);
+		 
+		    long diff = endDate.getTime() - beginDate.getTime();
+		    diffDays = diff / (24 * 60 * 60 * 1000);
+		 
+		    System.out.println("날짜 차이: "+diffDays);
+	
+		     
 		
 		
 		}catch (Exception e) {
@@ -141,10 +160,14 @@ public class SalaryAjaxController {
 			 //3개월 뺀 것
 			 int pyung = Integer.parseInt(minusDate);
 			 System.out.println("finally$#@ : "+pyung);
+			 //1일 평균 급여
 			 int pyungMoney = (total_pay / pyung);
 			 System.out.println("하루 평균 급여 "+pyungMoney+" 만원");
-			//model.addAttribute("list", list);
-			//model.addAttribute("date", date);
+			 
+			 
+			 model.addAttribute("dayMoney",pyungMoney);
+			 model.addAttribute("day", diffDays);
+			 model.addAttribute("date", date);
 			//System.out.println("list size: "+list.size());
 		}
 		
