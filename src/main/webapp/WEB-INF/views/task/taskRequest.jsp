@@ -28,7 +28,7 @@
 		<div class="col-md-12">
 			<div class="hpanel">
 				<div class="panel-heading">
-					전체 : <font color="coral">10</font> 개
+					전체 : <font color="coral">${ count }</font> 개
 				</div>
 
 				<ul class="nav nav-tabs">
@@ -42,7 +42,7 @@
 					<div id="tab-1" class="tab-pane active">
 						<div class="panel-body">
 							<div class="row" style="background-color: #f3f3f3;">
-								<form action="taskLog_Request.do" class="form-inline">
+								<form action="taskRequest.do" class="form-inline">
 									<table style="margin-top: 10px; margin-bottom: 10px;"
 										width="100%">
 
@@ -74,7 +74,7 @@
 
 												<button class="btn btn-sm"
 													style="background-color: #f07070; color: white"
-													onclick="window.location.href='taskLog.do'">
+													onclick="window.location.href='taskRequest.do'">
 													<span class="fa fa-search"></span>&nbsp; 전체보기&nbsp;
 												</button>
 											</td>
@@ -96,13 +96,13 @@
 											<th>중요</th>
 											<th width="30%">업무명</th>
 											<th>업무기한</th>
-											<th>요청자</th>
-											<th>요청일</th>
-											<th>승인단계</th>
+											<th>송신자</th>
+											<th>송신일</th>
+											<th>승인결과</th>
 										</tr>
 									</thead>
 									<tbody>
-								       <c:forEach var="list" items="${tasklist}">
+								       <c:forEach var="list" items="${list}">
 										<tr>
 											<td style="padding-top:12px;">
 												<input type="checkbox" style="margin-left:20px">
@@ -113,12 +113,24 @@
 													<input id="checkbox1" type="checkbox" checked ><label ></label>
 												</div>
 											</td>
-											<td style="padding-top:12px;"><a href="taskRequest_Receive_Detail.do?task_no=${list.task_no}">${list.task_name}</a></td>
+											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list.task_no}">${list.task_name}</a></td>
 											<td style="padding-top:12px;">${list.deadline}</td>
 											<td style="padding-top:12px;">${list.emp_name}</td>
 											<td style="padding-top:12px;">${list.send_date}</td>
                                         
-											<td style="padding-top:12px;"><button class="btn btn-xs btn-warning2" >미승인</button></td>
+											<td style="padding-top:12px;"><c:choose>
+														<c:when test="${ list.step_no == '4'}">
+															<button class="btn btn-xs btn-warning2">미승인</button>
+														</c:when>
+														<c:when test="${ list.step_no == '1'}">
+															<button class="btn btn-xs btn-info">승인</button>
+														</c:when>
+														<c:when test="${ list.step_no == '3' }">
+															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+													</c:choose>
+											
+											</td>
 										</tr>
 										</c:forEach>
 										<!-- <tr>
@@ -149,7 +161,7 @@
 									&nbsp;<i class="fa fa-chevron-left"></i>
 								</button>
 								<button class="btn btn-default active">1</button>
-								<button class="btn btn-default  ">2</button>
+								<button class="btn btn-default">2</button>
 								<button class="btn btn-default">3</button>
 								<button class="btn btn-default">4</button>
 								<button type="button" class="btn btn-default ">
@@ -158,20 +170,10 @@
 							</div>
 						</div>
 					</div>
+					
+ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 					<!-- 송신 -->
 					<div id="tab-2" class="tab-pane">
 						<div class="panel-body">
@@ -374,10 +376,7 @@
 							</div>
 						</div>
 					</div>
-					
-					
-					
-					
+					 
 				</div>
 			</div>
 		</div>

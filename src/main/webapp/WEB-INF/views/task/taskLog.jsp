@@ -117,7 +117,8 @@
 												<td>${ list.deadline }</td>
 												<td>${ list.emp_name }</td>
 												<td>${ list.send_date }</td>
-												<td><c:choose>
+												<td>
+												<c:choose>
 														<c:when test="${ list.step_no == '4'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
@@ -127,7 +128,8 @@
 														<c:when test="${ list.step_no == '3' }">
 															<button class="btn btn-xs btn-primary2">보류</button>
 														</c:when>
-													</c:choose></td>
+													</c:choose>
+													</td>
 											</tr>
 										</c:forEach>
 									</tbody>

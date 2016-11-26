@@ -28,79 +28,102 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form>
-						<div class="table-responsive">
-							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
+						<form id="documentForm" method="POST">
+							<div class="table-responsive">
+								<table cellpadding="1" cellspacing="1"
+									class="table table-bordered ">
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">문서번호</th>
-										<td style="width:40%">자동채번</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안일자</th>
-										<td style="width:40%">2016.11.09</td>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">문서번호</th>
+										<td style="width: 40%"></td>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">기안일자</th>
+										<td style="width: 40%"></td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안자</th>
-										<td>통삼삼</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기안부서</th>
-										<td>그룹웨어팀</td>
-									</tr>	
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참조자</th>
-										<td>
-											<span class="input-group">
-                     							<input type="text" class="form-control input-sm" />
-                        							<a type="button" class="btn btn-default input-group-addon"  data-toggle="modal" data-target="#myModal6" >
-                        								<span style="color:#fd7d86 "><i class="fa fa-user-plus"></i></span>
-                        							</a>
-											</span> 
-
-                   	  						
-                   	  						
-                   	  						
-										</td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">기결재첨부</th>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">기안자</th>
 										<td></td>
-									</tr>																	
-									<tr>
-										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 문서제목</th>
-										<td colspan="3"><input type="text"  class="form-control input-sm" placeholder="문서제목을 입력하세요."></td>
-									
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">기안부서</th>
+										<td></td>
 									</tr>
-								</table>	
+									<tr>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
+											color="#f05050">*</font> 결제자 사번</th>
+										<td id="sanction_DraftOk_no_td"><span class="input-group">
+												<input type="text" class="form-control input-sm"
+												id="draft_Ok_emp_no" name="draft_line_emp_no" /> <a
+												type="button" class="btn btn-default input-group-addon"
+												id="draft_Ok_Icon"> <span style="color: #fd7d86"><i
+														class="fa fa-user-plus"></i></span>
+											</a>
+										</span></td>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
+											color="#f05050">*</font> 결제자 이름</th>
+										<td style="width: 40%" id="sanction_DraftName_td"><input
+											type="text" class="form-control input-sm"
+											id="draft_Ok_emp_name" name="draft_line_emp_name"></td>
+									</tr>
+									<tr>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
+											color="#f05050">*</font> 참조자 사번</th>
+										<td id="sanction_writeNo_td"><span class="input-group">
+												<input type="text" class="form-control input-sm"
+												id="draft_line_emp_no" name="draft_line_emp_no" /> <a
+												type="button" class="btn btn-default input-group-addon"
+												id="draft_line_Icon"> <span style="color: #fd7d86"><i
+														class="fa fa-user-plus"></i></span>
+											</a>
+										</span></td>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
+											color="#f05050">*</font> 참조자 이름</th>
+										<td style="width: 40%" id="sanction_writename_td"><input
+											type="text" class="form-control input-sm"
+											id="draft_line_emp_name" name="draft_line_emp_name"></td>
+									</tr>
+									<tr>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
+											color="#f05050">*</font> 문서제목</th>
+										<td colspan="3"><input type="text"
+											class="form-control input-sm" placeholder="문서제목을 입력하세요."></td>
+									</tr>
+									<tr>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
+											color="#f05050">*</font> 문서제목</th>
+										<td colspan="3"><select class="form-control"
+											id="sanction_cg">
+												<option value="0">선택</option>
+												<option value="1">협조문</option>
+												<option value="2">대외발신 공문</option>
+												<option value="3">휴가</option>
+										</select></td>
+									</tr>
+
+								</table>
 								<br>
-									
-								<table cellpadding="1" cellspacing="1" class="table table-bordered "  >	
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 서류종류</th>
-										<td><input type="text" class="form-control input-sm" ></td>
-									</tr>
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 매수</th>
-										<td><input type="text"  class="form-control input-sm" size="20px"></td>
-									</tr>
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 제출사유</th>
-										<td>
-											<textarea cols="10" rows="10" class="form-control" ></textarea>
-										</td>
-									</tr>
-									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"> <i class="pe-7s-paperclip"></i> 파일업로드</th>
-										<td><input type="file"  class="form-control input-sm" ></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class=" pull-right" style="text-align:center;">
-								<input type="submit"  class="btn btn-sm btn-success" value="결재 요청" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
-								<input type="button"   onclick="location.href='sanction_list.do'" class="btn btn-sm btn-default"  value="취 소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 							</div>
-							
-							<!-- <div class="row" style="text-align:right;margin-right:10px;">
-								<input type="submit"  class="btn w-xs btn-primary" value="결재 요청" style="margin-right:10px;">
-								<input type="button"  onclick="location.href='sanction_list.do'" class="btn w-xs btn-default"  value="취 소">
-							</div> -->
-						</div>
-						</form>	
 					</div>
+					
+					<div class="panel-body" id="documentTable" style="border: none;">
+						
+					</div>
+					<br/><br/>
+						<div class=" pull-right" style="text-align: center;">
+							<input type="submit" class="btn btn-sm btn-success" value="결재 요청"
+								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+							<input type="button" onclick="location.href='sanction_list.do'"
+								class="btn btn-sm btn-default" value="취 소"
+								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+						</div>
+
+					</form>
 				</div>
 			</div>
 		</div>
@@ -109,60 +132,30 @@
 
 
 
-<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
+
+
+<!--참조자용 모달-->
+<div class="modal fade hmodal-success" id="myModal6" tabindex="-1"
+	role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-md">
 		<div class="modal-content">
 			<div class="color-line"></div>
-			<div class="modal-header">
-				<h4 class="modal-title"><font color="#6a6c6f">결재자 선택<i class="fa fa-table"></i></font></h4>
-				<small class="font-bold">Lorem Ipsum is simply dummy text.</small>
+			<div class="modal-header"
+				style="height: 50px; padding-top: 10px; padding-bottom: 0px">
+				<h4 class="modal-title">
+					<font color="#6a6c6f" size="4em"><b>결재자 선택</b></font>
+				</h4>
 			</div>
 			<div class="modal-body">
-				<table class="table table-bordered" style="text-align:center; float: left; width: 45%;">
-					<tr style="background-color:#f5f5f5;">
-						<th style="text-align:center">순번</th>
-						<th style="text-align:center">이름</th>
-						<th style="text-align:center">부서</th>
-						<th style="text-align:center">직위</th>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>박성준</td>
-						<td>개발부</td>
-						<td>PL</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>이상원</td>
-						<td>개발부</td>
-						<td>PM</td>
-					</tr>
-				</table>
-				<input type="button" value="=>" style="text-align: center;">
-				<table class="table table-bordered" style="text-align:center; float: left; width: 45%; margin-left: 10%;">
-					<tr style="background-color:#f5f5f5;">
-						<th style="text-align:center">순번</th>
-						<th style="text-align:center">이름</th>
-						<th style="text-align:center">부서</th>
-						<th style="text-align:center">직위</th>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
+				<div class="row">
+					<div class="col-md-4" style="border: 1px solid gray;"
+						id="organization"></div>
+					<div class="col-md-8" id="empList">사원리스트</div>
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">추가</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-default btn-sm"
+					data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>

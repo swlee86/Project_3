@@ -46,6 +46,14 @@ public class RegisterService {
 		return result;
 	}
 	
+	//회원 가입시 이메일을 emp table에 업데이트 시키는 함수
+	public int updateEmail(Emp emp){
+		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
+		int result = registerDao.updateEmail(emp);
+		return result;
+	}
+	
+		
 	
 	//회원가입시 사원번호 입력 후 체크를 누르면 사원 정보를 불러오는 함수
 	public String selectEmpId(String emp_no){
@@ -69,9 +77,10 @@ public class RegisterService {
 	}
 	
 	//Role 리스트를 불러오는 서비스 함수
-	public void insertEmpRoleList(String emp_no){
+	public int insertEmpRoleList(String emp_no){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
-		registerDao.insertEmpRoleList(emp_no);
+		int result = registerDao.insertEmpRoleList(emp_no);
+		return result;
 	}
 	
 	//근무 정보를 불러오는 쿼리문

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,6 @@ import kr.or.epm.VO.Emp_detail;
 @Controller
 public class RegisterController {
 
-
 	@Autowired
 	private LoginService service;
 	
@@ -45,6 +45,7 @@ public class RegisterController {
 		String data="";
 		String answer="";
 		System.out.println("세션 넘어감?  : " + google);
+		System.out.println("고객 메일 : " + googlemail);
 		System.out.println("회원 가입");
 		model.addAttribute("registerGoogleId", google);
 		model.addAttribute("registerGoogleMail", googlemail);
@@ -69,27 +70,48 @@ public class RegisterController {
 	
 	//register를 누르면 회원가입을 시도하는 함수
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
-	public String insertMemberOk(Emp_detail emp_detail, Model mv){
+	public String insertMemberOk(Emp_detail emp_detail, Model mv, String email){
 		System.out.println("회원 가입 처리 중...");
 		emp_detail.setPwd(this.bCryptPasswordEncoder.encode(emp_detail.getPwd()));;
-		int result = 0;
+		Emp emp = new Emp();
+		emp.setEmail(email);
+		emp.setEmp_no(emp_detail.getEmp_no());
+		System.out.println("Emp 데이터 : " + emp);
+		int resultempdetail = 0;
+		int resultemp = 0;
+		int resultrole = 0;
 		String answer = null;
 		String data = null;			
 		try{
-			result = registerservice.insertEmp_detail(emp_detail);
-			registerservice.insertEmpRoleList(emp_detail.getEmp_no());
+			resultempdetail = registerservice.insertEmp_detail(emp_detail);
+			System.out.println("데이터 인서트!!" + resultempdetail);			
 		}catch(Exception e){
 			e.getMessage();
 		}finally{
-			if(result>0){
-				System.out.println("반영 성공");
-				answer = "index.do";
-				data = "회원 가입에 성공하였습니다.";
-			}else{
-				System.out.println("반영 실패");
-				answer = "addMember.do";
-				data = "회원 가입에 실패 하였습니다.";
+			try{
+				resultemp = registerservice.updateEmail(emp);
+				System.out.println("이메일 업데이트!! : " + resultemp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				try{
+					resultrole = registerservice.insertEmpRoleList(emp_detail.getEmp_no());
+					System.out.println("룰 등록 : " + resultrole);
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally{
+					if(resultrole>0){
+						System.out.println("반영 성공");
+						answer = "index.do";
+						data = "회원 가입에 성공하였습니다.";
+					}else{
+						System.out.println("반영 실패");
+						answer = "login.do";
+						data = "회원 가입에 실패 하였습니다.";
+					}					
+				}
 			}
+			
 			mv.addAttribute("data", data);
 			mv.addAttribute("answer", answer);
 		}

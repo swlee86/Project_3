@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.Emp_cgDAO">
+
+<!--
+	작성일 : 2016-11-25
+	작성자 : 백승아
+	사용 목적 : 사원 구분에 대한 mapper
+-->
+
+	<select id="selectCg_no">
+		select cg_no
+		from emp_cg
+		where cg_name = #{cg_name}
+	</select>
+	
+</mapper>

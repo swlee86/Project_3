@@ -4,6 +4,12 @@ import java.util.List;
 
 import kr.or.epm.VO.Set_pay;
 
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 급여 설정에 대한 DAO interface
+*/
+
 public interface Set_payDAO {
 	
 	// 전체 기본 연봉 조회하기

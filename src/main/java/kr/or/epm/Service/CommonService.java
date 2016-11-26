@@ -28,4 +28,13 @@ public class CommonService {
 		return emp_no;
 	}
 	
+	// 로그인 id로 emp_name 출력
+	public String selectEmp_name(String id) {
+		CommonDAO dao = sqlsession.getMapper(CommonDAO.class);
+		String emp_name = null;
+		emp_name = dao.selectEmp_name(id);
+		
+		return emp_name;
+	}
+	
 }

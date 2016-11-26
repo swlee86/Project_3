@@ -116,6 +116,30 @@
 		var hiddenValue = upbtn2.value;
 		location.href="projectDetailCheckView.do?hidden="+hiddenValue;
 	}
+	
+	
+	$('.selectpeople').click(function(){  
+		var emp_no = ($(this).attr('id')).substr(9);
+		//console.log(emp_no);
+		//console.log("html: " +$('#m_name').html());
+		$.ajax(
+				{
+					type : "post",
+					url  : "pjd_people.do",
+					data : {
+						"emp_no" : emp_no,						
+					},
+					success : function(data){
+						console.log(data.data);
+						$('#m_name').html(data.data.emp_name);
+						$('#m_dept').html(data.data.branch_name + '\n' + data.data.dept_name+ '\n' +data.data.low_dept_name);
+						$('#m_cell').html(data.data.cell_phone);
+						$('#m_img').attr('src',data.data.pic);
+					}
+				}		
+		);
+	});
+	
 </script>
 </body>
 </html>

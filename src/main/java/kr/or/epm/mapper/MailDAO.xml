@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 메일에 대한 mapper
 -->
 
+	<!-- 보낸 메일을 보낸 메일란에 저장하기 -->
+	<insert id="insertSendMail" parameterType="kr.or.epm.VO.Mail">
+		insert into mail(mail_no, title, mail_content, rec_mail) values(mail_seq.nextval, #{title}, #{mail_content}, #{rec_mail})
+	</insert>
+
+
 	<!-- 메일 작성하기 -->
 	<insert id="insertMail">
 		insert into mail(mail_no, sign, title, 

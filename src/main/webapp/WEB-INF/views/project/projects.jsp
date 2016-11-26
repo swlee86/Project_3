@@ -75,24 +75,10 @@
 									</div>
 									<br />
 									<div class="project-people">
-									<c:choose>
-										<c:when test="">
-										</c:when>
-									
-									</c:choose>
-									<c:forEach var="j" items="${peopleList[i.rownum-1]}">
-										<a href="#myModal" data-target="#myModal" data-toggle="modal">
-											<img alt="logo" class="img-circle" src="${j.pic}">
-										</a> 
-									</c:forEach>
-										<!-- <a href="#myModal" data-target="#myModal" data-toggle="modal">
-										<img alt="logo" class="img-circle" src="images/a1.jpg"></a> 
-										<img alt="logo" class="img-circle" src="images/a2.jpg">
-										<img alt="logo" class="img-circle" src="images/a3.jpg"> 
-										<img alt="logo" class="img-circle" src="images/a4.jpg"> 
-										<img alt="logo" class="img-circle" src="images/a5.jpg"> 
-										<img alt="logo" class="img-circle" src="images/a6.jpg"> 
-										<img alt="logo" class="img-circle" src="images/a7.jpg"> -->
+										<c:forEach var="j" items="${peopleList[i.rownum-1]}">
+											<a href="" data-toggle="modal" data-target="#myModal" id="pjdmodal_${j.emp_no}" class="selectpeople">
+												<img alt="logo" class="img-circle" src="${j.pic}"></a>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
@@ -115,11 +101,11 @@
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center">
-		 	<h4 class="modal-title"><img alt="logo" class="img-circle m-b" src="images/a3.jpg" style="width: 82px;height: 82px;"></h4> <br>
+		 	<h4 class="modal-title"><img alt="logo" id="m_img" class="img-circle m-b" src="images/a3.jpg" style="width: 82px;height: 82px;"></h4> <br>
 				<font class="font-bold" size="2em">
-					<font style="color:gray;">박성준</font><br>
-					<font style="color:#9d9fa2">(사단)한국소프트웨어기술진흥협회 > <br>개발부 > 팀장</font> <br>
-					<font style="color:gray;">01020768626</font>
+					<font style="color:gray;" id="m_name">이름잉</font><br>
+					<font style="color:#9d9fa2" id="m_dept"></font> <br>
+					<font style="color:gray;" id="m_cell"></font>
 				</font>
 			</div>
 			<div class="modal-footer">
@@ -129,8 +115,7 @@
 		</div>
 	</div>
 </div>
-
-
+<!-- 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
@@ -177,3 +162,5 @@
 		</div>
 	</div>
 </div>
+
+ -->

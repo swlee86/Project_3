@@ -11,6 +11,7 @@ import kr.or.epm.DAO.CommuteDAO;
 import kr.or.epm.DAO.PjDAO;
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Pj;
+import kr.or.epm.VO.Pjd_people;
 
 
 @Service
@@ -43,5 +44,6 @@ public class ProjectService {
 		}
 		return list;
 	}
+	
 	
 }

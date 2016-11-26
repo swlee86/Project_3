@@ -31,35 +31,35 @@
 				 	<h4>사원정보</h4>
 				 	  <br/>
 				 	  <div class="table-responsive">
-                		<form class="inline" action="#" method="post">
+                		<form class="inline" action="" method="post">
                 		<table cellpadding="1" cellspacing="1" class="table table-bordered ">
 	                    		<tbody>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사번</th>
-	                    				<td ><input type="text" class="form-control input-sm" id="emp_no" value="${result.emp_no}" readonly="readonly"></td>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">구분번호</th>
+	                    				<td ><input type="text" class="form-control input-sm" id="emp_no" name="emp_no" value="${result.emp_no}" readonly="readonly"></td>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">근무 상태</th>
 	                    				<td colspan="3">
 	                    					<select class="form-control input-sm" name="cg_no">
-	                    					<c:forEach var="emphis" items="${emphis}">
-	                    						<option value="${emphis.cg_no }">${emphis.cg_name}</option>
+	                    					<c:forEach var="empcg" items="${empCg}">
+	                    						<option value="${empcg.cg_no}" <c:if test="${ result.cg_no == empcg.cg_no }"> selected </c:if> >${empcg.cg_name}</option>
 	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
 	                    			</tr>
 	                    			<tr>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위번호</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위</th>
 	                    				<td>
 	                    					<select class="form-control input-sm" id="position_no" name="position_no">
 	                    					<c:forEach var="plist" items="${plist}">
-	                    						<option value="${plist.position_no }">${plist.position_name}</option>
+	                    						<option value="${ plist.position_no }" <c:if test="${ result.position_no == plist.position_no }"> selected </c:if> > ${plist.position_name} </option>
 	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서번호</th>
 	                    				<td colspan="3">
-											<select class="form-control input-sm" id="position_no" id="low_dept_no" name="low_dept_no">
+											<select class="form-control input-sm" id="low_dept_no" name="low_dept_no">
 	                    						<c:forEach var='dept'  items='${list}'>
-	                    							<option value='${dept.low_dept_no}'>${dept.branch_name}&nbsp;${dept.dept_name}&nbsp;${dept.low_dept_name}</option>
+	                    							<option value='${dept.low_dept_no}' <c:if test="${ result.low_dept_no == dept.low_dept_no }"> selected </c:if> >${dept.branch_name}&nbsp;${dept.dept_name}&nbsp;${dept.low_dept_name}</option>
 	                    						</c:forEach>
 	                    					</select>
 
@@ -67,31 +67,31 @@
 	                    			</tr>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>이름</th>
-	                    				<td><input type="text" class="form-control input-sm" id="emp_name" value="${result.emp_name}"></td>
+	                    				<td><input type="text" class="form-control input-sm" id="emp_name" name="emp_name" value="${result.emp_name}"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>생년월일</th>
 	                    				<td colspan="3">
 	                    					<div class="form-inline">
-												<input type="text" class="form-control input-sm" id="makeuserUpdateDate" value="${result.birth}"> 
+												<input type="text" class="form-control input-sm" id="birth" name="birth" value="${result.birth}"> 
 											</div>
 	                    				</td>
 	                    			</tr>
 	                    			<tr>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사내 연락처</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>개인 연락처</th>
 	                    				<td>
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm" value="${result.cell_phone}">
+	                    						<input type="text" class="form-control input-sm" name="cell_phone" value="${result.cell_phone}">
 	                    					</div>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>연봉</th>
 	                    				<td style="width:20%">
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm" value="${result.salary}"> 만원
+	                    						<input type="text" class="form-control input-sm" name="salary" value="${result.salary}"> 만원
 	                    					</div>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">잔여 휴가일수</th>
 	                    				<td style="width:20%">
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm" value="${result.emp_break}"> 일
+	                    						<input type="text" class="form-control input-sm" name="emp_break" value="${result.emp_break}"> 일
 	                    					</div>
 	                    				</td>
 	                    			</tr>

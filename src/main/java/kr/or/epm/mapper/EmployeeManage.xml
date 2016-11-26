@@ -7,6 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   작성자 : 이상원
   작성일 : 2016-11-18
   목  적 : 관리자 > 사원 관리 DAO.xml
+  
+  
+ 작성자 : 백승아
+ 작성일 : 2016-11-25
+ 목  적 : 사원 정보 수정 추가 작성
 -->
 
 <mapper namespace="kr.or.epm.DAO.EmployeeManageDAO">

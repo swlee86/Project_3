@@ -4,6 +4,12 @@ import java.util.List;
 
 import kr.or.epm.VO.Set_homepage;
 
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 홈페이지 접근 시간 설정에 대한 DAO interface
+*/
+
 public interface Set_homepageDAO {
 	
 	// 전체 홈페이지 접근 시간 조회하기

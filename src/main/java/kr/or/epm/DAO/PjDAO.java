@@ -5,6 +5,12 @@ import java.util.List;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Task;
 
+/*
+ * 작성일 : 2016-11-18
+ * 작성자 : 백승아
+ * 사용 목적 : 프로젝트에 대한 DAO interface
+*/
+
 public interface PjDAO {
 	
 	// 프로젝트 등록하기
@@ -27,7 +33,6 @@ public interface PjDAO {
 	
 	// 프로젝트 조회하기( 승인 O )
 	public List<Pj> selectPj();
-	
 	
 	// 내가 작성한 프로젝트 조회하기 ( 승인 O )
 	public List<Pj> selectPj_write(String emp_no);
