@@ -100,23 +100,23 @@
 										<td>
 											<div class="form-inline">
 										     	<span class="sty"> 
-													<input type="radio" name="step_no" id="approv" value="1" class="radio radioa" /> 
+													<input type="radio" name="task_step_no" id="approv" value="1" class="radio radioa" /> 
 													<label class="sty" for="approv">진행</label>
 												</span> 
 												<span  class="sty"> 
-													<input type="radio" name="step_no" id="reject" value="2" class="radio radior" /> 
+													<input type="radio" name="task_step_no" id="reject" value="2" class="radio radior" /> 
 													<label class="sty" for="reject" >미진행</label>
 												</span> 
 												<span  class="sty"> 
-													<input type="radio" name="step_no" id="wait" value="3" class="radio radiow" /> 
+													<input type="radio" name="task_step_no" id="wait" value="3" class="radio radiow" /> 
 													<label class="sty" for="wait">보류</label>
 												</span>
 												<span  class="sty"> 
-													<input type="radio" name="step_no" id="finish" value="4" class="radio radiow" /> 
+													<input type="radio" name="task_step_no" id="finish" value="4" class="radio radiow" /> 
 													<label class="sty" for="finish">완료</label>
 												</span>
 												<span  class="sty"> 
-													<input type="radio" name="step_no" id="stop" value="5" class="radio radiow" /> 
+													<input type="radio" name="task_step_no" id="stop" value="5" class="radio radiow" /> 
 													<label class="sty" for="stop">중단</label>
 												</span>
 											
