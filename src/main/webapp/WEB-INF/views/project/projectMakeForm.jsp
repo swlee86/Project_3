@@ -61,7 +61,7 @@
 												<input type="hidden" name="rec_emp_no"> 
                      							<input type="text" class="form-control input-sm" name="rec_emp_name"/>
                         						<span class="input-group-btn">
-													<button class="btn input-sm btn-default" type="button"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
+													<button class="btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
 												</span>
                    	  						</span>
 										</td>
@@ -70,7 +70,9 @@
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 내용</th>
 										<td>
-											<textarea cols="10" rows="10" class="form-control"  placeholder="내용" style="width:100%" name="pj_content"></textarea>
+										
+											<textarea cols="10" rows="10"   placeholder="내용" style="width:100%" name="pj_content" class="summernote"></textarea>
+										
 										</td>
 									</tr>
 								</tbody>
@@ -90,3 +92,27 @@
 		</div>
 	</div>
 </div>    
+
+<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog modal-md">
+      <div class="modal-content">
+         <div class="color-line"></div>
+         <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
+            <h4 class="modal-title"><font color="#6a6c6f" size="4em"><b>사원 선택</b></font></h4>
+         </div>
+         <div class="modal-body">
+            <div class="row">
+               <div class="col-md-4" style="border: 1px solid gray;" id="organization">
+                  
+               </div>   
+               <div class="col-md-8" id="empList">
+                  사원리스트
+               </div>
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+         </div>
+      </div>
+   </div>
+</div>
