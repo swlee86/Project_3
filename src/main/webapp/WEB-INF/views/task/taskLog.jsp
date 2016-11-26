@@ -112,7 +112,7 @@
 														<label></label>
 													</div>
 												</td>
-												<td><a href="taskLog_Receive_Detail.do?task_no=${list.task_no}"
+												<td><a href="taskLog_rec_detail.do?task_no=${list.task_no}"
 													<c:if test="${ list.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>${ list.task_name }</a></td>
 												<td>${ list.deadline }</td>
 												<td>${ list.emp_name }</td>
@@ -242,7 +242,7 @@
 												<td><input type="checkbox" style="margin-left: 20px"
 													name="checkbox2" id="${ list2.task_no }"></td>
 												<td>${ list2.task_no }</td>
-												<td><a href="taskLog_Transmit_Detail.do">${ list2.task_name }</a></td>
+												<td><a href="taskLog_detail.do">${ list2.task_name }</a></td>
 												<td>${ list2.deadline }</td>
 												<td>${ list2.rec_name }</td>
 												<td>${ list2.send_date }</td>
