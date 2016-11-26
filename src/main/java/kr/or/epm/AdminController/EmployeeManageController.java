@@ -26,7 +26,7 @@ public class EmployeeManageController {
 	@Autowired
 	private RegisterService registerservice;
 
-	// 관리자 > 사원관리 페이지를 열면서 데이터를 함께 불러오는 함수(페이징 처리 포함되어 있음)
+	// 관리자 > 사원 관리 페이지
 	@RequestMapping("/adminEmployeeManage.do")
 	public String adminEmployeeManage(Model mv, String pagesize, String currentpage) {
 		int totalcount = employeeManage.selectEmpCount();

@@ -120,7 +120,7 @@
 											<td style="padding-top:12px;">${list.send_date}</td>
                                         
 											<td style="padding-top:12px;"><c:choose>
-														<c:when test="${list.step_no == '4' || list.step_no == '2'}">
+														<c:when test="${list.step_no == '4'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
 														<c:when test="${ list.step_no == '1'}">
@@ -128,6 +128,9 @@
 														</c:when>
 														<c:when test="${ list.step_no == '3' }">
 															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+														<c:when test="${list.step_no == '2'}">
+															<button class="btn btn-xs btn-danger">승인거부</button>
 														</c:when>
 													</c:choose>
 											
@@ -256,7 +259,7 @@
 											<td style="padding-top:12px;">${list2.send_date}</td>
                                         
 											<td style="padding-top:12px;"><c:choose>
-														<c:when test="${list2.step_no == '4' || list2.step_no == '2'}">
+														<c:when test="${list2.step_no == '4'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
 														<c:when test="${ list2.step_no == '1'}">
@@ -265,14 +268,17 @@
 														<c:when test="${ list2.step_no == '3' }">
 															<button class="btn btn-xs btn-primary2">보류</button>
 														</c:when>
+														<c:when test="${list.step_no == '2'}">
+															<button class="btn btn-xs btn-danger">승인거부</button>
+														</c:when>
 													</c:choose>
 											
 											</td>
 											<td><c:choose>
-														<c:when test="${ list2.rec_date == null }">
+														<c:when test="${list2.rec_date == null }">
 															<font color="red"><b>미확인</b></font>
 														</c:when>
-														<c:when test="${ list2.rec_date != null }">
+														<c:when test="${list2.rec_date != null }">
 															<font color="blue"><b>확인</b></font>
 														</c:when>
 													</c:choose></td>
@@ -401,6 +407,9 @@
 														</c:when>
 														<c:when test="${ list3.step_no == '3' }">
 															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+														<c:when test="${list.step_no == '2'}">
+															<button class="btn btn-xs btn-warning">승인거부</button>
 														</c:when>
 													</c:choose>
 											

@@ -255,11 +255,12 @@ public class ContactController {
 		
 
 		if(result > 0){  //개인주소록 추가될때 
-			
+			System.out.println("최고글번호 :" + result);
 			Emp_contact emp_contact = new Emp_contact();
 			emp_contact.setEmp_no(emp_no);
 			emp_contact.setContact_no(String.valueOf(result));
-			
+			emp_contact.setGroups(contact.getGroup_no());
+			System.out.println("@emp_contact : " + emp_contact.getGroups());
 			contactService.insertEmpContact(emp_contact);  //개인주소록 테이블 삽입
 		}
 		

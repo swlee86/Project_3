@@ -66,7 +66,7 @@
 					<a data-toggle="collapse" data-parent="#accordion"  href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
 					</a>
 					<div id="q1" class="panel-collapse collapse groupdiv" id="accordiongroup" >
-						
+						<br>
 						<ul>
 							<c:forEach items="${grouplist}" var="g">
 								<c:choose>

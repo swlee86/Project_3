@@ -31,31 +31,31 @@
 				<div class="panel-body">
 					<div class="table-responsive">
 						<form method="POST">
-							<input type="hidden" name="hidden_task_no" value="${hidden}">
+							<input type="hidden" name="task_no" value="${detail.task_no}">
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered " style="margin-bottom:0px" >
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">제목</th>
-										<td style="width:40%">${partictask.task_name}</td>
+										<td style="width:40%">${detail.task_name}</td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">승인상태</th>
 										<td style="width:40%">
 											<c:choose>
-										        	<c:when test="${partictask.step_no==1}"><button class="btn btn-xs btn-info">승인</button></c:when>
-										        	<c:when test="${partictask.step_no==2}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
-										        	<c:when test="${partictask.step_no==3}">보류</c:when>
+										        	<c:when test="${detail.step_no=='1'}"><button class="btn btn-xs btn-info">승인</button></c:when>
+										        	<c:when test="${detail.step_no=='2'}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
+										        	<c:when test="${detail.step_no=='3'}">보류</c:when>
 										     	    <c:otherwise><button class="btn btn-xs btn-warning2">미승인</button></c:otherwise>
 										   </c:choose>
 									    </td>
 									</tr>
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">지시자</th>
-										<td>${partictask.rec_name}</td>
+										<td>${detail.rec_name}</td>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">지시부서</th>
 										<td>개발팀</td>
 									</tr>	
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">업무기한</th>
-										<td colspan="3">${partictask.deadline}</td>
+										<td colspan="3">${detail.deadline}</td>
 									</tr>	
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">업무 참여자</th>
@@ -70,8 +70,8 @@
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">첨부파일</th>
 										<td colspan="3">
 										<c:choose>
-												<c:when test="${partictask.file_name != null}">
-													${partictask.file_name}	
+												<c:when test="${detail.file_name != null}">
+													${detail.file_name}	
 												</c:when>
 												<c:otherwise>
 													<small>첨부파일 없음</small>
@@ -82,12 +82,12 @@
 							
 									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">담당자</th>
-										<td colspan="3">${partictask.emp_name}</td>
+										<td colspan="3">${detail.emp_name}</td>
 									</tr>
 									
 									<tr>
 										<th style="background-color:#f5f5f5;text-align:right;padding-right:10px; width:10%">내용</th>
-										<td colspan="3">${partictask.content}</td>
+										<td colspan="3">${detail.content}</td>
 									</tr>
 								</table>							
 								
@@ -100,23 +100,23 @@
 										<td>
 											<div class="form-inline">
 										     	<span class="sty"> 
-													<input type="radio" name="approval" id="approv" value="1" class="radio radioa" /> 
+													<input type="radio" name="task_step_no" id="approv" value="1" class="radio radioa" /> 
 													<label class="sty" for="approv">진행</label>
 												</span> 
 												<span  class="sty"> 
-													<input type="radio" name="approval" id="reject" value="2" class="radio radior" /> 
+													<input type="radio" name="task_step_no" id="reject" value="2" class="radio radior" /> 
 													<label class="sty" for="reject" >미진행</label>
 												</span> 
 												<span  class="sty"> 
-													<input type="radio" name="approval" id="wait" value="3" class="radio radiow" /> 
+													<input type="radio" name="task_step_no" id="wait" value="3" class="radio radiow" /> 
 													<label class="sty" for="wait">보류</label>
 												</span>
 												<span  class="sty"> 
-													<input type="radio" name="approval" id="finish" value="4" class="radio radiow" /> 
+													<input type="radio" name="task_step_no" id="finish" value="4" class="radio radiow" /> 
 													<label class="sty" for="finish">완료</label>
 												</span>
 												<span  class="sty"> 
-													<input type="radio" name="approval" id="stop" value="5" class="radio radiow" /> 
+													<input type="radio" name="task_step_no" id="stop" value="5" class="radio radiow" /> 
 													<label class="sty" for="stop">중단</label>
 												</span>
 											

@@ -459,8 +459,8 @@ ul {
     					    	$('#thirdBody').html(table);
     					    }
     					}  
-    		        ) */
-    	  });
+    		        )*/ 
+    	  
     	  
     	  //기본배열 넘기기 테스트
     	/*   $('#test').click(function(){

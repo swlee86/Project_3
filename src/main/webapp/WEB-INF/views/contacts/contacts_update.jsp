@@ -85,9 +85,17 @@
 										<td colspan="3">
 											
 											<select  class="form-control input-sm"  style="height:80px" size="3" name="group_no">
-													<option value="1"  <c:if test="${1 == contact.group_no}">selected</c:if>>선택없음</option>
+													<option value="1"  <c:if test="${1 == contact.group_no}">selected</c:if>>선택안함</option>
 													<c:forEach items="${grouplist}" var="g">
-														<option value="${g.group_no}" <c:if test="${g.group_no == contact.group_no}">selected</c:if>>${g.group_name}</option>
+
+														<c:choose>
+															<c:when test="${g.group_no == 1}">
+																
+															</c:when>
+															<c:otherwise>
+																<option value="${g.group_no}" <c:if test="${g.group_no == contact.group_no}">selected</c:if>>${g.group_name}</option>
+															</c:otherwise>
+														</c:choose>
 													</c:forEach>
 											</select>
 										</td>
