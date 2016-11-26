@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -21,8 +22,6 @@
 		</div>
 	</div>
 </div>
-
-
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12">
@@ -36,16 +35,16 @@
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">제목</th>
-										<td style="width: 40%">${task.task_name}</td>
+										<td style="width: 40%">${detail.task_name}</td>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">승인상태</th>
 										<td style="width: 40%"><button
-												class="btn btn-xs btn-warning2">${task.step_no}</button></td>
+												class="btn btn-xs btn-warning2">${detail.step_no}</button></td>
 									</tr>
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">수신자</th>
-										<td>${task.rec_name}</td>
+										<td>${detail.rec_name}</td>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">지시부서</th>
 										<td>개발팀</td>
@@ -53,31 +52,33 @@
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">담당자</th>
-										<td>${task.emp_name}</td>
+										<td>${detail.emp_name}</td>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">업무기한</th>
-										<td>${task.deadline}</td>
+										<td>${detail.deadline}</td>
 									</tr>
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">업무
 											참여자</th>
 										<td colspan="3">
-											
+											<c:forEach var="list" items="${peopledetail}">
+												 <span>${list.emp_name}</span><br/>
+											</c:forEach>
 										</td>
 									</tr>
 
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">첨부파일</th>
-										<td colspan="3">${task.file_name }</td>
+										<td colspan="3">${detail.file_name }</td>
 									</tr>
 
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">내용</th>
 										<td colspan="3">
-											${task.content}
+											${detail.content}
 										</td>
 									</tr>
 								</table>
