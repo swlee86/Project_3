@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--개인 주소록테이블  등록 -->
 	<insert id="insertEmpContact">
-		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(SELECT (select distinct groups from emp_contact where emp_no=#{emp_no}) AS empgroup FROM DUAL))
+		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${groups},')))
 	</insert>
 	
 	<!-- 최근 글  번호-->
@@ -115,7 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 select e.emp_no,c.name,c.group_no
                 from contact c join emp_contact e 
                 on c.contact_no = e.contact_no 
-                where e.emp_no=11111111
+                where e.emp_no=#{param3}
               ) 
       set group_no = #{param1} 
       where group_no=#{param2} 
