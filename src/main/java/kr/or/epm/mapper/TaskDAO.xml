@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   rec_emp_no, rec_name, rec_date, 
 			   t.emp_no, emp_name, send_date, 
 			   file_name, task_step_name, step_name,
-			   step_no
+			   t.step_no
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
     	join approval a
