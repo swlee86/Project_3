@@ -95,6 +95,17 @@ public class ProjectController {
 		return "project.projectApproveDetailView";
 	}
 	
-	
-	
+	//프로젝트의 상세의 상세내용보기
+	@RequestMapping("/projectdetail_detailview.do")
+	public String projectdetail_detailview(Model model, String pjd_no){
+		System.out.println("들어온pjd_no : " + pjd_no);
+		
+		Pjd pjd= null;
+		
+		pjd = projectdetailservice.selectPjd_detail(pjd_no);
+		
+		model.addAttribute("pjd",pjd);
+		
+		return "project.projectDetailView";
+	}
 }

@@ -134,10 +134,9 @@
 						$('#m_cell').html(data.data.cell_phone);
 						$('#m_img').attr('src',data.data.pic);
 					}
-				}		
-		);
-	});
-	
+				});
+		});
+			
 </script>
 </body>
 </html>

@@ -33,4 +33,7 @@ public interface PjdDAO {
 	
 	// 참여자 상세정보보기 ( modal)
 	public Pjd_people selectPeople_info(String emp_no);
+	
+	// 프로젝트 상세 조회하기 ( 단일)
+	public Pjd selectPjd_Detail(String pjd_no);
 }

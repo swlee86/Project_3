@@ -81,6 +81,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    where p.emp_no=#{emp_no}
 	</select>
 	
-	
+	<!-- 프로젝트 상세 조회하기(단일)	 -->
+	<select id="selectPjd_Detail" parameterType="String" resultType="kr.or.epm.VO.Pjd">
+		select pjd_no,pj_no,pjd_title,pjd_content,pjd_start,pjd_end from pjd where pjd_no=#{pjd_no}
+	</select>
 	
 </mapper>
