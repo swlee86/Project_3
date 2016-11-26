@@ -12,7 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 보낸 메일을 보낸 메일란에 저장하기 -->
 	<insert id="insertSendMail" parameterType="kr.or.epm.VO.Mail">
-		insert into mail(mail_no, title, mail_content, rec_mail) values(mail_seq.nextval, #{title}, #{mail_content}, #{rec_mail})
+		insert into mail(mail_no, title, mail_content, rec_mail, send_mail, send_date, del_check) 
+		values(mail_seq.nextval, #{title}, #{mail_content}, #{rec_mail}, #{send_mail}, to_char(sysdate, 'YY-MM-dd'), '0')
 	</insert>
 
 
