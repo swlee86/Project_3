@@ -101,7 +101,7 @@
 			</div>
 			<div class="panel-footer">
 			<div style="text-align:right">
-				<input type="button" class="btn btn-sm btn-success" value="프로젝트 작성" id="makeProjectBtn" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+				<a href="projectMake.do" class="btn btn-sm btn-success"   style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">프로젝트 작성</a>
 			</div>
 			</div>
 		</div>
@@ -140,9 +140,10 @@ function selectCtg(){
 		                     
 							$.each(data.project, function(index){
 		                           makeTable += "<tr><td>"+data.project[index].emp_name+"</td><td>"+data.project[index].dept_name +
-		                           "</td><td>"+data.project[index].pj_title+"</td><td>"+data.project[index].pj_content+
+		                           "</td><td><a href='projectDetail.do?pj_no="+data.project[index].pj_no+"'>"+data.project[index].pj_title+"</a></td><td>"+data.project[index].pj_content+
 		                           "</td><td>"+data.project[index].pj_start+"</td><td>"+data.project[index].pj_end+"</td>"+
-		      
+									
+
 		                           "<td><div class='progress m-t-xs full progress-striped'><div style='width:" + 
 		                           data.project[index].pj_progress+"%' aria-valuemax='100' aria-valuemin='0'aria-valuenow='"+
 		                           data.project[index].pj_progress+" role='progressbar' class='progress-bar progress-bar-warning active'>"+

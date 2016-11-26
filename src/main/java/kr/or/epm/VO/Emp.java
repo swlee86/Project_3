@@ -23,8 +23,17 @@ public class Emp {
 	private String dept_name;
 	private String low_dept_name;
 	
+	private String cg_name;
+	private String position_name;
 	
-	
+	public String getCg_name() {
+		return cg_name;
+	}
+
+	public void setCg_name(String cg_name) {
+		this.cg_name = cg_name;
+	}
+
 	public String getBranch_name() {
 		return branch_name;
 	}
@@ -48,8 +57,6 @@ public class Emp {
 	public void setLow_dept_name(String low_dept_name) {
 		this.low_dept_name = low_dept_name;
 	}
-
-	private String position_name;
 	
 	public String getPosition_name() {
 		return position_name;
