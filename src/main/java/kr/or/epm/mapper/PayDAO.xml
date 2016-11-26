@@ -41,6 +41,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select give_date from pay where emp_no=#{param1} and give_date like '%${param2}%'
 	</select>
 	
+	<!--입사일 조회하기  -->
+	<select id="selectRegdate" resultType="String">
+		select regdate from emp_his e join emp_his_cg c on e.cg_no=c.cg_no where emp_no=#{emp_no} and c.cg_name='입사'
+	</select>
+	
 	<!-- 예상 퇴직금 조회하기 -->
 	<select id=""></select>
 	

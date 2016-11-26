@@ -24,6 +24,9 @@ public interface PayDAO {
 	//본인 급여 연도별 조회하기
 	public List<Pay> selectPay_mine_Yearly(String emp_no, String give_date);
 	
+	//입사일 조회하기
+	public String selectRegdate(String emp_no);
+	
 	// 예상 퇴직금 조회하기
 	
 	// 본인의 금월 예상 급여 조회하기

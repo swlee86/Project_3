@@ -2,8 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context 
@@ -15,10 +14,12 @@
 						   http://www.springframework.org/schema/tx 
 						   http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<mvc:annotation-driven />
-	
-	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+	<bean id="driverManagerDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@orcl.cn5acqnoqihv.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></property>
+		<property name="url"
+			value="jdbc:oracle:thin:@orcl.cn5acqnoqihv.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></property>
 		<property name="username" value="swlee"></property>
 		<property name="password" value="oracle0905"></property>
 	</bean>
@@ -27,40 +28,46 @@
 		<property name="dataSource" ref="driverManagerDataSource"></property>
 		<property name="mapperLocations" value="classpath*:kr/or/epm/mapper/*xml" />
 	</bean>
-	
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
-    </bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"></property>
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView"></property>
 		<property name="order" value="1" />
 	</bean>
-	
-	<bean id="viewResolver2" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+
+	<bean id="viewResolver2"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="2"></property>
 	</bean>
-	
-	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="3" />
 	</bean>
 
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/Tiles.xml</value>
 			</list>
 		</property>
 	</bean>
-	
-	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+
+	<bean id="bCryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 		<constructor-arg name="strength" value="10"></constructor-arg>
 	</bean>
-	
+
 	<!-- 파일업로드 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -69,13 +76,14 @@
 
 
 	<mvc:resources location="/WEB-INF/resource/js/" mapping="/js/**" />
-	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	<bean name="jsonview"
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 
 	<!-- transaction start -->
-   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-         <property name="dataSource" ref="driverManagerDataSource" /> 
-    </bean>
-    <!-- transaction end -->
-    
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="driverManagerDataSource" />
+	</bean>
+	<!-- transaction end -->
 
 </beans>

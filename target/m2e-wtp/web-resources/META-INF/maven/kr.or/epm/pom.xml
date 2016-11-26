@@ -297,7 +297,12 @@
 			<version>1.22.0</version>
 		</dependency>
 
-
+	<!--  메일 사용 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.2.5.RELEASE</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
