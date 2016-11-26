@@ -67,7 +67,7 @@
                          <td><span id="jung"></span></td>
                          </tr>
                          <tr>
-                         <th style="width:15%; style="text-align:center;">총근무월수</th>
+                         <th style="width:15%; style="text-align:center;">총근무일수</th>
                          <td><span id="total"></span></td>
                          </tr>
                          <tr>

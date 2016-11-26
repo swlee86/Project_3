@@ -165,10 +165,16 @@ public class SalaryAjaxController {
 			 System.out.println("하루 평균 급여 "+pyungMoney+" 만원");
 			 
 			 
-			 model.addAttribute("dayMoney",pyungMoney);
+			 int sev = (int) (pyungMoney*30*diffDays/365);
+			 System.out.println("퇴직금: "+sev);
+			 
+			 //퇴직금
+			 model.addAttribute("dayMoney",sev);
+			 //총근무일수
 			 model.addAttribute("day", diffDays);
+			 //선택한 정산일자
 			 model.addAttribute("date", date);
-			//System.out.println("list size: "+list.size());
+			
 		}
 		
 		return jsonview;

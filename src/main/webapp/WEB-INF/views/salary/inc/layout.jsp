@@ -326,7 +326,7 @@
 							
 							$('#jung').html(data.date);
 							$('#total').html(data.day);
-							$('#severance_pay').html("하루평균 급여 (퇴직전 3개월 총급여 /퇴직전 3개월 근무일수) :  " +data.dayMoney +"만원");
+							$('#severance_pay').html(data.dayMoney +"만원");
 							
 						}
 
