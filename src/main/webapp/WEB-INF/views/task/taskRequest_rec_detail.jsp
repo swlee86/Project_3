@@ -31,10 +31,10 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form action="approval.do" method="POST">
-						<input type="hidden" name="task_no" value="${task.task_no}">
+						<form action="request_approval.do" method="POST">
+						<input type="hidden" name="task_no" value="${detail.task_no}">
 						<div class="table-responsive">
-							<table cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px">
+							<table cellpadding="1" cellspacing="1" class="table table-bordered" style="margin-bottom:0px">
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">제목</th>
 										<td style="width:40%">${detail.task_name}</td>
@@ -42,12 +42,11 @@
 										<td style="width:40%">
 											 
 												<c:choose>
-										        	<c:when test="${detail.step_no==1}"><button class="btn btn-xs btn-info">승인</button></c:when>
-										        	<c:when test="${detail.step_no==2}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
-										        	<c:when test="${detail.step_no==3}">보류</c:when>
+										        	<c:when test="${detail.step_no eq '1'}"><button class="btn btn-xs btn-info">승인</button></c:when>
+										        	<c:when test="${detail.step_no eq '2'}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
+										        	<c:when test="${detail.step_no eq '3'}">보류</c:when>
 										     	    <c:otherwise><button class="btn btn-xs btn-warning2">미승인</button></c:otherwise>
 										        </c:choose>
-										    
 										</td>
 									</tr>
 									
@@ -97,15 +96,15 @@
 										<td>
 											<div class="form-inline">
 												<span class="sty"> 
-													<input type="radio" name="approval" id="approv" value="1" class="radio radioa" /> 
+													<input type="radio" name="step_no" id="approv" value="1" class="radio radioa" /> 
 													<label class="sty" for="approv">승인</label>
 												</span> 
 												<span  class="sty"> 
-													<input type="radio" name="approval" id="reject" value="2" class="radio radior" /> 
+													<input type="radio" name="step_no" id="reject" value="2" class="radio radior" /> 
 													<label class="sty" for="reject" >거부</label>
 												</span> 
 												<span  class="sty"> 
-													<input type="radio" name="approval" id="wait" value="3" class="radio radiow" /> 
+													<input type="radio" name="step_no" id="wait" value="3" class="radio radiow" /> 
 													<label class="sty" for="wait">보류</label>
 												</span>
 											</div>

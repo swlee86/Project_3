@@ -250,7 +250,7 @@
 											</td>
 											<td style="padding-top:12px;">${list2.task_no}</td>
 										
-											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
+											<td style="padding-top:12px;"><a href="taskRequest_detail.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
 											<td style="padding-top:12px;">${list2.deadline}</td>
 											<td style="padding-top:12px;">${list2.rec_name}</td>
 											<td style="padding-top:12px;">${list2.send_date}</td>
@@ -282,7 +282,7 @@
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
+									<button type="button" class="btn btn-sm btn-success" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
 									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
 								</div>
 							</div>
@@ -387,7 +387,7 @@
 												<input type="checkbox" style="margin-left:20px">
 											</td>
 											<td style="padding-top:12px;">${list3.task_no}</td>
-											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list3.task_no}">${list3.task_name}</a></td>
+											<td style="padding-top:12px;"><a href="taskRequest_participation_detail.do?task_no=${list3.task_no}">${list3.task_name}</a></td>
 											<td style="padding-top:12px;">${list3.deadline}</td>
 											<td style="padding-top:12px;">${list3.rec_name}</td>
 											<td style="padding-top:12px;">${list3.send_date}</td>

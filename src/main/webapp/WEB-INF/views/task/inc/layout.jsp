@@ -431,11 +431,11 @@ ul {
     				); */
     	  });
     	  
-    	  //참여 탭 클릭 시
+    	  /* //참여 탭 클릭 시
     	  $('#taskRequestpartnerTab').click(function(){
 				
     		  location.href='taskRequest_participation.do';
-    		  	
+    		  	 */
 					
 				/* $.ajax(
     					{
