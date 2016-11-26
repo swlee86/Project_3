@@ -250,7 +250,7 @@
 											</td>
 											<td style="padding-top:12px;">${list2.task_no}</td>
 										
-											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
+											<td style="padding-top:12px;"><a href="taskRequest_detail.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
 											<td style="padding-top:12px;">${list2.deadline}</td>
 											<td style="padding-top:12px;">${list2.rec_name}</td>
 											<td style="padding-top:12px;">${list2.send_date}</td>
@@ -387,7 +387,7 @@
 												<input type="checkbox" style="margin-left:20px">
 											</td>
 											<td style="padding-top:12px;">${list3.task_no}</td>
-											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list3.task_no}">${list3.task_name}</a></td>
+											<td style="padding-top:12px;"><a href="taskRequest_participation_detail.do?task_no=${list3.task_no}">${list3.task_name}</a></td>
 											<td style="padding-top:12px;">${list3.deadline}</td>
 											<td style="padding-top:12px;">${list3.rec_name}</td>
 											<td style="padding-top:12px;">${list3.send_date}</td>

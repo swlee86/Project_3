@@ -108,7 +108,7 @@
 												<td><input type="checkbox" style="margin-left:20px;"></td>
 												<td>${inform.task_no}</td>
 												<td>${inform.sign}</td>
-												<td><a href="taskInform_Detail_rec.do?task_no=${inform.task_no}">${inform.task_name}</a></td>
+												<td><a href="taskInform_rec_detail.do?task_no=${inform.task_no}">${inform.task_name}</a></td>
 												<td>${inform.deadline}</td>
 												<td>${inform.emp_name}</td>
 												<td>${inform.send_date}</td>
@@ -224,7 +224,7 @@
 											<tr>
 												<td><input type="checkbox" style="margin-left:20px;"></td>
 												<td>${list2.task_no}</td>
-												<td><a href="taskInform_Detail_rec.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
+												<td><a href="taskInform_Detail.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
 												<td>${list2.deadline}</td>
 												<td>${list2.rec_name}</td>
 												<td>${list2.send_date}</td>
