@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.ProjectDetailService;
 import kr.or.epm.Service.ProjectService;
 import kr.or.epm.VO.Contact;
@@ -35,12 +36,16 @@ public class ProjectAjaxController {
 	private ProjectService projectservice;
 	@Autowired
 	private ProjectDetailService projectdetailservice;
-	
+	@Autowired
+	private CommonService commonservice; 
 	//리스트에서 선택한 옵션으로 view 동기화시키기
 	@RequestMapping("/select_pjlist.do")
-	public View select_pjlist(String select_ctg, String emp_no , Model model){	
+	public View select_pjlist(String select_ctg, Principal principal,  Model model){	
 		System.out.println("select_pjlist Start");
-		emp_no="91001031"; // 임시로
+		
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		String emp_no = commonservice.selectEmp_no(id);
 		System.out.println("select_ctg : " + select_ctg);
 		List<Pj> result = projectservice.selectPjlist_ctg(select_ctg, emp_no);
 		model.addAttribute("project", result);

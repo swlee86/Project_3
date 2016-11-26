@@ -1,6 +1,5 @@
 package kr.or.epm.ProjectController;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.epm.Service.ProjectDetailService;
 import kr.or.epm.Service.ProjectService;
-import kr.or.epm.VO.Contact;
-import kr.or.epm.VO.Emp;
-import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_people;
