@@ -212,7 +212,7 @@
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center" style="height:180px;padding-top:25px">
-				<h4 class="modal-title"><img alt="logo" id="m_img" class="img-circle m-b" ></h4>
+				<h4 class="modal-title"><img alt="logo" id="m_img" class="img-circle m-b" style="width:150px;height:150px"></h4>
 			</div>
 			<div class="modal-body">
 				<table class="table  table-condensed  table-bordered">
