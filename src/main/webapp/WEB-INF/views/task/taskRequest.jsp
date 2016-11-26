@@ -28,12 +28,12 @@
 		<div class="col-md-12">
 			<div class="hpanel">
 				<div class="panel-heading">
-					전체 : <font color="coral">${ count }</font> 개
+					전체 : <font color="coral">${count3}</font> 개
 				</div>
 
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#tab-1" id="recevieTab">수신</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2" id="sendTab">송신</a></li>
+					<li class=""><a href="taskRequest_rec.do" data-toggle="tab" href="#tab-2" id="sendTab">송신</a></li>
 					<li class=""><a data-toggle="tab" href="#tab-3" id="taskRequestpartnerTab">참여</a></li>
 				</ul>
 
@@ -101,8 +101,8 @@
 											<th>승인결과</th>
 										</tr>
 									</thead>
-									<tbody>
-								       <c:forEach var="list" items="${list}">
+									<tbody id="firstTable">
+								       <c:forEach var="list" items="${list1}">
 										<tr>
 											<td style="padding-top:12px;">
 												<input type="checkbox" style="margin-left:20px">
@@ -119,7 +119,7 @@
 											<td style="padding-top:12px;">${list.send_date}</td>
                                         
 											<td style="padding-top:12px;"><c:choose>
-														<c:when test="${ list.step_no == '4'}">
+														<c:when test="${list.step_no == '4'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
 														<c:when test="${ list.step_no == '1'}">
@@ -237,18 +237,18 @@
 											<th>승인단계</th>
 										</tr>
 									</thead>
-									<tbody id="secondTbody">
-									
+									<tbody id="secondTable">
+										<c:forEach var="list2" items="${list2}">
 										<tr>
 											<td><input type="checkbox" style="margin-left:20px"></td>
 											<td><span id=""></span></td>
-											<td><a href="taskRequest_Transmit_Detail.do">${list.task_name}</a></td>
-											<td>${list.deadline}</td>
-											<td>${list.emp_name}</td>
-											<td>${list.send_date}</td>
-											<td><button class="btn btn-xs btn-warning2">${list.send_date}</button></td>
+											<td><a href="taskRequest_Transmit_Detail.do">${list2.task_name}</a></td>
+											<td>${list2.deadline}</td>
+											<td>${list2.emp_name}</td>
+											<td>${list2.send_date}</td>
+											<td><button class="btn btn-xs btn-warning2">${list2.send_date}</button></td>
 										</tr>
-										
+										</c:forEach>
 										
 									</tbody>
 								</table>
@@ -333,9 +333,6 @@
 								</form>
 							</div>
 
-							
-
-
 							<br>
 							<hr style="border: 1px solid gray; margin-bottom: 0px">
 							<div class="table-responsive">
@@ -351,9 +348,21 @@
 											<th>진행단계</th>
 										</tr>
 									</thead>
-									<tbody id="thirdBody">
-										
+									<tbody id="thirdTable">
+										<c:forEach var="list3" items="${list3}">
+										<tr>			
+    			  							<td><input type='checkbox' style='margin-left:20px'></td>
+    			  							<td>list3.task_no</td>
+		    			  					<td><span onclick='particTab_task_no(this);'>list3.task_name</span></td>
+		    			  					<td>list3.deadline</td>
+		    			  					<td>list3.emp_name</td>
+		    			  					<td>list3.send_date</td>
+		    			  					<td>list3.task_step_name</td>
+		    			  				</tr>	
+										</c:forEach>
 									</tbody>
+									
+									
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
 									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
