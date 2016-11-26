@@ -125,7 +125,7 @@ function selectCtg(){
 		$.ajax({
 					url : "select_pjlist.do",
 	               	data : {
-	            	   		select_ctg : select_ctg,
+	               				select_ctg : select_ctg,
 			               },
 					success : function(data){
 						

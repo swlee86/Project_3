@@ -409,7 +409,7 @@
 															<button class="btn btn-xs btn-primary2">보류</button>
 														</c:when>
 														<c:when test="${list.step_no == '2'}">
-															<button class="btn btn-xs btn-danger">승인거부</button>
+															<button class="btn btn-xs btn-warning">승인거부</button>
 														</c:when>
 													</c:choose>
 											

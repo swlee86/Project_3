@@ -77,12 +77,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 송신 메일 조회하기 -->
-	<select id="selectMail">
-		select mail_no, title, file_name, 
-			   send_date, rec_name, rec_mail, 
-			   rec_date, rec_check
+	<select id="selectMail" resultType="kr.or.epm.VO.Mail">
+		select title, mail_content, rec_mail, send_mail, send_date, del_check
 		from mail
-		where emp_no = #{emp_no} and 
+		where send_mail = #{email} and 
 			  del_check = '0'
 	</select>
 	
