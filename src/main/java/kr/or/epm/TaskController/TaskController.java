@@ -108,7 +108,7 @@ public class TaskController {
 
 		System.out.println("CONTROLLER] 업무 등록");
 
-		String link = "taskRequest.do";
+		String link = "taskRequest_rec.do";
 		String msg = null;
 
 		int result1 = 0;
@@ -295,7 +295,7 @@ public class TaskController {
 		System.out.println("선택한 승인 단계 : " + step_no);
 
 		// redirect
-		String link = "taskRequest.do";
+		String link = "taskRequest_rec.do";
 		String msg = null;
 
 		int result = 0;
@@ -405,7 +405,7 @@ public class TaskController {
 		System.out.println("선택한 진행 단계 번호 : " + task_step_no);
 
 		// redirect
-		String link = "taskRequest.do";
+		String link = "taskRequest_participation.do";
 		String msg = null;
 
 		int result = 0;
@@ -486,7 +486,7 @@ public class TaskController {
 		System.out.println("선택한 승인 단계 : " + step_no);
 
 		// redirect
-		String link = "taskInform.do";
+		String link = "taskInform_rec.do";
 		String msg = null;
 
 		int result = 0;
