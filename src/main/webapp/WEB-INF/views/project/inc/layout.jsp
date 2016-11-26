@@ -96,6 +96,30 @@
 		});
  
 		
+		$('#contact').submit(function(){
+		
+			$.ajax(
+					{
+						type : "post",
+						url  : "addContact_pjd.do",
+						data : {
+							"emp_no" : $('#h_emp_no').val(),
+							"name" : $('#h_emp_name').val(),
+							"attach" : $('#h_emp_attach').val(),
+							"tel1" : $('#h_emp_tel1').val(),
+							"tel2" : $('#h_emp_tel2').val(),
+							"birth" : $('#h_emp_birth').val(),
+							"pic" : $('#h_emp_pic').val(),
+							"mail" : $('#h_emp_mail').val(),
+							
+						},
+						success : function(data){
+							alert("주소록 등록을 성공했습니다")
+							console.log("last : " + data.last_result);			
+						}
+					});
+		});
+		
 		
 				
 	});
@@ -117,7 +141,6 @@
 		location.href="projectDetailCheckView.do?hidden="+hiddenValue;
 	}
 	
-	
 	$('.selectpeople').click(function(){  
 		var emp_no = ($(this).attr('id')).substr(9);
 		//console.log(emp_no);
@@ -131,14 +154,30 @@
 					},
 					success : function(data){
 						console.log(data.data);
+						
 						$('#m_name').html(data.data.emp_name);
 						$('#m_dept').html(data.data.branch_name + '\n' + data.data.dept_name+ '\n' +data.data.low_dept_name);
 						$('#m_cell').html(data.data.cell_phone);
-						$('#m_img').attr('src',data.data.pic);
+						$('#m_img').attr('src','${pageContext.request.contextPath}/img/upload/'+data.data.pic);
+						
+						
+						$('#h_emp_no').val(data.data.emp_no);
+						$('#h_emp_name').val(data.data.emp_name);
+						$('#h_emp_attach').val(data.data.branch_name+'&nbsp;'+data.data.dept_name+ '&nbsp;' +data.data.low_dept_name);
+						$('#h_emp_tel1').val(data.data.cell_phone);
+						$('#h_emp_tel2').val(data.data.emp_tel);
+						$('#h_emp_birth').val(data.data.birth);
+						$('#h_emp_pic').val(data.data.pic);
+						$('#h_emp_mail').val(data.data.email);
+						
+						console.log($('#h_emp_name').val());
+
 					}
 				});
 		});
-			
+	
+		
+	
 </script>
 </body>
 </html>
