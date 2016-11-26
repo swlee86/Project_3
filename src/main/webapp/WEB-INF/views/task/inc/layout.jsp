@@ -403,8 +403,9 @@ ul {
     	  });
     	  
     	  //송신 탭 클릭 시 
-    	  $('#sendTab').click(function(){
-    		  $.ajax(
+    	  /* $('#sendTab').click(function(){
+    		  location.href="taskRequest_rec.do"; */
+    		/*   $.ajax(
     					{
     			  			url : "taskRequest.do",
     			  			dataType : 'json',
@@ -427,12 +428,16 @@ ul {
     			  				$('#secondTbody').html(table);
     			  			}
     		  			}
-    				);
+    				); */
     	  });
     	  
-    	  //참여 탭 클릭 시
+    	  /* //참여 탭 클릭 시
     	  $('#taskRequestpartnerTab').click(function(){
-    		  $.ajax(
+				
+    		  location.href='taskRequest_participation.do';
+    		  	 */
+					
+				/* $.ajax(
     					{
     						url : "taskRequest_participation.do",
     					    success : function(data){
@@ -454,7 +459,7 @@ ul {
     					    	$('#thirdBody').html(table);
     					    }
     					}  
-    		        )
+    		        ) */
     	  });
     	  
     	  //기본배열 넘기기 테스트
@@ -583,10 +588,10 @@ ul {
                   $('#organization').html(litag);
 
                }
-            })
-         });
+            });
          
-      });
+         });
+      
 
       //부서 출력 하는 아작스
       function seeDepart(obj, empSelectNumber, choose) {

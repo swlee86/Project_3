@@ -40,7 +40,15 @@ public class PayService {
 		return list;
 	}
 	
-	//퇴직금 조회
+	//입사일 조회
+	public String selectRegdate(String emp_no){
+		System.out.println("입사일 조회 !");
+		PayDAO paydao = sqlsession.getMapper(PayDAO.class);
+		String regdate = paydao.selectRegdate(emp_no);
+		//System.out.println("입사일 : "+regdate);
+		return regdate;
+		
+	}
 	
 	
 

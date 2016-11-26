@@ -20,6 +20,18 @@ public class Mail {
 	private String rec_date;
 	private String rec_check;
 	private String rec_del_check;
+	private String send_mail;
+	
+	
+	
+
+	public String getSend_mail() {
+		return send_mail;
+	}
+
+	public void setSend_mail(String send_mail) {
+		this.send_mail = send_mail;
+	}
 
 	public String getMail_no() {
 		return mail_no;

@@ -5,6 +5,7 @@ package kr.or.epm.VO;
 작성자 :	김주희
 사용 목적 :	전자결재에 대한 VO
 **/
+
 public class Draft {
 	private String draft_no;
 	private String cg_no;
@@ -14,8 +15,6 @@ public class Draft {
 	private String draft_date;
 	private String file_name;
 	private String step_no;
-	
-	
 	
 	//추가  DTO 2016-11-17
 	private String cg_name; 
@@ -87,7 +86,6 @@ public class Draft {
 	public void setStep_no(String step_no) {
 		this.step_no = step_no;
 	}
-
 	
 	//추가 2016-11-17
 	

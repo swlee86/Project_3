@@ -108,7 +108,7 @@ public class TaskController {
 
 		System.out.println("CONTROLLER] 업무 등록");
 
-		String link = "taskRequest.do";
+		String link = "taskRequest_rec.do";
 		String msg = null;
 
 		int result1 = 0;
@@ -241,12 +241,30 @@ public class TaskController {
 
 		// 목록 가져오기
 		List<Task> list = service.selectTask_rec(emp_no, cg_no);
-		model.addAttribute("list", list);
+		model.addAttribute("list1", list);
 
 		// 글 개수 구하기
 		int count = list.size();
 		System.out.println("수신함 글 개수 : " + count);
-		model.addAttribute("count", count);
+		model.addAttribute("count1", count);
+		
+		// 목록 가져오기
+		List<Task> list2 = service.selectTask(emp_no, cg_no);
+		model.addAttribute("list2", list2);
+
+		// 글 개수 구하기
+		int count2 = list2.size();
+		System.out.println("송신함 글 개수 : " + count2);
+		model.addAttribute("count2", count2);
+		
+		// 목록 가져오기
+		List<Task> list3 = service.selectTask_people(emp_no);
+		model.addAttribute("list3", list3);
+
+		// 글 개수 구하기
+		int count3 = list3.size();
+		System.out.println("참여함 글 개수 : " + count3);
+		model.addAttribute("count3", count3);
 
 		return "task.taskRequest";
 	}
@@ -277,7 +295,7 @@ public class TaskController {
 		System.out.println("선택한 승인 단계 : " + step_no);
 
 		// redirect
-		String link = "taskRequest.do";
+		String link = "taskRequest_rec.do";
 		String msg = null;
 
 		int result = 0;
@@ -316,12 +334,12 @@ public class TaskController {
 
 		// 목록 가져오기
 		List<Task> list = service.selectTask(emp_no, cg_no);
-		model.addAttribute("list", list);
+		model.addAttribute("list2", list);
 
 		// 글 개수 구하기
 		int count = list.size();
 		System.out.println("송신함 글 개수 : " + count);
-		model.addAttribute("count", count);
+		model.addAttribute("count2", count);
 
 		return jsonview;
 	}
@@ -354,12 +372,12 @@ public class TaskController {
 
 		// 목록 가져오기
 		List<Task> list = service.selectTask_people(emp_no);
-		model.addAttribute("list", list);
+		model.addAttribute("list3", list);
 
 		// 글 개수 구하기
 		int count = list.size();
 		System.out.println("참여함 글 개수 : " + count);
-		model.addAttribute("count", count);
+		model.addAttribute("count3", count);
 
 		return jsonview;
 	}
@@ -387,7 +405,7 @@ public class TaskController {
 		System.out.println("선택한 진행 단계 번호 : " + task_step_no);
 
 		// redirect
-		String link = "taskRequest.do";
+		String link = "taskRequest_participation.do";
 		String msg = null;
 
 		int result = 0;
@@ -426,12 +444,21 @@ public class TaskController {
 
 		// 목록 가져오기
 		List<Task> list = service.selectTask_rec(emp_no, cg_no);
-		model.addAttribute("list", list);
+		model.addAttribute("list1", list);
 
 		// 글 개수 구하기
 		int count = list.size();
 		System.out.println("수신함 글 개수 : " + count);
-		model.addAttribute("count", count);
+		model.addAttribute("count1", count);
+		
+		// 목록 가져오기
+		List<Task> list2 = service.selectTask(emp_no, cg_no);
+		model.addAttribute("list2", list2);
+
+		// 글 개수 구하기
+		int count2 = list2.size();
+		System.out.println("송신함 글 개수 : " + count2);
+		model.addAttribute("count2", count2);
 
 		return "task.taskInform";
 	}
@@ -459,7 +486,7 @@ public class TaskController {
 		System.out.println("선택한 승인 단계 : " + step_no);
 
 		// redirect
-		String link = "taskInform.do";
+		String link = "taskInform_rec.do";
 		String msg = null;
 
 		int result = 0;
@@ -498,12 +525,12 @@ public class TaskController {
 
 		// 목록 가져오기
 		List<Task> list = service.selectTask(emp_no, cg_no);
-		model.addAttribute("list", list);
+		model.addAttribute("list2", list);
 
 		// 글 개수 구하기
 		int count = list.size();
 		System.out.println("송신함 글 개수 : " + count);
-		model.addAttribute("count", count);
+		model.addAttribute("count2", count);
 
 		return jsonview;
 	}
@@ -539,12 +566,21 @@ public class TaskController {
 
 		// 목록 가져오기
 		List<Task> list = service.selectTask_rec(emp_no, cg_no);
-		model.addAttribute("list", list);
+		model.addAttribute("list1", list);
 
 		// 글 개수 구하기
 		int count = list.size();
 		System.out.println("수신함 글 개수 : " + count);
-		model.addAttribute("count", count);
+		model.addAttribute("count1", count);
+		
+		// 목록 가져오기
+		List<Task> list2 = service.selectTask(emp_no, cg_no);
+		model.addAttribute("list2", list2);
+
+		// 글 개수 구하기
+		int count2 = list2.size();
+		System.out.println("수신함 글 개수 : " + count2);
+		model.addAttribute("count2", count2);
 
 		return "task.taskLog";
 	}
@@ -580,12 +616,12 @@ public class TaskController {
 
 		// 목록 가져오기
 		List<Task> list = service.selectTask(emp_no, cg_no);
-		model.addAttribute("list", list);
+		model.addAttribute("list2", list);
 
 		// 글 개수 구하기
 		int count = list.size();
 		System.out.println("수신함 글 개수 : " + count);
-		model.addAttribute("count", count);
+		model.addAttribute("count2", count);
 
 		return jsonview;
 	}
@@ -624,7 +660,7 @@ public class TaskController {
 		// 목록 가져오기
 		List<Task> list = service.searchTask(emp_no, cg_no, key, value);
 
-		model.addAttribute("list", list);
+		model.addAttribute("list3", list);
 
 		return "task.taskLog";
 	}

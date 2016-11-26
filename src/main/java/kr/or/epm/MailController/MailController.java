@@ -70,6 +70,7 @@ public class MailController {
                 pagecount = Mailtotalcount/pgsize;
             }else{
                 pagecount = (Mailtotalcount/pgsize) + 1;
+                
             }
     		
              

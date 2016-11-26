@@ -40,10 +40,21 @@ public class SendMail {
 			String recipient = recipients; // 수신자 메일 주소
 			String subject = subjects; // 제목
 			String body = bodys; // 본문
-
+			System.out.println("수신자 : " + recipient);
+			System.out.println("제목 : " + subject);
+			System.out.println("본문 : " + body);
+			System.out.println("발송자 : " + mailid);
+			
+			
+			
 			// properties 설정
 			Properties props = new Properties();
 			props.put("mail.smtps.auth", "true");
+			props.setProperty("mail.smtp.user", mailid);
+			props.setProperty("mail.smtp.password", sessionchk);
+			
+			
+			
 			// 메일 세션
 			Session session1 = Session.getDefaultInstance(props);
 			MimeMessage msg = new MimeMessage(session1);
@@ -55,11 +66,12 @@ public class SendMail {
 				msg.setFrom(new InternetAddress(username));
 				msg.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
-				/*
+				
 				mail.setMail_content(bodys);
 				mail.setTitle(subjects);
 				mail.setRec_mail(recipients);
-				*/
+				mail.setSend_mail(mailid);
+				
 				
 			} catch (MessagingException e) {
 				e.printStackTrace();
@@ -70,8 +82,8 @@ public class SendMail {
 				transport.sendMessage(msg, msg.getAllRecipients());
 
 				
-				//System.out.println(mail.toString());
-				//mailservice.insertSendMail(mail);
+				System.out.println(mail.toString());
+				mailservice.insertSendMail(mail);
 
 				transport.close();
 			}
