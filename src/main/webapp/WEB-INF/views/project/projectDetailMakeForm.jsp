@@ -75,8 +75,9 @@
 								</tbody>
 							</table>
 							<div class="pull-right" style="text-align:center;">
-								<input type="submit"  class="btn w-xs btn-success" value="다음"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
-								<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">취소</a>
+								<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-close"></i></a>
+								<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a>
+								<button type="submit"  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
 							</div>
 						</div>
 						</form>	
