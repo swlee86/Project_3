@@ -66,7 +66,7 @@
 										</div>
 									</div>
 									<br />
-									<p>${i.pjd_content}</p>
+									<p style="height: 36px;">${i.pjd_content}</p>
 								</div>
 		
 								<div class="col-sm-4 project-info">
@@ -85,7 +85,9 @@
 						</div>
 						<div class="panel-footer">
 						<div style="text-align:right">
-							<button class="btn btn-sm btn-success" onclick="detailProjectCheckList(this)" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">상세보기</button>
+							<button class="btn btn-sm btn-success" onclick="detailProjectCheckList(this)" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+								<a class="btn w-xs btn-success btn-block" href="projectdetail_detailview.do?pjd_no=${i.pjd_no}">상세보기</a>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -103,7 +105,7 @@
 			<div class="modal-header text-center">
 		 	<h4 class="modal-title"><img alt="logo" id="m_img" class="img-circle m-b" src="images/a3.jpg" style="width: 82px;height: 82px;"></h4> <br>
 				<font class="font-bold" size="2em">
-					<font style="color:gray;" id="m_name">이름잉</font><br>
+					<font style="color:gray;" id="m_name"></font><br>
 					<font style="color:#9d9fa2" id="m_dept"></font> <br>
 					<font style="color:gray;" id="m_cell"></font>
 				</font>

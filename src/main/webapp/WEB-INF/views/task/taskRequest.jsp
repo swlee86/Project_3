@@ -27,20 +27,21 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="hpanel">
-				<div class="panel-heading">
-					전체 : <font color="coral">${count3}</font> 개
-				</div>
-
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#tab-1" id="recevieTab">수신</a></li>
-					<li class=""><a href="taskRequest_rec.do" data-toggle="tab" href="#tab-2" id="sendTab">송신</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-3" id="taskRequestpartnerTab">참여</a></li>
+					<li class="active"><a data-toggle="tab" href="#tab-1">수신</a></li>
+					<li class=""><a data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class=""><a data-toggle="tab" href="#tab-3">참여</a></li>
 				</ul>
 
 				<div class="tab-content">
 				<!-- 수신 -->
 					<div id="tab-1" class="tab-pane active">
 						<div class="panel-body">
+						
+						<div class="panel-heading">
+					전체 : <font color="coral">${count1}</font> 개
+				</div>
+				
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="taskRequest.do" class="form-inline">
 									<table style="margin-top: 10px; margin-bottom: 10px;"
@@ -119,7 +120,7 @@
 											<td style="padding-top:12px;">${list.send_date}</td>
                                         
 											<td style="padding-top:12px;"><c:choose>
-														<c:when test="${list.step_no == '4'}">
+														<c:when test="${list.step_no == '4' || list.step_no == '2'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
 														<c:when test="${ list.step_no == '1'}">
@@ -177,6 +178,9 @@
 					<!-- 송신 -->
 					<div id="tab-2" class="tab-pane">
 						<div class="panel-body">
+						<div class="panel-heading">
+					전체 : <font color="coral">${count2}</font> 개
+				</div>
 								<div class="row" style="background-color: #f3f3f3;">
 								<form action="taskLog_Request.do" class="form-inline">
 									<table style="margin-top: 10px; margin-bottom: 10px;"
@@ -233,20 +237,45 @@
 											<th width="30%">업무명</th>
 											<th>업무기한</th>
 											<th>수신자</th>
-											<th>요청일</th>
-											<th>승인단계</th>
+											<th>송신일</th>
+											<th>승인결과</th>
+											<th>수신확인</th>
 										</tr>
 									</thead>
 									<tbody id="secondTable">
 										<c:forEach var="list2" items="${list2}">
 										<tr>
-											<td><input type="checkbox" style="margin-left:20px"></td>
-											<td><span id=""></span></td>
-											<td><a href="taskRequest_Transmit_Detail.do">${list2.task_name}</a></td>
-											<td>${list2.deadline}</td>
-											<td>${list2.emp_name}</td>
-											<td>${list2.send_date}</td>
-											<td><button class="btn btn-xs btn-warning2">${list2.send_date}</button></td>
+											<td style="padding-top:12px;">
+												<input type="checkbox" style="margin-left:20px">
+											</td>
+											<td style="padding-top:12px;">${list2.task_no}</td>
+										
+											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
+											<td style="padding-top:12px;">${list2.deadline}</td>
+											<td style="padding-top:12px;">${list2.rec_name}</td>
+											<td style="padding-top:12px;">${list2.send_date}</td>
+                                        
+											<td style="padding-top:12px;"><c:choose>
+														<c:when test="${list2.step_no == '4' || list2.step_no == '2'}">
+															<button class="btn btn-xs btn-warning2">미승인</button>
+														</c:when>
+														<c:when test="${ list2.step_no == '1'}">
+															<button class="btn btn-xs btn-info">승인</button>
+														</c:when>
+														<c:when test="${ list2.step_no == '3' }">
+															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+													</c:choose>
+											
+											</td>
+											<td><c:choose>
+														<c:when test="${ list2.rec_date == null }">
+															<font color="red"><b>미확인</b></font>
+														</c:when>
+														<c:when test="${ list2.rec_date != null }">
+															<font color="blue"><b>확인</b></font>
+														</c:when>
+													</c:choose></td>
 										</tr>
 										</c:forEach>
 										
@@ -291,6 +320,9 @@
 					<!-- 참여 -->
 					<div id="tab-3" class="tab-pane">
 						<div class="panel-body">
+						<div class="panel-heading">
+					전체 : <font color="coral">${count3}</font> 개
+				</div>
 								<div class="row" style="background-color: #f3f3f3;">
 								<form action="taskLog_Request.do" class="form-inline">
 									<table style="margin-top: 10px; margin-bottom: 10px;"
@@ -304,7 +336,7 @@
 													<option value="task_no">NO</option>
 													<option value="task_name">업무명</option>
 													<option value="deadline">업무기한</option>
-													<option value="emp_no">송신자</option>
+													<option value="emp_no">담당자</option>
 													<option value="send_date">송신일</option>
 											</select></th>
 
@@ -343,22 +375,37 @@
 											<th>NO</th>
 											<th width="30%">업무명</th>
 											<th>업무기한</th>
-											<th>수신자</th>
-											<th>요청일</th>
+											<th>담당자</th>
+											<th>송신일</th>
 											<th>진행단계</th>
 										</tr>
 									</thead>
 									<tbody id="thirdTable">
 										<c:forEach var="list3" items="${list3}">
-										<tr>			
-    			  							<td><input type='checkbox' style='margin-left:20px'></td>
-    			  							<td>list3.task_no</td>
-		    			  					<td><span onclick='particTab_task_no(this);'>list3.task_name</span></td>
-		    			  					<td>list3.deadline</td>
-		    			  					<td>list3.emp_name</td>
-		    			  					<td>list3.send_date</td>
-		    			  					<td>list3.task_step_name</td>
-		    			  				</tr>	
+										<tr>
+											<td style="padding-top:12px;">
+												<input type="checkbox" style="margin-left:20px">
+											</td>
+											<td style="padding-top:12px;">${list3.task_no}</td>
+											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list3.task_no}">${list3.task_name}</a></td>
+											<td style="padding-top:12px;">${list3.deadline}</td>
+											<td style="padding-top:12px;">${list3.rec_name}</td>
+											<td style="padding-top:12px;">${list3.send_date}</td>
+                                        
+											<td style="padding-top:12px;"><c:choose>
+														<c:when test="${list3.step_no == '4'}">
+															<button class="btn btn-xs btn-warning2">미승인</button>
+														</c:when>
+														<c:when test="${ list3.step_no == '1'}">
+															<button class="btn btn-xs btn-info">승인</button>
+														</c:when>
+														<c:when test="${ list3.step_no == '3' }">
+															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+													</c:choose>
+											
+											</td>
+										</tr>
 										</c:forEach>
 									</tbody>
 									

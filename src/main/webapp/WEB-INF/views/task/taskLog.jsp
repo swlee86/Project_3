@@ -37,7 +37,7 @@
 					<div id="tab-1" class="tab-pane active">
 						<div class="panel-body">
 							<div class="panel-heading">
-								전체 : <font color="coral">${ count }</font> 개
+								전체 : <font color="coral">${ count1 }</font> 개
 							</div>
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="taskLog_search.do" class="form-inline">
@@ -99,7 +99,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="list" items="${ list }">
+										<c:forEach var="list" items="${ list1 }">
 											<tr>
 												<td><input type="checkbox" style="margin-left: 20px"
 													name="checkbox" id="${ list.task_no }"></td>
@@ -119,7 +119,7 @@
 												<td>${ list.send_date }</td>
 												<td>
 												<c:choose>
-														<c:when test="${ list.step_no == '4'}">
+														<c:when test="${ list.step_no == '4' || list.step_no == '2'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
 														<c:when test="${ list.step_no == '1'}">

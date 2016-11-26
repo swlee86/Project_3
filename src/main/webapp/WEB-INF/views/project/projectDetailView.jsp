@@ -51,6 +51,29 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
+						<table  cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
+							<tr>
+								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">상세 프로젝트 제목</th>
+                              	<td colspan="3" id="pjd_name">${pjd.pjd_title}</td>
+							</tr>
+							<tr>
+								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">시작일</th>
+	                        	<td id="pjd_start">${pjd.pjd_start}</td>
+	                        	<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">종료일</th>
+	                       		<td id="pjd_end">${pjd.pjd_end}</td>
+                           	</tr> 
+							<tr>
+								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">상세 프로젝트 내용</th>
+                              	<td colspan="3"id="pjd_content">${pjd.pjd_content}</td> 
+							</tr>
+						</table>
+					
+					</div>
+				
+					</br>
+					</br>
+				
+					<div class="table-responsive">
 						<div class="table-responsive">
 							<table class="table table-bordered table-striped">
 								<tr>
