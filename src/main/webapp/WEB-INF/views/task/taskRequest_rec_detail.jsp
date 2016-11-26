@@ -42,9 +42,9 @@
 										<td style="width:40%">
 											 
 												<c:choose>
-										        	<c:when test="${detail.step_no==1}"><button class="btn btn-xs btn-info">승인</button></c:when>
-										        	<c:when test="${detail.step_no==2}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
-										        	<c:when test="${detail.step_no==3}">보류</c:when>
+										        	<c:when test="${detail.step_no eq '1'}"><button class="btn btn-xs btn-info">승인</button></c:when>
+										        	<c:when test="${detail.step_no eq '2'}"><button class="btn btn-xs btn-warning2">승인 거부</button></c:when>
+										        	<c:when test="${detail.step_no eq '3'}">보류</c:when>
 										     	    <c:otherwise><button class="btn btn-xs btn-warning2">미승인</button></c:otherwise>
 										        </c:choose>
 										</td>
