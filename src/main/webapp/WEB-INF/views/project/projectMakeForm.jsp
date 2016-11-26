@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
+<link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />  
 <!--프로젝트 생성 폼-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -116,3 +118,6 @@
       </div>
    </div>
 </div>
+
+
+
