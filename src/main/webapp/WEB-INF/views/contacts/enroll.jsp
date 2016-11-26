@@ -12,8 +12,8 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
+					<li><a href="index.html">Home</a></li>
+					
 					<li class="active"><span>Contacts</span></li>
 				</ol>
 			</div>
