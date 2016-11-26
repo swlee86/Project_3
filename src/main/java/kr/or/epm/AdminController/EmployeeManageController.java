@@ -28,7 +28,7 @@ public class EmployeeManageController {
 
 	// 관리자 > 사원 관리 페이지
 	@RequestMapping("/adminEmployeeManage.do")
-	public String adminEmployeeManage(Model mv, String pagesize, String currentpage) {
+	public String adminEmployeeManage(Model model, String pagesize, String currentpage) {
 		int totalcount = employeeManage.selectEmpCount();
 
 		int pagecount = 0;
