@@ -282,7 +282,7 @@
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
+									<button type="button" class="btn btn-sm btn-success" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
 									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
 								</div>
 							</div>

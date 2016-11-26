@@ -31,7 +31,7 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form action="approval.do" method="POST">
+						<form action="request_approval.do" method="POST">
 						<input type="hidden" name="task_no" value="${task.task_no}">
 						<div class="table-responsive">
 							<table cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px">
