@@ -17,8 +17,8 @@
 					<li><a href="projects.do">프로젝트 생성</a></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">프로젝트 생성</h2>
-			<small>새로운 프로젝트를 시작해 보세요!</small>
+			<h2 class="font-light m-b-xs">프로젝트 상세 생성</h2>
+			<small>프로젝트의 상세정보를 입력하세요.</small>
 		</div>
 	</div>
 </div>
@@ -55,7 +55,7 @@
 									</tr>	
 								
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">수신자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
 										<td>
 											<span class="input-group">
                      							<input type="text" class="form-control input-sm" />
