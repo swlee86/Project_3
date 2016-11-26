@@ -118,4 +118,7 @@ public class ProjectController {
 		
 		return "project.projectDetailView";
 	}
+	
+	
+	
 }

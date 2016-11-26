@@ -72,7 +72,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 상세의 참여자 조회하기(modal) -->
 	<select id="selectPeople_info" parameterType="String" resultType="kr.or.epm.VO.Pjd_people">
-		select pjd_no, p.emp_no, e.emp_name, d.branch_name, d.dept_name, d.low_dept_name, cell_phone,pic
+		select pjd_no, p.emp_no, e.emp_name, d.branch_name, d.dept_name, 
+				d.low_dept_name, cell_phone, emp_tel, birth, email,pic
 			from pjd_people p 
 			join emp e 
 			on p.emp_no = e.emp_no 
@@ -86,4 +87,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pjd_no,pj_no,pjd_title,pjd_content,pjd_start,pjd_end from pjd where pjd_no=#{pjd_no}
 	</select>
 	
+	<!-- 최근 글  번호-->
+	<select id="selectMaxContact_No" resultType="int">
+		select max(to_number(contact_no)) from contact where name = #{name}
+	</select>
+	
+	<!-- 등록인 사번 구하는 함수 -->
+	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">
+		select e.emp_no
+		from  emp_detail d join emp e
+		on d. emp_no = e.emp_no
+		where d.id=#{id}
+	</select>
+	
+	
+	<!-- 주소록테이블 등록 -->
+	<insert id="insertContact" parameterType="kr.or.epm.VO.Contact">
+		insert into contact(contact_no, group_no, name, attach, birth, mail, pic, tel1, tel2, memo) 
+		values(contact_seq.nextval,#{group_no}, #{name}, #{attach, jdbcType=VARCHAR}, #{birth, jdbcType=VARCHAR}, #{mail, jdbcType=VARCHAR}, #{pic, jdbcType=VARCHAR}, #{tel1}, #{tel2}, #{memo, jdbcType=VARCHAR})
+	</insert>
+	
+	<!--개인 주소록테이블  등록 -->
+	<insert id="insertEmpContact">
+		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(SELECT (select distinct groups from emp_contact where emp_no=#{emp_no}) AS empgroup FROM DUAL))
+	</insert>
 </mapper>
