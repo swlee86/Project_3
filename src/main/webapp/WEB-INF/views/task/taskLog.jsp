@@ -37,7 +37,7 @@
 					<div id="tab-1" class="tab-pane active">
 						<div class="panel-body">
 							<div class="panel-heading">
-								전체 : <font color="coral">${ count }</font> 개
+								전체 : <font color="coral">${ count1 }</font> 개
 							</div>
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="taskLog_search.do" class="form-inline">
@@ -99,7 +99,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="list" items="${ list }">
+										<c:forEach var="list" items="${ list1 }">
 											<tr>
 												<td><input type="checkbox" style="margin-left: 20px"
 													name="checkbox" id="${ list.task_no }"></td>
@@ -112,14 +112,14 @@
 														<label></label>
 													</div>
 												</td>
-												<td><a href="taskLog_Receive_Detail.do?task_no=${list.task_no}"
+												<td><a href="taskLog_rec_detail.do?task_no=${list.task_no}"
 													<c:if test="${ list.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>${ list.task_name }</a></td>
 												<td>${ list.deadline }</td>
 												<td>${ list.emp_name }</td>
 												<td>${ list.send_date }</td>
 												<td>
 												<c:choose>
-														<c:when test="${ list.step_no == '4'}">
+														<c:when test="${ list.step_no == '4' || list.step_no == '2'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
 														<c:when test="${ list.step_no == '1'}">
@@ -242,7 +242,7 @@
 												<td><input type="checkbox" style="margin-left: 20px"
 													name="checkbox2" id="${ list2.task_no }"></td>
 												<td>${ list2.task_no }</td>
-												<td><a href="taskLog_Transmit_Detail.do">${ list2.task_name }</a></td>
+												<td><a href="taskLog_detail.do">${ list2.task_name }</a></td>
 												<td>${ list2.deadline }</td>
 												<td>${ list2.rec_name }</td>
 												<td>${ list2.send_date }</td>

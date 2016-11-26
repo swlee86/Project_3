@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
@@ -59,10 +60,7 @@
 							</div>
 						</form>
 					</div>
-                </div>  
-                
-                
-                              	
+                </div>     	
                 <br>     
                  <hr style="border:1px solid gray; margin-bottom:0px">
                 	<div class="table-responsive">
@@ -76,64 +74,22 @@
 									</th>
 									<th>받는사람</th>
 									<th>제목</th>
-									<th>수신확인</th>
-									<th>발송취소</th>
 									<th>날짜</th>
 								</tr>
 							</thead>
 							<tbody>	
+								<c:forEach var="list" items="${maillist}">
 								<tr>
 									<td>
 										<div class="checkbox">
 											<input type="checkbox"> <label></label>
 										</div>
 									</td>
-									<td>송중기</td>
-									<td><a href="#">안녕하세요요요요요요요요요요요요ㅛ요용</a></td>
-									<td>읽음</td>
-									<td></td>
-									<td>16.11.09 10:27</td>
+									<td>${list.rec_mail }</td>
+									<td><a href="#">${list.title}</a></td>
+									<td>${list.send_date}</td>
 								</tr>
-								<tr>
-									<td>
-										<div class="checkbox">
-											<input type="checkbox"> <label></label>
-										</div>
-									</td>
-									<td>송중기</td>
-									<td><a href="#">요요요요요요요요ㅛ요용</a></td>
-									<td><font color=red><b>안읽음</b></font></td>
-									<td>
-										<button class="btn btn-default btn-xs" style="margin:0px">
-											발송취소
-										</button>
-									</td>
-									<td>16.11.09 10:27</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="checkbox">
-											<input type="checkbox"> <label></label>
-										</div>
-									</td>
-									<td>송중기</td>
-									<td><a href="#">안녕하세요요요요요요요요요요요요ㅛ요용</a></td>
-									<td>읽음</td>
-									<td></td>
-									<td>16.11.09 10:27</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="checkbox">
-											<input type="checkbox"> <label></label>
-										</div>
-									</td>
-									<td>송중기</td>
-									<td><a href="#">안녕하세요요요요요요요요요요요요ㅛ요용</a></td>
-									<td>읽음</td>
-									<td></td>
-									<td>16.11.09 10:27</td>
-								</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>

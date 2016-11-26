@@ -31,7 +31,7 @@ public interface MailDAO {
 	public int deleteMail_rec();
 	
 	// 송신 메일 조회하기
-	public List<Mail> selectMail();
+	public List<Mail> selectMail(String email);
 	
 	// 송신함에서 삭제하기
 	public int deleteMail();

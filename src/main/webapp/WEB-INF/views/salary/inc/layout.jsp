@@ -325,8 +325,8 @@
 							
 							
 							$('#jung').html(data.date);
-							//$('#total').html(data.list.total_pay);
-							//$('#severance_pay').html(data.outMoney);
+							$('#total').html(data.day);
+							$('#severance_pay').html(data.dayMoney +"만원");
 							
 						}
 
