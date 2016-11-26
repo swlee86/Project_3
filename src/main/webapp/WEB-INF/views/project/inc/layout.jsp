@@ -25,8 +25,190 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+	
 	<!--jQuery UI CSS-->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
+	
+	<!--텍스트 에디터 사용시 추가해야할 css -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    	<script>
+	$(function(){
+	    //참조자 아이콘 클릭시
+	    $('#organization_add').click(function() {
+	   		var  empSelectNumber = 1;
+			var litag = "<ui style='list-style:none;''>";   		
+			$('#organization').empty();
+			$('#empList').empty();
+	             
+	         	$.ajax({
+	   			url : "taskWriteModal.do",
+	   			success : function(data) {
+	   				 $('#myModal6').modal();
+	   				choose = 1;
+	   				var departMent = "";
+	
+	   				$.each(data, function(index) {
+	   					departMent = data[index];
+	   				});
+	
+	   				$.each(departMent, function(index) {
+	   					litag += "<li onclick='seeDepart(this,"
+	   						litag +=empSelectNumber +","
+	   						litag +=departMent[index].branch_no
+	    				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+	    					litag +="</ul>";
+	    					
+	    					litag+="<div id='dept_div"
+	    					litag+=departMent[index].branch_no
+	    					litag+="'></div>";
+	       				});
+	
+	   				$('#organization').html(litag);
+	
+	   			}
+	   		})
+	    });
+		
+	});
+	
+	
+	 //부서 출력 하는 아작스
+	function seeDepart(obj, empSelectNumber, choose) {
+		//전역 부서 선택시
+	    departcho = choose;
+		var div_id = "dept_div"+choose;
+		$("#"+div_id).empty();
+		var litag = "<ui>";
+	
+		var name = $(obj).text();
+	
+		$.ajax({
+			url : "taskDeptModal.do",
+			type : "GET",
+			data : {
+				branch_no : departcho
+			},
+			success : function(data) {
+				var dept;
+				console.log(data);
+				$.each(data, function(index) {
+					dept = data[index];
+				});
+	
+				$.each(dept, function(index) {
+					litag += "<li onclick='seelow_Depart(this, "
+						litag +=empSelectNumber+","
+					    litag +=dept[index].dept_no
+					    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
+						litag +="</ul>";
+						
+						litag+="<div id='low_dept_div"
+						litag+=dept[index].dept_no
+						litag+="'></div>";
+				});
+				
+				$("#"+div_id).html(litag);
+			}
+		});
+	}
+	
+	//하위 부서 클릭시
+	function seelow_Depart(obj,empSelectNumber,departcho) {
+		alert("부서 : "+choose);
+		deptNumber= departcho;
+		var litag = "<ui>";
+		var div_id = "low_dept_div"+departcho;
+		$("#"+div_id).empty();
+	
+		$.ajax({
+			url : "tasklow_deptModal.do",
+			data : {
+				dept_no : deptNumber
+			},
+	
+			success : function(data) {
+	
+				var low_dept = "";
+				$.each(data, function(index) {
+					low_dept = data[index];
+				});
+				$.each(low_dept, function(index) {
+					litag += "<li onclick='seeEmpMember(this, "
+					litag += empSelectNumber+","
+					litag +=low_dept[index].low_dept_no
+					litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+					litag +="</ul>";
+					
+				});
+				$("#"+div_id).html(litag);
+			}
+	
+		});
+	}
+	
+	//사원 뽑아오기
+	function seeEmpMember(obj,empSelectNumber,low_dept_no){
+	   //체크
+	   var empListNumber = low_dept_no;
+			 alert("사원뽑기 : "+empListNumber);
+	   
+	   console.log(obj);
+	   
+	   //클릭한 text 값 뽑아옴.
+	   var low_dept = $(obj).text();
+	   alert("taskEmpModal : "+low_dept);
+	   alert("selectNo : " + empSelectNumber);
+	   var makeTable = "";
+	   if(empSelectNumber == 1){
+	    makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
+	   }else{
+	    makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+	   }
+	   
+	   $.ajax(
+	         {
+	            url: "taskEmpModal.do",
+	            data:{
+	          	  low_dept_no: empListNumber
+	                 },
+	            success:function(data){
+	          	  var emp = "";
+	                $.each(data, function(index){
+	                   emp = data[index];
+	                   console.log(emp);
+	               });
+	               
+	               $.each(emp, function(index){
+	                  if(empSelectNumber == 1){   
+	                     makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
+	                  }
+	                  else if(empSelectNumber == 2){
+	                     makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+	                  }
+	               });
+	               makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+	               $('#empList').empty();
+	               $('#empList').append(makeTable);
+	             }    
+	            
+	         }
+	         );
+	}
+	
+	
+	//참조자 선택시
+	function recF(obj){
+	   //수신자 사번
+	   var emp_no = $(obj).parent().parent().children().eq(0).html();
+	   var name = $(obj).parent().parent().children().eq(1).html();
+	   
+	   
+	   console.log("emp_no : "+ emp_no);
+	   console.log("name : "+ name);
+	   $('#myModal6').modal("hide");
+	  
+	}
+	</script>
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -63,15 +245,37 @@
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
 
-
+<script src="vendor/jquery-flot/jquery.flot.js"></script>
+<script src="vendor/jquery-flot/jquery.flot.resize.js"></script>
+<script src="vendor/jquery-flot/jquery.flot.pie.js"></script>
+<script src="vendor/flot.curvedlines/curvedLines.js"></script>
+<script src="vendor/jquery.flot.spline/index.js"></script>
+<script src="vendor/summernote/dist/summernote.min.js"></script>
+<script src="vendor/peity/jquery.peity.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <script>
 
 	$(function(){
-		/* $('#makeProjectBtn').click(function(){
-			location.href=";
-		}); */
+		// Initialize summernote plugin
+ 	    $('.summernote').summernote();
+
+	    var sHTML = $('.summernote').code();
+
+	    console.log(sHTML);
+
+	    $('.summernote1').summernote({
+	        toolbar: [
+	            ['headline', ['style']],
+	            ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+	            ['textsize', ['fontsize']],
+	            ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+	        ]
+	    });
+
+	    $('.summernote2').summernote({
+	        airMode: true,
+	    }); 
 		
 		//프로젝트 시작일
 		$('#formstartDate').datepicker({
@@ -121,6 +325,40 @@
 		});
 		
 		
+		$('.selectpeople').click(function(){  
+			var emp_no = ($(this).attr('id')).substr(9);
+			//console.log(emp_no);
+			//console.log("html: " +$('#m_name').html());
+			$.ajax(
+					{
+						type : "post",
+						url  : "pjd_people.do",
+						data : {
+							"emp_no" : emp_no,						
+						},
+						success : function(data){
+							console.log(data.data);
+							
+							$('#m_name').html(data.data.emp_name);
+							$('#m_dept').html(data.data.branch_name + '\n' + data.data.dept_name+ '\n' +data.data.low_dept_name);
+							$('#m_cell').html(data.data.cell_phone);
+							$('#m_img').attr('src','${pageContext.request.contextPath}/img/upload/'+data.data.pic);
+							
+							
+							$('#h_emp_no').val(data.data.emp_no);
+							$('#h_emp_name').val(data.data.emp_name);
+							$('#h_emp_attach').val(data.data.branch_name+'&nbsp;'+data.data.dept_name+ '&nbsp;' +data.data.low_dept_name);
+							$('#h_emp_tel1').val(data.data.cell_phone);
+							$('#h_emp_tel2').val(data.data.emp_tel);
+							$('#h_emp_birth').val(data.data.birth);
+							$('#h_emp_pic').val(data.data.pic);
+							$('#h_emp_mail').val(data.data.email);
+							
+							console.log($('#h_emp_name').val());
+
+						}
+					});
+			});
 				
 	});
 
@@ -140,44 +378,7 @@
 		var hiddenValue = upbtn2.value;
 		location.href="projectDetailCheckView.do?hidden="+hiddenValue;
 	}
-	
-	$('.selectpeople').click(function(){  
-		var emp_no = ($(this).attr('id')).substr(9);
-		//console.log(emp_no);
-		//console.log("html: " +$('#m_name').html());
-		$.ajax(
-				{
-					type : "post",
-					url  : "pjd_people.do",
-					data : {
-						"emp_no" : emp_no,						
-					},
-					success : function(data){
-						console.log(data.data);
-						
-						$('#m_name').html(data.data.emp_name);
-						$('#m_dept').html(data.data.branch_name + '\n' + data.data.dept_name+ '\n' +data.data.low_dept_name);
-						$('#m_cell').html(data.data.cell_phone);
-						$('#m_img').attr('src','${pageContext.request.contextPath}/img/upload/'+data.data.pic);
-						
-						
-						$('#h_emp_no').val(data.data.emp_no);
-						$('#h_emp_name').val(data.data.emp_name);
-						$('#h_emp_attach').val(data.data.branch_name+'&nbsp;'+data.data.dept_name+ '&nbsp;' +data.data.low_dept_name);
-						$('#h_emp_tel1').val(data.data.cell_phone);
-						$('#h_emp_tel2').val(data.data.emp_tel);
-						$('#h_emp_birth').val(data.data.birth);
-						$('#h_emp_pic').val(data.data.pic);
-						$('#h_emp_mail').val(data.data.email);
-						
-						console.log($('#h_emp_name').val());
 
-					}
-				});
-		});
-	
-		
-	
 </script>
 </body>
 </html>
