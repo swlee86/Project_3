@@ -29,7 +29,7 @@
 			<div class="hpanel">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#tab-1">수신</a></li>
-					<li class=""><a href="taskRequest_rec.do" data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class=""><a data-toggle="tab" href="#tab-2">송신</a></li>
 					<li class=""><a data-toggle="tab" href="#tab-3">참여</a></li>
 				</ul>
 

@@ -224,13 +224,31 @@
 											<tr>
 												<td><input type="checkbox" style="margin-left:20px;"></td>
 												<td>${list2.task_no}</td>
-												<td>${list2.sign}</td>
 												<td><a href="taskInform_Detail_rec.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
 												<td>${list2.deadline}</td>
-												<td>${list2.emp_name}</td>
+												<td>${list2.rec_name}</td>
 												<td>${list2.send_date}</td>
-												<td>${list2.step_no}</td>
-												<td>${list2.rec_date}</td>
+												<td style="padding-top:12px;"><c:choose>
+														<c:when test="${list2.step_no == '4' || list2.step_no == '2'}">
+															<button class="btn btn-xs btn-warning2">미승인</button>
+														</c:when>
+														<c:when test="${ list2.step_no == '1'}">
+															<button class="btn btn-xs btn-info">승인</button>
+														</c:when>
+														<c:when test="${ list2.step_no == '3' }">
+															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+													</c:choose>
+											
+											</td>
+											<td><c:choose>
+														<c:when test="${ list2.rec_date == null }">
+															<font color="red"><b>미확인</b></font>
+														</c:when>
+														<c:when test="${ list2.rec_date != null }">
+															<font color="blue"><b>확인</b></font>
+														</c:when>
+													</c:choose></td>
 											</tr>
 										</c:forEach>
 									</tbody>
