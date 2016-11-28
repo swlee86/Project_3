@@ -19,6 +19,7 @@
 				<div class="form-group">
 					<select id="salarysearch" class="form-control">
 						<option value="">선택</option>
+						<option value="전체">전체</option>
 						<option value="연도별">연도별 조회</option>
 						<option value="월별">월별 조회</option>
 					</select>
@@ -54,17 +55,21 @@
 		<div class="col-sm-12">
 			<div class="hpanel style=" text-align:center">
 				<div class="panel-body">
-					<h4>
+				    <h4>
 						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여정보
 					</h4>
+			
 					 <hr style="border:1px solid gray; margin-bottom:0px">
 					<div class="table-responsive" id="payResultDiv">
+						<input type="hidden" name="${date}">
 						<table cellpadding="1" cellspacing="1"
 							class="table table-bordered table-condensed">
-						  <c:forEach var="list" items="${list}">
-							<tr >
-								<th style="background-color:#f9fafc">지급일</th>
-								<td>${list.give_date}</td>
+						 
+							<tr>
+								<th style="background-color:#f9fafc">총근무시간</th>
+								<td>${list.acc_commute_time}</td>
+								<th style="background-color:#f9fafc">추가근무시간</th>
+								<td>${list.acc_add_time}</td>
 								<th style="background-color:#f9fafc">기본급여</th>
 								<td>${list.basic_pay}</td>
 								<th style="background-color:#f9fafc">추가근무수당</th>
@@ -74,7 +79,7 @@
 								<th style="background-color:#f9fafc">총지급액</th>
 								<td>${list.total_pay}</td>
 							</tr>
-						  </c:forEach>
+						 
    						</table>
 					</div>
 				</div>

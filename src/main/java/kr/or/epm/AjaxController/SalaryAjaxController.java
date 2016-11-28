@@ -44,6 +44,20 @@ public class SalaryAjaxController {
 	@Autowired
 	private View jsonview;
 
+	//급여 관리> 전체 급여 조회(개인) 
+	@RequestMapping("/salary_allSearch.do")
+	public View salary_allSearch(Principal principal, Model model){
+		String id = principal.getName();
+		System.out.println("아이디  : "+id);
+	     
+		//아이디 통해 사번 얻어옴
+	    EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
+	    List<Pay> list = payservice.selectPay_mine_all(emp.getEmp_no());
+	    model.addAttribute("list", list);
+		
+		return jsonview;
+	}
+	
 	// 급여 관리> 월별 조회
 	@RequestMapping("/MonthlysalSearch.do")
 	public View MonthlySalary(Principal principal, Model model, String date) {

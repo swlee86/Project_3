@@ -25,6 +25,15 @@ public class PayService {
 		System.out.println("service :"+list.size());
 		return list;
 	}
+	//본인 예상 급여 조회
+	public Pay selectPay_mine(String emp_no, String dTime){
+		System.out.println("예상 급여 :"+emp_no+" / "+dTime);
+		PayDAO payDao = sqlsession.getMapper(PayDAO.class);
+		Pay list = payDao.selectPay_mine(emp_no, dTime);
+		return list;
+		
+	}
+	
 	//월별 급여 조회
 	public Pay selectPay_mine_Monthly(String emp_no, String give_date){
 		PayDAO payDao = sqlsession.getMapper(PayDAO.class);
