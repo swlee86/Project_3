@@ -77,7 +77,7 @@
 									<div class="project-people">
 										<c:forEach var="j" items="${peopleList[i.rownum-1]}">
 											<a href="" data-toggle="modal" data-target="#myModal" id="pjdmodal_${j.emp_no}" class="selectpeople">
-												<img alt="logo" class="img-circle" src="${j.pic}"></a>
+												<img alt="logo" class="img-circle" src="${pageContext.request.contextPath}/img/upload/${j.pic}"></a>
 										</c:forEach>
 									</div>
 								</div>
@@ -97,72 +97,35 @@
 </div>
 
 
-<!--이미지 클릭시 뜨는 모달 페이지-->
+
 <div class="modal fade hmodal-success" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog  modal-sm">
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center">
-		 	<h4 class="modal-title"><img alt="logo" id="m_img" class="img-circle m-b" src="images/a3.jpg" style="width: 82px;height: 82px;"></h4> <br>
-				<font class="font-bold" size="2em">
-					<font style="color:gray;" id="m_name"></font><br>
-					<font style="color:#9d9fa2" id="m_dept"></font> <br>
-					<font style="color:gray;" id="m_cell"></font>
+				<h4 class="modal-title">
+					<img alt="logo" class="img-circle m-b"  id="m_img" src="${pageContext.request.contextPath}/img/upload/   images/a3.jpg" style="width: 82px; height: 82px;">
+				</h4>
+				<br> <font class="font-bold" size="2em"> <font style="color: gray;" id="m_name"></font><br> 
+				<font style="color: #9d9fa2" id="m_dept"></font> 
+				<br> 
+				<font style="color: gray;" id="m_cell"></font>
 				</font>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary btn-sm demo2">주소록 등록</button>
+				<form id="contact" method="post">
+					<input type="hidden" name="emp_no" id="h_emp_no">
+					<input type="hidden" name="name" id="h_emp_name">
+					<input type="hidden" name="attach" id="h_emp_attach">
+					<input type="hidden" name="tel1" id="h_emp_tel1">
+					<input type="hidden" name="tel2" id="h_emp_tel2">
+					<input type="hidden" name="birth" id="h_emp_birth">
+					<input type="hidden" name="pic" id="h_emp_pic">
+					<input type="hidden" name="mail" id="h_emp_mail">
+				<button type="button" class="btn btn-default btn-sm"data-dismiss="modal">닫기</button>
+				<button type="submit" class="btn btn-primary btn-sm demo2">주소록 등록</button>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="color-line"></div>
-			<div class="modal-header">
-				<h4 class="modal-title">정보보기</h4>
-			</div>
-			<div class="modal-body">
-			<form method="post" class="form-horizontal text-center">				
-				<div class="form-group">
-					<label class="control-label col-sm-4">아이디  </label>
-					<div class="col-sm-6">
-						<input type="text" name="id" class="form-control">
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-sm-4 control-label">이름 </label>
-					<div class="col-sm-6">
-						<input type="text" placeholder="placeholder" class="form-control">
-					</div>
-                </div>
-				
-				<div class="form-group">
-					<label class="col-sm-4 control-label">부서 </label>
-					<div class="col-sm-6">
-						<input type="text" placeholder="placeholder" class="form-control">
-					</div>
-                </div>
-				
-				<div class="form-group">
-					<label class="col-sm-4 control-label">직급 </label>
-					<div class="col-sm-6">
-						<input type="text" placeholder="placeholder" class="form-control">
-					</div>
-                </div>
-				
-			</form>
-			
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
-
- -->

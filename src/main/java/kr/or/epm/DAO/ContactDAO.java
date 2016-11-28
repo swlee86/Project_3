@@ -45,7 +45,7 @@ public interface ContactDAO {
 	
 	
 	//그룹 이름 수정시 , 주소록 그룹 번호 수정
-	public int updateContact_GroupNo(String group_no,String pre_group_no);
+	public int updateContact_GroupNo(String group_no,String pre_group_no,String emp_no);
 	
 	
 	

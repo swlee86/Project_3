@@ -18,6 +18,10 @@ public class Pjd_people {
 	private String cell_phone;
 	private String pic;
 	
+	private String emp_tel;
+	private String tel2;
+	private String birth;
+	private String email;
 	public String getPj_no() {
 		return pj_no;
 	}
@@ -89,11 +93,47 @@ public class Pjd_people {
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
-	
+
+	public String getEmp_tel() {
+		return emp_tel;
+	}
+
+	public void setEmp_tel(String emp_tel) {
+		this.emp_tel = emp_tel;
+	}
+
+	public String getTel2() {
+		return tel2;
+	}
+
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
+	}
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "Pjd_people [pj_no=" + pj_no + ", pjd_no=" + pjd_no + ", emp_no=" + emp_no + ", emp_name=" + emp_name
 				+ ", branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name=" + low_dept_name
-				+ ", cell_phone=" + cell_phone + ", pic=" + pic + "]";
+				+ ", cell_phone=" + cell_phone + ", pic=" + pic + ", emp_tel=" + emp_tel + ", tel2=" + tel2 + ", birth="
+				+ birth + ", email=" + email + "]";
 	}
+	
+	
+	
 }

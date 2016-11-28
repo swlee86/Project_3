@@ -120,7 +120,7 @@
 											<td style="padding-top:12px;">${list.send_date}</td>
                                         
 											<td style="padding-top:12px;"><c:choose>
-														<c:when test="${list.step_no == '4' || list.step_no == '2'}">
+														<c:when test="${list.step_no == '4'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
 														<c:when test="${ list.step_no == '1'}">
@@ -128,6 +128,9 @@
 														</c:when>
 														<c:when test="${ list.step_no == '3' }">
 															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+														<c:when test="${list.step_no == '2'}">
+															<button class="btn btn-xs btn-danger">승인거부</button>
 														</c:when>
 													</c:choose>
 											
@@ -250,13 +253,13 @@
 											</td>
 											<td style="padding-top:12px;">${list2.task_no}</td>
 										
-											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
+											<td style="padding-top:12px;"><a href="taskRequest_detail.do?task_no=${list2.task_no}">${list2.task_name}</a></td>
 											<td style="padding-top:12px;">${list2.deadline}</td>
 											<td style="padding-top:12px;">${list2.rec_name}</td>
 											<td style="padding-top:12px;">${list2.send_date}</td>
                                         
 											<td style="padding-top:12px;"><c:choose>
-														<c:when test="${list2.step_no == '4' || list2.step_no == '2'}">
+														<c:when test="${list2.step_no == '4'}">
 															<button class="btn btn-xs btn-warning2">미승인</button>
 														</c:when>
 														<c:when test="${ list2.step_no == '1'}">
@@ -265,14 +268,17 @@
 														<c:when test="${ list2.step_no == '3' }">
 															<button class="btn btn-xs btn-primary2">보류</button>
 														</c:when>
+														<c:when test="${list.step_no == '2'}">
+															<button class="btn btn-xs btn-danger">승인거부</button>
+														</c:when>
 													</c:choose>
 											
 											</td>
 											<td><c:choose>
-														<c:when test="${ list2.rec_date == null }">
+														<c:when test="${list2.rec_date == null }">
 															<font color="red"><b>미확인</b></font>
 														</c:when>
-														<c:when test="${ list2.rec_date != null }">
+														<c:when test="${list2.rec_date != null }">
 															<font color="blue"><b>확인</b></font>
 														</c:when>
 													</c:choose></td>
@@ -282,7 +288,7 @@
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 5px;">
-									<button type="button" class="btn btn-sm btn-success "  style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
+									<button type="button" class="btn btn-sm btn-success" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" onclick="window.location.href='taskWrite.do'" >업무 등록</button>
 									<button type="button" class="btn btn-sm btn-default demo4" style=" padding-right:15px;padding-left:15px; font-weight:bold; font-size:13px;" >업무삭제</button>
 								</div>
 							</div>
@@ -387,7 +393,7 @@
 												<input type="checkbox" style="margin-left:20px">
 											</td>
 											<td style="padding-top:12px;">${list3.task_no}</td>
-											<td style="padding-top:12px;"><a href="taskRequest_rec_detail.do?task_no=${list3.task_no}">${list3.task_name}</a></td>
+											<td style="padding-top:12px;"><a href="taskRequest_participation_detail.do?task_no=${list3.task_no}">${list3.task_name}</a></td>
 											<td style="padding-top:12px;">${list3.deadline}</td>
 											<td style="padding-top:12px;">${list3.rec_name}</td>
 											<td style="padding-top:12px;">${list3.send_date}</td>
@@ -401,6 +407,9 @@
 														</c:when>
 														<c:when test="${ list3.step_no == '3' }">
 															<button class="btn btn-xs btn-primary2">보류</button>
+														</c:when>
+														<c:when test="${list.step_no == '2'}">
+															<button class="btn btn-xs btn-warning">승인거부</button>
 														</c:when>
 													</c:choose>
 											

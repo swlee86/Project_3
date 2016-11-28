@@ -2,6 +2,9 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import kr.or.epm.VO.Contact;
+import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_people;
 
@@ -36,4 +39,17 @@ public interface PjdDAO {
 	
 	// 프로젝트 상세 조회하기 ( 단일)
 	public Pjd selectPjd_Detail(String pjd_no);
+	
+	
+	//등록인 정보 구하기
+	public Emp selectInfoSearch(String id);
+		
+	//주소록테이블 등록
+	public int insertContact(Contact contact);
+		
+	//현재 최고 글번호
+	public int selectMaxContact_No(String name);
+		
+	//개인 주소록 테이블 등록
+	public int insertEmpContact(Emp_contact emp_contact);
 }

@@ -30,6 +30,16 @@ public class ProjectController {
 	@Autowired
 	private ProjectDetailService projectdetailservice;
 	
+	
+	//프로젝트 생성하기
+		@RequestMapping(value="/projectMake.do", method=RequestMethod.POST)
+		public String projectMake(Pj pj, Model model){
+			System.out.println("projectMake 작성 컨트롤러 탐");
+			System.out.println("pj : "+pj.toString());
+			model.addAttribute("pj", pj);
+			return "project.projectDetailMakeForm";
+		}
+		
 	// SideBar(aside.jsp) 프로젝트 > 진행중인 프로젝트 클릭시 구동
 	@RequestMapping("/project_list.do")
 	public String projectview(Model model) {
@@ -108,4 +118,7 @@ public class ProjectController {
 		
 		return "project.projectDetailView";
 	}
+	
+	
+	
 }

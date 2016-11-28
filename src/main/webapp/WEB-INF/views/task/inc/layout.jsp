@@ -431,11 +431,11 @@ ul {
     				); */
     	  });
     	  
-    	  //참여 탭 클릭 시
+    	  /* //참여 탭 클릭 시
     	  $('#taskRequestpartnerTab').click(function(){
 				
     		  location.href='taskRequest_participation.do';
-    		  	
+    		  	 */
 					
 				/* $.ajax(
     					{
@@ -459,8 +459,8 @@ ul {
     					    	$('#thirdBody').html(table);
     					    }
     					}  
-    		        ) */
-    	  });
+    		        )*/ 
+    	  
     	  
     	  //기본배열 넘기기 테스트
     	/*   $('#test').click(function(){

@@ -1,6 +1,7 @@
 package kr.or.epm.MailController;
 
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,12 +32,54 @@ public class MailController {
 		return "mail.maillogin";
 	}
 	
+	
+	
 	@RequestMapping(value="maillogin.do", method=RequestMethod.POST)
 	public String mailloginOk(HttpSession session, String password, Model model){
 		String pwd = password;
 		session.setAttribute("mailusedata", pwd);
 		return "redirect:mailbox.do";
 	}
+	
+	
+	@RequestMapping(value="mailsendlogin.do", method=RequestMethod.GET)
+	public String mailsend(HttpSession session, Model model){
+		String email = (String)session.getAttribute("googlemail");
+		System.out.println("email데이터 확인 : " + email);
+		
+		model.addAttribute("email", email);
+		return "mail.maillogin";
+	}
+	
+	
+
+	@RequestMapping(value="mailsendlogin.do", method=RequestMethod.POST)
+	public String mailsendloginOk(HttpSession session, String password, Model model){
+		String pwd = password;
+		session.setAttribute("mailusedata", pwd);
+		return "redirect:mailbox_compose.do";
+	}
+	
+	
+	@RequestMapping(value="sendlistlogin.do", method=RequestMethod.GET)
+	public String mailsendlist(HttpSession session, Model model){
+		String email = (String)session.getAttribute("googlemail");
+		System.out.println("email데이터 확인 : " + email);
+		model.addAttribute("email", email);
+		return "mail.maillogin";
+	}
+	
+	
+
+	@RequestMapping(value="sendlistlogin.do", method=RequestMethod.POST)
+	public String mailsendlistloginOk(HttpSession session, String password, Model model){
+		String pwd = password;
+		session.setAttribute("mailusedata", pwd);
+		return "redirect:mailbox_send.do";
+	}
+	
+	
+	
 
 	// SideBar(aside.jsp) 메일 서비스 > 메일함 클릭시 구동
 	@RequestMapping("/mailbox.do")
@@ -70,6 +113,7 @@ public class MailController {
                 pagecount = Mailtotalcount/pgsize;
             }else{
                 pagecount = (Mailtotalcount/pgsize) + 1;
+                
             }
     		
              
@@ -102,19 +146,46 @@ public class MailController {
 	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
 	@RequestMapping("/mailbox_compose.do")
 	public String mailbox_composeview(HttpSession session) {
+		
 		String sessionchk = (String) session.getAttribute("mailusedata");
 		boolean test = Util.isEmpty(sessionchk);
 
 		if (test == true) {
-			return "redirect:maillogin.do";
+			return "redirect:mailsendlogin.do";
 		}else{			
+			String mailid = (String)session.getAttribute("googlemail");
+			Properties props = new Properties();
+			props.put("mail.smtps.auth", "true");
+			props.put("mail.smtp.user", mailid);
+			props.put("mail.smtp.password", sessionchk);
+			
 		return "mail.mailbox_compose";
 		}
 	}
+	
 
 	//메일 > 보낸메일함 페이지이동 
 	@RequestMapping("/mailbox_send.do")
-	public String mailbox_send() {
+	public String mailbox_send(Model mv, HttpSession session) {
+	       String mailid = (String)session.getAttribute("googlemail");
+		   String sessionchk=(String)session.getAttribute("mailusedata");
+	       boolean test = Util.isEmpty(sessionchk);
+	       List<Mail> sendlist = null;
+	       
+			if(test==true){
+	    	   return "redirect:sendlistlogin.do";
+			}else{
+				try{
+					sendlist = mailservice.mailsendlist(mailid);	
+					System.out.println(sendlist.toString());
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally{
+					mv.addAttribute("maillist", sendlist);
+				}
+			
+			}
+		
 		return "mail.mailbox_send";
 	}
 	
