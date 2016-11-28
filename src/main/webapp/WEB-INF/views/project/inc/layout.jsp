@@ -272,8 +272,6 @@
 
 	    var sHTML = $('.summernote').code();
 
-	    console.log(sHTML);
-
 	    $('.summernote1').summernote({
 	        toolbar: [
 	            ['headline', ['style']],
