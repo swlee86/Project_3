@@ -69,6 +69,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by give_date desc
 	</select>
 	
+	<!-- 급여 마감 관리 전체 급여 내역 조회하기 -->
+	<select id="selectPay_all_Close" resultType="kr.or.epm.VO.PayList">
+	   
+	</select>
+	
+	
 	<!-- 전체 금월 예상 급여 조회하기 -->
 	<select id="selectPay">
 		select pay_no, p.emp_no, e.emp_name, basic_pay, bonus, add_pay, total_pay, give_date

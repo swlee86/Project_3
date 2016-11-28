@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Pay;
+import kr.or.epm.VO.PayList;
 
 /*
  * 작성일 : 2016-11-18
@@ -35,9 +36,12 @@ public interface PayDAO {
 	// 전체 급여 내역 조회하기
 	public List<Pay> selectPay_all();
 	
+	//급여 마감 관리하기
+	public List<PayList> selectPay_all_Close();
+	
 	// 전체 금월 예상 급여 조회하기
 	public List<Pay> selectPay();
 	
 	// 관리자] 급여 확정하기
-	public int updatePay();
+	public int updatePay(String pay_no);
 }
