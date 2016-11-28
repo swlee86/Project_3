@@ -13,14 +13,8 @@
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 ">
 	<mvc:annotation-driven />
-	<!-- <context:component-scan base-package="kr.or.epm.PageMoveController" />
-	<context:component-scan base-package="kr.or.epm.LoginController" />
-	<context:component-scan base-package="kr.or.epm.SecurityController" />
-	<context:component-scan base-package="kr.or.epm.AjaxController" />
-	<context:component-scan base-package="kr.or.epm.Chat" />
-	<context:component-scan base-package="kr.or.epm.ProjectController"/> -->
 	<context:component-scan base-package="kr.or.epm.*"/>
-	
+
 	<context:component-scan base-package="com.spring" use-default-filters="false">
     	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>

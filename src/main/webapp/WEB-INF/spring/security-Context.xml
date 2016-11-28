@@ -7,7 +7,8 @@
   <security:http>
    <security:csrf disabled="true"/>
   <security:form-login login-page="/login.do"
-  								authentication-failure-url="/login.do?error" />
+  								authentication-failure-url="/login.do?error" 
+  								/>
   <security:logout logout-success-url="/index.html" />
   <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')" />
   <security:intercept-url pattern="/*board.do" access="hasRole('ROLE_MASTER')" />
@@ -22,7 +23,5 @@
      </security:authentication-provider>
  </security:authentication-manager>
 <!-- <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/> -->
-
-
 
 </beans>

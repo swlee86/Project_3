@@ -133,29 +133,11 @@
                         <span class="label label-success">4</span>
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
-                        <div class="title" id="titlepush">
+                        <div class="title">
                             You have 4 new messages
                         </div>
-                        <li>
-                            <a>
-                                It is a long established.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                There are many variations.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Lorem Ipsum is simply dummy.
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Contrary to popular belief.
-                            </a>
-                        </li>
+                        <li id="titlepush">
+                    	</li>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -216,6 +198,25 @@
 $('#birthDay').click(function(){
 	$('#birthModal').modal();
 });
+
+		//웹소켓 초기화
+		var webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket");
+
+        //메시지가 오면 messageTextArea요소에 메시지를 추가한다.
+        webSocket.onmessage = function processMessge(message){
+            //Json 풀기
+		
+
+            var jsonData = JSON.parse(message.data);
+            if(jsonData.message != null) {
+				console.log(jsonData.message);
+                document.getElementById("titlepush").append(jsonData.message+ "\n");
+            };
+        }
+
+	webSocket.onclose = function(e) {
+		console.log("연결 닫힘: " + e.reason);
+		}	
 
 
 </script>

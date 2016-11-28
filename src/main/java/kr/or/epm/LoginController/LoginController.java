@@ -2,6 +2,7 @@ package kr.or.epm.LoginController;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,13 @@ public class LoginController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String loginview() {
+	public String loginview(HttpServletRequest request) {
 		System.out.println("로그인");
+	    String referrer = request.getHeader("Referer");
+	    request.getSession().setAttribute("prevPage", referrer);
 		return "login.login";
 	}
 	
