@@ -111,8 +111,17 @@ public class ProjectController {
 		System.out.println("들어온pjd_no : " + pjd_no);
 		
 		Pjd pjd= null;
-		
+		//pjd의 데이터 가져오기
 		pjd = projectdetailservice.selectPjd_detail(pjd_no);
+		
+		
+		List<Pjd_people> peoplelist = null;
+		//peoplelist = 
+		
+		//pjd에 따른 참여자 정보 가져오기
+		///////////////
+		////////
+		//작업중
 		
 		model.addAttribute("pjd",pjd);
 		
