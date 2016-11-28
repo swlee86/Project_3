@@ -31,7 +31,7 @@
 				<p>총 프로젝트 기간 : <span id="playProject"></span></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				<button type="button" class="btn btn-primary">프로젝트 보러가기</button>
 			</div>
 		</div>
