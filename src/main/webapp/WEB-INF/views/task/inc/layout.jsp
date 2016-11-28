@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,28 +20,23 @@
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
-<link rel="stylesheet"
-   href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+<link rel="stylesheet" href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
 <link rel="stylesheet" href="vendor/select2-3.5.2/select2.css" />
-<link rel="stylesheet"
-   href="vendor/select2-bootstrap/select2-bootstrap.css" />
-
-
+<link rel="stylesheet" href="vendor/select2-bootstrap/select2-bootstrap.css" />
 
 <!-- App styles -->
-<link rel="stylesheet"
-   href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 
 
 <!--jQuery UI CSS-->
 <link rel="stylesheet"
-   href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-   type="text/css" />
+   	  href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+   	  type="text/css" />
 
-    <!-- alert 창 -->
-	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+<!-- alert 창 -->
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
 <style>
 span.sty {
@@ -152,12 +146,8 @@ ul {
    padding-left: 0px;
 }
 </style>
-
-
-
-
-
 </head>
+
 <body class="fixed-navbar fixed-sidebar">
 
    <!-- Simple splash screen-->
@@ -176,7 +166,7 @@ ul {
       </div>
    </div>
 
-   <!--[if lt IE 7]>
+<!--[if lt IE 7]>
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
@@ -195,7 +185,6 @@ ul {
 
       <!-- Footer-->
       <tiles:insertAttribute name="footer" />
-
    </div>
 
    <!-- Vendor scripts -->
@@ -216,16 +205,24 @@ ul {
    <!-- App scripts -->
    <script src="scripts/homer.js"></script>
    
-	<!-- alert -->
-	<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+   <!-- alert -->
+   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 
    <script type="text/javascript">
+   
+   // 공통
    
    //스크립트 생성자
    function empInfo(emp_no, emp_name){
       this.emp_no = emp_no;
       this.emp_name = emp_name;
    }
+   
+   // 업무 요청
+   
+   // 업무 보고
+   
+   // 업무 일지
    
    //사원정보 뽑아서 담을 배열
    var empInfoArray = new Array();

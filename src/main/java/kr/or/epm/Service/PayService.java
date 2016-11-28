@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.PayDAO;
 import kr.or.epm.VO.Pay;
+import kr.or.epm.VO.PayList;
 
 @Service
 public class PayService {
@@ -47,6 +48,23 @@ public class PayService {
 		String regdate = paydao.selectRegdate(emp_no);
 		//System.out.println("입사일 : "+regdate);
 		return regdate;
+		
+	}
+	//급여 마감 관리
+	public List<PayList> selectPay_all_Close(){
+		System.out.println("급여 마감 관리");
+		PayDAO dao = sqlsession.getMapper(PayDAO.class);
+	    List<PayList> list = dao.selectPay_all_Close();
+	    return list;
+		
+	}
+	//급여 마감 확정
+	public int updatePay(String pay_no){
+		System.out.println("급여 마감 확정");
+		int result=0;
+		PayDAO dao = sqlsession.getMapper(PayDAO.class);
+	    result = dao.updatePay(pay_no);
+		return result;
 		
 	}
 	
