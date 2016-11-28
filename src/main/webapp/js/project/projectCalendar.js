@@ -36,19 +36,7 @@ $(function() {
 				 
 				 dbdate.push(eventData);
 			 }
-			 
-			 for(var i = 0; i < data3.length; i++){
-				 
-				 eventData= {
-	                       title: data3[i].pj_title ,
-	                       start: data3[i].pj_start,
-	                       end: data3[i].pj_end,
-	                       id : "2"
-	             }
-				 dbdate.push(eventData);
-			 }
-			 
-			 console.log("내가 참여자 : " +dbdate + " / 내가 쓴 것 : "+dbWdate);
+	
 			 
 			 calendar();
 		},
@@ -83,7 +71,7 @@ function calendar(){
 			editable : false, // 수정 가능
 			
 			// DB에서 가져온 값으로 해당 날짜에 붙이는 기능
-			events : dbWrite
+			events : dbdate
 			
 		});
 }
