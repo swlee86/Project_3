@@ -110,10 +110,19 @@ public class ProjectController {
 	public String projectdetail_detailview(Model model, String pjd_no){
 		System.out.println("들어온pjd_no : " + pjd_no);
 		
+		//pjd의 데이터 가져오기
 		Pjd pjd= null;
-		
 		pjd = projectdetailservice.selectPjd_detail(pjd_no);
 		
+		//pjd의 리스트
+		List<Pjd_people> peoplelist = null;
+		peoplelist = projectdetailservice.selectPjdPeopleList(pjd_no);
+		System.out.println("peoplelist : " + peoplelist.size());
+		for(int i = 0 ;  i < peoplelist.size(); i ++){
+			Pjd_people r = peoplelist.get(i);
+			System.out.println(i+"번째 pic : " +r.getPic());
+		}
+		model.addAttribute("peoplelist",peoplelist);		
 		model.addAttribute("pjd",pjd);
 		
 		return "project.projectDetailView";

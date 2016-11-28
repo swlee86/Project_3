@@ -20,7 +20,12 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-
+	<!--풀캘린더 관련 css -->
+	<link rel="stylesheet"
+	href="vendor/fullcalendar/dist/fullcalendar.print.css" media='print' />
+	<link rel="stylesheet"
+	href="vendor/fullcalendar/dist/fullcalendar.min.css" />
+	
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
@@ -31,6 +36,7 @@
 	
 	<!--텍스트 에디터 사용시 추가해야할 css -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   
     	<script>
 	$(function(){
 	    //참조자 아이콘 클릭시
@@ -209,6 +215,7 @@
 	  
 	}
 	</script>
+
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -254,6 +261,9 @@
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+<!--풀캘린더 스크립트-->
+<script src="vendor/moment/min/moment.min.js"></script>
+<script src="vendor/fullcalendar/dist/fullcalendar.min.js"></script>
 <script>
 
 	$(function(){
@@ -261,8 +271,6 @@
  	    $('.summernote').summernote();
 
 	    var sHTML = $('.summernote').code();
-
-	    console.log(sHTML);
 
 	    $('.summernote1').summernote({
 	        toolbar: [
@@ -378,7 +386,8 @@
 		var hiddenValue = upbtn2.value;
 		location.href="projectDetailCheckView.do?hidden="+hiddenValue;
 	}
-
+	
 </script>
+ <script src="js/project/projectCalendar.js"></script>
 </body>
 </html>
