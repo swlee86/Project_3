@@ -26,14 +26,16 @@
 			<div class="hpanel style=" text-align:center">
 				<div class="panel-body">
 					<h4>
-						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여정보
+						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;${date} 급여정보
 					</h4>
 					 <hr style="border:1px solid gray; margin-bottom:0px">
-					     <div class="table-responsive">
+			<form action="SalaryCloseCheck.do" method="POST" id="salaryCloseForm">	
+				<input type="hidden" name="date" value="${date}"> 	 
+				<div class="table-responsive">
                      <table cellpadding="1" cellspacing="1" class="table table-hover table-bordered table-condensed" >
                     <thead>
                     <tr style="background-color:#f9fafc">
-                        <th  style="text-align:center;"> NO </th>
+                        <th  style="text-align:center;"></th>
                         <th  style="text-align:center;">사 번</th>
                         <th  style="text-align:center;">이 름</th> 
                         <th  style="text-align:center;">지점</th>
@@ -43,15 +45,15 @@
                         <th  style="text-align:center;">총 근무시간</th>
                         <th  style="text-align:center;">총 추가 근무시간</th>
                         <th  style="text-align:center;">총지급액</th>
-                        <th  style="text-align:center;">지급일자</th>
                         <th  style="text-align:center;">확정 여부</th>
-                       
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="list" items="${list}">
                       <tr>
-                        <td  style="text-align:center;">${list.pay_no}</td>
+                        <td style="text-align:center;">
+                    		<input type="checkbox" class="i-checks" name="checkbox" value="${list.pay_no}">
+                    	</td>
                         <td  style="text-align:center;">${list.emp_no}</td>
                         <td  style="text-align:center;">${list.emp_name}</td> 
                         <td  style="text-align:center;">${list.branch_name}</td>
@@ -61,14 +63,36 @@
                         <td  style="text-align:center;">${list.acc_commute_time}</td>
                         <td  style="text-align:center;">${list.acc_add_time}</td>
                         <td  style="text-align:center;">${list.total_pay}</td>
-                        <td  style="text-align:center;">${list.give_date}</td>
-                        <td  style="text-align:center;"><button type="button" class="btn btn-sm btn-success" onclick="location.href='SalaryCloseCheck.do?${list.pay_no}'">확정</button></td>
+                       <c:choose>
+                       	 <c:when test="${list.master_check ==1}">
+                        	<td  style="text-align:center;">확정</td>
+                         </c:when>
+                         <c:otherwise>
+                         	<td  style="text-align:center;">미확정</td>
+                         </c:otherwise>
+                       </c:choose> 
                      </tr>
                     </c:forEach>
                  </tbody>
                 </table>  
 			</div>
-				</div>
+			<input type="hidden" name="pay_no2" id="hiddenPay">
+			<div class="row" style="text-align:right; margin-right:5px;">
+            	<input type="submit" class="btn btn-sm btn-success" value="마감 확정">
+            </div>
+      </form>
+		</div>
+		
+		<div class="panel-footer"  style="text-align:center;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button>
+                    <button class="btn btn-default active">1</button>
+                    <button class="btn btn-default">2</button>
+                    <button class="btn btn-default">3</button>
+                    <button class="btn btn-default">4</button>
+                    <button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button>
+                </div>
+         </div>
 			</div>
 		</div>
 	</div>

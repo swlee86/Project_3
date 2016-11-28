@@ -169,7 +169,46 @@
 		        	alert('월별');
 		        	$('#selectedYear').css('display', 'none');
 					$('#selectedMonth').css('display', 'block');
+		        }else if(selectOption=="전체"){
+		        	alert('전체');
+		        	$('#selectedYear').css('display', 'none');
+					$('#selectedMonth').css('display', 'none');	
+		        	$.ajax(
+							{
+		    					url : "salary_allSearch.do",
+		    					success : function(data) {
+		    						alert('성공');
+		    						console.log(data.list.length);
+		    						$('#payResultDiv').empty();				
+		    						var table = "";
+		    						 	table+="<table cellpadding='1' cellspacing='1' class='table table-bordered table-condensed'>"
+		    						for(var i=0; i<data.list.length; i++){
+		    							table += "<tr><th style='background-color:#f9fafc'>지급일</th>";			
+		    	  						table +="<td>"+data.list[i].give_date+"</td>"
+		    	  						table+="<th style='background-color:#f9fafc'>기본급여</th>";
+		    	  						table+="<td>"+data.list[i].basic_pay+"</td>";
+		    	  						table+="<th style='background-color:#f9fafc'>추가근무수당</th>";
+		    	  						table+="<td>"+data.list[i].add_pay+"</td>";
+		    	  						table+="<th style='background-color:#f9fafc'>상여금</th>";
+		    	  						table+="<td>"+data.list[i].bonus+"</td>";
+		    	  						table+="<th style='background-color:#f9fafc'>총지급액</th>";
+		    	  						table+="<td>"+data.list[i].total_pay+"</td></tr>";
+		    						}
+		    	  					table +="</table>";
+		    					
+		    	  					$('#payResultDiv').html(table);
+		    					},error : function(){
+		    						alert("조회하신 데이터가 없습니다.");
+		    						$('#payResultDiv').empty();				
+		    						
+		    					}
+		    				}
+
+		    				);
+		        }else{
+		        	
 		        }
+		        
 		    });
 			
 			var currentYear = (new Date()).getFullYear();
@@ -203,14 +242,16 @@
 						$('#payResultDiv').empty();				
 						var table = "";
 						table+="<table cellpadding='1' cellspacing='1' class='table table-bordered table-condensed'>"
-						table += "<tr><th style='background-color:#f9fafc'>지급기준일</th>";			
+						table += "<tr><th style='background-color:#f9fafc'>지급일</th>";			
 	  					table +="<td>"+data.payDTO.give_date+"</td>"
-	  					table+="<th style='background-color:#f9fafc'>지급총액</th>";
+	  					table+="<th style='background-color:#f9fafc'>기본급여</th>";
+	  					table+="<td>"+data.payDTO.basic_pay+"</td>";
+	  					table+="<th style='background-color:#f9fafc'>추가근무수당</th>";
+	  					table+="<td>"+data.payDTO.add_pay+"</td>";
+	  					table+="<th style='background-color:#f9fafc'>상여금</th>";
+	  					table+="<td>"+data.payDTO.bonus+"</td>";
+	  					table+="<th style='background-color:#f9fafc'>총지급액</th>";
 	  					table+="<td>"+data.payDTO.total_pay+"</td>";
-	  					table+="<th style='background-color:#f9fafc'>공제총액</th>";
-	  					table+="<td></td>";
-	  					table+="<th style='background-color:#f9fafc'>실지급액</th>";
-	  					table+="<td></td>";
 	  					table +="</tr></table>";
 					
 	  					$('#payResultDiv').html(table);
@@ -247,14 +288,16 @@
 								table+="<table cellpadding='1' cellspacing='1'class='table table-bordered table-condensed'>"
 	    			 			for(var i = 0; i < data.YearlyPay.length; i++){
 
-	    			 				table += "<tr><th style='background-color:#f9fafc'>지급기준일</th>";	
+	    			 				table += "<tr><th style='background-color:#f9fafc'>지급일</th>";	
 	    		  					table +="<td>"+data.YearlyPay[i].give_date+"</td>"
-	    		  					table+="<th style='background-color:#f9fafc'>지급총액</th>";
+	    		  					table+="<th style='background-color:#f9fafc'>기본급여</th>";
+	    		  					table+="<td>"+data.YearlyPay[i].basic_pay+"</td>";
+	    		  					table+="<th style='background-color:#f9fafc'>추가근무수당</th>";
+	    		  					table+="<td>"+data.YearlyPay[i].add_pay+"</td>";
+	    		  					table+="<th style='background-color:#f9fafc'>상여금</th>";
+	    		  					table+="<td>"+data.YearlyPay[i].bonus+"</td>";
+	    		  					table+="<th style='background-color:#f9fafc'>총지급액</th>";
 	    		  					table+="<td>"+data.YearlyPay[i].total_pay+"</td>";
-	    		  					table+="<th style='background-color:#f9fafc'>공제총액</th>";
-	    		  					table+="<td></td>";
-	    		  					table+="<th style='background-color:#f9fafc'>실지급액</th>";
-	    		  					table+="<td></td>";
 	    		  					
 	    			 			}
 								table +="</tr></table>";
@@ -337,6 +380,28 @@
 					});
 				}
 			});
+			
+			//급여 마감 조회
+			$('#salaryCloseForm').submit(function(){
+				alert("테스트!!");
+				//var pay_no = new Array();
+				var pay_no2='';
+				$("input[name=checkbox]:checked").each(function() {
+					//pay_no.push($(this).val());
+					pay_no2+=$(this).val() +",";
+				});
+				
+				
+				if(pay_no2 != ''){
+					$('#hiddenPay').val(pay_no2);
+					return true;
+				}else{
+					alert("선택 요망!");
+					return false;
+				}
+				
+			});
+			
 
 		});
 		
@@ -357,7 +422,7 @@
 			day = day >= 10 ? day : '0' + day;       
 			return  year + '-' + month + '-' + day;
 		}
-
+		
 		
 	</script>
 

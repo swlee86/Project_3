@@ -40,4 +40,7 @@ public interface PjDAO {
 	// 내가 포함된 프로젝트 조회하기 ( 참여자 , 승인 O ) 
 	public List<Pj> selectPj_include(String emp_no);
 	
+	
+	// 프로젝트 내가 작성한것 and 내가 참여자인것 프로젝트 목록 가져오기
+	public List<Pj> selectPj_callendar(String emp_no);
 }
