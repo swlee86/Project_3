@@ -17,7 +17,6 @@ $(function() {
 		dataType : "json",
 		
 		success : function(data) {
-			alert("이엪ㅁ피!!^^");
 			var myno = data.emp_no;
 			console.log("내꺼 이엠피 : " +myno);
 			//내가 참여자로 들어가있는 것
