@@ -1,6 +1,7 @@
 package kr.or.epm.AjaxController;
 
 
+import java.lang.reflect.Array;
 import java.security.Principal;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd_people;
+import kr.or.epm.VO.Pjdd;
 
 /*
  * 작성자 : 김주희
@@ -98,4 +100,29 @@ public class ProjectAjaxController {
 
 			return jsonview;
 		}
+		
+		
+		
+	// 프로젝트 상세의 상세내용 추가
+	@RequestMapping(value = "/insert_pjdd.do")
+	public View insertpjdd(String pjd_no, String pjdd_content){
+		
+		int result = 0;
+		Pjdd pjdd = new Pjdd();
+		pjdd.setPjd_no(pjd_no);
+		pjdd.setPjdd_content(pjdd_content);
+		
+		result = projectdetailservice.insertPjdd(pjdd);
+		
+		return jsonview;
+	}
+	
+	// 상세의 상세 테이블 갱신
+	@RequestMapping(value="/updatepjddtable.do")
+	public View updatepjddtable(String pjd_no, Model model){
+		
+		List<Pjdd> pjddlist = projectdetailservice.selectPjddList(pjd_no);
+		model.addAttribute("data",pjddlist);
+		return jsonview;
+	}
 }

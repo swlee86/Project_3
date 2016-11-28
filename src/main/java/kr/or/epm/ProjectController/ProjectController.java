@@ -13,6 +13,7 @@ import kr.or.epm.Service.ProjectService;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_people;
+import kr.or.epm.VO.Pjdd;
 
 /*
  * 작성일 : 2016-11-16
@@ -117,14 +118,15 @@ public class ProjectController {
 		//pjd의 리스트
 		List<Pjd_people> peoplelist = null;
 		peoplelist = projectdetailservice.selectPjdPeopleList(pjd_no);
-		System.out.println("peoplelist : " + peoplelist.size());
-		for(int i = 0 ;  i < peoplelist.size(); i ++){
-			Pjd_people r = peoplelist.get(i);
-			System.out.println(i+"번째 pic : " +r.getPic());
-		}
+		
+		//pjdd의 리스트
+		List<Pjdd> pjddlist = null;
+		pjddlist = projectdetailservice.selectPjddList(pjd_no);
+		
 		model.addAttribute("peoplelist",peoplelist);		
 		model.addAttribute("pjd",pjd);
-		
+		model.addAttribute("pjddlist",pjddlist);
+		model.addAttribute("pjd_no",pjd_no);
 		return "project.projectDetailView";
 	}
 	
