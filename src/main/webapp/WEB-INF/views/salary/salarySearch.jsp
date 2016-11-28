@@ -19,6 +19,7 @@
 				<div class="form-group">
 					<select id="salarysearch" class="form-control">
 						<option value="">선택</option>
+						<option value="금월 지급 예정 급여">금월 지급 예정 급여</option>
 						<option value="전체">전체</option>
 						<option value="연도별">연도별 조회</option>
 						<option value="월별">월별 조회</option>
@@ -60,7 +61,7 @@
 					</h4>
 			
 					 <hr style="border:1px solid gray; margin-bottom:0px">
-					<div class="table-responsive" id="payResultDiv">
+					<div class="table-responsive"  id="payResultDiv">
 						<input type="hidden" name="${date}">
 						<table cellpadding="1" cellspacing="1"
 							class="table table-bordered table-condensed">
