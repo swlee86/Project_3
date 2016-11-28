@@ -133,7 +133,7 @@
                         <span class="label label-success">4</span>
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
-                        <div class="title">
+                        <div class="title" id="titlepush">
                             You have 4 new messages
                         </div>
                         <li>
@@ -216,5 +216,7 @@
 $('#birthDay').click(function(){
 	$('#birthModal').modal();
 });
+
+
 </script>
     
