@@ -322,11 +322,15 @@
 							$('#total').html();
 							$('#severance_pay').html();
 							
-							
-							
+							if(data.day>=365){
 							$('#jung').html(data.date);
 							$('#total').html(data.day);
 							$('#severance_pay').html(data.dayMoney +"만원");
+							
+							}else{
+								alert('근속연수가 1년이상일 경우만 조회가능합니다.');
+							}
+							
 							
 						}
 

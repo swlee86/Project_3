@@ -111,7 +111,7 @@
                 <a href="#"><span class="nav-label">급여 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="salarySetting.do">급여 항목 설정</a></li>
-                    <li><a href="#">급여 마감 관리</a></li>
+                    <li><a href="salaryClose.do">급여 마감 관리</a></li>
                     <li><a href="salarySearch.do">급여 조회</a></li>
                     <li><a href="severancepay.do">퇴직금 계산</a></li>
                 </ul>

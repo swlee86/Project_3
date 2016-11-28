@@ -81,7 +81,7 @@
 	</div>
 </div>
 
-<div class="content animate-panel">
+<!-- <div class="content animate-panel">
 	<div class="row">
 
 		<div class="col-sm-12">
@@ -123,7 +123,7 @@
 
 
 	</div>
-</div>
+</div> -->
 
 
 
