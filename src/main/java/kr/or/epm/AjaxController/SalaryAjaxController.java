@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 /*
  *급여 페이지 ajax controller 
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.LoginService;
@@ -86,7 +89,44 @@ public class SalaryAjaxController {
 	 
 		return jsonview;
 	}
-
+	
+	//급여 관리 > 급여 마감 확정
+			@RequestMapping(value="/SalaryCloseCheck.do", method=RequestMethod.POST)
+			public String salaryCloseCheck(Model model, String pay_no2){
+				 System.out.println("급여 마감 ajaxcontoller: "+pay_no2);
+				 String[] pay_no= pay_no2.split(",");
+				 for(int i=0; i<pay_no.length; i++){
+					 System.out.println("split: "+pay_no[i]);
+				 }
+				
+				int result=0;
+				String link = null;
+				String msg = null;
+				try{
+					for(int i=0; i<pay_no.length; i++){
+					result = payservice.updatePay(pay_no[i]);
+					}
+					
+				}catch (Exception e) {
+					e.getMessage();
+				}finally{
+					if(result>0){
+						link = "salaryClose.do";
+						msg = "급여 마감이 완료되었습니다.";
+					}else{
+						link = "salaryClose.do";
+						msg = "급여 마감에 실패하였습니다.";
+					}
+					model.addAttribute("link", link);
+					model.addAttribute("msg", msg);
+				}
+				 
+				return "salary.salaryClose_redirect";
+			}
+	
+	
+	
+	
 	// 퇴직금 조회
 	@RequestMapping("/sevSearch.do")
 	public View sevSearch(String select, String date, Principal principal, Model model, String minusDate) {

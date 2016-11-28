@@ -62,15 +62,17 @@
 						<table cellpadding="1" cellspacing="1"
 							class="table table-bordered table-condensed">
 						  <c:forEach var="list" items="${list}">
-							<tr style="background-color:#f9fafc">
-								<th>지급기준일</th>
+							<tr >
+								<th style="background-color:#f9fafc">지급일</th>
 								<td>${list.give_date}</td>
-								<th>지급총액</th>
+								<th style="background-color:#f9fafc">기본급여</th>
+								<td>${list.basic_pay}</td>
+								<th style="background-color:#f9fafc">추가근무수당</th>
+								<td>${list.add_pay}</td>
+								<th style="background-color:#f9fafc">상여금</th>
+								<td>${list.bonus}</td>
+								<th style="background-color:#f9fafc">총지급액</th>
 								<td>${list.total_pay}</td>
-								<th>공제총액</th>
-								<td>공제총액</td>
-								<th>실지급액</th>
-								<td>실지급액</td>
 							</tr>
 						  </c:forEach>
    						</table>

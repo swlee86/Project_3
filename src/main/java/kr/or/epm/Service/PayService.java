@@ -51,10 +51,10 @@ public class PayService {
 		
 	}
 	//급여 마감 관리
-	public List<PayList> selectPay_all_Close(){
+	public List<PayList> selectPay_all_Close(String dTime){
 		System.out.println("급여 마감 관리");
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
-	    List<PayList> list = dao.selectPay_all_Close();
+	    List<PayList> list = dao.selectPay_all_Close(dTime);
 	    return list;
 		
 	}

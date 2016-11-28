@@ -15,8 +15,17 @@ public class Pay {
 	private int add_pay;
 	private int total_pay;
 	private String give_date;
-	
 	private int salary;
+	
+
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
 
 	public String getPay_no() {
 		return pay_no;
@@ -86,6 +95,9 @@ public class Pay {
 	public String toString() {
 		return "Pay [pay_no=" + pay_no + ", emp_no=" + emp_no + ", basic_pay=" + basic_pay + ", severance_pay="
 				+ severance_pay + ", bonus=" + bonus + ", add_pay=" + add_pay + ", total_pay=" + total_pay
-				+ ", give_date=" + give_date + "]";
+				+ ", give_date=" + give_date + ", salary=" + salary + "]";
 	}
+
+
+	
 }

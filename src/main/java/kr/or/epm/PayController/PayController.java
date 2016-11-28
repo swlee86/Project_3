@@ -1,7 +1,11 @@
 package kr.or.epm.PayController;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,35 +60,17 @@ public class PayController {
 		@RequestMapping("/salaryClose.do")
 		public String salaryClose(Model model){
 			
-			List<PayList> list = payservice.selectPay_all_Close();
+			SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
+			Date currentTime = new Date( );
+			String dTime = formatter.format ( currentTime );
+			System.out.println ("연월 : "+dTime ); 
+			
+			List<PayList> list = payservice.selectPay_all_Close(dTime);
+			model.addAttribute("date", dTime);
 			model.addAttribute("list", list);
 			return "salary.salaryClose";
 		}
-		//급여 관리 > 급여 마감 확정
-		@RequestMapping("/SalaryCloseCheck.do")
-		public String salaryCloseCheck(String pay_no, Model model){
-			int result=0;
-			String link = null;
-			String msg = null;
-			try{
-				result = payservice.updatePay(pay_no);
-				
-			}catch (Exception e) {
-				e.getMessage();
-			}finally{
-				if(result>0){
-					link = "salaryClose.do";
-					msg = "급여 마감이 완료되었습니다.";
-				}else{
-					link = "salaryClose.do";
-					msg = "급여 마감에 실패하였습니다.";
-				}
-				model.addAttribute("link", link);
-				model.addAttribute("msg", msg);
-			}
-			 
-			return "salary.salaryClose_redirect";
-		}
+	
 		
 		
 		//급여 관리 > 퇴직금 계산

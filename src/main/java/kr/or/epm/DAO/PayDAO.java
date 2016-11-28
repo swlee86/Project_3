@@ -36,8 +36,8 @@ public interface PayDAO {
 	// 전체 급여 내역 조회하기
 	public List<Pay> selectPay_all();
 	
-	//급여 마감 관리하기
-	public List<PayList> selectPay_all_Close();
+	//급여 마감 관리하기 > 첫번째 
+	public List<PayList> selectPay_all_Close(String dTime);
 	
 	// 전체 금월 예상 급여 조회하기
 	public List<Pay> selectPay();
