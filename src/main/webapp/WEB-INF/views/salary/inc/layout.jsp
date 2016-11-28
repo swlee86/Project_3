@@ -205,8 +205,42 @@
 		    				}
 
 		    				);
-		        }else{
-		        	
+		        }else if(selectOption=="금월 지급 예정 급여"){
+		        	$('#selectedYear').css('display', 'none');
+					$('#selectedMonth').css('display', 'none');	
+					
+					$.ajax(
+							{
+		    					url : "salary_Re_allSearch.do",
+		    					success : function(data) {
+		    						alert('성공');
+		    						console.log(data.list);
+		    						$('#payResultDiv').empty();				
+		    						var table = "";
+		    						 	table+="<table cellpadding='1' cellspacing='1' class='table table-bordered table-condensed'>"
+		    						    table+="<tr><th style='background-color:#f9fafc'>총근무시간</th>";
+		    		  					table+="<td>"+data.list.acc_commute_time+"</td>";
+		    		  					table+="<th style='background-color:#f9fafc'>추가근무시간</th>";
+		    		  					table+="<td>"+data.list.acc_add_time+"</td>";
+		    		  					table+="<th style='background-color:#f9fafc'>기본급여</th>";
+		    		  					table+="<td>"+data.list.basic_pay+"</td>";
+		    		  					table+="<th style='background-color:#f9fafc'>추가근무수당</th>";
+		    		  					table+="<td>"+data.list.add_pay+"</td>";
+		    		  					table+="<th style='background-color:#f9fafc'>상여금</th>";
+		    		  					table+="<td>"+data.list.bonus+"</td>";
+		    		  					table+="<th style='background-color:#f9fafc'>총지급액</th>";
+		    		  					table+="<td>"+data.list.total_pay+"</td><tr>";
+		    	  						table +="</table>";
+		    						
+		    	  					$('#payResultDiv').html(table);
+		    					},error : function(){
+		    						alert("조회하신 데이터가 없습니다.");
+		    						$('#payResultDiv').empty();				
+		    						
+		    					}
+		    				}
+
+		    				);
 		        }
 		        
 		    });

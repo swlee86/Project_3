@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -44,6 +45,28 @@ public class SalaryAjaxController {
 	@Autowired
 	private View jsonview;
 
+	//급여관리 > 당월 예상 지급 급여 조회(개인)
+	@RequestMapping("/salary_Re_allSearch.do")
+	public View salary_Re_allSearch(Principal principal, Model model){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
+		Date currentTime = new Date( );
+		String dTime = formatter.format ( currentTime );
+		System.out.println ("연월 : "+dTime ); 
+		
+		String id = principal.getName();
+		System.out.println("아이디  : "+id);
+	     
+		//아이디 통해 사번 얻어옴
+	    EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
+	    Pay list = payservice.selectPay_mine(emp.getEmp_no(), dTime);
+	    model.addAttribute("list", list);
+	    model.addAttribute("date", dTime);
+		
+		return jsonview;
+	}
+	
+	
 	//급여 관리> 전체 급여 조회(개인) 
 	@RequestMapping("/salary_allSearch.do")
 	public View salary_allSearch(Principal principal, Model model){
