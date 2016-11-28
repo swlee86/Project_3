@@ -31,6 +31,7 @@
 	
 	<!--텍스트 에디터 사용시 추가해야할 css -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   
     	<script>
 	$(function(){
 	    //참조자 아이콘 클릭시
@@ -254,6 +255,7 @@
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+ <script src="project/projectCalendar.js"></script>
 <script>
 
 	$(function(){
