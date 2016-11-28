@@ -79,6 +79,8 @@
     webSocket.onmessage = function(event) {
       onMessage(event)
     };
+    
+    
     function onMessage(event) {
         var text = "";
         var msg = JSON.parse(event.data);
