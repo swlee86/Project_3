@@ -18,6 +18,7 @@ import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_Command;
 import kr.or.epm.VO.Pjd_people;
+import kr.or.epm.VO.Pjdd;
 
 /*
  * 작성일 : 2016-11-16
@@ -138,12 +139,22 @@ public class ProjectController {
 	public String projectdetail_detailview(Model model, String pjd_no){
 		System.out.println("들어온pjd_no : " + pjd_no);
 		
+		//pjd의 데이터 가져오기
 		Pjd pjd= null;
-		
 		pjd = projectdetailservice.selectPjd_detail(pjd_no);
 		
-		model.addAttribute("pjd",pjd);
+		//pjd의 리스트
+		List<Pjd_people> peoplelist = null;
+		peoplelist = projectdetailservice.selectPjdPeopleList(pjd_no);
 		
+		//pjdd의 리스트
+		List<Pjdd> pjddlist = null;
+		pjddlist = projectdetailservice.selectPjddList(pjd_no);
+		
+		model.addAttribute("peoplelist",peoplelist);		
+		model.addAttribute("pjd",pjd);
+		model.addAttribute("pjddlist",pjddlist);
+		model.addAttribute("pjd_no",pjd_no);
 		return "project.projectDetailView";
 	}
 	

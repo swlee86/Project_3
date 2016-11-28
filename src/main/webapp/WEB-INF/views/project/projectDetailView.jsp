@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -8,7 +10,6 @@
 					<i class="fa fa-arrow-up"></i>
 				</div>
 			</a>
-
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.do">홈</a></li>
@@ -24,27 +25,18 @@
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-4">
-			<div class="hpanel">
-				<div class="panel-body text-center">
-					<a href="#myModal?id=1" data-target="#myModal" data-toggle="modal">
-						<img alt="logo" class="img-circle img-small" src="images/a1.jpg">
-					</a>
-					<div class="m-t-sm">
-						<strong>Mark Newon</strong>
-						<p class="small">UI Designer</p>
+			<c:forEach var="list" items="${peoplelist}">
+				<div class="hpanel" style="background-color: white; padding: 20px;">
+					<div class="pandel-body text-center">
+						<img alt="logo" class="img-circle img-small" src="${pageContext.request.contextPath}/img/upload/${list.pic}">
+						<div class="m-t-sm">
+							<strong>${list.emp_name}</strong>
+						<p class="small">${list.branch_name} ${list.dept_name} ${list.low_dept_name}</p>
+					</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="hpanel">
-				<div class="panel-body text-center">
-					<img alt="logo" class="img-circle img-small" src="images/a2.jpg">
-					<div class="m-t-sm">
-						<strong>Anna Smith</strong>
-						<p class="small">JS Developer</p>
-					</div>
-				</div>
-			</div>
+			
+			</c:forEach>
 		</div>
 
 		<div class="col-lg-8">
@@ -75,50 +67,33 @@
 				
 					<div class="table-responsive">
 						<div class="table-responsive">
-							<table class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped" id="pjdd_table">
 								<tr>
-									<th />
-									<th>테스트</th>
-									<th>첫번째</th>
-									<th>첫번째</th>
-									<th>첫번째</th>
-									<th>진행상황</th>
-									<th>선택</th>
+									<th width="10%">완료</th>
+									<th width="80%">작업내용</th>
+									<th width="10%"></th>
+									<th hidden="hidden"></th>
 								</tr>
-
-								<tr>
-									<td><input type="checkbox" class="i-checks"></td>
-									<td><input type="text" class="form-control" readonly="readonly" value="안녕"></td>
-									<td><input type="text" class="form-control" readonly="readonly"></td>
-									<td><input type="text" class="form-control" readonly="readonly"></td>
-									<td><input type="text" class="form-control" readonly="readonly"></td>
-									<td><select class="form-control">
-											<option>진행</option>
-											<option>미진행</option>
-											<option>보류</option>
-											<option>완료</option>
-											<option>중단</option>
-									</select></td>
-									<td><input type="button" class="btn btn-success"
-										value="선택"></td>
+								<c:forEach var="list" items="${pjddlist}">
+								<tr class="default_table">
+									<td>
+										<c:if test="${list.fin_check=='1'}">
+											<input type="checkbox" class="i-checks" checked="checked" disabled="disabled">
+										</c:if>
+										<c:if test="${list.fin_check=='0'}">
+											<input type="checkbox" class="i-checks" disabled="disabled">
+										</c:if>
+									</td>
+									<td>${list.pjdd_content}</td>
+									<td><input type="button" class="btn btn-default" value="수정" onclick="modify_pjdd()"></td>
+									<td hidden="hidden"><input type="hidden"  readonly="readonly" value="${list.pjdd_no}"></td>
 								</tr>
-								<tr>
-									<td><input type="checkbox" class="i-checks"></td>
-									<td>두번째</td>
-									<td>둘둘</td>
-									<td>둘리</td>
-									<td>난서현이야</td>
-									<td><select class="form-control">
-											<option>진행</option>
-											<option>미진행</option>
-											<option>보류</option>
-											<option>완료</option>
-											<option>중단</option>
-									</select></td>
-									<td><input type="button" class="btn btn-success"
-										value="선택"></td>
-								</tr>
+								</c:forEach>
 							</table>
+							
+							<div class="col-md-offset-11 col-md-1">
+								<input type="button" id="add_btn" class="btn btn-success" value="추가" >
+							</div>
 						</div>
 					</div>
 				</div>
@@ -127,23 +102,92 @@
 	</div>
 </div>
 
-<!--이미지 클릭시 뜨는 모달 페이지-->
-<div class="modal fade hmodal-success" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog  modal-sm">
-		<div class="modal-content">
-			<div class="color-line"></div>
-			<div class="modal-header text-center">
-		 	<h4 class="modal-title"><img alt="logo" class="img-circle m-b" src="images/a3.jpg" style="width: 82px;height: 82px;"></h4> <br>
-				<font class="font-bold" size="2em">
-					<font style="color:gray;">박성준</font><br>
-					<font style="color:#9d9fa2">(사단)한국소프트웨어기술진흥협회 > <br>개발부 > 팀장</font> <br>
-					<font style="color:gray;">01020768626</font>
-				</font>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary btn-sm demo2">주소록 등록</button>
-			</div>
-		</div>
-	</div>
-</div>
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script>
+$(function(){
+	var index = 0;	
+	$('#add_btn').click(function(){
+		
+		alert(index);
+		
+		var appendTable="<tr class='add_table' id='add_btn_tr_"+index+"'><td><input type='checkbox' class='i-checks'></td>"+
+						"<td><input type='text' class='form-control input-sm' id='add_txt_"+index+"'></td>"+
+						"<td><input type='button' class='btn btn-default add_btn' id='add_btn_"+index+"' onclick='addclick(this.id)' value='추가완료'></td>"+
+						"<td hidden='hidden'><input type='hidden'  readonly='readonly'></td></tr>";
+		console.log($('#add_btn').val());
+		$('#pjdd_table').last().append(appendTable);
+		
+		index = index+1;
+	});
+
+
+	
+	
+})
+//추가완료 버튼 눌렀을때
+function addclick(id){
+	var add_i = id.substr(8);
+	var add_content = $('#add_txt_'+add_i).val();
+	var pjd_no = ${pjd_no};
+	//ajax통해서 add_conctetn를 추가시킴
+		
+	// 추가후 리스트 동기화
+	if(add_content!=""){
+	$.ajax(
+				{
+					url  : "insert_pjdd.do",
+					data : {
+						"pjd_no" :  pjd_no,
+						"pjdd_content" : add_content,
+					},
+					success : function(data){
+						console.log(data);
+					
+							
+						$.ajax(
+								{
+									url : "updatepjddtable.do",
+									data :{
+										"pjd_no" : pjd_no,	
+									},
+									success : function(data){
+										console.log(data.data);
+										var appendTable ="";
+										var pjdd = "";
+							            $.each(data, function(index){
+							            	pjdd = data[index];
+							                console.log(pjdd);
+							            });
+							               
+							            $.each(pjdd, function(index){
+											appendTable+="<tr class='default_table'><td>";
+											if(pjdd[index].fin_check=='1'){
+												appendTable+="<input type='checkbox' class='i-checks' checked='checked' disabled='disabled'>";
+											}else if(pjdd[index].fin_check=='0'){
+												appendTable+="<input type='checkbox' class='i-checks' disabled='disabled'>";
+											}
+											appendTable+="</td><td>"+pjdd[index].pjdd_content+"</td>"+
+														 "<td><input type='button' class='btn btn-default' value='수정' onclick='modify_pjdd()'></td>"+
+														 "<td hidden='hidden'><input type='hidden'  readonly='readonly' value='"+pjdd[index].pjdd_no+"'></td></tr>";
+											
+										});
+											
+											
+										$('.default_table').remove();
+										$('#add_btn_tr_'+add_i).remove();
+											
+										$('#pjdd_table').first().append(appendTable);
+									}
+										
+								});
+							
+					}
+				}
+		);
+	}else{
+		alert("작업내용을 입력하세요");
+	}
+}
+	
+
+</script>

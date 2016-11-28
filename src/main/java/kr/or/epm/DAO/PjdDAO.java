@@ -7,6 +7,7 @@ import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_people;
+import kr.or.epm.VO.Pjdd;
 
 /*
  * 작성일 : 2016-11-18
@@ -52,4 +53,10 @@ public interface PjdDAO {
 		
 	//개인 주소록 테이블 등록
 	public int insertEmpContact(Emp_contact emp_contact);
+	
+	//상세의 상세내역
+	public List<Pjdd> selectPjdd(String pjd_no);
+	
+	//상세의 상세내역 추가
+	public int insertPjdd(Pjdd pjdd);
 }

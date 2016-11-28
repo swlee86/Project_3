@@ -220,8 +220,8 @@ public class TaskController {
 		return "task.task_redirect";
 	}
 
-	// 업무 요청 > 수신
-	@RequestMapping("/taskRequest_rec.do")
+	// 업무 요청 > 수신, 송신, 참여
+	@RequestMapping("/taskRequest.do")
 	public String taskRequest_rec(Principal principal, Model model) {
 
 		System.out.println("CONTROLLER] 업무 요청 수신 페이지");
@@ -235,6 +235,7 @@ public class TaskController {
 		// 업무 요청 구분
 		String cg_no = "1";
 
+		// 수신
 		// 목록 가져오기
 		List<Task> list = service.selectTask_rec(emp_no, cg_no);
 		model.addAttribute("list1", list);
@@ -244,6 +245,7 @@ public class TaskController {
 		System.out.println("수신함 글 개수 : " + count);
 		model.addAttribute("count1", count);
 		
+		// 송신
 		// 목록 가져오기
 		List<Task> list2 = service.selectTask(emp_no, cg_no);
 		model.addAttribute("list2", list2);
@@ -253,6 +255,7 @@ public class TaskController {
 		System.out.println("송신함 글 개수 : " + count2);
 		model.addAttribute("count2", count2);
 		
+		// 참여
 		// 목록 가져오기
 		List<Task> list3 = service.selectTask_people(emp_no);
 		model.addAttribute("list3", list3);
@@ -313,33 +316,6 @@ public class TaskController {
 		return "task.task_redirect";
 	}
 
-	// 업무요청 > 송신
-	@RequestMapping("/taskRequest.do")
-	public View taskRequest(Model model, Principal principal) {
-
-		System.out.println("CONTROLLER] 업무 요청 송신 페이지");
-
-		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
-
-		// 업무 요청 구분
-		String cg_no = "1";
-
-		// 목록 가져오기
-		List<Task> list = service.selectTask(emp_no, cg_no);
-		model.addAttribute("list2", list);
-
-		// 글 개수 구하기
-		int count = list.size();
-		System.out.println("송신함 글 개수 : " + count);
-		model.addAttribute("count2", count);
-
-		return jsonview;
-	}
-
 	// 업무 요청 > 송신 > 상세
 	@RequestMapping("/taskRequest_detail.do")
 	public String taskRequest_detail(String task_no, Model model) {
@@ -352,30 +328,6 @@ public class TaskController {
 		model.addAttribute("detail", detail);
 
 		return "task.taskRequest_detail";
-	}
-
-	// 업무 요청 > 참여
-	@RequestMapping("/taskRequest_participation.do")
-	public View taskRequest_participation(Principal principal, Model model) {
-
-		System.out.println("CONTROLLER] 업무 요청 참여 페이지");
-
-		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
-
-		// 목록 가져오기
-		List<Task> list = service.selectTask_people(emp_no);
-		model.addAttribute("list3", list);
-
-		// 글 개수 구하기
-		int count = list.size();
-		System.out.println("참여함 글 개수 : " + count);
-		model.addAttribute("count3", count);
-
-		return jsonview;
 	}
 
 	// 업무 요청 > 참여 > 상세
@@ -423,8 +375,8 @@ public class TaskController {
 		return "task.task_redirect";
 	}
 
-	// 업무보고 > 수신
-	@RequestMapping("/taskInform_rec.do")
+	// 업무보고 > 수신, 송신
+	@RequestMapping("/taskInform.do")
 	public String taskInform_rec(Principal principal, Model model) {
 
 		System.out.println("CONTROLLER] 업무 보고 수신 페이지");
@@ -438,6 +390,7 @@ public class TaskController {
 		// 업무 요청 구분
 		String cg_no = "2";
 
+		// 수신
 		// 목록 가져오기
 		List<Task> list = service.selectTask_rec(emp_no, cg_no);
 		model.addAttribute("list1", list);
@@ -447,6 +400,7 @@ public class TaskController {
 		System.out.println("수신함 글 개수 : " + count);
 		model.addAttribute("count1", count);
 		
+		// 송신
 		// 목록 가져오기
 		List<Task> list2 = service.selectTask(emp_no, cg_no);
 		model.addAttribute("list2", list2);
@@ -504,33 +458,6 @@ public class TaskController {
 		return "task.task_redirect";
 	}
 
-	// 업무보고 > 송신
-	@RequestMapping("/taskInform.do")
-	public View taskInform(Principal principal, Model model) {
-
-		System.out.println("CONTROLLER] 업무 보고 송신 페이지");
-
-		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
-
-		// 업무 요청 구분
-		String cg_no = "2";
-
-		// 목록 가져오기
-		List<Task> list = service.selectTask(emp_no, cg_no);
-		model.addAttribute("list2", list);
-
-		// 글 개수 구하기
-		int count = list.size();
-		System.out.println("송신함 글 개수 : " + count);
-		model.addAttribute("count2", count);
-
-		return jsonview;
-	}
-
 	// 업무 보고 > 송신 > 상세
 	@RequestMapping("/taskInform_Detail.do")
 	public String taskInform_Transmit_Detail(String task_no, Model model) {
@@ -545,7 +472,7 @@ public class TaskController {
 		return "task.taskInform_detail";
 	}
 
-	// 업무일지 > 수신
+	// 업무일지 > 수신, 송신
 	@RequestMapping("/taskLog_rec.do")
 	public String taskLog_rec(Principal principal, Model model) {
 
@@ -560,6 +487,7 @@ public class TaskController {
 		// 업무 요청 구분
 		String cg_no = "1";
 
+		// 수신
 		// 목록 가져오기
 		List<Task> list = service.selectTask_rec(emp_no, cg_no);
 		model.addAttribute("list1", list);
@@ -569,6 +497,7 @@ public class TaskController {
 		System.out.println("수신함 글 개수 : " + count);
 		model.addAttribute("count1", count);
 		
+		// 송신
 		// 목록 가져오기
 		List<Task> list2 = service.selectTask(emp_no, cg_no);
 		model.addAttribute("list2", list2);
@@ -585,7 +514,7 @@ public class TaskController {
 	@RequestMapping("/taskLog_rec_detail.do")
 	public String taskLog_rec_detail(String task_no, Model model) {
 
-		System.out.println("Controller] 업무 일지 수신 상세페이지");
+		System.out.println("CONTROLLER] 업무 일지 수신 상세페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
 
 		// 상세 가져오기
@@ -593,33 +522,6 @@ public class TaskController {
 		model.addAttribute("detail", task);
 
 		return "task.taskLog_rec_detail";
-	}
-
-	// 업무일지 > 송신
-	@RequestMapping("/taskLog.do")
-	public View taskLog(Principal principal, Model model) {
-
-		System.out.println("CONTROLLER] 업무 일지 송신 페이지");
-
-		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
-
-		// 업무 요청 구분
-		String cg_no = "1";
-
-		// 목록 가져오기
-		List<Task> list = service.selectTask(emp_no, cg_no);
-		model.addAttribute("list2", list);
-
-		// 글 개수 구하기
-		int count = list.size();
-		System.out.println("수신함 글 개수 : " + count);
-		model.addAttribute("count2", count);
-
-		return jsonview;
 	}
 
 	// 업무 일지 > 송신 > 상세
@@ -634,30 +536,5 @@ public class TaskController {
 		model.addAttribute("detail", task);
 
 		return "task.taskLog_detail";
-	}
-
-	// 검색하기
-	@RequestMapping(value = "/taskLog_search.do", method = RequestMethod.GET)
-	public String taskLog_search(HttpServletRequest request, Principal principal, Model model) {
-
-		System.out.println("검색을 시작합니다");
-
-		String cg_no = "3";
-
-		String id = principal.getName();
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("emp_no : " + emp_no);
-
-		String key = request.getParameter("selectSearch");
-		String value = request.getParameter("input");
-
-		System.out.println("key값 : " + key + " // value값 : " + value);
-
-		// 목록 가져오기
-		List<Task> list = service.searchTask(emp_no, cg_no, key, value);
-
-		model.addAttribute("list3", list);
-
-		return "task.taskLog";
 	}
 }

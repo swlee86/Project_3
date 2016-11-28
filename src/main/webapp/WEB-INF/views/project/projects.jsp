@@ -23,7 +23,7 @@
 		</div>
 	</div>
 </div>
-<div class="content animate-panel">
+<div class="content animate-panel normalheader transition animated fadeIn media-body">
 	
 		<div class="row projects">
 			<c:forEach var="i" items="${pjdlist}" step="1">

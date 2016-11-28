@@ -109,6 +109,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--개인 주소록테이블  등록 -->
 	<insert id="insertEmpContact">
-		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(SELECT (select distinct groups from emp_contact where emp_no=#{emp_no}) AS empgroup FROM DUAL))
+		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${groups},')))	
+	</insert>
+	
+	<!-- 상세의 상세내역 -->
+ 	<select id="selectPjdd" parameterType="String" resultType="kr.or.epm.VO.Pjdd">
+		select pjdd_no,pjd_no,pjdd_content,fin_check from pjdd where pjd_no=#{pjd_no} order by to_number(pjdd_no) asc
+ 	</select>
+ 	
+ 	<!-- 상세의 상세내역 추가 -->
+ 	<insert id="insertPjdd" parameterType="kr.or.epm.VO.Pjdd">
+ 		insert into pjdd(pjdd_no,pjd_no,pjdd_content,fin_check) values(pjdd_seq.nextval,#{pjd_no},#{pjdd_content},'0')
 	</insert>
 </mapper>
