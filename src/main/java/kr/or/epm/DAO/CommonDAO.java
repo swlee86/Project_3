@@ -16,7 +16,7 @@ public interface CommonDAO {
 	// 사원번호로 기본 사원정보 가져오기
 	public Emp selectEmp();
 	
-	// 하위부서번호로 지점명, 부서명, 하위부서명 가져오기
+	// 사번으로 지점명, 부서명, 하위부서명 가져오기
 	public Common selectAttach();
 	
 	// 로그인한 id로 사원 emp_no 가져오기
