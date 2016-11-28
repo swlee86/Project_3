@@ -13,6 +13,7 @@ import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.PayService;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Pay;
+import kr.or.epm.VO.PayList;
 
 /*
  * 작성자 : 하재현
@@ -51,7 +52,40 @@ public class PayController {
 			
 			return "salary.salarySearch";
 		}
-	
+	    //급여 관리 > 급여 마감 관리
+		@RequestMapping("/salaryClose.do")
+		public String salaryClose(Model model){
+			
+			List<PayList> list = payservice.selectPay_all_Close();
+			model.addAttribute("list", list);
+			return "salary.salaryClose";
+		}
+		//급여 관리 > 급여 마감 확정
+		@RequestMapping("/SalaryCloseCheck.do")
+		public String salaryCloseCheck(String pay_no, Model model){
+			int result=0;
+			String link = null;
+			String msg = null;
+			try{
+				result = payservice.updatePay(pay_no);
+				
+			}catch (Exception e) {
+				e.getMessage();
+			}finally{
+				if(result>0){
+					link = "salaryClose.do";
+					msg = "급여 마감이 완료되었습니다.";
+				}else{
+					link = "salaryClose.do";
+					msg = "급여 마감에 실패하였습니다.";
+				}
+				model.addAttribute("link", link);
+				model.addAttribute("msg", msg);
+			}
+			 
+			return "salary.salaryClose_redirect";
+		}
+		
 		
 		//급여 관리 > 퇴직금 계산
 		@RequestMapping("/severancepay.do")
