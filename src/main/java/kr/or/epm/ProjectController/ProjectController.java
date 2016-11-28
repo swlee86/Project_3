@@ -2,16 +2,21 @@ package kr.or.epm.ProjectController;
 
 import java.util.List;
 
+import javax.swing.text.View;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.epm.Service.ProjectDetailService;
 import kr.or.epm.Service.ProjectService;
+import kr.or.epm.VO.Contact;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd;
+import kr.or.epm.VO.Pjd_Command;
 import kr.or.epm.VO.Pjd_people;
 
 /*
@@ -31,14 +36,37 @@ public class ProjectController {
 	private ProjectDetailService projectdetailservice;
 	
 	
+	//프로젝트 상세상세 페이지 추가하기
+	@RequestMapping("/project_detail_plus.do")
+	public String  project_detail_plus(){
+		System.out.println("project_detail_plus() 컨트롤 탐");	
+		return "project/projectDetailPlus";
+	}
+	
+	//프로젝트 상세상세 처리
+	@RequestMapping(value="project_detail_plus_try.do", method=RequestMethod.POST)
+	public String  project_detail_plus_try(Pjd_Command pjd_Command, String pjd_count){
+		System.out.println("project_detail_plus_try() 컨트롤 탐");
+		System.out.println("pjd_Command : " + pjd_Command.toString());
+		System.out.println("pjd_Command : " + pjd_Command.getPjd());
+	
+
+		List<Pjd> list = pjd_Command.getPjd();
+			for(Pjd pjd : list){
+				System.out.println("시작일:"+pjd.getPjd_start()+"/종료일:"+ pjd.getPjd_end()+"/제목:" + pjd.getPjd_title()+"/보낼사람 사번" + pjd.getEmp_no()+"/내용:" + pjd.getPjd_content());
+			}
+			
+		return "redirect:project_list.do";
+	}	
+		
 	//프로젝트 생성하기
-		@RequestMapping(value="/projectMake.do", method=RequestMethod.POST)
-		public String projectMake(Pj pj, Model model){
-			System.out.println("projectMake 작성 컨트롤러 탐");
-			System.out.println("pj : "+pj.toString());
-			model.addAttribute("pj", pj);
-			return "project.projectDetailMakeForm";
-		}
+	@RequestMapping(value="/projectMake.do", method=RequestMethod.POST)
+	public String projectMake(Pj pj, Model model){
+		System.out.println("projectMake 작성 컨트롤러 탐");
+		System.out.println("@pj tostirng: "+pj.toString());
+		model.addAttribute("pj", pj);
+		return "project.projectDetailMakeForm";
+	}
 		
 	// SideBar(aside.jsp) 프로젝트 > 진행중인 프로젝트 클릭시 구동
 	@RequestMapping("/project_list.do")
