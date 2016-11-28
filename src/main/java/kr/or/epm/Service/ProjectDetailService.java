@@ -123,5 +123,11 @@ public class ProjectDetailService {
 		System.out.println("개인 주소록 추가 결과 result : "+ result);
 		return result; 
 	}
+	
+	//선택한 상세프로젝트의 참여자 정보 가져오기
+	/*public List<Pjd_people> selectPjdPeopleList(){
+		
+		selectPeople
+	}*/
 }
 	
