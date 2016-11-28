@@ -38,13 +38,12 @@ public class ProjectCallendarAjaxController {
 		System.out.println("id : "+id);
 		String emp_no = commonservice.selectEmp_no(id);
 		
-		//내가 쓴것들만 뽑아냄
-		List<Pj> result = projectservice.selectPjlist_ctg("write", emp_no);
-		model.addAttribute("wlist", result);
 		//내가 참여자로 된 것.
-		List<Pj> result2 = projectservice.selectPjlist_ctg("include", emp_no);
+		List<Pj> list =	projectservice.selectPj_callendar(emp_no);
+		
+		
 		model.addAttribute("emp_no", emp_no);
-		model.addAttribute("list",result2);
+		model.addAttribute("list", list);
 		return jsonview;
 	}
 	

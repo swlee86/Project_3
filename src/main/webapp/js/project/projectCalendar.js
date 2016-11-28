@@ -17,16 +17,16 @@ $(function() {
 		dataType : "json",
 		
 		success : function(data) {
-			var myno = data.emp_no;
+			
 			console.log("내꺼 이엠피 : " +myno);
 			//내가 참여자로 들어가있는 것
 			var data2 = data.list;
 			//내가 쓴 프로젝트 리스트만
-			var data3 = data.list;
+			
 			
 			 for(var i = 0; i < data2.length; i++){
 				 //console.log("제목  : " +data2[i].pj_title + " / 시작날 : "+data2[i].pj_start+" /종료날 "+data2[i].pj_end);
-				
+				 console.log("사번 체크 : " +dta2[i].empno);	
 					 eventData= {
 							 title: data2[i].pj_title ,
 							 start: data2[i].pj_start,
@@ -34,17 +34,6 @@ $(function() {
 							 id : data2[i].pj_no
                  	}
 				 
-				 dbdate.push(eventData);
-			 }
-			 
-			 for(var i = 0; i < data3.length; i++){
-				 
-				 eventData= {
-	                       title: data3[i].pj_title ,
-	                       start: data3[i].pj_start,
-	                       end: data3[i].pj_end,
-	                       id : "2"
-	             }
 				 dbdate.push(eventData);
 			 }
 			 
