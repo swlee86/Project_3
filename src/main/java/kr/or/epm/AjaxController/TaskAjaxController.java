@@ -1,5 +1,6 @@
 package kr.or.epm.AjaxController;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
 import jdk.nashorn.internal.runtime.JSONFunctions;
+import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.EmployeeRoleManageService;
 import kr.or.epm.Service.TaskService;
 import kr.or.epm.VO.Emp_role;
+import kr.or.epm.VO.Task;
 import net.sf.json.JSONArray;
 
 /*
@@ -39,6 +42,9 @@ public class TaskAjaxController {
 
 	@Autowired
 	private TaskService service;
+	
+	@Autowired
+	private CommonService commonservice;
 
 	// 업무 > 수신 > 중요 설정하기
 	@RequestMapping("/taskSign")
@@ -67,6 +73,34 @@ public class TaskAjaxController {
 
 		model.addAttribute("link", link);
 		model.addAttribute("msg", msg);
+
+		return jsonview;
+	}
+
+	// 검색하기
+	@RequestMapping(value = "/task_search.do", method = RequestMethod.POST)
+	public View taskLog_search(HttpServletRequest request, Principal principal, Model model) {
+
+		System.out.println("CONTROLLER] 검색을 시작합니다");
+
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+
+		String key = request.getParameter("selectSearch");
+		String value = request.getParameter("input");
+		String cg_no = request.getParameter("cg_no");
+
+		System.out.println("cg_no : " + cg_no);
+
+		System.out.println("검색  기준 : " + key + " // 검색 값 : " + value);
+
+		// 목록 가져오기
+		List<Task> list = service.searchTask(emp_no, cg_no, key, value);
+
+		model.addAttribute("searchList", list);
 
 		return jsonview;
 	}
