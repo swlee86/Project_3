@@ -181,8 +181,14 @@
 											<label>우편번호</label>
 										</div>
 										<div class="col-md-8">
+										  <div class="input-group">
 											<input type="text" class="form-control" id="addpostcode" name="postcode">
-										</div>
+											<span class="input-group-btn">
+											  <input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-success "  value="우편번호 찾기">
+											</span> 
+										  </div>
+										</div>	
+										
 									</div>
 									<div class="form-group">
 										<div class="col-md-4">
