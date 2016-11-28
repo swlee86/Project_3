@@ -19,6 +19,9 @@ public interface PayDAO {
 	// 본인의 급여 내역 조회하기
 	public List<Pay> selectPay_mine_all(String emp_no);
 	
+	//본인 예상 급여 내역 조회하기
+	public Pay selectPay_mine(String emp_no, String dTime);
+	
 	//본인 급여 월별 조회하기
 	public Pay selectPay_mine_Monthly(String emp_no, String give_date);
 	
@@ -30,14 +33,15 @@ public interface PayDAO {
 	
 	// 예상 퇴직금 조회하기
 	
+	
 	// 본인의 금월 예상 급여 조회하기
 	public Pay selectPay_mine();
 	
 	// 전체 급여 내역 조회하기
 	public List<Pay> selectPay_all();
 	
-	//급여 마감 관리하기
-	public List<PayList> selectPay_all_Close();
+	//급여 마감 관리하기 > 첫번째 
+	public List<PayList> selectPay_all_Close(String dTime);
 	
 	// 전체 금월 예상 급여 조회하기
 	public List<Pay> selectPay();

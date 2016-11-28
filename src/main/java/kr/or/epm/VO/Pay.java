@@ -15,8 +15,35 @@ public class Pay {
 	private int add_pay;
 	private int total_pay;
 	private String give_date;
-	
 	private int salary;
+	private String acc_commute_time;
+	private String acc_add_time;
+
+
+	
+	public String getAcc_commute_time() {
+		return acc_commute_time;
+	}
+
+	public void setAcc_commute_time(String acc_commute_time) {
+		this.acc_commute_time = acc_commute_time;
+	}
+
+	public String getAcc_add_time() {
+		return acc_add_time;
+	}
+
+	public void setAcc_add_time(String acc_add_time) {
+		this.acc_add_time = acc_add_time;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
 
 	public String getPay_no() {
 		return pay_no;
@@ -86,6 +113,10 @@ public class Pay {
 	public String toString() {
 		return "Pay [pay_no=" + pay_no + ", emp_no=" + emp_no + ", basic_pay=" + basic_pay + ", severance_pay="
 				+ severance_pay + ", bonus=" + bonus + ", add_pay=" + add_pay + ", total_pay=" + total_pay
-				+ ", give_date=" + give_date + "]";
+				+ ", give_date=" + give_date + ", salary=" + salary + ", acc_commute_time=" + acc_commute_time
+				+ ", acc_add_time=" + acc_add_time + "]";
 	}
+
+
+	
 }
