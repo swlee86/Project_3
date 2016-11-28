@@ -74,12 +74,19 @@
 									<th width="10%"></th>
 									<th hidden="hidden"></th>
 								</tr>
-								<c:forEach var="list" items="${pjddlist}" step="1">
-								<tr>
-									<td><input type="checkbox" class="i-checks"></td>
-									<td>테스트</td>
-									<td><input type="button" class="btn btn-default" value="수정"></td>
-									<td hidden="hidden"><input type="hidden"  readonly="readonly"></td>
+								<c:forEach var="list" items="${pjddlist}">
+								<tr class="default_table">
+									<td>
+										<c:if test="${list.fin_check=='1'}">
+											<input type="checkbox" class="i-checks" checked="checked" disabled="disabled">
+										</c:if>
+										<c:if test="${list.fin_check=='0'}">
+											<input type="checkbox" class="i-checks" disabled="disabled">
+										</c:if>
+									</td>
+									<td>${list.pjdd_content}</td>
+									<td><input type="button" class="btn btn-default" value="수정" onclick="modify_pjdd()"></td>
+									<td hidden="hidden"><input type="hidden"  readonly="readonly" value="${list.pjdd_no}"></td>
 								</tr>
 								</c:forEach>
 							</table>
@@ -95,42 +102,92 @@
 	</div>
 </div>
 
-<!--이미지 클릭시 뜨는 모달 페이지-->
-<div class="modal fade hmodal-success" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog  modal-sm">
-		<div class="modal-content">
-			<div class="color-line"></div>
-			<div class="modal-header text-center">
-		 	<h4 class="modal-title"><img alt="logo" class="img-circle m-b" src="images/a3.jpg" style="width: 82px;height: 82px;"></h4> <br>
-				<font class="font-bold" size="2em">
-					<font style="color:gray;">박성준</font><br>
-					<font style="color:#9d9fa2">(사단)한국소프트웨어기술진흥협회 > <br>개발부 > 팀장</font> <br>
-					<font style="color:gray;">01020768626</font>
-				</font>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary btn-sm demo2">주소록 등록</button>
-			</div>
-		</div>
-	</div>
-</div>
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script>
 $(function(){
-	
-	$('#add_btn').click(function(){ 
-	
-		alert('들어옴2');
-		var appendTable="<tr><td><input type='checkbox' class='i-checks'></td><td>테스트</td>"+
-			"<td><input type='button' class='btn btn-default' value='수정'></td>"+
-			"<td hidden='hidden'><input type='hidden'  readonly='readonly'></td></tr>";
+	var index = 0;	
+	$('#add_btn').click(function(){
+		
+		alert(index);
+		
+		var appendTable="<tr class='add_table' id='add_btn_tr_"+index+"'><td><input type='checkbox' class='i-checks'></td>"+
+						"<td><input type='text' class='form-control input-sm' id='add_txt_"+index+"'></td>"+
+						"<td><input type='button' class='btn btn-default add_btn' id='add_btn_"+index+"' onclick='addclick(this.id)' value='추가완료'></td>"+
+						"<td hidden='hidden'><input type='hidden'  readonly='readonly'></td></tr>";
 		console.log($('#add_btn').val());
 		$('#pjdd_table').last().append(appendTable);
 		
-		//appendTable = "<"
+		index = index+1;
 	});
 
+
+	
+	
 })
+//추가완료 버튼 눌렀을때
+function addclick(id){
+	var add_i = id.substr(8);
+	var add_content = $('#add_txt_'+add_i).val();
+	var pjd_no = ${pjd_no};
+	//ajax통해서 add_conctetn를 추가시킴
+		
+	// 추가후 리스트 동기화
+	if(add_content!=""){
+	$.ajax(
+				{
+					url  : "insert_pjdd.do",
+					data : {
+						"pjd_no" :  pjd_no,
+						"pjdd_content" : add_content,
+					},
+					success : function(data){
+						console.log(data);
+					
+							
+						$.ajax(
+								{
+									url : "updatepjddtable.do",
+									data :{
+										"pjd_no" : pjd_no,	
+									},
+									success : function(data){
+										console.log(data.data);
+										var appendTable ="";
+										var pjdd = "";
+							            $.each(data, function(index){
+							            	pjdd = data[index];
+							                console.log(pjdd);
+							            });
+							               
+							            $.each(pjdd, function(index){
+											appendTable+="<tr class='default_table'><td>";
+											if(pjdd[index].fin_check=='1'){
+												appendTable+="<input type='checkbox' class='i-checks' checked='checked' disabled='disabled'>";
+											}else if(pjdd[index].fin_check=='0'){
+												appendTable+="<input type='checkbox' class='i-checks' disabled='disabled'>";
+											}
+											appendTable+="</td><td>"+pjdd[index].pjdd_content+"</td>"+
+														 "<td><input type='button' class='btn btn-default' value='수정' onclick='modify_pjdd()'></td>"+
+														 "<td hidden='hidden'><input type='hidden'  readonly='readonly' value='"+pjdd[index].pjdd_no+"'></td></tr>";
+											
+										});
+											
+											
+										$('.default_table').remove();
+										$('#add_btn_tr_'+add_i).remove();
+											
+										$('#pjdd_table').first().append(appendTable);
+									}
+										
+								});
+							
+					}
+				}
+		);
+	}else{
+		alert("작업내용을 입력하세요");
+	}
+}
+	
 
 </script>
