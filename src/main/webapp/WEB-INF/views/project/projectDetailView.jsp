@@ -69,9 +69,9 @@
 						<div class="table-responsive">
 							<table class="table table-bordered table-striped" id="pjdd_table">
 								<tr>
-									<th width="10%">완료</th>
+									<th width="10%">작업완료</th>
 									<th width="75%">작업내용</th>
-									<th width="15%"></th>
+									<th width="15%">수정/수정완료</th>
 									<th hidden="hidden"></th>
 								</tr>
 								<c:forEach var="list" items="${pjddlist}">
