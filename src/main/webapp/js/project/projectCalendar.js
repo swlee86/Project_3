@@ -46,6 +46,8 @@ $(function() {
 						 start: data2[i].pj_start,
 						 end: data2[i].pj_end,
 						 id : data2[i].pj_no,
+						 dept : data2[i].dept_name,
+						 name : data2[i].emp_name,
 						 backgroundColor : "#008000",
 						 color : "#0000FF"
 				 	}
@@ -99,10 +101,11 @@ function calendar(){
 				endDate=dateToYYYYMMDD(endDate);
 				
 				$('#CalendarModal').modal();
+				$('#charge').html(event.name);
+				$('#depart').html(event.dept);
 				$('#projectId').html(event.title);
 				$('#startDate').html(startDate);
 				$('#endDate').html(endDate);
-				
 				
 				var resultDate = calDateRange(startDate, endDate);
 				$('#playProject').html(resultDate);
