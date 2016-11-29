@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 관리자 > 부서관리 > 지점 선택시 -->
 	<select id="deptList" resultType="kr.or.epm.VO.Dept">
-		select dept_name from dept where branch_no = (select branch_no from branch where branch_name=#{branch_name})
+		select dept_name, dept_no from dept where branch_no = (select branch_no from branch where branch_name=#{branch_name})
 	</select>
 
 </mapper>

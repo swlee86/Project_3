@@ -52,6 +52,12 @@ public class PositionJoin {
 		this.add_pay = add_pay;
 	}
 	
+	@Override
+	public String toString() {
+		return "PositionJoin [position_no=" + position_no + ", position_name=" + position_name + ", step=" + step
+				+ ", set_date=" + set_date + ", basic_pay=" + basic_pay + ", add_pay=" + add_pay + "]";
+	}
+	
 	
 	
 }

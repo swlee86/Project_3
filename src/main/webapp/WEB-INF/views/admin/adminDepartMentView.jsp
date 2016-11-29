@@ -43,20 +43,16 @@
 
 							<div class="panel-body">
 
-								<label class="form-control">지점 선택</label> 
+							 <label class="form-control">지점 선택</label> 
 								<select id="selectbranch" class="form-control" onchange="departMentFuc()">
 									<option>선택</option>
 									<c:forEach var="list" items="${branchList}">
-										<option value="${list.branch_no}">${list.branch_name}</option>
+										<option value="${list.branch_name}">${list.branch_name}</option>
 									</c:forEach>
 								</select> 
 								<br /> 
 								<label class="form-control">부서 선택</label> 
-								 <select class="form-control">
-									<option>선택</option>
-									<c:forEach var="dlist" items="${deptlist}">
-										<option value="${dlist.dept_no}">${dlist.dept_name}</option>
-									</c:forEach>
+								 <select class="form-control" id="selectDept">
 								</select> <br /> 
 								<input type="button" class="btn btn-success" value="조회">
 							</div>

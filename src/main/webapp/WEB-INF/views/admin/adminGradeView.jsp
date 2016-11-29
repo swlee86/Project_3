@@ -70,9 +70,7 @@
 								
 								<div class="form-group">
 									<div class="col-md-offset-5 col-md-2">
-										<button class="btn btn-default " id="addBtn">
-											<span class="fa fa-plus-circle">직위추가</span>
-										</button>
+											<input type="button" class="btn btn-default " id="addBtn" value="직위추가">
 									</div>
 								</div>
 								
@@ -94,7 +92,7 @@
 						<div class="vertical-timeline-content">
 							<h4>직위 정보 조회</h4>
 							<hr/>
-							<form class="form-horizontal">
+							<form class="form-horizontal" action="positionModify.do" id="modifyForm">
 								<div class="form-group">
 									
 									<div class="col-md-offset-3 col-md-5">
@@ -111,7 +109,7 @@
 										<label>이름 </label>
 									</div>
 									<div class="col-md-5">
-										<input type="text" class="form-control" id="dbpositionName">
+										<input type="text" class="form-control" id="dbpositionName" name="position_name">
 									</div>
 									<div class="col-md-2"></div>
 									<div class="col-md-2"></div>
@@ -121,7 +119,7 @@
 										<label>기본급여</label>
 									</div>
 									<div class="col-md-5">
-										<input type="text" class="form-control" id="dbbasic_pay">
+										<input type="text" class="form-control" id="dbbasic_pay" name="basic_pay">
 									</div>
 									<div class="col-md-4"></div>
 								</div>
@@ -130,17 +128,18 @@
 										<label>추가급여</label>
 									</div>
 									<div class="col-md-5">
-										<input type="text" class="form-control" id="dbadd_pay">
+										<input type="text" class="form-control" id="dbadd_pay" name="add_pay">
 									</div>
 									<div class="col-md-4"></div>
 								</div>
 								<div class="col-sm-offset-5 col-sm-2">
-									<button class="btn btn-default " id="addBtn">
-										<span class="fa fa-plus-circle">정보수정</span>
-									</button>
+									<input type="submit" class="btn btn-default" value="정보수정">
 								</div>
 								<br/><br/>
 								<div class="panel-footer"></div>
+								<input type="hidden" name="set_date" id="set_date">
+								<input type="hidden" name="position_no" id="position_no">
+								<input type="hidden" name="step" id="step">
 							</form>
 
 						</div>
@@ -159,7 +158,7 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="form-group" style="height: 700px;">
-								<h4>직위 리스트 보기<small>(정보보기는 더블클릭)</small></h4>
+								<h4>직위 리스트 보기</h4>
 								<hr />
 								<div class="infont col-md-6">
 									<ul id="sortable">
