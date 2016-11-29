@@ -136,8 +136,10 @@
                         <div class="title">
                             You have 4 new messages
                         </div>
-                        <li id="titlepush">
+                        <li>
+                        	테스트
                     	</li>
+                    	<div id = "titlepush"></div>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -198,20 +200,56 @@
 $('#birthDay').click(function(){
 	$('#birthModal').modal();
 });	
-		var webSocket;		
-		/* wsocket = new WebSocket("ws://192.168.0.138:8090/spring4-chap09-ws/chat-ws.do"); */
-		webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do");
-		//웹소켓 초기화
-		/* var webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do"); */
 
-        webSocket.onmessage = function (message){
-			console.log("message : " + message.data);
-            document.getElementById("titlepush").append(message.data+ "\n");
-        };
+
+		var webSocket;
+		webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do");
 		
+        webSocket.onmessage = function (message){
+			console.log("#########message : " + message.data);
+			var divTest = document.getElementById("titlepush");
+			divTest.innerHTML = message.data+"\n";
+        };
+	
 		webSocket.onclose = function(e) {
 			console.log("연결 닫힘: " + e.reason);
-		}	
+		}
+		
+		
+		//기본 폴링방식
+        $(function () {
+            window.setInterval(function () {
+                $.get("${pageContext.request.contextPath}/pollingchk.do", function (data) {
 
+                });
+            }, 15000);
+            
+        });
+         
+      /* 
+        $(function () {
+            
+            (function longPolling() {
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/pollingchk.do",
+                    timeout: 10000,
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (textStatus == "timeout") { // 요청
+                                longPolling(); // 재귀적 호출
+                            // 기타 버그, 오류 등 같은 네트워크
+                            } else { 
+                                longPolling();
+                            }
+                        },
+                    success: function (data, textStatus) {
+                        if (textStatus == "success") { // 요청 성공
+                            longPolling();
+                        }
+                    }
+                });
+            })();
+            
+        });
+    */
 </script>
     
