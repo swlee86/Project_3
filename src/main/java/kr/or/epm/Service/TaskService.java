@@ -160,7 +160,6 @@ public class TaskService {
 	}
 	
 	// 업무 요청 > 참여 리스트 불러오기
-	// 사용
 	public List<Task> selectTask_people(String emp_no) {
 		
 		System.out.println("SERVICE] 업무 요청 > 참여 리스트를 불러옵니다");

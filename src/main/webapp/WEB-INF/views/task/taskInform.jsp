@@ -119,7 +119,7 @@
 														<label></label>
 													</div>
 												</td>
-												<td style="padding-top: 12px;">
+												<td style="padding-top: 12px; text-weight: bold;">
 													<a href="taskInform_rec_detail.do?task_no=${list1.task_no}"
 													<c:if test="${ list1.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>
 														${list1.task_name}

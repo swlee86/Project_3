@@ -39,7 +39,8 @@
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											업무 번호
 										</th>
-										<td style="width: 40%" colspan="3">${ detail.task_no }</td>
+										<td style="width: 40%" colspan="3" name="task_no">${ detail.task_no }</td>
+										<input type="hidden" name="task_no" value="${ detail.task_no }">
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											승인 결과
 										</th>
