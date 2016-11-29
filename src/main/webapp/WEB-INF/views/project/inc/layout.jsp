@@ -213,8 +213,6 @@
 	   console.log("name32: "+ name);
 	   
 	   
-	   $('#pjd[0].emp_no').val(emp_no);
-	   $('#pjd[0].emp_name').val(name);
 	   $('#rec_emp_no').val(emp_no);
 	   $('#rec_emp_name').val(name);
 	   
@@ -229,9 +227,9 @@
 	
 	
 	//상세 프로젝트 추가
-	var pjd_count = 0; 
 	$(function(){
-	
+		var pjd_count = 0; 
+		
 		$('#pjd_detail_btn').click(function(){
 			console.log('추가번튼s 클릭');
 			pjd_count = $('#pjd_count').val();
@@ -241,13 +239,13 @@
 				url : "project_detail_plus.do",
 				dataType : "html",
 				success : function(data) {
-					alert("성공!!");
+					alert("성공s!!");
 					console.log("pjd_count : "+pjd_count);
 					pjd_count = Number(pjd_count) + 1;			 
 					 
 					$('#kung_pjd_table').append(data);
 					
-					calendar(pjd_count);
+					//calendar(pjd_count);
 					/* seeDepart2(pjd_count, obj, empSelectNumber, choose);
 
 					seelow_Depart2(pjd_count, obj,empSelectNumber,departcho);
@@ -283,95 +281,12 @@
 			
 	});
 	
-	function calendar(pjd_count) {
-		
-		//달력
-		var text = $('.formstartDate').datepicker({
-			 changeMonth: true, 
-	         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-	         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-	         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-	         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	         dateFormat: 'yy-mm-dd',
-	         changeYear: true
-		});	
-		
-		var text2 = $('.formendDate').datepicker({
-			 changeMonth: true, 
-	         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-	         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-	         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-	         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	         dateFormat: 'yy-mm-dd',
-	         changeYear: true
-		});	
-		
-		
-		//섬머노트
-		 $('.summernote').summernote();
 
-		    var sHTML = $('.summernote').code();
-
-		   // console.log(sHTML);
-
-		    $('.summernote1').summernote({
-		        toolbar: [
-		            ['headline', ['style']],
-		            ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
-		            ['textsize', ['fontsize']],
-		            ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
-		        ]
-		    });
-
-		    $('.summernote2').summernote({
-		        airMode: true,
-		    });
-		    
-		    //조직도
-		    $('.organization_add').click(function() {
-		   		var  empSelectNumber = 1;
-				var litag = "<ui style='list-style:none;''>";   		
-				$('#organization').empty();
-				$('#empList').empty();
-		             
-		         	$.ajax({
-		   			url : "taskWriteModal.do",
-		   			success : function(data) {
-		   				 $('#myModal6').modal();
-		   				choose = 1;
-		   				var departMent = "";
-		
-		   				$.each(data, function(index) {
-		   					departMent = data[index];
-		   				});
-		
-		   				$.each(departMent, function(index) {
-		   					litag += "<li onclick='seeDepart2("+pjd_count+", this,"
-		   						litag +=empSelectNumber +","
-		   						litag +=departMent[index].branch_no
-		    				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-		    					litag +="</ul>";
-		    					
-		    					litag+="<div id='dept_div"
-		    					litag+=departMent[index].branch_no
-		    					litag+="'></div>";
-		       				});
-		
-		   				$('#organization').html(litag);
-		
-		   			}
-		   		})
-		    });
-		    
-    
-	}
 	
 	
 	
 	
-	
-	
-	
+/* 	
 	
 	 //부서 출력 하는 아작스
 	function seeDepart2(pjd_count, obj, empSelectNumber, choose) {
@@ -515,7 +430,7 @@
 	   
 	   $('#myModal6').modal("hide");
 	  
-	}
+	} */
 	
 	
 	
