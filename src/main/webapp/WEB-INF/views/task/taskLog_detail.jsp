@@ -72,13 +72,13 @@
 
 									<tr>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											작성자 사번
+											수신자 사번
 										</th>
 										<td style="width: 25%">
 											${ detail.emp_no }
 										</td>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											작성자 명
+											수신자 명
 										</th>
 										<td style="width: 25%">
 											${ detail.emp_name }
@@ -118,7 +118,7 @@
 								<br><br>
 
 								<div class="pull-right" style="text-align: center;">
-									<input type="button" onclick="location.href='taskRequest.do'"
+									<input type="button" onclick="location.href='taskLog.do'"
 										   class="btn btn-sm btn-default" value="뒤로가기"
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 								</div>

@@ -126,18 +126,12 @@ public class TaskController {
 			emp_name = commonservice.selectEmp_name(id);
 			task.setEmp_name(emp_name);
 			
-			// 기본 정보 setting
-			
 			// 업무 등록하기
 			result1 = service.insertTask(task);
-			
-			if(result1 > 0) {
-				System.out.println("업무 등록에 성공했습니다");
-				task_no = service.selectTask_no();
-				System.out.println("등록하려고 하는 업무 번호는 : " + task_no);
-			} else {
-				System.out.println("업무 등록에 실패했습니다");
-			}
+
+			// 등록하는 업무 번호 가져오기
+			task_no = service.selectTask_no();
+			System.out.println("등록하려고 하는 업무 번호는 : " + task_no);
 			
 			// 업무 참여자 등록하기
 			result2 = service.insertTask_people(task_no, people);
@@ -146,9 +140,9 @@ public class TaskController {
 			e.getMessage();
 		} finally {
 			if ((result1 > 0) && (result2 > 0)) {
-				msg = "업무 등록에 성공하였습니다";
+				System.out.println("업무 등록에 성공하였습니다");
 			} else {
-				msg = "업무 등록에 실패하였습니다";
+				System.out.println("업무 등록에 실패하였습니다");
 			}
 		}
 
@@ -284,6 +278,7 @@ public class TaskController {
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);
+		
 		return "task.taskRequest_rec_detail";
 	}
 
@@ -296,7 +291,7 @@ public class TaskController {
 		System.out.println("선택한 승인 단계 : " + step_no);
 
 		// redirect
-		String link = "taskRequest_rec.do";
+		String link = "taskRequest.do";
 		String msg = null;
 
 		int result = 0;
@@ -306,9 +301,9 @@ public class TaskController {
 			e.getMessage();
 		} finally {
 			if (result > 0) {
-				msg = "승인 처리에 성공하였습니다";
+				System.out.println("승인 처리에 성공하였습니다");
 			} else {
-				msg = "승인 처리에 실패하였습니다";
+				System.out.println("승인 처리에 실패하였습니다");
 			}
 		}
 
@@ -329,6 +324,10 @@ public class TaskController {
 		Task detail = service.selectTask_detail(task_no);
 		model.addAttribute("detail", detail);
 
+		// 업무 참여자 상세 가져오기
+		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
+		model.addAttribute("peopledetail", peopledetail);
+		
 		return "task.taskRequest_detail";
 	}
 
@@ -342,6 +341,11 @@ public class TaskController {
 		// 상세 가져오기
 		Task detail = service.selectTask_detail(task_no);
 		model.addAttribute("detail", detail);
+		
+
+		// 업무 참여자 상세 가져오기
+		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
+		model.addAttribute("peopledetail", peopledetail);
 
 		return "task.taskRequest_participation_detail";
 	}
@@ -355,7 +359,7 @@ public class TaskController {
 		System.out.println("선택한 진행 단계 번호 : " + task_step_no);
 
 		// redirect
-		String link = "taskRequest_participation.do";
+		String link = "taskRequest.do";
 		String msg = null;
 
 		int result = 0;
@@ -426,6 +430,10 @@ public class TaskController {
 		Task task = service.selectTask_detail(task_no);
 		model.addAttribute("detail", task);
 
+		// 업무 참여자 상세 가져오기
+		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
+		model.addAttribute("peopledetail", peopledetail);
+		
 		return "task.taskInform_rec_detail";
 	}
 
@@ -448,9 +456,9 @@ public class TaskController {
 			e.getMessage();
 		} finally {
 			if (result > 0) {
-				msg = "승인 처리에 성공하였습니다";
+				System.out.println("승인 처리에 성공하였습니다");
 			} else {
-				msg = "승인 처리에 실패하였습니다";
+				System.out.println("승인 처리에 실패하였습니다");
 			}
 		}
 
@@ -471,6 +479,10 @@ public class TaskController {
 		Task task = service.selectTask_detail(task_no);
 		model.addAttribute("detail", task);
 
+		// 업무 참여자 상세 가져오기
+		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
+		model.addAttribute("peopledetail", peopledetail);
+		
 		return "task.taskInform_detail";
 	}
 
@@ -523,6 +535,10 @@ public class TaskController {
 		Task task = service.selectTask_detail(task_no);
 		model.addAttribute("detail", task);
 
+		// 업무 참여자 상세 가져오기
+		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
+		model.addAttribute("peopledetail", peopledetail);
+		
 		return "task.taskLog_rec_detail";
 	}
 
@@ -537,6 +553,10 @@ public class TaskController {
 		Task task = service.selectTask_detail(task_no);
 		model.addAttribute("detail", task);
 
+		// 업무 참여자 상세 가져오기
+		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
+		model.addAttribute("peopledetail", peopledetail);
+		
 		return "task.taskLog_detail";
 	}
 }

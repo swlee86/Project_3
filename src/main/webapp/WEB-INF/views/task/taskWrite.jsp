@@ -113,7 +113,7 @@
 										<th style="background-color: #f5f5f5; text-align: right; 
 										`		   padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 업무 기한
-											<input type="text" id="deadline" name="deadline">
+											<input type="hidden" id="deadline" name="deadline">
 										</th>
 										<td colspan="3">
 											<div class="form-inline">
