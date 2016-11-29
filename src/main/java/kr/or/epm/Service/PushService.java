@@ -1,6 +1,8 @@
 package kr.or.epm.Service;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Push;
+import kr.or.epm.VO.Task;
 
 @Service
 public class PushService {
@@ -33,6 +36,14 @@ public class PushService {
 		String result = pushdao.selectEmp_no(username);
 		System.out.println("뽑은 데이터는? " + result);
 		return result;
+	}
+	
+	//index에서 사용될 Task 미확인 데이터를 끌고 옴
+	public List<Task> tasklist(String emp_no){
+		System.out.println("테스크 뽑으러 왔어요~");
+		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
+		List<Task> tasklist = pushdao.selecttasklist(emp_no);
+		return tasklist;
 	}
 	
 }

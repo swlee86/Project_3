@@ -6,19 +6,21 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.epm.MailController.ReceiveMailImap;
 import kr.or.epm.Service.CompanyBoardService;
+import kr.or.epm.Service.ProjectService;
+import kr.or.epm.Service.PushService;
 import kr.or.epm.Util.Util;
 import kr.or.epm.VO.Company;
 import kr.or.epm.VO.Mail;
+import kr.or.epm.VO.Pj;
+import kr.or.epm.VO.Task;
 
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
 
@@ -26,17 +28,62 @@ import kr.or.epm.VO.Mail;
 public class PageMoveController {
 
 	@Autowired
+	private PushService pushService;
+	
+	@Autowired
 	private CompanyBoardService companyBoardService;
+	
+	@Autowired
+	private ProjectService projectservice;
 	
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, HttpSession session, Principal principal) {
-		/*
-		if(Util.isEmpty(principal.getName())){
-			session.setAttribute("userSession", principal.getName());
-			System.out.println("userSession : " + (String)session.getAttribute("userSession"));
-		}
-		*/
+		String emp_no = (String)session.getAttribute("emp_no");
+		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
+		boolean emp_no_chk = Util.isEmpty(emp_no);
+		
+		List<Task> tasklist = null;
+		///////////////////////인덱스에 띄워 줄 업무 내용 구하기 시작////////////////////////////////////////////////////
+		if(emp_no_chk==true){
+ 			String msg_task = "미확인 업무 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("msg_task", msg_task);
+ 		}else{
+ 			try{
+ 				tasklist = pushService.tasklist(emp_no);
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+ 			}finally{
+ 				model.addAttribute("tasklist", tasklist);
+ 			}
+ 			
+ 			
+ 		}
+		
+		
+		
+		
+		
+		
+		
+		/////////////////////인덱스에 띄워 줄 프로젝트 내용 구하기 시작////////////////////////////////////////////////////
+		List<Pj> pjlist = null;
+		
+		if(emp_no_chk==true){
+ 			String msg_pj = "프로젝트 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("msg_pj", msg_pj);
+ 		}else{
+ 			try{
+ 				pjlist = projectservice.selectPj_callendar(emp_no); 				
+ 				System.out.println("프로젝트 리스트 사이즈 : " +pjlist.size());
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+ 			}finally{
+ 				model.addAttribute("pjlist", pjlist);
+ 			}
+ 		}
+		
+		
 		
 ///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
 		if(pagesize == null || pagesize.trim().equals("")){
