@@ -116,7 +116,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" id="branch_name" name="branch_name" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
@@ -124,7 +124,7 @@
 											<label>부서명</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" id="dept_name" name="dept_name"  readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
@@ -132,7 +132,7 @@
 											<label>상여금 지급 비율</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" id="bonus_percent" name="bonus_percent" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
@@ -142,7 +142,7 @@
 										
 										<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" readonly="readonly" >
+                        					  <input type="text" class="form-control" id="in_time" name="in_time" readonly="readonly" >
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -151,7 +151,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" readonly="readonly">
+                        					  <input type="text" class="form-control" id="out_time" name="out_time" readonly="readonly">
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>
