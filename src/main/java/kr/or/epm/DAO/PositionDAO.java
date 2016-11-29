@@ -16,7 +16,13 @@ public interface PositionDAO {
 	public int insertPosition();
 	
 	// 직위 수정하기
-	public int updatePosition();
+	public int updatePosition(Position position);
+	
+	//기본 연봉 수정
+	public int updateset_pay(PositionJoin position);
+	
+	//추가 급여 수정
+	public int updateset_add_pay(PositionJoin position);
 	
 	// 직위 조회하기
 	public List<Position> selectPosition();
@@ -27,6 +33,7 @@ public interface PositionDAO {
 	// 직위 삭제하기
 	public int deletePosition();
 	
+	//셀렉트 박스 에서 정보 쭉 뽑아올때 - 조인용 DTO 만들어서 사용함.
 	public PositionJoin selectOptionJoin(String positionOption);
 	
 }

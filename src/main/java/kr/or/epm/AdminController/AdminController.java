@@ -87,11 +87,26 @@ public class AdminController {
 	
 	//직위 정보 수정 시 사용
 	@RequestMapping("/positionModify.do")
-	public String modifyPosition(PositionJoin position){
-		
+	public String modifyPosition(PositionJoin position, Model model){
 		System.out.println("컨트롤러 : "+position.toString());
+		int result = adminservice.positionUpdate(position);
+		System.out.println("결과 : "+result);
 		
-		return null;
+		String msg = "";
+		String link = "";
+		
+		if(result > 0){
+			msg = "수정 성공!";
+			link = "adminGrade.do";
+		}else{
+			msg = "수정 실패!";
+			link = "adminGrade.do";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("link",link);
+		
+		return "admin.admin_redirect";
 	}
 	
 	//시간 등록 페이지 이동
@@ -136,5 +151,7 @@ public class AdminController {
 	public String salaryInfoModify(){
 		return "admin.adminSalaryModify";
 	}
+	
+	
 	
 }
