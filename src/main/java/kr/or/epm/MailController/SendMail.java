@@ -26,8 +26,8 @@ public class SendMail {
 
 			// 메일 관련 정보
 			String host = "smtp.gmail.com";
-			String username = mailid;
-			String password = sessionchk;
+			String username = "publicepm@gmail.com";
+			String password = "12349876";
 			System.out.println(username + " / " + password);
 			String result = null;
 			Mail mail = new Mail();
