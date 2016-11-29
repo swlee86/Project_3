@@ -35,30 +35,19 @@ public class broadsocket extends TextWebSocketHandler {
 	    //map에 저장된 session들에게 메세지를 보냄
 	    
      	for (WebSocketSession s : users.values()) {
-     		if(!s.equals(null)){
-     			s.sendMessage(new TextMessage(session.getAttributes().get("taskcount") + "건의 미처리 업무가 있습니다 "));	
-     			log(session.getAttributes().get("taskcount")+ "건의 미처리 업무가 있습니다");     			
-     		}else{
-     			s.sendMessage(new TextMessage("현재 미처리 업무가 없습니다."));
-     			log("현재 미처리 업무가 없습니다.");
-     		}
-     			
+     			s.sendMessage(new TextMessage("<li>확인하지 않은 " + session.getAttributes().get("taskcount") + "개의	 업무가 있습니다</li>"));	
+     			log(session.getAttributes().get("taskcount")+ "건의 미처리 업무가 있습니다 -------------final log");     			
      		
     	}
-		
-		
-		
-		
-		
 		
 	}
 
 	@Override
 	public void afterConnectionClosed(
 			WebSocketSession session, CloseStatus status) throws Exception {
-		log((String) session.getAttributes().get("userId") + " 연결 종료됨");
+		/*log((String) session.getAttributes().get("userId") + " 연결 종료됨");*/
 		//접속한 session을 users 맵에서 제거
-		users.remove((String) session.getAttributes().get("userId"));
+		/*users.remove((String) session.getAttributes().get("userId"));*/
 	}
 
 	@Override

@@ -121,6 +121,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		
 		//로그인 성공시 session 객체들 사용
 		//미완료 taskcount 생성 > websocket 사용
+		session.setAttribute("customerId", authentication.getName());
 		session.setAttribute("taskcount", taskcount);
 		session.setAttribute("empnoresult", empnoresult);
 		

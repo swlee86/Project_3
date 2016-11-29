@@ -11,6 +11,7 @@ import kr.or.epm.VO.Dept;
  */
 public interface DeptDAO {
 
-	List<Dept> deptList(String branch_no);
+	//부서 리스트 selectbox
+	List<Dept> deptList(String branch_name);
 	
 }

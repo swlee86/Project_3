@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.epm.DAO.BranchDAO">
 
 	<select id="selectBranch" resultType="kr.or.epm.VO.Branch">
-		select branch_name from branch where his_check=1
+		select branch_name, branch_no from branch where his_check=1
 	</select>
 	
 	<select id="selectChooseBranch" parameterType="String" resultType="kr.or.epm.VO.Branch">
