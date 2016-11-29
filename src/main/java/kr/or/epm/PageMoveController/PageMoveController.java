@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.epm.MailController.ReceiveMailImap;
 import kr.or.epm.Service.CompanyBoardService;
+import kr.or.epm.Service.ProjectService;
 import kr.or.epm.Util.Util;
 import kr.or.epm.VO.Company;
 import kr.or.epm.VO.Mail;
+import kr.or.epm.VO.Pj;
 
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
 
@@ -28,15 +30,33 @@ public class PageMoveController {
 	@Autowired
 	private CompanyBoardService companyBoardService;
 	
+	@Autowired
+	private ProjectService projectservice;
+	
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, HttpSession session, Principal principal) {
-		/*
-		if(Util.isEmpty(principal.getName())){
-			session.setAttribute("userSession", principal.getName());
-			System.out.println("userSession : " + (String)session.getAttribute("userSession"));
-		}
-		*/
+/////////////////////인덱스에 띄워 줄 프로젝트 내용 구하기 시작////////////////////////////////////////////////////
+		String emp_no = (String)session.getAttribute("emp_no");
+		System.out.println("인덱스에서 프로젝트를 뽑기 위한 emp_no 데이터 : " + emp_no);
+		boolean emp_no_chk = Util.isEmpty(emp_no);
+		List<Pj> pjlist = null;
+		
+		if(emp_no_chk==true){
+ 			String msg_pj = "프로젝트 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("msg_pj", msg_pj);
+ 		}else{
+ 			try{
+ 				pjlist = projectservice.selectPj_callendar(emp_no); 				
+ 				System.out.println("프로젝트 리스트 사이즈 : " +pjlist.size());
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+ 			}finally{
+ 				model.addAttribute("pjlist", pjlist);
+ 			}
+ 		}
+		
+		
 		
 ///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
 		if(pagesize == null || pagesize.trim().equals("")){
