@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.PushDAO;
+import kr.or.epm.VO.Emp_detail;
+import kr.or.epm.VO.Push;
 
 @Service
 public class PushService {
@@ -17,6 +19,8 @@ public class PushService {
 	public String taskCount(String emp_no){
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		String result = pushdao.taskCount(emp_no);
+		System.out.println("서비스단 데이터 : " + emp_no);
+		
 		return result;
 	}
 	
