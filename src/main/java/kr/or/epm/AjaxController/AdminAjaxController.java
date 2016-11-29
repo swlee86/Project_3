@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.AdminService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
+import kr.or.epm.VO.Position;
+import kr.or.epm.VO.PositionJoin;
 
 /*
  * 작성자 : 박성준
@@ -47,6 +50,7 @@ public class AdminAjaxController {
 		return jsonview;
 	}
 	
+	
 	//지점 정보 수정
 	@RequestMapping("/branchModify.do")
 	public View branchModify(Branch dto, Model model){
@@ -60,14 +64,21 @@ public class AdminAjaxController {
 	
 	//부서 페이지 - 부서에서 - > 지점 선택시 부서 select 에 뿌려주는 함수
 	@RequestMapping("/departMentSelect.do")
-	public View departMentSelect(String branch_name, Model model){
+	public View departMentSelect(String branch_name){
 		System.out.println("컨트롤러 : "+branch_name);
 		List<Dept> list = adminservice.listDept(branch_name);
 		System.out.println("리스트싸이즈 : "+list.size());
-		model.addAttribute("deptlist", list);
 		return jsonview;
 	}
 	
-
+	//직위 정보 조회 > selectBox 선택시
+	@RequestMapping(value="/adminGradeSelect.do", method=RequestMethod.GET)
+	public View adminSelect(String choose, Model model){
+		System.out.println("셀렉트 선택한 값 : "+choose);
+		PositionJoin position = adminservice.dtoPosition(choose);
+		model.addAttribute("position", position);
+		return jsonview;
+	}
+		
 	
 }

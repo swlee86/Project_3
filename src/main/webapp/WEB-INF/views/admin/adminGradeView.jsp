@@ -98,10 +98,10 @@
 								<div class="form-group">
 									
 									<div class="col-md-offset-3 col-md-5">
-										<select class="form-control">
+										<select class="form-control" onchange="selectPosition();">
 												<option>선택</option>
 											<c:forEach var="list" items="${positionList}">
-												<option value='${list.position_name}'>${list.position_name}</option>
+												<option value='${list.position_no}'>${list.position_name}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -111,7 +111,7 @@
 										<label>이름 </label>
 									</div>
 									<div class="col-md-5">
-										<input type="text" class="form-control" id="positionName">
+										<input type="text" class="form-control" id="dbpositionName">
 									</div>
 									<div class="col-md-2"></div>
 									<div class="col-md-2"></div>
@@ -121,7 +121,7 @@
 										<label>기본급여</label>
 									</div>
 									<div class="col-md-5">
-										<input type="text" class="form-control" id="basic_pay">
+										<input type="text" class="form-control" id="dbbasic_pay">
 									</div>
 									<div class="col-md-4"></div>
 								</div>
@@ -130,7 +130,7 @@
 										<label>추가급여</label>
 									</div>
 									<div class="col-md-5">
-										<input type="text" class="form-control" id="add_pay">
+										<input type="text" class="form-control" id="dbadd_pay">
 									</div>
 									<div class="col-md-4"></div>
 								</div>

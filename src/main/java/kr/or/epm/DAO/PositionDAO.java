@@ -2,6 +2,7 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 import kr.or.epm.VO.Position;
+import kr.or.epm.VO.PositionJoin;
 
 /*
  * 작성일 : 2016-11-18
@@ -25,4 +26,7 @@ public interface PositionDAO {
 	
 	// 직위 삭제하기
 	public int deletePosition();
+	
+	public PositionJoin selectOptionJoin(String positionOption);
+	
 }

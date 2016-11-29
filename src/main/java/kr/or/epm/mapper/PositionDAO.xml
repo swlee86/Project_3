@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 직위 조회하기 -->
 	<select id="selectPosition" resultType="kr.or.epm.VO.Position">
-		select position_name, step
+		select position_name,position_no,step
 		from position
 		order by step asc
 	</select>
@@ -43,5 +43,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from position
 		where position_no = #{position_no}
 	</delete>
+	
+	<!--직위 선택시 기본급여 , 추가급여 조회-->
+	<select id="selectOptionJoin" parameterType="String" resultType="kr.or.epm.VO.PositionJoin">
+	select p.position_no, p.position_name, s.basic_pay, a.add_pay
+	from position p join set_pay s
+	on p.position_no = s.position_no
+	join set_add_pay a
+	on p.position_no=a.position_no
+	where p.position_no = #{param1}
+	</select>
+	
 	
 </mapper>
