@@ -16,11 +16,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(position_seq.nextval, #{position_name}, #{step})
 	</insert>
 	
-	<!-- 직위 수정하기 -->
-	<update id="updatePosition">
+	<!-- 직위 수정하기 (왼쪽) 셀렉박스 용 -->
+	<update id="updatePosition" parameterType="kr.or.epm.VO.Position">
 		update position
-		set position_name = #{position_name}, 
-			step = #{step}
+		set position_name = #{position_name} 
+		where position_no = #{position_no}
+	</update>
+	
+	<!--기본 연봉설정 수정.-->
+	<update id="updateset_pay" parameterType="kr.or.epm.VO.PositionJoin">
+		update set_pay
+		set set_date = #{set_date}, basic_pay = #{basic_pay}
+		where position_no = #{position_no}
+	</update>
+	
+	<update id="updateset_add_pay" parameterType="kr.or.epm.VO.PositionJoin">
+		update set_add_pay
+		set set_date = #{set_date}, add_pay = #{add_pay}
 		where position_no = #{position_no}
 	</update>
 	

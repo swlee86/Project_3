@@ -81,5 +81,32 @@ public class AdminService {
 		return position;
 	}
 	
+	//직위 정보 수정 관련
+	public int positionUpdate(PositionJoin position){
+		
+		int result = 0;
+		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
+		
+		Position positionDTO = new Position();
+		positionDTO.setPosition_name(position.getPosition_name());
+		positionDTO.setPosition_no(position.getPosition_no());
+		
+		
+		result = positionDAO.updatePosition(positionDTO);
+		
+		if(result > 0){
+			result = positionDAO.updateset_pay(position);
+		}
+		
+		int resultAddpay = positionDAO.updateset_add_pay(position);
+		int total = 0;
+		if(result != 0 && resultAddpay != 0){
+			total = 1;
+		}else{
+			total = 0;
+		}
+		
+		return total;
+	}
 	
 }
