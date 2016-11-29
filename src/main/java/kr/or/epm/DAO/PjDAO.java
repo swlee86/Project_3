@@ -2,7 +2,9 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Pj;
+import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Task;
 
 /*
@@ -14,7 +16,10 @@ import kr.or.epm.VO.Task;
 public interface PjDAO {
 	
 	// 프로젝트 등록하기
-	public int insertPj();
+	public int insertPj(Pj pj);
+	
+	//프로젝트 상세 등록하기
+	public int insertPjd(Pjd pjd);
 	
 	// 프로젝트 승인 대기함 조회하기
 	public List<Pj> selectPj_rec();
@@ -43,4 +48,12 @@ public interface PjDAO {
 	
 	// 프로젝트 내가 작성한것 and 내가 참여자인것 프로젝트 목록 가져오기
 	public List<Pj> selectPj_callendar(String emp_no);
+
+	//회원정보 가져오기
+	public Emp selectInfoSearch(String id);
+	
+	public int selectMaxPj_no();
+	
+	//프로젝트 상세 참여자 추가하기
+	public int insertPjd_people();
 }

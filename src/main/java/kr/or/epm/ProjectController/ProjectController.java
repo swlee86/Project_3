@@ -1,5 +1,6 @@
 package kr.or.epm.ProjectController;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.swing.text.View;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.or.epm.Service.ProjectDetailService;
 import kr.or.epm.Service.ProjectService;
 import kr.or.epm.VO.Contact;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_Command;
@@ -46,26 +48,43 @@ public class ProjectController {
 	
 	//프로젝트 상세상세 처리
 	@RequestMapping(value="project_detail_plus_try.do", method=RequestMethod.POST)
-	public String  project_detail_plus_try(Pjd_Command pjd_Command, String pjd_count){
+	public String  project_detail_plus_try(Principal principal, Pjd_Command pjd_Command, String pjd_count){
 		System.out.println("project_detail_plus_try() 컨트롤 탐");
 		System.out.println("pjd_Command : " + pjd_Command.toString());
 		System.out.println("pjd_Command : " + pjd_Command.getPjd());
 	
-
+		String url = "redirect:project_list.do"; 
 		List<Pjd> list = pjd_Command.getPjd();
 			for(Pjd pjd : list){
 				System.out.println("시작일:"+pjd.getPjd_start()+"/종료일:"+ pjd.getPjd_end()+"/제목:" + pjd.getPjd_title()+"/보낼사람 사번" + pjd.getEmp_no()+"/내용:" + pjd.getPjd_content());
 			}
 			
-		return "redirect:project_list.do";
+			String id= principal.getName();
+			System.out.println("id : "+id);
+			Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기
+			
+			pj.setEmp_no(emp.getEmp_no());
+			
+			try{
+				url = projectservice.insertPj(pj,pjd_Command); 
+			}catch (Exception e) {
+				System.out.println("project_detail_plus_try() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
+			}finally{
+				pj = null;
+			}
+			
+		return url;
 	}	
 		
+	Pj pj = new Pj();
+	
 	//프로젝트 생성하기
 	@RequestMapping(value="/projectMake.do", method=RequestMethod.POST)
 	public String projectMake(Pj pj, Model model){
 		System.out.println("projectMake 작성 컨트롤러 탐");
 		System.out.println("@pj tostirng: "+pj.toString());
-		model.addAttribute("pj", pj);
+		//model.addAttribute("pj", pj);
+		this.pj = pj;
 		return "project.projectDetailMakeForm";
 	}
 		

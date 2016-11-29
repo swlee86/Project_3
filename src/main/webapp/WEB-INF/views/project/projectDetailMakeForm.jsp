@@ -27,7 +27,7 @@
 <div class="content animate-panel">
 <button id="pjd_detail_btn">추가</button>
 	<form class="form-inline" action="project_detail_plus_try.do" method="post">
-		폼:<input type="text" name="pjd_count" id="pjd_count" value="0">
+		폼<input type="text" name="pjd_count" id="pjd_count" value="0">
 		<div class="pull-right" style="text-align:center;">
 			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-close"></i></a>
 			<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a>
