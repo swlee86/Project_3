@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
 <link rel="stylesheet" href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
 <link rel="stylesheet" href="vendor/select2-3.5.2/select2.css" />
@@ -46,6 +45,7 @@ span.sty {
 label.sty {
    width: 100px;
    margin-right: 30px;
+   text-align: center;
    border-radius: 3px;
    border: 1px solid #ccc;
    color: #999;
@@ -65,7 +65,7 @@ input.radio:empty ~ label {
    position: relative;
    float: left;
    line-height: 2.5em;
-   text-indent: 3.25em;
+   text-align: center;
    margin-top: 2em;
    cursor: pointer;
    -webkit-user-select: none;
@@ -89,26 +89,52 @@ input.radio:empty ~ label:before {
 /* toggle hover */
 input.radio:hover:not (:checked ) ~ label:before {
    content: '';
-   text-indent: .9em;
+   text-align: center;
    color: red;
    width: 0.1em;
 }
 
+/* 승인 단계 */
 input.radioa:hover:not (:checked ) ~ label {
    color: #3498db;
 }
 
-input.radior:hover:not (:checked ) ~ label {
-   color: #e67e22;
+input.radiob:hover:not (:checked ) ~ label {
+   color: #ED7B6F;
 }
 
-input.radiow:hover:not (:checked ) ~ label {
+input.radioc:hover:not (:checked ) ~ label {
    color: #a86ebf;
 }
 
+input.radiod:hover:not (:checked ) ~ label {
+   color: #e67e22;
+}
+
+/* 진행 단계 */
+input.radioaa:hover:not (:checked ) ~ label {
+   color: #E67E22;
+}
+
+input.radiobb:hover:not (:checked ) ~ label {
+   color: #A86EBF;
+}
+
+input.radiocc:hover:not (:checked ) ~ label {
+   color: #e6a300;
+}
+
+input.radiodd:hover:not (:checked ) ~ label {
+   color: #3498DB;
+}
+
+input.radioee:hover:not (:checked ) ~ label {
+   color: #ED7B6F;
+}
+
+/* 승인 단계 */
 input.radioa:checked ~ label:before {
    content: '승인';
-   text-indent: .9em;
    width: 100%;
    color: white;
    text-align: center;
@@ -116,22 +142,70 @@ input.radioa:checked ~ label:before {
    background-color: #3498db;
 }
 
-input.radior:checked ~ label:before {
-   content: '거부';
-   text-indent: .9em;
+input.radiob:checked ~ label:before {
+   content: '승인 거부';
+   width: 100%;
+   color: white;
+   text-align: center;
+   background-color: #ED7B6F;
+}
+
+input.radioc:checked ~ label:before {
+   content: '보류';
+   width: 100%;
+   color: white;
+   text-align: center;
+   background-color: #a86ebf;
+}
+
+input.radiod:checked ~ label:before {
+   content: '미진행';
    width: 100%;
    color: white;
    text-align: center;
    background-color: #e67e22;
 }
 
-input.radiow:checked ~ label:before {
-   content: '보류';
-   text-indent: .9em;
+/* 진행 단계 */
+input.radioaa:checked ~ label:before {
+   content: '미진행';
    width: 100%;
    color: white;
    text-align: center;
-   background-color: #a86ebf;
+   padding-left: 10px;
+   background-color: #E67E22;
+}
+
+input.radiobb:checked ~ label:before {
+   content: '보류';
+   width: 100%;
+   color: white;
+   text-align: center;
+   background-color: #A86EBF;
+}
+
+input.radiocc:checked ~ label:before {
+   content: '진행';
+   width: 100%;
+   color: white;
+   text-align: center;
+   background-color: #e6a300;
+}
+
+input.radiodd:checked ~ label:before {
+   content: '완료';
+   width: 100%;
+   color: white;
+   text-align: center;
+   background-color: #3498DB;
+}
+
+input.radioee:checked ~ label:before {
+   content: '중단';
+   width: 100%;
+   color: white;
+   text-align: center;
+   background-color: #ED7B6F;
 }
 
 input.radio:checked ~ label {
@@ -218,12 +292,6 @@ ul {
       this.emp_name = emp_name;
    }
    
-   // 업무 요청
-   
-   // 업무 보고
-   
-   // 업무 일지
-   
    //사원정보 뽑아서 담을 배열
    var empInfoArray = new Array();
    
@@ -281,20 +349,6 @@ ul {
                dateFormat : 'yy-mm-dd',
                changeYear : true
             });
-
-      $('#makeuserUpdateDate2').datepicker(
-            {
-               changeMonth : true,
-               dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
-                     '일요일' ],
-               dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
-               monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
-                     '9', '10', '11', '12' ],
-               monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
-                     '8월', '9월', '10월', '11월', '12월' ],
-               dateFormat : 'yy-mm-dd',
-               changeYear : true
-            });
       $('.demo4').click(function() {
          swal({
             title : "삭제 하시겠습니까?",
@@ -326,6 +380,7 @@ ul {
       
       
       //날짜 차이 구하는 함수
+      // 사용 X
        function calDateRange(val1, val2)
     {
         var FORMAT = "-";
@@ -350,172 +405,27 @@ ul {
         return result1;
     }
       
-   
-      //송신탭 >  업무 제목 클릭시
-      function sendTab_task_no(obj){
-    	  //업무 이름 (span) > 부모 td > 이전 형제 td > 첫번째 자식 > 텍스트 노드 선택
-    	  console.log(obj.parentNode.previousSibling.firstChild.nodeValue);
-    	  var task_no = obj.parentNode.previousSibling.firstChild.nodeValue;
-    	  location.href="taskRequest_detail.do?task_no="+task_no;
-      }
-      
-      //참여탭 > 업무 제목 클릭시
-      function particTab_task_no(obj){
-    	  //업무 이름 (span) > 부모 td > 이전 형제 td > 첫번째 자식 > 텍스트 노드 선택
-    	  console.log(obj.parentNode.previousSibling.firstChild.nodeValue);
-    	  var task_no = obj.parentNode.previousSibling.firstChild.nodeValue;
-    	  alert("참여 업무번호 : "+task_no);
-    	  location.href="taskRequest_participation_detail.do?task_no="+task_no;
-      }
-      
-      
       $(function() {
-    	  //업무 보고 송신
-    	  $('#informSongTab').click(function(){
-    		 $.ajax(
-    				  {
-    			 		url:"taskInform.do",
-    			 		success : function(data){
-    			 			var alist = data.list;
-    			 			console.log("리스트 머냐 : " +alist[0].task_no);
-    			 			var table = "";
-    			 			for(var i = 0; i < data.list.length; i++){
-    			 				table += "<tr>";			
-			  					table += "<td><input type='checkbox' style='margin-left:20px'></td>"
-			  					table+="<td>"+alist[i].task_no+"</td>";
-			  					table+="<td><span onclick='particTab_task_no(this);'>"+alist[i].task_name+"</span></td>";
-			  					table+="<td>"+alist[i].deadline+"</td>";
-			  					table+="<td>"+alist[i].rec_name+"</td>";
-			  					table+="<td>"+alist[i].send_date+"</td>";
-			  					table+="<td>"+alist[i].step_name+"</td>";
-			  					table+="<td>수신확인들어올곳</td>";
-			  					table +="</tr>";
-    			 			}
-    			 			
-    			 			$('#secondSongTbody').html(table);
-    			 			
-    			 		}
-    		          }
-    		       );	    
+    	  
+    	  
     	  });
     	  
-    	  //송신 탭 클릭 시 
-    	  /* $('#sendTab').click(function(){
-    		  location.href="taskRequest_rec.do"; */
-    		/*   $.ajax(
-    					{
-    			  			url : "taskRequest.do",
-    			  			dataType : 'json',
-    			  			success : function(data){
-    			  				var table="";
-    			  				console.log(data.json[0].length);
-    			  				var array = data.json[0];
-    			  				console.log(array);
-    			  				for(var i = 0; i < data.json[0].length; i++){
-    			  					table += "<tr>";			
-    			  					table += "<td><input type='checkbox' style='margin-left:20px'></td>"
-    			  					table+="<td>"+array[i].task_no+"</td>";
-    			  					table+="<td><span onclick='sendTab_task_no(this);'>"+array[i].task_name+"</span></td>";
-    			  					table+="<td>"+array[i].deadline+"</td>";
-    			  					table+="<td>"+array[i].rec_name+"</td>";
-    			  					table+="<td>"+array[i].send_date+"</td>";
-    			  					table+="<td>"+array[i].step_name+"</td>";
-    			  					table +="</tr>";
-    			  				}
-    			  				$('#secondTbody').html(table);
-    			  			}
-    		  			}
-    				); */
-    	  });
-    	  
-    	  /* //참여 탭 클릭 시
-    	  $('#taskRequestpartnerTab').click(function(){
-				
-    		  location.href='taskRequest_participation.do';
-    		  	 */
-					
-				/* $.ajax(
-    					{
-    						url : "taskRequest_participation.do",
-    					    success : function(data){
-    					    	var table = "";
-    					    	var array = data.list;
-    					    	console.log("참여 : "+data.list.length);
-    					    	for(var i = 0; i < data.list.length; i++){
-    					    		table += "<tr>";			
-    			  					table += "<td><input type='checkbox' style='margin-left:20px'></td>"
-    			  					table+="<td>"+array[i].task_no+"</td>";
-    			  					table+="<td><span onclick='particTab_task_no(this);'>"+array[i].task_name+"</span></td>";
-    			  					table+="<td>"+array[i].deadline+"</td>";
-    			  					table+="<td>"+array[i].emp_name+"</td>";
-    			  					table+="<td>"+array[i].send_date+"</td>";
-    			  					table+="<td>"+array[i].task_step_name+"</td>";
-    			  					table +="</tr>";
-    					    	}
-    					    	$('#thirdBody').empty();
-    					    	$('#thirdBody').html(table);
-    					    }
-    					}  
-    		        )*/ 
-    	  
-    	  
-    	  //기본배열 넘기기 테스트
-    	/*   $('#test').click(function(){
-    		 alert("테스트!!");
-    		 var array = new Array();
-    		 array.push("헬로");
-    		 array.push("하이");
-    		 console.log(array);
-    		// jQuery.ajaxSettings.traditional = true;
-    		 $.ajax(
-    				 {
-    					url:"test.do",
-    					data :{
-    						array : array
-    					},
-    					success : function(data){
-    						alert("성공")
-    					}
-    				 }
-    			   ); 
-    		 
-    	  }); */
-    	  
+      // 입력한 datepicker의 업무 기한 넘겨주기
          $('#taskForm').submit(function(){
-            var startDate = $('#makeuserUpdateDate').val();
-            var lastDate = $('#makeuserUpdateDate2').val();
+            var deadline = $('#makeuserUpdateDate').val();
+            console.log("값 좀 보자 : " + deadline);
             
-            //var result = calDateRange(startDate,lastDate);
-            //alert("차이 결과 : "+result);
-            
-            $('#deadline').val(lastDate);
-            
-            
-            //라디오버튼
-            var st = $("input[type=radio][name=cg_noT]:checked").val();
-            alert("st??? : "+st);
-            var cg = '';
-            if(st == "업무요청"){
-               cg = 1;
-            }else if(st == "업무보고"){
-               cg = 2;
-            }else if(st == "업무일지"){
-               cg = 3;
-   
-            }
-            
-            $('#cg_no').val(cg);
-            
-            
+            $('#deadline').val(deadline);
             
             return true;
          });
          
          
-         //참조자 아이콘 클릭시
+         // 참조자 아이콘 클릭시
          $('#deptA').click(function() {
         	var empSelectNumber = 2;
- 			var litag = "<ui style='list-style:none;'>";   		
+ 			var litag = "<ui style='list-style:none;'>"; 
+ 			
      		$('#organization').empty();
      		$('#empList').empty();
                   
@@ -543,7 +453,6 @@ ul {
                				});
 
            				$('#organization').html(litag);
-
         			}
         		})
                });
@@ -581,7 +490,6 @@ ul {
         					litag+="'></div>";
                   });
                   
-
                   $('#organization').html(litag);
 
                }
@@ -714,7 +622,6 @@ ul {
       
       //체크박스 선택후 버튼 클릭시 호출
       function check(low_deptNumber){
-      	
          //체크박스 크기만큼 배열 생성
          var checkResult = new Array();
          $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
@@ -779,7 +686,6 @@ ul {
     		  $('#searchInput').empty().html(data);
     	  }
       }
-      
       
       function calendarIcon(){
     	  var text = $('#searchInput').children().first().children().first().children().first().datepicker({

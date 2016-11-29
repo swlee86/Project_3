@@ -26,6 +26,9 @@
 				<small class="font-bold">Lorem Ipsum is simply dummy text.</small>
 			</div>
 			<div class="modal-body">
+				<p>책임자 : <span id="charge"></span></p>
+				<p>부서   : <span id="depart"></span></p>
+				<hr/>
 				<p>시작일 : <span id="startDate"></span></p>
 				<p>종료일 : <span id="endDate"></span></p>
 				<p>총 프로젝트 기간 : <span id="playProject"></span></p>

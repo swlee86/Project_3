@@ -118,8 +118,9 @@
 														<label></label>
 													</div>
 												</td>
-												<td style="padding-top: 12px;">
-													<a href="taskInform_rec_detail.do?task_no=${list1.task_no}">
+												<td style="padding-top: 12px; text-weight: bold;">
+													<a href="taskLog_rec_detail.do?task_no=${list1.task_no}"
+														<c:if test="${ list1.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>
 														${list1.task_name}
 													</a>
 												</td>
@@ -181,7 +182,7 @@
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>
-												<option value="emp_no">수신인</option>
+												<option value="emp_no">수신자</option>
 												<option value="send_date">작성일</option>
 											</select>
 											</th>
@@ -222,7 +223,7 @@
 											<th>NO</th>
 											<th width="30%">업무 명</th>
 											<th>업무 기한</th>
-											<th>수신인</th>
+											<th>수신자</th>
 											<th>작성일</th>
 											<th>수신 확인</th>
 										</tr>
@@ -260,11 +261,11 @@
 									<button type="button" class="btn btn-sm btn-success "
 											style="padding-right: 15px; padding-left: 15px; 
 											font-weight: bold; font-size: 13px;"
-											onclick="window.location.href='taskWrite.do'">업무 등록</button>
+											onclick="window.location.href='taskWrite.do'">일지 등록</button>
 									&nbsp;&nbsp;
 									<button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">업무삭제</button>
+											font-weight: bold; font-size: 13px;">일지 삭제</button>
 								</div>
 							</div>
 						</div>

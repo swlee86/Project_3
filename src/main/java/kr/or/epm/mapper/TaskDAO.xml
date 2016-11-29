@@ -11,7 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 업무 등록하기 -->
-	<!-- task_step_no (2) : 미진행, step_no (4) : 미승인 -->
 	<insert id="insertTask" parameterType="kr.or.epm.VO.Task">
 		insert into task(task_no, cg_no, sign, 
 						 task_name, deadline, content, 
@@ -72,8 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   task_name, deadline, content, 
 			   rec_emp_no, rec_name, rec_date, 
 			   t.emp_no, emp_name, send_date, 
-			   file_name, task_step_name, step_name,
-			   t.step_no
+			   file_name, t.step_no, t.task_step_no
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
     	join approval a
@@ -121,7 +119,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select t.task_no, cg_name, task_name,
        		   deadline, rec_emp_no, rec_name,
        		   t.emp_no, emp_name, file_name, 
-       		   task_step_name, send_date, step_no
+       		   task_step_name, send_date, step_no,
+       		   t.task_step_no
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
     	join task_step s

@@ -208,7 +208,7 @@
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" id="addBranchsubmitBtn" value="등록">
+											<input type="button" class="btn btn-success" id="addBranchsubmitBtn" value="등록">
 										</div>
 									</div>
 									

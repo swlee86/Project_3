@@ -77,11 +77,11 @@ public class TaskService {
 
 	
 	// 업무 등록
-	// 사용
 	public int insertTask(Task task) {
 		
 		System.out.println("SERVICE] 업무를 등록합니다");
 		
+		System.out.println("111111 : " + task.toString());
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		int result = dao.insertTask(task);
 		
@@ -160,7 +160,6 @@ public class TaskService {
 	}
 	
 	// 업무 요청 > 참여 리스트 불러오기
-	// 사용
 	public List<Task> selectTask_people(String emp_no) {
 		
 		System.out.println("SERVICE] 업무 요청 > 참여 리스트를 불러옵니다");

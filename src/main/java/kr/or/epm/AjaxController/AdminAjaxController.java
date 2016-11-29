@@ -40,7 +40,7 @@ public class AdminAjaxController {
 	//지점 추가
 	@RequestMapping("/branchAdd.do")
 	public View branchAdd(Branch dto, Model model){
-		
+		System.out.println("지점추가 controller : "+dto.toString());
 		int result = adminservice.addBranch(dto);
 		System.out.println("결과 : "+result);
 		model.addAttribute("result", result);
