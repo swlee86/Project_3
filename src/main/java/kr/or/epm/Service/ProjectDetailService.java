@@ -2,6 +2,7 @@ package kr.or.epm.Service;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -150,6 +151,20 @@ public class ProjectDetailService {
 		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
 		int result = 0;
 		result = dao.insertPjdd(pjdd);
+		return result;
+	}
+	
+	//상세의 상세 업데이트하기
+	public int updatePjdd(String pjdd_no,String pjdd_content,String fin_check){
+		System.out.println("updatePjdd() 서비스");
+		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
+		int result = 0;
+		HashMap map = new HashMap();
+		map.put("pjdd_no", pjdd_no);
+		map.put("pjdd_content", pjdd_content);
+		map.put("fin_check", fin_check);
+		result = dao.updatePjdd(map);
+		
 		return result;
 	}
 }

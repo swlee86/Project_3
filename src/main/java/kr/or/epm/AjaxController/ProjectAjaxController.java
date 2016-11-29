@@ -3,6 +3,7 @@ package kr.or.epm.AjaxController;
 
 import java.lang.reflect.Array;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,5 +125,16 @@ public class ProjectAjaxController {
 		List<Pjdd> pjddlist = projectdetailservice.selectPjddList(pjd_no);
 		model.addAttribute("data",pjddlist);
 		return jsonview;
+	}
+	
+	@RequestMapping(value="/update_pjdd.do")
+	public View updatepjdd(String pjdd_no,String pjdd_content,String fin_check){
+		
+		int result = 0;
+		
+		result = projectdetailservice.updatePjdd(pjdd_no,pjdd_content,fin_check);
+		
+		return jsonview;
+		
 	}
 }
