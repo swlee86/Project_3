@@ -33,9 +33,17 @@ public class broadsocket extends TextWebSocketHandler {
 	    log(session.getAttributes().get("taskcount")+ " 건의 미처리 업무가 있습니다. 확인하세요");
 
 	    //map에 저장된 session들에게 메세지를 보냄
+	    
      	for (WebSocketSession s : users.values()) {
-			s.sendMessage(new TextMessage(session.getAttributes().get("taskcount") + "건의 미처리 업무가 있습니다 "));	
-			log(session.getAttributes().get("taskcount")+ "건의 미처리 업무가 있습니다");
+     		if(!s.equals(null)){
+     			s.sendMessage(new TextMessage(session.getAttributes().get("taskcount") + "건의 미처리 업무가 있습니다 "));	
+     			log(session.getAttributes().get("taskcount")+ "건의 미처리 업무가 있습니다");     			
+     		}else{
+     			s.sendMessage(new TextMessage("현재 미처리 업무가 없습니다."));
+     			log("현재 미처리 업무가 없습니다.");
+     		}
+     			
+     		
     	}
 		
 		

@@ -26,10 +26,6 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
         System.out.println("URI:"+request.getURI());
   
         HttpServletRequest req =  ssreq.getServletRequest();
- 
-        /*String userId = req.getParameter("userid");
-        System.out.println("param, id:"+userId);
-        attributes.put("userId", userId);*/
   
         String taskcount  = (String)req.getSession().getAttribute("taskcount");
         // HttpSession 에 저장된 미완료된 taskcount 추출하는 경우
