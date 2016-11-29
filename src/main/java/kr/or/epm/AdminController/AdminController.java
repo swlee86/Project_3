@@ -77,6 +77,7 @@ public class AdminController {
 	//직위 관리 페이지
 	@RequestMapping("/adminGrade.do")
 	public String adminGrade(){
+		
 		return "admin.adminGradeView";
 	}
 	

@@ -38,9 +38,6 @@ $(function(){
 			$('#sortable').append(li);
 		}
 		
-		
-		
-		
 		}else{
 			alert("직위 이름을 입력해 주세요 !");
 			$('#positionName').focus();
