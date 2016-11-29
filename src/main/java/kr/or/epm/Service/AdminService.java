@@ -12,6 +12,7 @@ import kr.or.epm.DAO.PositionDAO;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Position;
+import kr.or.epm.VO.PositionJoin;
 
 @Service
 public class AdminService {
@@ -70,6 +71,14 @@ public class AdminService {
 		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
 		List<Position> list = positionDAO.selectPosition();
 		return list;
+	}
+	
+	//직위 관리 페이지 - select 박스 선택시 한 직위 관련 정보 읽어 오기
+	public PositionJoin dtoPosition(String option){
+		System.out.println("서비스 옵션 : "+option);
+		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
+		PositionJoin position = positionDAO.selectOptionJoin(option);
+		return position;
 	}
 	
 	

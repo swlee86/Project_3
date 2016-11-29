@@ -4,7 +4,8 @@
  * 사용목적 : 직위 관련  스크립트
  */
 
-$(function(){
+
+$(function(){	
 	//기본 null 포인트 체크
 	$('#addBtn').click(function(){
 		
@@ -65,5 +66,41 @@ function checkPositionName(){
 		$('#sortable').append(li);
 	}
 	
+}
+
+//정보 조회 - 셀렉트 박스 onchange 이벤트
+function selectPosition(){
+	var choosePosition = '';
+	 $("select option:selected").each(function () {
+         choosePosition = $(this).val();
+      });
+	 
+	 if(choosePosition != '' || choosePosition != null){
+		 alert("선택 : "+choosePosition);
+		 $.ajax(
+			 {
+				 url:"adminGradeSelect.do",
+				 type : "get",
+				 data : 
+				 {
+					choose : choosePosition
+				 },
+				 dataType : "json",
+				 success : function(data){
+					 $('#dbpositionName').val('');
+					 $('#dbbasic_pay').val('');
+					 $('#dbadd_pay').val('');
+					 
+					 $('#dbpositionName').val(data.position.position_name);
+					 $('#dbbasic_pay').val(data.position.basic_pay);
+					 $('#dbadd_pay').val(data.position.add_pay);
+				 }
+			 }
+		   );
+	
+	 }else{
+		 alert("선택해주세요 !");
+	 }
+	 
 }
 
