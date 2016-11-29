@@ -134,6 +134,12 @@
 									</div>
 									<div class="col-md-4"></div>
 								</div>
+								<div class="col-sm-offset-5 col-sm-2">
+									<button class="btn btn-default " id="addBtn">
+										<span class="fa fa-plus-circle">정보수정</span>
+									</button>
+								</div>
+								<br/><br/>
 								<div class="panel-footer"></div>
 							</form>
 
