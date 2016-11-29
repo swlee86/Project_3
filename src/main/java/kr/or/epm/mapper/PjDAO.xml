@@ -24,14 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 등록하기 -->
 	<insert id="insertPj">
-		insert into pj(pj_no, emp_no, pj_title, 
-					   pj_content, pj_start, pj_end, 
-					   pj_progress, rec_emp_no, rec_del_check,
-					   pj_step_no, step_no)
-		values(pj_seq.nextval, #{emp_no}, #{pj_title},
-			   #{pj_content}, #{pj_start}, #{pj_end},
-			   null, #{rec_emp_no}, '0',
-			   '2', '4')
+		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_emp_no, rec_del_check, pj_step_no, step_no)
+		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, null, #{rec_emp_no}, '0', '2', '4')
 	</insert>
 	
 	<insert id="insertPjd_people">

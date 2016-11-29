@@ -52,39 +52,50 @@ public class ProjectController {
 		System.out.println("project_detail_plus_try() 컨트롤 탐");
 		System.out.println("pjd_Command : " + pjd_Command.toString());
 		System.out.println("pjd_Command : " + pjd_Command.getPjd());
-	
+		
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
+		
+
+		
 		String url = "redirect:project_list.do"; 
 		List<Pjd> list = pjd_Command.getPjd();
 			for(Pjd pjd : list){
-				System.out.println("시작일:"+pjd.getPjd_start()+"/종료일:"+ pjd.getPjd_end()+"/제목:" + pjd.getPjd_title()+"/보낼사람 사번" + pjd.getEmp_no()+"/내용:" + pjd.getPjd_content());
-			}
+				pjd.setEmp_no(emp.getEmp_no());
+				System.out.println("시작일:"+pjd.getPjd_start()+"/종료일:"+ pjd.getPjd_end()+"/제목:" + pjd.getPjd_title()+"/보낸사람 사번" + pjd.getEmp_no()+"/받는사람 사번 :"+pjd.getRec_emp_no()+"/내용:" + pjd.getPjd_content());
+				String[] rec_people = pjd.getRec_emp_no().split(",");
+				System.out.println("선택된 참여자 인원 : " + rec_people.length);
+			}	
 			
-			String id= principal.getName();
-			System.out.println("id : "+id);
-			Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기
-			
-			pj.setEmp_no(emp.getEmp_no());
-			
+			System.out.println("pj : "+pj2.toString());
 			try{
-				url = projectservice.insertPj(pj,pjd_Command); 
+				url = projectservice.insertPj(pj2,pjd_Command); 
 			}catch (Exception e) {
 				System.out.println("project_detail_plus_try() 컨트롤러 트랜잭션 오류 : "+ e.getMessage());
 			}finally{
-				pj = null;
+				pj2 = null;
 			}
 			
 		return url;
 	}	
 		
-	Pj pj = new Pj();
+	Pj pj2 = new Pj();
 	
 	//프로젝트 생성하기
 	@RequestMapping(value="/projectMake.do", method=RequestMethod.POST)
-	public String projectMake(Pj pj, Model model){
+	public String projectMake(Principal principal, Pj pj, Model model){
 		System.out.println("projectMake 작성 컨트롤러 탐");
 		System.out.println("@pj tostirng: "+pj.toString());
+		
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
+		
+		pj.setEmp_no(emp.getEmp_no());
+		
 		//model.addAttribute("pj", pj);
-		this.pj = pj;
+		this.pj2 = pj;
 		return "project.projectDetailMakeForm";
 	}
 		

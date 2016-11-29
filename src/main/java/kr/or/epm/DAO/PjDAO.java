@@ -55,5 +55,5 @@ public interface PjDAO {
 	public int selectMaxPj_no();
 	
 	//프로젝트 상세 참여자 추가하기
-	public int insertPjd_people();
+	public int insertPjd_people(String emp_no);
 }

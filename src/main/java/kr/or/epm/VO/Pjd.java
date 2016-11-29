@@ -18,9 +18,19 @@ public class Pjd {
 	private String emp_name;
 	private String emp_no;
 	private String pj_step_name;
+	private String rec_emp_no;
 	
 	
 	
+	
+	public String getRec_emp_no() {
+		return rec_emp_no;
+	}
+
+	public void setRec_emp_no(String rec_emp_no) {
+		this.rec_emp_no = rec_emp_no;
+	}
+
 	public String getEmp_no() {
 		return emp_no;
 	}
@@ -116,8 +126,9 @@ public class Pjd {
 		return "Pjd [pjd_no=" + pjd_no + ", pj_no=" + pj_no + ", pjd_title=" + pjd_title + ", pjd_content="
 				+ pjd_content + ", pjd_start=" + pjd_start + ", pjd_end=" + pjd_end + ", pj_step_no=" + pj_step_no
 				+ ", rownum=" + rownum + ", emp_name=" + emp_name + ", emp_no=" + emp_no + ", pj_step_name="
-				+ pj_step_name + "]";
+				+ pj_step_name + ", rec_emp_no=" + rec_emp_no + "]";
 	}
+
 
 
 

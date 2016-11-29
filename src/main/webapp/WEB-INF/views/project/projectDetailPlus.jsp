@@ -376,8 +376,8 @@ function calendar(){
 	               var input_name = "";
 	               for(var i = 0; i < empInfoArray.length; i++){
 		              console.log("pjd_count: "+ pjd_count + "/ input : " +empInfoArray[i].emp_no +" / "+empInfoArray[i].emp_name);
-	                  input_no += "<input type='text' class='form-control' name='pjd[" + pjd_count + "].emp_no' value='"+empInfoArray[i].emp_no+"'>";
-	                  input_name +="<input type='text' class='form-control' name='pjd[" + pjd_count + "].emp_name' value='"+empInfoArray[i].emp_name+"'>";
+	                  input_no += "<input type='text' class='form-control' name='pjd[" + pjd_count + "].rec_emp_no' value='"+empInfoArray[i].emp_no+"'>";
+	                  input_name +="<input type='text' class='form-control' name='pjd[" + pjd_count + "].rec_emp_name' value='"+empInfoArray[i].emp_name+"'>";
 	               }
 	              
 	               empInfoArray.splice(0,empInfoArray.length);

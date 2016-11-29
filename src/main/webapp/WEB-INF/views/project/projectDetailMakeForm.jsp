@@ -75,8 +75,8 @@
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
 											<td>
 												<span class="input-group">
-	                     							<input type="text" class="form-control input-sm" id="rec_emp_name" name="pjd[0].emp_name"/>
-	                     							<input type="text" name="pjd[0].emp_no" id="rec_emp_no">
+	                     							<input type="text" class="form-control input-sm" id="rec_emp_name" name="pjd[0].rec_emp_name"/>
+	                     							<input type="text" name="pjd[0].rec_emp_no" id="rec_emp_no">
 	                        						<span class="input-group-btn">
 														<button class=" btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
 													</span>
