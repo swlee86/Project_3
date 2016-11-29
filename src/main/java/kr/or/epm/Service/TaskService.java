@@ -77,11 +77,11 @@ public class TaskService {
 
 	
 	// 업무 등록
-	// 사용
 	public int insertTask(Task task) {
 		
 		System.out.println("SERVICE] 업무를 등록합니다");
 		
+		System.out.println("111111 : " + task.toString());
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		int result = dao.insertTask(task);
 		

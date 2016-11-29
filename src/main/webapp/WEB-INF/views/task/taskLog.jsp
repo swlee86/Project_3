@@ -119,7 +119,8 @@
 													</div>
 												</td>
 												<td style="padding-top: 12px;">
-													<a href="taskInform_rec_detail.do?task_no=${list1.task_no}">
+													<a href="taskInform_rec_detail.do?task_no=${list1.task_no}"
+														<c:if test="${ list1.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>
 														${list1.task_name}
 													</a>
 												</td>
@@ -260,11 +261,11 @@
 									<button type="button" class="btn btn-sm btn-success "
 											style="padding-right: 15px; padding-left: 15px; 
 											font-weight: bold; font-size: 13px;"
-											onclick="window.location.href='taskWrite.do'">업무 등록</button>
+											onclick="window.location.href='taskWrite.do'">일지 등록</button>
 									&nbsp;&nbsp;
 									<button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">업무삭제</button>
+											font-weight: bold; font-size: 13px;">일지 삭제</button>
 								</div>
 							</div>
 						</div>

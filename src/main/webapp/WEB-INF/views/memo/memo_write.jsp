@@ -53,7 +53,7 @@
                                 <textarea class="form-control" placeholder="본문 입력" name="memo_content" wrap="hard"></textarea>
                             </div>
                             <div class="btn-group">
-                                <button class="btn btn-sm btn-default"><i class="fa fa-thumbs-o-up"></i> Save</button>
+                                <button class="btn btn-sm btn-default" onclick="sendMessage()"><i class="fa fa-thumbs-o-up"></i> Save</button>
                                 <button type="button" class="btn btn-sm btn-default"><i class="fa fa-trash"></i> Remove</button>
                             </div>
                         </form>
