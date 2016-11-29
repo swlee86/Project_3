@@ -230,31 +230,20 @@
 	$(function(){
 		var pjd_count = 0; 
 		
-		$('#pjd_detail_btn').click(function(){
-			console.log('추가번튼s 클릭');
+		$('#pjd_detail_btn').click(function(){	
 			pjd_count = $('#pjd_count').val();
-			
+			console.log('추가번튼 클릭 ' + pjd_count);
 
 			$.ajax({
 				url : "project_detail_plus.do",
 				dataType : "html",
 				success : function(data) {
-					alert("성공s!!");
-					console.log("pjd_count : "+pjd_count);
 					pjd_count = Number(pjd_count) + 1;			 
-					 
+					console.log("=>name pjd_count : "+pjd_count);
 					$('#kung_pjd_table').append(data);
 					
-					//calendar(pjd_count);
-					/* seeDepart2(pjd_count, obj, empSelectNumber, choose);
-
-					seelow_Depart2(pjd_count, obj,empSelectNumber,departcho);
-
-					seeEmpMember2(pjd_count, obj,empSelectNumber,low_dept_no);
-
-					 recF2(pjd_count, obj); */
-					
-					
+					calendar();
+									
 					$('.pjd_start_plus').attr('name','pjd[' + pjd_count + '].pjd_start');
 					$('.pjd_start_plus').removeClass('pjd_start_plus');
 					
@@ -264,11 +253,21 @@
 					$('.pjd_title_plus').attr('name','pjd[' + pjd_count + '].pjd_title');
 					$('.pjd_title_plus').removeClass('pjd_title_plus');
 					
-					$('.pjd_emp_no_plus').attr('name','pjd[' + pjd_count + '].emp_no');
-					$('.pjd_emp_no_plus').removeClass('pjd_emp_no_plus');
+				/* 	$('.pjd_emp_no_plus').attr('name','pjd[' + pjd_count + '].emp_no');
+					$('.pjd_emp_no_plus').attr('id','pjd_emp_no_' + pjd_count);
+					$('.pjd_emp_no_plus').removeClass('pjd_emp_no_plus'); */
 					
-					$('.pjd_emp_name_plus').attr('name','pjd[' + pjd_count + '].emp_name');
-					$('.pjd_emp_name_plus').removeClass('pjd_emp_name_plus');
+					
+					$('.pjd_count_plus').attr('value',pjd_count);
+					$('.pjd_count_plus').removeClass('pjd_count_plus');
+					
+					$('.multiDiv').addClass('multiDiv_'+pjd_count);
+					$('.multiDiv').removeClass('multiDiv');
+					
+					
+					/* $('.pjd_emp_name_plus').attr('name','pjd[' + pjd_count + '].emp_name');
+					$('.pjd_emp_name_plus').attr('id','pjd_emp_name_' + pjd_count);
+					$('.pjd_emp_name_plus').removeClass('pjd_emp_name_plus'); */
 					
 					$('.pjd_content_plus').attr('name','pjd[' + pjd_count + '].pjd_content');
 					$('.pjd_content_plus').removeClass('pjd_content_plus');
@@ -283,159 +282,7 @@
 	
 
 	
-	
-	
-	
-/* 	
-	
-	 //부서 출력 하는 아작스
-	function seeDepart2(pjd_count, obj, empSelectNumber, choose) {
-		//전역 부서 선택시
-	    departcho = choose;
-		var div_id = "dept_div"+choose;
-		$("#"+div_id).empty();
-		var litag = "<ui>";
-	
-		var name = $(obj).text();
-	
-		$.ajax({
-			url : "taskDeptModal.do",
-			type : "GET",
-			data : {
-				branch_no : departcho
-			},
-			success : function(data) {
-				var dept;
-				console.log(data);
-				$.each(data, function(index) {
-					dept = data[index];
-				});
-	
-				$.each(dept, function(index) {
-					litag += "<li onclick='seelow_Depart2("+pjd_count+", this, "
-						litag +=empSelectNumber+","
-					    litag +=dept[index].dept_no
-					    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
-						litag +="</ul>";
-						
-						litag+="<div id='low_dept_div"
-						litag+=dept[index].dept_no
-						litag+="'></div>";
-				});
-				
-				$("#"+div_id).html(litag);
-			}
-		});
-	}
-	
-	//하위 부서 클릭시
-	function seelow_Depart2(pjd_count, obj,empSelectNumber,departcho) {
-		alert("부서 : "+choose);
-		deptNumber= departcho;
-		var litag = "<ui>";
-		var div_id = "low_dept_div"+departcho;
-		$("#"+div_id).empty();
-	
-		$.ajax({
-			url : "tasklow_deptModal.do",
-			data : {
-				dept_no : deptNumber
-			},
-	
-			success : function(data) {
-	
-				var low_dept = "";
-				$.each(data, function(index) {
-					low_dept = data[index];
-				});
-				$.each(low_dept, function(index) {
-					litag += "<li onclick='seeEmpMember2("+pjd_count+", this, "
-					litag += empSelectNumber+","
-					litag +=low_dept[index].low_dept_no
-					litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
-					litag +="</ul>";
-					
-				});
-				$("#"+div_id).html(litag);
-			}
-	
-		});
-	}
-	
-	//사원 뽑아오기
-	function seeEmpMember2(pjd_count, obj,empSelectNumber,low_dept_no){
-	   //체크
-	   var empListNumber = low_dept_no;
-			 alert("사원뽑기 : "+empListNumber);
-	   
-	   console.log(obj);
-	   
-	   //클릭한 text 값 뽑아옴.
-	   var low_dept = $(obj).text();
-	   alert("taskEmpModal : "+low_dept);
-	   alert("selectNo : " + empSelectNumber);
-	   var makeTable = "";
-	   if(empSelectNumber == 1){
-	    makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
-	   }else{
-	    makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
-	   }
-	   
-	   $.ajax(
-	         {
-	            url: "taskEmpModal.do",
-	            data:{
-	          	  low_dept_no: empListNumber
-	                 },
-	            success:function(data){
-	          	  var emp = "";
-	                $.each(data, function(index){
-	                   emp = data[index];
-	                   console.log(emp);
-	               });
-	               
-	               $.each(emp, function(index){
-	                  if(empSelectNumber == 1){   
-	                     makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF2("+pjd_count+",this)' value='선택'></td></tr>";   
-	                  }
-	                  else if(empSelectNumber == 2){
-	                     makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
-	                  }
-	               });
-	               makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
-	               $('#empList').empty();
-	               $('#empList').append(makeTable);
-	             }    
-	            
-	         }
-	         );
-	}
-	
-	
-	//참조자 선택시
-	function recF2(pjd_count, obj){
-	   //수신자 사번
-	   var emp_no = $(obj).parent().parent().children().eq(0).html();
-	   var name = $(obj).parent().parent().children().eq(1).html();
-	   
-	   console.log("상세상세 조직도 pjd_count : "+pjd_count);
-	   console.log("emp_no : "+ emp_no);
-	   console.log("name32: "+ name);
-	  
-		
-	   $('input[name=pjd[' + pjd_count + '].emp_no]').attr('value',emp_no);
-	   $('input[name=pjd[' + pjd_count + '].emp_name]').attr('value',name);
-	   
-	 
-	   
-	   $('#myModal6').modal("hide");
-	  
-	} */
-	
-	
-	
-	
-	
+
 	
 	</script>
 

@@ -121,4 +121,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<insert id="insertPjdd" parameterType="kr.or.epm.VO.Pjdd">
  		insert into pjdd(pjdd_no,pjd_no,pjdd_content,fin_check) values(pjdd_seq.nextval,#{pjd_no},#{pjdd_content},'0')
 	</insert>
+	
+	<!--  상세의 상세 업데이트 -->
+	<update id="updatePjdd" parameterType="hashmap">
+		update pjdd set pjdd_content=#{pjdd_content}, fin_check=#{fin_check} where pjdd_no=#{pjdd_no}
+	</update>
+	
 </mapper>
