@@ -88,7 +88,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
+<!-- 	<div class="row">
 		<div class="col-lg-3">
 			<div class="hpanel" >
 				<div class="panel-body text-center h-200">
@@ -192,9 +192,9 @@
 				<div class="panel-footer">This is standard panel footer</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="row">
-		<div class="col-lg-3">
+<!-- 		<div class="col-lg-3">
 			<div class="hpanel stats">
 				<div class="panel-heading">
 					<div class="panel-tools">
@@ -252,7 +252,7 @@
 				</div>
 				<div class="panel-footer">This is standard panel footer</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="col-lg-6">
 			<div class="hpanel">
 				<div class="panel-heading">
@@ -271,7 +271,6 @@
 									<th>진행상황</th>
 									<th>진행률</th>
 									<th>종료일</th>
-									<th>확인</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -284,7 +283,6 @@
 									<td><span class="pie">1/5</span></td>
 									<td><strong>20%</strong></td>
 									<td>${pjlist.pj_end}</td>
-									<td><a href=""><i class="fa fa-check text-success"></i></a></td>
 								</tr>
 							</c:forEach>
 							</tbody>
@@ -293,7 +291,44 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3">
+				<div class="col-lg-6">
+			<div class="hpanel">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+							class="closebox"><i class="fa fa-times"></i></a>
+					</div>
+					Recently active Works
+				</div>
+				<div class="panel-body list">
+					<div class="table-responsive project-list">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Work_Name</th>
+									<th>마감일</th>
+									<th>요청자 사번</th>
+									<th>요청자명</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach var="tasklist" items="${tasklist}">
+								<tr>
+									<td>${tasklist.task_name}<br /> <small><i
+											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
+									</td>
+									<td>${tasklist.deadline}</td>
+									<td>${tasklist.emp_no }</td>
+									<td>${tasklist.emp_name}</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- 		<div class="col-lg-3">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
@@ -343,6 +378,6 @@
 
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>

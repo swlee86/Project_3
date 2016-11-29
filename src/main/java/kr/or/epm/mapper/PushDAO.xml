@@ -4,7 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.PushDAO">
 
-<select id="taskCount" resultType="String" parameterType="kr.or.epm.VO.Push">
+<select id="selecttasklist" parameterType="String" resultType="kr.or.epm.VO.Task">
+select task_name, DEADLINE, emp_no, emp_name, send_date from task where rec_emp_no=#{emp_no} and rec_date is null and rec_del_check = '0'
+</select>
+
+
+<select id="taskCount" resultType="String" parameterType="String">
 select count(*) cnt from task where rec_emp_no=#{emp_no} and rec_date is null and rec_del_check = '0'
 </select>
 
