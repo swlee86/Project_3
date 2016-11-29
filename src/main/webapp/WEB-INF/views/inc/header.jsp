@@ -197,26 +197,20 @@
 
 $('#birthDay').click(function(){
 	$('#birthModal').modal();
-});
-
+});	
+		var webSocket;		
+		/* wsocket = new WebSocket("ws://192.168.0.138:8090/spring4-chap09-ws/chat-ws.do"); */
+		webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do");
 		//웹소켓 초기화
-		var webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket");
+		/* var webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do"); */
 
-        //메시지가 오면 messageTextArea요소에 메시지를 추가한다.
-        webSocket.onmessage = function processMessge(message){
-            //Json 풀기
+        webSocket.onmessage = function (message){
+			console.log("message : " + message.data);
+            document.getElementById("titlepush").append(message.data+ "\n");
+        };
 		
-
-            var jsonData = JSON.parse(message.data);
-
-                if(jsonData.message != null) {
-				console.log(jsonData.message);
-                document.getElementById("titlepush").append(jsonData.message+ "\n");
-            };
-        }
-
-	webSocket.onclose = function(e) {
-		console.log("연결 닫힘: " + e.reason);
+		webSocket.onclose = function(e) {
+			console.log("연결 닫힘: " + e.reason);
 		}	
 
 </script>

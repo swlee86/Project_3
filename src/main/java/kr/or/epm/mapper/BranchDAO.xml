@@ -16,4 +16,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into branch values (branch_seq.nextval, #{branch_name}, #{postcode},#{addr},#{addr_detail},null,1,0)
 	</insert>
 	
+	<!-- 지점 정보 수정 -->
+	<update id="branchModify" parameterType="kr.or.epm.VO.Branch">
+		update branch set branch_no=branch_seq.nextval, branch_name = #{branch_name}, postcode=#{postcode},addr=#{addr},addr_detail=#{addr_detail}, pre_branch_no=#{branch_no}, his_check=1 where branch_no=${branch_no}
+	</update>
+ 
 </mapper>

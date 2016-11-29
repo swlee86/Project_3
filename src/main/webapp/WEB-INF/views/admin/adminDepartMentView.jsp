@@ -85,7 +85,7 @@
 									</select> <br />
 									<div class="col-md-4"></div>
 									<div class="col-md-4">
-										<input type="button" class="btn btn-success" value="부서 등록">
+										<input type="button" class="btn btn-success" id="addDepartmentBtn" value="부서 등록">
 									</div>
 								</form>
 							</div>
@@ -150,7 +150,7 @@
 					</div>
 					
 					<!--등록-->
-					<div class="vertical-timeline-block">
+					<div class="vertical-timeline-block" id="addDepartmentDiv">
 						<div class="vertical-timeline-icon navy-bg">
 							<i class="fa fa-calendar"></i>
 						</div>

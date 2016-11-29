@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONArray;
@@ -22,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.LoginService;
+import kr.or.epm.Service.PushService;
 import kr.or.epm.Service.TaskService;
 import kr.or.epm.Service.Task_peopleService;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
@@ -35,6 +39,9 @@ import net.sf.json.JSON;
 @Controller
 public class TaskController {
 
+	@Autowired
+	private PushService pushservice;
+	
 	@Autowired
 	private TaskService service;
 
@@ -266,7 +273,7 @@ public class TaskController {
 
 	// 업무 요청 > 수신 > 상세
 	@RequestMapping("/taskRequest_rec_detail.do")
-	public String taskRequest_rec_detail(String task_no, Model model) {
+	public String taskRequest_rec_detail(String task_no, Model model, HttpServletRequest request, HttpServletResponse responsel) {
 
 		System.out.println("CONTROLLER] 업무 요청 수신 상세 페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
@@ -274,7 +281,13 @@ public class TaskController {
 		// 업무 상세 가져오기
 		Task detail = service.selectTask_detail(task_no);
 		model.addAttribute("detail", detail);
-
+		
+		//Push알림을 위한 Taskcount session 재생성
+		HttpSession session = request.getSession();
+		String empno = (String)session.getAttribute("empnoresult");
+		String taskcount = pushservice.taskCount(empno);
+		session.setAttribute("taskcount", taskcount);
+		
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);

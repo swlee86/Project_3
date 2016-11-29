@@ -14,9 +14,9 @@ public class PushService {
 	private SqlSession sqlsession;
 	
 	//업무 리스트 푸쉬 알림 불러오기
-	public int taskCount(String emp_no){
+	public String taskCount(String emp_no){
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-		int result = pushdao.taskCount(emp_no);
+		String result = pushdao.taskCount(emp_no);
 		return result;
 	}
 	

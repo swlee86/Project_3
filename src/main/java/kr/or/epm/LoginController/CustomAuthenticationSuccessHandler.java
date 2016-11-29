@@ -95,18 +95,18 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		System.out.println("########################로그인 성공시 스타트##################");
 		System.out.println("아이디 : " + authentication.getName());
 		
-		String result =null;
-		int taskcount = 0;
+		String empnoresult =null;
+		String taskcount = null;
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-		result = pushdao.selectEmp_no(authentication.getName());
+		empnoresult = pushdao.selectEmp_no(authentication.getName());
 		
 		
 		try{
-		/*	result = pushservice.selectEmp_no("admin");*/
-			System.out.println("사번? : " + result);
-			taskcount = pushdao.taskCount(result);
+			System.out.println("사번? : " + empnoresult);
+			taskcount = pushdao.taskCount(empnoresult);
 			System.out.println("미처리 taskcount : " + taskcount);
+			
 			
 			
 			
@@ -122,6 +122,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		//로그인 성공시 session 객체들 사용
 		//미완료 taskcount 생성 > websocket 사용
 		session.setAttribute("taskcount", taskcount);
+		session.setAttribute("empnoresult", empnoresult);
 		
 		
 		int intRedirectStrategy = decideRedirectStrategy(request, response);

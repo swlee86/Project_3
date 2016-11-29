@@ -41,6 +41,14 @@ public class AdminService {
 		return result;
 	}
 	
+	//지점 정보 수정 
+	public int branchModify(Branch dto){
+		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
+		int result = branchDAO.branchModify(dto);
+		return result;
+	}
+
+	
 	//부서 페이지 사용 - 지점에 따른 부서 리스트 출력
 	public List<Dept> listDept(String branch_name){
 		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
