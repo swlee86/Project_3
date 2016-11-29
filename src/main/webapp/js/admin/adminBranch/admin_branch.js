@@ -103,7 +103,7 @@ function departMentFuc(){
 			  {
 					url : "departMentSelect.do",
 					data : {
-								branch_name : option 
+								branch_no : option 
 						   },
 					success : function(data){
 						console.log(data.deptlist);
