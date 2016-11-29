@@ -96,14 +96,13 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		System.out.println("아이디 : " + authentication.getName());
 		
 		String result =null;
-		int taskcount = 0;
+		String taskcount = null;
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		result = pushdao.selectEmp_no(authentication.getName());
 		
 		
 		try{
-		/*	result = pushservice.selectEmp_no("admin");*/
 			System.out.println("사번? : " + result);
 			taskcount = pushdao.taskCount(result);
 			System.out.println("미처리 taskcount : " + taskcount);
