@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 var positionArray = new Array();
+
 </script>
 <!--직위 관리 페이지-->
 <div class="normalheader transition animated fadeIn">
@@ -173,14 +174,14 @@ var positionArray = new Array();
 										
 										<c:forEach var="list" items="${positionList}">
 										<script>
-											
-											positionArray.push("${list.position_name}");
-											positionArray.push("${list.step}");
-											positionArray.push("${list.basic_pay}");
-											positionArray.push("${list.set_date}");
-											positionArray.push("${list.add_pay}");
+										var PositionJoin = new Object();
+										PositionJoin.position_name = '${list.position_name}';
+										PositionJoin.step = '${list.step}';
+										PositionJoin.set_date = '${list.set_date}';
+										PositionJoin.basic_pay ='${list.basic_pay}'; 
+										PositionJoin.add_pay = '${list.add_pay}';
+										positionArray.push(PositionJoin);
 										</script>
-										
 											<li class='gradLi' value='${list.position_name}'><i
 												class="fa fa-thumbs-o-up"></i>${list.position_name}</li>
 										</c:forEach>
@@ -199,5 +200,8 @@ var positionArray = new Array();
 </div>
 <input type="hidden" id="hidin">
 <script>
-	document.getElementById('hidin').value = positionArray;
+
+	var jsonInfo = JSON.stringify(positionArray);
+	
+	document.getElementById('hidin').value = jsonInfo;
 </script>
