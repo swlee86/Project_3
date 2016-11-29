@@ -15,11 +15,9 @@
 						   http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<mvc:annotation-driven />
 
-	<bean id="driverManagerDataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url"
-			value="jdbc:oracle:thin:@orcl.cn5acqnoqihv.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></property>
+		<property name="url" value="jdbc:oracle:thin:@orcl.cn5acqnoqihv.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></property>
 		<property name="username" value="swlee"></property>
 		<property name="password" value="oracle0905"></property>
 	</bean>
@@ -54,8 +52,7 @@
 		<property name="order" value="3" />
 	</bean>
 
-	<bean id="tilesConfigurer"
-		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/Tiles.xml</value>
@@ -87,5 +84,4 @@
 	<!-- transaction end -->
 	
 	
-
 </beans>

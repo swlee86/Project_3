@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.epm.DAO.BusinessBoardDAO;
 import kr.or.epm.DAO.MemoDAO;
 import kr.or.epm.VO.Memo;
 import kr.or.epm.VO.Memocolor;
@@ -25,6 +26,7 @@ public class MemoService {
 	
 	//사원 아이디를 토대로 사번 정보를 불러오는 서비스 함수
 	public String selectMemoEmpno(String id){
+		System.out.println("메모에서 번호를 가져 옵니다");
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
 		String memo = memodao.selectMemoEmpno(id);
 		return memo;

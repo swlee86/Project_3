@@ -8,6 +8,7 @@
    <security:csrf disabled="true"/>
   <security:form-login login-page="/login.do"
   								authentication-failure-url="/login.do?error" 
+  								authentication-success-handler-ref="customAuthenticationSuccessHandler"
   								/>
   <security:logout logout-success-url="/index.html" />
   <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')" />
@@ -23,5 +24,14 @@
      </security:authentication-provider>
  </security:authentication-manager>
 <!-- <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/> -->
+
+<bean id="customAuthenticationSuccessHandler" class="kr.or.epm.LoginController.CustomAuthenticationSuccessHandler">
+	<property name="sqlsession">
+		<ref bean = "sqlSession"/>
+	</property>
+</bean>
+
+
+
 
 </beans>

@@ -208,7 +208,8 @@ $('#birthDay').click(function(){
 		
 
             var jsonData = JSON.parse(message.data);
-            if(jsonData.message != null) {
+
+                if(jsonData.message != null) {
 				console.log(jsonData.message);
                 document.getElementById("titlepush").append(jsonData.message+ "\n");
             };
@@ -217,7 +218,6 @@ $('#birthDay').click(function(){
 	webSocket.onclose = function(e) {
 		console.log("연결 닫힘: " + e.reason);
 		}	
-
 
 </script>
     
