@@ -112,7 +112,7 @@ function departMentFuc(option){
 		//지점 추가 디브 
 		$('#addBrunchDiv').hide();
 		
-		//왼쪽 디브 등록
+		//지점 왼쪽 디브 등록
 		$('#addBrunchBtn').click(function(){
 			$('#addBrunchDiv').show();	
 		});
@@ -219,6 +219,17 @@ function departMentFuc(option){
 						}
 					}
 					);
+		});
+		
+		
+		
+		
+		//부서 등록 div 숨김
+		$('#addDepartmentDiv').hide();
+		
+		//부서 등록 버튼 클릭시 등록 form 보여줌
+		$('#addDepartmentBtn').click(function(){
+			$('#addDepartmentDiv').show();
 		});
 		
 		
