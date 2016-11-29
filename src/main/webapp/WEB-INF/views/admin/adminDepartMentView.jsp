@@ -138,6 +138,52 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<div class="col-md-3">
+											<label>출퇴근시간</label>
+										</div>
+										
+										<div class="col-md-4">
+											<div class="input-group clockpicker" data-autoclose="true">
+                        					  <input type="text" class="form-control" value="09:30" readonly="readonly" >
+                               					 <span class="input-group-addon">
+                                    			     <span class="fa fa-clock-o"></span>
+                               					 </span>
+                    						</div>
+                    					</div>	
+                    					<div class="col-md-1">~</div>
+                    					<div class="col-md-4">
+                    						<div class="input-group clockpicker" data-autoclose="true">
+                        					  <input type="text" class="form-control" value="09:30" readonly="readonly">
+                               					 <span class="input-group-addon">
+                                    			 	<span class="fa fa-clock-o"></span>
+                               					 </span>
+                    					    </div>
+                    					</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-3">
+											<label>홈페이지 접근 시간</label>
+										</div>
+											<div class="col-md-4">
+											<div class="input-group clockpicker" data-autoclose="true">
+                        					  <input type="text" class="form-control" value="09:30" readonly="readonly" >
+                               					 <span class="input-group-addon">
+                                    			     <span class="fa fa-clock-o"></span>
+                               					 </span>
+                    						</div>
+                    					</div>	
+                    					<div class="col-md-1">~</div>
+                    					<div class="col-md-4">
+                    						<div class="input-group clockpicker" data-autoclose="true">
+                        					  <input type="text" class="form-control" value="09:30" readonly="readonly">
+                               					 <span class="input-group-addon">
+                                    			 	<span class="fa fa-clock-o"></span>
+                               					 </span>
+                    					    </div>
+                    					</div>
+									</div>
+									
+									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
 											<input type="submit" class="btn btn-success" value="수정">
 										</div>
@@ -159,7 +205,7 @@
 								<span class="vertical-date pull-right"> Saturday <br />
 									<small>12:17:43 PM</small>
 								</span>
-								<h2>부서 정보(조회, 수정)</h2>
+								<h2>부서 등록</h2>
 							</div>
 
 							<div class="panel-body">
@@ -188,6 +234,52 @@
 											<input type="text" class="form-control">
 										</div>
 									</div>
+									<div class="form-group">
+										<div class="col-md-3">
+											<label>출퇴근시간</label>
+										</div>
+										
+										<div class="col-md-4">
+											<div class="input-group clockpicker" data-autoclose="true">
+                        					  <input type="text" class="form-control" value="09:30">
+                               					 <span class="input-group-addon">
+                                    			     <span class="fa fa-clock-o"></span>
+                               					 </span>
+                    						</div>
+                    					</div>	
+                    					<div class="col-md-1">~</div>
+                    					<div class="col-md-4">
+                    						<div class="input-group clockpicker" data-autoclose="true">
+                        					  <input type="text" class="form-control" value="09:30">
+                               					 <span class="input-group-addon">
+                                    			 	<span class="fa fa-clock-o"></span>
+                               					 </span>
+                    					    </div>
+                    					</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-3">
+											<label>홈페이지 접근 시간</label>
+										</div>
+											<div class="col-md-4">
+											<div class="input-group clockpicker" data-autoclose="true">
+                        					  <input type="text" class="form-control" value="09:30">
+                               					 <span class="input-group-addon">
+                                    			     <span class="fa fa-clock-o"></span>
+                               					 </span>
+                    						</div>
+                    					</div>	
+                    					<div class="col-md-1">~</div>
+                    					<div class="col-md-4">
+                    						<div class="input-group clockpicker" data-autoclose="true">
+                        					  <input type="text" class="form-control" value="09:30">
+                               					 <span class="input-group-addon">
+                                    			 	<span class="fa fa-clock-o"></span>
+                               					 </span>
+                    					    </div>
+                    					</div>
+									</div>
+									
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
 											<input type="submit" class="btn btn-success" value="등록">
