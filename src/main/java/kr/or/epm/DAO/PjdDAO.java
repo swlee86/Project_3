@@ -1,5 +1,6 @@
 package kr.or.epm.DAO;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kr.or.epm.VO.Contact;
@@ -59,4 +60,7 @@ public interface PjdDAO {
 	
 	//상세의 상세내역 추가
 	public int insertPjdd(Pjdd pjdd);
+	
+	//상세의 상세 업데이트
+	public int updatePjdd(HashMap map);
 }

@@ -70,22 +70,22 @@
 							<table class="table table-bordered table-striped" id="pjdd_table">
 								<tr>
 									<th width="10%">완료</th>
-									<th width="80%">작업내용</th>
-									<th width="10%"></th>
+									<th width="75%">작업내용</th>
+									<th width="15%"></th>
 									<th hidden="hidden"></th>
 								</tr>
 								<c:forEach var="list" items="${pjddlist}">
 								<tr class="default_table">
-									<td>
+									<td id="modify_tr_check_${list.pjdd_no}">
 										<c:if test="${list.fin_check=='1'}">
-											<input type="checkbox" class="i-checks" checked="checked" disabled="disabled">
+											<input type="checkbox" class="icheckbox_square-green" checked="checked" disabled="disabled">
 										</c:if>
 										<c:if test="${list.fin_check=='0'}">
-											<input type="checkbox" class="i-checks" disabled="disabled">
+											<input type="checkbox" class="icheckbox_square-green" disabled="disabled">
 										</c:if>
 									</td>
-									<td>${list.pjdd_content}</td>
-									<td><input type="button" class="btn btn-default" value="수정" onclick="modify_pjdd()"></td>
+									<td id="modify_td_${list.pjdd_no}">${list.pjdd_content}</td>
+									<td><input type="button" class="btn btn-default" value="수정" onclick="modify_pjdd(this.id)" id="modify_btn_${list.pjdd_no}"></td>
 									<td hidden="hidden"><input type="hidden"  readonly="readonly" value="${list.pjdd_no}"></td>
 								</tr>
 								</c:forEach>
@@ -108,7 +108,7 @@ $(function(){
 	var index = 0;	
 	$('#add_btn').click(function(){
 		
-		alert(index);
+		//alert(index);
 		
 		var appendTable="<tr class='add_table' id='add_btn_tr_"+index+"'><td><input type='checkbox' class='icheckbox_square-green'></td>"+
 						"<td><input type='text' class='form-control input-sm' id='add_txt_"+index+"'></td>"+
@@ -160,14 +160,14 @@ function addclick(id){
 							            });
 							               
 							            $.each(pjdd, function(index){
-											appendTable+="<tr class='default_table'><td>";
+											appendTable+="<tr class='default_table'><td id='modify_tr_check_"+pjdd[index].pjdd_no+"'>";
 											if(pjdd[index].fin_check=='1'){
 												appendTable+="<input type='checkbox' class='icheckbox_square-green' checked='checked' disabled='disabled'>";
 											}else if(pjdd[index].fin_check=='0'){
 												appendTable+="<input type='checkbox' class='icheckbox_square-green' disabled='disabled'>";
 											}
-											appendTable+="</td><td>"+pjdd[index].pjdd_content+"</td>"+
-														 "<td><input type='button' class='btn btn-default' value='수정' onclick='modify_pjdd()'></td>"+
+											appendTable+="</td><td id='modify_td_"+pjdd[index].pjdd_no+"'>"+pjdd[index].pjdd_content+"</td>"+
+														 "<td><input type='button' class='btn btn-default' value='수정' onclick='modify_pjdd(this.id)' id='modify_btn_"+pjdd[index].pjdd_no+"'></td>"+
 														 "<td hidden='hidden'><input type='hidden'  readonly='readonly' value='"+pjdd[index].pjdd_no+"'></td></tr>";
 											
 										});
@@ -187,6 +187,76 @@ function addclick(id){
 		alert("작업내용을 입력하세요");
 	}
 }
+
+function modify_pjdd(id){
 	
+	var modify_i = id.substr(11);
+	
+	var val = $('#modify_btn_'+modify_i).val();
+	val = $.trim(val);
+	
+	var checked = $('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("checked");
+	console.log("체크여부 : " + checked);
+	
+	if(checked=="undefined"){
+		checked="false";
+	}
+
+	
+	if(val=="수정"){
+		$('#modify_btn_'+modify_i).val("수정완료");
+		
+		$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",false);
+		
+		var content = $('#modify_td_'+modify_i).html();
+		console.log("content : " + content);
+		
+		$('#modify_td_'+modify_i).empty();
+		
+		var appnedtd ="";
+		appnedtd = "<input type='text' class='form-control input-sm' value='"+content+"'>";
+		$('#modify_td_'+modify_i).append(appnedtd);
+
+		
+	}
+	if(val=="수정완료"){
+		$('#modify_btn_'+modify_i).val("수정");
+		
+		$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",true);
+		
+		var content = $('#modify_td_'+modify_i).children().val();
+		console.log("content : " + content);
+		
+		$('#modify_td_'+modify_i).empty();
+		
+		var appnedtd ="";
+		appnedtd = "<input type='text' class='form-control input-sm' value='"+content+"'>";
+		$('#modify_td_'+modify_i).html(content);
+		
+		
+		var fin_check_b= $('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("checked");
+		var fin_check=0;
+		if(fin_check_b==true){
+			fin_check=1;
+		}else if(fin_check_b==false){
+			fin_check=0;
+		}
+		$.ajax(
+				{
+					url  : "update_pjdd.do",
+					data : {
+						"pjdd_no" : modify_i,	
+						"pjdd_content" : content,
+						"fin_check" : fin_check,
+					},
+					success : function(data){
+						
+					}
+				}
+		);
+		
+	}
+	
+}
 
 </script>
