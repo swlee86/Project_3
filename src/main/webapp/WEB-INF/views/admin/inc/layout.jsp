@@ -111,137 +111,18 @@
 <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 
 <!--부서관리 메뉴 js  --> 
-<script src="js/admin/admin_branch.js"></script>
+<script src="js/admin/adminBranch/admin_branch.js"></script>
+<!--직위관리 메뉴 js -->
+<script src="js/admin/adminPosition/adminGrade.js"></script>
 
 <!--우편번호 API-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script>
 
-	//부서  -  부서 관리 페이지에서 지점 선택시
-	function departMentFuc(option){
-		alert("셀렉트 변환 : "+option);
-		$.ajax(
-				  {
-						url : "departMentSelect.do",
-						data : {
-									branch_name : option 
-							   },
-						success : function(data){
-							alert("성공!");
-						}
-		          }
-			  );
-	}
+	
 
 	$(function(){
-		
-		
-		
-		
-		//지점 추가 디브 
-		$('#addBrunchDiv').hide();
-		
-		//왼쪽 디브 등록
-		$('#addBrunchBtn').click(function(){
-			$('#addBrunchDiv').show();	
-		});
-		
-		//지점등록 폼 submit 버튼 클릭시
-		$('#addBranchsubmitBtn').click(function(){
-		
-			
-			$.ajax(
-					   {
-							url : "branchAdd.do",
-							data : 
-									{
-										branch_name :  $('#addbranchName').val(),
-										postcode : $('#addpostcode').val(),
-										addr : 	$('#addaddr').val(),
-										addr_detail : $('#addaddr_detail').val()
-									},
-							success : function(data){
-								alert("등록 성공!");
-								location.href="adminDepartWidget.do";
-							}
-			           }
-			      );
-			
-		});
-		
-		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
-		$('#seeBranchBtn').click(function(){
-			var select = $("#departMentselectBranch option:selected").val();
-			alert("선택한 지점 : "+select);
-			$.ajax(
-					 {
-						url : "selectBranchList.do",
-						data : {
-									selectBranchName : select
-							   },
-						success : function(data){
-							
-							$.each(data, function(index){
-								$('#branchName').val(data[index].branch_name);
-								$('#branchName').attr("readonly",false);
-								
-								$('#postcode').val(data[index].postcode);
-								$('#postcode').attr("readonly",false);
-								
-								$('#addr').val(data[index].addr);
-								$('#addr').attr("readonly",false);
-								
-								$('#addr_detail').val(data[index].addr_detail);
-								$('#addr_detail').attr("readonly",false);
-							});
-							
-						}, error : function(){
-							alert("지점을 선택해주세요!");
-							
-							$('#branchName').val('');
-							$('#branchName').attr("readonly",true);
-							
-							$('#postcode').val('');
-							$('#postcode').attr("readonly",true);
-							
-							$('#addr').val('');
-							$('#addr').attr("readonly",true);
-							
-							$('#addr_detail').val('');
-							$('#addr_detail').attr("readonly",true);
-						}
-					 }
-				  );
-		});	
-		
-		//하위부서 추가 영역
-		$('#addDiv').hide();
-		//하위부서 정보 보기 영역
-		$('#seeAndModifyDiv').show();
-		
-		
-		//부서 관리 페이지
-		$('#moveDepartBtn').click(function(){
-			location.href="adminDepartment.do";
-		});
-		
-		//하위 부서 관리 페이지
-		$('#moveDepartDownBtn').click(function(){
-			location.href="adminDownDepartment.do";
-		});
-		
-		//하위부서 조회 버튼 클릭시
-		$('#seeDepartBtn').click(function(){
-			$('#seeAndModifyDiv').show();
-			$('#addDiv').hide();
-		});
-		
-		//하위 부서 추가 버튼
-		$('#addDownDepartBtn').click(function(){
-			$('#addDiv').show();
-			$('#seeAndModifyDiv').hide();
-		});
 		
 		//드래그 앤 드롭
 		$( "#sortable" ).sortable();
@@ -262,41 +143,10 @@
 		$('#salesdate').monthpicker(options);
 		//기지급 급여 목록페이지의 월별 조회시 사용
 		$('#totalSalListdate').monthpicker(options);	
-		//개발부서 클릭시 아작스 이용
-		$('#depart').click(function(){
-			
-			$.ajax(
-					 {
-						url:"adminDepart_depart.do",
-						data : 
-						{
-							"depart" : $('#depart').html()	
-						},
-						success : function(data){
-							console.log(data);
-							var text = "<h3>"+$('#depart').html()+"</h3>";
-							text += "<table class='table'><tr><th></th><th>이름</th><th>나이</th>";
-							
-							$.each(data, function(index){
-								console.log(index);
-								text += "<tr><td><input type='checkbox'></td><td>"+data[index].name +"</td><td>"+data[index].age+"</td><tr/>";
-							});
-							
-							text+="</table>";
-							text+="<input type='button' class='btn btn-default' value='버튼입니다'>";
-							$('#departList').html('');
-							$('#departList').html(text);
-						}
-				     }
-				  ); 
-			
-		});
+
 	});
 	
-	//부서관리 - 지점 보기 페이지 이동. 
-	$('#moveBranchBtn').click(function(){
-		location.href="adminBranch.do";
-	});
+	
 	
 	// 시간정보 관리 페이지 - ClockPicker
     $('.clockpicker').clockpicker({autoclose: true});

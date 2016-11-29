@@ -63,7 +63,7 @@
 											<div class="row">
 												<div class="col-md-12">
 												<span class="input-group">
-													<input type="hidden" id="rec_emp_no" name="rec_emp_no"> 
+													<input type="text" id="rec_emp_no" name="rec_emp_no"> 
 	                     							<input type="text" class="form-control input-sm" id="rec_emp_name" name="rec_emp_name" readonly/>
 	                        						<span class="input-group-btn">
 														<button class="btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>

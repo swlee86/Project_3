@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
+<link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" /> 
 <!--프로젝트 생성 폼-->
 <div class="normalheader transition animated fadeIn media-body">
@@ -27,7 +27,7 @@
 <div class="content animate-panel">
 <button id="pjd_detail_btn">추가</button>
 	<form class="form-inline" action="project_detail_plus_try.do" method="post">
-		<input type="hidden" name="pjd_count" id="pjd_count" value="0">
+		폼:<input type="text" name="pjd_count" id="pjd_count" value="0">
 		<div class="pull-right" style="text-align:center;">
 			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-close"></i></a>
 			<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a>
@@ -75,8 +75,8 @@
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
 											<td>
 												<span class="input-group">
-	                     							<input type="text" class="form-control input-sm" id="pjd[0].emp_name" name="pjd[0].emp_name"/>
-	                     							<input type="text" name="pjd[0].emp_no" id="pjd[0].emp_no">
+	                     							<input type="text" class="form-control input-sm" id="rec_emp_name" name="pjd[0].emp_name"/>
+	                     							<input type="text" name="pjd[0].emp_no" id="rec_emp_no">
 	                        						<span class="input-group-btn">
 														<button class=" btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
 													</span>

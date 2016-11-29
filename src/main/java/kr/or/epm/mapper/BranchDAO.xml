@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="addBranch" parameterType="kr.or.epm.VO.Branch">
-		insert into branch values (13, #{branch_name}, #{postcode},#{addr},#{addr_detail},null,1,0)
+		insert into branch values (branch_seq.nextval, #{branch_name}, #{postcode},#{addr},#{addr_detail},null,1,0)
 	</insert>
 	
 </mapper>
