@@ -91,13 +91,13 @@
 
 									<tr>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											요청자 사번
+											담당자 사번
 										</th>
 										<td style="width: 25%">
 											${ detail.emp_no }
 										</td>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											요청자 명
+											담당자 명
 										</th>
 										<td style="width: 25%">
 											${ detail.emp_name }

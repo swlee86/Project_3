@@ -33,10 +33,10 @@
             </div>
             <div class="panel-body">
             	<div class="col-md-4">
-            		<input type="text" class="form-control">
+            		<input type="text" class="form-control" id="positionName">
             	</div>
             	<div class="col-md-4">
-	            	<button class="btn btn-default">
+	            	<button class="btn btn-default" id="addBtn">
 	            		 <span class="fa fa-plus-circle"></span>
 	            	</button>
             	</div>
@@ -97,14 +97,14 @@
 							<i class="fa fa-inbox"></i>
 						</div>
 						<div class="vertical-timeline-content">
-							<div class="form-group" style="height: 300px;">
+							<div class="form-group" style="height: 700px;">
 								<div class="infont col-md-6">
 									<ul id="sortable">
-										<li><i class="fa fa-cab"></i>사장</li>
-										<li><i class="fa fa-thumbs-o-up"></i> 부장</li>
-										<li><i class="fa fa-thumbs-o-up"></i> 과장</li>
-										<li><i class="fa fa-thumbs-o-up"></i> 차장</li>
-										<li><i class="fa fa-thumbs-o-up"></i> 대리</li>
+										<li class='gradLi' value='사장'><i class="fa fa-cab"></i>사장</li>
+										<li class='gradLi' value='부장'><i class="fa fa-thumbs-o-up"></i> 부장</li>
+										<li class='gradLi' value='과장'><i class="fa fa-thumbs-o-up"></i> 과장</li>
+										<li class='gradLi' value='차장'><i class="fa fa-thumbs-o-up"></i> 차장</li>
+										<li class='gradLi' value='대리'><i class="fa fa-thumbs-o-up"></i> 대리</li>
 									</ul>
 								</div>
 							</div>

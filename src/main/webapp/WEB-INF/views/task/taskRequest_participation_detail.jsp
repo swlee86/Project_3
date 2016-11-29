@@ -31,7 +31,7 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form action="request_approval.do" method="POST">
+						<form action="taskRequest_participation_detail.do" method="POST">
 							<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1"
 									class="table table-bordered" style="margin-bottom: 0px">
@@ -40,6 +40,7 @@
 											업무 번호
 										</th>
 										<td style="width: 40%" colspan="3">${ detail.task_no }</td>
+										<input type="hidden" name="task_no" value="${ detail.task_no }">
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											진행 상태
 										</th>

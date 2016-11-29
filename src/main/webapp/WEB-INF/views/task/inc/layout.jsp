@@ -292,12 +292,6 @@ ul {
       this.emp_name = emp_name;
    }
    
-   // 업무 요청
-   
-   // 업무 보고
-   
-   // 업무 일지
-   
    //사원정보 뽑아서 담을 배열
    var empInfoArray = new Array();
    
@@ -355,20 +349,6 @@ ul {
                dateFormat : 'yy-mm-dd',
                changeYear : true
             });
-
-      $('#makeuserUpdateDate2').datepicker(
-            {
-               changeMonth : true,
-               dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
-                     '일요일' ],
-               dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
-               monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
-                     '9', '10', '11', '12' ],
-               monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
-                     '8월', '9월', '10월', '11월', '12월' ],
-               dateFormat : 'yy-mm-dd',
-               changeYear : true
-            });
       $('.demo4').click(function() {
          swal({
             title : "삭제 하시겠습니까?",
@@ -400,6 +380,7 @@ ul {
       
       
       //날짜 차이 구하는 함수
+      // 사용 X
        function calDateRange(val1, val2)
     {
         var FORMAT = "-";
