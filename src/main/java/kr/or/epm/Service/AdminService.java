@@ -52,11 +52,11 @@ public class AdminService {
 
 	
 	//부서 페이지 사용 - 지점에 따른 부서 리스트 출력
-	public List<Dept> listDept(String branch_name){
+	public List<Dept> listDept(String branch_no){
 		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
-		System.out.println("서비스 파라미터 : "+branch_name);
+		System.out.println("서비스 파라미터 : "+branch_no);
 		List<Dept> list = null;
-		list = deptDAO.deptList(branch_name);
+		list = deptDAO.deptList(branch_no);
 		System.out.println("서비스 돌려주기 전 : "+list.size());
 		return list; 
 	}
