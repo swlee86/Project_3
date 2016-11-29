@@ -52,13 +52,16 @@
 							<i class="fa fa-inbox"></i>
 						</div>
 						<div class="vertical-timeline-content">
-							<div class="p-sm">
-								
+							<div class="p-lg">
 								<h4>기본급여</h4>
 								<input type="text" class="form-control">
+								<br/>
+								<input type="button" class="btn btn-success" value="저장">
+								<br/>
+							</div>
+							<div class="panel-footer">
 								
 							</div>
-							<div class="panel-footer"></div>
 						</div>
 					</div>
 				</div>
@@ -71,9 +74,12 @@
 							<i class="fa fa-inbox"></i>
 						</div>
 						<div class="vertical-timeline-content">
-							<div class="p-sm">
+							<div class="p-lg">
 								<h4>추가급여</h4>
 								<input type="text" class="form-control">
+								<br/>
+								<input type="button" class="btn btn-success" value="저장">
+								<br/>
 							</div>
 							<div class="panel-footer"></div>
 						</div>
