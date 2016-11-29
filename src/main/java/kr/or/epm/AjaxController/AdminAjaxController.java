@@ -64,10 +64,10 @@ public class AdminAjaxController {
 	
 	//부서 페이지 - 부서에서 - > 지점 선택시 부서 select 에 뿌려주는 함수
 	@RequestMapping("/departMentSelect.do")
-	public View departMentSelect(String branch_no){
-		System.out.println("컨트롤러 : "+branch_no);
-		List<Dept> list = adminservice.listDept(branch_no);
-		System.out.println("리스트싸이즈 : "+list.size());
+	public View departMentSelect(String branch_name, Model model){
+		System.out.println("컨트롤러 : "+branch_name);
+		List<Dept> list = adminservice.listDept(branch_name);
+		model.addAttribute("deptlist", list);
 		return jsonview;
 	}
 	

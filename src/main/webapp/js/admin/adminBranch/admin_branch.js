@@ -103,10 +103,14 @@ function departMentFuc(){
 			  {
 					url : "departMentSelect.do",
 					data : {
-								branch_no : option 
+								branch_name : choosePosition 
 						   },
 					success : function(data){
-						console.log(data.deptlist);
+						var option = '<option>선택</option>';
+						$.each(data.deptlist, function(index){
+							 option += "<option value='"+data.deptlist[index].dept_name+"'>"+data.deptlist[index].dept_name+"</option>";
+						});
+						$('#selectDept').html(option);
 						alert('성공');
 					}
 	          }
