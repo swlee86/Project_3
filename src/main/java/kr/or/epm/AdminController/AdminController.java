@@ -14,6 +14,7 @@ import kr.or.epm.Service.AdminService;
 import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Low_dept;
+import kr.or.epm.VO.Position;
 
 /*
  * 작성자 : 박성준
@@ -76,8 +77,10 @@ public class AdminController {
 	
 	//직위 관리 페이지
 	@RequestMapping("/adminGrade.do")
-	public String adminGrade(){
-		
+	public String adminGrade(Model model){
+		List<Position> list = adminservice.listPosition();
+		System.out.println("리스트 : " +list.toString());
+		model.addAttribute("positionList", list);
 		return "admin.adminGradeView";
 	}
 	

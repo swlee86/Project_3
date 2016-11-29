@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.BranchDAO;
 import kr.or.epm.DAO.DeptDAO;
+import kr.or.epm.DAO.PositionDAO;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
+import kr.or.epm.VO.Position;
 
 @Service
 public class AdminService {
@@ -58,5 +60,17 @@ public class AdminService {
 		System.out.println("서비스 돌려주기 전 : "+list.size());
 		return list; 
 	}
+	
+	
+	
+	
+	
+	//직위 관리 페이지 사용 - 직위 리스트 읽어 오기
+	public List<Position> listPosition(){
+		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
+		List<Position> list = positionDAO.selectPosition();
+		return list;
+	}
+	
 	
 }
