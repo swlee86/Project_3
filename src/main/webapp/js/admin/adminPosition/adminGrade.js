@@ -105,11 +105,28 @@ $(function(){
 			return $(this).attr('value');
 		}));
 		
+		
 		for(var i = 0; i < itemid.length; i++){
-			if(itemid[i] != oopArray[i].position_name){
-				console.log("달라요 !!"+itemid[i] + " / 디비는 ? "+oopArray[i].position_name);
+			
+			for(var j = 0; j < itemid.length; j++){
+				console.log("안쪽 : "+itemid[i]);
+				if(itemid[i] == oopArray[j].position_name){
+					
+					var change = j;
+					console.log("이중 포문 바뀌기 전afdv  : " +oopArray[i].step);
+					step_i = change.toString();
+					oopArray[i].step = step_i;  // int - > string 으로 형변환
+					console.log("바뀜 ????? : " +oopArray[i].step);
+				}
+				
 			}
+			
 		}
+		
+		for(var i = 0; i < itemid.length; i++){
+			console.log("테스트휘발 : " +oopArray[i].step + " / 이름 : "+oopArray[i].position_name);
+		}
+		
 		
 		
 	/*$.ajax(
