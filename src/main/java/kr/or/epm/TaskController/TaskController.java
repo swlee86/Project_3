@@ -32,8 +32,6 @@ import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
 import net.sf.json.JSON;
 
-
-
 @Controller
 public class TaskController {
 
@@ -103,8 +101,8 @@ public class TaskController {
 	public String taskWriteOk(Principal principal, Task task, String emp_no, Model model) {
 
 		System.out.println("CONTROLLER] 업무 등록");
-
-		String link = "taskRequest_rec.do";
+		
+		String link = "taskWrite.do";
 		String msg = null;
 
 		int result1 = 0;
@@ -118,7 +116,7 @@ public class TaskController {
 		String emp_name = "";
 		String task_no = "";
 
-		// 넘어오는 emp_no들 분리
+		// 참여자 사번들 분리
 		String[] people = emp_no.split(",");
 		System.out.println("선택된 참여자 인원 : " + people.length);
 		
@@ -126,7 +124,9 @@ public class TaskController {
 			// 업무에 송신자 사번, 송신자 이름 담기
 			task.setEmp_no(myemp_no);
 			emp_name = commonservice.selectEmp_name(id);
-			task.setEmp_name(myemp_no);
+			task.setEmp_name(emp_name);
+			
+			// 기본 정보 setting
 			
 			// 업무 등록하기
 			result1 = service.insertTask(task);
@@ -135,6 +135,8 @@ public class TaskController {
 				System.out.println("업무 등록에 성공했습니다");
 				task_no = service.selectTask_no();
 				System.out.println("등록하려고 하는 업무 번호는 : " + task_no);
+			} else {
+				System.out.println("업무 등록에 실패했습니다");
 			}
 			
 			// 업무 참여자 등록하기
@@ -222,7 +224,7 @@ public class TaskController {
 
 	// 업무 요청 > 수신, 송신, 참여
 	@RequestMapping("/taskRequest.do")
-	public String taskRequest_rec(Principal principal, Model model) {
+	public String taskRequest(Principal principal, Model model) {
 
 		System.out.println("CONTROLLER] 업무 요청 수신 페이지");
 
@@ -377,7 +379,7 @@ public class TaskController {
 
 	// 업무보고 > 수신, 송신
 	@RequestMapping("/taskInform.do")
-	public String taskInform_rec(Principal principal, Model model) {
+	public String taskInform(Principal principal, Model model) {
 
 		System.out.println("CONTROLLER] 업무 보고 수신 페이지");
 
@@ -473,8 +475,8 @@ public class TaskController {
 	}
 
 	// 업무일지 > 수신, 송신
-	@RequestMapping("/taskLog_rec.do")
-	public String taskLog_rec(Principal principal, Model model) {
+	@RequestMapping("/taskLog.do")
+	public String taskLog(Principal principal, Model model) {
 
 		System.out.println("CONTROLLER] 업무 일지 수신 페이지");
 
@@ -485,7 +487,7 @@ public class TaskController {
 		System.out.println("로그인한 사원의 emp_no : " + emp_no);
 
 		// 업무 요청 구분
-		String cg_no = "1";
+		String cg_no = "3";
 
 		// 수신
 		// 목록 가져오기

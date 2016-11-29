@@ -129,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             on p.emp_no = e.emp_no
       	join low_dept l
             on e.low_dept_no = l.low_dept_no      
-      	where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=${emp_no}))) or p.emp_no=${emp_no})
+      	where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=#{param1}))) or p.emp_no=#{param1})
                  and step_no = (select step_no from approval where step_name='승인')
       	order by s.step asc, pj_start desc
 	</select>

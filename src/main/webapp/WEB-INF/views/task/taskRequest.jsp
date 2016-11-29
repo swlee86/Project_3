@@ -121,7 +121,8 @@
 													</div>
 												</td>
 												<td style="padding-top: 12px;">
-													<a href="taskRequest_rec_detail.do?task_no=${list1.task_no}">
+													<a href="taskRequest_rec_detail.do?task_no=${list1.task_no}"
+													<c:if test="${ list1.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>
 														${list1.task_name}
 													</a>
 												</td>
@@ -157,7 +158,7 @@
 									&nbsp;&nbsp;
 									<button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">업무삭제</button>
+											font-weight: bold; font-size: 13px;">업무 삭제</button>
 								</div>
 							</div>
 						</div>
@@ -268,7 +269,7 @@
 													<c:when test="${ list2.step_no == '1'}">
 														<button class="btn btn-xs btn-info" disabled>승인</button>
 													</c:when>
-													<c:when test="${list.step_no == '2'}">
+													<c:when test="${list2.step_no == '2'}">
 														<button class="btn btn-xs btn-danger" disabled>승인거부</button>
 													</c:when>
 													<c:when test="${ list2.step_no == '3' }">
@@ -301,7 +302,7 @@
 									&nbsp;&nbsp;
 									<button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">업무삭제</button>
+											font-weight: bold; font-size: 13px;">업무 삭제</button>
 								</div>
 							</div>
 						</div>
@@ -408,16 +409,19 @@
 												<td style="padding-top: 12px;">
 												<c:choose>
 													<c:when test="${ list3.task_step_no == '1'}">
-														<button class="btn btn-xs btn-info">진행</button>
+												<button class="btn btn-xs btn-warning" disabled>진행</button>
 													</c:when>
-													<c:when test="${list.task_step_no == '2'}">
-														<button class="btn btn-xs btn-warning">중단</button>
+													<c:when test="${list3.task_step_no == '2'}">
+												<button class="btn btn-xs btn-warning2" disabled>미진행</button>
 													</c:when>
 													<c:when test="${ list3.task_step_no == '3' }">
-														<button class="btn btn-xs btn-primary2">보류</button>
+												<button class="btn btn-xs btn-primary2" disabled>보류</button>
 													</c:when>
 													<c:when test="${list3.task_step_no == '4'}">
-														<button class="btn btn-xs btn-warning2">미진행</button>
+												<button class="btn btn-xs btn-info" disabled>완료</button>
+													</c:when>
+													<c:when test="${list3.task_step_no == '5'}">
+												<button class="btn btn-xs btn-danger" disabled>중단</button>
 													</c:when>
 												</c:choose>
 												</td>
@@ -433,7 +437,7 @@
 									&nbsp;&nbsp;
 									<button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">업무삭제</button>
+											font-weight: bold; font-size: 13px;">업무 삭제</button>
 								</div>
 							</div>
 						</div>

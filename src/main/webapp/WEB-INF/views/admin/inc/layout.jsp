@@ -110,6 +110,12 @@
 <!-- alert -->
 <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 
+<!--부서관리 메뉴 js  --> 
+<script src="js/admin/admin_branch.js"></script>
+
+<!--우편번호 API-->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <script>
 
 	//부서  -  부서 관리 페이지에서 지점 선택시

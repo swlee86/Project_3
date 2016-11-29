@@ -110,7 +110,7 @@ $(function(){
 		
 		alert(index);
 		
-		var appendTable="<tr class='add_table' id='add_btn_tr_"+index+"'><td><input type='checkbox' class='i-checks'></td>"+
+		var appendTable="<tr class='add_table' id='add_btn_tr_"+index+"'><td><input type='checkbox' class='icheckbox_square-green'></td>"+
 						"<td><input type='text' class='form-control input-sm' id='add_txt_"+index+"'></td>"+
 						"<td><input type='button' class='btn btn-default add_btn' id='add_btn_"+index+"' onclick='addclick(this.id)' value='추가완료'></td>"+
 						"<td hidden='hidden'><input type='hidden'  readonly='readonly'></td></tr>";
@@ -162,17 +162,16 @@ function addclick(id){
 							            $.each(pjdd, function(index){
 											appendTable+="<tr class='default_table'><td>";
 											if(pjdd[index].fin_check=='1'){
-												appendTable+="<input type='checkbox' class='i-checks' checked='checked' disabled='disabled'>";
+												appendTable+="<input type='checkbox' class='icheckbox_square-green' checked='checked' disabled='disabled'>";
 											}else if(pjdd[index].fin_check=='0'){
-												appendTable+="<input type='checkbox' class='i-checks' disabled='disabled'>";
+												appendTable+="<input type='checkbox' class='icheckbox_square-green' disabled='disabled'>";
 											}
 											appendTable+="</td><td>"+pjdd[index].pjdd_content+"</td>"+
 														 "<td><input type='button' class='btn btn-default' value='수정' onclick='modify_pjdd()'></td>"+
 														 "<td hidden='hidden'><input type='hidden'  readonly='readonly' value='"+pjdd[index].pjdd_no+"'></td></tr>";
 											
 										});
-											
-											
+							            
 										$('.default_table').remove();
 										$('#add_btn_tr_'+add_i).remove();
 											
