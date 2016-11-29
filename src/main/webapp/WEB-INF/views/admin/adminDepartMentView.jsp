@@ -54,7 +54,7 @@
 								<label class="form-control">부서 선택</label> 
 								 <select class="form-control" id="selectDept">
 								</select> <br /> 
-								<input type="button" class="btn btn-success" value="조회">
+								<input type="button" class="btn btn-success" id="seeDeptBtn" value="조회">
 							</div>
 							<div class="panel-footer"></div>
 						</div>
