@@ -1,6 +1,7 @@
 package kr.or.epm.DAO;
 
-
+import kr.or.epm.VO.Emp_detail;
+import kr.or.epm.VO.Push;
 
 public interface PushDAO {
 	//Emp_detail 에서 아이디를 토대로 사원번호 뽑아오기
