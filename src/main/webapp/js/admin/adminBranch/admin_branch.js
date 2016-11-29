@@ -92,8 +92,13 @@ function sample6_execDaumPostcode2() {
 
 
 //부서  -  부서 관리 페이지에서 지점 선택시
-function departMentFuc(option){
-	alert("셀렉트 변환 : "+option);
+function departMentFuc(){
+	var choosePosition = '';
+	 $("#selectbranch option:selected").each(function () {
+         choosePosition = $(this).val();
+      });
+    
+	alert("테스트 : "+choosePosition);
 	$.ajax(
 			  {
 					url : "departMentSelect.do",
@@ -101,11 +106,13 @@ function departMentFuc(option){
 								branch_name : option 
 						   },
 					success : function(data){
-						alert("성공!");
+						console.log(data.deptlist);
+						alert('성공');
 					}
 	          }
 		  );
 }
+
 
   $(function(){
 	 
@@ -222,15 +229,15 @@ function departMentFuc(option){
 		});
 		
 		
-		
-		
-		//부서 등록 div 숨김
+        //부서 등록 div 숨김
 		$('#addDepartmentDiv').hide();
 		
 		//부서 등록 버튼 클릭시 등록 form 보여줌
 		$('#addDepartmentBtn').click(function(){
 			$('#addDepartmentDiv').show();
 		});
+		
+		
 		
 		
 		//하위부서 추가 영역

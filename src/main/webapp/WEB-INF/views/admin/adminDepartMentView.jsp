@@ -44,19 +44,21 @@
 							<div class="panel-body">
 
 								<label class="form-control">지점 선택</label> 
-								<select class="form-control" onchange="departMentFuc(this.value)">
+								<select id="selectbranch" class="form-control" onchange="departMentFuc()">
 									<option>선택</option>
 									<c:forEach var="list" items="${branchList}">
-										<option value="${list.branch_name}">${list.branch_name}</option>
+										<option value="${list.branch_no}">${list.branch_name}</option>
 									</c:forEach>
 								</select> 
 								<br /> 
-								<label class="form-control">부서 선택</label> <select
-									class="form-control">
+								<label class="form-control">부서 선택</label> 
+								 <select class="form-control">
 									<option>선택</option>
-									<option>영업부</option>
-									<option>개발부</option>
-								</select> <br /> <input type="button" class="btn btn-success" value="조회">
+									<c:forEach var="dlist" items="${deptlist}">
+										<option value="${dlist.dept_no}">${dlist.dept_name}</option>
+									</c:forEach>
+								</select> <br /> 
+								<input type="button" class="btn btn-success" value="조회">
 							</div>
 							<div class="panel-footer"></div>
 						</div>
@@ -144,7 +146,7 @@
 										
 										<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" value="09:30" readonly="readonly" >
+                        					  <input type="text" class="form-control" readonly="readonly" >
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -153,7 +155,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" value="09:30" readonly="readonly">
+                        					  <input type="text" class="form-control" readonly="readonly">
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>
@@ -166,7 +168,7 @@
 										</div>
 											<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" value="09:30" readonly="readonly" >
+                        					  <input type="text" class="form-control" readonly="readonly" >
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -175,7 +177,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" value="09:30" readonly="readonly">
+                        					  <input type="text" class="form-control"  readonly="readonly">
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>
@@ -241,7 +243,7 @@
 										
 										<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" value="09:30">
+                        					  <input type="text" class="form-control" >
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -250,7 +252,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" value="09:30">
+                        					  <input type="text" class="form-control" >
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>
@@ -263,7 +265,7 @@
 										</div>
 											<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" value="09:30">
+                        					  <input type="text" class="form-control" >
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -272,7 +274,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" value="09:30">
+                        					  <input type="text" class="form-control">
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>

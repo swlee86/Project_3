@@ -11,6 +11,6 @@ import kr.or.epm.VO.Dept;
  */
 public interface DeptDAO {
 
-	List<Dept> deptList(String branch_name);
+	List<Dept> deptList(String branch_no);
 	
 }
