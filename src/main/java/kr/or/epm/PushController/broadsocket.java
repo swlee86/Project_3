@@ -20,7 +20,7 @@ public class broadsocket extends TextWebSocketHandler {
 	
 		log(session.getId()+ " 연결 됨");
 		String taskcount = (String)session.getAttributes().get("taskcount");
-
+		
 		users.put(taskcount, session);
 		System.out.println("여기는 broadsocket : " + taskcount);
 		
@@ -45,9 +45,9 @@ public class broadsocket extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(
 			WebSocketSession session, CloseStatus status) throws Exception {
-		/*log((String) session.getAttributes().get("userId") + " 연결 종료됨");*/
+		log((String) session.getAttributes().get("taskcount") + " 연결 종료됨");
 		//접속한 session을 users 맵에서 제거
-		/*users.remove((String) session.getAttributes().get("userId"));*/
+		users.remove((String) session.getAttributes().get("taskcount"));
 	}
 
 	@Override

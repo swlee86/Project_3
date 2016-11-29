@@ -32,6 +32,8 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.Service.PushService;
+import kr.or.epm.VO.Emp_detail;
+import kr.or.epm.VO.Push;
 
 @Controller
 public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
@@ -95,16 +97,20 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		System.out.println("########################로그인 성공시 스타트##################");
 		System.out.println("아이디 : " + authentication.getName());
 		
-		String empnoresult =null;
+		String emp_no =null;
 		String taskcount = null;
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-		empnoresult = pushdao.selectEmp_no(authentication.getName());
-		
-		
+		emp_no = pushdao.selectEmp_no(authentication.getName());
+/*		Push push = new Push();
+		push.setEmp_no(emp_no);
+		push.setId(authentication.getName());
+		System.out.println(push.toString());
+ */		
+
 		try{
-			System.out.println("사번? : " + empnoresult);
-			taskcount = pushdao.taskCount(empnoresult);
+			System.out.println("사번? : " + emp_no);
+			taskcount = pushdao.taskCount(emp_no);
 			System.out.println("미처리 taskcount : " + taskcount);
 			
 			
@@ -123,7 +129,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		//미완료 taskcount 생성 > websocket 사용
 		session.setAttribute("customerId", authentication.getName());
 		session.setAttribute("taskcount", taskcount);
-		session.setAttribute("empnoresult", empnoresult);
+		session.setAttribute("emp_no", emp_no);
 		
 		
 		int intRedirectStrategy = decideRedirectStrategy(request, response);
