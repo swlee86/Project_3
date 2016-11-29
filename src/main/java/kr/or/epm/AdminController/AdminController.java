@@ -15,6 +15,7 @@ import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
+import kr.or.epm.VO.PositionJoin;
 
 /*
  * 작성자 : 박성준
@@ -82,6 +83,15 @@ public class AdminController {
 		System.out.println("리스트 : " +list.toString());
 		model.addAttribute("positionList", list);
 		return "admin.adminGradeView";
+	}
+	
+	//직위 정보 수정 시 사용
+	@RequestMapping("/positionModify.do")
+	public String modifyPosition(PositionJoin position){
+		
+		System.out.println("컨트롤러 : "+position.toString());
+		
+		return null;
 	}
 	
 	//시간 등록 페이지 이동

@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--직위 선택시 기본급여 , 추가급여 조회-->
 	<select id="selectOptionJoin" parameterType="String" resultType="kr.or.epm.VO.PositionJoin">
-	select p.position_no, p.position_name, s.basic_pay, a.add_pay
+	select p.position_no, p.position_name, p.step, s.basic_pay, a.add_pay
 	from position p join set_pay s
 	on p.position_no = s.position_no
 	join set_add_pay a

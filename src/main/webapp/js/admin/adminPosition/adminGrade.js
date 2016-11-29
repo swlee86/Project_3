@@ -29,6 +29,37 @@ $(function(){
 		
 	});
 	
+	
+	$('#modifyForm').submit(function(){
+			//직위 번호
+		
+		
+
+        var date = new Date();
+   
+        var year  = date.getFullYear();
+        var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
+        var day   = date.getDate();
+    
+        if (("" + month).length == 1) { month = "0" + month; }
+        if (("" + day).length   == 1) { day   = "0" + day;   }
+       
+        //오늘 날짜 선택
+        var mydate = year+"-"+month+"-"+day;
+        
+		
+		var choosePosition = '';
+		 $("select option:selected").each(function () {
+	         choosePosition = $(this).val();
+	      });
+		
+		 alert("번호 ? : "+choosePosition);
+		 $('#position_no').val(choosePosition);
+		 $('#step').val(choosePosition);
+		 $('#set_date').val(mydate);
+		 return true;
+	});
+	
 });
 
 //직위 등록시 유효성 검사.
@@ -90,10 +121,11 @@ function selectPosition(){
 					 $('#dbpositionName').val('');
 					 $('#dbbasic_pay').val('');
 					 $('#dbadd_pay').val('');
-					 
+					 $('#step').val('');	
 					 $('#dbpositionName').val(data.position.position_name);
 					 $('#dbbasic_pay').val(data.position.basic_pay);
 					 $('#dbadd_pay').val(data.position.add_pay);
+					 $('#step').val(data.position.step);
 				 }
 			 }
 		   );
