@@ -4,8 +4,32 @@
  * 사용목적 : 직위 관련  스크립트
  */
 
+//position 생성자
+function position(position_name, step, basic_pay,set_date, add_pay){
+	this.position_name = position_name;
+	this.step = step;
+	this.basic_pay = basic_pay;
+	this.set_date = set_date;
+	this.add_pay = add_pay;
+}
+
+//model 객체 정보 담을 배열
+var positionArray=[];
+//객체 배열
+var oopArray = new Array();
 
 $(function(){	
+	var test = $('#hidin').val();
+	positionArray=test;
+	for(var i = 0; i < positionArray.length; i++){
+		oopArray.push(new position(positionArray[i].position_name, positionArray[i].step, positionArray[i].basic_pay,positionArray[i].set_date,positionArray[i].add_pay));
+	}
+	
+	$.each(oopArray,function(index){
+		console.log("객체index배열 : "+oopArray[index]);
+	});
+	
+	
 	//기본 null 포인트 체크
 	$('#addBtn').click(function(){
 		
@@ -29,15 +53,11 @@ $(function(){
 		
 	});
 	
-	
+	//직위 정보 조회
 	$('#modifyForm').submit(function(){
 			//직위 번호
-		
-		
-
-        var date = new Date();
-   
-        var year  = date.getFullYear();
+		var date = new Date();
+		var year  = date.getFullYear();
         var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
         var day   = date.getDate();
     
@@ -58,6 +78,29 @@ $(function(){
 		 $('#step').val(choosePosition);
 		 $('#set_date').val(mydate);
 		 return true;
+	});
+	
+	
+	//직위 리스트 보기 추가 버튼 클릭 시
+	$('#saveBtn').click(function(){
+		//li 에 있는 것 담는다.
+		var itemid = [];
+		itemid = $.makeArray($('li').map(function(){
+			return $(this).attr('value');
+		}));
+		console.log("배열 : "+itemid + " / 크기 : "+itemid.length);
+		/*$.ajax(
+				{
+					url : "positionInsert.do",
+					data : {
+								
+						   },
+					success : function(data){
+						
+					}
+				}
+				
+		      );*/
 	});
 	
 });
@@ -92,7 +135,7 @@ function checkPositionName(){
 	}else{
 		alert("등록 성공!");
 		//내가 입력한것을 li 태그로 추가해줌
-		var li = "<li class='gradLi'><i class='fa fa-thumbs-o-up'></i>"+position+"</li>";
+		var li = "<li class='gradLi ui-sortable-handle' value='"+position+"'><i class='fa fa-thumbs-o-up'></i>"+position+"</li>";
 		//ul - li 에 추가
 		$('#sortable').append(li);
 	}
