@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />  
 <!--프로젝트 생성 폼-->
-<div class="normalheader transition animated fadeIn">
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
 			<a class="small-header-action" href="">
@@ -39,13 +39,13 @@
 											<div class="form-group">
 												시작일 :
 												<div class="input-group date">
-													<input type="text" class="form-control input-sm" id="formstartDate" value="" name="pj_start" size="20px">
+													<input type="text" class="formstartDate form-control input-sm" value="" name="pj_start" size="20px">
 													<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 												</div>
 												&nbsp;&nbsp;~&nbsp;&nbsp;
-												종료일 :
+												종료s일 :
 												<div class="input-group date">
-													<input type="text" id="formendDate" class="form-control" value="" name="pj_end" size="20px"> 
+													<input type="text"  class="formendDate form-control" value="" name="pj_end" size="20px"> 
 													<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 												</div>
 				                            </div>
@@ -59,22 +59,28 @@
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">수신자</th>
 										<td>
-											<span class="input-group">
-												<input type="hidden" name="rec_emp_no"> 
-                     							<input type="text" class="form-control input-sm" name="rec_emp_name"/>
-                        						<span class="input-group-btn">
-													<button class="btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
-												</span>
-                   	  						</span>
+											<div class="form-group">
+											<div class="row">
+												<div class="col-md-12">
+												<span class="input-group">
+													<input type="hidden" id="rec_emp_no" name="rec_emp_no"> 
+	                     							<input type="text" class="form-control input-sm" id="rec_emp_name" name="rec_emp_name" readonly/>
+	                        						<span class="input-group-btn">
+														<button class="btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
+													</span>
+	                   	  						</span>
+	                   	  						</div>
+	                   	  						</div>
+                   	  						</div>
 										</td>
 									</tr>																	
 									
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 내용</th>
 										<td>
-										
+											<div>
 											<textarea cols="10" rows="10"   placeholder="내용" style="width:100%" name="pj_content" class="summernote"></textarea>
-										
+											</div>
 										</td>
 									</tr>
 								</tbody>

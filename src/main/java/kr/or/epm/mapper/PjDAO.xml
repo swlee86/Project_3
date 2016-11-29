@@ -99,7 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by s.step asc, pj_start desc
 	</select>
 	
-	<!-- 프로젝트에서 내가 만든 프로젝트만 조회하기(승인처리된것들만) -->
+	<!-- 프로젝트에서 내가 포함된 프로젝트만 조회하기(승인처리된것들만) -->
 	<select id="selectPj_include" parameterType="String" resultType="kr.or.epm.VO.Pj">
 		select p.pj_no, p.emp_no, e.emp_name, l.dept_name, 
 				pj_title, pj_content, pj_start, 
@@ -116,5 +116,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by s.step asc, pj_start desc
 	</select>
 	
+	
+	<!-- 프로젝트 내가 작성한것 and 내가 참여자인것 프로젝트 목록 가져오기 --> 
+	<select id="selectPj_callendar" parameterType="String" resultType="kr.or.epm.VO.Pj">
+		select p.pj_no, p.emp_no, e.emp_name, l.dept_name, 
+            pj_title, pj_content, pj_start, 
+            pj_end, pj_progress, p.pj_step_no, s.pj_step_name
+     	from pj p 
+      	join pj_step s
+            on p.pj_step_no = s.pj_step_no
+      	join emp e
+            on p.emp_no = e.emp_no
+      	join low_dept l
+            on e.low_dept_no = l.low_dept_no      
+      	where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=#{param1}))) or p.emp_no=#{param1})
+                 and step_no = (select step_no from approval where step_name='승인')
+      	order by s.step asc, pj_start desc
+	</select>
 	
 </mapper>

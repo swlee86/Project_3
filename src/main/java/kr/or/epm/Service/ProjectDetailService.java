@@ -19,6 +19,7 @@ import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_people;
+import kr.or.epm.VO.Pjdd;
 
 
 @Service
@@ -125,9 +126,31 @@ public class ProjectDetailService {
 	}
 	
 	//선택한 상세프로젝트의 참여자 정보 가져오기
-	/*public List<Pjd_people> selectPjdPeopleList(){
+	public List<Pjd_people> selectPjdPeopleList(String pjd_no){
+		System.out.println("selectPjdPeopleList() 서비스");
+		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
+		List<Pjd_people> result = null;
+		result = dao.selectPeople(pjd_no);
+		return result;
+	}
+	
+	// 선택한 상세프로젝트의 상세내역들
+	public List<Pjdd> selectPjddList(String pjd_no){
+		System.out.println("selectPjddList() 서비스");
+		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
+		List<Pjdd> result = null;
+		result = dao.selectPjdd(pjd_no);
+		return result;
 		
-		selectPeople
-	}*/
+	}
+	
+	//상세의 상세내역 추가하기
+	public int insertPjdd(Pjdd pjdd){
+		System.out.println("insertPjdd() 서비스");
+		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
+		int result = 0;
+		result = dao.insertPjdd(pjdd);
+		return result;
+	}
 }
 	

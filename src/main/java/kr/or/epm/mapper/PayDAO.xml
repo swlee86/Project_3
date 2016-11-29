@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectPay_mine_all" resultType="kr.or.epm.VO.Pay">
 		select pay_no, basic_pay, bonus, add_pay, total_pay, give_date
 		from pay
-		where emp_no = #{emp_no}
-		order by give_date desc
+		where emp_no = #{emp_no} and give_date is not null
+		order by give_date asc
 	</select>
 	
 	<!--월별 급여 조회  -->
@@ -35,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pay_no, emp_no, basic_pay, bonus, add_pay, total_pay, give_date
 		from pay
 		where emp_no = #{param1} and give_date like '%${param2}%'
+		order by give_date asc
 	</select>
 	<!--급여 지급일 조회  -->
 	<select id="selectGive_date" resultType="String">
@@ -45,11 +46,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectRegdate" resultType="String">
 		select regdate from emp_his e join emp_his_cg c on e.cg_no=c.cg_no where emp_no=#{emp_no} and c.cg_name='입사'
 	</select>
-	
-	<!-- 예상 퇴직금 조회하기 -->
-	<select id=""></select>
-	
-	<!-- 본인의 금월 예상 급여 조회하기 -->
+
+<!-- 	
+	본인의 금월 예상 급여 조회하기
 	<select id="selectPay_mine" resultType="kr.or.epm.VO.Pay">
 		select pay_no, p.emp_no, e.salary, basic_pay, acc_commute_time, acc_add_time, p.add_pay, total_pay
 		from pay p join emp e
@@ -59,6 +58,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join set_add_pay a
 		on e.position_no = a.position_no
 		where p.emp_no = #{emp_no}
+	</select> -->
+	
+	<!-- 본인 금월 예상 급여 조회하기 -->
+	<select id="selectPay_mine" resultType="kr.or.epm.VO.Pay">
+	    select pay_no, e.emp_no, basic_pay, bonus, add_pay, severance_pay
+        acc_commute_time, acc_add_time, total_pay, give_date
+		from emp e join pay y
+		on e.emp_no = y.emp_no
+		join (select emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time
+		      from commute
+		      where to_char(to_date(regdate), 'yyyy-mm') = #{param2}
+		      group by emp_no) c
+		on e.emp_no = c.emp_no
+		where give_date is null and e.emp_no=#{param1}
+		order by TO_NUMBER(pay_no) desc
 	</select>
 	
 	<!-- 전체 급여 내역 조회하기 -->
@@ -71,7 +85,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 급여 마감 관리 전체 급여 내역 조회하기 -->
 	<select id="selectPay_all_Close" resultType="kr.or.epm.VO.PayList">
-	   
+	select pay_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, total_pay, give_date, master_check
+	from emp e join position p
+	on e.position_no = p.position_no
+	join pay y
+	on e.emp_no = y.emp_no
+	join (select emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time
+	      from commute
+	      where to_char(to_date(regdate), 'yyyy-mm') = #{param1}
+	      group by emp_no) c
+	on e.emp_no = c.emp_no
+	join (select e.emp_no, b.branch_name, d.dept_name, l.low_dept_name
+	      from emp e join low_dept l
+	      on e.low_dept_no = l.low_dept_no
+	      join dept d
+	      on l.dept_no = d.dept_no
+	      join branch b
+	      on b.branch_no = d.branch_no) d
+	on e.emp_no = d.emp_no
+	where give_date is null
+	order by TO_NUMBER(pay_no) desc
 	</select>
 	
 	

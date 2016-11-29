@@ -16,7 +16,15 @@ public class PayList {
 	private String position_name;
 	private String acc_commute_time;
 	private String acc_add_time;
+	private String master_check;
 	
+	
+	public String getMaster_check() {
+		return master_check;
+	}
+	public void setMaster_check(String master_check) {
+		this.master_check = master_check;
+	}
 	public String getPay_no() {
 		return pay_no;
 	}
@@ -88,8 +96,7 @@ public class PayList {
 		return "PayList [pay_no=" + pay_no + ", emp_no=" + emp_no + ", total_pay=" + total_pay + ", give_date="
 				+ give_date + ", branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name="
 				+ low_dept_name + ", emp_name=" + emp_name + ", position_name=" + position_name + ", acc_commute_time="
-				+ acc_commute_time + ", acc_add_time=" + acc_add_time + "]";
+				+ acc_commute_time + ", acc_add_time=" + acc_add_time + ", master_check=" + master_check + "]";
 	}
-	
-	
+
 }

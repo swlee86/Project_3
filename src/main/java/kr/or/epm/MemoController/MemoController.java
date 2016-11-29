@@ -22,6 +22,7 @@ public class MemoController {
 	// SideBar(aside.jsp) 개인 메모 클릭시 구동
 	@RequestMapping(value="/private_memo.do", method=RequestMethod.GET)
 	public String memoview(Model mv, Principal principal, String memo_no) {
+		System.out.println("메모 서비스 주소값 : " + memoservice.toString());
 		String id = principal.getName();
 		List<Memo> memolist = null;
 		Memo first_memo = null;

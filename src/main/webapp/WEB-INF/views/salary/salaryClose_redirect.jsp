@@ -3,4 +3,4 @@
 <script type="text/javascript">	
 	alert('${msg}');
 	window.location.replace('${link}');
-</scrip
+</script>

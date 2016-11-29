@@ -80,6 +80,20 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 	</div>
+	<br><br>
+	<div class="panel-footer">
+
+			<p>
+				<i class="pe-7s-attention"></i><span class="font-icon-name"></span>
+				퇴직금 = 1일 평균임금  * 30(일) * (재직일수/365)
+			</p>
+			<p>
+				<i class="pe-7s-attention"></i><span class="font-icon-name"></span>
+				1일 평균임금 = 퇴직일 이전 3개월 간에 지급받은 임금 총액/퇴직일 이전 3개월 간의 총 일 수
+			</p>
+		</div>
 </div>
+
+	

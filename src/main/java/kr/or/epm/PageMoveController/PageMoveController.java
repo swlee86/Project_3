@@ -1,10 +1,12 @@
 package kr.or.epm.PageMoveController;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,14 @@ public class PageMoveController {
 	
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
-	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, HttpSession session) {	
+	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, HttpSession session, Principal principal) {
+		/*
+		if(Util.isEmpty(principal.getName())){
+			session.setAttribute("userSession", principal.getName());
+			System.out.println("userSession : " + (String)session.getAttribute("userSession"));
+		}
+		*/
+		
 ///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
 		if(pagesize == null || pagesize.trim().equals("")){
             pagesize = "5"; 			// default 5건씩 

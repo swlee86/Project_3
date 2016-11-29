@@ -28,7 +28,6 @@ public class ProjectService {
 		return list;
 	}
 	
-	
 	// 카테고리별 프로젝트 목록 출력 (승인된 것만 )
 	public List<Pj> selectPjlist_ctg(String select_ctg,String emp_no){
 		
@@ -45,5 +44,14 @@ public class ProjectService {
 		return list;
 	}
 	
+	// 내가 작성한 프로젝트 , 내가 참여자인 프로젝트 목록 가져오기 (캘린더)
+	public List<Pj> selectPj_callendar(String emp_no){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		List<Pj> list=null;
+		
+		list = dao.selectPj_callendar(emp_no);
+		
+		return list;
+	}
 	
 }

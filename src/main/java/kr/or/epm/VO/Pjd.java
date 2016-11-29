@@ -16,8 +16,19 @@ public class Pjd {
 	private String pj_step_no;
 	private int rownum;
 	private String emp_name;
+	private String emp_no;
 	private String pj_step_name;
 	
+	
+	
+	public String getEmp_no() {
+		return emp_no;
+	}
+
+	public void setEmp_no(String emp_no) {
+		this.emp_no = emp_no;
+	}
+
 	public String getPjd_no() {
 		return pjd_no;
 	}
@@ -104,8 +115,11 @@ public class Pjd {
 	public String toString() {
 		return "Pjd [pjd_no=" + pjd_no + ", pj_no=" + pj_no + ", pjd_title=" + pjd_title + ", pjd_content="
 				+ pjd_content + ", pjd_start=" + pjd_start + ", pjd_end=" + pjd_end + ", pj_step_no=" + pj_step_no
-				+ ", rownum=" + rownum + ", emp_name=" + emp_name + ", pj_step_name=" + pj_step_name + "]";
+				+ ", rownum=" + rownum + ", emp_name=" + emp_name + ", emp_no=" + emp_no + ", pj_step_name="
+				+ pj_step_name + "]";
 	}
+
+
 
 	
 }

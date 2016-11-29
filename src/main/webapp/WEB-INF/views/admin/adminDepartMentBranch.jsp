@@ -181,15 +181,21 @@
 											<label>우편번호</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" id="addpostcode" name="postcode">
-										</div>
+										  <div class="input-group">
+											<input type="text" class="form-control" id="sample6_postcode" name="postcode">
+											<span class="input-group-btn">
+											  <input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-success "  value="우편번호 찾기">
+											</span> 
+										  </div>
+										</div>	
+										
 									</div>
 									<div class="form-group">
 										<div class="col-md-4">
 											<label>기존주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control"id="addaddr" name="addr">
+											<input type="text" class="form-control"id="sample6_address" name="addr">
 										</div>
 									</div>
 									<div class="form-group">
@@ -197,7 +203,7 @@
 											<label>상세주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" id="addaddr_detail" name="addr_detail">
+											<input type="text" class="form-control" id="sample6_address2" name="addr_detail">
 										</div>
 									</div>
 									<div class="form-group">

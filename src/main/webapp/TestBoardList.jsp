@@ -25,6 +25,7 @@
 	href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
@@ -93,7 +94,7 @@
 											<th>글쓴이</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="testTbody">
 										<tr>
 											<td>첫번쨰</td>
 											<td>공지사항테스트</td>
@@ -103,7 +104,10 @@
 										</tr>
 									</tbody>
 								</table>
+								
 								<input type="button" id="noteWriteBtn" class="btn btn-default text-right" value="공지사항쓰기">
+								<input type="button" id="test" value="테스트글쓰기">
+								<input type="button" id="dongButton" value="값뽑아보기">
 							</div>
 						</div>
 
@@ -116,7 +120,9 @@
 
 
 		</div>
-
+	<div id="testDiv">
+		
+	</div>
 
 		<!-- Footer-->
 		<footer class="footer">
@@ -145,7 +151,39 @@
 	$(function(){
 		$('#noteWriteBtn').click(function(){
 			location.href="TestEmailView.jsp";
-		});		
+		});
+		$('#test').click(function(){
+			var testoh = "<input type='text' class='form-control' name='testInput'><br/>";
+			$('#testDiv').append(testoh);
+			
+		});
+		
+		$('#dongButton').click(function(){
+			var length = $("input[name=testInput]").length;
+			alert("숫자 : "+length);
+			var array =[length];
+			
+			//array.push($('#testDiv').children().next().val());
+			
+			for(var i = 0; i< array.length; i++){
+			
+				for(var j = i; j <= i; j++ ){
+					console.log(j);
+					alert("j: " + j);
+					array[j] = $('#testDiv').children().eq(j).val();	
+				//console.log($("input[name=testInput]").next().val());
+					
+					console.log(array);		
+				}
+				
+			}
+			
+			for(var i = 0; i < array.length; i++){
+				alert(array[i]);
+			}
+			
+		});
+		
 	});
 	</script>
 	
