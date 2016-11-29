@@ -47,6 +47,16 @@ public class AdminAjaxController {
 		return jsonview;
 	}
 	
+	//지점 정보 수정
+	@RequestMapping("/branchModify.do")
+	public View branchModify(Branch dto, Model model){
+		System.out.println("정보 수정 dto: "+dto.toString());
+		int result = adminservice.branchModify(dto);
+		System.out.println("지점 정보 수정  결과: "+result);
+		model.addAttribute("result", result);
+		return jsonview;
+	}
+	
 	
 	//부서 페이지 - 부서에서 - > 지점 선택시 부서 select 에 뿌려주는 함수
 	@RequestMapping("/departMentSelect.do")

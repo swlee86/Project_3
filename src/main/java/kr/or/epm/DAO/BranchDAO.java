@@ -15,4 +15,7 @@ public interface BranchDAO {
 	//지점 추가
 	int addBranch(Branch dto);
 	
+	//지점 정보 새로 수정
+	int branchModify(Branch dto);
+
 }

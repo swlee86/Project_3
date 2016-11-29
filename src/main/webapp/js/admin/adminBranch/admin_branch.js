@@ -47,6 +47,49 @@ function sample6_execDaumPostcode() {
         }).open();
     }
 
+function sample6_execDaumPostcode2() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                fullAddr = data.roadAddress;
+
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                fullAddr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+            if(data.userSelectedType === 'R'){
+                //법정동명이 있을 경우 추가한다.
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있을 경우 추가한다.
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample6_re_postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('sample6_re_address').value = fullAddr;
+
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById('sample6_re_address2').focus();
+        }
+    }).open();
+}
+
+
 
 //부서  -  부서 관리 페이지에서 지점 선택시
 function departMentFuc(option){
@@ -74,7 +117,7 @@ function departMentFuc(option){
 			$('#addBrunchDiv').show();	
 		});
 		
-		//지점등록 폼 submit 버튼 클릭시
+		//지점등록 폼 버튼 클릭시
 		$('#addBranchsubmitBtn').click(function(){
 		
 			
@@ -92,7 +135,7 @@ function departMentFuc(option){
 								console.log(data.result);
 								if(data.result > 0){
 								alert("등록 성공!");
-								location.href="adminBranch.do";
+								window.location.reload();
 								}else{
 									alert("등록 실패!!");
 								}
@@ -115,17 +158,20 @@ function departMentFuc(option){
 						success : function(data){
 							
 							$.each(data, function(index){
-								$('#branchName').val(data[index].branch_name);
-								$('#branchName').attr("readonly",false);
 								
-								$('#postcode').val(data[index].postcode);
-								$('#postcode').attr("readonly",false);
+								$('#hidden').val(data[index].branch_no);
 								
-								$('#addr').val(data[index].addr);
-								$('#addr').attr("readonly",false);
+								$('#branchName2').val(data[index].branch_name);
+								$('#branchName2').attr("readonly",false);
 								
-								$('#addr_detail').val(data[index].addr_detail);
-								$('#addr_detail').attr("readonly",false);
+								$('#sample6_re_postcode').val(data[index].postcode);
+								$('#sample6_re_postcode').attr("readonly",false);
+								
+								$('#sample6_re_address').val(data[index].addr);
+								$('#sample6_re_address').attr("readonly",false);
+								
+								$('#sample6_re_address2').val(data[index].addr_detail);
+								$('#sample6_re_address2').attr("readonly",false);
 							});
 							
 						}, error : function(){
@@ -146,6 +192,35 @@ function departMentFuc(option){
 					 }
 				  );
 		});	
+		
+		//지점 정보 수정 버튼 클릭시
+		$('#modifyBranchsubmitBtn').click(function(){
+			$.ajax(
+					{
+						url: "branchModify.do",
+						data : 
+						{
+						    branch_no : $('#hidden').val(),
+							branch_name :  $('#branchName2').val(),
+							postcode : $('#sample6_re_postcode').val(),
+							addr : 	$('#sample6_re_address').val(),
+							addr_detail : $('#sample6_re_address2').val()
+						},
+						success:function(data){
+							console.log(data.result);
+							if(data.result>0){
+								alert('정보수정 성공');
+								window.location.reload();
+							}else{
+								alert('정보수정 실패');
+							}
+							
+							
+						}
+					}
+					);
+		});
+		
 		
 		//하위부서 추가 영역
 		$('#addDiv').hide();

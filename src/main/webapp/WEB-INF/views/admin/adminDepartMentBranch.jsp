@@ -109,12 +109,13 @@
 
 							<div class="panel-body">
 								<form class="form-horizontal">
-									<div class="form-group">
+								  <input type="hidden" id="hidden" name="branch_no">
+								   <div class="form-group">
 										<div class="col-md-4">
 											<label>지점명</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="branchName" name="branchName">
+											<input type="text" class="form-control" readonly="readonly" id="branchName2" name="branch_name">
 										</div>
 									</div>
 									<div class="form-group">
@@ -122,7 +123,12 @@
 											<label>우편번호</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="postcode" name="postcode">
+										  <div class="input-group">
+											<input type="text" class="form-control" readonly="readonly" id="sample6_re_postcode" name="postcode">
+											<span class="input-group-btn">
+											  <input type="button" onclick="sample6_execDaumPostcode2()" class="btn btn-success "  value="우편번호 찾기">
+											</span> 
+										  </div>	
 										</div>
 									</div>
 									<div class="form-group">
@@ -130,7 +136,7 @@
 											<label>기존주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addr" name="addr">
+											<input type="text" class="form-control" readonly="readonly" id="sample6_re_address" name="addr">
 										</div>
 									</div>
 									<div class="form-group">
@@ -138,7 +144,7 @@
 											<label>상세주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" readonly="readonly" id="addr_detail" name="addr_detail">
+											<input type="text" class="form-control" readonly="readonly" id="sample6_re_address2" name="addr_detail">
 										</div>
 									</div>
 									<div class="form-group">
@@ -173,7 +179,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" id="addbranchName" name="branchName">
+											<input type="text" class="form-control" id="addbranchName" name="branch_name">
 										</div>
 									</div>
 									<div class="form-group">
