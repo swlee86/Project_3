@@ -99,21 +99,17 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		
 		String emp_no =null;
 		String taskcount = null;
+		int resultdata = 0;
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		emp_no = pushdao.selectEmp_no(authentication.getName());
-/*		Push push = new Push();
-		push.setEmp_no(emp_no);
-		push.setId(authentication.getName());
-		System.out.println(push.toString());
- */		
 
 		try{
 			System.out.println("사번? : " + emp_no);
 			taskcount = pushdao.taskCount(emp_no);
 			System.out.println("미처리 taskcount : " + taskcount);
 			
-			
+			resultdata = Integer.parseInt(taskcount);
 			
 			
 					
@@ -130,7 +126,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		session.setAttribute("customerId", authentication.getName());
 		session.setAttribute("taskcount", taskcount);
 		session.setAttribute("emp_no", emp_no);
-		
+		session.setAttribute("resultdata", resultdata);
 		
 		int intRedirectStrategy = decideRedirectStrategy(request, response);
 		switch(intRedirectStrategy){
