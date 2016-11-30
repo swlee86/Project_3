@@ -39,7 +39,7 @@ public class broadsocket extends TextWebSocketHandler {
      			s.sendMessage(new TextMessage(
      									"<li><a style='color:red;' href='taskRequest.do'>확인하지 않은 " + session.getAttributes().get("taskcount") + "개의 업무가 있습니다</a></li>"+
      									"<li style='color:red;'>승인이 필요한 " + session.getAttributes().get("taskcount") + "개의 프로젝트가 있습니다</li>"+
-     									"<li style='color:blue;'>진행중인 " + session.getAttributes().get("projectcount") + "개의 프로젝트가 있습니다</li>"
+     									"<li><a style='color:blue;' href='projects.do'>진행중인 " + session.getAttributes().get("projectcount") + "개의 프로젝트가 있습니다</a></li>"
      					));	
      			
      			
