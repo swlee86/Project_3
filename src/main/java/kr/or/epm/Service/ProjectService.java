@@ -34,15 +34,23 @@ public class ProjectService {
 		}
 		
 		//큰 프로젝트 작성
-		@Transactional
-		public String insertPj(Pj pj, Pjd_Command pjd_Command) throws Exception{
+		//@Transactional
+		public String insertPj(Pj pj, Pjd_Command pjd_Command){// throws Exception{
 			System.out.println("insertPj() 서비스 ");
 			System.out.println("pj.tosting : "+pj.toString());
 			PjDAO dao = sqlsession.getMapper(PjDAO.class);
+			int result = 0;
+			result = dao.insertPj(pj);
+			if(result > 0){	
+				System.out.println("pj성공" + result);
+				insertPjd(pjd_Command);
+				insertPjd_people(pjd_Command);
+			}
 			
-			try{
-				int result = dao.insertPj(pj);
+			/*try{
+				result = dao.insertPj(pj);
 				if(result > 0){
+					
 					System.out.println("pj성공" + result);
 					insertPjd(pjd_Command);
 					insertPjd_people(pjd_Command);
@@ -50,7 +58,7 @@ public class ProjectService {
 			}catch(Exception e){
 				System.out.println("insertPj 트랜잭션 오류" + e.getMessage());
 				throw e; //롤백
-			}
+			}*/
 			
 			
 			return "redirect:project_list.do";
@@ -61,12 +69,13 @@ public class ProjectService {
 			PjDAO dao = sqlsession.getMapper(PjDAO.class);
 			int result = 0;
 			List<Pjd> list = pjd_Command.getPjd();
-			
-			String pj_no = String.valueOf(selectMaxPj_no());
+			int max_no = selectMaxPj_no();
+			System.out.println("max_no : "+max_no);
+			String pj_no = String.valueOf(max_no);
 			
 			for(Pjd pjd : list){
 				result = 0;
-				System.out.println("pjd : "+pjd.toString());
+				System.out.println("***pjd : "+pjd.toString());
 				pjd.setPj_no(pj_no);
 				result = dao.insertPjd(pjd);
 				System.out.println("상세 프로젝트 추가 결과  : "+result);
@@ -98,7 +107,7 @@ public class ProjectService {
 			int result = 0;
 			PjDAO dao = sqlsession.getMapper(PjDAO.class);
 			result = dao.selectMaxPj_no();
-			System.out.println("최고글 번호 : "+result);
+			System.out.println("@@@@최고글 번호 : "+result);
 			return result;
 		}
 		
