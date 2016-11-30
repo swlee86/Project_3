@@ -200,7 +200,7 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.0.142:8090/epm/broadsocket.do");
 		
         webSocket.onmessage = function (message){
 			console.log("#########message : " + message.data);
@@ -223,8 +223,15 @@ $('#birthDay').click(function(){
         };
 		
 		function send() {
-			var msg = document.getElementById("hiddenEmp_no");
-			webSocket.send(msg);
+			var msg = 
+				 	{
+				   	 type : "message",
+					 emp_no : document.getElementById("hiddenEmp_no").value,
+	   				 menuname : document.getElementById("hiddenMenuName").value
+	   			  	}
+				 	
+			console.log("메세지를 봅시다 : " +msg);
+			webSocket.send(JSON.stringify(msg));
 		}
 	
 		webSocket.onclose = function(e) {
