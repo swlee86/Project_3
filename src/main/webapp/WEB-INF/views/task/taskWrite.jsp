@@ -93,7 +93,7 @@
 										<td id="task_no_td">
 											<span class="input-group"> 
 												<input type="text" class="form-control input-sm" 
-													   id="task_no" name="emp_no" /> 
+													   name="emp_no" readonly> 
 													<a type="button" class="btn btn-default input-group-addon" id="deptA"> 
 														<span style="color: #fd7d86">
 															<i class="fa fa-user-plus"></i>

@@ -1,5 +1,7 @@
 package kr.or.epm.VO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
 작성일 :	2016 - 11 - 16
 작성자 :	김주희
@@ -27,6 +29,18 @@ public class Office {
 	private String rec_del_check;
 	private String del_check;
 	
+	// 추가 VO 2016-11-30
+	// 백승아
+	private MultipartFile uploadfile;
+	
+	public MultipartFile getUploadfile() {
+		return uploadfile;
+	}
+
+	public void setUploadfile(MultipartFile uploadfile) {
+		this.uploadfile = uploadfile;
+	}
+
 	public String getDraft_no() {
 		return draft_no;
 	}
