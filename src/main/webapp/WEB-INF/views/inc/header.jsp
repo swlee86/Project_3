@@ -130,7 +130,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
                         <i class="pe-7s-mail"></i>
-                        <span class="label label-success">${pushcount}</span>
+                        <span class="label label-success" id="pushcount">${pushcount}</span>
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
                         <div class="title">
@@ -198,22 +198,27 @@ $('#birthDay').click(function(){
 	$('#birthModal').modal();
 });	
 
-
+		var pushcount;
 		var webSocket;
 		webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do");
 		
         webSocket.onmessage = function (message){
-			console.log("@@@@@@@그냥 message : " + message)
 			console.log("#########message : " + message.data);
-			var divTest = document.getElementById("titlepush");
-			divTest.innerHTML = message.data+"\n";
+			var result = Number(message.data)+Number(document.getElementById("pushcount").innerText);
+			var divTest = document.getElementById("pushcount");
+			divTest.innerHTML = result;
         };
+		
+		function send() {
+			var msg = '12345678';
+			webSocket.send(msg);
+		}
 	
 		webSocket.onclose = function(e) {
 			console.log("연결 닫힘: " + e.reason);
 		}
 		
-		
+	/* 	
 		//기본 폴링방식
         $(function () {
             window.setInterval(function () {
@@ -224,7 +229,8 @@ $('#birthDay').click(function(){
             
         });
          
-      /* 
+ */  
+ /* 
         $(function () {
             
             (function longPolling() {
