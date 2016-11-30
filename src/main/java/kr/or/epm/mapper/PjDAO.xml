@@ -18,19 +18,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where d.id=#{id}
 	</select>
 	
-	<select id="selectMaxPj_no">
-		select max(pj_no) from pj
+	<select id="selectMaxPj_no"  resultType="int">
+		select max(to_number(pj_no)) from pj
 	</select>
 	
 	<!-- 프로젝트 등록하기 -->
 	<insert id="insertPj">
-		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_emp_no, rec_del_check, pj_step_no, step_no)
-		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, null, #{rec_emp_no}, '0', '2', '4')
+		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_del_check, pj_step_no, step_no)
+		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, null, '0', '2', '4')
 	</insert>
 	
 	<insert id="insertPjd_people">
 		insert into pjd_people(pjd_no, emp_no)
-		values((select max(pjd_no) from pjd), #{emp_no})
+		values((select max(to_number(pjd_no)) from pjd), #{emp_no})
 	</insert>
 	
 	<!-- 프로젝트 상세 등록하기 -->
