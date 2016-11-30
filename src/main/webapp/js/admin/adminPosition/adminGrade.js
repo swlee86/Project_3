@@ -63,18 +63,31 @@ $(function(){
 			return $(this).attr('value');
 		}));
 		
-		/*for(var i = 0; i < itemid.length; i++){
+		
+		//배열 하나 생성
+		var jsonArray = new Array();
+		//포문돌면서
+		for(var i = 0; i < itemid.length; i++){
+			//객체 만듬
+			var json = new Object();	
+			json.position_name = itemid[i];
+			json.step = i;
+			//객체 삽입
+			//위에 배열에 객체 넣고
+			jsonArray.push(json);	
 			console.log("position_name : " + itemid[i] + " step : "+i);
-		}*/
+		}
+		
 		
 		$.ajax(
 				{		
 					url : "positionModifyStep.do",
-					data : {
-								
-						   },
+					data :JSON.stringify(jsonArray),
+				    type : "json",
 					success : function(data){
-						
+						alert("성공");
+					},error : function(){
+						alert("실패??");
 					}
 				}
 				

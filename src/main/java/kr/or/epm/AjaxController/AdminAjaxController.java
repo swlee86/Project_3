@@ -1,10 +1,15 @@
 package kr.or.epm.AjaxController;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
@@ -12,8 +17,8 @@ import org.springframework.web.servlet.View;
 import kr.or.epm.Service.AdminService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
-import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
+import net.sf.json.JSONArray;
 
 /*
  * 작성자 : 박성준
@@ -95,7 +100,16 @@ public class AdminAjaxController {
 	
 	//직위 권한 업데이트
 	@RequestMapping("/positionModifyStep.do")
-	public View StepModify(){
+	public View StepModify(HttpServletRequest request, @RequestBody String json){
+		
+		//JSONObject object = JSONObject.toString(json);
+		
+		List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
+		resultMap = JSONArray.fromObject(json);
+		
+		
+		adminservice.positionUpdateDragAndDrop(resultMap);
+		
 		
 		return jsonview;
 	}
