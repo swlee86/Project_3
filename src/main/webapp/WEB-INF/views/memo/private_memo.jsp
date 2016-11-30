@@ -53,7 +53,7 @@
 
                 <div id="notes" class="collapse">
 					<c:forEach var="list" items="${list}">
-                    <div class="panel-body note-link">
+                    <div class="panel-body note-link" style="background-color:${list.color}">
                         <a href="private_memo.do?memo_no=${list.memo_no}">
                         <small class="pull-right text-muted">${list.memo_date}</small>
                             <h5>${list.title}</h5>
@@ -63,7 +63,33 @@
                         </a>
                     </div>
                     </c:forEach>
+                    	
                 </div>
+                
+                <div class="panel-body" style="text-align:center">
+		                   <div class="btn-group" >
+		                	<c:if test="${pg>1}">
+		                		<button type="button" class="btn btn-default" onclick="location.href='private_memo.do?pg=${pg-1}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
+		                	</c:if>
+		                	
+		                    <c:forEach var="i" begin="1" end="${pagecount}">
+		                    	<c:choose>
+		                    		<c:when test="${pg==i}">
+		                    			<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
+		                    		</c:when>
+		                    		<c:otherwise>
+		                    			 <button class="btn btn-default" onclick="location.href='private_memo.do?pg=${i}'">${i}</button>
+		                    		</c:otherwise>
+		                    	</c:choose> 	
+		                    </c:forEach>
+		                    
+		                   	<c:if test="${pg < pagecount}">
+		                    	<button type="button" class="btn btn-default " onclick="location.href='private_memo.do?pg=${pg+1}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
+		                    </c:if>
+		                </div> 
+	                </div>
+	                
+	                
             </div>
         </div>
         <div class="col-md-9">
