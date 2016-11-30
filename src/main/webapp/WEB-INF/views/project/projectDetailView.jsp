@@ -183,6 +183,34 @@ function addclick(id){
 					}
 				}
 		);
+	
+
+		///체크개수구하기(진행률)
+		var checked_count = $('input:checkbox:checked').length;
+		var progress = 0 ;
+		if(checked_count!=0){
+			//alert("개수 "+ checked_count);
+			var checkbox_count = $('input:checkbox').length;
+			//alert('총개수'+ checkbox_count);
+			progress = (checked_count/checkbox_count)*100;
+				
+		}
+		progress = Math.floor(progress);	
+		console.log("pjd_no:>"+pjd_no+"<  pjd_progress:>"+progress+"<");
+		
+		var pjd_no = ${pjd_no};
+	 	$.ajax(
+				{
+					url  : "update_pjdprogress.do",
+					data : {
+						"pjd_no" : pjd_no,
+						"pjd_progress" : progress,
+					},
+					success : function(data){
+						console.log(data);
+					}
+				}
+		); 
 	}else{
 		alert("작업내용을 입력하세요");
 	}
@@ -205,9 +233,9 @@ function modify_pjdd(id){
 	
 	if(val=="수정"){
 		$('#modify_btn_'+modify_i).val("수정완료");
-		
-		$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",false);
-		
+		if(checked!=true){
+			$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",false);
+		}
 		var content = $('#modify_td_'+modify_i).html();
 		console.log("content : " + content);
 		
@@ -232,6 +260,38 @@ function modify_pjdd(id){
 		var appnedtd ="";
 		appnedtd = "<input type='text' class='form-control input-sm' value='"+content+"'>";
 		$('#modify_td_'+modify_i).html(content);
+		
+		
+		
+		///체크개수구하기(진행률)
+		var pjd_no = ${pjd_no};
+		var checked_count = $('input:checkbox:checked').length;
+		var progress = 0 ;
+		if(checked_count!=0){
+			//alert("개수 "+ checked_count);
+			var checkbox_count = $('input:checkbox').length;
+			//alert('총개수'+ checkbox_count);
+			progress = (checked_count/checkbox_count)*100;
+				
+		}
+		progress = Math.floor(progress);
+		
+		console.log("pjd_no:>"+pjd_no+"<  pjd_progress:>"+progress+"<");
+		//alert(progress);
+		var pjd_no = ${pjd_no};
+	 	$.ajax(
+				{
+					url  : "update_pjdprogress.do",
+					data : {
+						"pjd_no" : pjd_no,
+						"pjd_progress" : progress,
+					},
+					success : function(data){
+						console.log(data);
+					}
+				}
+		); 
+		
 		
 		
 		var fin_check_b= $('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("checked");
