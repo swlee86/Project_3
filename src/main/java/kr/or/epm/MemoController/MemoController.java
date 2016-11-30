@@ -21,8 +21,8 @@ public class MemoController {
 
 	// SideBar(aside.jsp) 개인 메모 클릭시 구동
 	@RequestMapping(value="/private_memo.do", method=RequestMethod.GET)
-	public String memoview(Model mv, Principal principal, String memo_no) {
-		System.out.println("메모 서비스 주소값 : " + memoservice.toString());
+	public String memoview(Model mv, Principal principal, String pg, String memo_no) {
+		System.out.println("@@@@메모 서비스 주소값 : " + memoservice.toString());
 		String id = principal.getName();
 		List<Memo> memolist = null;
 		Memo first_memo = null;
@@ -31,16 +31,41 @@ public class MemoController {
 		if ((memo_no == null || memo_no.equals("null") || memo_no.equals(""))) {
 			memo_no = memoservice.selectMaxNo(emp_no);
 		}
-
+		
+		
+		int totalcount = 0;
+		int cpage = 1;
+		int pagecount = 0;
+		int pagesize = 4;
+		
+		if(pg != null && !pg.equals("")){
+			cpage = Integer.parseInt(pg);
+		}
+		
+		totalcount = memoservice.selectCount(emp_no);  //전체 갯수 구하는 함수
+		
+		if(totalcount % pagesize == 0){       
+	    	pagecount = totalcount/pagesize;
+        }else{
+        	pagecount = (totalcount/pagesize) + 1;
+        }
+		
+		System.out.println("@@@@@totalcount : "+totalcount+"/ pagecount:"+pagecount);
+		
+		
+		
 		try {
 			first_memo = memoservice.selectMemo_detail(memo_no);
-			memolist = memoservice.selectMemo(emp_no);
+			memolist = memoservice.selectMemo(cpage, pagesize, emp_no);
 		} catch (Exception e) {
 			e.getMessage();
 		} finally {
 			mv.addAttribute("list", memolist);
 			mv.addAttribute("first_memo", first_memo);
 			mv.addAttribute("memo_no_chk", memo_no);
+			mv.addAttribute("pagecount", pagecount);
+			mv.addAttribute("pg",pg);
+			mv.addAttribute("totalcount",totalcount);
 		}
 		return "memo.private_memo";
 	}
