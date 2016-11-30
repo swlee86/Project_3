@@ -39,6 +39,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 	
 	private SqlSession sqlsession;
 
+	
 	public void setSqlsession(SqlSession sqlsession) {
 		this.sqlsession = sqlsession;
 	}
@@ -130,7 +131,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		session.setAttribute("projectcount", projectcount);
 		
 		
-		session.setAttribute("resultdata", resultdata);
+		session.setAttribute("pushcount", resultdata);
 		
 		int intRedirectStrategy = decideRedirectStrategy(request, response);
 		switch(intRedirectStrategy){

@@ -88,10 +88,21 @@ public class broadsocket extends TextWebSocketHandler {
 			    			        JSONArray dataArray = new JSONArray();
 			    			        JSONObject dataInfo = new JSONObject();
 			    			        dataInfo.put("alarm", "1");
-			    			        dataInfo.put("project", "1");
+			    			        
+			    			        if(menuname.equals("업무")){
+			    			        	dataInfo.put("work", "1");
+			    			        	dataInfo.put("project", "0");
+			    			        }
+			    			        
+			    			        if(menuname.equals("프로젝트")){
+			    			        	dataInfo.put("work", "0");
+			    			        	dataInfo.put("project", "1");
+			    			        }
+			    			        
 			    			        dataArray.add(dataInfo);
-			    			        jsonObject.put("data", dataArray);
-			    			        String jsonInfo = jsonObject.toJSONString();
+			    			        /*jsonObject.put("data", dataArray);*/
+			    			        /*String jsonInfo = jsonObject.toJSONString();*/
+			    			        String jsonInfo = dataInfo.toJSONString();
 			    			        System.out.println("JsonInfo 만들어진 값 확인 :  ========================" + jsonInfo);
 			    			        s.sendMessage(new TextMessage(jsonInfo));
 			    					log("들어온 최종 값 : "+ message.getPayload());
