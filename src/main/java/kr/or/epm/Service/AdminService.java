@@ -1,6 +1,7 @@
 package kr.or.epm.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
+import net.sf.json.JSONArray;
 
 @Service
 public class AdminService {
@@ -95,23 +97,19 @@ public class AdminService {
 		return result;
 	}
 	
-	//직위 정보 수정 관련
+	//직위 정보 수정 관련 > selectbox 사용시
 	public int positionUpdate(PositionJoin position){
 		
 		int result = 0;
 		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
-		
 		Position positionDTO = new Position();
 		positionDTO.setPosition_name(position.getPosition_name());
 		positionDTO.setPosition_no(position.getPosition_no());
-		
-		
 		result = positionDAO.updatePosition(positionDTO);
 		
 		if(result > 0){
 			result = positionDAO.updateset_pay(position);
 		}
-		
 		int resultAddpay = positionDAO.updateset_add_pay(position);
 		int total = 0;
 		if(result != 0 && resultAddpay != 0){
@@ -119,8 +117,25 @@ public class AdminService {
 		}else{
 			total = 0;
 		}
-		
 		return total;
 	}
+	
+	//직위 권한 관련 업데이트 !!  드래그앤 드랍 
+	public int positionUpdateDragAndDrop(List<Map<String, Object>> resultMap){
+		int result = 0;
+		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
+	
+		
+		for(Map<String, Object>map : resultMap){
+			System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% : "+map.get("position_name")+" / "+map.get("step"));
+			String position_name = (String)map.get("position_name");
+			int step = (int)map.get("step");
+			result = positionDAO.updatePositionStep(position_name,step);
+		}
+		
+		System.out.println("서비스쪽 : "+result);
+		return result;
+	}
+	
 	
 }

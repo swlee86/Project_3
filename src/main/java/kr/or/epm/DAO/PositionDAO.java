@@ -1,6 +1,10 @@
 package kr.or.epm.DAO;
 
+import java.util.HashMap;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
 
@@ -23,6 +27,9 @@ public interface PositionDAO {
 	
 	// 직위 수정하기
 	public int updatePosition(Position position);
+	
+	//직위 드래그앤 드랍 이용, 권한 업데이트
+	public int updatePositionStep(@Param("position_name") String position_name, @Param("step") int step);
 	
 	//기본 연봉 수정
 	public int updateset_pay(PositionJoin position);

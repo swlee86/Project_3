@@ -63,18 +63,42 @@ $(function(){
 			return $(this).attr('value');
 		}));
 		
-		/*for(var i = 0; i < itemid.length; i++){
+		
+		//배열 하나 생성
+		var jsonArray = new Array();
+		//포문돌면서
+		for(var i = 0; i < itemid.length; i++){
+			//객체 만듬
+			var json = new Object();	
+			json.position_name = itemid[i];
+			json.step = i;
+			//객체 삽입
+			//위에 배열에 객체 넣고
+			jsonArray.push(json);	
 			console.log("position_name : " + itemid[i] + " step : "+i);
-		}*/
+		}
+		
 		
 		$.ajax(
 				{		
 					url : "positionModifyStep.do",
-					data : {
-								
-						   },
+					data :JSON.stringify(jsonArray),
+				    type : "json",
 					success : function(data){
+						alert("저장 성공 !");
+						var pdata = data.modifylist;
+						var select = '<select class="form-control" onchange="selectPosition();"><option>선택</option>';
+						for(var i = 0; i < pdata.length; i++){
+							console.log(pdata[i].position_name);
+							select += '<option value='+pdata[i].position_no+'>'+pdata[i].position_name+'</option>'
+						}
 						
+						select += '</select>';
+						$('#selectPosition').empty();
+						$('#selectPosition').append(select);
+						
+					},error : function(){
+						alert("실패!!");
 					}
 				}
 				
@@ -130,6 +154,7 @@ function checkPositionName(){
 				var li = "<li class='gradLi ui-sortable-handle' value='"+position+"'><i class='fa fa-thumbs-o-up'></i>"+position+"</li>";
 				//ul - li 에 추가
 				$('#sortable').append(li);
+				window.location.reload();
 		    }
 		});
 	}
