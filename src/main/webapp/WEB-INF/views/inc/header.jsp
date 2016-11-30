@@ -136,7 +136,9 @@
                         <div class="title">
                             You have ${pushcount} new works
                         </div>
-                    	<div id = "titlepush"></div>
+                    	<li>진행 중인 프로젝트는<span id="projectcount">${projectcount}</span>건입니다.</li>
+                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">0</span>건입니다.</li>
+                    	<li>미확인 하신 업무는<span id="taskcount">${taskcount}</span>건입니다.</li>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -200,16 +202,32 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://192.168.0.142:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://172.30.1.41:8090/epm/broadsocket.do");
 		
         webSocket.onmessage = function (message){
 			console.log("#########message : " + message.data);
-			var result = Number(message.data)+Number(document.getElementById("pushcount").innerText);
-			var divTest = document.getElementById("pushcount");
-			divTest.innerHTML = result;
+			
+			var text = "";
+	    	var msg = JSON.parse(message.data);
+	    	console.log("parsemsg______________ : " +msg);
+			
+			var resultpushCount = Number(msg.alarm)+Number(document.getElementById("pushcount").innerText);
+			var divpushcount = document.getElementById("pushcount");
+			divpushcount.innerHTML = resultpushCount;
 			
 			
-			var allData = { "pushcount" : $('#pushcount').text()};
+			var resultprojectCount = Number(msg.project)+Number(document.getElementById("projectcount").innerText);			
+			var divprojectcount = document.getElementById("projectcount");
+			divprojectcount = resultprojectCount;
+			
+			
+			var resulttaskCount = Number(msg.work)+Number(document.getElementById("taskcount").innerText);			
+			console.log('#################"업무 결과값 "###########' + resulttaskCount)
+			var divtaskcount = document.getElementById("taskcount");
+			divtaskcount = resulttaskCount;
+			console.log("###########################msg.work : " + msg.work);
+			
+			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount };
 			$(function(){
 				
     		$.ajax({
@@ -217,7 +235,7 @@ $('#birthDay').click(function(){
     			data : allData,
     			success : function(data) {
     				
-    			}
+    						}
     				})
     			})
         };
