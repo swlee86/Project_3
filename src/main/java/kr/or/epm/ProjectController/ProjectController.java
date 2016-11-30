@@ -38,6 +38,56 @@ public class ProjectController {
 	@Autowired
 	private ProjectDetailService projectdetailservice;
 	
+	//프로젝트 승인대기함 페이지 이동
+	@RequestMapping("/projectApprove.do")
+	public String  projectApprove(Model mv, Principal principal, String pg, String f , String q ){
+		System.out.println("projectApprove() 컨트롤 탐");	
+		
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		Emp emp = projectservice.selectInfoSearch(id); 
+		
+		String emp_no = emp.getEmp_no();//사번
+		
+		int totalcount = 0;
+		int cpage = 1;
+		int pagecount = 0;
+		int pagesize = 4;
+		
+		
+		String field = "emp_no";
+		String query ="%%";
+		
+		
+		if(pg != null && !pg.equals("")){
+			cpage = Integer.parseInt(pg);
+		}
+		if(f != null && !f.equals("")){
+			field = f;
+		}
+		if(q != null && !q.equals("")){
+			query = q;
+		}
+		
+		
+		totalcount = projectservice.selectApprovalCount(emp_no, field, query);  //전체 갯수 구하는 함수
+		System.out.println("cpage:"+cpage+"/ field:"+field+"/ query:"+query+ "/ totalcount:"+totalcount);
+		
+		 if(totalcount % pagesize == 0){       
+		    pagecount = totalcount/pagesize;
+	     }else{
+	        pagecount = (totalcount/pagesize) + 1;
+	      }
+		 
+		 System.out.println("pagecount : " + pagecount);
+		 
+		 //projectservice.selectPj_rec(cpage, pagesize, field, query, emp_no);
+		 
+		 //mv.addAttribute(arg0, arg1);
+		 
+		return "project.projectApproveList";
+	}
+
 	
 	//프로젝트 상세상세 페이지 추가하기
 	@RequestMapping("/project_detail_plus.do")
@@ -152,12 +202,7 @@ public class ProjectController {
 		return "project.projectDetailView";
 	}
 	
-	//프로젝트 승인 처리 페이지
-	@RequestMapping("/projectApprove.do")
-	public String projectApprove(){
-		return "project.projectApproveList";
-	}
-	
+
 	//대기중인 프로젝트 제목 클릭시 
 	@RequestMapping("/project_approve_detailview.do")
 	public String project_approve_detailview(){

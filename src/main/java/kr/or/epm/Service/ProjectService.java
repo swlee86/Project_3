@@ -24,11 +24,30 @@ public class ProjectService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	//승인 처리 갯수 가져오기
+	public int selectApprovalCount(String emp_no, String field, String query) {
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		System.out.println("field : " + field.equals("step_name"));
+		if(field.equals("step_name")){
+			selectStepName(query);
+		}
+		int totalcount =  dao.selectApprovalCount(emp_no,field,query);
+		return totalcount;
+	}
+	
+	//승인번호 가져오기
+	public void selectStepName(String query){
+		System.out.println("selectStepName() 서비스");
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		dao.selectStepName(query);
+		//return 
+	}
+	
 	//자신의 정보 가져오기 
 		public Emp selectInfoSearch(String id) {
 			System.out.println("selectInfoSearch() 서비스");
-			PjDAO contactDAO = sqlsession.getMapper(PjDAO.class);
-			Emp emp = contactDAO.selectInfoSearch(id);
+			PjDAO dao = sqlsession.getMapper(PjDAO.class);
+			Emp emp = dao.selectInfoSearch(id);
 			System.out.println("emp 사번 : "+ emp.getEmp_no());
 			return emp;
 		}
@@ -154,5 +173,6 @@ public class ProjectService {
 		
 		return list;
 	}
+
 	
 }

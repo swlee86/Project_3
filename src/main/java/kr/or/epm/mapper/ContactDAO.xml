@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--개인 주소록테이블  등록 -->
 	<insert id="insertEmpContact">
-		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(select nvl((SELECT (select distinct groups from emp_contact where emp_no=91001182) AS empgroup FROM DUAL),'1,') from dual))
+		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(select nvl((SELECT (select distinct groups from emp_contact where emp_no=#{emp_no}) AS empgroup FROM DUAL),'1,') from dual))
 	</insert>
 	
 	<!-- 최근 글  번호-->

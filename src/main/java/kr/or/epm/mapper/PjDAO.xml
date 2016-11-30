@@ -9,7 +9,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	작성자 : 백승아
 	사용 목적 : 프로젝트에 대한 mapper
 -->
-
+	
+	<!-- <select id="">
+		select nvl(count(*),0) 
+		from pj p join contact c on e.contact_no=c.contact_no 
+		where e.emp_no=#{param1} and (${param2} like '%${param3}%') and (name &gt;= #{param4} and name &lt;= #{param5}) and (group_no ${param6})
+	</select> -->
+	
+	<select id="selectStepName">
+		 select step_no from approval where step_name=#{step_name}
+	</select>
+	
 	<!-- 등록인 사번 구하는 함수 -->
 	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">
 		select e.emp_no
@@ -25,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 프로젝트 등록하기 -->
 	<insert id="insertPj">
 		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_emp_no, rec_del_check, pj_step_no, step_no)
-		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, null, #{rec_emp_no}, '0', '2', '4')
+		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, '0', #{rec_emp_no}, '0', '2', '4')
 	</insert>
 	
 	<insert id="insertPjd_people">
@@ -37,10 +47,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertPjd">
 		insert into pjd(pjd_no, pj_no, pjd_title, 
 					    pjd_content, pjd_start, pjd_end, 
-					    pj_step_no)
+					    pj_step_no, pjd_progress)
 		values(pjd_seq.nextval, #{pj_no}, #{pjd_title},
 			   #{pjd_content}, #{pjd_start}, #{pjd_end}, 
-			   '2')
+			   '2','0')
 	</insert>
 	
 	<!--프로젝트 상세번호  -->
@@ -52,13 +62,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 승인 대기함 조회하기 -->
 	<select id="selectPj_rec" resultType="kr.or.epm.VO.Pj">
-		select pj_no, p.emp_no, e.emp_name, 
-			   pj_title, pj_start, pj_end, 
-			   step_no
-		from pj p join emp e
-		on p.emp_no = e.emp_no
-		where rec_emp_no = #{rec_emp_no} and 
-			  rec_del_check = '0'
+		select pj_no, p.emp_no, e.emp_name, pj_title, pj_start, pj_end, step_no
+		from pj p join emp e on p.emp_no = e.emp_no
+		where rec_emp_no = #{rec_emp_no} and  rec_del_check = '0'
 	</select>
 	
 	<!-- 프로젝트 승인 대기함 상세보기 -->
