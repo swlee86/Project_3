@@ -15,23 +15,166 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-12">
+	    <div class="col-md-6">
+					사내 공지사항
+        	<div class="hpanel">
+                <div class="v-timeline vertical-container animate-panel table-responsive"  data-child="vertical-timeline-block" data-delay="1">
+                	
+                <c:forEach var="cplist" items="${companyList}">
+                    <div class="vertical-timeline-block">
+                        <div class="vertical-timeline-icon navy-bg">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="vertical-timeline-content">
+                            <div class="p-sm">
+                                <span class="vertical-date pull-right">등록일 : ${cplist.regdate}<br/><small>조회수 : ${cplist.hit}</small> </span>
+                                <h5><a href="detailinfo_board_list.do?no=${cplist.no}&currentpage=1&pagesize=10">${cplist.title }</a></h5>
+                            </div>
+                            <div class="panel-footer">
+                               	작성자 : ${cplist.emp_name}
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>
+                </div>
+       		 </div>
+ 		   </div>
+    
+    		<div class="col-lg-6">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
 						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 							class="closebox"><i class="fa fa-times"></i></a>
 					</div>
-					Dashboard information
+					미확인 업무 리스트
 				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="small text-center">
-								<i class="fa fa-bolt"></i> <a href="mailbox.do">전자 우편</a>
-							</div>
-						<div class="table-responsive">
-						<table class="table table-hover table-mailbox">
+				<div class="panel-body list">
+					<div class="table-responsive project-list">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Work_Name</th>
+									<th>마감일</th>
+									<th>요청자 사번</th>
+									<th>요청자명</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach var="tasklist" items="${tasklist}">
+								<tr>
+									<td>${tasklist.task_name}<br /> <small><i
+											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
+									</td>
+									<td>${tasklist.deadline}</td>
+									<td>${tasklist.emp_no }</td>
+									<td>${tasklist.emp_name}</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+    
+    		<div class="col-lg-6">
+			<div class="hpanel">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+							class="closebox"><i class="fa fa-times"></i></a>
+					</div>
+					진행 중인 프로젝트
+				</div>
+				<div class="panel-body list">
+					<div class="table-responsive project-list">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th colspan="2">Project_Name</th>
+									<th>진행상황</th>
+									<th>진행률</th>
+									<th>종료일</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach var="pjlist" items="${pjlist}">
+								<tr>
+									<td><input type="checkbox" class="i-checks" checked></td>
+									<td>${pjlist.pj_title}<br /> <small><i
+											class="fa fa-clock-o"></i> Created ${pjlist.pj_start}</small>
+									</td>
+									<td><span class="pie">1/5</span></td>
+									<td><strong>20%</strong></td>
+									<td>${pjlist.pj_end}</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-6">
+			<div class="hpanel">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+							class="closebox"><i class="fa fa-times"></i></a>
+					</div>
+					승인이 필요한 프로젝트
+				</div>
+				<div class="panel-body list">
+					<div class="table-responsive project-list">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th colspan="2">Project_Name</th>
+									<th>진행상황</th>
+									<th>진행률</th>
+									<th>종료일</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach var="pjlist" items="${pjlist}">
+								<tr>
+									<td><input type="checkbox" class="i-checks" checked></td>
+									<td>${pjlist.pj_title}<br /> <small><i
+											class="fa fa-clock-o"></i> Created ${pjlist.pj_start}</small>
+									</td>
+									<td><span class="pie">1/5</span></td>
+									<td><strong>20%</strong></td>
+									<td>${pjlist.pj_end}</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-6">
+			<div class="hpanel">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+							class="closebox"><i class="fa fa-times"></i></a>
+					</div>
+					전자 우편
+				</div>
+				<div class="panel-body list">
+					<div class="table-responsive project-list">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>보낸 메일</th>
+									<th>제목</th>
+									<th>도착일시</th>
+								</tr>
+							</thead>
 							<tbody>
 							<c:choose>
 							<c:when test="${null eq maillist }">
@@ -49,7 +192,6 @@
 									</c:otherwise>
                         		</c:choose>
 									<td><a href="#" onClick="javascript:window.open('${pageContext.request.contextPath}/mail/data/${maillist.mail_content}.html','popup','scrollbars=no, resizable=no, width=500px,height=800px')">${maillist.title}</a></td>
-									<td><i class="fa fa-paperclip"></i></td>
 									<td class="text-right mail-date">${maillist.rec_check}</td>
 								</tr>
 						</c:forEach>
@@ -57,29 +199,24 @@
 						</c:choose>
 							</tbody>
 						</table>
-						</div>
-						</div>
-						<div class="col-md-6">
-							<div class="small text-center">
-								<i class="fa fa-clock-o"></i><a href="info_board_list.do">사내 공지</a>
-							</div>
-						<div class="table-responsive">
-							<table class="table table-hover table-mailbox">
-									<c:forEach var="cplist" items="${companyList}">
-									<tr>
-                        				<td>${cplist.no}</td>
-                        				<td><a href="detailinfo_board_list.do?no=${cplist.no}&currentpage=1&pagesize=10">${cplist.title }</a></td>
-                        				<td>${cplist.emp_name}</td>
-                        				<td>${cplist.regdate}</td>
-                        				<td>${cplist.hit}</td>
-                    				</tr>
-                    				</c:forEach>
-                    			</table>
-							</div>
-							<div class="small m-t-xl pull-right" >
-								<i class="fa fa-clock-o"></i> Last active in 12.10.2015
-							</div>
-						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+		<div class="col-lg-12">
+			<div class="hpanel">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+							class="closebox"><i class="fa fa-times"></i></a>
+					</div>
+					Dashboard information
+				</div>
+				<div class="panel-body">
+					<div class="row">
+							여기에 넣으면 되나?
 					</div>
 				</div>
 				<div class="panel-footer">
@@ -253,81 +390,7 @@
 				<div class="panel-footer">This is standard panel footer</div>
 			</div>
 		</div> -->
-		<div class="col-lg-6">
-			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					Recently active projects
-				</div>
-				<div class="panel-body list">
-					<div class="table-responsive project-list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th colspan="2">Project_Name</th>
-									<th>진행상황</th>
-									<th>진행률</th>
-									<th>종료일</th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:forEach var="pjlist" items="${pjlist}">
-								<tr>
-									<td><input type="checkbox" class="i-checks" checked></td>
-									<td>${pjlist.pj_title}<br /> <small><i
-											class="fa fa-clock-o"></i> Created ${pjlist.pj_start}</small>
-									</td>
-									<td><span class="pie">1/5</span></td>
-									<td><strong>20%</strong></td>
-									<td>${pjlist.pj_end}</td>
-								</tr>
-							</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-				<div class="col-lg-6">
-			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					Recently active Works
-				</div>
-				<div class="panel-body list">
-					<div class="table-responsive project-list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>Work_Name</th>
-									<th>마감일</th>
-									<th>요청자 사번</th>
-									<th>요청자명</th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:forEach var="tasklist" items="${tasklist}">
-								<tr>
-									<td>${tasklist.task_name}<br /> <small><i
-											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
-									</td>
-									<td>${tasklist.deadline}</td>
-									<td>${tasklist.emp_no }</td>
-									<td>${tasklist.emp_name}</td>
-								</tr>
-							</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
+
 <!-- 		<div class="col-lg-3">
 			<div class="hpanel">
 				<div class="panel-heading">

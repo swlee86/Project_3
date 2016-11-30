@@ -53,7 +53,7 @@ public class PageMoveController {
  			model.addAttribute("msg_task", msg_task);
  		}else{
  			//알람에 띄워줄 알림 숫자 뽑아오기(로그인 할 때 int result 객체가 최초로 생성이 됨)
- 			int pushcount = (int)session.getAttribute("resultdata");
+ 			String pushcount = (String)session.getAttribute("resultdata");
  			model.addAttribute("pushcount", pushcount);
  			try{
  				tasklist = pushService.tasklist(emp_no);
@@ -106,7 +106,7 @@ public class PageMoveController {
         
         
         /////////////////////////인덱스에 띄워 줄 메일 내용 구하기 시작////////////////////////////////////////////////////
-        
+
     	//메인에 띄워 줄 메일 토탈 카운트 구하기
         List<Mail> mail =  null;
 		String mailid = (String)session.getAttribute("googlemail");
@@ -131,7 +131,7 @@ public class PageMoveController {
  		}       
         
         try{
-        	list = companyBoardService.selectBoard(cpage, pgsize);
+        	list = companyBoardService.selectBoard(cpage, pgsize+5);
         	
         }catch (Exception e) {
         	e.printStackTrace();
