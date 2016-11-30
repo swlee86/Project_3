@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 큰 프로젝트에 대한 프로젝트 상세 조회하기 -->
 	<select id="selectPjd" parameterType="String" resultType="kr.or.epm.VO.Pjd">
 		select rownum,e.emp_name,pjd_no,d.pj_no,pjd_title,
-				pjd_content,pjd_start,pjd_end,
+				pjd_content,pjd_start,pjd_end, pjd_progress,
 				d.pj_step_no, pj_step_name 
 			from pjd d join pj_step s
 				on d.pj_step_no = s.pj_step_no
@@ -72,14 +72,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 상세의 참여자 조회하기(modal) -->
 	<select id="selectPeople_info" parameterType="String" resultType="kr.or.epm.VO.Pjd_people">
-		select pjd_no, p.emp_no, e.emp_name, d.branch_name, d.dept_name, 
-				d.low_dept_name, cell_phone, emp_tel, birth, email,pic
-			from pjd_people p 
-			join emp e 
-			on p.emp_no = e.emp_no 
-			join low_dept d
-	    on e.low_dept_no = d.low_dept_no
-	    where p.emp_no=#{emp_no}
+	    select e.emp_no, e.emp_name, d.branch_name, d.dept_name, 
+				d.low_dept_name, cell_phone, emp_tel, birth, email,pic 
+	      from emp e 
+	      join low_dept d 
+	      on e.low_dept_no = d.low_dept_no 
+	      where emp_no=#{emp_no}
 	</select>
 	
 	<!-- 프로젝트 상세 조회하기(단일)	 -->
@@ -125,6 +123,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--  상세의 상세 업데이트 -->
 	<update id="updatePjdd" parameterType="hashmap">
 		update pjdd set pjdd_content=#{pjdd_content}, fin_check=#{fin_check} where pjdd_no=#{pjdd_no}
+	</update>
+	
+	<!-- 상세의 진행률 업데이트 -->
+	<update id="updatePjdProgress" parameterType="hashmap">
+		update pjd set pjd_progress=#{pjd_progress} where pjd_no=#{pjd_no}
 	</update>
 	
 </mapper>

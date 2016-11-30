@@ -59,9 +59,11 @@
 										<div class="col-sm-4">
 											<div class="project-label">PROGRESS</div>
 											<div class="progress m-t-xs full progress-small">
-												<div style="width: 12%" aria-valuemax="100" aria-valuemin="0"
-													aria-valuenow="12" role="progressbar"
-													class=" progress-bar progress-bar-success"></div>
+												<c:if test="${i.pjd_progress !=0 }">
+													<div style="width: ${i.pjd_progress}%"   aria-valuemax="100" aria-valuemin="0"
+														aria-valuenow="${i.pjd_progress}" role="progressbar"
+														class=" progress-bar progress-bar-success" ></div>
+												</c:if>
 											</div>
 										</div>
 									</div>

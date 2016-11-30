@@ -3,8 +3,11 @@ package kr.or.epm.CommuteController;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +19,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import kr.or.epm.Service.CommuteService;
-
+import kr.or.epm.Service.PayService;
 import kr.or.epm.VO.Commute;
 /*
  * 작성자 : 김주희
@@ -24,12 +27,16 @@ import kr.or.epm.VO.Commute;
  * 목  적 : Commute 컨트롤러 (근태)
  */
 import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.PayList;
 
 @Controller
 public class CommuteController {
 	
 	@Autowired
 	private CommuteService commuteservice;
+	
+	@Autowired
+	private PayService payservice;
 	
 	//일일 근태 등록 페이지로 이동
 	@RequestMapping("/Commute.do")
@@ -117,4 +124,19 @@ public class CommuteController {
 	}
 	
 
+	//관리자 - 근태 마감
+	@RequestMapping("/CommuteAdmin.do")
+	public String CommuteAdmin(Model model){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
+		Date currentTime = new Date( );
+		String dTime = formatter.format ( currentTime );
+		System.out.println ("연월 : "+dTime );
+		
+		List<PayList> list = commuteservice.selectCommute_all_Close(dTime);
+		model.addAttribute("list", list);
+		
+		return "commute.CommuteAdminView";
+	}
+	
 }

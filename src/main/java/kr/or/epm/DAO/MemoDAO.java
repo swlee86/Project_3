@@ -20,7 +20,7 @@ public interface MemoDAO {
 	String  selectMemoEmpno(String id);
 	
 	//현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 )
-	public List<Memo> selectMemo(String emp_no);
+	public List<Memo> selectMemo(int cpage, int pagesize, String emp_no);
 		
 	//선택한 메모 상세 조회
 	public Memo selectMemo_detail(String memo_no);
@@ -40,4 +40,6 @@ public interface MemoDAO {
 	//메모 생성,추가
 	int insertMemo(Memo dto);
 	
+	//총 글수
+	public int selectCount(String emp_no);
 }

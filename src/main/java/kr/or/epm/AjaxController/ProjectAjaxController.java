@@ -127,6 +127,7 @@ public class ProjectAjaxController {
 		return jsonview;
 	}
 	
+	//상세의 상세 수정
 	@RequestMapping(value="/update_pjdd.do")
 	public View updatepjdd(String pjdd_no,String pjdd_content,String fin_check){
 		
@@ -136,5 +137,14 @@ public class ProjectAjaxController {
 		
 		return jsonview;
 		
+	}
+	
+	//상세의 진행률 업데이트
+	@RequestMapping(value="/update_pjdprogress.do")
+	public View updatepjdprogress(String pjd_no,String pjd_progress){
+		int result = 0;
+		
+		result = projectdetailservice.updatePjdProgress(pjd_no,pjd_progress);
+		return jsonview;
 	}
 }
