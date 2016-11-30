@@ -19,7 +19,7 @@ public class Pjd {
 	private String emp_no;
 	private String pj_step_name;
 	private String rec_emp_no;
-	
+	private String pjd_progress;
 	
 	
 	
@@ -121,16 +121,21 @@ public class Pjd {
 		this.pj_step_name = pj_step_name;
 	}
 
+	public String getPjd_progress() {
+		return pjd_progress;
+	}
+
+	public void setPjd_progress(String pjd_progress) {
+		this.pjd_progress = pjd_progress;
+	}
+
 	@Override
 	public String toString() {
 		return "Pjd [pjd_no=" + pjd_no + ", pj_no=" + pj_no + ", pjd_title=" + pjd_title + ", pjd_content="
 				+ pjd_content + ", pjd_start=" + pjd_start + ", pjd_end=" + pjd_end + ", pj_step_no=" + pj_step_no
 				+ ", rownum=" + rownum + ", emp_name=" + emp_name + ", emp_no=" + emp_no + ", pj_step_name="
-				+ pj_step_name + ", rec_emp_no=" + rec_emp_no + "]";
+				+ pj_step_name + ", rec_emp_no=" + rec_emp_no + ", pjd_progress=" + pjd_progress + "]";
 	}
-
-
-
 
 	
 }

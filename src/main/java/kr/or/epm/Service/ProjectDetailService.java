@@ -167,5 +167,17 @@ public class ProjectDetailService {
 		
 		return result;
 	}
+	
+	//상세의 진행률 업데이트
+	public int updatePjdProgress(String pjd_no, String pjd_progress){
+		System.out.println("updatePjdProgress() 서비스");
+		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
+		int result = 0;
+		HashMap map = new HashMap();
+		map.put("pjd_no", pjd_no);
+		map.put("pjd_progress", pjd_progress);
+		result = dao.updatePjdProgress(map);
+		return result;
+	}
 }
 	

@@ -405,6 +405,7 @@
 		
 		$('.selectpeople').click(function(){  
 			var emp_no = ($(this).attr('id')).substr(9);
+			alert(emp_no);
 			//console.log(emp_no);
 			//console.log("html: " +$('#m_name').html());
 			$.ajax(
