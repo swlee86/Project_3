@@ -79,6 +79,25 @@ public class AdminAjaxController {
 		model.addAttribute("position", position);
 		return jsonview;
 	}
+	
+	//직위 들록시 사용
+	@RequestMapping("/insertPosition.do")
+	public View addNewPosition(PositionJoin position){
 		
+		int result = adminservice.positionInsert(position);
+		if(result >= 3 ){
+			System.out.println("성공!!");
+		}else{
+			System.out.println("실패야....................");
+		}
+		return jsonview;
+	}
+	
+	//직위 권한 업데이트
+	@RequestMapping("/positionModifyStep.do")
+	public View StepModify(){
+		
+		return jsonview;
+	}
 	
 }
