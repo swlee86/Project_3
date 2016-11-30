@@ -145,6 +145,10 @@ public class ProjectAjaxController {
 		int result = 0;
 		
 		result = projectdetailservice.updatePjdProgress(pjd_no,pjd_progress);
+		
+		if(result==1){
+			result = projectdetailservice.updatePjProgress(pjd_no);
+		}
 		return jsonview;
 	}
 }

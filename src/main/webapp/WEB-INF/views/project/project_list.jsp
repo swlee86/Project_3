@@ -69,9 +69,11 @@
 									
 									<td>
 										<div class="progress m-t-xs full progress-striped ">
-											<div style="width:${list.pj_progress}%" aria-valuemax="100" aria-valuemin="0"
-												aria-valuenow="${list.pj_progress}%" role="progressbar"
-												class="progress-bar progress-bar-warning active">${list.pj_progress}%</div>
+											<c:if test="${list.pj_progress!=0}">
+												<div style="width:${list.pj_progress}%" aria-valuemax="100" aria-valuemin="0"
+													aria-valuenow="${list.pj_progress}%" role="progressbar"
+													class="progress-bar progress-bar-warning active">${list.pj_progress}%</div>
+											</c:if>
 										</div>
 									</td>
 									
@@ -143,10 +145,15 @@ function selectCtg(){
 		                           "</td><td>"+data.project[index].pj_start+"</td><td>"+data.project[index].pj_end+"</td>"+
 									
 
-		                           "<td><div class='progress m-t-xs full progress-striped'><div style='width:" + 
-		                           data.project[index].pj_progress+"%' aria-valuemax='100' aria-valuemin='0'aria-valuenow='"+
-		                           data.project[index].pj_progress+" role='progressbar' class='progress-bar progress-bar-warning active'>"+
-		                           data.project[index].pj_progress+"%</div></div></td><td>";
+		                           "<td><div class='progress m-t-xs full progress-striped'>";
+		                           
+		                           if(data.project[index].pj_progress != 0){
+			                           makeTable += "<div style='width:" + 
+			                           data.project[index].pj_progress+"%' aria-valuemax='100' aria-valuemin='0'aria-valuenow='"+
+			                           data.project[index].pj_progress+" role='progressbar' class='progress-bar progress-bar-warning active'>"+
+			                           data.project[index].pj_progress+"%</div>";
+		                           }
+		                           makeTable += "</div></td><td>";
 		                           
 		                           
 		                           if(data.project[index].pj_step_name == "진행"){

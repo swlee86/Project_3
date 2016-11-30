@@ -168,4 +168,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       	order by s.step asc, pj_start desc
 	</select>
 	
+	<!-- 프로젝트 작성자의 사번 가져오기  -->
+	<select id="selectPj_writeempno" resultType="String">
+		select emp_no from pj where pj_no =(select pj_no from pjd where pjd_no=#{pjd_no})
+	</select>
+	
 </mapper>

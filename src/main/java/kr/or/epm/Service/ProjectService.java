@@ -175,4 +175,12 @@ public class ProjectService {
 	}
 
 	
+	//프로젝트 작성한 사람의 사번가져오기
+	public String selectPjwriteempno(String pjd_no){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		
+		String pj_emp_no = "";
+		pj_emp_no = dao.selectPj_writeempno(pjd_no);
+		return pj_emp_no;
+	}
 }

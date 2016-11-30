@@ -66,4 +66,7 @@ public interface PjdDAO {
 	
 	//상세의 진행률 업데이트
 	public int updatePjdProgress(HashMap map);
+	
+	//프로젝트 진행률 업데이트
+	public int updatePjProgress(String pjd_no);
 }
