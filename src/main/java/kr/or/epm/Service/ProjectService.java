@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.epm.DAO.ApprovalDAO;
 import kr.or.epm.DAO.CommuteDAO;
 import kr.or.epm.DAO.PjDAO;
+import kr.or.epm.DAO.Pj_stepDAO;
+import kr.or.epm.VO.Approval;
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Pj;
+import kr.or.epm.VO.Pj_step;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_Command;
 import kr.or.epm.VO.Pjd_people;
@@ -182,5 +186,15 @@ public class ProjectService {
 		String pj_emp_no = "";
 		pj_emp_no = dao.selectPj_writeempno(pjd_no);
 		return pj_emp_no;
+	}
+	
+	//승인처리 목록 가져오기
+	public List<Pj_step> selectPjStepList(){
+		Pj_stepDAO dao = sqlsession.getMapper(Pj_stepDAO.class);
+		
+		List<Pj_step> pjstep = null;
+		
+		pjstep = dao.selectPj_step();
+		return pjstep;
 	}
 }

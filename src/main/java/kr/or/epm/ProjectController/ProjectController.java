@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.epm.Service.ProjectDetailService;
 import kr.or.epm.Service.ProjectService;
+import kr.or.epm.VO.Approval;
 import kr.or.epm.VO.Contact;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Pj;
+import kr.or.epm.VO.Pj_step;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_Command;
 import kr.or.epm.VO.Pjd_people;
@@ -231,12 +233,17 @@ public class ProjectController {
 		pjddlist = projectdetailservice.selectPjddList(pjd_no);
 		
 		String pj_emp_no = projectservice.selectPjwriteempno(pjd_no);
+		
+		
+		//pj_step의 리스트
+		List<Pj_step> pj_step_list =projectservice.selectPjStepList();
 		model.addAttribute("peoplelist",peoplelist);		
 		model.addAttribute("pjd",pjd);
 		model.addAttribute("pjddlist",pjddlist);
 		model.addAttribute("pjd_no",pjd_no);
 		model.addAttribute("login_emp_no",login_emp_no);
 		model.addAttribute("pj_emp_no",pj_emp_no);
+		model.addAttribute("pj_step_list",pj_step_list);
 		
 		return "project.projectDetailView";
 	}

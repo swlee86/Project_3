@@ -49,22 +49,26 @@
                               	<td id="pjd_name">${pjd.pjd_title}</td>
                               	<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">진행 상태</th>
                               	<td id="pjd_step">
-                              		<div class="form-group">
-	                              	<%-- 	<c:choose>
-		                              		<select class="form-control input-sm">		
-			                              		<c:if test="${pj_emp_no==login_emp_no}">
-		                              				<option value="${ }">${ } </option>
-		                              			
-			                              		</c:if>
-			                              		<c:otherwise>
-		    	                          			<option disabled="disabled" value="${pjd.pjd_step_name}">$pjd.pjd_step_name</option>
-		        	                      		</c:otherwise>
-		                              		</select>
-	                              		</c:choose> --%>
-	                              		<select class="form-control input-sm">	
-	                              			<option selected="selected" disabled="disabled" value="${pjd.pj_step_name}">${pjd.pjd_step_name}</option>
-	                              		</select>
-                              		</div>	
+		                        	<c:choose>
+			                        	<c:when test="${pj_emp_no==login_emp_no}">
+			                              	<div class="form-group">
+			                              		<select class="form-control input-sm approval-select" style="width: 70%; ">
+			                              			<c:forEach var="s" items="${pj_step_list}">
+			                              				<option value="${s.pj_step_no}" ${pjd.pj_step_name == s.pj_step_name ? 'selected="selected"' : ''}>${s.pj_step_name}</option>
+			                              			</c:forEach>
+					                            </select> 
+					                        	<input type="button" id="approval_btn" class="btn btn-default btn-sm" value="수정" onclick="modify_approval()">
+					                        </div>
+				                        </c:when>
+				                        <c:otherwise>
+				                        	<div class="form-group">
+				    	                        <select class="form-control input-sm" disabled="disabled">	
+						                              <option selected="selected" value="${pjd.pj_step_no}">${pjd.pj_step_name}</option>
+						                        </select>
+						                    </div>
+			        	                </c:otherwise>
+		                           </c:choose>
+		                              
                               	</td>
 							</tr>
 							<tr>
@@ -344,4 +348,22 @@ function modify_pjdd(id){
 	
 }
 
+
+
+function modify_approval() {
+	var selected = $(".approval-select option:selected").val();
+	var pjd_no = ${pjd_no};
+	
+	$.ajax(
+			{
+				url  : "update_pjd_pjstepno.do",
+				data : {
+					"pjd_no" : pjd_no,	
+					"pj_step_no" : selected,
+				},
+				success : function(data){
+				}
+			}
+	);
+}
 </script>
