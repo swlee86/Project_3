@@ -20,11 +20,11 @@ public class broadsocket extends TextWebSocketHandler {
 	
 		log(session.getId()+ " 연결 됨");
 		String taskcount = (String)session.getAttributes().get("taskcount");
-		
+		String projectcount = (String)session.getAttributes().get("projectcount");
 		users.put(taskcount, session);
-		users.put(taskcount, session);
+		users.put(projectcount, session);
 		System.out.println("여기는 broadsocket : " + taskcount);
-		
+		System.out.println("여기는 broadsocket : " + projectcount);
 		
 		
 		log((String) session.getAttributes().get("taskcount") + " 건의 미처리 업무가 있습니다");
@@ -39,7 +39,7 @@ public class broadsocket extends TextWebSocketHandler {
      			s.sendMessage(new TextMessage(
      									"<li><a style='color:red;' href='taskRequest.do'>확인하지 않은 " + session.getAttributes().get("taskcount") + "개의 업무가 있습니다</a></li>"+
      									"<li style='color:red;'>승인이 필요한 " + session.getAttributes().get("taskcount") + "개의 프로젝트가 있습니다</li>"+
-     									"<li style='color:blue;'>진행중인 " + session.getAttributes().get("taskcount") + "개의 프로젝트가 있습니다</li>"
+     									"<li style='color:blue;'>진행중인 " + session.getAttributes().get("projectcount") + "개의 프로젝트가 있습니다</li>"
      					));	
      			
      			

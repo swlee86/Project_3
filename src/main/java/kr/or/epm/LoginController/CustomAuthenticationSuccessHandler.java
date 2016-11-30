@@ -99,7 +99,8 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		
 		String emp_no =null;
 		String taskcount = null;
-		String resultdata = null;
+		String projectcount = null;
+		int resultdata = 0;
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		emp_no = pushdao.selectEmp_no(authentication.getName());
@@ -107,10 +108,11 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		try{
 			System.out.println("사번? : " + emp_no);
 			taskcount = pushdao.taskCount(emp_no);
+			projectcount = pushdao.myprojectCount(emp_no);
 			System.out.println("미처리 taskcount : " + taskcount);
-			
-			resultdata = taskcount;
-			
+			System.out.println("내가 진행중인 프로젝트 count : " + projectcount);
+			resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);
+			System.out.println("ResultData입니다 : " + resultdata);
 			
 					
 		}catch(Exception e){
@@ -126,6 +128,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		session.setAttribute("customerId", authentication.getName());
 		session.setAttribute("taskcount", taskcount);
 		session.setAttribute("emp_no", emp_no);
+		session.setAttribute("projectcount", projectcount);
 		
 		
 		session.setAttribute("resultdata", resultdata);

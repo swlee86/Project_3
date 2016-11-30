@@ -53,7 +53,7 @@ public class PageMoveController {
  			model.addAttribute("msg_task", msg_task);
  		}else{
  			//알람에 띄워줄 알림 숫자 뽑아오기(로그인 할 때 int result 객체가 최초로 생성이 됨)
- 			String pushcount = (String)session.getAttribute("resultdata");
+ 			int pushcount = (int)session.getAttribute("resultdata");
  			model.addAttribute("pushcount", pushcount);
  			try{
  				tasklist = pushService.tasklist(emp_no);
@@ -64,11 +64,6 @@ public class PageMoveController {
  			}
  			
  		}
-		
-		
-		
-		
-		
 		
 		
 		/////////////////////인덱스에 띄워 줄 프로젝트 내용 구하기 시작////////////////////////////////////////////////////
