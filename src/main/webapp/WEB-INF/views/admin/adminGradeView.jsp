@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
-var positionArray = new Array();
-
+//var positionArray = new Array();
 </script>
 <!--직위 관리 페이지-->
 <div class="normalheader transition animated fadeIn">
@@ -42,7 +41,7 @@ var positionArray = new Array();
 						<div class="vertical-timeline-content">
 							<h4>직위 추가</h4>
 							<hr/>
-							<form class="form-horizontal">
+							<form class="form-horizontal" method="POST">
 								<div class="form-group">
 									<div class="col-md-offset-1 col-md-2">
 										<label>이름 </label>
@@ -173,7 +172,7 @@ var positionArray = new Array();
 									<ul id="sortable">
 										
 										<c:forEach var="list" items="${positionList}">
-										<script>
+										<!-- <script>
 										var PositionJoin = new Object();
 										PositionJoin.position_name = '${list.position_name}';
 										PositionJoin.step = '${list.step}';
@@ -181,7 +180,7 @@ var positionArray = new Array();
 										PositionJoin.basic_pay ='${list.basic_pay}'; 
 										PositionJoin.add_pay = '${list.add_pay}';
 										positionArray.push(PositionJoin);
-										</script>
+										</script> -->
 											<li class='gradLi' value='${list.position_name}'><i
 												class="fa fa-thumbs-o-up"></i>${list.position_name}</li>
 										</c:forEach>
@@ -198,10 +197,10 @@ var positionArray = new Array();
 
 	</div>
 </div>
-<input type="hidden" id="hidin">
+<!-- <input type="hidden" id="hidin"> -->
 <script>
 
-	var jsonInfo = JSON.stringify(positionArray);
+	/* var jsonInfo = JSON.stringify(positionArray); */
 	
-	document.getElementById('hidin').value = jsonInfo;
+	/* document.getElementById('hidin').value = jsonInfo; */
 </script>

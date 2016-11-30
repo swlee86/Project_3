@@ -4,17 +4,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.PushDAO">
 
+<!-- 미확인 업무 리스트의 데이터 추출(index에서 사용) -->
 <select id="selecttasklist" parameterType="String" resultType="kr.or.epm.VO.Task">
 select task_name, DEADLINE, emp_no, emp_name, send_date from task where rec_emp_no=#{emp_no} and rec_date is null and rec_del_check = '0'
 </select>
 
-
+<!-- 미확인 업무 리스트 갯수 추출(login에서 사용) -->
 <select id="taskCount" resultType="String" parameterType="String">
 select count(*) cnt from task where rec_emp_no=#{emp_no} and rec_date is null and rec_del_check = '0'
 </select>
 
+<!-- 진행중인 프로젝트 리스트 갯수 추출(login에서 사용) -->
+<select id="myprojectCount" resultType="String" parameterType="String">
+	select count(*) cnt
+     	from pj p 
+      	join pj_step s
+            on p.pj_step_no = s.pj_step_no
+      	join emp e
+            on p.emp_no = e.emp_no
+      	join low_dept l
+            on e.low_dept_no = l.low_dept_no      
+      	where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=#{emp_no}))) or p.emp_no=#{emp_no})
+                 and step_no = (select step_no from approval where step_name='승인')
+</select>
+
+<!-- 사원번호 가져오는 쿼리문(login에서 사용) -->
 <select id="selectEmp_no" parameterType="String" resultType="String"> 
 select emp_no from emp_detail where id=#{id}
 </select>
+
+
+
 
 </mapper>

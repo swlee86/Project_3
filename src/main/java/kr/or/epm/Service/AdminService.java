@@ -81,6 +81,20 @@ public class AdminService {
 		return position;
 	}
 	
+	//직위 추가  insert 부분
+	public int positionInsert(PositionJoin position){
+		int result = 0;
+		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
+					result += positionDAO.insertPosition(position);
+					
+					String p_no = positionDAO.selectPosition_no(position);
+					position.setPosition_no(p_no);
+					
+					result += positionDAO.insertSet_pay(position);
+					result += positionDAO.insertSet_add_Pay(position);
+		return result;
+	}
+	
 	//직위 정보 수정 관련
 	public int positionUpdate(PositionJoin position){
 		
