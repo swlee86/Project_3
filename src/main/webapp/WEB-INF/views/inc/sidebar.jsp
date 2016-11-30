@@ -73,10 +73,9 @@
             <li>
                 <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                	<li><a href="draftWrite.do">요청 등록</a></li>
-                	<li><a href="CommuteWrite.do">휴가/외박 신청</a></li>
-                	<li><a href="sanction_list.do">요청한 결재</a></li>
-                	<li><a href="sanction_approve.do">결재대기함</a></li>
+                	<li><a href="draftWrite.do">결재 요청</a></li>
+                	<li><a href="sanction_list.do">요청 결재</a></li>
+                	<li><a href="sanction_approve.do">결재 대기함</a></li>
                 </ul>
             </li>
             <li>

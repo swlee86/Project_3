@@ -23,7 +23,7 @@
             <h2 class="font-light m-b-xs">
                 	회원 탈퇴
             </h2>
-            <small>회원 탈퇴를 요청 할 수 있습니다</small>
+            <small>&nbsp;&nbsp;회원 탈퇴를 요청 할 수 있습니다</small>
         </div>
     </div>
 </div>
@@ -38,26 +38,31 @@
  						<div class="row">
 							
 							<div class="form-group col-lg-12">
+								<label class="col-sm-3 control-label" style="text-align: right;">사번</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" readonly="readonly" value="${ emp_no }">
+								</div>
+							</div>
+							
+							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">아이디</label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" readonly="readonly" placeholder="아이디">
+									<input type="text" class="form-control" readonly="readonly" value="${ id }">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-sm-3 control-label" style="text-align: right;">비밀번호확인</label>
 								<div class="col-sm-7">
-									<input type="password" class="form-control"  value="">
+									<input type="password" name="pwd" class="form-control" placeholder="*********">
 								</div>
 							</div>
 						</div>
 						
 						<div class="text-center">
-<!-- 								<button class="btn btn-success" data-toggle="modal" data-target="#myModal">탈퇴하기</button>
- -->
- 								<button class="btn btn-success" data-toggle="modal" data-target="#myModal"><a href="#">탈퇴하기</a></button>
+ 								<button class="btn btn-success" data-toggle="modal" data-target="#myModal" id="withdrawal">탈퇴하기</button>
  
- 								<button class="btn btn-default">취소하기</button>
+ 								<button class="btn btn-default" style="margin-left: 10px;">취소하기</button>
 						</div>
 					</form>
 				</div>
@@ -72,10 +77,10 @@
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center">
-		 		<small>탈퇴하시겠습니까?</small>
+		 		<big>탈퇴를 요청하시겠습니까?</big>
 		 	</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-success">확인</button>
+				<button type="button" class="btn btn-success" id="withdrawalOk">탈퇴 요청</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 			</div>
 		</div>

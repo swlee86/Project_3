@@ -94,8 +94,27 @@
 	<!--월별 캘린더.-->
 	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
 
-	<script>
+	<script type="text/javascript">
+		// 결재 유형을 변경할 때마다
 		
+		
+		function checkDraft() {
+			$('#document_table').empty();
+			
+			var choose = $("input[name='cg_no']:checked").val();
+			console.log("선택한 값 : " + choose);
+
+			$.ajax({
+				url : "draftForm.do",
+				type : "get",
+				data : {
+						cg_no : choose
+					   },
+				success : function(result) {
+					$("#document_table").html(result);
+				}
+			});
+		};
 	</script>
 </body>
 </html>

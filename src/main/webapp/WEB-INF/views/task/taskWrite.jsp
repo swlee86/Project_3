@@ -140,7 +140,7 @@
 									</tr>
 									<tr>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											<i class="pe-7s-paperclip"></i> 파일업로드
+											<i class="pe-7s-paperclip"></i> 첨부 파일
 										</th>
 										<td>
 											<input type="file" name="uploadfile" class="form-control input-sm">

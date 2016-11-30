@@ -183,12 +183,6 @@ public class PageMoveController {
 		return "admin.adminclientView";
 	}
 
-	//탈퇴
-	@RequestMapping("/withdrawal.do")
-	public String withdrawal(){
-		return "withdrawal.withdrawalMainView";
-	}
-	
 	//아이디찾기,비밀번호찾기 메인
 	@RequestMapping("/findIdPw.do")
 	public String findIdPw(){
