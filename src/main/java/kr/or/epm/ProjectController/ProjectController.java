@@ -57,7 +57,6 @@ public class ProjectController {
 		System.out.println("id : "+id);
 		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
 		
-
 		
 		String url = "redirect:project_list.do"; 
 		List<Pjd> list = pjd_Command.getPjd();
@@ -166,8 +165,13 @@ public class ProjectController {
 	
 	//프로젝트의 상세의 상세내용보기
 	@RequestMapping("/projectdetail_detailview.do")
-	public String projectdetail_detailview(Model model, String pjd_no){
+	public String projectdetail_detailview(Principal principal, Model model, String pjd_no){
 		System.out.println("들어온pjd_no : " + pjd_no);
+		
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
+		String login_emp_no = emp.getEmp_no();
 		
 		//pjd의 데이터 가져오기
 		Pjd pjd= null;
@@ -181,10 +185,14 @@ public class ProjectController {
 		List<Pjdd> pjddlist = null;
 		pjddlist = projectdetailservice.selectPjddList(pjd_no);
 		
+		String pj_emp_no = projectservice.selectPjwriteempno(pjd_no);
 		model.addAttribute("peoplelist",peoplelist);		
 		model.addAttribute("pjd",pjd);
 		model.addAttribute("pjddlist",pjddlist);
 		model.addAttribute("pjd_no",pjd_no);
+		model.addAttribute("login_emp_no",login_emp_no);
+		model.addAttribute("pj_emp_no",pj_emp_no);
+		
 		return "project.projectDetailView";
 	}
 	
