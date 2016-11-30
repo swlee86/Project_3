@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+var positionArray = new Array();
+
+</script>
 <!--직위 관리 페이지-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -135,7 +139,7 @@
 								<div class="col-sm-offset-5 col-sm-2">
 									<input type="submit" class="btn btn-default" value="정보수정">
 								</div>
-								<br/><br/>
+								<br/><br/><br/>
 								<div class="panel-footer"></div>
 								<input type="hidden" name="set_date" id="set_date">
 								<input type="hidden" name="position_no" id="position_no">
@@ -157,15 +161,31 @@
 							<i class="fa fa-inbox"></i>
 						</div>
 						<div class="vertical-timeline-content">
-							<div class="form-group" style="height: 700px;">
-								<h4>직위 리스트 보기</h4>
+							<div class="form-group" style="height: 650px;">
+									<h4>직위 리스트 보기</h4>
 								<hr />
+								
 								<div class="infont col-md-6">
+									<div class='col-md-offset-1 col-md-3'>
+										<input type="button" class="btn btn-default" id="saveBtn" value="저장">
+									</div>
+									<br/><br/>
 									<ul id="sortable">
+										
 										<c:forEach var="list" items="${positionList}">
+										<script>
+										var PositionJoin = new Object();
+										PositionJoin.position_name = '${list.position_name}';
+										PositionJoin.step = '${list.step}';
+										PositionJoin.set_date = '${list.set_date}';
+										PositionJoin.basic_pay ='${list.basic_pay}'; 
+										PositionJoin.add_pay = '${list.add_pay}';
+										positionArray.push(PositionJoin);
+										</script>
 											<li class='gradLi' value='${list.position_name}'><i
 												class="fa fa-thumbs-o-up"></i>${list.position_name}</li>
 										</c:forEach>
+										
 									</ul>
 								</div>
 							</div>
@@ -178,4 +198,10 @@
 
 	</div>
 </div>
+<input type="hidden" id="hidin">
+<script>
 
+	var jsonInfo = JSON.stringify(positionArray);
+	
+	document.getElementById('hidin').value = jsonInfo;
+</script>

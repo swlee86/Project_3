@@ -67,9 +67,9 @@ public class AdminService {
 	
 	
 	//직위 관리 페이지 사용 - 직위 리스트 읽어 오기
-	public List<Position> listPosition(){
+	public List<PositionJoin> listPosition(){
 		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
-		List<Position> list = positionDAO.selectPosition();
+		List<PositionJoin> list = positionDAO.selectPosition();
 		return list;
 	}
 	

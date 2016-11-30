@@ -25,7 +25,7 @@ public interface PositionDAO {
 	public int updateset_add_pay(PositionJoin position);
 	
 	// 직위 조회하기
-	public List<Position> selectPosition();
+	public List<PositionJoin> selectPosition();
 	
 	// 직위 상세 조회하기
 	public Position selectPosition_detail();

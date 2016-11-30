@@ -108,7 +108,7 @@ function departMentFuc(){
 					success : function(data){
 						var option = '<option>선택</option>';
 						$.each(data.deptlist, function(index){
-							 option += "<option value='"+data.deptlist[index].dept_name+"'>"+data.deptlist[index].dept_name+"</option>";
+							 option += "<option value='"+data.deptlist[index].dept_no+"'>"+data.deptlist[index].dept_name+"</option>";
 						});
 						$('#selectDept').html(option);
 						alert('성공');
@@ -241,6 +241,24 @@ function departMentFuc(){
 			$('#addDepartmentDiv').show();
 		});
 		
+		//부서 조회 버튼 클릭시
+		$('#seeDeptBtn').click(function(){
+			var select = $("#selectDept option:selected").val();
+			alert('부서조회 :select : '+select);
+			$.ajax(
+					{
+						url:"selectDeptList.do",
+						data: {
+							  branch_no:selectDept
+						       },
+						success:function(data){
+							alert('조회성공');
+						}
+							
+					}
+					);
+			
+		});
 		
 		
 		

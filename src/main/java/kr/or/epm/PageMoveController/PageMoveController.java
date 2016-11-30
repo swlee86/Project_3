@@ -38,9 +38,12 @@ public class PageMoveController {
 	
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping("/index.do")
-	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, HttpSession session, Principal principal) {
+	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, Principal principal) {
+		HttpSession session = request.getSession();
 		String emp_no = (String)session.getAttribute("emp_no");
 		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
+		
+		
 		boolean emp_no_chk = Util.isEmpty(emp_no);
 		
 		List<Task> tasklist = null;
@@ -49,6 +52,9 @@ public class PageMoveController {
  			String msg_task = "미확인 업무 내역은 로그인 후 내용 확인 가능합니다";
  			model.addAttribute("msg_task", msg_task);
  		}else{
+ 			//알람에 띄워줄 알림 숫자 뽑아오기(로그인 할 때 int result 객체가 최초로 생성이 됨)
+ 			int pushcount = (int)session.getAttribute("resultdata");
+ 			model.addAttribute("pushcount", pushcount);
  			try{
  				tasklist = pushService.tasklist(emp_no);
  			}catch(Exception e){
@@ -56,7 +62,6 @@ public class PageMoveController {
  			}finally{
  				model.addAttribute("tasklist", tasklist);
  			}
- 			
  			
  		}
 		
