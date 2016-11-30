@@ -2,6 +2,7 @@ package kr.or.epm.Service;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import kr.or.epm.DAO.CommuteDAO;
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.PayList;
 import kr.or.epm.VO.Set_time;
 
 
@@ -344,5 +346,12 @@ public class CommuteService {
 		return emp;
 	}
 	
-
+	//근태 마감 관리 - > 서비스
+	public List<PayList> selectCommute_all_Close(String dTime){
+		
+		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class); 
+		List<PayList> list = dao.selectCommute_all_Close(dTime);
+		
+		return list;
+	}
 }

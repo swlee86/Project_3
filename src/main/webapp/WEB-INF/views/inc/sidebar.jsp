@@ -104,7 +104,7 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="Commute.do">일일 근태 등록</a></li>
            			<li><a href="CommuteMonth.do">월별 근태 조회</a></li>
-           			<!-- <li><a href="CommuteOther.do">각기다른 근태보기</a></li> -->
+           			<li><a href="CommuteAdmin.do">근태 마감(관리자)</a></li>
                 </ul>
             </li>
             <li>

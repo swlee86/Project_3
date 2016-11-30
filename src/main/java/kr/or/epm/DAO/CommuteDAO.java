@@ -5,6 +5,7 @@ import java.util.List;
 
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.PayList;
 import kr.or.epm.VO.Set_time;
 
 /*
@@ -72,5 +73,9 @@ public interface CommuteDAO {
 
 	//아이디로 회원정보 가져오기
 	public Emp selectInfoSearch(String id);
+
+	//관리자 > 근태 마감.
+	public List<PayList> selectCommute_all_Close(String dTime);
+	
 	
 }
