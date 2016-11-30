@@ -98,7 +98,7 @@
 							<form class="form-horizontal" action="positionModify.do" id="modifyForm">
 								<div class="form-group">
 									
-									<div class="col-md-offset-3 col-md-5">
+									<div class="col-md-offset-3 col-md-5"id="selectPosition">
 										<select class="form-control" onchange="selectPosition();">
 												<option>선택</option>
 											<c:forEach var="list" items="${positionList}">

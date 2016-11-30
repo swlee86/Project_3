@@ -85,10 +85,17 @@ $(function(){
 					data :JSON.stringify(jsonArray),
 				    type : "json",
 					success : function(data){
-						alert("성공");
-						$.each(data, function(index){
-							console.log('성공하고난다음 : '+ data[index]); 
-						});
+						alert("저장 성공 !");
+						var pdata = data.modifylist;
+						var select = '<select class="form-control" onchange="selectPosition();"><option>선택</option>';
+						for(var i = 0; i < pdata.length; i++){
+							console.log(pdata[i].position_name);
+							select += '<option value='+pdata[i].position_no+'>'+pdata[i].position_name+'</option>'
+						}
+						
+						select += '</select>';
+						$('#selectPosition').empty();
+						$('#selectPosition').append(select);
 						
 					},error : function(){
 						alert("실패!!");
