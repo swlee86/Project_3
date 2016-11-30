@@ -150,9 +150,10 @@
 								</table>
 								<div class="row" style="text-align: right; margin-right: 10px;">
 									<input type="submit" id="submitBtn" class="btn btn-sm btn-success demo2" value="완료"
-										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px" onclick="send()">
 								</div>
 							</div>
+							<input type="hidden" id="hiddenEmp_no" value="">
 						</form>
 					</div>
 				</div>

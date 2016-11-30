@@ -28,7 +28,7 @@
 										<div class="form-group">
 											<label class="control-label" for="username" style="color: black;">아이디</label> <input
 												type="text" title="Please enter you username" required="" value="구글 로그인 후 이용하세요"
-												name="username" id="username" class="form-control" readonly="readonly">
+												name="username" id="username" class="form-control">
 											<span class="help-block small">Your unique username to
 												app</span>
 										</div>

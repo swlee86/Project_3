@@ -134,7 +134,7 @@
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
                         <div class="title">
-                            You have ${pushcount+pushcount} new works
+                            You have ${pushcount} new works
                         </div>
                     	<div id = "titlepush"></div>
                         <li class="summary"><a href="#">See All Messages</a></li>
@@ -207,10 +207,23 @@ $('#birthDay').click(function(){
 			var result = Number(message.data)+Number(document.getElementById("pushcount").innerText);
 			var divTest = document.getElementById("pushcount");
 			divTest.innerHTML = result;
+			
+			
+			var allData = { "pushcount" : $('#pushcount').text()};
+			$(function(){
+				
+    		$.ajax({
+    			url : "pollingchk.do",
+    			data : allData,
+    			success : function(data) {
+    				
+    			}
+    				})
+    			})
         };
 		
 		function send() {
-			var msg = '12345678';
+			var msg = document.getElementById("hiddenEmp_no");
 			webSocket.send(msg);
 		}
 	
