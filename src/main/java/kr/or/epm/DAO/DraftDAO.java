@@ -50,4 +50,13 @@ public interface DraftDAO {
 	
 	//결재라인에서  내가 포함된 미승인 결제들의 draft_no 목록 불러오기(내 차례인것만)
 	public List<String> selectDraftLine_myturn(String emp_no);
+	
+	
+	
+	// 기본 전자 결재 등록하기
+	public int insertDraft(Office office);
+	
+	// 대외발신공문 등록하기
+	public int insertOffice(Office office);
+	
 }

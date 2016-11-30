@@ -4,6 +4,36 @@
 	<h4>대외발신공문</h4>
 	<table cellpadding="1" cellspacing="1" class="table table-bordered ">
 		<tr>
+			<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">결재 번호</th>
+			  <td colspan="3">
+			  	<input type="text" name="draft_no" class="form-control">
+			  </td> 
+		</tr>
+		<tr>
+			<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">기안 제목</th>
+			  <td colspan="3">
+			  	<input type="text" name="draft_title" class="form-control">
+			  </td> 
+		</tr>
+		<tr>
+			<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">기안 내용</th>
+			  <td colspan="3">
+			  	<input type="text" name="draft_content" class="form-control">
+			  </td> 
+		</tr>
+		<tr>
+			<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">기안자 사번</th>
+			  <td colspan="3">
+			  	<input type="text" name="emp_no" class="form-control" value="${ emp_no }">
+			  </td> 
+		</tr>
+		<tr>
+			<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">기안일</th>
+			  <td colspan="3">
+			  	<input type="text" name="draft_date" class="form-control">
+			  </td> 
+		</tr>
+		<tr>
 			<th
 				style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">수신처</th>
 			<td style="width: 40%"><input type="text" name="rec_place" class="form-control"></td>
@@ -39,8 +69,6 @@
 				style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">상세주소</th>
 			<td><input type="text" id="sample6_address2" name="rec_addr_detail" class="form-control"  placeholder="상세주소"></td>
 		</tr>
-
-
 
 	</table>
 </div>

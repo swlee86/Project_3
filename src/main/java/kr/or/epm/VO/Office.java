@@ -5,6 +5,7 @@ package kr.or.epm.VO;
 작성자 :	김주희
 사용 목적 :	대외발신공문에 대한 VO
 **/
+
 public class Office {
 	private String draft_no;
 	private String rec_place;

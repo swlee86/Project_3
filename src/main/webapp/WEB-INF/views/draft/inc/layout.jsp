@@ -1,4 +1,4 @@
-`<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
@@ -102,7 +102,6 @@
 			$('#document_table').empty();
 			
 			var choose = $("input[name='cg_no']:checked").val();
-			console.log("선택한 값 : " + choose);
 
 			$.ajax({
 				url : "draftForm.do",
@@ -115,6 +114,24 @@
 				}
 			});
 		};
+		
+		$("#submitBtn").click(function() {
+			var choose = $("input[name='cg_no']:checked").val();
+			console.log("check1");
+			console.log(choose);
+			
+			draft.method = "post";
+			
+			if(choose == '1') {
+				draft.action = "draftOffice.do";
+			} else if(choose == '2') {
+				draft.action = "draftOffice.do";
+			} else if(choose == '3') {
+				draft.action = "draftOffice.do";
+			}
+			
+			draft.submit();
+		});
 	</script>
 </body>
 </html>

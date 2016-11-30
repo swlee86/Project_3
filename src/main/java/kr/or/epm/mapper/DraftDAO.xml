@@ -139,4 +139,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		      where app_check=0 and rownum in 1 ) s
 		where s.emp_no=#{emp_no}
 	</select>
+	
+	
+	
+	<!-- 전자결재 등록하기 -->
+	<insert id="insertDraft">
+		insert into draft(draft_no, cg_no, 
+						  draft_title, draft_content, emp_no, 
+						  draft_date, file_name, del_check, 
+						  rec_del_check, step_no)
+		values(draft_seq.nextval, #{cg_no},
+			   #{draft_title}, #{draft_content}, #{emp_no},
+			   #{draft_date}, #{file_name, jdbcType=VARCHAR}, '0',
+			   '0', '4')
+	</insert>
+	
+	<!-- 대외발신공문 등록하기 -->
+	<insert id="insertOffice">
+		insert into office(draft_no, rec_place, rec_fax, 
+						   rec_person, rec_tel, rec_postcode,
+						   rec_addr, rec_addr_detail)
+		values(draft_seq.currval, #{rec_place, jdbcType=VARCHAR}, #{rec_fax, jdbcType=VARCHAR},
+			   #{rec_person, jdbcType=VARCHAR}, #{rec_tel, jdbcType=VARCHAR}, #{rec_postcode, jdbcType=VARCHAR},
+			   #{rec_addr, jdbcType=VARCHAR}, #{rec_addr_detail, jdbcType=VARCHAR})
+	</insert>
 </mapper>
