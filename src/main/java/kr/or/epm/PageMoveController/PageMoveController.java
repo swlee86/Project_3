@@ -42,6 +42,9 @@ public class PageMoveController {
 		HttpSession session = request.getSession();
 		String emp_no = (String)session.getAttribute("emp_no");
 		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
+		session.setAttribute("emp_no", emp_no);
+		
+		
 		
 		
 		boolean emp_no_chk = Util.isEmpty(emp_no);

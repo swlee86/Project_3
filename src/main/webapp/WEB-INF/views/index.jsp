@@ -14,6 +14,7 @@
 			</p>
 		</div>
 	</div>
+	<input type="button" onclick="send()">
 	<div class="row">
 	    <div class="col-md-6">
 					사내 공지사항

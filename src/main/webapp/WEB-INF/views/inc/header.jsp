@@ -130,11 +130,11 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
                         <i class="pe-7s-mail"></i>
-                        <span class="label label-success">${pushcount}</span>
+                        <span class="label label-success" id="pushcount">${pushcount}</span>
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
                         <div class="title">
-                            You have ${pushcount+pushcount} new works
+                            You have ${pushcount} new works
                         </div>
                     	<div id = "titlepush"></div>
                         <li class="summary"><a href="#">See All Messages</a></li>
@@ -198,22 +198,47 @@ $('#birthDay').click(function(){
 	$('#birthModal').modal();
 });	
 
-
+		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.0.142:8090/epm/broadsocket.do");
 		
         webSocket.onmessage = function (message){
-			console.log("@@@@@@@그냥 message : " + message)
 			console.log("#########message : " + message.data);
-			var divTest = document.getElementById("titlepush");
-			divTest.innerHTML = message.data+"\n";
+			var result = Number(message.data)+Number(document.getElementById("pushcount").innerText);
+			var divTest = document.getElementById("pushcount");
+			divTest.innerHTML = result;
+			
+			
+			var allData = { "pushcount" : $('#pushcount').text()};
+			$(function(){
+				
+    		$.ajax({
+    			url : "pollingchk.do",
+    			data : allData,
+    			success : function(data) {
+    				
+    			}
+    				})
+    			})
         };
+		
+		function send() {
+			var msg = 
+				 	{
+				   	 type : "message",
+					 emp_no : document.getElementById("hiddenEmp_no").value,
+	   				 menuname : document.getElementById("hiddenMenuName").value
+	   			  	}
+				 	
+			console.log("메세지를 봅시다 : " +msg);
+			webSocket.send(JSON.stringify(msg));
+		}
 	
 		webSocket.onclose = function(e) {
 			console.log("연결 닫힘: " + e.reason);
 		}
 		
-		
+	/* 	
 		//기본 폴링방식
         $(function () {
             window.setInterval(function () {
@@ -224,7 +249,8 @@ $('#birthDay').click(function(){
             
         });
          
-      /* 
+ */  
+ /* 
         $(function () {
             
             (function longPolling() {

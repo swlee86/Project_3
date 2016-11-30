@@ -35,7 +35,6 @@ import kr.or.epm.Service.PushService;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Push;
 
-@Controller
 public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 	
 	private SqlSession sqlsession;
