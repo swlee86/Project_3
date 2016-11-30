@@ -4,51 +4,9 @@
  * 사용목적 : 직위 관련  스크립트
  */
 
-//position 생성자
-function PositionJoin(position_name, step, set_date,basic_pay, add_pay){
-	this.position_name = position_name;
-	this.step = step;
-	this.set_date = set_date;
-	this.basic_pay = basic_pay;
-	this.add_pay = add_pay;
-}
-
-//model 객체 정보 담을 배열
-var positionArray=[];
-//객체 배열
-var oopArray = [];
-
- 
-
 $(function(){	
-	
-	//처음 뷰단에서 만들어놓은 json 데이터를 가지고 옴
-	positionArray = $('#hidin').val();
-	//파싱하고
-	var jsonEncode = JSON.parse(positionArray);
-	//스크립트 객체를 이용하여 객체 배열을 만들어줌. 생성자는 넘어온 json 데이터에서 뽑아옴.
-	for(var i = 0; i < jsonEncode.length; i++){
-		oopArray.push(
-				new PositionJoin(
-						jsonEncode[i].position_name,
-						jsonEncode[i].step, 
-						jsonEncode[i].set_date, 
-						jsonEncode[i].basic_pay,
-						jsonEncode[i].add_pay));
-	}
-	
-	
-	/*for(var i = 0; i < positionArray.length; i++){
-		oopArray.push(new position(positionArray[i].position_name, positionArray[i].step, positionArray[i].basic_pay,positionArray[i].set_date,positionArray[i].add_pay));
-		console.log(oopArray);
-	}*/
-	
-	
-	
 	//기본 null 포인트 체크
 	$('#addBtn').click(function(){
-		
-		//var basicPay = $('#basicPay').val();
 		
 		if($('#positionName').val() == ''){
 			alert("직위 이름을 입력해 주세요 !");
@@ -106,41 +64,38 @@ $(function(){
 		}));
 		
 		
+		//배열 하나 생성
+		var jsonArray = new Array();
+		//포문돌면서
 		for(var i = 0; i < itemid.length; i++){
-			
-			for(var j = 0; j < itemid.length; j++){
-				console.log("안쪽 : "+itemid[i]);
-				if(itemid[i] == oopArray[j].position_name){
-					
-					var change = j;
-					console.log("이중 포문 바뀌기 전afdv  : " +oopArray[i].step);
-					step_i = change.toString();
-					oopArray[i].step = step_i;  // int - > string 으로 형변환
-					console.log("바뀜 ????? : " +oopArray[i].step);
-				}
-				
-			}
-			
-		}
-		
-		for(var i = 0; i < itemid.length; i++){
-			console.log("테스트휘발 : " +oopArray[i].step + " / 이름 : "+oopArray[i].position_name);
+			//객체 만듬
+			var json = new Object();	
+			json.position_name = itemid[i];
+			json.step = i;
+			//객체 삽입
+			//위에 배열에 객체 넣고
+			jsonArray.push(json);	
+			console.log("position_name : " + itemid[i] + " step : "+i);
 		}
 		
 		
-		
-	/*$.ajax(
-				{
-					url : "positionInsert.do",
-					data : {
-								
-						   },
+		$.ajax(
+				{		
+					url : "positionModifyStep.do",
+					data :JSON.stringify(jsonArray),
+				    type : "json",
 					success : function(data){
+						alert("성공");
+						$.each(data, function(index){
+							console.log('성공하고난다음 : '+ data[index]); 
+						});
 						
+					},error : function(){
+						alert("실패!!");
 					}
 				}
 				
-		      );*/
+		      );
 	});
 	
 });
@@ -181,15 +136,20 @@ function checkPositionName(){
 		return;
 	}else{
 		var today = dateChek();
-		alert("등록 성공!");
-		alert("ul li 태그 렝스 : "+itemid.length + "오늘 날짜 : "+today);
-		oopArray.push(new PositionJoin(position,itemid.length,today,basic_pay,add_pay));
 		
-		
-		//내가 입력한것을 li 태그로 추가해줌
-		var li = "<li class='gradLi ui-sortable-handle' value='"+position+"'><i class='fa fa-thumbs-o-up'></i>"+position+"</li>";
-		//ul - li 에 추가
-		$('#sortable').append(li);
+		$.ajax({
+			
+			url : "insertPosition.do",
+			data :  {position_name: position, step:itemid.length, set_date:today,basic_pay:basic_pay, add_pay:add_pay}, 
+		    success : function(data){
+		    	
+		    	//내가 입력한것을 li 태그로 추가해줌
+				var li = "<li class='gradLi ui-sortable-handle' value='"+position+"'><i class='fa fa-thumbs-o-up'></i>"+position+"</li>";
+				//ul - li 에 추가
+				$('#sortable').append(li);
+				window.location.reload();
+		    }
+		});
 	}
 	
 }

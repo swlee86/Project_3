@@ -10,17 +10,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 직위에 대한 mapper
 -->
 
-	<!-- 직위 등록하기 -->
-	<insert id="insertPosition">
+	<!--1.직위 등록하기(position) -->
+	<insert id="insertPosition" parameterType="kr.or.epm.VO.PositionJoin">
 		insert into position(position_no, position_name, step)
 		values(position_seq.nextval, #{position_name}, #{step})
+	</insert>
+	
+	<!--2.직위 등록하기(set_pay)-->
+	<insert id="insertSet_pay" parameterType="kr.or.epm.VO.PositionJoin">
+		insert into set_pay(set_date, position_no, basic_pay)
+		values (#{set_date}, #{position_no}, #{basic_pay})
+	</insert>
+	
+	<!--3.직위 등록하기 (set_add_pay)-->
+	<insert id="insertSet_add_Pay" parameterType="kr.or.epm.VO.PositionJoin">
+		insert into set_add_pay(set_date, position_no, add_pay)
+		values (#{set_date}, #{position_no}, #{add_pay})
 	</insert>
 	
 	<!-- 직위 수정하기 (왼쪽) 셀렉박스 용 -->
 	<update id="updatePosition" parameterType="kr.or.epm.VO.Position">
 		update position
-		set position_name = #{position_name} 
+		set position_name = #{position_name}
 		where position_no = #{position_no}
+	</update>
+	
+	<update id="updatePositionStep">
+		update position
+		set step = #{step}
+		where position_name = #{position_name}
 	</update>
 	
 	<!--기본 연봉설정 수정.-->
@@ -43,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on p.position_no = s.position_no
 		join set_add_pay a
 		on p.position_no=a.position_no
+		order by step
 	</select>
 	
 	<!-- 직위 상세 조회하기 -->
@@ -50,6 +69,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select position_no, position_name, step
 		from position
 		where position_no = #{position_no}
+	</select>
+	
+	<!--직위 추가시 position_no 구하기-->
+	<select id="selectPosition_no" resultType="String" parameterType="kr.or.epm.VO.PositionJoin">
+		select position_no
+		from position
+		where position_name = #{position_name}
 	</select>
 	
 	<!-- 직위 삭제하기 -->

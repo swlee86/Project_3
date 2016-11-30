@@ -28,7 +28,7 @@ public class PushController {
 	  String taskcount = pushservice.taskCount(emp_no);
 	  System.out.println("폴링 taskcount 데이타 : " + taskcount);
 	  session.setAttribute("taskcount", taskcount);
-	  
+	  session.setAttribute("resultdata", taskcount);
 	  
 	  
   }
