@@ -34,8 +34,7 @@ public class ProjectService {
 		}
 		
 		//큰 프로젝트 작성
-		//@Transactional
-		public String insertPj(Pj pj, Pjd_Command pjd_Command){// throws Exception{
+		public String insertPj(Pj pj, Pjd_Command pjd_Command){
 			System.out.println("insertPj() 서비스 ");
 			System.out.println("pj.tosting : "+pj.toString());
 			PjDAO dao = sqlsession.getMapper(PjDAO.class);
@@ -43,27 +42,28 @@ public class ProjectService {
 			result = dao.insertPj(pj);
 			if(result > 0){	
 				System.out.println("pj성공" + result);
-				insertPjd(pjd_Command);
-				insertPjd_people(pjd_Command);
+				int numrow = insertPjd(pjd_Command);
+				System.out.println("\\\\\\%%%numrow : " + numrow);
+
+
+				List<String> rowlist = selectMaxPjd_no(numrow);
+				System.out.println("rowlist : " + rowlist.toString());
+				
+				
+				insertPjd_people(rowlist,pjd_Command);
 			}
-			
-			/*try{
-				result = dao.insertPj(pj);
-				if(result > 0){
-					
-					System.out.println("pj성공" + result);
-					insertPjd(pjd_Command);
-					insertPjd_people(pjd_Command);
-				}
-			}catch(Exception e){
-				System.out.println("insertPj 트랜잭션 오류" + e.getMessage());
-				throw e; //롤백
-			}*/
-			
 			
 			return "redirect:project_list.do";
 		}
 		
+		private List<String> selectMaxPjd_no(int numrow) {
+			System.out.println("selectMaxPjd_no 서비스");
+			PjDAO dao = sqlsession.getMapper(PjDAO.class);
+			List<String> rowlist = dao.selectMaxPjd_no(numrow);
+			System.out.println("rowlist : " + rowlist.toString());
+			return rowlist;
+		}
+
 		//상세 프로젝트 작성
 		public int insertPjd(Pjd_Command pjd_Command){
 			PjDAO dao = sqlsession.getMapper(PjDAO.class);
@@ -72,33 +72,42 @@ public class ProjectService {
 			int max_no = selectMaxPj_no();
 			System.out.println("max_no : "+max_no);
 			String pj_no = String.valueOf(max_no);
+			System.out.println("@상세 프로젝 트 추가된 갯수 : "+ list.size());
 			
 			for(Pjd pjd : list){
 				result = 0;
 				System.out.println("***pjd : "+pjd.toString());
 				pjd.setPj_no(pj_no);
 				result = dao.insertPjd(pjd);
-				System.out.println("상세 프로젝트 추가 결과  : "+result);
+				System.out.println("=> 상세 프로젝트 추가 결과  : "+result);
 			}
-			return result;	
+			int row = list.size();
+			return row;	
 		}
 		
+		
 		//상세프로젝트 참여자 작성
-		public int insertPjd_people(Pjd_Command pjd_Command){
+		public int insertPjd_people(List<String> rowlist, Pjd_Command pjd_Command){
+			System.out.println("rowlist : "+ rowlist);
 			PjDAO dao = sqlsession.getMapper(PjDAO.class);
 			List<Pjd> list = pjd_Command.getPjd();
 			
 			int result = 0;
+			int row = 0;
 			
 			for(Pjd pjd : list){		
 				String[] rec_people = pjd.getRec_emp_no().split(",");
 				System.out.println("선택된 참여자 인원 : " + rec_people.length);
+				System.out.println("상세 번호 : "+ rowlist.get(row));
+				
 				for(int i = 0; i<rec_people.length ; i++){
 					System.out.println("rec_people["+i+"] : "+rec_people[i]);
 					result = 0;
-					result = dao.insertPjd_people(rec_people[i]);
+					result = dao.insertPjd_people(rowlist.get(row), rec_people[i]);
 					System.out.println("참여자 추가 결과 : "+result);
-				}			
+				}
+				
+				row = +1;
 			}	
 			return result;	
 		}
