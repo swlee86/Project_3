@@ -24,13 +24,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 등록하기 -->
 	<insert id="insertPj">
-		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_del_check, pj_step_no, step_no)
-		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, null, '0', '2', '4')
+		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_emp_no, rec_del_check, pj_step_no, step_no)
+		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, null, #{rec_emp_no}, '0', '2', '4')
 	</insert>
 	
 	<insert id="insertPjd_people">
 		insert into pjd_people(pjd_no, emp_no)
-		values((select max(to_number(pjd_no)) from pjd), #{emp_no})
+		values(#{param1}, #{param2})
 	</insert>
 	
 	<!-- 프로젝트 상세 등록하기 -->
@@ -42,6 +42,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   #{pjd_content}, #{pjd_start}, #{pjd_end}, 
 			   '2')
 	</insert>
+	
+	<!--프로젝트 상세번호  -->
+	<select id="selectMaxPjd_no" resultType="String">
+		select e.pjd_no
+		from(select pjd_no from pjd order by to_number(pjd_no) desc) e
+		where ROWNUM &lt;= #{numrow}
+	</select>
 	
 	<!-- 프로젝트 승인 대기함 조회하기 -->
 	<select id="selectPj_rec" resultType="kr.or.epm.VO.Pj">

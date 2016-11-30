@@ -134,11 +134,8 @@
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
                         <div class="title">
-                            You have ${pushcount} new messages
+                            You have ${pushcount+pushcount} new works
                         </div>
-                        <li>
-                        	테스트
-                    	</li>
                     	<div id = "titlepush"></div>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
@@ -206,6 +203,7 @@ $('#birthDay').click(function(){
 		webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do");
 		
         webSocket.onmessage = function (message){
+			console.log("@@@@@@@그냥 message : " + message)
 			console.log("#########message : " + message.data);
 			var divTest = document.getElementById("titlepush");
 			divTest.innerHTML = message.data+"\n";

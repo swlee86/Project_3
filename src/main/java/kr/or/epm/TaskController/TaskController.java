@@ -284,7 +284,7 @@ public class TaskController {
 		
 		//Push알림을 위한 Taskcount session 재생성
 		HttpSession session = request.getSession();
-		String empno = (String)session.getAttribute("empnoresult");
+		String empno = (String)session.getAttribute("emp_no");
 		String taskcount = pushservice.taskCount(empno);
 		session.setAttribute("taskcount", taskcount);
 		

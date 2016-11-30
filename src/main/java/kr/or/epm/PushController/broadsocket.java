@@ -20,10 +20,11 @@ public class broadsocket extends TextWebSocketHandler {
 	
 		log(session.getId()+ " 연결 됨");
 		String taskcount = (String)session.getAttributes().get("taskcount");
-		
+		String projectcount = (String)session.getAttributes().get("projectcount");
 		users.put(taskcount, session);
+		users.put(projectcount, session);
 		System.out.println("여기는 broadsocket : " + taskcount);
-		
+		System.out.println("여기는 broadsocket : " + projectcount);
 		
 		
 		log((String) session.getAttributes().get("taskcount") + " 건의 미처리 업무가 있습니다");
@@ -35,7 +36,14 @@ public class broadsocket extends TextWebSocketHandler {
 	    //map에 저장된 session들에게 메세지를 보냄
 	    
      	for (WebSocketSession s : users.values()) {
-     			s.sendMessage(new TextMessage("<li>확인하지 않은 " + session.getAttributes().get("taskcount") + "개의	 업무가 있습니다</li>"));	
+     			s.sendMessage(new TextMessage(
+     									"<li><a style='color:red;' href='taskRequest.do'>확인하지 않은 " + session.getAttributes().get("taskcount") + "개의 업무가 있습니다</a></li>"+
+     									"<li style='color:red;'>승인이 필요한 " + session.getAttributes().get("taskcount") + "개의 프로젝트가 있습니다</li>"+
+     									"<li><a style='color:blue;' href='projects.do'>진행중인 " + session.getAttributes().get("projectcount") + "개의 프로젝트가 있습니다</a></li>"
+     					));	
+     			
+     			
+     			log(session.getAttributes().get("taskcount") + "개의 맥스 카운트");
      			log(session.getAttributes().get("taskcount")+ "건의 미처리 업무가 있습니다 -------------final log");     			
      		
     	}
@@ -79,5 +87,6 @@ public class broadsocket extends TextWebSocketHandler {
 	private void log(String logmsg) {
 		System.out.println(new Date() + " : " + logmsg);
 	}
+	
 
 }
