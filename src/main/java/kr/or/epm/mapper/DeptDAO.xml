@@ -4,8 +4,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.DeptDAO">
 
+	<!-- 관리자 > 부서관리 > 부서 선택시  selectbox-->
 	<select id="deptList" resultType="kr.or.epm.VO.Dept">
-		select dept_name from dept where branch_no = (select branch_no from branch where branch_name=#{branch_name})
+		select dept_name, dept_no from dept where branch_no = (select branch_no from branch where branch_name=#{branch_name}) and his_check=1
 	</select>
+
+	<!-- 관리자 > 부서관리 > 부서 조회하기 -->
+	<select id="selectChooseDept" parameterType="String" resultType="kr.or.epm.VO.Dept">
+	select d.dept_no, d.branch_name, d.dept_name, s.bonus_percent
+	from dept d join set_bonus s
+	on d.dept_no = s.dept_no
+	where his_check='1' and d.dept_no=#{dept_no}
+	</select>
+	
+	<!-- 부서 추가하기  > dept insert-->
+	<insert id="addDept" parameterType="kr.or.epm.VO.Dept">
+	
+	</insert>
+	
+	<!-- 부서 수정하기 -->
 
 </mapper>

@@ -43,20 +43,18 @@
 
 							<div class="panel-body">
 
-								<label class="form-control">지점 선택</label> 
-								<select class="form-control" onchange="departMentFuc(this.value)">
+							 <label class="form-control">지점 선택</label> 
+								<select id="selectbranch" class="form-control" onchange="departMentFuc()">
 									<option>선택</option>
 									<c:forEach var="list" items="${branchList}">
 										<option value="${list.branch_name}">${list.branch_name}</option>
 									</c:forEach>
 								</select> 
 								<br /> 
-								<label class="form-control">부서 선택</label> <select
-									class="form-control">
-									<option>선택</option>
-									<option>영업부</option>
-									<option>개발부</option>
-								</select> <br /> <input type="button" class="btn btn-success" value="조회">
+								<label class="form-control">부서 선택</label> 
+								 <select class="form-control" id="selectDept">
+								</select> <br /> 
+								<input type="button" class="btn btn-success" id="seeDeptBtn" value="조회">
 							</div>
 							<div class="panel-footer"></div>
 						</div>
@@ -85,7 +83,7 @@
 									</select> <br />
 									<div class="col-md-4"></div>
 									<div class="col-md-4">
-										<input type="button" class="btn btn-success" value="부서 등록">
+										<input type="button" class="btn btn-success" id="addDepartmentBtn" value="부서 등록">
 									</div>
 								</form>
 							</div>
@@ -118,7 +116,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" id="branch_name" name="branch_name" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
@@ -126,7 +124,7 @@
 											<label>부서명</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" id="dept_name" name="dept_name"  readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
@@ -134,10 +132,10 @@
 											<label>상여금 지급 비율</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control" readonly="readonly">
+											<input type="text" class="form-control" id="bonus_percent" name="bonus_percent" readonly="readonly">
 										</div>
 									</div>
-									<div class="form-group">
+						    		<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
 											<input type="submit" class="btn btn-success" value="수정">
 										</div>
@@ -150,7 +148,7 @@
 					</div>
 					
 					<!--등록-->
-					<div class="vertical-timeline-block">
+					<div class="vertical-timeline-block" id="addDepartmentDiv">
 						<div class="vertical-timeline-icon navy-bg">
 							<i class="fa fa-calendar"></i>
 						</div>
@@ -159,7 +157,7 @@
 								<span class="vertical-date pull-right"> Saturday <br />
 									<small>12:17:43 PM</small>
 								</span>
-								<h2>부서 정보(조회, 수정)</h2>
+								<h2>부서 등록</h2>
 							</div>
 
 							<div class="panel-body">

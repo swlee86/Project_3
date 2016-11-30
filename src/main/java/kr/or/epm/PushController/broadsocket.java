@@ -1,104 +1,92 @@
 package kr.or.epm.PushController;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Date;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonWriter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.websocket.OnClose;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+public class broadsocket extends TextWebSocketHandler {
 
-import kr.or.epm.DAO.PushDAO;
+	private Map<String, WebSocketSession> users = new ConcurrentHashMap<>();
 
-@ServerEndpoint("/broadsocket")
-public class broadsocket {
-
-	// 유저 집합 리스트
-	static List<Session> sessionUsers = Collections.synchronizedList(new ArrayList<Session>());
-
-	/*
-	 *      웹 소켓이 접속되면 유저리스트에 세션을 넣는다.      @param userSession 웹 소켓 세션
-	 */
-	@OnOpen
-	public void handleOpen(Session userSession) throws IOException {
-		System.out.println("연결?ㅎㅎㅎ");
-		sessionUsers.add(userSession);
+	@Override
+	public void afterConnectionEstablished(
+			WebSocketSession session) throws Exception {
+		
+	
+		log(session.getId()+ " 연결 됨");
+		String taskcount = (String)session.getAttributes().get("taskcount");
+		String projectcount = (String)session.getAttributes().get("projectcount");
+		users.put(taskcount, session);
+		users.put(projectcount, session);
+		System.out.println("여기는 broadsocket : " + taskcount);
+		System.out.println("여기는 broadsocket : " + projectcount);
 		
 		
-		/*
-		 * System.out.println(sessionUsers.get(0).getUserPrincipal().getName());
-		 */
+		log((String) session.getAttributes().get("taskcount") + " 건의 미처리 업무가 있습니다");
 		
-		String username = null;
-		try {
-			System.out.println("Try문 시작");
-			username = sessionUsers.get(0).getUserPrincipal().getName();
+	    System.out.println("handleTextMessage()");
+	    
+	    log(session.getAttributes().get("taskcount")+ " 건의 미처리 업무가 있습니다. 확인하세요");
 
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		} finally {
-			System.out.println("파이널리 !!##### : "+username);
-			if(username == null){
-				userSession.getUserProperties().put("username", "로그인 후 시도하세요");
-				userSession.getBasicRemote().sendText(buildJsonData("System", "" + "로그인 후 시도하세요"));
-				return;
-			}
-			//username이 있으면 전체에게 메시지를 보낸다.
-			Iterator<Session> iterator = sessionUsers.iterator();
-			while(iterator.hasNext()){
-				iterator.next().getBasicRemote().sendText(buildJsonData(username,"알림 테스트"));
-			}	
-
-		}
+	    //map에 저장된 session들에게 메세지를 보냄
+	    
+     	for (WebSocketSession s : users.values()) {
+     			s.sendMessage(new TextMessage(
+     									"<li><a style='color:red;' href='taskRequest.do'>확인하지 않은 " + session.getAttributes().get("taskcount") + "개의 업무가 있습니다</a></li>"+
+     									"<li style='color:red;'>승인이 필요한 " + session.getAttributes().get("taskcount") + "개의 프로젝트가 있습니다</li>"+
+     									"<li><a style='color:blue;' href='projects.do'>진행중인 " + session.getAttributes().get("projectcount") + "개의 프로젝트가 있습니다</a></li>"
+     					));	
+     			
+     			
+     			log(session.getAttributes().get("taskcount") + "개의 맥스 카운트");
+     			log(session.getAttributes().get("taskcount")+ "건의 미처리 업무가 있습니다 -------------final log");     			
+     		
+    	}
 		
+	}
 
+	@Override
+	public void afterConnectionClosed(
+			WebSocketSession session, CloseStatus status) throws Exception {
+		log((String) session.getAttributes().get("taskcount") + " 연결 종료됨");
+		//접속한 session을 users 맵에서 제거
+		users.remove((String) session.getAttributes().get("taskcount"));
+	}
+
+	@Override
+	protected void handleTextMessage(
+			WebSocketSession session, TextMessage message) throws Exception {
+		
+		
+			log((String) session.getAttributes().get("userId")+ "로부터 메시지 수신: " + message.getPayload());
+	
+		    System.out.println("handleTextMessage()");
+		    
+		    log(session.getAttributes().get("userId")+ message.getPayload());
+	
+		    //map에 저장된 session들에게 메세지를 보냄
+	     	for (WebSocketSession s : users.values()) {
+				s.sendMessage(new TextMessage( message.getPayload()+"  id- "+session.getAttributes().get("userId")));
+				
+				log(session.getAttributes().get("userId")+ message.getPayload());
+	    	}
+	        
+	}
+
+	@Override
+	public void handleTransportError(
+			WebSocketSession session, Throwable exception) throws Exception {
+		log((String) session.getAttributes().get("userId") + " 익셉션 발생: " + exception.getMessage());
+	}
+
+	private void log(String logmsg) {
+		System.out.println(new Date() + " : " + logmsg);
 	}
 	
 
-	@OnClose
-	public void handleClose(Session userSession) {
-		sessionUsers.remove(userSession);
-	}
-	/*
-	 * json타입의 메시지 만들기
-	 * 
-	 * @param username
-	 * 
-	 * @param message
-	 * 
-	 * @return
-	 */
-
-	public String buildJsonData(String username, String string) {
-		System.out.println("빌드제이슨데이타");
-		System.out.println("유저네임 : " + username);
-		System.out.println("문자 데이터 : " + string);
-		JsonObject jsonObject = Json.createObjectBuilder().add("message", "New" + " : " + string).build();
-		StringWriter stringwriter = new StringWriter();
-		try (JsonWriter jsonWriter = Json.createWriter(stringwriter)) {
-			jsonWriter.write(jsonObject);
-		}
-		;
-		return stringwriter.toString();
-	}
-	
 }

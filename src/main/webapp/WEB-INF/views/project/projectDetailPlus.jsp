@@ -9,7 +9,7 @@
 						<a class="showhide"><i class="fa fa-chevron-up"></i></a> 
 						<a class="closebox"><i class="fa fa-times"></i></a>
 					</div>
-					상세 프로젝s트 - 1
+					상세 프로젝트 +
 				</div>
 				
 				<div class="panel-body">		
@@ -42,10 +42,13 @@
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
 											<td>
 												<span class="input-group">
-	                     							<input type="text" class="pjd_emp_name_plus form-control input-sm" name=""/>
-	                     							<input type="text" class="pjd_emp_no_plus" name="">
+	                     							<!-- <input type="text" class="pjd_emp_name_plus form-control input-sm" name="" id=""/>
+	                     							<input type="text" class="pjd_emp_no_plus form-control" name="" id=""> -->
+	                     							<span class="multiDiv">
+	                     							
+	                     							</span>
 	                        						<span class="input-group-btn">
-														<button class="organization_add btn input-sm btn-default " type="button"  ><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
+														<button class="organization_add pjd_count_plus btn input-sm btn-default "  type="button"  ><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
 													</span>
 	                   	  						</span>
 											</td>
@@ -68,7 +71,7 @@
 		</div>
 		
 		
-		<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-md">
       <div class="modal-content">
          <div class="color-line"></div>
@@ -77,10 +80,10 @@
          </div>
          <div class="modal-body">
             <div class="row">
-               <div class="col-md-4" style="border: 1px solid gray;" id="organization">
+               <div class="organization col-md-4" style="border: 1px solid gray;" id="organization" >
                   
                </div>   
-               <div class="col-md-8" id="empList">
+               <div class="empList col-md-8" id="empList">
                   사원리스트
                </div>
             </div>
@@ -93,15 +96,26 @@
 </div>
 
 <script>
-
-$(function(){
-	var pjd_count = 0; 
-	pjd_count = $('#pjd_count').val();
-	console.log("플러스 :"+pjd_count);
-	$('#pjd_detail_btn').click(function(){
-		
-	});
+	//스크립트 생성자
+	function empInfo(emp_no, emp_name){
+	   this.emp_no = emp_no;
+	   this.emp_name = emp_name;
+	}
 	
+	//사원정보 뽑아서 담을 배열
+	var empInfoArray = new Array();	
+	//부서 선택시
+	var departcho;
+	//하위 부서 선택시
+	var low_deptNumber;
+	//사원
+	var empListNumber;
+	
+	var choose;
+
+
+function calendar(){
+
 	//달력
 	var text = $('.formstartDate').datepicker({
 		 changeMonth: true, 
@@ -145,8 +159,14 @@ $(function(){
 	    });
 
 	    //조직도
-	     $('.organization_add').click(function() {
-	   		var  empSelectNumber = 1;
+	      $('.organization_add').click(function() {
+	    	console.log("$(this) : "+$(this));
+	    	console.log("조직도 버튼 누른 value: " + $(this).attr('value'));
+	    	pjd_count = $(this).attr('value');
+	    	 console.log("pjd_count : "+pjd_count);
+	    	$('.multiDiv_'+pjd_count).empty();
+	    	
+	   		var  empSelectNumber = 2;
 			var litag = "<ui style='list-style:none;''>";   		
 			$('#organization').empty();
 			$('#empList').empty();
@@ -178,12 +198,18 @@ $(function(){
 	
 	   			}
 	   		})
-	    });
-	    
-});    
+	    }); 
+	 }
+
+
 	 	
-	 	
-		 //부서 출력 하는 아작스
+		
+	
+	
+	
+	
+	
+	//부서 출력 하는 아작스
 		function seeDepart2(pjd_count, obj, empSelectNumber, choose) {
 			//전역 부서 선택시
 		    departcho = choose;
@@ -261,14 +287,14 @@ $(function(){
 		function seeEmpMember2(pjd_count, obj,empSelectNumber,low_dept_no){
 		   //체크
 		   var empListNumber = low_dept_no;
-				 alert("사원뽑기 : "+empListNumber);
+			//alert("사원뽑기 : "+empListNumber);
 		   
 		   console.log(obj);
 		   
 		   //클릭한 text 값 뽑아옴.
 		   var low_dept = $(obj).text();
-		   alert("taskEmpModal : "+low_dept);
-		   alert("selectNo : " + empSelectNumber);
+		   //alert("taskEmpModal : "+low_dept);
+		   //alert("selectNo : " + empSelectNumber);
 		   var makeTable = "";
 		   if(empSelectNumber == 1){
 		    makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
@@ -289,15 +315,12 @@ $(function(){
 		                   console.log(emp);
 		               });
 		               
-		               $.each(emp, function(index){
-		                  if(empSelectNumber == 1){   
-		                     makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF2("+pjd_count+",this)' value='선택'></td></tr>";   
-		                  }
-		                  else if(empSelectNumber == 2){
+		               $.each(emp, function(index){	                
+		                  if(empSelectNumber == 2){
 		                     makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
-		                  }
+		                  }                 
 		               });
-		               makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+		               makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check("+pjd_count+")>";
 		               $('#empList').empty();
 		               $('#empList').append(makeTable);
 		             }    
@@ -313,20 +336,60 @@ $(function(){
 		   var emp_no = $(obj).parent().parent().children().eq(0).html();
 		   var name = $(obj).parent().parent().children().eq(1).html();
 		   
-		   console.log("상세상세 조직도 pjd_count : "+pjd_count);
+		   console.log("****s*상세상세 조직도 pjd_count : "+pjd_count);
 		   console.log("emp_no : "+ emp_no);
 		   console.log("name32: "+ name);
-		  
+		   console.log("[pjd_emp_no_]"+$('#pjd_emp_no_' + pjd_count));
 			
-		   $('input[name=pjd[' + pjd_count + '].emp_no]').attr('value',emp_no);
-		   $('input[name=pjd[' + pjd_count + '].emp_name]').attr('value',name);
 		   
-		 
+		   /* $('input[name=pjd[' + pjd_count + '].emp_no]').attr('value',emp_no);
+		   $('input[name=pjd[' + pjd_count + '].emp_name]').attr('value',name); */
 		   
-		   $('#myModal6').modal("hide");
-		  
+		   $('#pjd_emp_no_' + pjd_count).val(emp_no);
+ 		   $('#pjd_emp_name_' + pjd_count).val(name); 
+		   $('#myModal6').modal("hide");		  
 		}
+		
+		
 	
-
+	      //체크박스 선택후 버튼 클릭시 호출
+	      function check(pjd_count){
+	    	  console.log("조직도 check 폼 함수 : " + pjd_count);
+	         //체크박스 크기만큼 배열 생성
+	         var checkResult = new Array();
+	         $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
+	            //이름 
+	            checkResult[pi] = po.value;
+	            //사번
+	            empInfoArray.push(new empInfo($(this).parent().next().html(),checkResult[pi]));
+	         });
+	         console.log("@@@@@@@ 사원  정보: "+empInfoArray);
+	         console.log("@@@@@@@ 배열 사이즈: "+empInfoArray.length);
+	            if(empInfoArray.length > 1){
+	               //화면에 보이는 input 은 그냥 때려넣음
+	               //$("#multiDiv").val(empInfoArray[0].emp_no);
+	               //$('#multiDiv').val(empInfoArray[0].emp_name);
+	               // $('#pjd_emp_no_' + pjd_count).val(empInfoArray[0].emp_no);
+ 		  		   //$('#pjd_emp_name_' + pjd_count).val(empInfoArray[0].emp_name);
+ 		  			
+	               var input_no = "";
+	               var input_name = "";
+	               for(var i = 0; i < empInfoArray.length; i++){
+		              console.log("pjd_count: "+ pjd_count + "/ input : " +empInfoArray[i].emp_no +" / "+empInfoArray[i].emp_name);
+	                  input_no += "<input type='hidden' class='form-control' name='pjd[" + pjd_count + "].rec_emp_no' value='"+empInfoArray[i].emp_no+"'>";
+	                  input_name +="<input type='text' class='form-control' name='pjd[" + pjd_count + "].rec_emp_name' value='"+empInfoArray[i].emp_name+"'>";
+	               }
+	              
+	               empInfoArray.splice(0,empInfoArray.length);
+	               console.log("empInfoArray 지우기 : " + empInfoArray.length);
+	               $('.multiDiv_'+pjd_count).append(input_no);
+		           $('.multiDiv_'+pjd_count).append(input_name);
+	            }else{
+	               $('.multiDiv_'+pjd_count).val(empInfoArray[0].emp_no);
+	               $('.multiDiv_'+pjd_count).val(empInfoArray[0].emp_name);            
+	            }
+	         
+	         $("#myModal6").modal("hide");
+	      }
 
 </script>

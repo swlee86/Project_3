@@ -32,6 +32,8 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.Service.PushService;
+import kr.or.epm.VO.Emp_detail;
+import kr.or.epm.VO.Push;
 
 @Controller
 public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
@@ -95,20 +97,22 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		System.out.println("########################로그인 성공시 스타트##################");
 		System.out.println("아이디 : " + authentication.getName());
 		
-		String result =null;
-		int taskcount = 0;
+		String emp_no =null;
+		String taskcount = null;
+		String projectcount = null;
+		int resultdata = 0;
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-		result = pushdao.selectEmp_no(authentication.getName());
-		
-		
+		emp_no = pushdao.selectEmp_no(authentication.getName());
+
 		try{
-		/*	result = pushservice.selectEmp_no("admin");*/
-			System.out.println("사번? : " + result);
-			taskcount = pushdao.taskCount(result);
+			System.out.println("사번? : " + emp_no);
+			taskcount = pushdao.taskCount(emp_no);
+			projectcount = pushdao.myprojectCount(emp_no);
 			System.out.println("미처리 taskcount : " + taskcount);
-			
-			
+			System.out.println("내가 진행중인 프로젝트 count : " + projectcount);
+			resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);
+			System.out.println("ResultData입니다 : " + resultdata);
 			
 					
 		}catch(Exception e){
@@ -121,8 +125,13 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		
 		//로그인 성공시 session 객체들 사용
 		//미완료 taskcount 생성 > websocket 사용
+		session.setAttribute("customerId", authentication.getName());
 		session.setAttribute("taskcount", taskcount);
+		session.setAttribute("emp_no", emp_no);
+		session.setAttribute("projectcount", projectcount);
 		
+		
+		session.setAttribute("resultdata", resultdata);
 		
 		int intRedirectStrategy = decideRedirectStrategy(request, response);
 		switch(intRedirectStrategy){

@@ -10,17 +10,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 프로젝트에 대한 mapper
 -->
 
+	<!-- 등록인 사번 구하는 함수 -->
+	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">
+		select e.emp_no
+		from  emp_detail d join emp e
+		on d. emp_no = e.emp_no
+		where d.id=#{id}
+	</select>
+	
+	<select id="selectMaxPj_no"  resultType="int">
+		select max(to_number(pj_no)) from pj
+	</select>
+	
 	<!-- 프로젝트 등록하기 -->
 	<insert id="insertPj">
-		insert into pj(pj_no, emp_no, pj_title, 
-					   pj_content, pj_start, pj_end, 
-					   pj_progress, rec_emp_no, rec_del_check,
-					   pj_step_no, step_no)
-		values(pj_seq.nextval, #{emp_no}, #{pj_title},
-			   #{pj_content}, #{pj_start}, #{pj_end},
-			   null, #{rec_emp_no}, '0',
-			   '2', '4')
+		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_emp_no, rec_del_check, pj_step_no, step_no)
+		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, null, #{rec_emp_no}, '0', '2', '4')
 	</insert>
+	
+	<insert id="insertPjd_people">
+		insert into pjd_people(pjd_no, emp_no)
+		values(#{param1}, #{param2})
+	</insert>
+	
+	<!-- 프로젝트 상세 등록하기 -->
+	<insert id="insertPjd">
+		insert into pjd(pjd_no, pj_no, pjd_title, 
+					    pjd_content, pjd_start, pjd_end, 
+					    pj_step_no)
+		values(pjd_seq.nextval, #{pj_no}, #{pjd_title},
+			   #{pjd_content}, #{pjd_start}, #{pjd_end}, 
+			   '2')
+	</insert>
+	
+	<!--프로젝트 상세번호  -->
+	<select id="selectMaxPjd_no" resultType="String">
+		select e.pjd_no
+		from(select pjd_no from pjd order by to_number(pjd_no) desc) e
+		where ROWNUM &lt;= #{numrow}
+	</select>
 	
 	<!-- 프로젝트 승인 대기함 조회하기 -->
 	<select id="selectPj_rec" resultType="kr.or.epm.VO.Pj">
@@ -129,7 +157,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             on p.emp_no = e.emp_no
       	join low_dept l
             on e.low_dept_no = l.low_dept_no      
-      	where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=#{param1}))) or p.emp_no=#{param1})
+      	where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=#{emp_no}))) or p.emp_no=#{emp_no})
                  and step_no = (select step_no from approval where step_name='승인')
       	order by s.step asc, pj_start desc
 	</select>
