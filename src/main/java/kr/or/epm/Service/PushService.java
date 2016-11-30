@@ -46,4 +46,11 @@ public class PushService {
 		return tasklist;
 	}
 	
+	public String myprojectCount(String emp_no){
+		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
+		String result = pushdao.myprojectCount(emp_no);
+		return result;
+	}
+	
+	
 }

@@ -30,9 +30,9 @@ public class PushController {
 	  String emp_no = pushservice.selectEmp_no(id);
 	  
 	  
-	  session.setAttribute("taskcount", taskcount);
+	  session.setAttribute("sessiontaskcount", taskcount);
 	  session.setAttribute("resultdata", taskcount);
-	  session.setAttribute("pushcount", pushcount);
+	  session.setAttribute("sessionpushcount", pushcount);
 	  
 	  
   }

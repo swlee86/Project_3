@@ -130,15 +130,15 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
                         <i class="pe-7s-mail"></i>
-                        <span class="label label-success" id="pushcount">${pushcount}</span>
+                        <span class="label label-success" id="pushcount">${sessionpushcount}</span>
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
                         <div class="title">
-                            You have ${pushcount} new works
+                            You have ${sessionpushcount} new works
                         </div>
-                    	<li>진행 중인 프로젝트는<span id="projectcount">${projectcount}</span>건입니다.</li>
+                    	<li>진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
                     	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">0</span>건입니다.</li>
-                    	<li>미확인 하신 업무는<span id="taskcount">${taskcount}</span>건입니다.</li>
+                    	<li>미확인 하신 업무는<span id="taskcount">${sessiontaskcount}</span>건입니다.</li>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -202,7 +202,7 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://172.30.1.41:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.0.142:8090/epm/broadsocket.do");
 		
         webSocket.onmessage = function (message){
 			console.log("#########message : " + message.data);
