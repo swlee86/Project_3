@@ -86,8 +86,12 @@ $(function(){
 				    type : "json",
 					success : function(data){
 						alert("성공");
+						$.each(data, function(index){
+							console.log('성공하고난다음 : '+ data[index]); 
+						});
+						
 					},error : function(){
-						alert("실패??");
+						alert("실패!!");
 					}
 				}
 				
@@ -143,6 +147,7 @@ function checkPositionName(){
 				var li = "<li class='gradLi ui-sortable-handle' value='"+position+"'><i class='fa fa-thumbs-o-up'></i>"+position+"</li>";
 				//ul - li 에 추가
 				$('#sortable').append(li);
+				window.location.reload();
 		    }
 		});
 	}

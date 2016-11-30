@@ -100,17 +100,15 @@ public class AdminAjaxController {
 	
 	//직위 권한 업데이트
 	@RequestMapping("/positionModifyStep.do")
-	public View StepModify(HttpServletRequest request, @RequestBody String json){
-		
-		//JSONObject object = JSONObject.toString(json);
-		
+	public View StepModify(HttpServletRequest request, @RequestBody String json, Model model){
 		List<Map<String, Object>> resultMap = new ArrayList<Map<String, Object>>();
 		resultMap = JSONArray.fromObject(json);
-		
-		
+		//업데이트 된 상태 !!
 		adminservice.positionUpdateDragAndDrop(resultMap);
 		
-		
+		//여기서 업데이트 된 것 새로 받아줌
+		List<PositionJoin> list = adminservice.listPosition();
+		model.addAttribute("modifylist",list);
 		return jsonview;
 	}
 	

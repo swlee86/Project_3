@@ -61,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on p.position_no = s.position_no
 		join set_add_pay a
 		on p.position_no=a.position_no
+		order by step
 	</select>
 	
 	<!-- 직위 상세 조회하기 -->
