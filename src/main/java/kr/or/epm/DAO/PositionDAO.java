@@ -12,8 +12,14 @@ import kr.or.epm.VO.PositionJoin;
 
 public interface PositionDAO {
 
-	// 직위 등록하기
-	public int insertPosition();
+	// 1.직위 등록하기
+	public int insertPosition(PositionJoin position);
+	
+	//2.직위 기본연봉
+	public int insertSet_pay(PositionJoin position);
+	
+	//3.직위 추가급여
+	public int insertSet_add_Pay(PositionJoin position);
 	
 	// 직위 수정하기
 	public int updatePosition(Position position);
@@ -24,8 +30,11 @@ public interface PositionDAO {
 	//추가 급여 수정
 	public int updateset_add_pay(PositionJoin position);
 	
+	//position_no 구하기 
+	public String selectPosition_no(PositionJoin position);
+	
 	// 직위 조회하기
-	public List<PositionJoin> selectPosition();
+	public List<PositionJoin> selectPosition(); 
 	
 	// 직위 상세 조회하기
 	public Position selectPosition_detail();
