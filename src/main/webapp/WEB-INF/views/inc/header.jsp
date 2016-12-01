@@ -136,12 +136,40 @@
                         <div class="title">
                             You have <span id="pushcount2">${sessionpushcount}</span> new works
                         </div>
-                        <li class="summary">프로젝트 관련</li>
+                        <li class="summary" style="width: 340px;">프로젝트 관련</li>
+                        <c:choose>
+                        <c:when test="${empty sessionprojectcount }">
+                        <li>진행 중인 프로젝트가 없습니다.</li>
+                    	</c:when>
+                    	<c:otherwise>
                     	<li  style="width: 340px;">진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
-                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">${sessionApprovalcount}</span>건입니다.</li>
+                    	</c:otherwise>
+                    	</c:choose>
+                    	<c:choose>
+                    	<c:when test="${empty sessionApprovalcount}">
+                    	<li>승인 확인이 필요한 프로젝트가 없습니다.</li>
+                    	</c:when>
+                    	<c:otherwise>
+                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">${sessionApprovalcount}</span>건입니다.</li>                    	
+                    	</c:otherwise>
+                    	</c:choose>
                     	<li class="summary">업무 관련</li>
-                    	<li>미확인 하신 업무는<span id="taskcount">${sessiontaskcount}</span>건입니다.</li>
-                        <li>승인확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>
+                    	<c:choose>
+                    	<c:when test="${empty sessiontaskcount}">
+                    	<li>확인이 필요한 업무가 없습니다.</li>
+                    	</c:when>
+                    	<c:otherwise>
+                    	<li>미확인 하신 업무는<span id="taskcount">${sessiontaskcount}</span>건입니다.</li>                    	
+                    	</c:otherwise>
+                    	</c:choose>
+                    	<c:choose>
+                    	<c:when test="${empty sessiontaskApprovalcount}">
+                    	<li>승인 확인이 필요한 업무가 없습니다.</li>
+                    	</c:when>
+                    	<c:otherwise>
+                        <li>승인 확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>                    	
+                    	</c:otherwise>
+                    	</c:choose>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
