@@ -166,8 +166,8 @@ public class ContactController {
 		model.addAttribute("grouplistsize", grouplist.size());
 		model.addAttribute("group",group_result);
 		
-		model.addAttribute("f",field);
-		model.addAttribute("q",query);
+		model.addAttribute("field",field);
+		model.addAttribute("query",query);
 		model.addAttribute("pagecount", pagecount);
 		model.addAttribute("pg",cpage);
 		model.addAttribute("totalcount",totalcount);

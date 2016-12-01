@@ -29,15 +29,21 @@ public class ProjectService {
 	private SqlSession sqlsession;
 	
 	//승인 처리 할 목록 가져오기 
-	public void selectPj_rec(int cpage, int pagesize, String field, String query, String rec_emp_no) {
+	public List<Pj> selectPj_rec(int cpage, int pagesize, String field, String query, String rec_emp_no) {
+		System.out.println("selectPj_rec() 서비스");
+		System.out.println("@rec_emp_no : " + rec_emp_no);
 		PjDAO dao = sqlsession.getMapper(PjDAO.class);
-		dao.selectPj_rec();
+		List<Pj> list = dao.selectPj_rec(cpage,pagesize,field,query,rec_emp_no);
+		System.out.println("list : "+list.toString());
+		return list;
 	}
 	
 	//승인 처리 갯수 가져오기
 	public int selectApprovalCount(String rec_emp_no, String field, String query) {
+		System.out.println("selectApprovalCount() 서비스 ");
 		PjDAO dao = sqlsession.getMapper(PjDAO.class);
 		int totalcount =  dao.selectApprovalCount(rec_emp_no,field,query);
+		System.out.println("@totalcount : "+totalcount);
 		return totalcount;
 	}
 	
@@ -54,7 +60,7 @@ public class ProjectService {
 			System.out.println("selectInfoSearch() 서비스");
 			PjDAO dao = sqlsession.getMapper(PjDAO.class);
 			Emp emp = dao.selectInfoSearch(id);
-			System.out.println("emp 사번 : "+ emp.getEmp_no());
+			System.out.println("@emp 사번 : "+ emp.getEmp_no());
 			return emp;
 		}
 		
