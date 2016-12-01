@@ -4,6 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.MemoDAO">
 
+	<!--  글 갯수 -->
+	<select id="selectCount" resultType="int"> 
+		select nvl(count(*),0) 
+		from memo 
+		where emp_no=#{emp_no}
+	</select>
+	
 	<!-- 로그인한 인원이 갖고 있는 메모 중 가장 큰 번호 구하는 쿼리문 -->
 	<select id="selectMaxNo" resultType="String">
 		select max(memo_no) from memo where emp_no=#{emp_no}
@@ -16,13 +23,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 로그인한 사원의 전체 메모  -->
 	<select id="selectMemo" resultType="kr.or.epm.VO.Memo">
-		select memo_no,emp_no,title,memo_content,memo_date,
-      			m.color_no, color, color_name
-		from memo m 
-		join memocolor c 
-		  on m.color_no = c.color_no 
-		where m.emp_no=#{emp_no}
-		order by m.memo_date DESC
+		 select  memo_no, emp_no, title, memo_content, memo_date, color_no, color, color_name  from (
+				select  rownum num, n.memo_no, n.emp_no, n.title, n.memo_content, n.memo_date, n.color_no, n.color, n.color_name  from (
+					select memo_no,emp_no,title,memo_content,memo_date, m.color_no, color, color_name
+					from memo m  join memocolor c  on m.color_no = c.color_no 
+					where m.emp_no=#{param3}
+					order by to_number(m.memo_no) DESC
+				)n 
+			)  where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}		
 	</select>
 	
 	<!-- 선택한 메모 상세 조회 -->

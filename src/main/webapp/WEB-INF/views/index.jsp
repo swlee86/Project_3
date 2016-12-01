@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<jsp:useBean id="now" class="java.util.Date"/>
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="systemdate"/>
 <!-- 채팅 테스트용 아이디 세션 -->
 <%session.setAttribute("id", "PSJ"); %>
 <div class="content animate-panel">
@@ -47,7 +49,8 @@
 						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 							class="closebox"><i class="fa fa-times"></i></a>
 					</div>
-					미확인 업무 리스트
+					미확인 업무 리스트&nbsp;&nbsp;&nbsp;&nbsp;
+					<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
 				</div>
 				<div class="panel-body list">
 					<div class="table-responsive project-list">
@@ -63,9 +66,23 @@
 							<tbody>
 							<c:forEach var="tasklist" items="${tasklist}">
 								<tr>
-									<td>${tasklist.task_name}<br /> <small><i
+									<c:choose>
+									<c:when test="${tasklist.send_date < systemdate}">
+									<td><a style="color:red" href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br /> <small><i
 											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
 									</td>
+									</c:when>
+									<c:when test="${tasklist.send_date == systemdate}">
+									<td><a style="color:blue" href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br /> <small><i
+											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
+									</td>
+									</c:when>
+									<c:otherwise>
+									<td><a href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br /> <small><i
+											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
+									</td>
+									</c:otherwise>
+									</c:choose>
 									<td>${tasklist.deadline}</td>
 									<td>${tasklist.emp_no }</td>
 									<td>${tasklist.emp_name}</td>
@@ -77,6 +94,60 @@
 				</div>
 			</div>
 		</div>
+    
+    	<div class="col-lg-6">
+			<div class="hpanel">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+							class="closebox"><i class="fa fa-times"></i></a>
+					</div>
+					진행중인 업무 리스트&nbsp;&nbsp;&nbsp;&nbsp;
+					<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+				</div>
+				<div class="panel-body list">
+					<div class="table-responsive project-list">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Work_Name</th>
+									<th>마감일</th>
+									<th>요청자 사번</th>
+									<th>요청자명</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach var="mytasklist" items="${mytasklist}" begin="0" end="2">
+								<tr>
+									<c:choose>
+									<c:when test="${mytasklist.deadline < systemdate}">
+									<td><a style="color:red" href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br /> <small><i
+											class="fa fa-clock-o"></i> Sended ${mytasklist.send_date }</small>
+									</td>
+									</c:when>
+									<c:when test="${mytasklist.deadline == systemdate}">
+									<td><a style="color:blue" href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br /> <small><i
+											class="fa fa-clock-o"></i> Sended ${mytasklist.send_date }</small>
+									</td>
+									</c:when>
+									<c:otherwise>
+									<td><a href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br /> <small><i
+											class="fa fa-clock-o"></i> Sended ${mytasklist.send_date }</small>
+									</td>
+									</c:otherwise>
+									</c:choose>
+									<td>${mytasklist.deadline}</td>
+									<td>${mytasklist.emp_no }</td>
+									<td>${mytasklist.emp_name}</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+    
     
     		<div class="col-lg-6">
 			<div class="hpanel">
@@ -101,10 +172,10 @@
 							<tbody>
 							<c:forEach var="pjlist" items="${pjlist}">
 								<tr>
-									<td><input type="checkbox" class="i-checks" checked></td>
 									<td>${pjlist.pj_title}<br /> <small><i
 											class="fa fa-clock-o"></i> Created ${pjlist.pj_start}</small>
 									</td>
+									<td></td>
 									<td><span class="pie">1/5</span></td>
 									<td><strong>20%</strong></td>
 									<td>${pjlist.pj_end}</td>
@@ -132,21 +203,19 @@
 							<thead>
 								<tr>
 									<th colspan="2">Project_Name</th>
-									<th>진행상황</th>
-									<th>진행률</th>
+									<th>책임자</th>
+									<th>시작일</th>
 									<th>종료일</th>
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="pjlist" items="${pjlist}">
+							<c:forEach var="approve_pjlist" items="${approve_pjlist}">
 								<tr>
-									<td><input type="checkbox" class="i-checks" checked></td>
-									<td>${pjlist.pj_title}<br /> <small><i
-											class="fa fa-clock-o"></i> Created ${pjlist.pj_start}</small>
-									</td>
-									<td><span class="pie">1/5</span></td>
-									<td><strong>20%</strong></td>
-									<td>${pjlist.pj_end}</td>
+									<td><a href=projectDetail.do?pj_no=${approve_pjlist.pj_no}>${approve_pjlist.pj_title}</a></td>
+									<td></td>
+									<td>${approve_pjlist.emp_name }</td>
+									<td>${approve_pjlist.pj_start}</td>
+									<td>${approve_pjlist.pj_end}</td>
 								</tr>
 							</c:forEach>
 							</tbody>

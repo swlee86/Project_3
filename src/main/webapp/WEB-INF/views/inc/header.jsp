@@ -130,13 +130,15 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
                         <i class="pe-7s-mail"></i>
-                        <span class="label label-success">${pushcount}</span>
+                        <span class="label label-success" id="pushcount">${sessionpushcount}</span>
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
                         <div class="title">
-                            You have ${pushcount+pushcount} new works
+                            You have <span id="pushcount2">${sessionpushcount}</span> new works
                         </div>
-                    	<div id = "titlepush"></div>
+                    	<li  style="width: 340px;">진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
+                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">0</span>건입니다.</li>
+                    	<li>미확인 하신 업무는<span id="taskcount">${sessiontaskcount}</span>건입니다.</li>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -198,22 +200,69 @@ $('#birthDay').click(function(){
 	$('#birthModal').modal();
 });	
 
-
+		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://localhost:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.0.142:8090/epm/broadsocket.do");
 		
         webSocket.onmessage = function (message){
-			console.log("@@@@@@@그냥 message : " + message)
 			console.log("#########message : " + message.data);
-			var divTest = document.getElementById("titlepush");
-			divTest.innerHTML = message.data+"\n";
+			
+			var text = "";
+	    	var msg = JSON.parse(message.data);
+	    	console.log("parsemsg______________ : " +msg);
+			
+			var resultpushCount = Number(msg.alarm)+Number(document.getElementById("pushcount").innerText);
+			var divpushcount = document.getElementById("pushcount");
+			var divpushcount2 = document.getElementById("pushcount2");
+			divpushcount.innerHTML = resultpushCount;
+			divpushcount2.innerHTML = resultpushCount;
+			
+			console.log("###########################msg.work : " + msg.work);
+			
+			var resulttaskCount = Number(msg.work)+Number(document.getElementById("taskcount").innerText);			
+			console.log('#################"업무 결과값 "###########' + resulttaskCount)
+			var divtaskcount = document.getElementById("taskcount");
+			divtaskcount.innerHTML = resulttaskCount;
+			
+			
+			
+			
+			var resultprojectCount = Number(msg.project)+Number(document.getElementById("projectcount").innerText);			
+			var divprojectcount = document.getElementById("projectcount");
+			divprojectcount.innerHTML = resultprojectCount;
+
+			
+			
+			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount };
+			$(function(){
+				
+    		$.ajax({
+    			url : "pollingchk.do",
+    			data : allData,
+    			success : function(data) {
+    				
+    						}
+    				})
+    			})
         };
+		
+		function send() {
+			var msg = 
+				 	{
+				   	 type : "message",
+					 emp_no : document.getElementById("hiddenEmp_no").value,
+	   				 menuname : document.getElementById("hiddenMenuName").value
+	   			  	}
+				 	
+			console.log("메세지를 봅시다 : " +msg);
+			webSocket.send(JSON.stringify(msg));
+		}
 	
 		webSocket.onclose = function(e) {
 			console.log("연결 닫힘: " + e.reason);
 		}
 		
-		
+	/* 	
 		//기본 폴링방식
         $(function () {
             window.setInterval(function () {
@@ -224,7 +273,8 @@ $('#birthDay').click(function(){
             
         });
          
-      /* 
+ */  
+ /* 
         $(function () {
             
             (function longPolling() {

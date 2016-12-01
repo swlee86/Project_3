@@ -83,5 +83,10 @@
 	</bean>
 	<!-- transaction end -->
 	
+	<bean id="customAuthenticationSuccessHandler" class="kr.or.epm.LoginController.CustomAuthenticationSuccessHandler">
+	<property name="sqlsession">
+		<ref bean = "sqlSession"/>
+	</property>
+	</bean>
 	
 </beans>

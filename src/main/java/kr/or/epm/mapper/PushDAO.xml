@@ -4,10 +4,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.PushDAO">
 
+	<!-- 내가 승인해야 하는 프로젝트 리스트 뽑기(index에서 사용) -->
+<select id="selectPj_rec" resultType="kr.or.epm.VO.Pj">
+      select rn, pj_no, emp_no, emp_name, pj_title, pj_start, pj_end, step_no from (select rownum rn, pj_no, p.emp_no, e.emp_name, pj_title, pj_start, pj_end, step_no
+      from pj p join emp e on p.emp_no = e.emp_no
+      where rec_emp_no =#{param1} and  rec_del_check = '0' and step_no='4') where rn between #{param2} and #{param3}
+</select>
+
+
 <!-- 미확인 업무 리스트의 데이터 추출(index에서 사용) -->
 <select id="selecttasklist" parameterType="String" resultType="kr.or.epm.VO.Task">
-select task_name, DEADLINE, emp_no, emp_name, send_date from task where rec_emp_no=#{emp_no} and rec_date is null and rec_del_check = '0'
+select task_no, task_name, DEADLINE, emp_no, emp_name, send_date from (select rownum rn, task_no, task_name, DEADLINE, emp_no, emp_name, send_date from task where rec_emp_no=#{param1} and rec_date is null and rec_del_check = '0') where rn between #{param2} and #{param3}
 </select>
+
+	<!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
+	<select id="selectmytasklist" resultType="kr.or.epm.VO.Task">
+		select t.task_no, cg_name, task_name,
+       		   deadline, rec_emp_no, rec_name,
+       		   t.emp_no, emp_name, file_name, 
+       		   task_step_name, send_date, step_no,
+       		   t.task_step_no
+		from task t join task_cg c
+		on t.cg_no = c.cg_no
+    	join task_step s
+    	on t.task_step_no = s.task_step_no
+		left outer join (select task_no, emp_no
+                 		 from task_people
+                 		 where emp_no = #{emp_no}) p
+		on t.task_no = p.task_no
+		where t.step_no = '1' and
+          	  t.cg_no = '1' and
+          	  rec_emp_no = #{emp_no} or
+          	  p.emp_no is not null
+		order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
+	</select>
+	
+
 
 <!-- 미확인 업무 리스트 갯수 추출(login에서 사용) -->
 <select id="taskCount" resultType="String" parameterType="String">

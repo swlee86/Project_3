@@ -74,8 +74,54 @@
 	   			}
 	   		})
 	    });
+	    
+	    
+	    
+	  //상세 프로젝트 참조자 아이콘 버튼 클릭시
+		$('#organization_add2').click(function(){
+			
+			var empSelectNumber = 2;
+			var litag = "<ui style='list-style:none;'>";   		
+	 		$('#organization').empty();
+	 		$('#empList').empty();
+	 		$('.multiDiv_0').empty();
+	              
+	          	$.ajax({
+	    			url : "taskWriteModal.do",
+	    			success : function(data) {
+	    				 $('#myModal6').modal();
+	    				choose = 2;
+	    				var departMent = "";
+
+	    				$.each(data, function(index) {
+	    					departMent = data[index];
+	    				});
+
+	    				$.each(departMent, function(index) {
+	       					litag += "<li onclick='seeDepart(this,"
+	       						litag +=empSelectNumber +","
+	       						litag +=departMent[index].branch_no
+	        				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+	        					litag +="</ul>";
+	        					
+	        					litag+="<div id='dept_div"
+	        					litag+=departMent[index].branch_no
+	        					litag+="'></div>";
+	           				});
+
+	       				$('#organization').html(litag);
+
+	    			}
+	    		})
+
+		});
+		
 		
 	});
+
+	
+
+	
 	
 	
 	 //부서 출력 하는 아작스
@@ -188,11 +234,11 @@
 	                  if(empSelectNumber == 1){   
 	                     makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
 	                  }
-	                  else if(empSelectNumber == 2){
-	                     makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+	                  else if(empSelectNumber == 2){  //여러명
+	                     makeTable += "<tr><td><input type='checkbox' name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
 	                  }
 	               });
-	               makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+	               makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check2()>";
 	               $('#empList').empty();
 	               $('#empList').append(makeTable);
 	             }    
@@ -220,6 +266,72 @@
 	   $('#myModal6').modal("hide");
 	  
 	}
+	
+	
+	 function empInfo2(emp_no, emp_name){
+		    this.emp_no = emp_no;
+		    this.emp_name = emp_name;
+		 }
+		 
+		 //사원정보 뽑아서 담을 배열
+		 var empInfoArray2 = new Array();
+		 
+		 //부서 선택시
+		 var departcho;
+		 //하위 부서 선택시
+		 var low_deptNumber;
+		 //사원
+		 var empListNumber;
+		 
+		 var choose;
+		 
+	
+	   //체크박스 선택후 버튼 클릭시 호출
+    function check2(){
+
+		   
+       //체크박스 크기만큼 배열 생성
+       var checkResult2 = new Array();
+       $(":checkbox[name='chkbtn2']:checked").each(function(pi,po){
+          //이름 
+          checkResult2[pi] = po.value;
+          //사번
+          empInfoArray2.push(new empInfo2($(this).parent().next().html(),checkResult2[pi]));
+       });
+       console.log("####사원  정보: "+empInfoArray2);
+       console.log("####배열 사이즈: "+empInfoArray2.length);
+          if(empInfoArray2.length > 1){
+             //화면에 보이는 input 은 그냥 때려넣음
+             //$("#multiDiv").val(empInfoArray[0].emp_no);
+             //$('#multiDiv').val(empInfoArray[0].emp_name);
+             // $('#pjd_emp_no_' + pjd_count).val(empInfoArray[0].emp_no);
+	  		   //$('#pjd_emp_name_' + pjd_count).val(empInfoArray[0].emp_name);
+	  			
+             var input_no2 = "";
+             var input_name2 = "";
+             for(var i = 0; i < empInfoArray2.length; i++){
+	              console.log("pjd_count: "+ 0 + "/ input : " +empInfoArray2[i].emp_no +" / "+empInfoArray2[i].emp_name);
+                input_no2 += "<input type='hidden' class='form-control' name='pjd[0].rec_emp_no' value='"+empInfoArray2[i].emp_no+"'>";
+                input_name2 +="<input type='text' class='form-control' name='pjd[0].rec_emp_name' value='"+empInfoArray2[i].emp_name+"'>";
+             }
+            
+             empInfoArray2.splice(0,empInfoArray2.length);
+             console.log("####사원  정보 지우기 : "+empInfoArray2);
+             console.log("empInfoArray2 지우기 : " + empInfoArray2.length);
+               $('.multiDiv_0').append(input_no2);
+	           $('.multiDiv_0').append(input_name2);
+          }else{
+             $('.multiDiv_0').val(empInfoArray2[0].emp_no);
+             $('.multiDiv_0').val(empInfoArray2[0].emp_name);            
+          }
+       
+       $("#myModal6").modal("hide");
+    }
+	
+	
+	
+	
+	
 	
 	
 	
@@ -278,12 +390,7 @@
 			});
 		});
 			
-	});
-	
-
-	
-
-	
+	});	
 	</script>
 
 </head>
@@ -405,6 +512,7 @@
 		
 		$('.selectpeople').click(function(){  
 			var emp_no = ($(this).attr('id')).substr(9);
+			alert(emp_no);
 			//console.log(emp_no);
 			//console.log("html: " +$('#m_name').html());
 			$.ajax(

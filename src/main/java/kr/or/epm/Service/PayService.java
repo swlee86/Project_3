@@ -65,8 +65,8 @@ public class PayService {
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 	    List<PayList> list = dao.selectPay_all_Close(dTime);
 	    return list;
-		
 	}
+	
 	//급여 마감 확정
 	public int updatePay(String pay_no){
 		System.out.println("급여 마감 확정");

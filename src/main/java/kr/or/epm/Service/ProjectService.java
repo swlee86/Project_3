@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.epm.DAO.ApprovalDAO;
 import kr.or.epm.DAO.CommuteDAO;
 import kr.or.epm.DAO.PjDAO;
+import kr.or.epm.DAO.Pj_stepDAO;
+import kr.or.epm.VO.Approval;
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Pj;
+import kr.or.epm.VO.Pj_step;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_Command;
 import kr.or.epm.VO.Pjd_people;
@@ -24,12 +28,39 @@ public class ProjectService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	//승인 처리 할 목록 가져오기 
+	public List<Pj> selectPj_rec(int cpage, int pagesize, String field, String query, String rec_emp_no) {
+		System.out.println("selectPj_rec() 서비스");
+		System.out.println("@rec_emp_no : " + rec_emp_no);
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		List<Pj> list = dao.selectPj_rec(cpage,pagesize,field,query,rec_emp_no);
+		System.out.println("list : "+list.toString());
+		return list;
+	}
+	
+	//승인 처리 갯수 가져오기
+	public int selectApprovalCount(String rec_emp_no, String field, String query) {
+		System.out.println("selectApprovalCount() 서비스 ");
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		int totalcount =  dao.selectApprovalCount(rec_emp_no,field,query);
+		System.out.println("@totalcount : "+totalcount);
+		return totalcount;
+	}
+	
+	//승인번호 가져오기
+	public void selectStepName(String query){
+		System.out.println("selectStepName() 서비스");
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		dao.selectStepName(query);
+		//return 
+	}
+	
 	//자신의 정보 가져오기 
 		public Emp selectInfoSearch(String id) {
 			System.out.println("selectInfoSearch() 서비스");
-			PjDAO contactDAO = sqlsession.getMapper(PjDAO.class);
-			Emp emp = contactDAO.selectInfoSearch(id);
-			System.out.println("emp 사번 : "+ emp.getEmp_no());
+			PjDAO dao = sqlsession.getMapper(PjDAO.class);
+			Emp emp = dao.selectInfoSearch(id);
+			System.out.println("@emp 사번 : "+ emp.getEmp_no());
 			return emp;
 		}
 		
@@ -154,5 +185,26 @@ public class ProjectService {
 		
 		return list;
 	}
+
 	
+	//프로젝트 작성한 사람의 사번가져오기
+	public String selectPjwriteempno(String pjd_no){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		
+		String pj_emp_no = "";
+		pj_emp_no = dao.selectPj_writeempno(pjd_no);
+		return pj_emp_no;
+	}
+	
+	//승인처리 목록 가져오기
+	public List<Pj_step> selectPjStepList(){
+		Pj_stepDAO dao = sqlsession.getMapper(Pj_stepDAO.class);
+		
+		List<Pj_step> pjstep = null;
+		
+		pjstep = dao.selectPj_step();
+		return pjstep;
+	}
+
+
 }

@@ -67,7 +67,15 @@
             <li>
                 <a href="#"><span class="nav-label">회의</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li style="text-align: center;"><div class="g-hangout" data-render="createhangout"></div></li>
+                    <li style="text-align: center;">
+				   <div class="g-hangout" data-render="createhangout"
+						data-initial_apps="[{ app_id : 'cultivated-pen-150602', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]" 
+						data-invites="[{ id : 'airless86@gmail.com', invite_type : 'EMAIL' },
+                       						{ id : 'stpark89@gmail.com', invite_type : 'EMAIL' },
+                       						{ id : 'gifmgo01@gmail.com', invite_type : 'EMAIL' }]">
+					</div>
+                    </li>
+                    
                 </ul>
             </li>
             <li>
@@ -104,7 +112,7 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="Commute.do">일일 근태 등록</a></li>
            			<li><a href="CommuteMonth.do">월별 근태 조회</a></li>
-           			<!-- <li><a href="CommuteOther.do">각기다른 근태보기</a></li> -->
+           			<li><a href="CommuteAdmin.do">근태 마감(관리자)</a></li>
                 </ul>
             </li>
             <li>
