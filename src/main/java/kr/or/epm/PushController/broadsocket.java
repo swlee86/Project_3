@@ -84,24 +84,29 @@ public class broadsocket extends TextWebSocketHandler {
 			    					System.out.println("이건 최종 유저 벨류 : " + users.values());
 			    					System.out.println("############################여기 들어오긴 하냐?");
 			    					System.out.println("일치해서 들어온 맵키 : " + mapkey);
-			    			        JSONObject jsonObject = new JSONObject();
-			    			        JSONArray dataArray = new JSONArray();
+			    			    
 			    			        JSONObject dataInfo = new JSONObject();
 			    			        dataInfo.put("alarm", "1");
 			    			        
 			    			        if(menuname.equals("업무")){
 			    			        	dataInfo.put("work", "1");
 			    			        	dataInfo.put("project", "0");
+			    			        	dataInfo.put("projectApproval", "0");
 			    			        }
 			    			        
 			    			        if(menuname.equals("프로젝트")){
 			    			        	dataInfo.put("work", "0");
 			    			        	dataInfo.put("project", "1");
+			    			        	dataInfo.put("projectApproval", "0");
 			    			        }
 			    			        
-			    			        dataArray.add(dataInfo);
-			    			        /*jsonObject.put("data", dataArray);*/
-			    			        /*String jsonInfo = jsonObject.toJSONString();*/
+			    			        if(menuname.equals("프로젝트승인")){
+			    			        	dataInfo.put("work", "0");
+			    			        	dataInfo.put("project", "0");
+			    			        	dataInfo.put("projectApproval", "1");
+			    			        }
+			    			       
+			    			      
 			    			        String jsonInfo = dataInfo.toJSONString();
 			    			        System.out.println("JsonInfo 만들어진 값 확인 :  ========================" + jsonInfo);
 			    			        s.sendMessage(new TextMessage(jsonInfo));

@@ -32,6 +32,7 @@ public class SendMail {
 			String result = null;
 			Mail mail = new Mail();
 			
+			
 			try{
 				
 				mail.setMail_content(bodys);
@@ -40,7 +41,7 @@ public class SendMail {
 				mail.setSend_mail(mailid);
 				
 				System.out.println(mail.toString());
-				result = mailservice.sendMail(recipients, subjects, bodys, mailid, sessionchk, host);
+				result = mailservice.sendMail(recipients, subjects, bodys, username, password, host);
 				System.out.println(result);
 				mailservice.insertSendMail(mail);
 				
