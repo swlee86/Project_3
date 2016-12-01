@@ -67,7 +67,15 @@
             <li>
                 <a href="#"><span class="nav-label">회의</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li style="text-align: center;"><div class="g-hangout" data-render="createhangout"></div></li>
+                    <li style="text-align: center;">
+				   <div class="g-hangout" data-render="createhangout"
+						data-initial_apps="[{ app_id : 'cultivated-pen-150602', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]" 
+						data-invites="[{ id : 'airless86@gmail.com', invite_type : 'EMAIL' },
+                       						{ id : 'stpark89@gmail.com', invite_type : 'EMAIL' },
+                       						{ id : 'gifmgo01@gmail.com', invite_type : 'EMAIL' }]">
+					</div>
+                    </li>
+                    
                 </ul>
             </li>
             <li>

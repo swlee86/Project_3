@@ -79,6 +79,23 @@ public class PageMoveController {
  			
  		}
 		
+		List<Task> mytasklist = null;
+		
+		if(emp_no_chk==true){
+ 			String my_task = "진행중인 업무 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("my_task", my_task);
+ 		}else{
+ 			try{
+ 				mytasklist = pushService.mytasklist(emp_no, cpage, pgsize);
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+ 			}finally{
+ 				model.addAttribute("mytasklist", mytasklist);
+ 			}
+ 			
+ 			
+ 		}
+		
 		
 		/////////////////////인덱스에 띄워 줄 프로젝트 내용 구하기 시작////////////////////////////////////////////////////
 		List<Pj> pjlist = null;
@@ -94,6 +111,21 @@ public class PageMoveController {
  				System.err.println(e.getMessage());
  			}finally{
  				model.addAttribute("pjlist", pjlist);
+ 			}
+ 		}
+		
+		List<Pj> approve_pjlist = null;
+		
+		if(emp_no_chk==true){
+ 			String approve_pj = "미승인 프로젝트 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("approve_pj", approve_pj);
+ 		}else{
+ 			try{
+ 				approve_pjlist = pushService.selectPj_rec(emp_no, cpage, pgsize); 				
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+ 			}finally{
+ 				model.addAttribute("approve_pjlist", approve_pjlist);
  			}
  		}
 		
@@ -210,12 +242,7 @@ public class PageMoveController {
 	public String sanction_approve_view() {
 		return "electronic_sanction.sanction_approve_view";
 	}
-	
-	//메일  > 메일세부글 보기 페이지 이동
-	@RequestMapping("/mail_detail.do")
-	public String mailbox_read() {
-		return "mail.mail_detail";
-	}
+
 	
 	//헤더  > 차트 (매출 현황보기)
 	@RequestMapping("/analytics.do")

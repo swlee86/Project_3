@@ -7,6 +7,7 @@ package kr.or.epm.VO;
 public class PayList {
 	private String pay_no;
 	private String emp_no;
+	private String commute_no;
 	private int total_pay;
 	private String give_date;
 	private String branch_name;
@@ -18,9 +19,17 @@ public class PayList {
 	private String acc_add_time;
 	private String master_check;
 	private String mgr_check;
+	private String pay_date;
 	
 	
 	
+	
+	public String getPay_date() {
+		return pay_date;
+	}
+	public void setPay_date(String pay_date) {
+		this.pay_date = pay_date;
+	}
 	public String getMgr_check() {
 		return mgr_check;
 	}
@@ -99,14 +108,19 @@ public class PayList {
 	public void setAcc_add_time(String acc_add_time) {
 		this.acc_add_time = acc_add_time;
 	}
-	
+	public String getCommute_no() {
+		return commute_no;
+	}
+	public void setCommute_no(String commute_no) {
+		this.commute_no = commute_no;
+	}
 	@Override
 	public String toString() {
-		return "PayList [pay_no=" + pay_no + ", emp_no=" + emp_no + ", total_pay=" + total_pay + ", give_date="
-				+ give_date + ", branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name="
-				+ low_dept_name + ", emp_name=" + emp_name + ", position_name=" + position_name + ", acc_commute_time="
-				+ acc_commute_time + ", acc_add_time=" + acc_add_time + ", master_check=" + master_check
-				+ ", mgr_check=" + mgr_check + "]";
+		return "PayList [pay_no=" + pay_no + ", emp_no=" + emp_no + ", commute_no=" + commute_no + ", total_pay="
+				+ total_pay + ", give_date=" + give_date + ", branch_name=" + branch_name + ", dept_name=" + dept_name
+				+ ", low_dept_name=" + low_dept_name + ", emp_name=" + emp_name + ", position_name=" + position_name
+				+ ", acc_commute_time=" + acc_commute_time + ", acc_add_time=" + acc_add_time + ", master_check="
+				+ master_check + ", mgr_check=" + mgr_check + ", pay_date=" + pay_date + "]";
 	}
 	
 	
