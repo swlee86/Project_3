@@ -39,10 +39,14 @@ public class PushService {
 	}
 	
 	//index에서 사용될 Task 미확인 데이터를 끌고 옴
-	public List<Task> tasklist(String emp_no){
+	public List<Task> tasklist(String emp_no, int cpage, int pgsize){
 		System.out.println("테스크 뽑으러 왔어요~");
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-		List<Task> tasklist = pushdao.selecttasklist(emp_no);
+		
+		int start = cpage * pgsize - (pgsize - 1);
+		int end = cpage * pgsize;
+		
+		List<Task> tasklist = pushdao.selecttasklist(emp_no, start, end);
 		return tasklist;
 	}
 	

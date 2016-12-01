@@ -44,6 +44,20 @@ public class PageMoveController {
 		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
 		session.setAttribute("emp_no", emp_no);
 		
+		///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
+        List<Company> list = null;
+        
+		
+		if(pagesize == null || pagesize.trim().equals("")){
+			pagesize = "5"; 			// default 5건씩 
+		}
+		
+		if(currentpage == null || currentpage.trim().equals("")){
+			currentpage = "1";        //default 1 page
+		}
+		
+		int pgsize = Integer.parseInt(pagesize);  		// 10
+		int cpage = Integer.parseInt(currentpage);     //1
 		
 		
 		
@@ -56,7 +70,7 @@ public class PageMoveController {
  			model.addAttribute("msg_task", msg_task);
  		}else{
  			try{
- 				tasklist = pushService.tasklist(emp_no);
+ 				tasklist = pushService.tasklist(emp_no, cpage, pgsize);
  			}catch(Exception e){
  				System.err.println(e.getMessage());
  			}finally{
@@ -85,20 +99,7 @@ public class PageMoveController {
 		
 		
 		
-///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
-		if(pagesize == null || pagesize.trim().equals("")){
-            pagesize = "5"; 			// default 5건씩 
-        }
-        
-        if(currentpage == null || currentpage.trim().equals("")){
-            currentpage = "1";        //default 1 page
-        }
-        
-        int pgsize = Integer.parseInt(pagesize);  		// 10
-        int cpage = Integer.parseInt(currentpage);     //1
-                               
-        List<Company> list = null;
-        
+
         
         /////////////////////////인덱스에 띄워 줄 메일 내용 구하기 시작////////////////////////////////////////////////////
 

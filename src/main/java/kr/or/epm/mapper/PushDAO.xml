@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 미확인 업무 리스트의 데이터 추출(index에서 사용) -->
 <select id="selecttasklist" parameterType="String" resultType="kr.or.epm.VO.Task">
-select task_name, DEADLINE, emp_no, emp_name, send_date from task where rec_emp_no=#{emp_no} and rec_date is null and rec_del_check = '0'
+select task_name, DEADLINE, emp_no, emp_name, send_date from (select rownum rn, task_name, DEADLINE, emp_no, emp_name, send_date from task where rec_emp_no=#{param1} and rec_date is null and rec_del_check = '0') where rn between #{param2} and #{param3}
 </select>
 
 <!-- 미확인 업무 리스트 갯수 추출(login에서 사용) -->

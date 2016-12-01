@@ -13,7 +13,7 @@ public interface PushDAO {
 	//업무 테이블에서 읽지 않은 리스트 가지고 오기
 	String taskCount(String emp_no);
 	
-	List<Task> selecttasklist(String emp_no);
+	List<Task> selecttasklist(String emp_no, int start, int end);
 	
 	String myprojectCount(String emp_no);
 	
