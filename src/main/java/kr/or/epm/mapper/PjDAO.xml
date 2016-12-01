@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 프로젝트에 대한 mapper
 -->
 	
-	<!-- <select id="">
+ 	<select id="selectApprovalCount">
 		select nvl(count(*),0) 
-		from pj p join contact c on e.contact_no=c.contact_no 
-		where e.emp_no=#{param1} and (${param2} like '%${param3}%') and (name &gt;= #{param4} and name &lt;= #{param5}) and (group_no ${param6})
-	</select> -->
+		from pj
+		where rec_emp_no = #{rec_emp_no} and (${param2} like '%${param3}%')
+	</select> 
 	
 	<select id="selectStepName">
 		 select step_no from approval where step_name=#{step_name}

@@ -49,7 +49,7 @@ public class ProjectController {
 		System.out.println("id : "+id);
 		Emp emp = projectservice.selectInfoSearch(id); 
 		
-		String emp_no = emp.getEmp_no();//사번
+		String rec_emp_no = emp.getEmp_no();//로그인사번
 		
 		int totalcount = 0;
 		int cpage = 1;
@@ -72,7 +72,7 @@ public class ProjectController {
 		}
 		
 		
-		totalcount = projectservice.selectApprovalCount(emp_no, field, query);  //전체 갯수 구하는 함수
+		totalcount = projectservice.selectApprovalCount(rec_emp_no, field, query);  //전체 갯수 구하는 함수
 		System.out.println("cpage:"+cpage+"/ field:"+field+"/ query:"+query+ "/ totalcount:"+totalcount);
 		
 		 if(totalcount % pagesize == 0){       
@@ -83,7 +83,7 @@ public class ProjectController {
 		 
 		 System.out.println("pagecount : " + pagecount);
 		 
-		 //projectservice.selectPj_rec(cpage, pagesize, field, query, emp_no);
+		 projectservice.selectPj_rec(cpage, pagesize, field, query, rec_emp_no);
 		 
 		 //mv.addAttribute(arg0, arg1);
 		 
