@@ -28,14 +28,16 @@ public class ProjectService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	//승인 처리 갯수 가져오기
-	public int selectApprovalCount(String emp_no, String field, String query) {
+	//승인 처리 할 목록 가져오기 
+	public void selectPj_rec(int cpage, int pagesize, String field, String query, String rec_emp_no) {
 		PjDAO dao = sqlsession.getMapper(PjDAO.class);
-		System.out.println("field : " + field.equals("step_name"));
-		if(field.equals("step_name")){
-			selectStepName(query);
-		}
-		int totalcount =  dao.selectApprovalCount(emp_no,field,query);
+		dao.selectPj_rec();
+	}
+	
+	//승인 처리 갯수 가져오기
+	public int selectApprovalCount(String rec_emp_no, String field, String query) {
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		int totalcount =  dao.selectApprovalCount(rec_emp_no,field,query);
 		return totalcount;
 	}
 	
@@ -197,4 +199,6 @@ public class ProjectService {
 		pjstep = dao.selectPj_step();
 		return pjstep;
 	}
+
+
 }

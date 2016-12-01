@@ -1,5 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+$(function(){
+	
+	$('#pj_approval_search').change(function(){
+		if($('#pj_approval_search').val() == 'step_no'){
+			$('#pj_approval_search_keyword').empty();
+			$('#pj_approval_search_keyword').innerHTML('<select class="form-control input-sm" name="q">'+
+															'<option value="1">승인</option>'+
+															'<option value="2">승인거부</option>'+
+															'<option value="3">보류</option>'+
+															'<option value="4">미승인</option>'+
+														'</select>'
+														);
+		}else{
+			$('#pj_approval_search_keyword').empty();
+			$('#pj_approval_search_keyword').innerHTML('<input type="text" class="form-control input-sm" name="q" />');
+		}
+	});
+	
+	
+
+});
+
+</script>
 <!--프로젝트 승인처리 페이지-->
 <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
@@ -42,10 +66,10 @@
 						<form action="" class="form-inline ">
 							<div class="col-md-2">
 								<div class="form-group">
-									<select class="form-control input-sm" name="f">
+									<select class="form-control input-sm" name="f" id="pj_approval_search">
 										<option value="step_no">승인단계</option>
-										<option value="pj_title"></option>
-										<option value="3">보류</option>
+										<option value="pj_title">제목</option>
+										<option value="emp_no">책임자</option>
 									</select>
 								</div>
 							</div>
@@ -53,13 +77,10 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control input-sm" name="q" />
-										<select class="form-control input-sm" name="f">
-											<option value="1">승인</option>
-											<option value="2">승인거부</option>
-											<option value="3">보류</option>
-											<option value="4">미승인</option>
-										</select>
+										<span id="pj_approval_search_keyword">
+											<input type="text" class="form-control input-sm" name="q" />
+										</span>
+										
 										<span class="input-group-btn">
 											<button class="btn btn-default input-sm" type="submit" style="color: #f05050">
 												<span class="fa fa-search"></span>

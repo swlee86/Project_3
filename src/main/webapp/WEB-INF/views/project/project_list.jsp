@@ -25,16 +25,19 @@
 </div>
 
 <div class="content animate-panel">
-
+<div class="row">
 	<div class="col-lg-12">
 		<div class="hpanel">
-			<div class="panel-heading hbuilt">
+			<!-- <div class="panel-heading hbuilt">
 				<div class="panel-tools">
 					<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 						class="closebox"><i class="fa fa-times"></i></a>
 				</div>
 				<small>프로젝트 리스트</small>
-			</div>
+			</div> -->
+			<div class="panel-heading">
+                <small>프로젝트 리스트</small>
+            </div>
 			<div class="panel-body">
 				<div class="form-group">
 					<select class="form-control" id="ctg" onchange="selectCtg()">
@@ -109,10 +112,11 @@
 			</div>
 		</div>
 	</div>
+	</div>
 </div>
 
 <script src="vendor/jquery/dist/jquery.min.js"></script>
-<script>
+ <script>
 function selectCtg(){
 	
 	var makeTable = "";
@@ -179,4 +183,4 @@ function selectCtg(){
 		});
 	}
 
-</script>
+</script> 
