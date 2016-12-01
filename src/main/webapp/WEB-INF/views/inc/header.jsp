@@ -136,9 +136,40 @@
                         <div class="title">
                             You have <span id="pushcount2">${sessionpushcount}</span> new works
                         </div>
-                    	<li>진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
-                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">0</span>건입니다.</li>
-                    	<li>미확인 하신 업무는<span id="taskcount">${sessiontaskcount}</span>건입니다.</li>
+                        <li class="summary" style="width: 340px;">프로젝트 관련</li>
+                        <c:choose>
+                        <c:when test="${empty sessionprojectcount }">
+                        <li>진행 중인 프로젝트가 없습니다.</li>
+                    	</c:when>
+                    	<c:otherwise>
+                    	<li  style="width: 340px;">진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
+                    	</c:otherwise>
+                    	</c:choose>
+                    	<c:choose>
+                    	<c:when test="${empty sessionApprovalcount}">
+                    	<li>승인 확인이 필요한 프로젝트가 없습니다.</li>
+                    	</c:when>
+                    	<c:otherwise>
+                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">${sessionApprovalcount}</span>건입니다.</li>                    	
+                    	</c:otherwise>
+                    	</c:choose>
+                    	<li class="summary">업무 관련</li>
+                    	<c:choose>
+                    	<c:when test="${empty sessiontaskcount}">
+                    	<li>확인이 필요한 업무가 없습니다.</li>
+                    	</c:when>
+                    	<c:otherwise>
+                    	<li>미확인 하신 업무는<span id="taskcount">${sessiontaskcount}</span>건입니다.</li>                    	
+                    	</c:otherwise>
+                    	</c:choose>
+                    	<c:choose>
+                    	<c:when test="${empty sessiontaskApprovalcount}">
+                    	<li>승인 확인이 필요한 업무가 없습니다.</li>
+                    	</c:when>
+                    	<c:otherwise>
+                        <li>승인 확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>                    	
+                    	</c:otherwise>
+                    	</c:choose>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -204,6 +235,7 @@ $('#birthDay').click(function(){
 		var webSocket;
 		webSocket = new WebSocket("ws://192.168.0.142:8090/epm/broadsocket.do");
 		
+		//호출 시점  :  send() 메세지 호출 > broadsocket > handleTextMessage > json 넘어와서 
         webSocket.onmessage = function (message){
 			console.log("#########message : " + message.data);
 			
@@ -211,29 +243,41 @@ $('#birthDay').click(function(){
 	    	var msg = JSON.parse(message.data);
 	    	console.log("parsemsg______________ : " +msg);
 			
+	    	//pushcount - > 총 알람 개수
+	    	//pushcount2 - > 총 알람 수인데  메세지 모양 클릭했을때 뜨는 작은 모달?의 제일 상단.
 			var resultpushCount = Number(msg.alarm)+Number(document.getElementById("pushcount").innerText);
 			var divpushcount = document.getElementById("pushcount");
 			var divpushcount2 = document.getElementById("pushcount2");
+			//실질적으로 숫자를 넣어준다 
 			divpushcount.innerHTML = resultpushCount;
 			divpushcount2.innerHTML = resultpushCount;
 			
 			console.log("###########################msg.work : " + msg.work);
 			
+			
+			//span 태그 id 값들 뽑아서 그곳에 값 넣어준다. 숫자를 
 			var resulttaskCount = Number(msg.work)+Number(document.getElementById("taskcount").innerText);			
-			console.log('#################"업무 결과값 "###########' + resulttaskCount)
+			console.log('#################"업무 결과값 "###########' + resulttaskCount);
 			var divtaskcount = document.getElementById("taskcount");
 			divtaskcount.innerHTML = resulttaskCount;
-			
-			
-			
+			/////////////////////////////////////////////
 			
 			var resultprojectCount = Number(msg.project)+Number(document.getElementById("projectcount").innerText);			
 			var divprojectcount = document.getElementById("projectcount");
 			divprojectcount.innerHTML = resultprojectCount;
 
+			/* 미승인 프로젝트 추가시 개수*/
+			var projectApprovalCount = Number(msg.projectApproval)+Number(document.getElementById("approveprojectcount").innerText);			
+			var divapprovalcount = document.getElementById("approveprojectcount");
+			divapprovalcount.innerHTML = projectApprovalCount;
 			
+			/*미승인 업무 개수                                    요거  broadsocket 에서 생성 한 것 모르겠으면 broadsocket ㄱㄱ*/
+			var taskApprovalCount = Number(msg.workapproval)+Number(document.getElementById("taskApprovalcount").innerText);			
+			var divtaskapprovalcount = document.getElementById("taskApprovalcount");
+			divtaskapprovalcount.innerHTML = taskApprovalCount;
 			
-			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount };
+			//최종 보스 allData - > 위에 선언한 데이터들의 값들을 뽑아서 넘겨준다. pollingchk.do 로 감  (PushController 로 이동 )
+			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount, "taskApproval":taskApprovalCount, "projectApproval":projectApprovalCount};
 			$(function(){
 				
     		$.ajax({
@@ -246,6 +290,8 @@ $('#birthDay').click(function(){
     			})
         };
 		
+		//각 메뉴에서 수신자 선택하고 글쓰기 버튼 클릭시 send 붙여놓으면 수신자를 뽑아온다. 수신자와, 메뉴이름은 버튼위에 hidden 으로 셋팅해놈.
+		//broadsocket.java  >  handleTextMessage 메서드로 들어감
 		function send() {
 			var msg = 
 				 	{

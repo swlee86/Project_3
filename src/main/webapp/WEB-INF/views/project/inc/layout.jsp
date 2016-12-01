@@ -260,7 +260,7 @@
 	   console.log("=>아이디 조직도 :emp_no : "+ emp_no);
 	   console.log("name32: "+ name);
 	   
-	   
+	   $('#hiddenEmp_no').val(emp_no);
 	   $('#rec_emp_no').val(emp_no);
 	   $('#rec_emp_name').val(name);
 	   

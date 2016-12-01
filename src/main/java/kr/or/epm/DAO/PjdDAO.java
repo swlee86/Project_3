@@ -25,7 +25,7 @@ public interface PjdDAO {
 	public int insertPjd();
 	
 	// 프로젝트 상세 수정하기 : TODO리스트
-	public int updatePjd();
+	public int updatePjd(HashMap map);
 	
 	// 진행 단계 처리하기
 	public int updatePjd_step(HashMap map);
@@ -69,4 +69,5 @@ public interface PjdDAO {
 	
 	//프로젝트 진행률 업데이트
 	public int updatePjProgress(String pjd_no);
+	
 }
