@@ -634,6 +634,7 @@ ul {
          //수신자 이름
          var rec_name = $(obj).parent().parent().children().eq(1).html();
          $('#rec_emp_no').val(rec_emp_no);
+         $('#hiddenEmp_no').val(rec_emp_no);
          $('#rec_name').val(rec_name);
          $('#myModal6').modal("hide");
       }

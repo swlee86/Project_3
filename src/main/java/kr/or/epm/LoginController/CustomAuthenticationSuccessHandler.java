@@ -35,11 +35,11 @@ import kr.or.epm.Service.PushService;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Push;
 
-@Controller
 public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 	
 	private SqlSession sqlsession;
 
+	
 	public void setSqlsession(SqlSession sqlsession) {
 		this.sqlsession = sqlsession;
 	}
@@ -126,12 +126,11 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		//로그인 성공시 session 객체들 사용
 		//미완료 taskcount 생성 > websocket 사용
 		session.setAttribute("customerId", authentication.getName());
-		session.setAttribute("taskcount", taskcount);
+		session.setAttribute("sessiontaskcount", taskcount);
 		session.setAttribute("emp_no", emp_no);
-		session.setAttribute("projectcount", projectcount);
+		session.setAttribute("sessionprojectcount", projectcount);
 		
-		
-		session.setAttribute("resultdata", resultdata);
+		session.setAttribute("sessionpushcount", resultdata);
 		
 		int intRedirectStrategy = decideRedirectStrategy(request, response);
 		switch(intRedirectStrategy){

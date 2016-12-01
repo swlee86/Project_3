@@ -12,6 +12,7 @@ import kr.or.epm.DAO.DeptDAO;
 import kr.or.epm.DAO.PositionDAO;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
+import kr.or.epm.VO.DeptJoinBonus;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
 import net.sf.json.JSONArray;
@@ -57,14 +58,67 @@ public class AdminService {
 	//부서 페이지 사용 - 지점에 따른 부서 리스트 출력
 	public List<Dept> listDept(String branch_name){
 		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
-		System.out.println("서비스 파라미터 : "+branch_name);
+		
 		List<Dept> list = null;
 		list = deptDAO.deptList(branch_name);
-		System.out.println("서비스 돌려주기 전 : "+list.size());
+		
 		return list; 
 	}
 	
+	//부서관리 > 부서 조회하기
+	public DeptJoinBonus selectChooseDept(String dept_no){
+		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
+		DeptJoinBonus dept= deptDAO.selectChooseDept(dept_no);
+		return dept;
+	}
 	
+	//부서관리 > 부서 정보 수정
+	public int insert_re_Dept(DeptJoinBonus dto){
+		
+		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
+		int result=0;
+		String pre_dept_no = dto.getDept_no();
+		//수정한 부서 정보 insert 1)
+		result = deptDAO.insert_re_Dept(dto);
+		
+		//이전 부서 update 2)
+		result += deptDAO.update_pre_dept(dto);
+	    	
+		//수정된 dept_no 조회하기 3)
+		String dept_no=deptDAO.search_new_dept_no(dto);
+		
+		//상여금 update 4)
+		dto.setDept_no(dept_no);
+		dto.setPre_dept_no(pre_dept_no);
+		
+		result +=deptDAO.modifyset_bonus(dto);
+		
+		return result;
+	}
+	
+	//부서 등록하기
+	public int addBranch(DeptJoinBonus dto){
+		//우리가 입력한 지점 이름
+		String branch_Name = dto.getBranch_name();
+		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
+		
+		//지점 번호 뽑아옴
+		String branch_No = deptDAO.selectBranchName_No(branch_Name);
+		//DB 에서 읽어온 지점 번호 셋팅
+		dto.setBranch_no(branch_No);
+		int result = 0;
+		//부서 정보 인서트
+		result = deptDAO.insertDept(dto);
+		
+		//부서번호 (dept_no  -> next.val 된 것 뽑아야 함)
+		String dept_No = deptDAO.selectDeptNo(dto.getBranch_name(), dto.getDept_name());
+		dto.setDept_no(dept_No);
+		
+		//상여금 설정 인서트
+		result += deptDAO.addDept_set_bonus(dto);
+		
+		return result;
+	}
 	
 	
 	

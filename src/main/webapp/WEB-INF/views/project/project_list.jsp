@@ -25,16 +25,19 @@
 </div>
 
 <div class="content animate-panel">
-
+<div class="row">
 	<div class="col-lg-12">
 		<div class="hpanel">
-			<div class="panel-heading hbuilt">
+			<!-- <div class="panel-heading hbuilt">
 				<div class="panel-tools">
 					<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 						class="closebox"><i class="fa fa-times"></i></a>
 				</div>
 				<small>프로젝트 리스트</small>
-			</div>
+			</div> -->
+			<div class="panel-heading">
+                <small>프로젝트 리스트</small>
+            </div>
 			<div class="panel-body">
 				<div class="form-group">
 					<select class="form-control" id="ctg" onchange="selectCtg()">
@@ -69,9 +72,11 @@
 									
 									<td>
 										<div class="progress m-t-xs full progress-striped ">
-											<div style="width:${list.pj_progress}%" aria-valuemax="100" aria-valuemin="0"
-												aria-valuenow="${list.pj_progress}%" role="progressbar"
-												class="progress-bar progress-bar-warning active">${list.pj_progress}%</div>
+											<c:if test="${list.pj_progress!=0}">
+												<div style="width:${list.pj_progress}%" aria-valuemax="100" aria-valuemin="0"
+													aria-valuenow="${list.pj_progress}%" role="progressbar"
+													class="progress-bar progress-bar-warning active">${list.pj_progress}%</div>
+											</c:if>
 										</div>
 									</td>
 									
@@ -107,10 +112,11 @@
 			</div>
 		</div>
 	</div>
+	</div>
 </div>
 
 <script src="vendor/jquery/dist/jquery.min.js"></script>
-<script>
+ <script>
 function selectCtg(){
 	
 	var makeTable = "";
@@ -143,10 +149,15 @@ function selectCtg(){
 		                           "</td><td>"+data.project[index].pj_start+"</td><td>"+data.project[index].pj_end+"</td>"+
 									
 
-		                           "<td><div class='progress m-t-xs full progress-striped'><div style='width:" + 
-		                           data.project[index].pj_progress+"%' aria-valuemax='100' aria-valuemin='0'aria-valuenow='"+
-		                           data.project[index].pj_progress+" role='progressbar' class='progress-bar progress-bar-warning active'>"+
-		                           data.project[index].pj_progress+"%</div></div></td><td>";
+		                           "<td><div class='progress m-t-xs full progress-striped'>";
+		                           
+		                           if(data.project[index].pj_progress != 0){
+			                           makeTable += "<div style='width:" + 
+			                           data.project[index].pj_progress+"%' aria-valuemax='100' aria-valuemin='0'aria-valuenow='"+
+			                           data.project[index].pj_progress+" role='progressbar' class='progress-bar progress-bar-warning active'>"+
+			                           data.project[index].pj_progress+"%</div>";
+		                           }
+		                           makeTable += "</div></td><td>";
 		                           
 		                           
 		                           if(data.project[index].pj_step_name == "진행"){
@@ -172,4 +183,4 @@ function selectCtg(){
 		});
 	}
 
-</script>
+</script> 
