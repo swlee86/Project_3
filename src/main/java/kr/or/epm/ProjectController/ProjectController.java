@@ -244,6 +244,7 @@ public class ProjectController {
 		
 		//pj_step의 리스트
 		List<Pj_step> pj_step_list =projectservice.selectPjStepList();
+		
 		model.addAttribute("peoplelist",peoplelist);		
 		model.addAttribute("pjd",pjd);
 		model.addAttribute("pjddlist",pjddlist);
