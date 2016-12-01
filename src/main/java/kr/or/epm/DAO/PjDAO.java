@@ -15,6 +15,9 @@ import kr.or.epm.VO.Task;
 
 public interface PjDAO {
 	
+	//프로젝트 승인처리 상세의 상세 프로젝트보기 
+	public List<Pjd> selectPjd_detail(String pj_no);
+	
 	// 프로젝트 등록하기
 	public int insertPj(Pj pj);
 	
@@ -25,7 +28,7 @@ public interface PjDAO {
 	public List<Pj> selectPj_rec(int cpage, int pagesize, String field, String query, String rec_emp_no);
 	
 	// 프로젝트 승인 대기함 상세보기
-	public Pj selectPj_detail();
+	public Pj selectPj_detail(String pj_no);
 	
 	// 프로젝트 승인 대기함에서 삭제하기
 	public int deletePj_rec();
@@ -68,4 +71,6 @@ public interface PjDAO {
 	
 	//프로젝트 작성자의 emp_no 가져오기
 	public String selectPj_writeempno(String pjd_no);
+
+	
 }

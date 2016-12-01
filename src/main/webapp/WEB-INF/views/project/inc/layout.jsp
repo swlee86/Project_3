@@ -26,6 +26,8 @@
 	<link rel="stylesheet"
 	href="vendor/fullcalendar/dist/fullcalendar.min.css" />
 	
+	  <link rel="stylesheet" href="vendor/fooTable/css/footable.core.min.css" />
+	  
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
@@ -436,6 +438,11 @@
 <script src="vendor/jquery.flot.spline/index.js"></script>
 <script src="vendor/summernote/dist/summernote.min.js"></script>
 <script src="vendor/peity/jquery.peity.min.js"></script>
+
+<script src="vendor/sparkline/index.js"></script>
+<script src="vendor/fooTable/dist/footable.all.min.js"></script>
+
+
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <!--풀캘린더 스크립트-->
@@ -444,6 +451,9 @@
 <script>
 
 	$(function(){
+	    // Initialize Example 1
+	    $('#example1').footable();
+	    
 		// Initialize summernote plugin
  	    $('.summernote').summernote();
 

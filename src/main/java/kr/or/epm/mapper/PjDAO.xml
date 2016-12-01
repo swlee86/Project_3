@@ -8,12 +8,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	작성일 : 2016-11-20
 	작성자 : 백승아
 	사용 목적 : 프로젝트에 대한 mapper
+	
+	작성일 : 2016-11-25
+	작성자 : 박지은
+	사용 목적 : 프로젝트 추가, 프로젝트 승인대기함에 대한 mapper
 -->
 	
  	<select id="selectApprovalCount" resultType="int">
 		select nvl(count(*),0) 
 		from pj  p join emp e on p.emp_no = e.emp_no
-		where rec_emp_no = #{param1} and (${param2} like '%${param3}%')
+		where p.rec_emp_no = #{param1} and (${param2} like '%${param3}%') and p.step_no != '1'
 	</select> 
 	
 	<select id="selectStepName">
@@ -74,17 +78,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 승인 대기함 상세보기 -->
 	<select id="selectPj_detail" resultType="kr.or.epm.VO.Pj">
-		select p.pj_no, p.emp_no, e.emp_name, 
-			   pj_title, pj_content, pj_start, 
-			   pj_end, step_no, d.emp_no
-		from pj p join emp e
-		on p.emp_no = e.emp_no
-  		left outer join (select distinct emp_no, d.pj_no
-                     	 from pjd_people p join pjd d
-                     	 on p.pjd_no = d.pjd_no
-                     	 where d.pj_no = #{pj_no}) d
-    	on p.pj_no = d.pj_no
-		where p.pj_no = #{pj_no}
+	  select  p.emp_no,e.emp_name,pj_title, pj_content, pj_start, pj_end, step_no
+      from pj p join emp e on p.emp_no = e.emp_no 
+      where  p.pj_no=#{pj_no}
+	</select>
+	
+	<!-- 프로젝트 승인 대기함 상세의 상세 프로젝트 보기 -->
+	<select id="selectPjd_detail" resultType="kr.or.epm.VO.Pjd">
+	 	select distinct p.pjd_no,pjd_title, pjd_content, pjd_start, pjd_end
+   		from pjd p join pjd_people p_p
+   		on p.pjd_no = p_p.pjd_no
+   		where pj_no=#{pj_no}
 	</select>
 	
 	<!-- 프로젝트 승인 대기함에서 삭제하기 -->

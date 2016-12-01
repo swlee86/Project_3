@@ -31,6 +31,9 @@ import kr.or.epm.VO.Pjdd;
  * 
  * 수정일 : 2016-11-23
  * 작성자 : 김주희
+ * 
+ * 수정일 : 2016-11-25
+ * 작성자 : 박지은
  */
 
 @Controller
@@ -213,7 +216,16 @@ public class ProjectController {
 
 	//대기중인 프로젝트 제목 클릭시 
 	@RequestMapping("/project_approve_detailview.do")
-	public String project_approve_detailview(){
+	public String project_approve_detailview(String pj_no, Model model){
+		System.out.println("pj_no : "+pj_no);
+		Pj pj = projectservice.selectPj_detail(pj_no);
+		List<Pjd> list = projectservice.selectPjd_detail(pj_no);
+		System.out.println("list 사이즈 : " + list.size());
+		int listsize =  list.size();
+		
+		model.addAttribute("listsize", listsize);
+		model.addAttribute("list", list);
+		model.addAttribute("pj", pj);
 		return "project.projectApproveDetailView";
 	}
 	

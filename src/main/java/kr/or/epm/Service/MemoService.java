@@ -10,6 +10,14 @@ import kr.or.epm.DAO.BusinessBoardDAO;
 import kr.or.epm.DAO.MemoDAO;
 import kr.or.epm.VO.Memo;
 import kr.or.epm.VO.Memocolor;
+/*
+ * 작성일 : 2016-11-16
+ * 작성자 : 이상원
+ * 사용 목적 : 메모 기능 구현 서비스
+ * 
+ * 수정일 : 2016-11-30
+ * 작성자 : 박지은
+ */
 
 @Service
 public class MemoService {
