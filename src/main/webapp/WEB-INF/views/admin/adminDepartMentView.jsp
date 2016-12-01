@@ -75,11 +75,12 @@
 							<div class="panel-body">
 
 								<form class="form-horizontal">
-									<label class="form-control">지점 선택</label> <select
-										class="form-control">
+									<label class="form-control">지점 선택</label> 
+									<select class="form-control" id="choosebranch">
 										<option>선택</option>
-										<option>서울</option>
-										<option>제주</option>
+											<c:forEach var="list" items="${branchList}">
+												<option value="${list.branch_name}">${list.branch_name}</option>
+											</c:forEach>
 									</select> <br />
 									<div class="col-md-4"></div>
 									<div class="col-md-4">
@@ -111,6 +112,9 @@
 
 							<div class="panel-body">
 								<form class="form-horizontal">
+								  <input type="hidden" id="hiddept_no">
+								  <input type="hidden" id="hidbranch_no">
+								  <input type="hidden" id="hidbranch_name">
 									<div class="form-group">
 										<div class="col-md-3">
 											<label>지점명</label>
@@ -137,7 +141,7 @@
 									</div>
 						    		<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" value="수정">
+											<input type="button" class="btn btn-success" id="modifyDeptBtn" value="수정">
 										</div>
 									</div>
 
@@ -162,12 +166,12 @@
 
 							<div class="panel-body">
 								<form class="form-horizontal">
-									<div class="form-group">
+								  	<div class="form-group">
 										<div class="col-md-3">
 											<label>지점명</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control">
+											<input type="text" id="addbranch_name" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
@@ -175,7 +179,7 @@
 											<label>부서명</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control">
+											<input type="text" id="adddept_name" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
@@ -183,12 +187,12 @@
 											<label>상여금 지급 비율</label>
 										</div>
 										<div class="col-md-9">
-											<input type="text" class="form-control">
+											<input type="text" id="addbonus_percent" class="form-control">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-6">
-											<input type="submit" class="btn btn-success" value="등록">
+											<input type="button" id="insertDeptBtn" class="btn btn-success" value="등록">
 										</div>
 									</div>
 

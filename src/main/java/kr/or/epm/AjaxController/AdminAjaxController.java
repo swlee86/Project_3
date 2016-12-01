@@ -17,6 +17,7 @@ import org.springframework.web.servlet.View;
 import kr.or.epm.Service.AdminService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
+import kr.or.epm.VO.DeptJoinBonus;
 import kr.or.epm.VO.PositionJoin;
 import net.sf.json.JSONArray;
 
@@ -73,6 +74,49 @@ public class AdminAjaxController {
 		System.out.println("컨트롤러 : "+branch_name);
 		List<Dept> list = adminservice.listDept(branch_name);
 		model.addAttribute("deptlist", list);
+		return jsonview;
+	}
+	
+	//부서 관리 > 부서 등록하기
+	@RequestMapping("/deptAdd.do")
+	public View DeptAdd(DeptJoinBonus dto, Model model){
+		System.out.println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{컨트롤러 시작 : "+dto.toString());
+		int result = adminservice.addBranch(dto);
+		
+		if(result >= 2){
+			System.out.println("성공");
+			model.addAttribute("result", "성공");
+		}else{
+			System.out.println("실패 ");
+			model.addAttribute("result", "실패");
+		}
+		
+		return jsonview;
+	}
+	
+	//부서관리> 부서 조회하기
+	@RequestMapping("/selectDeptList.do")
+	public View selectDeptList(String dept_no, Model model){
+	    DeptJoinBonus dept = adminservice.selectChooseDept(dept_no);
+		System.out.println("조회한 부서 조회: "+dept.toString());
+		model.addAttribute("dept", dept);
+		return jsonview;
+	}
+	
+	//부서관리 > 정보 수정
+	@RequestMapping("/modifyDept.do")
+	public View modifyDept(DeptJoinBonus mydata, Model model){
+		System.out.println("controllerrrrrrrrrrrrrrrrrrrrrrrr :"+mydata.toString());
+	    int result =adminservice.insert_re_Dept(mydata);
+		
+	    if(result >= 3){
+			System.out.println("성공");
+			model.addAttribute("result", "성공");
+		}else{
+			System.out.println("실패 ");
+			model.addAttribute("result", "실패");
+		}
+		
 		return jsonview;
 	}
 	
