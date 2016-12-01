@@ -16,6 +16,8 @@ public interface PushDAO {
 	
 	List<Task> selecttasklist(String emp_no, int start, int end);
 	
+	List<Task> selectmytasklist(String emp_no);
+	
 	List<Pj> selectPj_rec(String emp_no, int start, int end);
 	
 	String myprojectCount(String emp_no);

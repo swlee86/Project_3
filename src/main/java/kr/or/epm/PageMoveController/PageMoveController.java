@@ -79,6 +79,23 @@ public class PageMoveController {
  			
  		}
 		
+		List<Task> mytasklist = null;
+		
+		if(emp_no_chk==true){
+ 			String my_task = "진행중인 업무 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("my_task", my_task);
+ 		}else{
+ 			try{
+ 				mytasklist = pushService.mytasklist(emp_no, cpage, pgsize);
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+ 			}finally{
+ 				model.addAttribute("mytasklist", mytasklist);
+ 			}
+ 			
+ 			
+ 		}
+		
 		
 		/////////////////////인덱스에 띄워 줄 프로젝트 내용 구하기 시작////////////////////////////////////////////////////
 		List<Pj> pjlist = null;
