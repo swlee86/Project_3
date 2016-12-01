@@ -379,36 +379,9 @@ ul {
       });
       
       
-      //날짜 차이 구하는 함수
-      // 사용 X
-       function calDateRange(val1, val2)
-    {
-        var FORMAT = "-";
-        // FORMAT을 포함한 길이 체크
-        if (val1.length != 10 || val2.length != 10)
-            return null;
-        // FORMAT이 있는지 체크
-        if (val1.indexOf(FORMAT) < 0 || val2.indexOf(FORMAT) < 0)
-            return null;
-        // 년도, 월, 일로 분리
-        var start_dt = val1.split(FORMAT);
-        var end_dt = val2.split(FORMAT);
-        // 월 - 1(자바스크립트는 월이 0부터 시작하기 때문에...)
-        // Number()를 이용하여 08, 09월을 10진수로 인식하게 함.
-        start_dt[1] = (Number(start_dt[1]) - 1) + "";
-        end_dt[1] = (Number(end_dt[1]) - 1) + "";
 
-        var from_dt = new Date(start_dt[0], start_dt[1], start_dt[2]);
-        var to_dt = new Date(end_dt[0], end_dt[1], end_dt[2]);
-        var result = (to_dt.getTime() - from_dt.getTime());
-        var result1 = result/1000/60/60/24;
-        return result1;
-    }
       
       $(function() {
-    	  
-    	  
-    	  });
     	  
       // 입력한 datepicker의 업무 기한 넘겨주기
          $('#taskForm').submit(function(){
@@ -455,7 +428,7 @@ ul {
            				$('#organization').html(litag);
         			}
         		})
-               });
+            });
          
          
          //수신자 아이콘 클릭시
@@ -496,7 +469,7 @@ ul {
             });
          
          });
-      
+      });
 
       //부서 출력 하는 아작스
       function seeDepart(obj, empSelectNumber, choose) {

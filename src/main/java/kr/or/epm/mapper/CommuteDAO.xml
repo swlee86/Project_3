@@ -181,13 +181,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자 근태 마감 -->
 	<select id="selectCommute_all_Close" resultType="kr.or.epm.VO.PayList">
-	select d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, mgr_check
+	select commute_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, mgr_check
    from emp e join position p
    on e.position_no = p.position_no
-  join (select emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time, mgr_check
+  join (select commute_no, emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time, mgr_check
          from commute
          where to_char(to_date(regdate), 'yyyy-mm') =#{param1}
-         group by emp_no, mgr_check) c
+         group by emp_no, mgr_check, commute_no) c
    on e.emp_no = c.emp_no
    join (select e.emp_no, b.branch_name, d.dept_name, l.low_dept_name
          from emp e join low_dept l

@@ -101,6 +101,13 @@ public class CommuteService {
 		return result;
 	}
 	
+	//관리자용 - 근태 마감  확인 - 
+	public int updateCommute_mgr_check(String[] commute_no) {
+
+		
+		
+		return 0;
+	}
 	
 	//오늘의 근태정보 조회
 	public Commute selectCommute_today(String emp_no){
@@ -354,4 +361,6 @@ public class CommuteService {
 		
 		return list;
 	}
+
+	
 }
