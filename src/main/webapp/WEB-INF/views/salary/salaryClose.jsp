@@ -93,7 +93,7 @@
                     <button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 </div>
          </div>
-			</div>
+       </div>
 		</div>
 	</div>
 </div>
