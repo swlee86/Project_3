@@ -137,7 +137,7 @@
                             You have <span id="pushcount2">${sessionpushcount}</span> new works
                         </div>
                     	<li  style="width: 340px;">진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
-                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">0</span>건입니다.</li>
+                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">${sessionApprovalcount}</span>건입니다.</li>
                     	<li>미확인 하신 업무는<span id="taskcount">${sessiontaskcount}</span>건입니다.</li>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
@@ -204,6 +204,7 @@ $('#birthDay').click(function(){
 		var webSocket;
 		webSocket = new WebSocket("ws://192.168.0.142:8090/epm/broadsocket.do");
 		
+		//서버로 부터 온 메세지
         webSocket.onmessage = function (message){
 			console.log("#########message : " + message.data);
 			
@@ -231,9 +232,12 @@ $('#birthDay').click(function(){
 			var divprojectcount = document.getElementById("projectcount");
 			divprojectcount.innerHTML = resultprojectCount;
 
+			/* 추가시 개수*/
+			var projectApprovalCount = Number(msg.projectApproval)+Number(document.getElementById("approveprojectcount").innerText);			
+			var divapprovalcount = document.getElementById("approveprojectcount");
+			divapprovalcount.innerHTML = projectApprovalCount;
 			
-			
-			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount };
+			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount, "projectApproval":projectApprovalCount};
 			$(function(){
 				
     		$.ajax({
