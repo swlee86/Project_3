@@ -47,7 +47,7 @@ public class broadsocket extends TextWebSocketHandler {
 	}
 
 	
-	
+	//header.jsp 에서 send() 메서지 호출시 메세지를 받아옴
 	@Override
 	protected void handleTextMessage(
 			WebSocketSession session, TextMessage message) throws Exception {
@@ -71,7 +71,7 @@ public class broadsocket extends TextWebSocketHandler {
 		    	
 		    }
 		    
-	     	
+	     		//특정 사람 뽑는 부분
 			    for (String mapkey : users.keySet()){
 			    	System.out.println(mapkey);
 			    	if(mapkey.equals(emp_no)){
@@ -86,27 +86,34 @@ public class broadsocket extends TextWebSocketHandler {
 			    					System.out.println("일치해서 들어온 맵키 : " + mapkey);
 			    			    
 			    			        JSONObject dataInfo = new JSONObject();
-			    			        dataInfo.put("alarm", "1");
+			    			        
 			    			        
 			    			        if(menuname.equals("업무")){
+			    			        	dataInfo.put("alarm", "2");
 			    			        	dataInfo.put("work", "1");
+			    			        	dataInfo.put("workapproval", "1");
 			    			        	dataInfo.put("project", "0");
 			    			        	dataInfo.put("projectApproval", "0");
 			    			        }
 			    			        
 			    			        if(menuname.equals("프로젝트")){
+			    			        	dataInfo.put("alarm", "1");
 			    			        	dataInfo.put("work", "0");
+			    			        	dataInfo.put("workapproval", "0");
 			    			        	dataInfo.put("project", "1");
 			    			        	dataInfo.put("projectApproval", "0");
 			    			        }
 			    			        
-			    			        if(menuname.equals("프로젝트승인")){
+			    			        if(menuname.equals("프로젝트승인"))
+			    			        {
+			    			        	dataInfo.put("alarm", "1");
 			    			        	dataInfo.put("work", "0");
+			    			        	dataInfo.put("workapproval", "0");
 			    			        	dataInfo.put("project", "0");
 			    			        	dataInfo.put("projectApproval", "1");
 			    			        }
 			    			       
-			    			      
+			    			        //알람 숫자 증가 후 다시 돌려주면 - > header.jsp  > onmessage 로 돌아감 json 들고 
 			    			        String jsonInfo = dataInfo.toJSONString();
 			    			        System.out.println("JsonInfo 만들어진 값 확인 :  ========================" + jsonInfo);
 			    			        s.sendMessage(new TextMessage(jsonInfo));
@@ -114,12 +121,7 @@ public class broadsocket extends TextWebSocketHandler {
 			    			}
 			    		}
 			    	}
-	         
-	   
-		    
 
-		    
-	        
 	}
 
 	@Override
