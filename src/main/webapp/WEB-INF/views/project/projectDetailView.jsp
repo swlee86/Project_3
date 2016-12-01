@@ -43,46 +43,58 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<table  cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
+						<table  id="pjd_detail_table" cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
 							<tr>
 								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">상세 프로젝트 제목</th>
-                              	<td id="pjd_name">${pjd.pjd_title}</td>
+                              	<td id="pjd_name" width="30%">
+                              		<input type="text" class="form-control table-input" id="pjd_title" value="${pjd.pjd_title}" disabled="disabled" style="border: 0px; background-color: white;">
+                              	</td>
                               	<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">진행 상태</th>
-                              	<td id="pjd_step">
-		                        	<c:choose>
-			                        	<c:when test="${pj_emp_no==login_emp_no}">
-			                              	<div class="form-group">
-			                              		<select class="form-control input-sm approval-select" style="width: 70%; ">
-			                              			<c:forEach var="s" items="${pj_step_list}">
-			                              				<option value="${s.pj_step_no}" ${pjd.pj_step_name == s.pj_step_name ? 'selected="selected"' : ''}>${s.pj_step_name}</option>
-			                              			</c:forEach>
-					                            </select> 
-					                        	<input type="button" id="approval_btn" class="btn btn-default btn-sm" value="수정" onclick="modify_approval()">
-					                        </div>
-				                        </c:when>
-				                        <c:otherwise>
-				                        	<div class="form-group">
-				    	                        <select class="form-control input-sm" disabled="disabled">	
-						                              <option selected="selected" value="${pjd.pj_step_no}">${pjd.pj_step_name}</option>
-						                        </select>
-						                    </div>
-			        	                </c:otherwise>
-		                           </c:choose>
-		                              
+                              	<td id="pjd_step" width="30%">
+		                        	<div class="form-group">
+				    	            	<select class="form-control input-sm table-input" id="step_no" disabled="disabled">	
+				    	            		<c:forEach var="s" items="${pj_step_list}">
+				    	            		   <option value="${s.pj_step_no}" ${pjd.pj_step_name == s.pj_step_name ? 'selected="selected"' : ''}>${s.pj_step_name}</option>
+				    	          			</c:forEach>
+						                </select>
+						            </div> 
                               	</td>
 							</tr>
 							<tr>
 								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">시작일</th>
-	                        	<td id="pjd_start">${pjd.pjd_start}</td>
+	                        	<td>
+	                        		<div class="form-inline">
+	                        			<div class="input-group date">
+    		  								<input type="text" class="form-control table-input input-sm formstartDate" id="pjd_start" name="input" value="${pjd.pjd_start}" disabled="disabled" style="background-color: white;">
+    		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
+    		 							</div>
+    		 						</div>
+	                        	</td>
 	                        	<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">종료일</th>
-	                       		<td id="pjd_end">${pjd.pjd_end}</td>
+	                       		<td>	                       		
+	                       			<div class="form-inline">
+	                        			<div class="input-group date">
+    		  								<input type="text" class="form-control table-input input-sm formendDate" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white;">
+    		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
+    		 							</div>
+    		 						</div>
+	                       		
+	                       		</td>
                            	</tr> 
 							<tr>
 								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">상세 프로젝트 내용</th>
-                              	<td colspan="3"id="pjd_content">${pjd.pjd_content}</td> 
+                              	<td colspan="3">
+                        	    	<input type="text" class="form-control table-input" id="pjd_content" value="${pjd.pjd_content}" disabled="disabled" style="border: 0px; background-color: white;">
+                              	</td> 
 							</tr>
 						</table>
-					
+						
+						<div class="col-md-offset-10 col-md-2">
+							<c:if test="${pj_emp_no==login_emp_no}">
+								<input type="button" id="modify_pjd_btn" class="btn btn-default btn-md" value="수정" onclick="modify_pjd()">
+							</c:if>
+						</div>
+						
 					</div>
 				
 					</br>
@@ -350,20 +362,44 @@ function modify_pjdd(id){
 
 
 
-function modify_approval() {
-	var selected = $(".approval-select option:selected").val();
-	var pjd_no = ${pjd_no};
+function modify_pjd(){
 	
-	$.ajax(
-			{
-				url  : "update_pjd_pjstepno.do",
-				data : {
-					"pjd_no" : pjd_no,	
-					"pj_step_no" : selected,
-				},
-				success : function(data){
+	if($('#modify_pjd_btn').val()=="수정"){
+		$('.table-input').attr('disabled',false);
+		$('#modify_pjd_btn').val("수정완료");
+	}
+	
+	else if($('#modify_pjd_btn').val()=="수정완료"){
+		
+		var pjd_no = ${pjd_no};
+		var pjd_title = $('#pjd_title').val();
+		var pjd_content = $('#pjd_content').val();
+		var pj_step_no = $("#step_no > option:selected").val();
+		var pjd_start =$('#pjd_start').val();
+		var pjd_end = $('#pjd_end').val();
+		
+		
+		//alert("pjd_no" + pjd_no + "/ pjd_title" + pjd_title + "/ pjd_content "+pjd_content + "/ pj_step_no"+ pj_step_no + "/ pjd_start" + pjd_start + "/ pjd_end" + pjd_end);
+		
+	 	$.ajax(
+				{
+					url  : "updatePjd.do",
+					data : {
+						"pjd_no" : pjd_no,
+						"pjd_title" : pjd_title,
+						"pjd_content" : pjd_content,
+						"pj_step_no" : pj_step_no,
+						"pjd_start" : pjd_start,
+						"pjd_end" :pjd_end,
+					},
+					success : function(data){
+						alert("수정 완료되었습니다.");
+					}
 				}
-			}
-	);
+		);		
+		
+		$('.table-input').attr('disabled',true);
+		$('#modify_pjd_btn').val("수정");
+	}
 }
 </script>

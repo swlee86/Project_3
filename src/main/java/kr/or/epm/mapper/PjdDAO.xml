@@ -41,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update pjd
 		set pjd_title = #{pjd_title},
 			pjd_content = #{pjd_content},
+			pj_step_no = #{pj_step_no},
 			pjd_start = #{pjd_start},
 			pjd_end = #{pjd_end}
 		where pjd_no = #{pjd_no}

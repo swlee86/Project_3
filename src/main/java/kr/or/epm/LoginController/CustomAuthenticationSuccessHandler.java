@@ -92,28 +92,37 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-		
+		//1.로그인 성공 할때 시작됨 
 		request.getSession().removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 		System.out.println("########################로그인 성공시 스타트##################");
 		System.out.println("아이디 : " + authentication.getName());
 		
+		//알림에 각 항목의 카운트를 담기 위한 변수
 		String emp_no =null;
 		String taskcount = null;
 		String projectcount = null;
+		
+		//내가 추가한 부분 try 내부에 dao 이용해서 쿼리문 돌려줘야함.
+		String approval = "1";
+		String taskApprovalcount = "1";
+		
 		int resultdata = 0;
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		emp_no = pushdao.selectEmp_no(authentication.getName());
 
 		try{
+			//ex) 승인 처리 후 확인 버튼 눌르는 경우 controller 부분에 추가 해준다. 쿼리문 씀 ////
 			System.out.println("사번? : " + emp_no);
 			taskcount = pushdao.taskCount(emp_no);
 			projectcount = pushdao.myprojectCount(emp_no);
 			System.out.println("미처리 taskcount : " + taskcount);
 			System.out.println("내가 진행중인 프로젝트 count : " + projectcount);
-			resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);
+
+			//각 항목의 카운트의 총 합
+			resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount) +Integer.parseInt(approval)+Integer.parseInt(taskApprovalcount);
 			System.out.println("ResultData입니다 : " + resultdata);
-			
+			//////////////////////////////////////////////////////////////
 					
 		}catch(Exception e){
 			System.err.println(e.getMessage());
@@ -125,10 +134,15 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		
 		//로그인 성공시 session 객체들 사용
 		//미완료 taskcount 생성 > websocket 사용
-		session.setAttribute("customerId", authentication.getName());
+		session.setAttribute("customerId", authentication.getName());	//두개 세션은 로그인용
+		session.setAttribute("emp_no", emp_no); //두개 세션은 로그인용
+
+		//////////////////////////////////////////////////////////////////////////컨트롤러 쪽에 try내부 소스랑
+		///////////같이 복붙.
 		session.setAttribute("sessiontaskcount", taskcount);
-		session.setAttribute("emp_no", emp_no);
 		session.setAttribute("sessionprojectcount", projectcount);
+		session.setAttribute("sessiontaskApprovalcount", taskApprovalcount);
+		session.setAttribute("sessionApprovalcount", approval);//프로젝트 내가 승인 해야할 승인 여부 세션 생성 
 		
 		session.setAttribute("sessionpushcount", resultdata);
 		

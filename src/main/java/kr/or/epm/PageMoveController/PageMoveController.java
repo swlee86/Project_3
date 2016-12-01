@@ -242,12 +242,7 @@ public class PageMoveController {
 	public String sanction_approve_view() {
 		return "electronic_sanction.sanction_approve_view";
 	}
-	
-	//메일  > 메일세부글 보기 페이지 이동
-	@RequestMapping("/mail_detail.do")
-	public String mailbox_read() {
-		return "mail.mail_detail";
-	}
+
 	
 	//헤더  > 차트 (매출 현황보기)
 	@RequestMapping("/analytics.do")

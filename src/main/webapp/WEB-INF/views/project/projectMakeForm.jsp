@@ -87,8 +87,9 @@
 							</table>
 							<div class="pull-right" style="text-align:center;">
 								<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-close"></i></a>
-								<button type="submit"  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Next <i class="fa fa-chevron-right"></i></button>
-								
+								<button type="submit"  onclick='send();' class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Next <i class="fa fa-chevron-right"></i></button>
+								<input type="hidden" id="hiddenEmp_no">
+								<input type="hidden" id="hiddenMenuName" value="프로젝트승인">
 							</div>
 						</div>
 						</form>	

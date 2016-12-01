@@ -43,7 +43,7 @@ public class ReceiveMailImap {
             props.setProperty("mail.store.protocol", "imaps");
             Session session = Session.getDefaultInstance(props, null);
             store = session.getStore("imaps");
-            //id와 pwd 부분에 네이버 아이디와 비밀번호를 넣습니다. 첫 번째 인자에는 원하는 메일의 imap 주소를 넣습니다.(저는 네이버를 사용했습니다.)
+            //첫 번째 인자에는 원하는 메일의 imap 주소를 넣습니다.(저는 네이버를 사용했습니다.)
             store.connect("imap.gmail.com", id, pwd);
             //Inbox라고 써있는 부분에 받아오고 싶은 메일 폴더 이름을 넣습니다. Inbox는 받은메일함 폴더를 의미합니다.
             folder = store.getFolder("Inbox");
@@ -93,8 +93,8 @@ public class ReceiveMailImap {
        
           /* for (int i = 0; i < messages.length; ++i) {*/
           /*  for (int i = 0; i < messages.length; ++i) {*/
-            int start = cpage * pgsize - (pgsize - 1);
-    		int end = cpage * pgsize;
+            int start = cpage * pgsize - (pgsize - 1); //1
+    		int end = cpage * pgsize;						//5
 
     		if(messages.length<(1+end)){
                 for (int i = messages.length-(start); i>-1; i--) {

@@ -200,5 +200,24 @@ public class ProjectDetailService {
 		result = dao.updatePjd_step(map);
 		return result;
 	}
+	
+	//프로젝트 상세 내용 수정하기
+	public int updatePjd(String pjd_no, String pjd_title, String pjd_content, String pj_step_no, String pjd_start, String pjd_end){
+		System.out.println("updatePjd() 서비스");
+		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
+		int result= 0;
+		
+		HashMap map = new HashMap();
+		map.put("pjd_no", pjd_no);
+		map.put("pjd_title", pjd_title);
+		map.put("pjd_content", pjd_content);
+		map.put("pj_step_no", pj_step_no);
+		map.put("pjd_start", pjd_start);
+		map.put("pjd_end", pjd_end);
+		
+		result = dao.updatePjd(map);
+		
+		return result;
+	}
 }
 	

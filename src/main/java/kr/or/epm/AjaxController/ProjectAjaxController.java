@@ -6,6 +6,8 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd_people;
 import kr.or.epm.VO.Pjdd;
+import kr.or.epm.VO.Task;
 
 /*
  * 작성자 : 김주희
@@ -161,4 +164,43 @@ public class ProjectAjaxController {
 		
 		return jsonview;
 	}
+	
+	//상세 내용 수정(updatePjd)
+	@RequestMapping(value="/updatePjd.do")
+	public View updatePjd(String pjd_no, String pjd_title, String pjd_content, String pj_step_no, String pjd_start, String pjd_end){
+		int result = 0;
+		System.out.println("pjd_no"+pjd_no+"pjd_title"+pjd_title+"pjd_content"+pjd_content+"pj_step_no"+pj_step_no+"pjd_start"+pjd_start+"pjd_end"+pjd_end);
+		
+		result = projectdetailservice.updatePjd(pjd_no, pjd_title, pjd_content,pj_step_no,pjd_start,pjd_end);
+		
+		return jsonview;
+	}
+	
+	// 검색하기
+	@RequestMapping(value = "/project_list.do", method = RequestMethod.POST)
+		public View project_list_search(HttpServletRequest request, Principal principal, Model model) {
+
+			System.out.println("project 검색을 시작합니다");
+
+			// 로그인 id
+			String id = principal.getName();
+			System.out.println("id : " + id);
+			String emp_no = commonservice.selectEmp_no(id);
+			System.out.println("로그인한 사원의 emp_no : " + emp_no);
+
+			String key = request.getParameter("selectSearch");
+			String value = request.getParameter("input");
+			String cg_no = request.getParameter("cg_no");
+
+			System.out.println("cg_no : " + cg_no);
+
+			System.out.println("검색  기준 : " + key + " // 검색 값 : " + value);
+
+			// 목록 가져오기
+			/*List<Task> list = service.searchTask(emp_no, cg_no, key, value);
+
+			model.addAttribute("searchList", list);
+*/
+			return jsonview;
+		}
 }
