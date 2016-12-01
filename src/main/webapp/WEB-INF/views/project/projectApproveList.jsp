@@ -7,7 +7,6 @@ $(function(){
 		if($('#pj_approval_search').val() == 'step_no'){
 			$('#pj_approval_search_keyword').empty();
 			$('#pj_approval_search_keyword').innerHTML('<select class="form-control input-sm" name="q">'+
-															'<option value="1">승인</option>'+
 															'<option value="2">승인거부</option>'+
 															'<option value="3">보류</option>'+
 															'<option value="4">미승인</option>'+
@@ -63,7 +62,7 @@ $(function(){
             <div class="panel-body">
 					<div class="row text-right">
 						<div class="col-md-6"></div>
-						<form action="" class="form-inline ">
+						<form action="projectApprove.do" class="form-inline ">
 							<div class="col-md-2">
 								<div class="form-group">
 									<select class="form-control input-sm" name="f" id="pj_approval_search">
@@ -112,17 +111,31 @@ $(function(){
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><input type="checkbox" class="i-checks"></td>
-                        <td>박성준</td>
-                        <td>애플펜</td>
-                        <td>2016-11-16&nbsp; &nbsp;~&nbsp; &nbsp;2016-11-26</td>
-                        <td><a href="project_approve_detailview.do">우리집에 왜왔니</a></td>
-                    </tr>
+                    <c:forEach items="${list}" var="p">
+	                    <tr>
+	                        <td><input type="checkbox" class="i-checks"></td>
+	                        <td>${p.emp_name}</td>
+	                        <td><a href="project_approve_detailview.do">${p.pj_title}</a></td>
+	                        <td>${p.pj_start}&nbsp; &nbsp;~&nbsp; &nbsp;${p.pj_end}</td>
+	                        <td>
+	                        	<c:choose> 
+	                        		<c:when test="${p.step_no == '2'}">
+	                        			승인거부
+	                        		</c:when>
+	                        		<c:when test="${p.step_no == '3'}">
+	                        			보류
+	                        		</c:when>
+	                        		<c:when test="${p.step_no == '4'}">
+	                        			미승인
+	                        		</c:when>
+	                        	</c:choose>
+	                        </td>
+	                    </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button"  class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">일괄결재</button>
+                	<button type="button"  class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">일괄승인</button>
                 </div>
 			</div>
 
@@ -139,7 +152,7 @@ $(function(){
 							<a class="btn btn-default"
 								href="contacts.do?tapno=${tapno}&pg=${pg-1}&f=${field}&q=${query}&group=${group}">
 								&nbsp;<i class="fa fa-chevron-left"></i>
-							</a>
+							</a>f
 						</c:if>
 
 						<c:forEach var="i" begin="1" end="${pagecount}">

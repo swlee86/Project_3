@@ -289,8 +289,7 @@ public class TaskController {
 		String empno = (String)session.getAttribute("emp_no");
 		String taskcount = pushservice.taskCount(empno);
 		String projectcount = pushservice.myprojectCount(empno);
-		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);
-		
+		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);	
 		session.setAttribute("sessiontaskcount", taskcount);
 		session.setAttribute("sessionpushcount", resultdata);
 		// 업무 참여자 상세 가져오기
