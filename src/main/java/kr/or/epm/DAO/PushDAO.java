@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Emp_detail;
+import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Push;
 import kr.or.epm.VO.Task;
 
@@ -13,7 +14,9 @@ public interface PushDAO {
 	//업무 테이블에서 읽지 않은 리스트 가지고 오기
 	String taskCount(String emp_no);
 	
-	List<Task> selecttasklist(String emp_no);
+	List<Task> selecttasklist(String emp_no, int start, int end);
+	
+	List<Pj> selectPj_rec(String emp_no, int start, int end);
 	
 	String myprojectCount(String emp_no);
 	

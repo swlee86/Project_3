@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.epm.Service.ProjectDetailService;
 import kr.or.epm.Service.ProjectService;
+import kr.or.epm.VO.Approval;
 import kr.or.epm.VO.Contact;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Pj;
+import kr.or.epm.VO.Pj_step;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_Command;
 import kr.or.epm.VO.Pjd_people;
@@ -38,6 +40,56 @@ public class ProjectController {
 	@Autowired
 	private ProjectDetailService projectdetailservice;
 	
+	//프로젝트 승인대기함 페이지 이동
+	@RequestMapping("/projectApprove.do")
+	public String  projectApprove(Model mv, Principal principal, String pg, String f , String q ){
+		System.out.println("projectApprove() 컨트롤 탐");	
+		
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		Emp emp = projectservice.selectInfoSearch(id); 
+		
+		String rec_emp_no = emp.getEmp_no();//로그인사번
+		
+		int totalcount = 0;
+		int cpage = 1;
+		int pagecount = 0;
+		int pagesize = 4;
+		
+		
+		String field = "emp_no";
+		String query ="%%";
+		
+		
+		if(pg != null && !pg.equals("")){
+			cpage = Integer.parseInt(pg);
+		}
+		if(f != null && !f.equals("")){
+			field = f;
+		}
+		if(q != null && !q.equals("")){
+			query = q;
+		}
+		
+		
+		totalcount = projectservice.selectApprovalCount(rec_emp_no, field, query);  //전체 갯수 구하는 함수
+		System.out.println("cpage:"+cpage+"/ field:"+field+"/ query:"+query+ "/ totalcount:"+totalcount);
+		
+		 if(totalcount % pagesize == 0){       
+		    pagecount = totalcount/pagesize;
+	     }else{
+	        pagecount = (totalcount/pagesize) + 1;
+	      }
+		 
+		 System.out.println("pagecount : " + pagecount);
+		 
+		 projectservice.selectPj_rec(cpage, pagesize, field, query, rec_emp_no);
+		 
+		 //mv.addAttribute(arg0, arg1);
+		 
+		return "project.projectApproveList";
+	}
+
 	
 	//프로젝트 상세상세 페이지 추가하기
 	@RequestMapping("/project_detail_plus.do")
@@ -57,7 +109,6 @@ public class ProjectController {
 		System.out.println("id : "+id);
 		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
 		
-
 		
 		String url = "redirect:project_list.do"; 
 		List<Pjd> list = pjd_Command.getPjd();
@@ -152,12 +203,7 @@ public class ProjectController {
 		return "project.projectDetailView";
 	}
 	
-	//프로젝트 승인 처리 페이지
-	@RequestMapping("/projectApprove.do")
-	public String projectApprove(){
-		return "project.projectApproveList";
-	}
-	
+
 	//대기중인 프로젝트 제목 클릭시 
 	@RequestMapping("/project_approve_detailview.do")
 	public String project_approve_detailview(){
@@ -166,8 +212,13 @@ public class ProjectController {
 	
 	//프로젝트의 상세의 상세내용보기
 	@RequestMapping("/projectdetail_detailview.do")
-	public String projectdetail_detailview(Model model, String pjd_no){
+	public String projectdetail_detailview(Principal principal, Model model, String pjd_no){
 		System.out.println("들어온pjd_no : " + pjd_no);
+		
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
+		String login_emp_no = emp.getEmp_no();
 		
 		//pjd의 데이터 가져오기
 		Pjd pjd= null;
@@ -181,10 +232,19 @@ public class ProjectController {
 		List<Pjdd> pjddlist = null;
 		pjddlist = projectdetailservice.selectPjddList(pjd_no);
 		
+		String pj_emp_no = projectservice.selectPjwriteempno(pjd_no);
+		
+		
+		//pj_step의 리스트
+		List<Pj_step> pj_step_list =projectservice.selectPjStepList();
 		model.addAttribute("peoplelist",peoplelist);		
 		model.addAttribute("pjd",pjd);
 		model.addAttribute("pjddlist",pjddlist);
 		model.addAttribute("pjd_no",pjd_no);
+		model.addAttribute("login_emp_no",login_emp_no);
+		model.addAttribute("pj_emp_no",pj_emp_no);
+		model.addAttribute("pj_step_list",pj_step_list);
+		
 		return "project.projectDetailView";
 	}
 	

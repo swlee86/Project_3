@@ -1,4 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+$(function(){
+	
+	$('#pj_approval_search').change(function(){
+		if($('#pj_approval_search').val() == 'step_no'){
+			$('#pj_approval_search_keyword').empty();
+			$('#pj_approval_search_keyword').innerHTML('<select class="form-control input-sm" name="q">'+
+															'<option value="1">승인</option>'+
+															'<option value="2">승인거부</option>'+
+															'<option value="3">보류</option>'+
+															'<option value="4">미승인</option>'+
+														'</select>'
+														);
+		}else{
+			$('#pj_approval_search_keyword').empty();
+			$('#pj_approval_search_keyword').innerHTML('<input type="text" class="form-control input-sm" name="q" />');
+		}
+	});
+	
+	
+
+});
+
+</script>
 <!--프로젝트 승인처리 페이지-->
 <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
@@ -10,12 +35,12 @@
             </a>
             <div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.do">Dashboard</a></li>
+                    <li><a href="index.do">Home</a></li>
                     <li>
-                        <span>App views</span>
+                        <span>프로젝트</span>
                     </li>
                     <li class="active">
-                        <span>Contacts</span>
+                        <span>프로젝트 승인 처리함</span>
                     </li>
                 </ol>
             </div>
@@ -33,47 +58,18 @@
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                	전체 : <font color="coral">10</font> 개
+                	전체 : <font color="coral">ss</font> 개
             </div>
             <div class="panel-body">
-            	<!-- <div class="row">
-	            	<form action="" class="form-inline ">
-	            		<div class="form-group" style="margin-left:10px;">
-	            			<select class="form-control col-md-4">
-	            				<option>선택</option>
-	            				<option>책임자</option>
-	            				<option>프로젝트 명</option>
-	            			</select>
-	            		</div>
-	            		
-	            		<div class="form-group" style="margin-left:10px;">
-	            			<div class="col-md-4">
-	            				<input type="text" class="form-control">
-	            			</div>
-	            		</div>
-	            		
-	            		<div class="form-group" style="margin-left:10px;">
-	            			<div class="col-md-4">
-	            				<button class="btn btn-success">
-	            					<span class="fa fa-search"></span>&nbsp;&nbsp;
-	            					검색
-	            				</button>
-	            			</div>
-	            		</div>    
-	                </form>   
-                </div> -->
-
-
-
 					<div class="row text-right">
 						<div class="col-md-6"></div>
 						<form action="" class="form-inline ">
 							<div class="col-md-2">
 								<div class="form-group">
-									<select class="form-control input-sm">
-										<option>선택</option>
-										<option>책임자</option>
-										<option>프로젝트 명</option>
+									<select class="form-control input-sm" name="f" id="pj_approval_search">
+										<option value="step_no">승인단계</option>
+										<option value="pj_title">제목</option>
+										<option value="emp_no">책임자</option>
 									</select>
 								</div>
 							</div>
@@ -81,10 +77,13 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control input-sm" name="s" />
+										<span id="pj_approval_search_keyword">
+											<input type="text" class="form-control input-sm" name="q" />
+										</span>
+										
 										<span class="input-group-btn">
 											<button class="btn btn-default input-sm" type="submit" style="color: #f05050">
-												<span class="fa fa-search"></span> 검색
+												<span class="fa fa-search"></span>
 											</button>
 										</span>
 									</div>
@@ -108,9 +107,8 @@
                         <th><input type="checkbox" class="i-checks"></th>
                         <th>책임자</th>
                         <th>프로젝트명</th>
-                        <th>내용</th>
-                        <th>시작일</th>
-                        <th>종료일</th>
+                        <th>기 &nbsp; 간</th>
+                        <th>승인단계</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -118,17 +116,8 @@
                         <td><input type="checkbox" class="i-checks"></td>
                         <td>박성준</td>
                         <td>애플펜</td>
+                        <td>2016-11-16&nbsp; &nbsp;~&nbsp; &nbsp;2016-11-26</td>
                         <td><a href="project_approve_detailview.do">우리집에 왜왔니</a></td>
-                        <td>2016-11-16</td>
-                        <td>2016-11-26</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="i-checks"></td>
-                        <td>홍길동</td>
-                        <td>의적질</td>
-                        <td><a href="sanction_approve_view.do">최순실 털기</a></td>
-                        <td>2016-10-16</td>
-                        <td>2016-12-25</td>
                     </tr>
                     </tbody>
                 </table>
@@ -138,17 +127,45 @@
 			</div>
 
             </div>
-             <div class="panel-footer"  style="text-align:center;">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default">&nbsp;<i class="fa fa-chevron-left"></i></button>
-                    <button class="btn btn-default active">1</button>
-                    <button class="btn btn-default  ">2</button>
-                    <button class="btn btn-default">3</button>
-                    <button class="btn btn-default">4</button>
-                    <button type="button" class="btn btn-default ">&nbsp;<i class="fa fa-chevron-right"></i></button>
-                </div>
-              </div>
-        </div> 
+
+
+
+
+
+
+				<div class="panel-footer" style="text-align: center">
+					<div class="btn-group">
+						<c:if test="${pg>1}">
+							<a class="btn btn-default"
+								href="contacts.do?tapno=${tapno}&pg=${pg-1}&f=${field}&q=${query}&group=${group}">
+								&nbsp;<i class="fa fa-chevron-left"></i>
+							</a>
+						</c:if>
+
+						<c:forEach var="i" begin="1" end="${pagecount}">
+							<c:choose>
+								<c:when test="${pg==i}">
+									<button class="btn btn-default active" style="background-color: #DAD9FF">
+										<b>${i}</b>
+									</button>
+								</c:when>
+								<c:otherwise>
+									<a class="btn btn-default" href="contacts.do?pg=${i}&f=${field}&q=${query}"> ${i} </a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<c:if test="${pg < pagecount}">
+							<a class="btn btn-default" href="contacts.do?pg=${pg+1}&f=${field}&q=${query}"> 
+							&nbsp;<i class="fa fa-chevron-right"></i>
+							</a>
+						</c:if>
+					</div>
+				</div>
+
+
+
+			</div> 
    </div>  
 </div>
 </div>

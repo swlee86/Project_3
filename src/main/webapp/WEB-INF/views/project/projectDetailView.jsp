@@ -46,7 +46,30 @@
 						<table  cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
 							<tr>
 								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">상세 프로젝트 제목</th>
-                              	<td colspan="3" id="pjd_name">${pjd.pjd_title}</td>
+                              	<td id="pjd_name">${pjd.pjd_title}</td>
+                              	<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">진행 상태</th>
+                              	<td id="pjd_step">
+		                        	<c:choose>
+			                        	<c:when test="${pj_emp_no==login_emp_no}">
+			                              	<div class="form-group">
+			                              		<select class="form-control input-sm approval-select" style="width: 70%; ">
+			                              			<c:forEach var="s" items="${pj_step_list}">
+			                              				<option value="${s.pj_step_no}" ${pjd.pj_step_name == s.pj_step_name ? 'selected="selected"' : ''}>${s.pj_step_name}</option>
+			                              			</c:forEach>
+					                            </select> 
+					                        	<input type="button" id="approval_btn" class="btn btn-default btn-sm" value="수정" onclick="modify_approval()">
+					                        </div>
+				                        </c:when>
+				                        <c:otherwise>
+				                        	<div class="form-group">
+				    	                        <select class="form-control input-sm" disabled="disabled">	
+						                              <option selected="selected" value="${pjd.pj_step_no}">${pjd.pj_step_name}</option>
+						                        </select>
+						                    </div>
+			        	                </c:otherwise>
+		                           </c:choose>
+		                              
+                              	</td>
 							</tr>
 							<tr>
 								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">시작일</th>
@@ -71,7 +94,9 @@
 								<tr>
 									<th width="10%">작업완료</th>
 									<th width="75%">작업내용</th>
-									<th width="15%">수정/수정완료</th>
+									<c:if test="${pj_emp_no==login_emp_no}">
+										<th width="15%">수정/수정완료</th>
+									</c:if>
 									<th hidden="hidden"></th>
 								</tr>
 								<c:forEach var="list" items="${pjddlist}">
@@ -85,14 +110,18 @@
 										</c:if>
 									</td>
 									<td id="modify_td_${list.pjdd_no}">${list.pjdd_content}</td>
-									<td><input type="button" class="btn btn-default" value="수정" onclick="modify_pjdd(this.id)" id="modify_btn_${list.pjdd_no}"></td>
+									<c:if test="${pj_emp_no==login_emp_no}">
+										<td><input type="button" class="btn btn-default" value="수정" onclick="modify_pjdd(this.id)" id="modify_btn_${list.pjdd_no}"></td>
+									</c:if>
 									<td hidden="hidden"><input type="hidden"  readonly="readonly" value="${list.pjdd_no}"></td>
 								</tr>
 								</c:forEach>
 							</table>
 							
 							<div class="col-md-offset-11 col-md-1">
-								<input type="button" id="add_btn" class="btn btn-success" value="추가" >
+								<c:if test="${pj_emp_no==login_emp_no}">
+									<input type="button" id="add_btn" class="btn btn-success" value="추가" >
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -319,4 +348,22 @@ function modify_pjdd(id){
 	
 }
 
+
+
+function modify_approval() {
+	var selected = $(".approval-select option:selected").val();
+	var pjd_no = ${pjd_no};
+	
+	$.ajax(
+			{
+				url  : "update_pjd_pjstepno.do",
+				data : {
+					"pjd_no" : pjd_no,	
+					"pj_step_no" : selected,
+				},
+				success : function(data){
+				}
+			}
+	);
+}
 </script>

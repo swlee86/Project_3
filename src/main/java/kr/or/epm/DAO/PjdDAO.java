@@ -28,7 +28,7 @@ public interface PjdDAO {
 	public int updatePjd();
 	
 	// 진행 단계 처리하기
-	public int updatePjd_step();
+	public int updatePjd_step(HashMap map);
 	
 	// 진행률 계산하기
 	public int updatePjd_progress();
@@ -66,4 +66,7 @@ public interface PjdDAO {
 	
 	//상세의 진행률 업데이트
 	public int updatePjdProgress(HashMap map);
+	
+	//프로젝트 진행률 업데이트
+	public int updatePjProgress(String pjd_no);
 }

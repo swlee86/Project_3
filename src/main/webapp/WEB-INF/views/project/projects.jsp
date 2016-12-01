@@ -15,7 +15,7 @@
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.do">홈</a></li>
 					<li><span>프로젝트 상세보기</span></li>S
-					<li><a href="projects.do">진행중인 프로젝트(1.내가 하고있는 것만 ) (2.내가 속한 부서의 프로젝트)</a></li>
+					<li><a href="projects.do">진행중인 프로젝트</a></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">진행중인 프로젝트</h2>

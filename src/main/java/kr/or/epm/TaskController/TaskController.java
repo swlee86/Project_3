@@ -284,10 +284,15 @@ public class TaskController {
 		
 		//Push알림을 위한 Taskcount session 재생성
 		HttpSession session = request.getSession();
+		int resultdata = 0;
+		
 		String empno = (String)session.getAttribute("emp_no");
 		String taskcount = pushservice.taskCount(empno);
-		session.setAttribute("taskcount", taskcount);
+		String projectcount = pushservice.myprojectCount(empno);
+		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);
 		
+		session.setAttribute("sessiontaskcount", taskcount);
+		session.setAttribute("sessionpushcount", resultdata);
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);

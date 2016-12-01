@@ -145,6 +145,20 @@ public class ProjectAjaxController {
 		int result = 0;
 		
 		result = projectdetailservice.updatePjdProgress(pjd_no,pjd_progress);
+		
+		if(result==1){
+			result = projectdetailservice.updatePjProgress(pjd_no);
+		}
+		return jsonview;
+	}
+	
+	//상세의 진행단계 업데이트
+	@RequestMapping(value="/update_pjd_pjstepno.do")
+	public View updatepjdpjstepno(String pjd_no,String pj_step_no){
+		int result = 0;
+		
+		result = projectdetailservice.updatePjdPjstepno(pjd_no,pj_step_no);
+		
 		return jsonview;
 	}
 }

@@ -42,6 +42,23 @@ public class PageMoveController {
 		HttpSession session = request.getSession();
 		String emp_no = (String)session.getAttribute("emp_no");
 		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
+		session.setAttribute("emp_no", emp_no);
+		
+		///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
+        List<Company> list = null;
+        
+		
+		if(pagesize == null || pagesize.trim().equals("")){
+			pagesize = "5"; 			// default 5건씩 
+		}
+		
+		if(currentpage == null || currentpage.trim().equals("")){
+			currentpage = "1";        //default 1 page
+		}
+		
+		int pgsize = Integer.parseInt(pagesize);  		// 10
+		int cpage = Integer.parseInt(currentpage);     //1
+		
 		
 		
 		boolean emp_no_chk = Util.isEmpty(emp_no);
@@ -52,11 +69,8 @@ public class PageMoveController {
  			String msg_task = "미확인 업무 내역은 로그인 후 내용 확인 가능합니다";
  			model.addAttribute("msg_task", msg_task);
  		}else{
- 			//알람에 띄워줄 알림 숫자 뽑아오기(로그인 할 때 int result 객체가 최초로 생성이 됨)
- 			int pushcount = Integer.parseInt((String)session.getAttribute("resultdata").toString()); 
- 			model.addAttribute("pushcount", pushcount);
  			try{
- 				tasklist = pushService.tasklist(emp_no);
+ 				tasklist = pushService.tasklist(emp_no, cpage, pgsize);
  			}catch(Exception e){
  				System.err.println(e.getMessage());
  			}finally{
@@ -83,22 +97,24 @@ public class PageMoveController {
  			}
  		}
 		
+		List<Pj> approve_pjlist = null;
+		
+		if(emp_no_chk==true){
+ 			String approve_pj = "미승인 프로젝트 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("approve_pj", approve_pj);
+ 		}else{
+ 			try{
+ 				approve_pjlist = pushService.selectPj_rec(emp_no, cpage, pgsize); 				
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+ 			}finally{
+ 				model.addAttribute("approve_pjlist", approve_pjlist);
+ 			}
+ 		}
 		
 		
-///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
-		if(pagesize == null || pagesize.trim().equals("")){
-            pagesize = "5"; 			// default 5건씩 
-        }
-        
-        if(currentpage == null || currentpage.trim().equals("")){
-            currentpage = "1";        //default 1 page
-        }
-        
-        int pgsize = Integer.parseInt(pagesize);  		// 10
-        int cpage = Integer.parseInt(currentpage);     //1
-                               
-        List<Company> list = null;
-        
+		
+
         
         /////////////////////////인덱스에 띄워 줄 메일 내용 구하기 시작////////////////////////////////////////////////////
 

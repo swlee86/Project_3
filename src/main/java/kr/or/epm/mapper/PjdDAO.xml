@@ -82,7 +82,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 상세 조회하기(단일)	 -->
 	<select id="selectPjd_Detail" parameterType="String" resultType="kr.or.epm.VO.Pjd">
-		select pjd_no,pj_no,pjd_title,pjd_content,pjd_start,pjd_end from pjd where pjd_no=#{pjd_no}
+		select pjd_no,pj_no,pjd_title,pjd_content,pjd_start,pjd_end,p.pj_step_no,s.pj_step_name 
+		from pjd p join pj_step s on p.pj_step_no = s.pj_step_no 
+		where pjd_no=#{pjd_no}
 	</select>
 	
 	<!-- 최근 글  번호-->
@@ -107,7 +109,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--개인 주소록테이블  등록 -->
 	<insert id="insertEmpContact">
-		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(concat((select distinct groups from emp_contact where emp_no=#{emp_no}),'${groups},')))	
+		insert into emp_contact(emp_no,contact_no,groups) 
+		values(#{emp_no},#{contact_no},(select nvl((SELECT (select distinct groups from emp_contact where emp_no=#{emp_no}) AS empgroup FROM DUAL),'1,') from dual))
 	</insert>
 	
 	<!-- 상세의 상세내역 -->
@@ -128,6 +131,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 상세의 진행률 업데이트 -->
 	<update id="updatePjdProgress" parameterType="hashmap">
 		update pjd set pjd_progress=#{pjd_progress} where pjd_no=#{pjd_no}
+	</update>
+	
+	<!-- 프로젝트의 진행률 업데이트 -->
+	<update id="updatePjProgress" parameterType="String">
+		update pj 
+	      set pj_progress=
+	        (select floor(avg(pjd_progress)) 
+	         from pjd 
+	         where pj_no = 
+	            (select pj_no from pjd where pjd_no=#{pjd_no})) 
+	      where pj_no = (select pj_no from pjd where pjd_no=#{pjd_no})
 	</update>
 	
 </mapper>

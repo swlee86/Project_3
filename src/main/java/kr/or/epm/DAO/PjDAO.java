@@ -59,4 +59,13 @@ public interface PjDAO {
 	
 	
 	public List<String> selectMaxPjd_no(int numrow);
+
+	//승인처리 글 갯수
+	public int selectApprovalCount(String rec_emp_no, String field, String query);
+	
+	//승인처리 이름가져오기
+	public String selectStepName(String query);
+	
+	//프로젝트 작성자의 emp_no 가져오기
+	public String selectPj_writeempno(String pjd_no);
 }
