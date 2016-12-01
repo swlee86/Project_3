@@ -9,12 +9,17 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.BranchDAO;
 import kr.or.epm.DAO.DeptDAO;
+import kr.or.epm.DAO.Low_deptDAO;
 import kr.or.epm.DAO.PositionDAO;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.DeptJoinBonus;
+import kr.or.epm.VO.LowDeptJoin;
+import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
+import kr.or.epm.VO.Set_homepage;
+import kr.or.epm.VO.Set_time;
 import net.sf.json.JSONArray;
 
 @Service
@@ -120,6 +125,42 @@ public class AdminService {
 		return result;
 	}
 	
+	//하위부서 > 조회 > selectbox
+	public List<Low_dept> select_lowdept_name(String dept_name){
+		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
+		List<Low_dept> list = lowdao.select_lowdept_name(dept_name);
+		return list;
+	}
+	
+	//하위 부서 > 조회하기
+	public LowDeptJoin selectLow_dept_detail(String low_dept_no){
+		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
+		LowDeptJoin low_dept= lowdao.selectLow_dept_detail(low_dept_no);
+		Set_homepage home= lowdao.selectHomePage(low_dept_no);
+		Set_time time = lowdao.selectTime(low_dept_no);
+		
+		low_dept.setOpen(home.getOpen());
+		low_dept.setClose(home.getClose());
+		low_dept.setIn_time(time.getIn_time());
+		low_dept.setOut_time(time.getOut_time());
+		return low_dept;
+	}
+	
+	//하위 부서 > 등록하기
+	public int insertLow_dept(LowDeptJoin lowDeptJoin){
+		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
+		int result=0; 
+		//부서등록
+		result =lowdao.insertLow_dept(lowDeptJoin);
+		//부서번호 조회
+		String low_dept_no = lowdao.select_add_no(lowDeptJoin);
+		lowDeptJoin.setLow_dept_no(low_dept_no);
+		//홈페이지 접근시간 등록
+		result +=lowdao.insert_homepage(lowDeptJoin);
+		//출퇴근시간 등록
+		result += lowdao.insert_time(lowDeptJoin);
+		return result;
+	}
 	
 	
 	//직위 관리 페이지 사용 - 직위 리스트 읽어 오기
