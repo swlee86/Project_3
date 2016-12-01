@@ -46,6 +46,21 @@
 						<option value="include">내가 포함된 프로젝트</option>
 					</select>
 				</div>
+				
+				<div class="row" style="text-align:right; margin-right:5px;">
+            			<form action="" class="form-inline" method="post">
+                 			<select id="search_select" name="selectSearch" class="form-control input-sm" >
+                    			<option value="emp_no">책임자</option>
+                        		<option value="dept_name">부서</option>
+                        		<option value="pj_title">제목</option>
+                        		<option value="step_no">진행단계</option>
+                    		 </select> 	
+                     		  <input type="text" class="form-control input-sm" name="input"/>
+                    		 <button class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
+                		</form>
+                </div>                	
+                <br> 
+				
 				<div class="table-responsive" id="projectList">
 					<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
 						<thead>
