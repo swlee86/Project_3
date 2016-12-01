@@ -22,7 +22,7 @@ public interface PjDAO {
 	public int insertPjd(Pjd pjd);
 	
 	// 프로젝트 승인 대기함 조회하기
-	public List<Pj> selectPj_rec();
+	public List<Pj> selectPj_rec(int cpage, int pagesize, String field, String query, String rec_emp_no);
 	
 	// 프로젝트 승인 대기함 상세보기
 	public Pj selectPj_detail();
