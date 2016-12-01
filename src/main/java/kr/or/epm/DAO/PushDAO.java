@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Emp_detail;
+import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Push;
 import kr.or.epm.VO.Task;
 
@@ -14,6 +15,8 @@ public interface PushDAO {
 	String taskCount(String emp_no);
 	
 	List<Task> selecttasklist(String emp_no, int start, int end);
+	
+	List<Pj> selectPj_rec(String emp_no, int start, int end);
 	
 	String myprojectCount(String emp_no);
 	

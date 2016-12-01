@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.VO.Emp_detail;
+import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Push;
 import kr.or.epm.VO.Task;
 
@@ -50,6 +51,16 @@ public class PushService {
 		return tasklist;
 	}
 	
+	//미승인된 프로젝트 리스트를 뽑는 함수
+	public List<Pj> selectPj_rec(String emp_no, int cpage, int pgsize){
+		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
+		int start = cpage * pgsize - (pgsize - 1);
+		int end = (cpage * pgsize) - 2;  // 최대 3개까지만
+		List<Pj> projectlist = pushdao.selectPj_rec(emp_no, start, end);
+		return projectlist;
+	}
+	
+	//진행 중인 프로젝트 리스트 확인 하는 함수
 	public String myprojectCount(String emp_no){
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		String result = pushdao.myprojectCount(emp_no);
