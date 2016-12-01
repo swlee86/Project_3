@@ -107,6 +107,7 @@ public class DraftController {
 		System.out.println("협조문 수신함 글 개수 : " + cooperationcount);
 		model.addAttribute("cooperationcount", cooperationcount);
 		
+		
 		// 휴가신청서
 		// 목록 가져오기
 		List<Break> breaklist = service.selectBreak_rec(emp_no);

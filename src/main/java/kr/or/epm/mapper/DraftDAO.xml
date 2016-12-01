@@ -171,45 +171,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 결재라인 차례 확인하기 -->
 	<select id="selectDraft_line" resultType="String">
-		select draft_no
+		select z.draft_no
 		from (select draft_no, l.emp_no, e.emp_name, p.position_name, p.step, app_check, app_date
 			  from draft_line l join emp e
- 			  on l.emp_no = e.emp_no
-			  join position p
+			  on l.emp_no = e.emp_no
+		      join position p
 			  on e.position_no = p.position_no
 			  where app_check = '0' and
-      			    draft_no = #{param1}
-					order by step desc) z
+      				draft_no = #{param1}
+      		  order by step desc) z join draft d
+		on z.draft_no = d.draft_no
 		where rownum = '1' and
-     		  emp_no = #{param2}
+      		  z.emp_no = #{param2} and
+      		  cg_no = #{param3}
 	</select>
 	
 	<!-- 대외발신공문 수신 리스트 -->
 	<select id="selectOffice_rec" resultType="kr.or.epm.VO.Office">
-		select d.draft_no, cg_no, draft_title, emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
-       	  	   rec_place
+		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no, 
+  			   e.emp_name, rec_place, rec_addr, rec_date
 		from draft d join office o
 		on d.draft_no = o.draft_no
+    	join emp e
+    	on d.emp_no = e.emp_no
 		where d.draft_no = #{draft_no}
 	</select>
 	
 	<!-- 협조문 수신 리스트 -->
 	<select id="selectCooperation_rec" resultType="kr.or.epm.VO.Cooperation">
-		select d.draft_no, cg_no, draft_title, emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
-       	 	   low_dept_no
+		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
+           	   e.emp_name, low_dept_name, dept_name, branch_name, rec_date
 		from draft d join cooperation c
 		on d.draft_no = c.draft_no
+    	join emp e
+    	on d.emp_no = e.emp_no
+    	join low_dept l
+   	 	on l.low_dept_no = c.low_dept_no
 		where d.draft_no = #{draft_no}
 	</select>
 	
 	<!-- 휴가신청서 수신 리스트 -->
 	<select id="selectBreak_rec" resultType="kr.or.epm.VO.Break">
-		select d.draft_no, cg_no, draft_title, emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
-         	   break_term, break_cg_name
+		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
+         	   break_term, break_cg_name, rec_date, e.emp_name
 		from draft d join break b
 		on d.draft_no = b.draft_no
 		join break_cg c
-		on b.break_cg_no =  c.break_cg_no
+		on b.break_cg_no = c.break_cg_no
+    	join emp e
+    	on d.emp_no = e.emp_no
 		where d.draft_no = #{draft_no}
 	</select>
 </mapper>

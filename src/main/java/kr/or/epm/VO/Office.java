@@ -35,7 +35,16 @@ public class Office {
 	// 추가 VO 2016-11-30
 	// 파일 업로드에 대한 데이터
 	private MultipartFile uploadfile;
+	private String emp_name;
 	
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+
 	public MultipartFile getUploadfile() {
 		return uploadfile;
 	}

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.epm.DAO.CommonDAO;
 import kr.or.epm.DAO.DraftDAO;
 import kr.or.epm.DAO.Draft_lineDAO;
 import kr.or.epm.VO.Break;
@@ -66,36 +67,33 @@ public class DraftService {
 	}
 	
 	// 대외발신공문 수신 리스트 불러오기
-	@SuppressWarnings("null")
 	public List<Office> selectOffice_rec(String emp_no) {
 
 		System.out.println("SERVICE] 대외발신공문 수신 리스트를 불러옵니다");
 		System.out.println("넘겨진 emp_no : " + emp_no);
 
 		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		// cg_no = "1" 은 대외발신공문
+		String cg_no = "1";
 		
 		// 결재 번호 가져오기
 		List<String> draft_no_list = dao.selectDraft_noList();
-		System.out.println("전체 결재번호들2 : " + draft_no_list.toString());
-		
+
 		// 내 차례인 결재의 결재번호
 		String draft_line_no = null;
 		// 내 차례인 결재번호들 저장
 		List<String> draft_line_list = new ArrayList<String>();
 		
 		for(String draft_no : draft_no_list) {
-			System.out.println("보자보자 : " + draft_no);
+			
 			// 결재라인 차례 확인하기
-			draft_line_no = dao.selectDraft_line(draft_no, emp_no);
-			System.out.println("한번보자 : " + draft_line_no);
+			draft_line_no = dao.selectDraft_line(draft_no, emp_no, cg_no);
 			if(draft_line_no != null) {
 				draft_line_list.add(draft_line_no);
 			}
 		}
 		
-		System.out.println("내 차례의 결재번호들 : " + draft_line_list.toString());
-		
-		// 출력할 대외발신공문
+		// 출력할 대외발신공문 정보
 		Office office = null;
 		// 출력할 대외발신공문 리스트들 저장
 		List<Office> officelist = new ArrayList<Office>();
@@ -115,8 +113,39 @@ public class DraftService {
 		System.out.println("넘겨진 emp_no : " + emp_no);
 
 		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		// cg_no = "2" 은 협조문
+		String cg_no = "2";
+
+		// 결재 번호 가져오기
+		List<String> draft_no_list = dao.selectDraft_noList();
+
+		// 내 차례인 결재의 결재번호
+		String draft_line_no = null;
+		// 내 차례인 결재번호들 저장
+		List<String> draft_line_list = new ArrayList<String>();
+
+		for (String draft_no : draft_no_list) {
+			
+			// 결재라인 차례 확인하기
+			draft_line_no = dao.selectDraft_line(draft_no, emp_no, cg_no);
+			if (draft_line_no != null) {
+				draft_line_list.add(draft_line_no);
+			}
+		}
 		
-		List<Cooperation> cooperationlist = dao.selectCooperation_rec(emp_no);
+		System.out.println("내 차례의 결재 번호 확인 : " + draft_line_list.toString());
+
+		// 출력할 협조문 정보
+		Cooperation cooperation = null;
+		// 출력할 협조문 리스트들 저장
+		List<Cooperation> cooperationlist = new ArrayList<Cooperation>();
+
+		for (String draft_no : draft_line_list) {
+			cooperation = dao.selectCooperation_rec(draft_no);
+			cooperationlist.add(cooperation);
+		}
+		
+		System.out.println("보자 : " + cooperationlist.toString());
 		
 		return cooperationlist;
 	}

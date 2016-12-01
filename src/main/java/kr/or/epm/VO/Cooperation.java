@@ -29,7 +29,19 @@ public class Cooperation {
 	private String rec_del_check;
 	private String del_check;
      
-     
+    // 추가
+	private String emp_name;
+	
+	
+	
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+
 	public String getDraft_no() {
 		return draft_no;
 	}

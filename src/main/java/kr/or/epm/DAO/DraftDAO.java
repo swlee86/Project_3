@@ -65,13 +65,13 @@ public interface DraftDAO {
 	public List<String> selectDraft_noList();
 	
 	// 결재라인 차례 확인하기
-	public String selectDraft_line(String draft_no, String emp_no);
+	public String selectDraft_line(String draft_no, String emp_no, String cg_no);
 	
 	// 대외발신공문 수신 리스트
 	public Office selectOffice_rec(String draft_no);
 	
 	// 협조문 수신 리스트
-	public List<Cooperation> selectCooperation_rec(String draft_no);
+	public Cooperation selectCooperation_rec(String draft_no);
 	
 	// 휴가신청서 수신 리스트
 	public List<Break> selectBreak_rec(String draft_no);
