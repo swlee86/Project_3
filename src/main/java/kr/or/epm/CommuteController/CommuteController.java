@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -124,7 +125,7 @@ public class CommuteController {
 	}
 	
 
-	//관리자 - 근태 마감
+	//관리자 - 근태 마감 - 리스트 보기
 	@RequestMapping("/CommuteAdmin.do")
 	public String CommuteAdmin(Model model){
 		
@@ -133,10 +134,24 @@ public class CommuteController {
 		String dTime = formatter.format ( currentTime );
 		System.out.println ("연월 : "+dTime );
 		
-		List<PayList> list = commuteservice.selectCommute_all_Close(dTime);
-		model.addAttribute("list", list);
+		List<PayList> Commutelist = commuteservice.selectCommute_all_Close(dTime);
+		model.addAttribute("Commutelist", Commutelist);
 		
 		return "commute.CommuteAdminView";
+	}
+	
+	//관리자 - 근태마감 - 확정 하기
+	@RequestMapping(value="/commuteAdminEnd.do", method=RequestMethod.POST)
+	public String CommuteEnd(String chkhidden){
+		//commute_no 뽑아서 배열에 담아둠
+		String[] commute_no = chkhidden.split(",");
+		for(int i = 0; i < commute_no.length; i++){
+			System.out.println("근태 마감 확정 컨트롤러 입니다.  : :::: "+commute_no[i]);
+		}
+		
+		int result = commuteservice.updateCommute_mgr_check(commute_no);
+		
+		return null;
 	}
 	
 }

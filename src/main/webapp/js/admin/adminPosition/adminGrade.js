@@ -54,9 +54,7 @@ $(function(){
 	
 	
 	//직위 리스트 보기 추가 버튼 클릭 시////////////
-	$('#saveBtn').click(function(){
-		
-		
+	$('#saveBtn').click(function(){		
 		//li 에 있는 것 담는다.
 		var itemid = [];
 		itemid = $.makeArray($('li').map(function(){
