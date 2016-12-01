@@ -97,6 +97,21 @@ public class PageMoveController {
  			}
  		}
 		
+		List<Pj> approve_pjlist = null;
+		
+		if(emp_no_chk==true){
+ 			String approve_pj = "미승인 프로젝트 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("approve_pj", approve_pj);
+ 		}else{
+ 			try{
+ 				approve_pjlist = pushService.selectPj_rec(emp_no, cpage, pgsize); 				
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+ 			}finally{
+ 				model.addAttribute("approve_pjlist", approve_pjlist);
+ 			}
+ 		}
+		
 		
 		
 
