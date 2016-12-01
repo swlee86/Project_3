@@ -134,7 +134,7 @@
                     </a>
                     <ul class="dropdown-menu hdropdown animated flipInX">
                         <div class="title">
-                            You have ${sessionpushcount} new works
+                            You have <span id="pushcount2">${sessionpushcount}</span> new works
                         </div>
                     	<li>진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
                     	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">0</span>건입니다.</li>
@@ -213,19 +213,25 @@ $('#birthDay').click(function(){
 			
 			var resultpushCount = Number(msg.alarm)+Number(document.getElementById("pushcount").innerText);
 			var divpushcount = document.getElementById("pushcount");
+			var divpushcount2 = document.getElementById("pushcount2");
 			divpushcount.innerHTML = resultpushCount;
+			divpushcount2.innerHTML = resultpushCount;
 			
-			
-			var resultprojectCount = Number(msg.project)+Number(document.getElementById("projectcount").innerText);			
-			var divprojectcount = document.getElementById("projectcount");
-			divprojectcount = resultprojectCount;
-			
+			console.log("###########################msg.work : " + msg.work);
 			
 			var resulttaskCount = Number(msg.work)+Number(document.getElementById("taskcount").innerText);			
 			console.log('#################"업무 결과값 "###########' + resulttaskCount)
 			var divtaskcount = document.getElementById("taskcount");
-			divtaskcount = resulttaskCount;
-			console.log("###########################msg.work : " + msg.work);
+			divtaskcount.innerHTML = resulttaskCount;
+			
+			
+			
+			
+			var resultprojectCount = Number(msg.project)+Number(document.getElementById("projectcount").innerText);			
+			var divprojectcount = document.getElementById("projectcount");
+			divprojectcount.innerHTML = resultprojectCount;
+
+			
 			
 			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount };
 			$(function(){

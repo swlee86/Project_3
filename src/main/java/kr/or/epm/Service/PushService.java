@@ -44,7 +44,7 @@ public class PushService {
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		
 		int start = cpage * pgsize - (pgsize - 1);
-		int end = cpage * pgsize;
+		int end = (cpage * pgsize) - 2;  // 최대 3개까지만
 		
 		List<Task> tasklist = pushdao.selecttasklist(emp_no, start, end);
 		return tasklist;
