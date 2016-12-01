@@ -34,6 +34,7 @@
 	  href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	  type="text/css" />
 </head>
+
 <body class="fixed-navbar fixed-sidebar">
 
 	<!-- Simple splash screen-->

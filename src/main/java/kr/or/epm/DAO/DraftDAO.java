@@ -52,11 +52,28 @@ public interface DraftDAO {
 	public List<String> selectDraftLine_myturn(String emp_no);
 	
 	
-	
+	// 결재 등록하기
 	// 기본 전자 결재 등록하기
 	public int insertDraft(Office office);
 	
 	// 대외발신공문 등록하기
 	public int insertOffice(Office office);
+	
+	
+	// 수신 리스트 확인하기
+	// 결재 번호 가져오기
+	public List<String> selectDraft_noList();
+	
+	// 결재라인 차례 확인하기
+	public String selectDraft_line(String draft_no, String emp_no);
+	
+	// 대외발신공문 수신 리스트
+	public Office selectOffice_rec(String draft_no);
+	
+	// 협조문 수신 리스트
+	public List<Cooperation> selectCooperation_rec(String draft_no);
+	
+	// 휴가신청서 수신 리스트
+	public List<Break> selectBreak_rec(String draft_no);
 	
 }

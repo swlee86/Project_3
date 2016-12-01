@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 **/
 
 public class Office {
+	
+	// 대외발신공문에 대한 데이터
 	private String draft_no;
 	private String rec_place;
 	private String rec_fax;
@@ -19,6 +21,7 @@ public class Office {
 	private String rec_addr_detail;
 	
 	//추가 DTO 2016-11-18
+	// 기본 전자결재에 대한 데이터
 	private String cg_no;
 	private String draft_title;
 	private	String draft_content;
@@ -30,7 +33,7 @@ public class Office {
 	private String del_check;
 	
 	// 추가 VO 2016-11-30
-	// 백승아
+	// 파일 업로드에 대한 데이터
 	private MultipartFile uploadfile;
 	
 	public MultipartFile getUploadfile() {

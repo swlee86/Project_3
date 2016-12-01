@@ -73,9 +73,9 @@
             <li>
                 <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                	<li><a href="draftWrite.do">결재 요청</a></li>
-                	<li><a href="sanction_list.do">요청 결재</a></li>
-                	<li><a href="sanction_approve.do">결재 대기함</a></li>
+                	<li><a href="draftWrite.do">결재 등록</a></li>
+                	<li><a href="draft_rec.do">결재 대기함</a></li>
+                	<li><a href="draft.do">결재 송신함</a></li>
                 </ul>
             </li>
             <li>
