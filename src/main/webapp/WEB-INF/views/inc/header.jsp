@@ -136,8 +136,10 @@
                         <div class="title">
                             You have <span id="pushcount2">${sessionpushcount}</span> new works
                         </div>
+                        <li class="summary">프로젝트 관련</li>
                     	<li  style="width: 340px;">진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
                     	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">${sessionApprovalcount}</span>건입니다.</li>
+                    	<li class="summary">업무 관련</li>
                     	<li>미확인 하신 업무는<span id="taskcount">${sessiontaskcount}</span>건입니다.</li>
                         <li>승인확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>
                         <li class="summary"><a href="#">See All Messages</a></li>
