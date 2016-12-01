@@ -161,4 +161,15 @@ public class ProjectAjaxController {
 		
 		return jsonview;
 	}
+	
+	//상세 내용 수정(updatePjd)
+	@RequestMapping(value="/updatePjd.do")
+	public View updatePjd(String pjd_no, String pjd_title, String pjd_content, String pj_step_no, String pjd_start, String pjd_end){
+		int result = 0;
+		System.out.println("pjd_no"+pjd_no+"pjd_title"+pjd_title+"pjd_content"+pjd_content+"pj_step_no"+pj_step_no+"pjd_start"+pjd_start+"pjd_end"+pjd_end);
+		
+		result = projectdetailservice.updatePjd(pjd_no, pjd_title, pjd_content,pj_step_no,pjd_start,pjd_end);
+		
+		return jsonview;
+	}
 }
