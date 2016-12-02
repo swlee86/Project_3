@@ -172,7 +172,7 @@
 							<tbody>
 							<c:forEach var="pjlist" items="${pjlist}">
 								<tr>
-									<td>${pjlist.pj_title}<br /> <small><i
+									<td><a href="projectDetail.do?pj_no=${pjlist.pj_no}">${pjlist.pj_title}</a><br /> <small><i
 											class="fa fa-clock-o"></i> Created ${pjlist.pj_start}</small>
 									</td>
 									<td></td>
@@ -211,7 +211,7 @@
 							<tbody>
 							<c:forEach var="approve_pjlist" items="${approve_pjlist}">
 								<tr>
-									<td><a href=projectDetail.do?pj_no=${approve_pjlist.pj_no}>${approve_pjlist.pj_title}</a></td>
+									<td><a href="project_approve_detailview.do?pj_no=${approve_pjlist.pj_no}">${approve_pjlist.pj_title}</a></td>
 									<td></td>
 									<td>${approve_pjlist.emp_name }</td>
 									<td>${approve_pjlist.pj_start}</td>
