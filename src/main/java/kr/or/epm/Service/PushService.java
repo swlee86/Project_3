@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.PushDAO;
+import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Push;
@@ -77,6 +78,16 @@ public class PushService {
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		String result = pushdao.myprojectCount(emp_no);
 		return result;
+	}
+	
+	//근태 차트에 뽑아 줄 데이터를 받아오는 함수
+	public List<Commute> commutelist(String emp_no, int cpage, int pgsize){
+		int start = cpage * pgsize - (pgsize - 1);
+		int end = (cpage * pgsize) +2;  // 최대 3개까지만
+		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
+		List<Commute> commutelist = pushdao.commutelist(emp_no,  start, end);
+		
+		return commutelist;
 	}
 	
 	

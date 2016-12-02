@@ -17,6 +17,7 @@ import kr.or.epm.Service.CompanyBoardService;
 import kr.or.epm.Service.ProjectService;
 import kr.or.epm.Service.PushService;
 import kr.or.epm.Util.Util;
+import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Company;
 import kr.or.epm.VO.Mail;
 import kr.or.epm.VO.Pj;
@@ -93,6 +94,25 @@ public class PageMoveController {
  				model.addAttribute("mytasklist", mytasklist);
  			}
  			
+ 			
+ 		}
+		
+		/////////////////////인덱스에 띄워 줄 근태 리스트 내용 구하기 시작////////////////////////////////////////////////////
+		List<Commute> commutelist = null;
+		if(emp_no_chk==true){
+ 			String commutemsg = "근태 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("commutemsg", commutemsg);
+ 		}else{
+ 			try{
+ 				commutelist = pushService.commutelist(emp_no, cpage, pgsize); 	
+ 				for(int i=0; i<=commutelist.size(); i++){
+ 					System.out.println();
+ 				}
+ 			}catch(Exception e){
+ 				
+ 			}finally{
+ 				
+ 			}
  			
  		}
 		

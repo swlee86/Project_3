@@ -98,7 +98,7 @@ function departMentFuc(){
          choosePosition = $(this).val();
       });
     
-	alert("테스트 : "+choosePosition);
+
 	$.ajax(
 			  {
 					url : "departMentSelect.do",
@@ -116,6 +116,85 @@ function departMentFuc(){
 	          }
 		  );
 }
+
+//하위부서  - 하위 부서 관리 페이지에서 지점 선택시 > 부서 selectbox
+ function showDeptFuc(){
+	var choosePosition = '';
+	 $("#select_Branch option:selected").each(function () {
+         choosePosition = $(this).val();
+      });
+    
+
+	$.ajax(
+			  {
+					url : "departMentSelect.do",
+					data : {
+								branch_name : choosePosition 
+						   },
+					success : function(data){
+						var option = '<option>선택</option>';
+						$.each(data.deptlist, function(index){
+							 option += "<option value='"+data.deptlist[index].dept_no+"'>"+data.deptlist[index].dept_name+"</option>";
+						});
+						$('#select_Dept').html(option);
+						alert('성공');
+					}
+	          }
+		  );
+ }
+ 
+//하위부서  - 하위 부서 관리 페이지에서 지점 선택시 > 부서 selectbox
+ function showDeptFuc2(){
+	var choosePosition = '';
+	 $("#select_branch_add option:selected").each(function () {
+         choosePosition = $(this).val();
+      });
+    
+
+	$.ajax(
+			  {
+					url : "departMentSelect.do",
+					data : {
+								branch_name : choosePosition 
+						   },
+					success : function(data){
+						var option = '<option>선택</option>';
+						$.each(data.deptlist, function(index){
+							 option += "<option value='"+data.deptlist[index].dept_no+"'>"+data.deptlist[index].dept_name+"</option>";
+						});
+					   $('#select_Dept_add').html(option);
+						alert('성공');
+					}
+	          }
+		  );
+ }
+
+ //하위부서 > 조회 > 부서 선택시 하위부서 selectbox
+ function showLowDeptFuc(){
+	 var choosePosition = '';
+	 $("#select_Dept option:selected").each(function () {
+         choosePosition = $(this).val();
+         alert(" 선택 : "+choosePosition)
+      });
+	 $.ajax(
+			  {
+					url : "lowDeptSelect.do",
+					data : {
+								dept_name : choosePosition 
+						   },
+					success : function(data){
+						console.log(data.lowdeptlist);
+						var option = '<option>선택</option>';
+						$.each(data.lowdeptlist, function(index){
+							 option += "<option value='"+data.lowdeptlist[index].low_dept_no+"'>"+data.lowdeptlist[index].low_dept_name+"</option>";
+						});
+						$('#select_Low_Dept').html(option);
+						alert('성공');
+					}
+	          }
+		  );
+	 
+ }
 
 
   $(function(){
@@ -159,7 +238,7 @@ function departMentFuc(){
 		//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
 		$('#seeBranchBtn').click(function(){
 			var select = $("#departMentselectBranch option:selected").val();
-			alert("선택한 지점 : "+select);
+			
 			$.ajax(
 					 {
 						url : "selectBranchList.do",
@@ -238,17 +317,22 @@ function departMentFuc(){
 		
 		//부서 등록 버튼 클릭시 등록 form 보여줌
 		$('#addDepartmentBtn').click(function(){
-			$('#addDepartmentDiv').show();
 			var select=  $("#choosebranch option:selected").val();
-			alert('select: '+select);
-			$('#addbranch_name').val(select);
-			$('#addbranch_name').attr("readonly",true);
+			if(select =='선택'){
+				alert('부서를 등록하실 지점을 선택하세요')
+			}else{
+				$('#addDepartmentDiv').show();
+				$('#addbranch_name').val(select);
+				$('#addbranch_name').attr("readonly",true);
+			}
+			
+			
 		});
 		
 		//부서 조회 버튼 클릭시
 		$('#seeDeptBtn').click(function(){
 			var select = $("#selectDept option:selected").val();
-			alert('부서조회 :select : '+select);
+			
 			$.ajax(
 					{
 						url:"selectDeptList.do",
@@ -256,7 +340,7 @@ function departMentFuc(){
 							  dept_no:select
 						       },
 						success:function(data){
-							alert('조회성공');
+							
 							
 							//hidden
 							$('#hiddept_no').val(data.dept.dept_no);
@@ -291,7 +375,7 @@ function departMentFuc(){
 		
 		//부서 정보 수정 버튼 클릭시
 		$('#modifyDeptBtn').click(function(){
-			alert('정보 수정 클릭');
+			
 			var date = dateChek();
 			var dto = {
 					dept_no :$('#hiddept_no').val(),
@@ -319,6 +403,7 @@ function departMentFuc(){
 		
 		//부서 등록 버튼 클릭시
 		$('#insertDeptBtn').click(function(){
+			
 			
 			var date = dateChek();
 			var DeptJoinBonus = { 
@@ -371,15 +456,157 @@ function departMentFuc(){
 		$('#seeDepartBtn').click(function(){
 			$('#seeAndModifyDiv').show();
 			$('#addDiv').hide();
+		
+			var select = $("#select_Low_Dept option:selected").val();
+			$.ajax(
+					{
+						url:"search_low_dept.do",
+						data: {
+							 	 low_dept_no: select
+								},
+					    success:function(data){
+					    	alert('조회 성공');
+					    	console.log(data.low_dept);
+					    	
+					    	$('#hiddendept_no').val(data.low_dept.dept_no);
+					    	$('#hiddenbranch_name').val(data.low_dept.branch_name);
+					    	$('#hiddenlow_dept_no').val(data.low_dept.low_dept_no);
+					    	
+					    	$('#dept_name').val(data.low_dept.dept_name);
+					    	
+					    	$('#low_dept_name').val(data.low_dept.low_dept_name);
+					    	$('#low_dept_name').attr("readonly",false);
+					    	
+					    	$('#tel').val(data.low_dept.tel);
+					    	$('#tel').attr("readonly",false);
+					    	
+					    	$('#fax').val(data.low_dept.fax);
+					    	$('#fax').attr("readonly",false);
+					    	
+					    	$('#in_time').val(data.low_dept.in_time);
+					    	$('#in_time').attr("readonly",false);
+					    	
+					    	$('#out_time').val(data.low_dept.out_time);
+					    	$('#out_time').attr("readonly",false);
+					    	
+					    	$('#open').val(data.low_dept.open);
+					    	$('#open').attr("readonly",false);
+					    	
+					    	$('#close').val(data.low_dept.close);
+					    	$('#close').attr("readonly",false);
+					    	
+					    	
+					    	
+					    }, error : function(){
+							alert("조회하실 조건을 선택해주세요!");
+							
+							$('#dept_name').val('');
+							$('#dept_name').attr("readonly",true);
+							
+							$('#low_dept_name').val('');
+							$('#low_dept_name').attr("readonly",true);
+							
+							$('#tel').val('');
+							$('#tel').attr("readonly",true);
+							
+							$('#fax').val('');
+							$('#fax').attr("readonly",true);
+							
+							$('#in_time').val('');
+							$('#in_time').attr("readonly",true);
+							
+							$('#out_time').val('');
+							$('#out_time').attr("readonly",true);
+							
+							$('#open').val('');
+							$('#open').attr("readonly",true);
+							
+							$('#close').val('');
+							$('#close').attr("readonly",true);
+						}			
+						
+					}
+					);
+			
 		});
 		
-		//하위 부서 추가 버튼
+		//하위 부서 추가 버튼 클릭시
 		$('#addDownDepartBtn').click(function(){
 			$('#addDiv').show();
 			$('#seeAndModifyDiv').hide();
 		});
 		
-	  
+	   //하위 부서 추가
+		$('#addlowDeptBtn').click(function(){
+			
+			var date = dateChek();
+		   
+			var LowDeptJoin = { 
+									branch_name: $("#select_branch_add option:selected").val(),
+									dept_no: $("#select_Dept_add option:selected").val(),
+									dept_name: $("#select_Dept_add option:selected").text(),
+									low_dept_name:$('#add_low_dept_name').val(),
+									tel: $('#add_tel').val(),
+									fax : $('#add_fax').val(),
+									in_time:$('#add_in_time').val(),
+									out_time:$('#add_out_time').val(),
+									open:$('#add_open').val(),
+									close:$('#add_close').val(),
+									set_date : date
+							     };
+			console.log(":::DDDD : " + LowDeptJoin.branch_name+ " / "+ LowDeptJoin.dept_no+ " / "+LowDeptJoin.low_dept_name);
+			
+			$.ajax(
+					{
+						url:"add_lowDept.do",
+						data:LowDeptJoin,
+						success:function(data){
+							console.log(data.result);
+							alert(data.result);
+							window.location.reload();
+						}
+					}
+					);
+			
+		});
+		
+		//하위 부서 수정
+		$('#lowDeptModifyBtn').click(function(){
+			
+			var date = dateChek();
+			   
+			var LowDeptJoin = { 
+					                low_dept_no: $('#hiddenlow_dept_no').val(),
+									dept_no : $('#hiddendept_no').val(),
+									branch_name :$('#hiddenbranch_name').val(),
+									dept_name: $("#dept_name").val(),
+									low_dept_name:$('#low_dept_name').val(),
+									tel: $('#tel').val(),
+									fax : $('#fax').val(),
+									in_time:$('#in_time').val(),
+									out_time:$('#out_time').val(),
+									open:$('#open').val(),
+									close:$('#close').val(),
+									set_date : date
+							     };
+			console.log(":::DDDD :  하위부서번호 : "+ LowDeptJoin.low_dept_no+" / "+LowDeptJoin.dept_name+ " / "+ LowDeptJoin.dept_no+ " / "+LowDeptJoin.low_dept_name+ " / "+LowDeptJoin.branch_name);
+		
+			$.ajax(
+					{
+						url:"low_dept_Modify.do",
+						data:LowDeptJoin,
+						success: function(data){
+							alert('수정 성공');
+							console.log(data.result);
+							alert(data.result);
+							window.location.reload();
+						}
+					}
+					);
+			
+		});
+		
+		
 		//개발부서 클릭시 아작스 이용
 		$('#depart').click(function(){
 			

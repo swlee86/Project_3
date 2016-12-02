@@ -63,11 +63,22 @@
 							<tr>
 								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">시작일</th>
 	                        	<td>
-	                        		<input type="text" class="form-control table-input" id="pjd_start" value="${pjd.pjd_start}" disabled="disabled" style="border: 0px; background-color: white;">
+	                        		<div class="form-inline">
+	                        			<div class="input-group date">
+    		  								<input type="text" class="form-control table-input input-sm formstartDate" id="pjd_start" name="input" value="${pjd.pjd_start}" disabled="disabled" style="background-color: white;">
+    		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
+    		 							</div>
+    		 						</div>
 	                        	</td>
 	                        	<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">종료일</th>
-	                       		<td>
-	                       			<input type="text" class="form-control table-input" id="pjd_end" value="${pjd.pjd_end}" disabled="disabled" style="border: 0px; background-color: white;">
+	                       		<td>	                       		
+	                       			<div class="form-inline">
+	                        			<div class="input-group date">
+    		  								<input type="text" class="form-control table-input input-sm formendDate" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white;">
+    		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
+    		 							</div>
+    		 						</div>
+	                       		
 	                       		</td>
                            	</tr> 
 							<tr>

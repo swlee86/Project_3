@@ -20,13 +20,47 @@ import kr.or.epm.VO.Pj_step;
 import kr.or.epm.VO.Pjd;
 import kr.or.epm.VO.Pjd_Command;
 import kr.or.epm.VO.Pjd_people;
-
+/*
+ * 작성일 : 2016-11-23
+ * 작성자 : 김주희
+ * 사용 목적 : 프로젝트 관련 프로젝트
+ * 
+ * 수정일 : 2016-11-25
+ * 작성자 : 박지은
+ */
 
 @Service
 public class ProjectService {
 
 	@Autowired
 	private SqlSession sqlsession;
+	
+	
+	//승인처리 
+	public void project_approve_try(String pj_no, String step_no) {
+		System.out.println("project_approve_try()서비스 ");
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		int result = dao.updatePj_approval(pj_no,step_no);
+		System.out.println("result : "+result);
+		
+	}
+
+	//승인 처리 상세 의 상세프로젝트 보기
+	public List<Pjd> selectPjd_detail(String pj_no){
+		System.out.println("selectPjd_detail() 서비스");
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		List<Pjd> list = dao.selectPjd_detail(pj_no);
+		System.out.println("list : " + list.toString()); 
+		return list;
+	}
+	
+	//승인 처리 전체 상세보기
+	public Pj selectPj_detail(String pj_no){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		Pj pj = dao.selectPj_detail(pj_no);
+		System.out.println("pj : " + pj.toString());
+		return pj;
+	}
 	
 	//승인 처리 할 목록 가져오기 
 	public List<Pj> selectPj_rec(int cpage, int pagesize, String field, String query, String rec_emp_no) {
@@ -205,6 +239,7 @@ public class ProjectService {
 		pjstep = dao.selectPj_step();
 		return pjstep;
 	}
+
 
 
 }
