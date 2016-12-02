@@ -4,7 +4,10 @@
  * 사용목적 : 직위 관련  스크립트
  */
 
-$(function(){	
+$(function(){
+	
+	
+	
 	//기본 null 포인트 체크
 	$('#addBtn').click(function(){
 		
