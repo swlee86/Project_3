@@ -201,4 +201,13 @@ public class AdminAjaxController {
 		return jsonview;
 	}
 	
+	//급여지급일 저장
+	@RequestMapping("/payAddDate.do")
+	public View payAdd(String day){
+		String pay_date = adminservice.selectpay_date();
+		System.out.println("급여 지급일 : "+pay_date);
+		
+		return jsonview;
+	}
+	
 }

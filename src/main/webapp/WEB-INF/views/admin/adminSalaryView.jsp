@@ -46,7 +46,7 @@
                 <div class="hpanel">
                     <div class="panel-body">
                         <div class="text-center">
-                            <h2 class="m-b-xs">당월 급여 내역</h2>
+                            <h2 class="m-b-xs">금월 급여 내역</h2>
                            <div class="m">
                                 <i class="pe-7s-science fa-5x"></i>
                             </div>

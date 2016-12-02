@@ -45,4 +45,7 @@ public interface PayDAO {
 	
 	// 관리자] 급여 확정하기
 	public int updatePay(String pay_no);
+	
+	//급여 지급일 있는지 여부 판단하기
+	public String selectpay_date();
 }
