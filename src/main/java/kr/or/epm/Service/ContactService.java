@@ -13,6 +13,11 @@ import kr.or.epm.VO.C_group;
 import kr.or.epm.VO.Contact;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_contact;
+/*
+ * 작성자 : 박지은
+ * 작성일 : 2016-11-21
+ * 목  적 : 주소록 서비스
+ */
 
 @Service
 public class ContactService {

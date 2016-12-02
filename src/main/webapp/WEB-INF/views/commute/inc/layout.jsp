@@ -124,8 +124,11 @@
      return result1;
  }
 
+	
+	
   //날짜 포맷팅 함수 - 현재 날짜 구함 
     function dateChek(){
+	  	alert("그냥 날짜");
     	var date = new Date();
     	var year  = date.getFullYear();
         var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
@@ -135,10 +138,26 @@
         if (("" + day).length   == 1) { day   = "0" + day;   }
     	//오늘 날짜 전역변수에도 담음
         var today = year+"-"+month+"-"+day;
-        return day;
+        return today;
     }
-	
+  
+  
+	//디비 에서 읽어온 날짜.  매월 25일 임
+    function db_dateChek(){
+		alert("디비 날짜");
+    	var date = new Date();
+    	var year  = date.getFullYear();
+        var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
+        var day   = "${25}";
 
+        if (("" + month).length == 1) { month = "0" + month; }
+        if (("" + day).length   == 1) { day   = "0" + day;   }
+    	//오늘 날짜 전역변수에도 담음
+        var today = year+"-"+month+"-"+day;
+    	console.log("디비 날짜 : "+today);
+        return today;
+    }
+  
 	
 	$(function() {
 		
@@ -202,12 +221,13 @@
 				//오늘 날짜 구함
 				var today = dateChek();
 				alert("알겠으니 오늘 날짜는 먼데 : "+today);
-				//오늘날짜  - db에 있는 pay_day
-				var result2 = calDateRange(today,'25');
+				var dbdate = db_dateChek();
+				alert("디비 데이트 : "+ dbdate);
+				var result2 = calDateRange(today,dbdate);
 				
-				
+					
 				//기간이 3일 이하
-				if(result2 == 2){
+				if(result2 <= 3){
 				
 					var chkValue = '';
 					 $('input:checkbox[name="checkbox"]').each(function() {

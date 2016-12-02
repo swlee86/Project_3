@@ -31,6 +31,9 @@ import kr.or.epm.VO.Pjdd;
  * 
  * 수정일 : 2016-11-23
  * 작성자 : 김주희
+ * 
+ * 수정일 : 2016-11-25
+ * 작성자 : 박지은
  */
 
 @Controller
@@ -39,6 +42,23 @@ public class ProjectController {
 	private ProjectService projectservice;
 	@Autowired
 	private ProjectDetailService projectdetailservice;
+/*	@Autowired
+	private View jsonview;*/
+	
+	//프로젝트 승인대기함 승인 처리
+	@RequestMapping(value ="/project_approve_try.do", method=RequestMethod.POST)
+	public @ResponseBody Pj project_approve_try(String pj_no,String step_no){
+		System.out.println("project_approve_try() 컨트롤 탐");	
+		System.out.println("pj_no : "+pj_no +"/step_no:"+step_no);
+		projectservice.project_approve_try(pj_no,step_no);	
+
+
+		
+		System.out.println("pj_no : "+pj_no);
+		Pj pj = projectservice.selectPj_detail(pj_no);
+		return pj;
+	}
+	
 	
 	//프로젝트 승인대기함 페이지 이동
 	@RequestMapping("/projectApprove.do")
@@ -211,9 +231,18 @@ public class ProjectController {
 	}
 	
 
-	//대기중인 프로젝트 제목 클릭시 
-	@RequestMapping("/project_approve_detailview.do")
-	public String project_approve_detailview(){
+	//승인대기중인 프로젝트 제목 클릭시 
+	@RequestMapping(value ="/project_approve_detailview.do", method=RequestMethod.GET)
+	public String project_approve_detailview(String pj_no, Model model){
+		System.out.println("pj_no : "+pj_no);
+		Pj pj = projectservice.selectPj_detail(pj_no);
+		List<Pjd> list = projectservice.selectPjd_detail(pj_no);
+		System.out.println("list 사이즈 : " + list.size());
+		int listsize =  list.size();
+		
+		model.addAttribute("listsize", listsize);
+		model.addAttribute("list", list);
+		model.addAttribute("pj", pj);
 		return "project.projectApproveDetailView";
 	}
 	

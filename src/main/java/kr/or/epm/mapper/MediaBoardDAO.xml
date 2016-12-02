@@ -4,7 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.or.epm.DAO.MediaBoardDAO">
-	
+
+<!-- 
+	작성일 : 2016-11-18
+	작성자 : 박지은
+	사용 목적 : 언론게시판에 대한 mapper
+ -->
+ 	
 	<!-- 언론게시판 총 글수 -->
 	<select id="selectCount" resultType="int"> 
 		select count(*) 

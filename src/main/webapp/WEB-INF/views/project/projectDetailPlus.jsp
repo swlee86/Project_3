@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" /> 
+
+<script>
+/* $(function(){
+	$('.showhide').click(function(){
+		$('panel-body').css('display')
+	});
+});	 */
+</script>
 <div class="pjd_table row" id="pjd_table" >
 		<div class="col-lg-12">
 			<div class="hpanel hblue">
@@ -12,7 +20,7 @@
 					상세 프로젝트 +
 				</div>
 				
-				<div class="panel-body">		
+				<div class="panel-body" style="display:block">		
 					<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
@@ -70,6 +78,7 @@
 			</div>
 		</div>
 		
+	
 		
 <div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-md">

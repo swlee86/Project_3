@@ -65,6 +65,8 @@
 			</div>
 		</div>
 	<input type="hidden" id="groupnumber" value="${group}">
+<%-- 	<input type="hidden" id="field" value="${field}">
+	<input type="hidden" id="query" value="${query}"> --%>
 <%-- 	<input type="hidden" id="contactmsg" value="${contactmsg}"> --%>
 
 

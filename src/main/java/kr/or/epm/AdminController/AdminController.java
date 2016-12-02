@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.or.epm.Service.AdminService;
 import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Branch;
+import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
@@ -72,10 +73,12 @@ public class AdminController {
 	
 	//관리자 > 하위 부서 관리 페이지
 	@RequestMapping("/adminDownDepartment.do")
-	public String adminDownDepartment(){
+	public String adminDownDepartment(Model model){
+		List<Branch> list = adminservice.listBranch();
+		model.addAttribute("branchList",list);
 		return "admin.adminDownDepartmentView";
 	}
-	
+
 	//직위 관리 페이지
 	@RequestMapping("/adminGrade.do")
 	public String adminGrade(Model model){
