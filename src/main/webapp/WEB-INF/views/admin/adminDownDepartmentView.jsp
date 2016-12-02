@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>		
 <!--
 	작성일 : 2016-11-17
 	작성자 : 박성준
@@ -46,21 +47,18 @@
 							</div>
 
 							<div class="panel-body">
-								<label class="form-control">지점 선택</label> <select
-									class="form-control">
+								<label class="form-control">지점 선택</label> 	
+								  <select class="form-control" id="select_Branch" onchange="showDeptFuc()">
 									<option>선택</option>
-									<option>서울</option>
-									<option>제주</option>
-								</select> <br /> <label class="form-control">부서 선택</label> <select
-									class="form-control">
-									<option>선택</option>
-									<option>개발</option>
-									<option>영업</option>
-								</select> <br /> <label class="form-control">하위부서 선택</label> <select
-									class="form-control">
-									<option>선택</option>
-									<option>개발1호</option>
-									<option>영업1호</option>
+									<c:forEach var="list" items="${branchList}">
+										<option value="${list.branch_name}">${list.branch_name}</option>
+									</c:forEach>
+								  </select> <br /> 
+							   <label class="form-control">부서 선택</label> 
+								   <select class="form-control" id="select_Dept" onchange="showLowDeptFuc()">
+								   </select> <br /> 
+								<label class="form-control">하위부서 선택</label>
+								 <select class="form-control" id="select_Low_Dept">
 								</select> <br />
 								<div class="col-md-offset-2 col-md-4">
 									<input type="button" class="btn btn-success" id="seeDepartBtn"
@@ -99,12 +97,14 @@
 										<div class="form-group">
 											<h4>&nbsp;&nbsp;&nbsp;하위부서 정보(조회, 수정)</h4>
 										</div>
+										<input type="hidden" id="hiddendept_no">
+										<input type="hidden" id="hiddenbranch_name">
 										<div class="form-group">
 											<div class="col-md-3">
-												<label>부서</label>
+												<label>부서명</label>
 											</div>
 											<div class="col-md-9">
-												<input type="text" class="form-control" readonly="readonly">
+												<input type="text" id="dept_name" class="form-control" readonly="readonly">
 											</div>
 										</div>
 										<div class="form-group">
@@ -112,7 +112,7 @@
 												<label>하위 부서명</label>
 											</div>
 											<div class="col-md-9">
-												<input type="text" class="form-control" readonly="readonly">
+												<input type="text" id="low_dept_name" class="form-control" readonly="readonly">
 											</div>
 										</div>
 										<div class="form-group">
@@ -120,7 +120,7 @@
 												<label>연락처</label>
 											</div>
 											<div class="col-md-9">
-												<input type="text" class="form-control" readonly="readonly">
+												<input type="text" id="tel" class="form-control" readonly="readonly">
 											</div>
 										</div>
 										<div class="form-group">
@@ -128,7 +128,7 @@
 												<label>팩스번호</label>
 											</div>
 											<div class="col-md-9">
-												<input type="text" class="form-control" readonly="readonly">
+												<input type="text" id="fax" class="form-control" readonly="readonly">
 											</div>
 										</div>
 									<div class="form-group">
@@ -138,7 +138,7 @@
 										
 										<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" id="in_time" name="in_time" readonly="readonly" >
+                        					  <input type="text" class="form-control" id="in_time" readonly="readonly" >
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -147,7 +147,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" id="out_time" name="out_time" readonly="readonly">
+                        					  <input type="text" class="form-control" id="out_time" readonly="readonly">
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>
@@ -160,7 +160,7 @@
 										</div>
 											<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" readonly="readonly" >
+                        					  <input type="text" class="form-control" id="open" readonly="readonly" >
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -169,7 +169,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control"  readonly="readonly">
+                        					  <input type="text" class="form-control" id="close" readonly="readonly">
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>
@@ -179,7 +179,7 @@
 										
 										<div class="form-group">
 											<div class="col-md-offset-2 col-md-6">
-												<input type="submit" class="btn btn-success" value="수정">
+												<input type="button" class="btn btn-success" id="lowDeptModifyBtn" value="수정">
 											</div>
 										</div>
 
@@ -193,10 +193,24 @@
 										</div>
 										<div class="form-group">
 											<div class="col-md-3">
+												<label>지점</label>
+											</div>
+											<div class="col-md-9">
+												<select class="form-control" id="select_branch_add" onchange="showDeptFuc2()">
+													<option>선택</option>
+														<c:forEach var="list" items="${branchList}">
+															<option value="${list.branch_name}">${list.branch_name}</option>
+														</c:forEach>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-md-3">
 												<label>부서</label>
 											</div>
 											<div class="col-md-9">
-												<input type="text" class="form-control" readonly="readonly">
+												<select class="form-control" id="select_Dept_add">
+											    </select>
 											</div>
 										</div>
 										<div class="form-group">
@@ -204,7 +218,7 @@
 												<label>하위 부서명</label>
 											</div>
 											<div class="col-md-9">
-												<input type="text" class="form-control" readonly="readonly">
+												<input type="text" class="form-control" id="add_low_dept_name">
 											</div>
 										</div>
 										<div class="form-group">
@@ -212,7 +226,7 @@
 												<label>연락처</label>
 											</div>
 											<div class="col-md-9">
-												<input type="text" class="form-control" readonly="readonly">
+												<input type="text" class="form-control" id="add_tel">
 											</div>
 										</div>
 										<div class="form-group">
@@ -220,7 +234,7 @@
 												<label>팩스번호</label>
 											</div>
 											<div class="col-md-9">
-												<input type="text" class="form-control" readonly="readonly">
+												<input type="text" class="form-control" id="add_fax">
 											</div>
 										</div>
 										<div class="form-group">
@@ -230,7 +244,7 @@
 										
 										<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" id="in_time" name="in_time" readonly="readonly" >
+                        					  <input type="text" class="form-control" id="add_in_time">
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -239,7 +253,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" id="out_time" name="out_time" readonly="readonly">
+                        					  <input type="text" class="form-control" id="add_out_time" >
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>
@@ -252,7 +266,7 @@
 										</div>
 											<div class="col-md-4">
 											<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control" readonly="readonly" >
+                        					  <input type="text" class="form-control" id="add_open">
                                					 <span class="input-group-addon">
                                     			     <span class="fa fa-clock-o"></span>
                                					 </span>
@@ -261,7 +275,7 @@
                     					<div class="col-md-1">~</div>
                     					<div class="col-md-4">
                     						<div class="input-group clockpicker" data-autoclose="true">
-                        					  <input type="text" class="form-control"  readonly="readonly">
+                        					  <input type="text" class="form-control" id="add_close">
                                					 <span class="input-group-addon">
                                     			 	<span class="fa fa-clock-o"></span>
                                					 </span>
@@ -271,7 +285,7 @@
 										
 										<div class="form-group">
 											<div class="col-md-offset-2 col-md-6">
-												<input type="submit" class="btn btn-success" value="등록">
+												<input type="button" class="btn btn-success" id="addlowDeptBtn" value="등록">
 											</div>
 										</div>
 									</form>
