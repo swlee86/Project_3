@@ -31,10 +31,7 @@ public interface PayDAO {
 	//입사일 조회하기
 	public String selectRegdate(String emp_no);
 	
-	// 예상 퇴직금 조회하기
-	
-	
-	// 본인의 금월 예상 급여 조회하기
+    // 본인의 금월 예상 급여 조회하기
 	public Pay selectPay_mine();
 	
 	// 전체 급여 내역 조회하기

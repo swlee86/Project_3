@@ -41,9 +41,18 @@ public interface Low_deptDAO {
 	//하위 부서 등록 > 4) 출퇴근시간 등록
 	public int insert_time(LowDeptJoin lowDeptJoin);
 	
-	// 하위 부서 수정하기
-	public int updateLow_dept();
+	// 하위 부서 수정하기 1)
+	public int updateLow_dept(LowDeptJoin lowDeptJoin);
 	
-	// 하위 부서 수정되면 최종 여부 0으로 변경하기 / 이전 하위 부서번호 등록하기
-	public int updateLow_dept_his();
+	// 하위 부서 수정되면 최종 여부 0으로 변경하기 / 이전 하위 부서번호 등록하기 2)
+	public int updateLow_dept_his(LowDeptJoin lowDeptJoin);
+	
+	//변경된 하위부서번호 조회 3)
+	public LowDeptJoin select_low_dept_no(String low_dept_name);
+
+	//홈페이지 접근 시간 변경 4)
+	public int update_homepage(LowDeptJoin lowDeptJoin);
+	
+	//출퇴근 시간 변경 5)
+	public int update_time(LowDeptJoin lowDeptJoin);
 }

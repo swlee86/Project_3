@@ -93,7 +93,7 @@
 										<td id="task_no_td">
 											<span class="input-group"> 
 												<input type="text" class="form-control input-sm" 
-													   id="task_no" name="emp_no" /> 
+													   name="emp_no" readonly> 
 													<a type="button" class="btn btn-default input-group-addon" id="deptA"> 
 														<span style="color: #fd7d86">
 															<i class="fa fa-user-plus"></i>
@@ -140,7 +140,7 @@
 									</tr>
 									<tr>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											<i class="pe-7s-paperclip"></i> 파일업로드
+											<i class="pe-7s-paperclip"></i> 첨부 파일
 										</th>
 										<td>
 											<input type="file" name="uploadfile" class="form-control input-sm">

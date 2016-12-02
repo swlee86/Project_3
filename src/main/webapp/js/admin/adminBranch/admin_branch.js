@@ -470,6 +470,7 @@ function departMentFuc(){
 					    	
 					    	$('#hiddendept_no').val(data.low_dept.dept_no);
 					    	$('#hiddenbranch_name').val(data.low_dept.branch_name);
+					    	$('#hiddenlow_dept_no').val(data.low_dept.low_dept_no);
 					    	
 					    	$('#dept_name').val(data.low_dept.dept_name);
 					    	
@@ -575,7 +576,7 @@ function departMentFuc(){
 			var date = dateChek();
 			   
 			var LowDeptJoin = { 
-					
+					                low_dept_no: $('#hiddenlow_dept_no').val(),
 									dept_no : $('#hiddendept_no').val(),
 									branch_name :$('#hiddenbranch_name').val(),
 									dept_name: $("#dept_name").val(),
@@ -588,12 +589,18 @@ function departMentFuc(){
 									close:$('#close').val(),
 									set_date : date
 							     };
-			console.log(":::DDDD : " + LowDeptJoin.dept_name+ " / "+ LowDeptJoin.dept_no+ " / "+LowDeptJoin.low_dept_name+ " / "+LowDeptJoin.branch_name);
+			console.log(":::DDDD :  하위부서번호 : "+ LowDeptJoin.low_dept_no+" / "+LowDeptJoin.dept_name+ " / "+ LowDeptJoin.dept_no+ " / "+LowDeptJoin.low_dept_name+ " / "+LowDeptJoin.branch_name);
 		
 			$.ajax(
 					{
 						url:"low_dept_Modify.do",
-					
+						data:LowDeptJoin,
+						success: function(data){
+							alert('수정 성공');
+							console.log(data.result);
+							alert(data.result);
+							window.location.reload();
+						}
 					}
 					);
 			

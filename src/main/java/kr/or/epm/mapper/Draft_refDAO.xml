@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.epm.DAO.Draft_lineDAO">
+	
+<!--
+	작성일 : 2016-11-29
+	작성자 : 백승아
+	사용 목적 : 결재 참조자에 대한 mapper
+-->
+
+	<!-- 결재 참조자 등록하기 -->
+	<insert id="insertDraft_ref">
+		insert into draft_ref(draft_no, emp_no)
+		values(#{param1}, #{param2})
+	</insert>
+	
+</mapper>

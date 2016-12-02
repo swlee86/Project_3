@@ -143,7 +143,7 @@ input.radioa:checked ~ label:before {
 }
 
 input.radiob:checked ~ label:before {
-   content: '승인 거부';
+   content: '반려';
    width: 100%;
    color: white;
    text-align: center;
@@ -159,7 +159,7 @@ input.radioc:checked ~ label:before {
 }
 
 input.radiod:checked ~ label:before {
-   content: '미진행';
+   content: '미승인';
    width: 100%;
    color: white;
    text-align: center;

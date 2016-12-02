@@ -112,8 +112,12 @@
 
 <!--부서관리 메뉴 js  --> 
 <script src="js/admin/adminBranch/admin_branch.js"></script>
+
 <!--직위관리 메뉴 js -->
 <script src="js/admin/adminPosition/adminGrade.js"></script>
+
+<!--급여 관리 메뉴 js  -->
+<script src="js/admin/adminPay/adminPay.js"></script>
 
 <!--우편번호 API-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -144,6 +148,16 @@
 		//기지급 급여 목록페이지의 월별 조회시 사용
 		$('#totalSalListdate').monthpicker(options);	
 
+	});
+	
+
+	//근태 마감 전체선택 체크박스 
+	$('#allCheck').click(function(){
+		if($("#allCheck").prop("checked")) {
+			$("input[type=checkbox]").prop("checked",true);
+		}else{
+			$("input[type=checkbox]").prop("checked",false);
+		}				
 	});
 	
 	

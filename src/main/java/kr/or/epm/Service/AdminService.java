@@ -162,6 +162,36 @@ public class AdminService {
 		return result;
 	}
 	
+	//하위부서 > 정보 수정하기
+	public int updateLow_dept(LowDeptJoin LowDeptJoin){
+		int result=0;
+		System.out.println(" 수정전 dto :==============="+LowDeptJoin.toString());
+		String pre_low_dept_no=LowDeptJoin.getLow_dept_no();
+		//하위부서 insert 1)
+		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
+		result = lowdao.updateLow_dept(LowDeptJoin);
+		System.out.println(" 부서 수정 결과 1(((((((("+result);
+		
+		//2) 수정전 하위부서 기록 변경 2)
+		result += lowdao.updateLow_dept_his(LowDeptJoin);
+		System.out.println("부서 수정 결과2))))))))))))))))"+result);
+		
+		//3)변경된 하위부서번호 조회
+		LowDeptJoin low =lowdao.select_low_dept_no(LowDeptJoin.getLow_dept_name());
+		LowDeptJoin.setLow_dept_no(low.getLow_dept_no());
+		LowDeptJoin.setPre_low_dept_no(pre_low_dept_no);
+		System.out.println(" 받아온 pre   : "+pre_low_dept_no + "  /  새로 세팅한 pre    : "+LowDeptJoin.getPre_low_dept_no() );
+		
+		//4)홈페이지 설정 시간 변경
+		result += lowdao.update_homepage(LowDeptJoin);
+		System.out.println("부서 수정 결과3 ))))))))))))))))"+result);
+		//5)출퇴근 시간 변경
+		result += lowdao.update_time(LowDeptJoin);
+		System.out.println("부서 수정 결과4 최종*******************************8)"+result);
+		
+		return result;
+	}
+	
 	
 	//직위 관리 페이지 사용 - 직위 리스트 읽어 오기
 	public List<PositionJoin> listPosition(){

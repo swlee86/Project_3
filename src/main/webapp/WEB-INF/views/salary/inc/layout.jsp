@@ -415,28 +415,6 @@
 				}
 			});
 			
-			//급여 마감 조회
-			$('#salaryCloseForm').submit(function(){
-				alert("테스트!!");
-				//var pay_no = new Array();
-				var pay_no2='';
-				$("input[name=checkbox]:checked").each(function() {
-					//pay_no.push($(this).val());
-					pay_no2+=$(this).val() +",";
-				});
-				
-				
-				if(pay_no2 != ''){
-					$('#hiddenPay').val(pay_no2);
-					return true;
-				}else{
-					alert("선택 요망!");
-					return false;
-				}
-				
-			});
-			
-
 		});
 		
 		//날짜 포맷 형식 맞출때 사용 하는 첫번째 함수.

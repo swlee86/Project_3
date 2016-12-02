@@ -44,7 +44,7 @@ public class LoginController {
 		System.out.println("로그인");
 	    String referrer = request.getHeader("Referer");
 	    request.getSession().setAttribute("prevPage", referrer);
-		return "login.login";
+		return "/login";
 	}
 	
 	
@@ -73,7 +73,6 @@ public class LoginController {
 			 session.setAttribute("googlemail", email);
 		 }else{
 			 model.addAttribute("iddata", iddata);
-			 
 			 //로그인 데이터와 맞는 아이디가 있으면 정보를 session에 담음
 			 session.setAttribute("googleApiKey", id);
 			 session.setAttribute("googlemail", email);
@@ -132,4 +131,29 @@ public class LoginController {
 		return "myinfo.editMyinfo_Redirect";
 	}
 
+/*		//아이디찾기
+		@RequestMapping("/findId.do")
+		public String findId(){
+			return "find.findID";
+		}
+		
+		//비밀번호찾기
+		@RequestMapping("/findPw.do")
+		public String findPw(){			
+			return "find.findPW";
+		}
+		
+		//아이디찾기 결과
+		@RequestMapping("/findID_Result.do")
+		public String findIdResult(){
+			return "find.findID_Result";
+		}
+
+		//비밀번호찾기 결과
+		@RequestMapping("/findPW_Result.do")
+		public String findPwResult(){
+			return "find.findPW_Result";
+		}*/
+		
+	
 }

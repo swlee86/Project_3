@@ -18,6 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where emp_no = #{emp_no}
 	</select>
 	
+	<!-- 사원번호로 사원이름 가져오기 -->
+	<select id="selectEmp_name_for_emp_no" resultType="String">
+		select emp_name
+		from emp
+		where emp_no = #{emp_no}
+	</select>
+	
 	<!-- 하위부서번호로 지점명, 부서명, 하위부서명 가져오기 -->
 	<select id="selectAttach" resultType="kr.or.epm.VO.Common">
 		select b.branch_name, d.dept_name, l.low_dept_name

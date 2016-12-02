@@ -99,7 +99,8 @@
 										</div>
 										<input type="hidden" id="hiddendept_no">
 										<input type="hidden" id="hiddenbranch_name">
-										<div class="form-group">
+										<input type="hidden" id="hiddenlow_dept_no">
+										 <div class="form-group">
 											<div class="col-md-3">
 												<label>부서명</label>
 											</div>

@@ -1,11 +1,16 @@
 package kr.or.epm.VO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
 작성일 :	2016 - 11 - 16
 작성자 :	김주희
 사용 목적 :	대외발신공문에 대한 VO
 **/
+
 public class Office {
+	
+	// 대외발신공문에 대한 데이터
 	private String draft_no;
 	private String rec_place;
 	private String rec_fax;
@@ -16,6 +21,7 @@ public class Office {
 	private String rec_addr_detail;
 	
 	//추가 DTO 2016-11-18
+	// 기본 전자결재에 대한 데이터
 	private String cg_no;
 	private String draft_title;
 	private	String draft_content;
@@ -26,6 +32,39 @@ public class Office {
 	private String rec_del_check;
 	private String del_check;
 	
+	// 추가 VO 2016-11-30
+	// 파일 업로드에 대한 데이터
+	private MultipartFile uploadfile;
+	private String emp_name;
+private String rec_date;
+	
+	
+	public String getRec_date() {
+		return rec_date;
+	}
+
+	public void setRec_date(String rec_date) {
+		this.rec_date = rec_date;
+	}
+
+	
+	
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+
+	public MultipartFile getUploadfile() {
+		return uploadfile;
+	}
+
+	public void setUploadfile(MultipartFile uploadfile) {
+		this.uploadfile = uploadfile;
+	}
+
 	public String getDraft_no() {
 		return draft_no;
 	}

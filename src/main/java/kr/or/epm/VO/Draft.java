@@ -7,6 +7,7 @@ package kr.or.epm.VO;
 **/
 
 public class Draft {
+	// 전자결재 부분
 	private String draft_no;
 	private String cg_no;
 	private String draft_title;
@@ -17,6 +18,7 @@ public class Draft {
 	private String step_no;
 	
 	//추가  DTO 2016-11-17
+	// 구분번호 등등
 	private String cg_name; 
     private String step_name; 
     private int step;
