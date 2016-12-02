@@ -31,8 +31,10 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-
-					<br />
+					<h4>
+						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;${date} 근태정보
+					</h4>
+					 <hr style="border:1px solid gray; margin-bottom:0px">
 					<div class="table-responsive">
 						<form action="commuteAdminEnd.do" method="POST" id="commuteForm">
 						<div class="table-responsive">

@@ -199,7 +199,7 @@ public class AdminController {
 		List<PayList> Commutelist = commuteservice.selectCommute_all_Close(dTime);
 		
 		String pay_date= adminservice.selectpay_date();
-		
+		model.addAttribute("date", dTime);
 		model.addAttribute("Commutelist", Commutelist);
 		model.addAttribute("pay_date", pay_date);
 		return "commute.CommuteAdminView";

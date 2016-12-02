@@ -18,7 +18,7 @@
 					</span>
 				</div>
 			</div>
-			<h2 class="font-light m-b-xs">급여 기본 정보 관리</h2>
+			<h2 class="font-light m-b-xs"> <i onclick="location.href='adminSalaryView.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;급여 기본 정보 관리</h2>
 		</div>
 	</div>
 </div>
