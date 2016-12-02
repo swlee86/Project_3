@@ -155,7 +155,15 @@ public class AdminController {
 	@RequestMapping("/adminSalaryManage.do")
 	public String salaryInfo(Model model){
 		
-		
+	  String pay_date= adminservice.selectpay_date();
+	  System.out.println("급여일: "+pay_date);	
+	  
+	  if(pay_date !=null){
+		  model.addAttribute("result", "1");
+	  }else{
+		  model.addAttribute("result", "0");
+	  }
+		model.addAttribute("pay_date", pay_date);
 		return "admin.adminSalaryManage";
 	}
 	//기지급 급여 내역 페이지

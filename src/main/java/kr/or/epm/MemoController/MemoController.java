@@ -114,20 +114,14 @@ public class MemoController {
 		return "memo.memo_redirect";
 	}
 
-	// 메모 추가(+) 눌렀을 때 뜨는 페이지
+	
+	// 메모 추가(+) 눌렀을 때 뜨는 페이지 비동기로
 	@RequestMapping(value = "/memo_write.do", method = RequestMethod.GET)
 	public String memowrite(Model mv) {
-		List<Memocolor> color = null;
-		try{
-			color = memoservice.selectMemocolorList();
-		}catch(Exception e){
-			e.getMessage();
-		}finally{
-			System.out.println(color.toString());
-			mv.addAttribute("color", color);
-		}
-		
-		return "memo.memo_write";
+		List<Memocolor> color = memoservice.selectMemocolorList();	
+		System.out.println(color.toString());
+		mv.addAttribute("color", color);
+		return "memo/memo_write";
 	}
 
 	// 메모를 인서트 하는 컨트롤러
