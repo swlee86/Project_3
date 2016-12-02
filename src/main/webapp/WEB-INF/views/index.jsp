@@ -293,6 +293,12 @@
 	</div>
 	</div>
 </div>
+<c:forEach var="commutelist" items="${commutelist}">
+<input type="text" id="regdate" name="regdate[]" value="${commutelist.regdate}">
+<input type="text" id="in_time" name="intime[]" value="${commutelist.in_time}">
+<input type="text" id="out_time" value="${commutelist.out_time}">
+</c:forEach>
+
 </div>
 <!-- 	<div class="row">
 		<div class="col-lg-3">
@@ -516,24 +522,34 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <script>
 $(function(){
+var datereg = [];
+var intime = [];	
+var check_obj = document.getElementsByName('regdate[]') ;
+var check_intime = document.getElementsByName('intime[]') ;
+
+
+for( var i = 0; i <= check_obj.length-1; i++ ){
+	console.log("length값 : " + length);
+	datereg.push(check_obj.item(i).value);			
+	
+	}
+	
+for( var i = 0; i <= check_intime.length-1; i++ ){
+	console.log("for문 1차 통과");
+	intime.push(check_intime.item(i).value);			
+	
+	}
+
+console.log(datereg);
+console.log(intime);
+	
 new Chartist.Bar('#ct-chart4', {
-    labels: ['월', '화', '수', '목', '금', '토', '일'],
+    labels: datereg,
     series: [
-        [2, 3, 4, 5, 6, 7, 8],
-        [3, 4, 5, 6, 7, 8, 9],
-        [4, 5, 6, 7, 8, 9, 10]
+    	intime,
+        [3000, 5, 6, 7, 8]
     ]
 }, {
     seriesBarDistance: 10,

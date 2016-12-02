@@ -97,7 +97,7 @@ public class PageMoveController {
  			
  		}
 		
-		/////////////////////인덱스에 띄워 줄 근태 리스트 내용 구하기 시작////////////////////////////////////////////////////
+		/////////////////////인덱스에 띄워 줄 근태 차트 리스트 내용 구하기 시작////////////////////////////////////////////////////
 		List<Commute> commutelist = null;
 		if(emp_no_chk==true){
  			String commutemsg = "근태 내역은 로그인 후 내용 확인 가능합니다";
@@ -106,11 +106,14 @@ public class PageMoveController {
  			try{
  				commutelist = pushService.commutelist(emp_no, cpage, pgsize); 	
  				for(int i=0; i<=commutelist.size(); i++){
- 					System.out.println();
+ 					System.out.println("일시 : " + commutelist.get(i).getRegdate());
+ 					System.out.println("출근 : " + commutelist.get(i).getIn_time());
+ 					System.out.println("퇴근 : " + commutelist.get(i).getOut_time());
  				}
  			}catch(Exception e){
- 				
+
  			}finally{
+ 				model.addAttribute("commutelist", commutelist);
  				
  			}
  			
