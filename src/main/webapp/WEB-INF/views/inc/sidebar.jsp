@@ -82,17 +82,17 @@
                 <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="draftWrite.do">결재 등록</a></li>
-                	<li><a href="draft_rec.do">결재 대기함</a></li>
-                	<li><a href="draft.do">결재 송신함</a></li>
+                	<li><a href="draft_rec.do">수신함</a></li>
+                	<li><a href="draft.do">송신함</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#"><span class="nav-label">업무관리</span><span class="fa arrow"></span> </a>
+                <a href="#"><span class="nav-label">업무</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="taskWrite.do">업무 등록</a></li>
-                    <li><a href="taskRequest.do">업무 요청</a></li>
-                    <li><a href="taskInform.do">업무 보고</a></li>
-                    <li><a href="taskLog.do">업무 일지</a></li>
+                    <li><a href="taskRequest.do">요청</a></li>
+                    <li><a href="taskInform.do">보고</a></li>
+                    <li><a href="taskLog.do">일지</a></li>
                 </ul>
             </li>
             <li>

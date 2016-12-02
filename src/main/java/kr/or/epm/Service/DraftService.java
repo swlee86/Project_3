@@ -183,4 +183,9 @@ public class DraftService {
 		return breaklist;
 	}
 	
+	// 대외발신공문 송신함 리스트 불러오기
+	public List<Office> selectOffice() {
+		return null;
+	}
+	
 }

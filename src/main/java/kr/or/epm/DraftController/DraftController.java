@@ -127,8 +127,46 @@ public class DraftController {
 	
 	// 결재 송신함 페이지 요청
 	@RequestMapping(value="/draft.do", method=RequestMethod.GET)
-	public String draft() {
+	public String draft(Principal principal, Model model) {
 		System.out.println("CONTROLLER] 결재 송신함 페이지");
+		
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+
+		// 대외발신공문
+		// 목록 가져오기
+		List<Office> officelist = service.selectOffice_rec(emp_no);
+		model.addAttribute("officelist", officelist);
+
+		// 글 개수 구하기
+		int officecount = officelist.size();
+		System.out.println("대외발신공문 송신함 글 개수 : " + officecount);
+		model.addAttribute("officecount", officecount);
+				
+				
+				// 협조문
+				// 목록 가져오기
+				List<Cooperation> cooperationlist = service.selectCooperation_rec(emp_no);
+				model.addAttribute("cooperationlist", cooperationlist);
+				
+				// 글 개수 구하기
+				int cooperationcount = cooperationlist.size();
+				System.out.println("협조문 수신함 글 개수 : " + cooperationcount);
+				model.addAttribute("cooperationcount", cooperationcount);
+				
+				
+				// 휴가신청서
+				// 목록 가져오기
+				List<Break> breaklist = service.selectBreak_rec(emp_no);
+				model.addAttribute("breaklist", breaklist);
+				
+				// 글 개수 구하기
+				int breakcount = breaklist.size();
+				System.out.println("휴가신청서 수신함 글 개수 : " + breakcount);
+				model.addAttribute("breakcount", breakcount);
 		
 		return "draft.draft";
 	}

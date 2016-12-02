@@ -19,14 +19,14 @@
                             <span>전자 결재</span>
                         </li>
                         <li class="active">
-                            <span>결재 대기함</span>
+                            <span>결재 수신함</span>
                         </li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
-                    	결재 대기함
+                    	결재 수신함
                 </h2>
-                <small>&nbsp;&nbsp; 승인 대기 중인 결재 문서들을 확인할 수 있습니다</small>
+                <small>&nbsp;&nbsp; 수신한 결재 문서들을 확인할 수 있습니다</small>
             </div>
         </div>
     </div>
