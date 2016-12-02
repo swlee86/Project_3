@@ -27,6 +27,21 @@ $(function(){
 			)	
 	});
 	
+	$('#memo_plus').click(function(){
+		console.log('클릭');
+		$.ajax(
+				{
+					type : "get",
+					url  : "memo_write.do",
+					dataType : "html",
+					success : function(data){
+						console.log("data: "+data); 
+						$('#memo_plus_div').html(data);
+					}
+				}		
+			)
+	});
+	
 });
 </script>
 <div class="normalheader transition animated fadeIn">
@@ -139,12 +154,13 @@ $(function(){
       
         
         <!-- 메모 상세 -->
-        <div class="col-md-9">
+        <div id="memo_plus_div">
+        <div class="col-md-9" >
             <div class="hpanel">
                 <div class="panel-body" style="background: ${first_memo.color};" id="memo_detail_panel_body_color">					
 
                     <div class="tab-content">
-                     <a  href="memo_write.do"><span class="glyphicon glyphicon-plus"></span></a>
+                     <a  href="#"id="memo_plus"><span class="glyphicon glyphicon-plus"></span></a>
                     	<form method="post">
                      	<%-- <input type="hidden" name="update_memo_no" value="${memo_no_chk}"> --%> 
                     	<%-- <input type="hidden" name="color_no" value="${first_memo.color_no}"> --%>
@@ -168,7 +184,7 @@ $(function(){
                 </div>
             </div>
         </div>
-        
+        </div>
         
         
     </div>
