@@ -50,7 +50,7 @@
 												<button class="btn btn-xs btn-info" disabled>승인</button>
 											</c:when>
 											<c:when test="${ detail.step_no == '2' }">
-												<button class="btn btn-xs btn-danger" disabled>승인거부</button>
+												<button class="btn btn-xs btn-danger" disabled>반려</button>
 											</c:when>
 											<c:when test="${ detail.step_no == '3' }">
 												<button class="btn btn-xs btn-primary2" disabled>보류</button>
@@ -167,7 +167,7 @@
 												<span class="sty"> 
 													<input type="radio" name="step_no" id="reject" value="2" class="radio radiob"
 													<c:if test="${ detail.step_no == '2' }"> checked </c:if> />
-													<label class="sty" for="reject">승인 거부</label>
+													<label class="sty" for="reject">반려</label>
 												</span> 
 												<span class="sty"> 
 													<input type="radio" name="step_no" id="wait" value="3" class="radio radioc"
