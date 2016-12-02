@@ -124,12 +124,22 @@
 
 <script>
 
-	
+	//삭제 하기 버튼 클릭시 !!
+	function deleteli(obj){
+		var deleteli = $(obj);
+		var value = deleteli.parent().attr("value");
+		alert("값은 ? : "+value);
+		
+		//드래그앤 드롭 삭제하느 ㄴ것.
+		deleteli.parent().remove();
+	}
 
 	$(function(){
 		
 		//드래그 앤 드롭
 		$( "#sortable" ).sortable();
+	
+		
 		
 		var currentYear = (new Date()).getFullYear();
 		var startYear = currentYear - 10;
