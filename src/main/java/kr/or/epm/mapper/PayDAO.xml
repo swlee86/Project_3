@@ -116,4 +116,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  select pay_date from set_pay_date
 	</select>
 	
+	<!--급여일 등록하기  -->
+	<insert id="insertpay_date" parameterType="kr.or.epm.VO.Set_pay_date">
+		insert into set_pay_date(set_date, pay_date)  values(#{set_date}, #{pay_date})
+	</insert>
+	
+	<!-- 급여일 수정하기 -->
+	<update id="updatepay_date" parameterType="kr.or.epm.VO.Set_pay_date">
+		update set_pay_date
+		set set_date = #{set_date}, 
+			pay_date = #{pay_date}
+	</update>
 </mapper>
