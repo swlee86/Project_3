@@ -153,9 +153,15 @@ public class AdminAjaxController {
 	
 	//하위 부서 > 수정하기
 	@RequestMapping("/low_dept_Modify.do")
-	public View low_dept_Modify(){
-		
-		
+	public View low_dept_Modify(LowDeptJoin LowDeptJoin, Model model){
+		int result = adminservice.updateLow_dept(LowDeptJoin);
+		if(result >= 4){
+			System.out.println("성공");
+			model.addAttribute("result", "성공");
+		}else{
+			System.out.println("실패 ");
+			model.addAttribute("result", "실패");
+		}
 		return jsonview;
 	}
 	
