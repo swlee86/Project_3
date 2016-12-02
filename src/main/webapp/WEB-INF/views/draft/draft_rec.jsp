@@ -36,27 +36,33 @@
 <div class="row" >
 <div class="col-lg-12">
 
+<form action="">
 <div class="hpanel">
     <div class="panel-body">
         <span class="form-inline" style="width: 10%;">
-        	<font size="4" style="vertical-align: middle;">검색기준</font> 
-        	<span id="inputSpan" style="width: 50%; margin-left: 3%;">
+        	<font size="4" style="vertical-align: middle;">검색 기준</font> 
+        	<span id="inputSpan" style="width: 50%; margin-left: 3%">
         		<input class="form-control" type="text">
-        		<!-- <span class='input-group-addon' style='color:#fd7d86'><i class='pe-7s-search'></i></span> -->
+        		<span class="form-control" style="margin-left: -10px;">
+        			<i class="pe-7s-search" style="font-size: 22px;"></i>
+        		</span>
         	</span>
         </span>
     </div>
 </div>
-
+</form>
 
 <div class="hpanel forum-box">
     <div class="panel-heading">
-                <div class="pull-right" style="width: 25%;">
-                	<span style="display: inline-block; width: 65%; text-align: right;">
+                <div class="pull-right" style="width: 35%;">
+                	<span style="display: inline-block; width: 50%; text-align: right;">
                 		수신처
             		</span>
-            		<span style="display: inline-block; width: 33%; text-align: right;">
+            		<span style="display: inline-block; width: 24%; text-align: right;">
                 		기안자
+            		</span>
+            		<span style="display: inline-block; width: 24%; text-align: right;">
+                		승인 결과
             		</span>
                 </div>
         대외 발신 공문(${ officecount })
@@ -65,7 +71,7 @@
 	<c:forEach var="office" items="${ officelist }">
     <div class="panel-body">
         <div class="row">
-        	<div class="col-md-9 forum-heading">
+        	<div class="col-md-8 forum-heading">
 				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
 					<c:if test="${ office.rec_date == null }">
             		<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
@@ -84,6 +90,24 @@
                 <span style="display: block; font-weight: 550; font-size: 18px;"> ${ office.emp_name } </span>
                 <small>${ office.emp_no }</small>
             </div>
+            <div class="col-md-1 forum-info" style="margin-top: 7px;">
+                <span style="display: block; margin-right: 10%; margin-top: -5px;">
+                	<c:choose>
+                		<c:when test="${ office.step_no == '1' }">
+                			<button class="btn btn-info btn-circle" style="width: 48px; height: 48px;"> 승인 </button>
+                		</c:when>
+                		<c:when test="${ office.step_no == '2' }">
+                			<button class="btn btn-danger btn-circle" style="width: 48px; height: 48px;"> 반려 </button>
+                		</c:when>
+                		<c:when test="${ office.step_no == '3' }">
+                			<button class="btn btn-primary2 btn-circle" style="width: 48px; height: 48px;"> 보류 </button>
+                		</c:when>
+                		<c:when test="${ office.step_no == '4' }">
+                			<button class="btn btn-warning2 btn-circle" style="width: 48px; height: 48px;"> 미승인 </button>
+                		</c:when>
+                	</c:choose>
+                </span>
+            </div>
         </div>
     </div>
 	</c:forEach>
@@ -92,13 +116,16 @@
 
 <div class="hpanel forum-box">
     <div class="panel-heading">
-    	<div class="pull-right" style="width: 25%;">
-    		<span style="display: inline-block; width: 65%; text-align: right;">
+    	<div class="pull-right" style="width: 35%;">
+    		<span style="display: inline-block; width: 50%; text-align: right;">
     			수신 부서
     		</span>
-    		<span style="display: inline-block; width: 33%; text-align: right;">
+    		<span style="display: inline-block; width: 24%; text-align: right;">
     			기안자
     		</span>
+            <span style="display: inline-block; width: 24%; text-align: right;">
+                              승인 결과
+            </span>
     	</div>
         협조문(${ cooperationcount })
     </div>
@@ -106,7 +133,7 @@
 	<c:forEach var="cooper" items="${ cooperationlist }">
     <div class="panel-body">
         <div class="row">
-        	<div class="col-md-9 forum-heading">
+        	<div class="col-md-8 forum-heading">
 				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
 					<c:if test="${ cooper.rec_date == null }">
             		<span class="label label-warning pull-left" style="margin-right: 5px;">New</span>
@@ -125,6 +152,24 @@
                 <span style="display: block; font-weight: 550; font-size: 18px;"> ${ cooper.emp_name } </span>
                 <small>${ cooper.emp_no }</small>
             </div>
+            <div class="col-md-1 forum-info" style="margin-top: 7px;">
+                <span style="display: block; margin-right: 10%; margin-top: -5px;">
+                	<c:choose>
+                		<c:when test="${ cooper.step_no == '1' }">
+                			<button class="btn btn-info btn-circle" style="width: 48px; height: 48px;"> 승인 </button>
+                		</c:when>
+                		<c:when test="${ cooper.step_no == '2' }">
+                			<button class="btn btn-danger btn-circle" style="width: 48px; height: 48px;"> 반려 </button>
+                		</c:when>
+                		<c:when test="${ cooper.step_no == '3' }">
+                			<button class="btn btn-primary2 btn-circle" style="width: 48px; height: 48px;"> 보류 </button>
+                		</c:when>
+                		<c:when test="${ cooper.step_no == '4' }">
+                			<button class="btn btn-warning2 btn-circle" style="width: 48px; height: 48px;"> 미승인 </button>
+                		</c:when>
+                	</c:choose>
+                </span>
+            </div>
         </div>
     </div>
 	</c:forEach>
@@ -132,38 +177,59 @@
 
 <div class="hpanel forum-box">
     <div class="panel-heading">
-		<div class="pull-right" style="width: 25%;">
-			<span style="display: inline-block; width: 65%; text-align: right;">
+		<div class="pull-right" style="width: 35%;">
+			<span style="display: inline-block; width: 50%; text-align: right;">
 				휴가기간 
 			</span> 
-			<span style="display: inline-block; width: 33%; text-align: right;">
+			<span style="display: inline-block; width: 24%; text-align: right;">
 				기안자 
 			</span>
+            <span style="display: inline-block; width: 24%; text-align: right;">
+               	승인 결과
+            </span>
 		</div>
 	휴가신청서(${ breakcount })
 	</div>
 
-	<c:forEach var="break" items="${ breaklist }">
+	<c:forEach var="br" items="${ breaklist }">
     <div class="panel-body">
         <div class="row">
-        	<div class="col-md-9 forum-heading">
+        	<div class="col-md-8 forum-heading">
 				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
-					<c:if test="${ break.rec_date }">
+					<c:if test="${ br.rec_date == null }">
             		<span class="label label-info pull-left" style="margin-right: 5px;">New</span>
             		</c:if>
-                		${ break.draft_date } 
+                		${ br.draft_date } 
            	 	</div>
             	<div style="margin-left: 2%;">
-                	<a href="forum_details.html"><h4> ${ break.draft_title } </h4></a>
+                	<a href="forum_details.html"><h4> ${ br.draft_title } </h4></a>
             	</div>
             </div>
             <div class="col-md-2 forum-info" style="margin-top: 7px;">
-                <span style="display: block; font-weight: 550; font-size: 18px;"> ${ break.break_cg_name } </span>
-                <small>${ break.break_term } 일</small>
+                <span style="display: block; font-weight: 550; font-size: 18px;"> ${ br.break_cg_name } </span>
+                <small>${ br.break_term } 일</small>
             </div>
             <div class="col-md-1 forum-info" style="margin-top: 7px;">
-                <span style="display: block; font-weight: 550; font-size: 18px;"> ${ break.emp_name } </span>
-                <small>${ break.emp_no }</small>
+                <span style="display: block; font-weight: 550; font-size: 18px;"> ${ br.emp_name } </span>
+                <small>${ br.emp_no }</small>
+            </div>
+            <div class="col-md-1 forum-info" style="margin-top: 7px;">
+                <span style="display: block; margin-right: 10%; margin-top: -5px;">
+                	<c:choose>
+                		<c:when test="${ br.step_no == '1' }">
+                			<button class="btn btn-info btn-circle" style="width: 48px; height: 48px;"> 승인 </button>
+                		</c:when>
+                		<c:when test="${ br.step_no == '2' }">
+                			<button class="btn btn-danger btn-circle" style="width: 48px; height: 48px;"> 반려 </button>
+                		</c:when>
+                		<c:when test="${ br.step_no == '3' }">
+                			<button class="btn btn-primary2 btn-circle" style="width: 48px; height: 48px;"> 보류 </button>
+                		</c:when>
+                		<c:when test="${ br.step_no == '4' }">
+                			<button class="btn btn-warning2 btn-circle" style="width: 48px; height: 48px;"> 미승인 </button>
+                		</c:when>
+                	</c:choose>
+                </span>
             </div>
         </div>
     </div>

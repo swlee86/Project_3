@@ -85,7 +85,6 @@ public class DraftService {
 		List<String> draft_line_list = new ArrayList<String>();
 		
 		for(String draft_no : draft_no_list) {
-			
 			// 결재라인 차례 확인하기
 			draft_line_no = dao.selectDraft_line(draft_no, emp_no, cg_no);
 			if(draft_line_no != null) {
@@ -125,7 +124,6 @@ public class DraftService {
 		List<String> draft_line_list = new ArrayList<String>();
 
 		for (String draft_no : draft_no_list) {
-			
 			// 결재라인 차례 확인하기
 			draft_line_no = dao.selectDraft_line(draft_no, emp_no, cg_no);
 			if (draft_line_no != null) {
@@ -133,8 +131,6 @@ public class DraftService {
 			}
 		}
 		
-		System.out.println("내 차례의 결재 번호 확인 : " + draft_line_list.toString());
-
 		// 출력할 협조문 정보
 		Cooperation cooperation = null;
 		// 출력할 협조문 리스트들 저장
@@ -144,8 +140,6 @@ public class DraftService {
 			cooperation = dao.selectCooperation_rec(draft_no);
 			cooperationlist.add(cooperation);
 		}
-		
-		System.out.println("보자 : " + cooperationlist.toString());
 		
 		return cooperationlist;
 	}
@@ -157,8 +151,34 @@ public class DraftService {
 		System.out.println("넘겨진 emp_no : " + emp_no);
 		
 		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
-		
-		List<Break> breaklist = dao.selectBreak_rec(emp_no);
+		// cg_no = "3" 은 휴가신청서
+		String cg_no = "3";
+
+		// 결재 번호 가져오기
+		List<String> draft_no_list = dao.selectDraft_noList();
+
+		// 내 차례인 결재의 결재번호
+		String draft_line_no = null;
+		// 내 차례인 결재번호들 저장
+		List<String> draft_line_list = new ArrayList<String>();
+
+		for (String draft_no : draft_no_list) {
+			// 결재라인 차례 확인하기
+			draft_line_no = dao.selectDraft_line(draft_no, emp_no, cg_no);
+			if (draft_line_no != null) {
+			draft_line_list.add(draft_line_no);
+			}
+		}
+			
+		// 출력할 휴가신청서 정보
+		Break br = null;
+		// 출력할 휴가신청서 리스트들 저장
+		List<Break> breaklist = new ArrayList<Break>();
+
+		for (String draft_no : draft_line_list) {
+			br = dao.selectBreak_rec(draft_no);
+			breaklist.add(br);
+		}
 		
 		return breaklist;
 	}

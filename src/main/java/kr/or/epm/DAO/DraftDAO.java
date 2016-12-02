@@ -74,6 +74,6 @@ public interface DraftDAO {
 	public Cooperation selectCooperation_rec(String draft_no);
 	
 	// 휴가신청서 수신 리스트
-	public List<Break> selectBreak_rec(String draft_no);
+	public Break selectBreak_rec(String draft_no);
 	
 }

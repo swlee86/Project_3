@@ -1,22 +1,18 @@
 package kr.or.epm.VO;
 
 /**
-작성일 :	2016 - 11 - 16
-작성자 :	김주희
-사용 목적 :	휴가신청에 대한 VO
-**/
+ * 작성일 : 2016 - 11 - 16 작성자 : 김주희 사용 목적 : 휴가신청에 대한 VO
+ **/
 public class Break {
 	private String draft_no;
 	private String break_start;
 	private String break_end;
 	private String break_term;
 	private String break_cg_no;
-	
-	
+
 	// 추가 DTO 2016-11-17
 	private String break_cg_name;
-	
-	
+
 	// 추가 DTO 2016-11-18
 	private String cg_no;
 	private String draft_title;
@@ -27,48 +23,68 @@ public class Break {
 	private String step_no;
 	private String rec_del_check;
 	private String del_check;
+
+	private String rec_date;
+	private String emp_name;
 	
+	
+	
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+
+	public String getRec_date() {
+		return rec_date;
+	}
+
+	public void setRec_date(String rec_date) {
+		this.rec_date = rec_date;
+	}
+
 	public String getDraft_no() {
 		return draft_no;
 	}
-	
+
 	public void setDraft_no(String draft_no) {
 		this.draft_no = draft_no;
 	}
-	
+
 	public String getBreak_start() {
 		return break_start;
 	}
-	
+
 	public void setBreak_start(String break_start) {
 		this.break_start = break_start;
 	}
-	
+
 	public String getBreak_end() {
 		return break_end;
 	}
-	
+
 	public void setBreak_end(String break_end) {
 		this.break_end = break_end;
 	}
-	
+
 	public String getBreak_term() {
 		return break_term;
 	}
-	
+
 	public void setBreak_term(String break_term) {
 		this.break_term = break_term;
 	}
-	
+
 	public String getBreak_cg_no() {
 		return break_cg_no;
 	}
-	
+
 	public void setBreak_cg_no(String break_cg_no) {
 		this.break_cg_no = break_cg_no;
 	}
 
-	
 	public String getBreak_cg_name() {
 		return break_cg_name;
 	}
@@ -158,6 +174,4 @@ public class Break {
 				+ ", rec_del_check=" + rec_del_check + ", del_check=" + del_check + "]";
 	}
 
-	
-	
 }
