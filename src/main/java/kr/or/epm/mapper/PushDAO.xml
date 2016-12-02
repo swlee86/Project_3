@@ -6,9 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 내가 승인해야 하는 프로젝트 리스트 뽑기(index에서 사용) -->
 <select id="selectPj_rec" resultType="kr.or.epm.VO.Pj">
-      select rn, pj_no, emp_no, emp_name, pj_title, pj_start, pj_end, step_no from (select rownum rn, pj_no, p.emp_no, e.emp_name, pj_title, pj_start, pj_end, step_no
-      from pj p join emp e on p.emp_no = e.emp_no
-      where rec_emp_no =#{param1} and  rec_del_check = '0' and step_no='4') where rn between #{param2} and #{param3}
+      select pj_no, emp_no, emp_name, pj_title, pj_start, pj_end, step_no from(
+           select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
+                select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
+                from pj p join emp e on p.emp_no = e.emp_no
+                where p.rec_emp_no = #{param1} and  p.rec_del_check = '0' and p.step_no != '1' 
+                order by to_number(p.pj_no) DESC
+           )n 
+       )where num between ${param2} and ${param3}
 </select>
 
 
@@ -19,24 +24,16 @@ select task_no, task_name, DEADLINE, emp_no, emp_name, send_date from (select ro
 
 	<!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
 	<select id="selectmytasklist" resultType="kr.or.epm.VO.Task">
-		select t.task_no, cg_name, task_name,
-       		   deadline, rec_emp_no, rec_name,
-       		   t.emp_no, emp_name, file_name, 
-       		   task_step_name, send_date, step_no,
-       		   t.task_step_no
-		from task t join task_cg c
-		on t.cg_no = c.cg_no
-    	join task_step s
-    	on t.task_step_no = s.task_step_no
-		left outer join (select task_no, emp_no
-                 		 from task_people
-                 		 where emp_no = #{emp_no}) p
-		on t.task_no = p.task_no
-		where t.step_no = '1' and
-          	  t.cg_no = '1' and
-          	  rec_emp_no = #{emp_no} or
-          	  p.emp_no is not null
-		order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
+		select t.task_no, t.cg_no, task_name, rec_name, emp_name, t.task_step_no, deadline, rec_emp_no
+from task t join task_step s
+on t.task_step_no = s.task_step_no
+left outer join (select p.task_no, p.emp_no, t.cg_no
+                 from task t join task_people p
+                 on t.task_no = p.task_no
+                 where p.emp_no = #{emp_no} and cg_no = '1') p
+on t.task_no = p.task_no
+where rec_emp_no = #{emp_no} and t.cg_no = '1' and t.step_no = '1' and t.task_step_no != '4'  and t.task_step_no != '5' or p.emp_no is not null
+order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
 	</select>
 	
 
