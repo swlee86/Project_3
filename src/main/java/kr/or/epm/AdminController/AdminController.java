@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.epm.Service.AdminService;
+import kr.or.epm.Service.CommuteService;
 import kr.or.epm.Service.PayService;
 import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Branch;
@@ -38,6 +39,10 @@ public class AdminController {
 	private AdminService adminservice;
 	@Autowired
 	private PayService payservice;
+	@Autowired
+	private CommuteService commuteservice;
+	
+	
 	
 	//관리자 개발.
 	@RequestMapping(value="/adminDepart_depart.do",method=RequestMethod.GET)
@@ -155,7 +160,15 @@ public class AdminController {
 	@RequestMapping("/adminSalaryManage.do")
 	public String salaryInfo(Model model){
 		
-		
+	  String pay_date= adminservice.selectpay_date();
+	  System.out.println("급여일: "+pay_date);	
+	  
+	  if(pay_date !=null){
+		  model.addAttribute("result", "1");
+	  }else{
+		  model.addAttribute("result", "0");
+	  }
+		model.addAttribute("pay_date", pay_date);
 		return "admin.adminSalaryManage";
 	}
 	//기지급 급여 내역 페이지
@@ -174,6 +187,37 @@ public class AdminController {
 		return "admin.adminSalaryModify";
 	}
 	
+	//관리자 - 근태 마감 - 리스트 보기
+	@RequestMapping("/CommuteAdmin.do")
+	public String CommuteAdmin(Model model){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
+		Date currentTime = new Date( );
+		String dTime = formatter.format ( currentTime );
+		System.out.println ("연월 : "+dTime );
+		
+		List<PayList> Commutelist = commuteservice.selectCommute_all_Close(dTime);
+		
+		String pay_date= adminservice.selectpay_date();
+		model.addAttribute("date", dTime);
+		model.addAttribute("Commutelist", Commutelist);
+		model.addAttribute("pay_date", pay_date);
+		return "commute.CommuteAdminView";
+	}
+	
+	//관리자 - 근태마감 - 확정 하기
+	@RequestMapping(value="/commuteAdminEnd.do", method=RequestMethod.POST)
+	public String CommuteEnd(String chkhidden){
+		//commute_no 뽑아서 배열에 담아둠
+		String[] commute_no = chkhidden.split(",");
+		for(int i = 0; i < commute_no.length; i++){
+			System.out.println("근태 마감 확정 컨트롤러 입니다.  : :::: "+commute_no[i]);
+		}
+		
+		int result = commuteservice.updateCommute_mgr_check(commute_no);
+		
+		return null;
+	}
 	
 	
 }

@@ -241,5 +241,16 @@ public class ProjectService {
 	}
 
 
+	//프로젝트 리스트 검색
+	public List<Pj> searchPj(String key, String value){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		
+		List<Pj> pjlist = null;
+		
+		pjlist = dao.searchPj(key,value);
+		
+		System.out.println("사이즈 : " + pjlist.size());
+		return pjlist;
+	}
 
 }

@@ -148,8 +148,7 @@
     	var date = new Date();
     	var year  = date.getFullYear();
         var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
-        var day   = "${25}";
-
+        var day   = "${pay_date}";
         if (("" + month).length == 1) { month = "0" + month; }
         if (("" + day).length   == 1) { day   = "0" + day;   }
     	//오늘 날짜 전역변수에도 담음

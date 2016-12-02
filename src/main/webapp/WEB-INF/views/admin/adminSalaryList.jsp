@@ -17,7 +17,7 @@
 					</span>
 				</div>
 			</div>
-			<h2 class="font-light m-b-xs">당월 지급 예정 급여 내역</h2>
+			<h2 class="font-light m-b-xs"> <i onclick="location.href='adminSalaryView.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;금월 지급 예정 급여 내역</h2>
 		</div>
 	</div>
 </div>

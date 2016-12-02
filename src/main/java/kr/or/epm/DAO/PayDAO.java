@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.or.epm.VO.Pay;
 import kr.or.epm.VO.PayList;
+import kr.or.epm.VO.Set_pay_date;
 
 /*
  * 작성일 : 2016-11-18
@@ -46,6 +47,13 @@ public interface PayDAO {
 	// 관리자] 급여 확정하기
 	public int updatePay(String pay_no);
 	
-	//급여 지급일 있는지 여부 판단하기
+	//급여 지급일 있는지 여부 판단하기 1)
 	public String selectpay_date();
+	
+	//급여지급일 등록하기
+	public int insertpay_date(Set_pay_date setpay);
+	
+	//급여지급일 수정하기
+	public int updatepay_date(Set_pay_date setpay);
+	
 }

@@ -165,24 +165,16 @@
 								<hr />
 								
 								<div class="infont col-md-6">
-									<div class='col-md-offset-1 col-md-3'>
+									<div class="col-md-offset-3 col-md-2">
 										<input type="button" class="btn btn-default" id="saveBtn" value="저장">
 									</div>
 									<br/><br/>
 									<ul id="sortable">
-										
 										<c:forEach var="list" items="${positionList}">
-										<!-- <script>
-										var PositionJoin = new Object();
-										PositionJoin.position_name = '${list.position_name}';
-										PositionJoin.step = '${list.step}';
-										PositionJoin.set_date = '${list.set_date}';
-										PositionJoin.basic_pay ='${list.basic_pay}'; 
-										PositionJoin.add_pay = '${list.add_pay}';
-										positionArray.push(PositionJoin);
-										</script> -->
-											<li class='gradLi' value='${list.position_name}'><i
-												class="fa fa-thumbs-o-up"></i>${list.position_name}</li>
+										<li class='gradLi' value='${list.position_name}'>
+											<i class="fa fa-thumbs-o-up"></i>${list.position_name}
+											<button class='btn btn-danger2' onclick="deleteli(this);">Delete</button>
+										</li>
 										</c:forEach>
 										
 									</ul>

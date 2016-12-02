@@ -72,7 +72,8 @@ public interface PjDAO {
 	//프로젝트 작성자의 emp_no 가져오기
 	public String selectPj_writeempno(String pjd_no);
 
-
+	//프로젝트 검색
+	public List<Pj> searchPj(String key, String value);
 
 	
 }

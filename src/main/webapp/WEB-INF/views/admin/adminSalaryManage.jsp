@@ -18,16 +18,22 @@
 					</span>
 				</div>
 			</div>
-			<h2 class="font-light m-b-xs">급여 기본 정보 관리</h2>
+			<h2 class="font-light m-b-xs"> <i onclick="location.href='adminSalaryView.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;급여 기본 정보 관리</h2>
 		</div>
 	</div>
 </div>
 
 
 <div class="content animate-panel">
-<input type="hidden" id="dayJudgement">
+<input type="hidden" id="dayJudgement" value=${result}>
 		<div class="hpanel">
 			<div class="panel-body">
+				
+				<h4><i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;
+					현재 급여일 : <span id="dbAddDate">${pay_date}일</span><input type="button" id="showBtn" class="col-md-offset-1 btn btn-default" value="설정하기">	</h4>
+				<hr/>			
+				
+				<div id="settingAddDate">	
 				<h4>
 					<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여일
 					설정
@@ -47,8 +53,12 @@
 						<span class="fa fa-search"></span>&nbsp;&nbsp;저장
 					</button>
 				</div>
-			</div>
-		</div>
+				
+				</div>
+				
+				
+		  </div>
+	 </div>
 </div>
 
 
@@ -79,8 +89,8 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control input-sm"
-											name="salaryManageinput" /> <span class="input-group-btn">
+										<input type="text" class="form-control input-sm" name="salaryManageinput" /> 
+										<span class="input-group-btn">
 											<button class="btn btn-default input-sm" type="submit">
 												<span class="fa fa-search"></span>
 											</button>
