@@ -25,17 +25,10 @@ import kr.or.epm.VO.Emp_contact;
 /*
  * 작성자 : 박지은
  * 작성일 : 2016-11-21
- * 목  적 : ContactController 컨트롤러 
+ * 목  적 : 주소록 기능을 위한 컨트롤러 
  */
 
-/*
-  	//주소록 > 주소록 수정페이지 이동
-	@RequestMapping("/contacts_update.do")
-	public String contacts_update(){			
-		return "contacts.contacts_update";
-	}
-	
- */
+
 @Controller
 public class ContactController {
 	

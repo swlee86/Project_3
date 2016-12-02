@@ -2,7 +2,66 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 $(function(){
-	
+	 $('.padv_alert').click(function () {
+		var padv_alert_val = $(this).attr('value');
+		console.log(padv_alert_val);
+		var step_no = 0;
+		if(padv_alert_val == '승인'){
+			step_no = 1;
+		}else if(padv_alert_val == '승인거부'){
+			step_no = 2;
+		}else{
+			step_no = 3;
+		}
+		console.log("step_no : " + step_no);
+		var pj_no = "${pj.pj_no}";
+		console.log(pj_no);
+         swal({
+                     title: " '"+padv_alert_val+"' 처리하시겠습니까?",
+                     text: "확인을 누르시면 정상적으로  "+ padv_alert_val +" 처리 됩니다",
+                     type: "warning",
+                     showCancelButton: true,
+                     confirmButtonColor: "#DD6B55",
+                     confirmButtonText: "확인",
+                     cancelButtonText: "취소",
+                     closeOnConfirm: false,
+                     closeOnCancel: false },
+                 function (isConfirm) {
+                     if (isConfirm) {
+                    	  $.ajax(
+          					   {
+          							url : "project_approve_try.do",
+          							type: "post",
+          							data : {
+          									pj_no : pj_no,
+          									step_no : step_no
+          							       },
+          							success : function(data){
+          								console.log(data);
+          								console.log(data.step_no);
+          								if(data.step_no == 1){ //승인처리시
+          									$('#pj_step_no_mark').html('<button class="btn btn-xs btn-info" disabled>승인</button>');
+          									$('#pj_step_no_btn_div').hide();
+          								}else if(data.step_no == 2){ 
+          									$('#pj_step_no_mark').html('<button class="btn btn-xs btn-danger" disabled>승인거부</button>');
+          									$('#pj_step_no_btn_approval').attr('disabled',false);
+          									$('#pj_step_no_btn_no_approval').attr('disabled',true);
+          									$('#pj_step_no_btn_wait').attr('disabled',false);
+          								}else if(data.step_no == 3){
+          									$('#pj_step_no_mark').html('<button class="btn btn-xs btn-primary2" disabled>보류</button>');
+          									$('#pj_step_no_btn_approval').attr('disabled',false);
+          									$('#pj_step_no_btn_no_approval').attr('disabled',false);
+          									$('#pj_step_no_btn_wait').attr('disabled',true);
+          								}
+          							}
+          			           }
+          			      ); 
+                         swal("성공", padv_alert_val+" 처리되었습니다.", "success");
+                     } else {
+                         swal("취소", "취소 되었습니다.", "error");
+                     }
+                 });
+     });
 });
 
 </script>
@@ -31,44 +90,74 @@ $(function(){
 
 
 <div class="content animate-panel">
-
 <div class="row">
     <div class="col-lg-5">
         <div class="hpanel hgreen">
             <div class="panel-body">
-                <h3>Title. ${pj.pj_title}</h3>
+                <h3><b>Title.</b> ${pj.pj_title}
+                	<span id="pj_step_no_mark">
+                		<c:choose> 
+                					<c:when test="${pj.step_no == '1'}">
+	                        			<button class="btn btn-xs btn-info" disabled>승인</button>
+	                        		</c:when>
+	                        		<c:when test="${pj.step_no == '2'}">
+	                        			<button class="btn btn-xs btn-danger" disabled>승인거부</button>
+	                        		</c:when>
+	                        		<c:when test="${pj.step_no == '3'}">
+	                        			<button class="btn btn-xs btn-primary2" disabled>보류</button>
+	                        		</c:when>
+	                        		<c:when test="${pj.step_no == '4'}">
+	                        			<button class="btn btn-xs btn-warning2" disabled>미승인</button>
+	                        		</c:when>
+	                        	</c:choose> 
+					</span>
+				</h3>
                 <dl>
                     <dt>Writer. ${pj.emp_name}</dt>
-                    <dd><i class="pe-7s-date" style="font-size:2em"></i> ${pj.pj_start}~${pj.pj_end}</dd>
+                    <dd><i class="pe-7s-date" style="font-size:2em"></i> &nbsp;${pj.pj_start}&nbsp;&nbsp;~&nbsp;&nbsp;${pj.pj_end}</dd>
                 </dl>
+              
                 <p>
                   ${pj.pj_content}
                 </p>
             </div>
-            <div class="panel-body">
-                버튼
+            <div id="pj_step_no_btn_div">
+            <c:if test="${pj.step_no != '1'}">
+            <div class="panel-body">  
+            	<div class="row" style="text-align:center"  >
+	            	<button class="btn btn-md btn-info padv_alert" id="pj_step_no_btn_approval" value="승인" style="padding-right: 15px; padding-left: 15px; font-weight: bold; font-size: 13px;">&nbsp;&nbsp;&nbsp;승&nbsp;&nbsp;인&nbsp;&nbsp;&nbsp;</button>&nbsp;&nbsp;
+	               	<button class="btn btn-md btn-danger padv_alert" id="pj_step_no_btn_no_approval" value="승인거부" <c:if test="${pj.step_no == '2'}">disabled</c:if> style="padding-right: 15px; padding-left: 15px; font-weight: bold; font-size: 13px;">승인거부</button>&nbsp;&nbsp;
+	               	<button class="btn btn-md btn-primary2 padv_alert" id="pj_step_no_btn_wait" value="보류" <c:if test="${pj.step_no == '3'}">disabled</c:if> style="padding-right: 15px; padding-left: 15px; font-weight: bold; font-size: 13px;">&nbsp;&nbsp;&nbsp;보&nbsp;&nbsp;류&nbsp;&nbsp;&nbsp;</button>
+               	</div>
             </div>
+            </c:if>
+            </div>
+            
+             <div class="panel-body">  
+             <div class="pull-right">
+               		<a href="projectApprove.do" class="btn btn-success btn-sm" style="padding-right: 15px; padding-left: 15px; font-weight: bold; font-size: 13px;">목록으로</a>
+               	</div>
+             </div>
         </div>
     </div>
     
     <div class="col-lg-7">
         <div class="hpanel">
             <div class="hpanel">
-
+   			<c:set var="tabcount" value="1"/>
             <ul class="nav nav-tabs">
-            	<li class="active"><a data-toggle="tab" href="#tab-1">상세프로젝트 - 1</a></li>
-            	<c:forEach begin="2" end="${listsize}" var="i">
-            		<li class=""><a data-toggle="tab" href="#tab-${i}">상세프로젝트 - ${i}</a></li>
+            	<c:forEach begin="1" end="${listsize}" var="i">
+            		<li class="<c:if test="${tabcount==i}">active</c:if>"><a data-toggle="tab" href="#tab-${i}">상세프로젝트 - ${i}</a></li>
             	</c:forEach> 
             </ul>
             
-            <c:set var="tabcount" value="1"/>
+         
             
             <div class="tab-content">  
            	 	<c:forEach items="${list}" var="list">
 	                <div id="tab-${tabcount}" class="tab-pane <c:if test="${tabcount==1}">active</c:if>"> 
 	                
-	                    <div class="panel-body">
+	                    <div class="panel-body ">
 	                            <table class="table table-bordered" class="table table-bordered" style="margin-bottom: 0px">    
 	                                <tr>
 	                                    <th  style="background-color: #f9fafc; text-align: right; padding-right: 10px; width: 10%">상세제목</th>
@@ -78,7 +167,7 @@ $(function(){
 	                                </tr>
 	                                <tr>
 	                                    <th style="background-color: #f9fafc; text-align: right; padding-right: 10px; width: 10%">참여자</th>
-	                                    <td colspan="3">qsdfxdfxdf,dfsdfs,dsfsdf,d</td>
+	                                    <td colspan="3">${list.emp_name}</td>
 	                                </tr>
 	                            </table>
 	                            
@@ -91,18 +180,8 @@ $(function(){
 	                    </div>
 	                </div>
 	                <c:set var="tabcount" value="${tabcount+1}"/>
-	               <%--  @@@@@@@<c:out value="${tabcount}" ></c:out> --%>
                 </c:forEach>
-                
-                
-                
-                <!-- <div id="tab-2" class="tab-pane">
-                    <div class="panel-body no-padding">
-                    </div>
-                </div> -->
-                
-                
-                
+
             </div>
 
 
@@ -119,63 +198,3 @@ $(function(){
 
 
 
-
-
-
-
-
-<div class="modal fade hmodal-success" id="myModal1" tabindex="-2"
-	role="dialog" aria-hidden="true">
-	<div class="modal-dialog  modal-sm">
-		<div class="modal-content">
-			<div class="color-line"></div>
-			<div class="modal-header text-center">프로젝트 처리 안내</div>
-			<div class="modal-body">
-				<font class="font-bold" size="2em"> <font
-					style="color: gray;">프로젝트 명 : 파인애플</font><br> <font
-					style="color: #9d9fa2"> 정말 처리하시겠습니까?</font> <br>
-				</font>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-sm"
-					data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary btn-sm demo2"
-					data-dismiss="modal" data-toggle="modal" data-target="#myModal5">승인</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade hmodal-success" id="myModal5" tabindex="-1"
-	role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="color-line"></div>
-			<div class="modal-header">
-				<h4 class="modal-title">
-					<font color="#6a6c6f">처리 결과<i class="fa fa-table"></i></font>
-				</h4>
-				<small class="font-bold">Lorem Ipsum is simply dummy text.</small>
-			</div>
-			<div class="modal-body">
-				<table class="table table-bordered" style="text-align: center">
-					<tr style="background-color: #f5f5f5;">
-						<th style="text-align: center">책임자</th>
-						<th style="text-align: center">프로젝트 명</th>
-						<th style="text-align: center">결재</th>
-						<th style="text-align: center">승인 일시</th>
-					</tr>
-					<tr>
-						<td>박성준 - (사단)한국소프트웨어기술진흥협회</td>
-						<td>파인애플펜</td>
-						<td>승인</td>
-						<td>2016.11.08 12:42</td>
-					</tr>
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-			</div>
-		</div>
-	</div>
-</div>

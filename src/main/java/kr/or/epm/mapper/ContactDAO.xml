@@ -3,7 +3,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.ContactDAO">
-
+<!--
+	작성일 : 2016-11-21
+	작성자 : 박지은
+	사용 목적 : 주소록 기능 구현 mapper
+-->
 	
 	<!-- 등록인 사번 구하는 함수 -->
 	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">

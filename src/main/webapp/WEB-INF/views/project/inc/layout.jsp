@@ -26,7 +26,8 @@
 	<link rel="stylesheet"
 	href="vendor/fullcalendar/dist/fullcalendar.min.css" />
 	
-	  <link rel="stylesheet" href="vendor/fooTable/css/footable.core.min.css" />
+	<link rel="stylesheet" href="vendor/fooTable/css/footable.core.min.css" />
+	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 	  
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -441,7 +442,7 @@
 
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/fooTable/dist/footable.all.min.js"></script>
-
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>

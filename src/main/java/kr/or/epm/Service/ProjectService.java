@@ -35,6 +35,16 @@ public class ProjectService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	
+	//승인처리 
+	public void project_approve_try(String pj_no, String step_no) {
+		System.out.println("project_approve_try()서비스 ");
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		int result = dao.updatePj_approval(pj_no,step_no);
+		System.out.println("result : "+result);
+		
+	}
+
 	//승인 처리 상세 의 상세프로젝트 보기
 	public List<Pjd> selectPjd_detail(String pj_no){
 		System.out.println("selectPjd_detail() 서비스");

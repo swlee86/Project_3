@@ -115,7 +115,6 @@ $(function(){
                 <table id="example1"  class="footable table-stripped toggle-arrow-tiny table table-hover"  data-page-size="8" data-filter=#filter>
                     <thead>
                     <tr>
-                        <th><input type="checkbox" class="i-checks"></th>
                         <th data-toggle="true" >책임자</th>
                         <th >프로젝트명</th>
                         <th>기 &nbsp; 간</th>
@@ -125,20 +124,19 @@ $(function(){
                     <tbody>
                     <c:forEach items="${list}" var="p">
 	                    <tr>
-	                        <td><input type="checkbox" class="i-checks"></td>
 	                        <td>${p.emp_name}</td>
 	                        <td><a href="project_approve_detailview.do?pj_no=${p.pj_no}">${p.pj_title}</a></td>
 	                        <td>${p.pj_start}&nbsp; &nbsp;~&nbsp; &nbsp;${p.pj_end}</td>
 	                        <td>
 	                        	<c:choose> 
 	                        		<c:when test="${p.step_no == '2'}">
-	                        			승인거부
+	                        			<button class="btn btn-xs btn-danger" disabled><b>승인거부</b></button>
 	                        		</c:when>
 	                        		<c:when test="${p.step_no == '3'}">
-	                        			보류
+	                        			<button class="btn btn-xs btn-primary2" disabled>&nbsp;&nbsp;&nbsp;<b>보&nbsp;&nbsp;류</b>&nbsp;&nbsp;&nbsp;</button>
 	                        		</c:when>
 	                        		<c:when test="${p.step_no == '4'}">
-	                        			미승인
+	                        			<button class="btn btn-xs btn-warning2" disabled>&nbsp;&nbsp;<b>미승인</b>&nbsp;&nbsp;</button>
 	                        		</c:when>
 	                        	</c:choose>
 	                        </td>
@@ -147,7 +145,6 @@ $(function(){
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button"  class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">일괄승인</button>
                 </div>
 			</div>
 
