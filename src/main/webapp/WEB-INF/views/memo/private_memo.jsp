@@ -61,14 +61,20 @@ $(function(){
         <div class="col-md-3">
             <div class="hpanel panel-group">
                 <div class="panel-body">
-                    <div class="text-center text-muted font-bold">Search note or add new</div>
+                    <div class="text-center text-muted font-bold">
+                    	<select class="form-control" name="">
+                    		<option>5개</option>
+                    		<option>10개</option>
+                    		<option>15개</option>
+                    	</select>
+                    </div>
 
                 </div>
                 <div class="panel-section">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search note....">
                            <span class="input-group-btn">
-                                <button class="btn btn-default" onclick="location.href='memo_write.do'"><span class="glyphicon glyphicon-plus"></span></button>
+                                <button class="btn btn-default" onclick="location.href='memo_write.do'">&nbsp;<span class="fa fa-search"></span></button>
                            </span>
                     </div>
                     <button type="button" data-toggle="collapse" data-target="#notes"
@@ -136,11 +142,9 @@ $(function(){
         <div class="col-md-9">
             <div class="hpanel">
                 <div class="panel-body" style="background: ${first_memo.color};" id="memo_detail_panel_body_color">					
-                    <!-- <div class="text-center hidden">
-                        We couldn't find any notes for you.
-                    </div> -->
 
                     <div class="tab-content">
+                     <a  href="memo_write.do"><span class="glyphicon glyphicon-plus"></span></a>
                     	<form method="post">
                      	<%-- <input type="hidden" name="update_memo_no" value="${memo_no_chk}"> --%> 
                     	<%-- <input type="hidden" name="color_no" value="${first_memo.color_no}"> --%>

@@ -83,9 +83,10 @@ public class PushService {
 	//근태 차트에 뽑아 줄 데이터를 받아오는 함수
 	public List<Commute> commutelist(String emp_no, int cpage, int pgsize){
 		int start = cpage * pgsize - (pgsize - 1);
-		int end = (cpage * pgsize) +2;  // 최대 3개까지만
+		int end = (cpage * pgsize) +2; //최근 7개까지 뽑기
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		List<Commute> commutelist = pushdao.commutelist(emp_no,  start, end);
+		
 		
 		return commutelist;
 	}
