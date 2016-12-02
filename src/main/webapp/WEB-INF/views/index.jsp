@@ -274,19 +274,19 @@
 		</div>
 		
 	<!-- chart 최근 근무현황 -->
-	<div class="row">
-		<div class="col-lg-12">
+	<div class="row" style="height: 350px;">
+		<div class="col-lg-12" style="height: 400px;">
 			<div class="hpanel">
             <div class="panel-heading">
                 <div class="panel-tools">
                     <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                     <a class="closebox"><i class="fa fa-times"></i></a>
                 </div>
-                Horizontal bar chart
+                현재까지의 추가 근무 현황(기준: 분)
             </div>
-            <div class="panel-body">
+            <div class="panel-body"  style="height: 350px;">
                 <div>
-                    <div id="ct-chart4" class="ct-perfect-fourth"></div>
+                    <div id="ct-chart4" class="ct-perfect-fourth" style="height: 300px; width: 98%;"></div>
                 </div>
             </div>
         </div>
@@ -294,9 +294,8 @@
 	</div>
 </div>
 <c:forEach var="commutelist" items="${commutelist}">
-<input type="text" id="regdate" name="regdate[]" value="${commutelist.regdate}">
-<input type="text" id="in_time" name="intime[]" value="${commutelist.in_time}">
-<input type="text" id="out_time" value="${commutelist.out_time}">
+<input type="hidden" id="regdate" name="regdate[]" value="${commutelist.regdate}">
+<input type="hidden" id="add_time" name="add_time[]" value="${commutelist.add_time}">
 </c:forEach>
 
 </div>
@@ -525,32 +524,37 @@
 <script>
 $(function(){
 var datereg = [];
-var intime = [];	
+var add_time = [];	
 var check_obj = document.getElementsByName('regdate[]') ;
-var check_intime = document.getElementsByName('intime[]') ;
+var check_add_time = document.getElementsByName('add_time[]') ;
 
 
 for( var i = 0; i <= check_obj.length-1; i++ ){
-	console.log("length값 : " + length);
 	datereg.push(check_obj.item(i).value);			
 	
 	}
 	
-for( var i = 0; i <= check_intime.length-1; i++ ){
+for( var i = 0; i <= check_add_time.length-1; i++ ){
 	console.log("for문 1차 통과");
-	intime.push(check_intime.item(i).value);			
+	var data = check_add_time.item(i).value
+	var hour = data.substring(0,2);
+	var minute = data.substring(3,6);
+	var hourtominute = hour*60;
+	var resultdata = Number(minute)+Number(hourtominute);
+	console.log(hourtominute);
+	console.log(minute);
+	console.log(resultdata);
+	add_time.push(resultdata);			
 	
 	}
 
 console.log(datereg);
-console.log(intime);
+console.log(add_time);
 	
 new Chartist.Bar('#ct-chart4', {
     labels: datereg,
     series: [
-    	intime,
-        [3, 4, 5, 6, 7, 8, 9],
-        [4, 5, 6, 7, 8, 9, 10]
+    	add_time
     ]
 }, {
     seriesBarDistance: 10,
