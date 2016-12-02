@@ -8,10 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.epm.Service.MemoService;
+import kr.or.epm.VO.Contact;
 import kr.or.epm.VO.Memo;
 import kr.or.epm.VO.Memocolor;
+/*
+ * 작성자 : 이상원
+ * 작성일 : 2016-11-20
+ * 목  적 : 메모기능 구현 컨트롤러 
+ * 
+ * 수정일 : 2016-12-01
+ * 작성자 : 박지은
+ */
 
 @Controller
 public class MemoController {
@@ -64,10 +74,20 @@ public class MemoController {
 			mv.addAttribute("first_memo", first_memo);
 			mv.addAttribute("memo_no_chk", memo_no);
 			mv.addAttribute("pagecount", pagecount);
-			mv.addAttribute("pg",pg);
+			mv.addAttribute("pg",cpage);
 			mv.addAttribute("totalcount",totalcount);
 		}
 		return "memo.private_memo";
+	}
+	
+	
+	//메모 비동기로 보여주는 함수
+	@RequestMapping(value = "/private_memo_detail.do")
+	public @ResponseBody Memo private_memo_detail(String memo_no){
+		System.out.println("private_memo_detail() 컨트롤 탐");	
+		Memo memo = memoservice.selectMemo_detail(memo_no);	
+		System.out.println("memo : "+memo.toString());
+		return memo;
 	}
 	
 	//메모를 업데이트 하는 함수

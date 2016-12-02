@@ -1,7 +1,10 @@
 package kr.or.epm.AdminController;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.epm.Service.AdminService;
+import kr.or.epm.Service.PayService;
 import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Low_dept;
+import kr.or.epm.VO.PayList;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
 
@@ -31,6 +36,8 @@ public class AdminController {
 	private RegisterService registerservice;
 	@Autowired
 	private AdminService adminservice;
+	@Autowired
+	private PayService payservice;
 	
 	//관리자 개발.
 	@RequestMapping(value="/adminDepart_depart.do",method=RequestMethod.GET)
@@ -129,10 +136,19 @@ public class AdminController {
 		return "admin.adminSalaryView";
 	}
 	
-	//지급된 급여 목록 페이지
+	//당월 지급 예정 급여 내역 목록 페이지
 	@RequestMapping("/adminSalary.do")
-	public String salaryManage(){
-		return "admin.adminSalaryList";
+	public String salaryManage(Model model){
+		
+		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
+		Date currentTime = new Date( );
+		String dTime = formatter.format ( currentTime );
+		System.out.println ("연월 : "+dTime ); 
+		
+		List<PayList> list = payservice.selectPay_all_Close(dTime);
+		model.addAttribute("date", dTime);
+		model.addAttribute("list", list);
+		return "admin.salaryClose";
 	}
 	//급여 기본 정보 관리 페이지
 	@RequestMapping("/adminSalaryManage.do")
