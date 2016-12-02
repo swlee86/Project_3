@@ -104,7 +104,7 @@ public class PageMoveController {
  			model.addAttribute("commutemsg", commutemsg);
  		}else{
  			try{
- 				commutelist = pushService.commutelist(emp_no, cpage, pgsize); 	
+ 				commutelist = pushService.commutelist(emp_no); 	
  				for(int i=0; i<=commutelist.size(); i++){
  					System.out.println("일시 : " + commutelist.get(i).getRegdate());
  					System.out.println("출근 : " + commutelist.get(i).getIn_time());
