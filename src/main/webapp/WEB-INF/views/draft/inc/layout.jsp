@@ -1,4 +1,4 @@
-`<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
@@ -34,6 +34,7 @@
 	  href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	  type="text/css" />
 </head>
+
 <body class="fixed-navbar fixed-sidebar">
 
 	<!-- Simple splash screen-->
@@ -94,8 +95,44 @@
 	<!--월별 캘린더.-->
 	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
 
-	<script>
+	<script type="text/javascript">
+		// 결재 유형을 변경할 때마다
 		
+		
+		function checkDraft() {
+			$('#document_table').empty();
+			
+			var choose = $("input[name='cg_no']:checked").val();
+
+			$.ajax({
+				url : "draftForm.do",
+				type : "get",
+				data : {
+						cg_no : choose
+					   },
+				success : function(result) {
+					$("#document_table").html(result);
+				}
+			});
+		};
+		
+		$("#submitBtn").click(function() {
+			var choose = $("input[name='cg_no']:checked").val();
+			console.log("check1");
+			console.log(choose);
+			
+			draft.method = "post";
+			
+			if(choose == '1') {
+				draft.action = "draftOffice.do";
+			} else if(choose == '2') {
+				draft.action = "draftOffice.do";
+			} else if(choose == '3') {
+				draft.action = "draftOffice.do";
+			}
+			
+			draft.submit();
+		});
 	</script>
 </body>
 </html>

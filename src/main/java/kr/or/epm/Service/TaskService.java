@@ -1,6 +1,5 @@
 package kr.or.epm.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -61,7 +60,6 @@ public class TaskService {
 	}
 
 	// 업무 등록시 / 모달 -> 사원 정보 이름 트리 구조
-	// 사용
 	public List<Organization> selectEmpInfo(String low_dept_name) {
 		System.out.println("서비스 selectEmpInfo : " + low_dept_name);
 		List<Organization> list = null;
@@ -81,7 +79,6 @@ public class TaskService {
 		
 		System.out.println("SERVICE] 업무를 등록합니다");
 		
-		System.out.println("111111 : " + task.toString());
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		int result = dao.insertTask(task);
 		

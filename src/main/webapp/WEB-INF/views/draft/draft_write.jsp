@@ -10,7 +10,7 @@
 			</a>
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">홈</a></li>
+					<li><a href="index.do">홈</a></li>
 					<li><span>전자 결재</span></li>
 					<li class="active"><span>전자 결재 등록</span></li>
 				</ol>
@@ -21,115 +21,118 @@
 	</div>
 </div>
 
-
+<!-- 상단 -->
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<div class="table-responsive">
-						<form id="draftWrite" method="POST">
-						
-						
+					<form name="draft" enctype="multipart/form-data">
+						<div class="table-responsive">
 							<div class="table-responsive">
-								<table cellpadding="1" cellspacing="1" class="table table-bordered ">
+								<table cellpadding="1" cellspacing="1" class="table table-bordered">
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											문서번호
+										<th style="background-color: #f5f5f5; text-align: right; 
+											   	   padding-right: 10px; width: 15%;">
+											<i class="pe-7s-paperclip"></i>
+											<font color="#f05050">*</font>첨부 파일
 										</th>
-										<td style="width: 40%"></td>
-										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											기안일자
+										<td colspan="3">
+											<input type="file" name="uploadfile" class="form-control input-sm" style="border: none;">
+										</td>
+									</tr>
+									<tr>
+										<th style="background-color: #f5f5f5; text-align: right; 
+												   padding-right: 10px; width: 10%;">
+											<font color="#f05050">*</font> 결재 유형
 										</th>
-										<td style="width: 40%"></td>
+										<td colspan="3" style="padding-left: 25px;">
+											<div class="radio radio-success radio-inline" style="margin-top: 0px;">
+												<input type="radio" onclick="checkDraft()" style="border: none;"
+													   id="radio1" name="cg_no" value="1"> 
+													<label for="radio1">대외 공문</label>
+											</div>
+											<div class="radio radio-success radio-inline">
+												<input type="radio" onclick="checkDraft()" style="border: none;"
+													   id="radio2" name="cg_no" value="2"> 
+													<label for="radio2">협조문</label>
+											</div>
+											<div class="radio radio-success radio-inline">
+												<input type="radio" onclick="checkDraft()" style="border: none;"
+													   id="radio3" name="cg_no" value="3"> 
+													<label for="radio3">휴가 신청서</label>
+											</div>
+										</td>
 									</tr>
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											기안자
+										<th style="background-color: #f5f5f5; text-align: right; 
+												   padding-right: 10px; width: 10%">
+											<font color="#f05050">*</font> 결재 라인
 										</th>
-										<td></td>
-										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											기안부서
+										<td id="sanction_DraftOk_no_td">
+											<span class="input-group">
+												<input type="text" class="form-control input-sm" readonly
+													   id="draft_line_emp_no" name="draft_line_emp_no">
+													<a type="button" class="btn btn-default input-group-addon"
+													   id="draft_Ok_Icon"> 
+														<span style="color: #fd7d86">
+															<i class="fa fa-user-plus"></i>
+														</span>
+													</a>
+											</span>
+										</td>
+										<th style="background-color: #f5f5f5; text-align: right; 
+												   padding-right: 10px; width: 10%">
+											<font color="#f05050">*</font> 이름
 										</th>
-										<td></td>
+										<td style="width: 40%" id="sanction_DraftName_td">
+											<input type="text" class="form-control input-sm" readonly
+												   id="draft_Ok_emp_name" name="draft_line_emp_name">
+										</td>
 									</tr>
 									<tr>
-										<th
-											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
-											color="#f05050">*</font> 결제자 사번</th>
-										<td id="sanction_DraftOk_no_td"><span class="input-group">
-												<input type="text" class="form-control input-sm"
-												id="draft_Ok_emp_no" name="draft_line_emp_no" /> <a
-												type="button" class="btn btn-default input-group-addon"
-												id="draft_Ok_Icon"> <span style="color: #fd7d86"><i
-														class="fa fa-user-plus"></i></span>
-											</a>
-										</span></td>
-										<th
-											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
-											color="#f05050">*</font> 결제자 이름</th>
-										<td style="width: 40%" id="sanction_DraftName_td"><input
-											type="text" class="form-control input-sm"
-											id="draft_Ok_emp_name" name="draft_line_emp_name"></td>
+										<th style="background-color: #f5f5f5; text-align: right; 
+												   padding-right: 10px; width: 10%">
+											<font color="#f05050">*</font> 참조자
+										</th>
+										<td id="sanction_writeNo_td">
+											<span class="input-group">
+												<input type="text" class="form-control input-sm" readonly
+													   id="draft_ref_emp_no" name="draft_ref_emp_no"> 
+												<a type="button" class="btn btn-default input-group-addon"
+												   id="draft_line_Icon"> 
+													<span style="color: #fd7d86">
+														<i class="fa fa-user-plus"></i>
+													</span>
+												</a>
+											</span>
+										</td>
+										<th style="background-color: #f5f5f5; text-align: right; 
+												   padding-right: 10px; width: 10%">
+											<font color="#f05050">*</font> 이름
+										</th>
+										<td style="width: 40%" id="sanction_writename_td">
+											<input type="text" class="form-control input-sm" readonly
+												   id="draft_ref_emp_name" name="draft_ref_emp_name">
+										</td>
 									</tr>
-									<tr>
-										<th
-											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
-											color="#f05050">*</font> 참조자 사번</th>
-										<td id="sanction_writeNo_td"><span class="input-group">
-												<input type="text" class="form-control input-sm"
-												id="draft_line_emp_no" name="draft_line_emp_no" /> <a
-												type="button" class="btn btn-default input-group-addon"
-												id="draft_line_Icon"> <span style="color: #fd7d86"><i
-														class="fa fa-user-plus"></i></span>
-											</a>
-										</span></td>
-										<th
-											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
-											color="#f05050">*</font> 참조자 이름</th>
-										<td style="width: 40%" id="sanction_writename_td"><input
-											type="text" class="form-control input-sm"
-											id="draft_line_emp_name" name="draft_line_emp_name"></td>
-									</tr>
-									<tr>
-										<th
-											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
-											color="#f05050">*</font> 문서제목</th>
-										<td colspan="3"><input type="text"
-											class="form-control input-sm" placeholder="문서제목을 입력하세요."></td>
-									</tr>
-									<tr>
-										<th
-											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%"><font
-											color="#f05050">*</font> 문서제목</th>
-										<td colspan="3"><select class="form-control"
-											id="sanction_cg">
-												<option value="0">선택</option>
-												<option value="1">협조문</option>
-												<option value="2">대외발신 공문</option>
-												<option value="3">휴가</option>
-										</select></td>
-									</tr>
-
 								</table>
 								<br>
 							</div>
-							
-							
-					</div>
+						</div>
 
-					<div class="panel-body" id="documentTable" style="border: none;">
+						<!-- 선택된 form 띄우기 -->
+						<div class="panel-body" id="document_table" style="border: none;">
 
-					</div>
-					<br />
-					<br />
-					<div class=" pull-right" style="text-align: center;">
-						<input type="submit" class="btn btn-sm btn-success" value="결재 요청"
-							style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
-						<input type="button" onclick="location.href='sanction_list.do'"
-							class="btn btn-sm btn-default" value="취 소"
-							style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
-					</div>
+						</div>
+
+						<br> <br>
+
+						<div class="pull-right" style="text-align: center;">
+							<input type="submit" class="btn btn-sm btn-success"
+								id="submitBtn" value="결재 요청"
+								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+						</div>
 
 					</form>
 				</div>
@@ -137,8 +140,6 @@
 		</div>
 	</div>
 </div>
-
-
 
 
 

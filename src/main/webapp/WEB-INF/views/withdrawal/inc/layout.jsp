@@ -66,5 +66,22 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+
+<script type="text/javascript">
+
+	$("#withdrawal").click(function() {
+		console.log("여기");
+		
+		var pwd = $("#pwd").val();
+		console.log(pwd);
+		
+		if(pwd == 'undefined') {
+			console.log("아냐 여기");
+		} else {
+			console.log("아냐 저기");
+		}
+	});
+
+</script>
 </body>
 </html>
