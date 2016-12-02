@@ -14,6 +14,11 @@ import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.MediaBoardReply;
 import kr.or.epm.VO.Re_MediaBoard;
+/*
+ * 작성자 : 박지은
+ * 작성일 : 2016-11-18
+ * 목  적 : 언론게시판 기능 구현을 위한 서비스 
+ */
 
 @Service
 public class MediaBoardService {

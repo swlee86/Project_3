@@ -15,6 +15,9 @@ import kr.or.epm.VO.Task;
 
 public interface PjDAO {
 	
+	//프로젝트 승인 처리하기
+	public int updatePj_approval(String pj_no, String step_no);
+	
 	//프로젝트 승인처리 상세의 상세 프로젝트보기 
 	public List<Pjd> selectPjd_detail(String pj_no);
 	
@@ -35,9 +38,6 @@ public interface PjDAO {
 	
 	// 프로젝트 진행 단계 처리하기
 	public int updatePj_step();
-	
-	// 프로젝트 승인 처리하기
-	public int updatePj_approval();
 	
 	// 프로젝트 조회하기( 승인 O )
 	public List<Pj> selectPj();
@@ -71,6 +71,8 @@ public interface PjDAO {
 	
 	//프로젝트 작성자의 emp_no 가져오기
 	public String selectPj_writeempno(String pjd_no);
+
+
 
 	
 }

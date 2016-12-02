@@ -2,6 +2,7 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Push;
@@ -22,5 +23,6 @@ public interface PushDAO {
 	
 	String myprojectCount(String emp_no);
 	
+	List<Commute> commutelist(String emp_no, int start, int end);
 	
 }
