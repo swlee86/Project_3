@@ -20,6 +20,7 @@ import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
 import kr.or.epm.VO.Set_homepage;
+import kr.or.epm.VO.Set_pay_date;
 import kr.or.epm.VO.Set_time;
 import net.sf.json.JSONArray;
 
@@ -270,10 +271,24 @@ public class AdminService {
 		String pay_date=null;
 		PayDAO paydao = sqlsession.getMapper(PayDAO.class);
 		pay_date = paydao.selectpay_date();
-		
 		return pay_date;
 	}
 	
+	//급여지급일 insert
+	public int insertpay_date(Set_pay_date date){
+		
+		PayDAO paydao = sqlsession.getMapper(PayDAO.class);
+		int result = paydao.insertpay_date(date);
+		return result;
+	}
+	
+	//급여 지급일 update
+	public int updatepay_date(Set_pay_date date){
+		PayDAO paydao =sqlsession.getMapper(PayDAO.class);
+		int result = paydao.updatepay_date(date);
+		return result;
+		
+	}
 	
 	
 }

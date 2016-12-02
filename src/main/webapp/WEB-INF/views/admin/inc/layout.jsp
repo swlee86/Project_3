@@ -130,6 +130,16 @@
 		var value = deleteli.parent().attr("value");
 		alert("값은 ? : "+value);
 		
+		$.ajax(
+				{
+					url:"",
+					data : {positionName : value},
+					success : function(data){
+						alert("성공하였습니다!!");
+					}
+		        }
+			   );
+		
 		//드래그앤 드롭 삭제하느 ㄴ것.
 		deleteli.parent().remove();
 	}
