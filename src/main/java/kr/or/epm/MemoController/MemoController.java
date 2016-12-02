@@ -46,7 +46,7 @@ public class MemoController {
 		int totalcount = 0;
 		int cpage = 1;
 		int pagecount = 0;
-		int pagesize = 4;
+		int pagesize = 5;
 		
 		if(pg != null && !pg.equals("")){
 			cpage = Integer.parseInt(pg);
