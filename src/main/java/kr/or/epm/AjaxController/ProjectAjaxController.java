@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Pjd_people;
 import kr.or.epm.VO.Pjdd;
 import kr.or.epm.VO.Task;
+import sun.print.resources.serviceui;
 
 /*
  * 작성자 : 김주희
@@ -178,29 +180,27 @@ public class ProjectAjaxController {
 	
 	// 검색하기
 	@RequestMapping(value = "/project_list.do", method = RequestMethod.POST)
-		public View project_list_search(HttpServletRequest request, Principal principal, Model model) {
+	public View project_list_search(HttpServletRequest request, Principal principal, Model model) {
 
-			System.out.println("project 검색을 시작합니다");
+		System.out.println("project 검색을 시작합니다");
 
-			// 로그인 id
-			String id = principal.getName();
-			System.out.println("id : " + id);
-			String emp_no = commonservice.selectEmp_no(id);
-			System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
 
-			String key = request.getParameter("selectSearch");
-			String value = request.getParameter("input");
-			String cg_no = request.getParameter("cg_no");
+		String key = request.getParameter("selectSearch");
+		String value = request.getParameter("input");
 
-			System.out.println("cg_no : " + cg_no);
 
-			System.out.println("검색  기준 : " + key + " // 검색 값 : " + value);
+		System.out.println("검색  기준 : " + key + " // 검색 값 : " + value);
 
-			// 목록 가져오기
-			/*List<Task> list = service.searchTask(emp_no, cg_no, key, value);
+		// 목록 가져오기
+		List<Pj> list = projectservice.searchPj(key,value);
 
-			model.addAttribute("searchList", list);
-*/
-			return jsonview;
-		}
+		model.addAttribute("searchList", list);
+
+		return jsonview;
+	}
 }

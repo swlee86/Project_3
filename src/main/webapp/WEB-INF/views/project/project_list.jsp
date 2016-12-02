@@ -50,10 +50,10 @@
 				<div class="row" style="text-align:right; margin-right:5px;">
             			<form action="" class="form-inline" method="post">
                  			<select id="search_select" name="selectSearch" class="form-control input-sm" >
-                    			<option value="emp_no">책임자</option>
+                    			<option value="emp_name">책임자</option>
                         		<option value="dept_name">부서</option>
                         		<option value="pj_title">제목</option>
-                        		<option value="step_no">진행단계</option>
+                        		<option value="pj_step_name">진행단계</option>
                     		 </select> 	
                      		  <input type="text" class="form-control input-sm" name="input"/>
                     		 <button class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
@@ -198,4 +198,27 @@ function selectCtg(){
 		});
 	}
 
+
+function searchPj(){
+	var selectSearch = $('#selectSearch option:selected').val();
+	
+	alert(selectSearch);
+	$.ajax({
+		url : "project_list.do",
+       	data : {
+       				"selectSearch" : selectSearch,
+       				"input" : input,
+               },
+		success : function(data){
+			alert("성공");
+			console.log(data);
+			
+		},
+		 error : function(error) {
+			alert("에러");	 
+		}
+               
+    })
+			
+}
 </script> 
