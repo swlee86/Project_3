@@ -150,9 +150,12 @@ public class AdminController {
 		model.addAttribute("list", list);
 		return "admin.salaryClose";
 	}
-	//급여 기본 정보 관리 페이지
+	
+	//급여 기본 정보 관리 페이지 > hidden 에 데이타 ㄱㄱ
 	@RequestMapping("/adminSalaryManage.do")
-	public String salaryInfo(){
+	public String salaryInfo(Model model){
+		
+		
 		return "admin.adminSalaryManage";
 	}
 	//기지급 급여 내역 페이지

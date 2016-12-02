@@ -27,4 +27,23 @@ $(function(){
 		
 	});
 	
+	
+	$('#savepayDateBtn').click(function(){
+		alert("저장 클릭");
+		alert($('#daySelect option:selected').val());
+		
+		var hidden = $('#dayJudgement').val();
+		
+		$.ajax
+				(
+						{
+							url : "payAddDate.do",
+							data : {day : $('#daySelect option:selected').val()},
+							success : function(data){
+								alert("성공!!");
+							}
+						}
+				);
+	});
+	
 });
