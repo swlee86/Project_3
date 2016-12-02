@@ -146,6 +146,16 @@
 
 	});
 	
+
+	//근태 마감 전체선택 체크박스 
+	$('#allCheck').click(function(){
+		if($("#allCheck").prop("checked")) {
+			$("input[type=checkbox]").prop("checked",true);
+		}else{
+			$("input[type=checkbox]").prop("checked",false);
+		}				
+	});
+	
 	
 	
 	// 시간정보 관리 페이지 - ClockPicker
