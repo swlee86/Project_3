@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="vendor/chartist/custom/chartist.css" />
 
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -67,7 +68,9 @@
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
-
+<script src="vendor/chartjs/Chart.min.js"></script>
+<script src="vendor/chartist/dist/chartist.min.js"></script>
+<script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <script src="scripts/charts.js"></script>

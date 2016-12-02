@@ -65,7 +65,10 @@ select count(*) cnt from task where rec_emp_no=#{emp_no} and rec_date is null an
 select emp_no from emp_detail where id=#{id}
 </select>
 
-
+<!-- 차트 데이터를 뽑아오는 함수 -->
+<select id="commutelist" parameterType="String" resultType="kr.or.epm.VO.Commute">
+select rn, regdate, in_time, out_time, add_time from(select rownum rn, regdate, in_time, out_time, add_time from (select regdate, in_time, out_time, add_time from commute where emp_no=#{param1} order by regdate asc)) where rn between #{param2} and #{param3}
+</select>
 
 
 </mapper>
