@@ -21,10 +21,10 @@
 <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
 
 <!-- App styles -->
-<link rel="stylesheet"
-	  href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 
@@ -33,6 +33,20 @@
 <link rel="stylesheet"
 	  href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	  type="text/css" />
+
+<style>
+	.flag {
+		font-weight: bold;
+		font-size: 15px;
+	}
+	
+	#datatable td {
+		padding: 3px;
+		color: #424242;
+	}
+	
+</style>
+
 </head>
 
 <body class="fixed-navbar fixed-sidebar">
@@ -82,6 +96,18 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
+	
+	<!-- DataTables -->
+	<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+	<!-- DataTables buttons scripts -->
+	<script src="vendor/pdfmake/build/pdfmake.min.js"></script>
+	<script src="vendor/pdfmake/build/vfs_fonts.js"></script>
+	<script src="vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 
 	<!--전자결재 script  -->
 	<script src="js/electronic_sanction/electronic_sanction.js"></script>
@@ -94,11 +120,10 @@
 	
 	<!--월별 캘린더.-->
 	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
-
+	
 	<script type="text/javascript">
+	
 		// 결재 유형을 변경할 때마다
-		
-		
 		function checkDraft() {
 			$('#document_table').empty();
 			
@@ -133,6 +158,20 @@
 			
 			draft.submit();
 		});
+		
+		// Initialize Example 1
+        $('#example1').dataTable( {
+            "ajax": 'api/datatables.json',
+            dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+            buttons: [
+                {extend: 'copy',className: 'btn-sm'},
+                {extend: 'csv',title: 'ExampleFile', className: 'btn-sm'},
+                {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm'},
+                {extend: 'print',className: 'btn-sm'}
+            ]
+        });
+		
 	</script>
 </body>
 </html>

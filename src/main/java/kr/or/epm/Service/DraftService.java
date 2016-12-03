@@ -12,6 +12,8 @@ import kr.or.epm.DAO.DraftDAO;
 import kr.or.epm.DAO.Draft_lineDAO;
 import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Cooperation;
+import kr.or.epm.VO.Draft_line;
+import kr.or.epm.VO.Draft_ref;
 import kr.or.epm.VO.Office;
 
 @Service
@@ -98,7 +100,7 @@ public class DraftService {
 		List<Office> officelist = new ArrayList<Office>();
 		
 		for(String draft_no : draft_line_list) {
-			office = dao.selectOffice_rec(draft_no);
+			office = dao.selectOffice_rec(draft_no, emp_no);
 			officelist.add(office);
 		}
 		
@@ -137,7 +139,7 @@ public class DraftService {
 		List<Cooperation> cooperationlist = new ArrayList<Cooperation>();
 
 		for (String draft_no : draft_line_list) {
-			cooperation = dao.selectCooperation_rec(draft_no);
+			cooperation = dao.selectCooperation_rec(draft_no, emp_no);
 			cooperationlist.add(cooperation);
 		}
 		
@@ -147,7 +149,7 @@ public class DraftService {
 	// 휴가 신청서 리스트 불러오기
 	public List<Break> selectBreak_rec(String emp_no) {
 		
-		System.out.println("SERVICE] 휴가 신청서 리스트를 불러옵니다");
+		System.out.println("SERVICE] 휴가 신청서 수신 리스트를 불러옵니다");
 		System.out.println("넘겨진 emp_no : " + emp_no);
 		
 		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
@@ -176,7 +178,7 @@ public class DraftService {
 		List<Break> breaklist = new ArrayList<Break>();
 
 		for (String draft_no : draft_line_list) {
-			br = dao.selectBreak_rec(draft_no);
+			br = dao.selectBreak_rec(draft_no, emp_no);
 			breaklist.add(br);
 		}
 		
@@ -184,8 +186,107 @@ public class DraftService {
 	}
 	
 	// 대외발신공문 송신함 리스트 불러오기
-	public List<Office> selectOffice() {
-		return null;
+	public List<Office> selectOffice(String emp_no) {
+		
+		System.out.println("SERVICE] 대외발신공문 송신 리스트를 불러옵니다");
+		System.out.println("넘겨진 emp_no : " + emp_no);
+
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		
+		// 출력할 대외발신공문 리스트들 저장
+		List<Office> officelist = new ArrayList<Office>();
+		officelist = dao.selectOffice(emp_no);
+		
+		return officelist;
 	}
 	
+	// 협조문 송신함 리스트 불러오기
+	public List<Cooperation> selectCooperation(String emp_no) {
+		
+		System.out.println("SERVICE] 협조문 송신 리스트를 불러옵니다");
+		System.out.println("넘겨진 emp_no : " + emp_no);
+
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		
+		// 출력할 협조문 리스트들 저장
+		List<Cooperation> cooperationlist = new ArrayList<Cooperation>();
+		cooperationlist = dao.selectCooperation(emp_no);
+		
+		return cooperationlist;
+	}
+	
+	// 휴가신청서 송신함 리스트 불러오기
+	public List<Break> selectBreak(String emp_no) {
+		
+		System.out.println("SERVICE] 휴가신청서 송신 리스트 불러옵니다");
+		System.out.println("넘겨진 emp_no : " + emp_no);
+
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		
+		// 출력할 휴가신청서 리스트들 저장
+		List<Break> breaklist = new ArrayList<Break>();
+		breaklist = dao.selectBreak(emp_no);
+		
+		return breaklist;
+	}
+	
+	// 대외발신공문 상세
+	public Office selectOffice_detail(String draft_no) {
+		
+		System.out.println("SERVICE] 대외발신공문 상세 정보를 가져옵니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		Office office = dao.selectOffice_detail(draft_no);
+		
+		return office;
+	}
+	
+	// 협조문 상세
+	public Cooperation selectCooperation_detail(String draft_no) {
+		
+		System.out.println("SERVICE] 협조문 상세 정보를 가져옵니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		Cooperation cooper = dao.selectCooperation_detail(draft_no);
+		
+		return cooper;
+	}
+	
+	// 휴가 신청서 상세
+	public Break selectBreak_detail(String draft_no) {
+		
+		System.out.println("SERVICE] 휴가 신청서 정보를 가져옵니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		Break break2 = dao.selectBreak_detail(draft_no);
+		
+		return break2;
+	}
+	
+	// 상세 > 결재라인
+	public List<Draft_line> selectDraft_line(String draft_no) {
+		
+		System.out.println("SERVICE] 결재라인 정보를 가져옵니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		List<Draft_line> linelist = dao.selectDraft_line_data(draft_no);
+		
+		return linelist;
+	}
+	
+	// 상세 > 참조자
+	public List<Draft_ref> selectDraft_ref(String draft_no){
+		
+		System.out.println("SERVICE] 참조자 정보를 가져옵니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		List<Draft_ref> reflist = dao.selectDraft_ref_data(draft_no);
+				
+		return reflist;
+	}
 }

@@ -13,8 +13,11 @@ import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.DraftService;
 import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Cooperation;
+import kr.or.epm.VO.Draft_line;
+import kr.or.epm.VO.Draft_ref;
 import kr.or.epm.VO.Office;
 import kr.or.epm.VO.Task;
+import kr.or.epm.VO.Task_people;
 
 @Controller
 public class DraftController {
@@ -138,7 +141,7 @@ public class DraftController {
 
 		// 대외발신공문
 		// 목록 가져오기
-		List<Office> officelist = service.selectOffice_rec(emp_no);
+		List<Office> officelist = service.selectOffice(emp_no);
 		model.addAttribute("officelist", officelist);
 
 		// 글 개수 구하기
@@ -147,29 +150,116 @@ public class DraftController {
 		model.addAttribute("officecount", officecount);
 				
 				
-				// 협조문
-				// 목록 가져오기
-				List<Cooperation> cooperationlist = service.selectCooperation_rec(emp_no);
-				model.addAttribute("cooperationlist", cooperationlist);
+		// 협조문
+		// 목록 가져오기
+		List<Cooperation> cooperationlist = service.selectCooperation(emp_no);
+		model.addAttribute("cooperationlist", cooperationlist);
 				
-				// 글 개수 구하기
-				int cooperationcount = cooperationlist.size();
-				System.out.println("협조문 수신함 글 개수 : " + cooperationcount);
-				model.addAttribute("cooperationcount", cooperationcount);
+		// 글 개수 구하기
+		int cooperationcount = cooperationlist.size();
+		System.out.println("협조문 송신함 글 개수 : " + cooperationcount);
+		model.addAttribute("cooperationcount", cooperationcount);
 				
 				
-				// 휴가신청서
-				// 목록 가져오기
-				List<Break> breaklist = service.selectBreak_rec(emp_no);
-				model.addAttribute("breaklist", breaklist);
+		// 휴가신청서
+		// 목록 가져오기
+		List<Break> breaklist = service.selectBreak(emp_no);
+		model.addAttribute("breaklist", breaklist);
 				
-				// 글 개수 구하기
-				int breakcount = breaklist.size();
-				System.out.println("휴가신청서 수신함 글 개수 : " + breakcount);
-				model.addAttribute("breakcount", breakcount);
+		// 글 개수 구하기
+		int breakcount = breaklist.size();
+		System.out.println("휴가신청서 송신함 글 개수 : " + breakcount);
+		model.addAttribute("breakcount", breakcount);
 		
 		return "draft.draft";
 	}
 	
-	// 결재 송신함 페이지 상세
+	// 대외발신공문 상세
+	@RequestMapping(value="/office_detail.do", method=RequestMethod.GET)
+	public String office_detail(String draft_no, Model model) {
+		
+		System.out.println("CONTROLLER] 대외발신공문 상세 페이지");
+		System.out.println("선택한 전자결재 번호 : " + draft_no);
+	
+		// 대외발신공문 상세 가져오기
+		Office detail = service.selectOffice_detail(draft_no);
+		model.addAttribute("detail", detail);
+
+		// 결재라인 가져오기
+		List<Draft_line> linedetail = service.selectDraft_line(draft_no);
+		model.addAttribute("linedetail", linedetail);
+		
+		// 결재라인 인원수
+		int linecount = linedetail.size();
+		model.addAttribute("linecount", linecount);
+		
+		// 전자결재 참조자 가져오기
+		List<Draft_ref> refdetail = service.selectDraft_ref(draft_no);
+		model.addAttribute("refdetail", refdetail);
+		
+		// 전자결재 인원수
+		int refcount = refdetail.size();
+		model.addAttribute("refcount", refcount);
+		
+		return "draft.office";
+	}
+	
+	// 협조문 상세
+	@RequestMapping(value="/cooperation_detail.do", method=RequestMethod.GET)
+	public String cooperation_detail(String draft_no, Model model) {
+		
+		System.out.println("CONTROLLER] 협조문 상세 페이지");
+		System.out.println("선택한 전자결재 번호 : " + draft_no);
+	
+		// 협조문 상세 가져오기
+		Cooperation detail = service.selectCooperation_detail(draft_no);
+		model.addAttribute("detail", detail);
+
+		// 결재라인 가져오기
+		List<Draft_line> linedetail = service.selectDraft_line(draft_no);
+		model.addAttribute("linedetail", linedetail);
+		
+		// 결재라인 인원수
+		int linecount = linedetail.size();
+		model.addAttribute("linecount", linecount); 
+		
+		// 전자결재 참조자 가져오기
+		List<Draft_ref> refdetail = service.selectDraft_ref(draft_no);
+		model.addAttribute("refdetail", refdetail);
+		
+		// 전자결재 인원수
+		int refcount = refdetail.size();
+		model.addAttribute("refcount", refcount);
+		
+		return "draft.cooperation";
+	}
+	
+	// 휴가신청서 상세
+	public String break_detail(String draft_no, Model model) {
+		
+		System.out.println("CONTROLLE] 휴가 신청서 상세 페이지");
+		System.out.println("선택한 draft_no : " + draft_no);
+		
+		// 휴가 신청서 상세 가져오기
+		Break detail = service.selectBreak_detail(draft_no);
+		model.addAttribute("detail", detail);
+
+		// 결재라인 가져오기
+		List<Draft_line> linedetail = service.selectDraft_line(draft_no);
+		model.addAttribute("linedetail", linedetail);
+				
+		// 결재라인 인원수
+		int linecount = linedetail.size();
+		model.addAttribute("linecount", linecount);
+				
+		// 전자결재 참조자 가져오기
+		List<Draft_ref> refdetail = service.selectDraft_ref(draft_no);
+		model.addAttribute("refdetail", refdetail);
+				
+		// 전자결재 인원수
+		int refcount = refdetail.size();
+		model.addAttribute("refcount", refcount);
+		
+		return "draft.break";
+	}
 }

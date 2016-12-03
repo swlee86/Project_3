@@ -6,6 +6,7 @@ import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Cooperation;
 import kr.or.epm.VO.Draft;
 import kr.or.epm.VO.Draft_line;
+import kr.or.epm.VO.Draft_ref;
 import kr.or.epm.VO.Office;
 
 /**
@@ -17,7 +18,7 @@ import kr.or.epm.VO.Office;
 public interface DraftDAO {
 	
 	//사번을통해 부서, 이름을 추출하는건 공통 dao에서
-	
+/*	
 	//현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 )
 	public List<Draft> selectDraft_rec(String emp_no);
 	
@@ -51,6 +52,7 @@ public interface DraftDAO {
 	//결재라인에서  내가 포함된 미승인 결제들의 draft_no 목록 불러오기(내 차례인것만)
 	public List<String> selectDraftLine_myturn(String emp_no);
 	
+	*/
 	
 	// 결재 등록하기
 	// 기본 전자 결재 등록하기
@@ -68,12 +70,35 @@ public interface DraftDAO {
 	public String selectDraft_line(String draft_no, String emp_no, String cg_no);
 	
 	// 대외발신공문 수신 리스트
-	public Office selectOffice_rec(String draft_no);
+	public Office selectOffice_rec(String draft_no, String emp_no);
 	
 	// 협조문 수신 리스트
-	public Cooperation selectCooperation_rec(String draft_no);
+	public Cooperation selectCooperation_rec(String draft_no, String emp_no);
 	
 	// 휴가신청서 수신 리스트
-	public Break selectBreak_rec(String draft_no);
+	public Break selectBreak_rec(String draft_no, String emp_no);
 	
+	// 대외발신공문 송신 리스트
+	public List<Office> selectOffice(String emp_no);
+	
+	// 협조문 송신 리스트
+	public List<Cooperation> selectCooperation(String emp_no);
+	
+	// 휴가신청서 송신 리스트
+	public List<Break> selectBreak(String emp_no);
+	
+	// 대외발신공문 상세
+	public Office selectOffice_detail(String draft_no);
+	
+	// 협조문 상세
+	public Cooperation selectCooperation_detail(String draft_no);
+	
+	// 휴가신청서 상세
+	public Break selectBreak_detail(String draft_no);
+	
+	// 결재라인 정보 가져오기
+	public List<Draft_line> selectDraft_line_data(String draft_no);
+	
+	// 참조자 정보 가져오기
+	public List<Draft_ref> selectDraft_ref_data(String draft_no);
 }

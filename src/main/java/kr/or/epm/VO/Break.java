@@ -24,25 +24,23 @@ public class Break {
 	private String rec_del_check;
 	private String del_check;
 
-	private String rec_date;
 	private String emp_name;
+	private String rec_check;
 	
-	
-	
+	public String getRec_check() {
+		return rec_check;
+	}
+
+	public void setRec_check(String rec_check) {
+		this.rec_check = rec_check;
+	}
+
 	public String getEmp_name() {
 		return emp_name;
 	}
 
 	public void setEmp_name(String emp_name) {
 		this.emp_name = emp_name;
-	}
-
-	public String getRec_date() {
-		return rec_date;
-	}
-
-	public void setRec_date(String rec_date) {
-		this.rec_date = rec_date;
 	}
 
 	public String getDraft_no() {

@@ -69,15 +69,12 @@
     <div class="panel-body">
         <div class="row">
         	<div class="col-md-9 forum-heading">
-				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
-					<c:if test="${ office.rec_date == null }">
-            		<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
-            		</c:if>
-                		${ office.draft_date } 
-           	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="forum_details.html"><h4> ${ office.draft_title } </h4></a>
             	</div>
+            	<div class="desc" style="margin-top: 10px; margin-left: 1%;">
+                		${ office.draft_date } 
+           	 	</div>
             </div>
             <div class="col-md-2 forum-info" style="margin-top: 7px;">
                 <span style="display: block; font-weight: 550; font-size: 18px;"> ${ office.rec_place } </span>
@@ -124,15 +121,12 @@
     <div class="panel-body">
         <div class="row">
         	<div class="col-md-9 forum-heading">
-				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
-					<c:if test="${ cooper.rec_date == null }">
-            		<span class="label label-warning pull-left" style="margin-right: 5px;">New</span>
-            		</c:if>
-                		${ cooper.draft_date } 
-           	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="forum_details.html"><h4> ${ cooper.draft_title } </h4></a>
             	</div>
+            	<div class="desc" style="margin-top: 10px; margin-left: 1%;">
+                		${ cooper.draft_date } 
+           	 	</div>
             </div>
             <div class="col-md-2 forum-info" style="margin-top: 7px;">
                 <span style="display: block; font-weight: 550; font-size: 18px;"> ${ cooper.low_dept_name } </span>
@@ -178,15 +172,12 @@
     <div class="panel-body">
         <div class="row">
         	<div class="col-md-9 forum-heading">
-				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
-					<c:if test="${ br.rec_date == null }">
-            		<span class="label label-info pull-left" style="margin-right: 5px;">New</span>
-            		</c:if>
-                		${ br.draft_date } 
-           	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="forum_details.html"><h4> ${ br.draft_title } </h4></a>
             	</div>
+            	<div class="desc" style="margin-top: 10px; margin-left: 1%;"> 
+                		${ br.draft_date } 
+           	 	</div>
             </div>
             <div class="col-md-2 forum-info" style="margin-top: 7px;">
                 <span style="display: block; font-weight: 550; font-size: 18px;"> ${ br.break_cg_name } </span>

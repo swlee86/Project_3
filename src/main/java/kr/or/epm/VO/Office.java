@@ -36,19 +36,44 @@ public class Office {
 	// 파일 업로드에 대한 데이터
 	private MultipartFile uploadfile;
 	private String emp_name;
-private String rec_date;
+	private String rec_check;
+	private String low_dept_name;
+	private String dept_name;
+	private String branch_name;
 	
 	
-	public String getRec_date() {
-		return rec_date;
+	public String getLow_dept_name() {
+		return low_dept_name;
 	}
 
-	public void setRec_date(String rec_date) {
-		this.rec_date = rec_date;
+	public void setLow_dept_name(String low_dept_name) {
+		this.low_dept_name = low_dept_name;
 	}
 
-	
-	
+	public String getDept_name() {
+		return dept_name;
+	}
+
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
+
+	public String getBranch_name() {
+		return branch_name;
+	}
+
+	public void setBranch_name(String branch_name) {
+		this.branch_name = branch_name;
+	}
+
+	public String getRec_check() {
+		return rec_check;
+	}
+
+	public void setRec_check(String rec_check) {
+		this.rec_check = rec_check;
+	}
+
 	public String getEmp_name() {
 		return emp_name;
 	}
