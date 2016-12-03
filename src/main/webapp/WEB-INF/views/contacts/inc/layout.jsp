@@ -342,11 +342,39 @@
        		})
         });
 		
-		
-		
-		
-		
-		
+	    //주소록 추가시  검색해서 보여주는 script
+        $('#con_ins_org_sea_btn').click(function(){
+        	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
+        	$.ajax(
+    				{
+    					type : "post",
+    					url  : "contact_insert_search.do",
+    					data : {
+    						"field" : $('#con_ins_org_sea_field').val(),
+    						"query" : $('#con_ins_org_sea_query').val()
+    						
+    					},
+    					success : function(data){
+    						console.log(data);
+    						 var emp = "";
+    		                    $.each(data, function(index){
+    		                       emp = data[index];
+    		                       console.log(emp);
+    		                   });
+    		                   
+    		                   var  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th/>";
+    		                   $.each(emp, function(index){
+    		                         makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></tr>";   
+    		                      
+    		                   });
+    		                   makeTable += "</table>";
+    		                   $('#empList2').empty();
+    		                   $('#empList2').append(makeTable);
+    					}
+    				}		
+    			)
+        	
+        });
 		
 		
 	});
@@ -440,7 +468,7 @@
        alert("selectNo : " + empSelectNumber);
        var makeTable = "";
        if(empSelectNumber == 1){
-        makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
+        makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th/>";
        }else{
         makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
        }
@@ -460,13 +488,13 @@
                    
                    $.each(emp, function(index){
                       if(empSelectNumber == 1){   
-                         makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
+                         makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
                       }
                       else if(empSelectNumber == 2){
                          makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
                       }
                    });
-                   makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+                   makeTable += "</table>";
                    $('#empList').empty();
                    $('#empList').append(makeTable);
                  }    

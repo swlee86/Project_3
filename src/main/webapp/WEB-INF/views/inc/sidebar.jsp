@@ -99,7 +99,7 @@
                 <a href="#"><span class="nav-label">프로젝트 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="project_list.do">전체 프로젝트</a></li>
-                    <li><a href="projects.do">진행중인 프로젝트</a></li>
+<!--                     <li><a href="projects.do">진행중인 프로젝트</a></li> -->
                     <li><a href="projectApprove.do">프로젝트 승인 대기함</a></li> 
                 </ul>
             </li>

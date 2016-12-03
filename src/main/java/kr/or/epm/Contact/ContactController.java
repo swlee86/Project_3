@@ -35,6 +35,18 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService; 
 	
+	
+	//주소록 사원 등록시 검색해서 부르는 함수
+	@RequestMapping(value = "/contact_insert_search.do", method=RequestMethod.POST)
+	public @ResponseBody List<Emp>  contact_insert_search(String field,String query){
+		System.out.println("contact_insert_search() 컨트롤 탐");	
+		System.out.println("field : "+field+"/query :"+query);
+		List<Emp>  emp = contactService.contact_insert_search(field,query);	
+		System.out.println("emp tostring : "+emp.toString());
+		System.out.println("emp siee:"+emp.size());
+		return emp;
+	}
+	
 	// SideBar(aside.jsp) 주소록 클릭시 구동
 	@RequestMapping(value = "/contacts.do")
 	public String contacts(Principal principal, String pg , String f , String q , Model model, String tapno, String group){

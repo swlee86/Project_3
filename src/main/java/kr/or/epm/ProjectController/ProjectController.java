@@ -42,8 +42,7 @@ public class ProjectController {
 	private ProjectService projectservice;
 	@Autowired
 	private ProjectDetailService projectdetailservice;
-/*	@Autowired
-	private View jsonview;*/
+
 	
 	//프로젝트 승인대기함 승인 처리
 	@RequestMapping(value ="/project_approve_try.do", method=RequestMethod.POST)
