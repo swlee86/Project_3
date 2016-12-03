@@ -20,7 +20,7 @@ public interface MemoDAO {
 	String  selectMemoEmpno(String id);
 	
 	//현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 )
-	public List<Memo> selectMemo(int cpage, int pagesize, String emp_no);
+	public List<Memo> selectMemo(int cpage, int pagesize, String emp_no, String query);
 		
 	//선택한 메모 상세 조회
 	public Memo selectMemo_detail(String memo_no);
@@ -35,11 +35,13 @@ public interface MemoDAO {
 	public int deleteMemo(String memo_no);
 	
 	//메모 수정(제목, 내용, 색상)
-	public int updateMemo(Memo dto);
+	//public int updateMemo(Memo dto);
 	
 	//메모 생성,추가
 	int insertMemo(Memo dto);
 	
 	//총 글수
-	public int selectCount(String emp_no);
+	public int selectCount(String emp_no, String query);
+
+	int updateMemo(String update_memo_no, String memo_content, String memo_title);
 }

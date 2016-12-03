@@ -41,6 +41,9 @@ public interface PayDAO {
 	//급여 마감 관리하기 > 첫번째 
 	public List<PayList> selectPay_all_Close(String dTime);
 	
+	//월별 급여 상세 보기 - 카드에서 버튼 클릭시 해당 월 급여 지급 리스트 뜸. -  관리자 > 급여 > 급여내역 조회
+	public List<PayList> select_payMoth_Detail(String date);
+	
 	// 전체 금월 예상 급여 조회하기
 	public List<Pay> selectPay();
 	
