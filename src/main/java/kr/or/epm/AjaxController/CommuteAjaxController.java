@@ -37,8 +37,10 @@ public class CommuteAjaxController {
 		Emp emp = commuteservice.selectInfoSearch(id);  
 		
 		int result = commuteservice.insertCommute_in(in_time,emp.getEmp_no());
+		
 		System.out.println("결과 : "+result);
 		model.addAttribute("emp",emp);
+		model.addAttribute("result",result);
 		return jsonview;
 	}
 	

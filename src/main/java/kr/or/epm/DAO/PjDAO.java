@@ -75,5 +75,7 @@ public interface PjDAO {
 	//프로젝트 검색
 	public List<Pj> searchPj(String key, String value);
 
+	//현재 상세프로젝트가 포함된 프로젝트의 모든 상세 프로젝트들의 진행상황 가져오기 ( = pj_no가 같은 pjd들의 진행상황 )
+	public List<String> selectPjstepno_Of_includePjdno(String pjd_no);
 	
 }

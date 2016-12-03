@@ -48,6 +48,37 @@ public class CommuteService {
 		//없으면 insert
 		int result = 0;
 		if(commute_no==null){
+			
+			//출근시간을 퇴근전에 했는지 검사
+			Set_time set_time = dao.selectSetTime(emp_no);
+			System.out.println("@@Set_time : "+set_time.toString());
+			
+			String out_time_dept = set_time.getOut_time();
+			
+			int out_time_dept_h = Integer.parseInt(out_time_dept.substring(0,2));
+			int out_time_dept_m = Integer.parseInt(out_time_dept.substring(3,5));
+			
+			
+			
+			int in_time_emp_h = Integer.parseInt(in_time.substring(0,2));
+			int in_time_emp_m = Integer.parseInt(in_time.substring(3,5));
+			
+			//퇴근시간보다 먼저 출근했는지 시간 계산
+			Date date_dept = new Date();
+			Date date_emp = new Date();
+			date_dept.setHours(out_time_dept_h);
+			date_dept.setMinutes(out_time_dept_m);
+			date_emp.setHours(in_time_emp_h);
+			date_emp.setMinutes(in_time_emp_m);
+			
+			System.out.println("date_emp : " + date_emp.getTime());
+			System.out.println("date_dept");
+			long date_add = date_dept.getTime()-date_emp.getTime();
+	
+			if(date_add < 0 ){
+				return 2; // retrun이 2이면 출근시간이 부서의 퇴근시간보다 늦은 경우
+			}
+			
 			HashMap map = new HashMap();
 			map.put("in_time", in_time);
 			map.put("emp_no", emp_no);
