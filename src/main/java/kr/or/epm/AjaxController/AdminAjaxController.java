@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+import kr.or.epm.DAO.PayDAO;
 import kr.or.epm.Service.AdminService;
+import kr.or.epm.Service.PayService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.DeptJoinBonus;
@@ -22,6 +24,7 @@ import kr.or.epm.VO.LowDeptJoin;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.PositionJoin;
 import kr.or.epm.VO.Set_homepage;
+import kr.or.epm.VO.Set_pay_date;
 import kr.or.epm.VO.Set_time;
 import net.sf.json.JSONArray;
 
@@ -39,6 +42,7 @@ public class AdminAjaxController {
 	private View jsonview;
 	@Autowired
 	private AdminService adminservice;
+	
 	
 	//지점 선택후 조회 클릭 했을시 지점 상세정보 출력
 	@RequestMapping("/selectBranchList.do")
@@ -198,6 +202,24 @@ public class AdminAjaxController {
 		//여기서 업데이트 된 것 새로 받아줌
 		List<PositionJoin> list = adminservice.listPosition();
 		model.addAttribute("modifylist",list);
+		return jsonview;
+	}
+	
+	//급여지급일 저장
+	@RequestMapping("/payAddDate.do")
+	public View payAdd(Set_pay_date set_pay_date, String pay_date_num, Model model){
+		System.out.println(" 선택한 급여일 :  "+ set_pay_date.getPay_date() +"//////////////급여일 존재 여부  "+pay_date_num);
+		int result =0;
+		if(pay_date_num.equals("0")){
+			result = adminservice.insertpay_date(set_pay_date);
+			System.out.println(" 급여일 insert result :::::::::::::::"+result);
+			model.addAttribute("result", "급여일 지정 성공");
+		}else if(pay_date_num.equals("1")){
+			result = adminservice.updatepay_date(set_pay_date);
+			System.out.println(" 급여일 update result :::::::::::::::"+result);
+			model.addAttribute("result", "급여일 변경 성공");
+		}
+		
 		return jsonview;
 	}
 	

@@ -47,19 +47,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select regdate from emp_his e join emp_his_cg c on e.cg_no=c.cg_no where emp_no=#{emp_no} and c.cg_name='입사'
 	</select>
 
-<!-- 	
-	본인의 금월 예상 급여 조회하기
-	<select id="selectPay_mine" resultType="kr.or.epm.VO.Pay">
-		select pay_no, p.emp_no, e.salary, basic_pay, acc_commute_time, acc_add_time, p.add_pay, total_pay
-		from pay p join emp e
-		on p.emp_no = e.emp_no
-		join commute c
-		on p.emp_no = c.emp_no
-		join set_add_pay a
-		on e.position_no = a.position_no
-		where p.emp_no = #{emp_no}
-	</select> -->
-	
 	<!-- 본인 금월 예상 급여 조회하기 -->
 	<select id="selectPay_mine" resultType="kr.or.epm.VO.Pay">
 	    select pay_no, e.emp_no, basic_pay, bonus, add_pay, severance_pay
@@ -122,5 +109,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update pay
 		set master_check = '1'
 		where pay_no = #{pay_no}
+	</update>
+	
+	<!-- 급여지급일 조회하기 -->
+	<select id="selectpay_date" resultType="String">
+	  select pay_date from set_pay_date
+	</select>
+	
+	<!--급여일 등록하기  -->
+	<insert id="insertpay_date" parameterType="kr.or.epm.VO.Set_pay_date">
+		insert into set_pay_date(set_date, pay_date)  values(#{set_date}, #{pay_date})
+	</insert>
+	
+	<!-- 급여일 수정하기 -->
+	<update id="updatepay_date" parameterType="kr.or.epm.VO.Set_pay_date">
+		update set_pay_date
+		set set_date = #{set_date}, 
+			pay_date = #{pay_date}
 	</update>
 </mapper>

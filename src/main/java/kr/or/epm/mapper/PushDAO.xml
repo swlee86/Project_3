@@ -62,9 +62,10 @@ select count(*) cnt from task where rec_emp_no=#{emp_no} and rec_date is null an
 select emp_no from emp_detail where id=#{id}
 </select>
 
+
 <!-- 차트 데이터를 뽑아오는 함수 -->
 <select id="commutelist" parameterType="String" resultType="kr.or.epm.VO.Commute">
-select rn, regdate, in_time, out_time, add_time from(select rownum rn, regdate, in_time, out_time, add_time from (select regdate, in_time, out_time, add_time from commute where emp_no=#{param1} order by regdate asc)) where rn between #{param2} and #{param3}
+select regdate, in_time, out_time, add_time from (select regdate, in_time, out_time, add_time from commute where emp_no=#{param1} and add_time is not null and add_time!='00:00' and regdate between to_char(to_date(#{param2}, 'YYYY-MM-dd'), 'YYYY-MM-dd') and to_char(to_date(#{param3}, 'YYYY-MM-dd'), 'YYYY-MM-dd') order by regdate asc)
 </select>
 
 

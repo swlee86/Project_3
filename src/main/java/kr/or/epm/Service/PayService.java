@@ -64,6 +64,7 @@ public class PayService {
 		System.out.println("급여 마감 관리");
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 	    List<PayList> list = dao.selectPay_all_Close(dTime);
+	    System.out.println("급여 list size: "+list.size());
 	    return list;
 	}
 	

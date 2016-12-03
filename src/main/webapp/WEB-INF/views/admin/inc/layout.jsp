@@ -112,20 +112,44 @@
 
 <!--부서관리 메뉴 js  --> 
 <script src="js/admin/adminBranch/admin_branch.js"></script>
+
 <!--직위관리 메뉴 js -->
 <script src="js/admin/adminPosition/adminGrade.js"></script>
+
+<!--급여 관리 메뉴 js  -->
+<script src="js/admin/adminPay/adminPay.js"></script>
 
 <!--우편번호 API-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script>
 
-	
+	//삭제 하기 버튼 클릭시 !!
+	function deleteli(obj){
+		var deleteli = $(obj);
+		var value = deleteli.parent().attr("value");
+		alert("값은 ? : "+value);
+		
+		$.ajax(
+				{
+					url:"",
+					data : {positionName : value},
+					success : function(data){
+						alert("성공하였습니다!!");
+					}
+		        }
+			   );
+		
+		//드래그앤 드롭 삭제하느 ㄴ것.
+		deleteli.parent().remove();
+	}
 
 	$(function(){
 		
 		//드래그 앤 드롭
 		$( "#sortable" ).sortable();
+	
+		
 		
 		var currentYear = (new Date()).getFullYear();
 		var startYear = currentYear - 10;

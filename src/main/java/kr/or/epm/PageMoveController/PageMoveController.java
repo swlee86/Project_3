@@ -97,20 +97,23 @@ public class PageMoveController {
  			
  		}
 		
-		/////////////////////인덱스에 띄워 줄 근태 리스트 내용 구하기 시작////////////////////////////////////////////////////
+		/////////////////////인덱스에 띄워 줄 근태 차트 리스트 내용 구하기 시작////////////////////////////////////////////////////
 		List<Commute> commutelist = null;
 		if(emp_no_chk==true){
  			String commutemsg = "근태 내역은 로그인 후 내용 확인 가능합니다";
  			model.addAttribute("commutemsg", commutemsg);
  		}else{
  			try{
- 				commutelist = pushService.commutelist(emp_no, cpage, pgsize); 	
+ 				commutelist = pushService.commutelist(emp_no); 	
  				for(int i=0; i<=commutelist.size(); i++){
- 					System.out.println();
+ 					System.out.println("일시 : " + commutelist.get(i).getRegdate());
+ 					System.out.println("출근 : " + commutelist.get(i).getIn_time());
+ 					System.out.println("퇴근 : " + commutelist.get(i).getOut_time());
  				}
  			}catch(Exception e){
- 				
+
  			}finally{
+ 				model.addAttribute("commutelist", commutelist);
  				
  			}
  			
@@ -284,29 +287,6 @@ public class PageMoveController {
 		return "find.findMainView";
 	}
 	
-	//아이디찾기
-	@RequestMapping("/findId.do")
-	public String findId(){
-		return "find.findID";
-	}
-	
-	//비밀번호찾기
-	@RequestMapping("/findPw.do")
-	public String findPw(){			
-		return "find.findPW";
-	}
-	
-	//아이디찾기 결과
-	@RequestMapping("/findID_Result.do")
-	public String findIdResult(){
-		return "find.findID_Result";
-	}
-
-	//비밀번호찾기 결과
-	@RequestMapping("/findPW_Result.do")
-	public String findPwResult(){
-		return "find.findPW_Result";
-	}
 	
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.or.epm.DAO.BranchDAO;
 import kr.or.epm.DAO.DeptDAO;
 import kr.or.epm.DAO.Low_deptDAO;
+import kr.or.epm.DAO.PayDAO;
 import kr.or.epm.DAO.PositionDAO;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
@@ -19,6 +20,7 @@ import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
 import kr.or.epm.VO.Set_homepage;
+import kr.or.epm.VO.Set_pay_date;
 import kr.or.epm.VO.Set_time;
 import net.sf.json.JSONArray;
 
@@ -27,6 +29,8 @@ public class AdminService {
 
 	@Autowired
 	private SqlSession sqlsession;
+	
+	
 	
 	//지점 관리 페이지
 	public List<Branch> listBranch(){
@@ -260,6 +264,30 @@ public class AdminService {
 		
 		System.out.println("서비스쪽 : "+result);
 		return result;
+	}
+	
+	//급여지급일 있는지 여부 판단
+	public String selectpay_date(){
+		String pay_date=null;
+		PayDAO paydao = sqlsession.getMapper(PayDAO.class);
+		pay_date = paydao.selectpay_date();
+		return pay_date;
+	}
+	
+	//급여지급일 insert
+	public int insertpay_date(Set_pay_date date){
+		
+		PayDAO paydao = sqlsession.getMapper(PayDAO.class);
+		int result = paydao.insertpay_date(date);
+		return result;
+	}
+	
+	//급여 지급일 update
+	public int updatepay_date(Set_pay_date date){
+		PayDAO paydao =sqlsession.getMapper(PayDAO.class);
+		int result = paydao.updatepay_date(date);
+		return result;
+		
 	}
 	
 	
