@@ -23,6 +23,6 @@ public interface PushDAO {
 	
 	String myprojectCount(String emp_no);
 	
-	List<Commute> commutelist(String emp_no, int start, int end);
+	List<Commute> commutelist(String emp_no, String startData, String endData);
 	
 }

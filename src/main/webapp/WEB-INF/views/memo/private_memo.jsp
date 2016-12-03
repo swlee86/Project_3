@@ -14,20 +14,14 @@ $(function(){
 						"memo_no" : memo_no
 					},
 					success : function(data){
-						console.log("data: "+data);  //title, color, memo_content, memo_date, memo_no
-						console.log("memo_no : "+data.memo_no);
-						$('#memo_detail_title').html(data.title);
-						$('#memo_detail_date').html(data.memo_date);
-						$('#memo_detail_content').html(data.memo_content);
-						$('#memo_detail_content').css('background',data.color);
-						$('#memo_detail_background').css('background',data.color);
-						$('#memo_detail_panel_body_color').css('background',data.color);
+						console.log("data: "+data);  
+						$('#memo_plus_div').html(data);
 					}
 				}		
 			)	
 	});
 	
-	$('#memo_plus').click(function(){
+	$('#first_memo_plus').click(function(){
 		console.log('클릭');
 		$.ajax(
 				{
@@ -41,6 +35,35 @@ $(function(){
 				}		
 			)
 	});
+	
+	$("#first_memo_content").keyup(function() {
+		  console.log("메모 수정중 내용 : " +$('#first_memo_content').val()+"/"+$('#first_update_memo_no').val());
+		  first_memo_ajax();
+	});
+	
+	$("#first_memo_title").keyup(function() {
+		  console.log("메모 수정중 내용 : " +$('#first_memo_title').val()+"/"+$('#first_update_memo_no').val());
+		  first_memo_ajax();
+	});
+	
+	
+	function first_memo_ajax(){
+		$.ajax(
+				{
+					type : "post",
+					url  : "private_memo_update.do",
+					data : {
+						"update_memo_no" : $('#first_update_memo_no').val(),
+						"memo_content" :$('#first_memo_content').val(),
+						"memo_title" : $('#first_memo_title').val()
+					},
+					success : function(data){
+						console.log("메모 수정 저장"); 
+					}
+				}		
+			)
+	}
+
 	
 });
 </script>
@@ -75,29 +98,30 @@ $(function(){
     <div class="row">
         <div class="col-md-3">
             <div class="hpanel panel-group">
+             <form action="private_memo.do" method="GET">
                 <div class="panel-body">
                     <div class="text-center text-muted font-bold">
-                    	<select class="form-control" name="">
-                    		<option>5개</option>
-                    		<option>10개</option>
-                    		<option>15개</option>
+                    	<select class="form-control" name="ps" id="p_m_ps">
+                    		<option value="5" <c:if test="${ps==5}">selected</c:if>>5개</option>
+                    		<option value="10" <c:if test="${ps==10}">selected</c:if>>10개</option>
+                    		<option value="15" <c:if test="${ps==15}">selected</c:if>>15개</option>
                     	</select>
                     </div>
-
-                </div>
-                <div class="panel-section">
+                    <br>
+                     <div class="panel-section">     
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search note....">
+                        <input type="text" class="form-control" name="q" placeholder="Search memo....">
                            <span class="input-group-btn">
-                                <button class="btn btn-default" onclick="location.href='memo_write.do'">&nbsp;<span class="fa fa-search"></span></button>
+                                <button class="btn btn-default" type="submit">&nbsp;<span class="fa fa-search"></span></button>
                            </span>
-                    </div>
+                    </div>                
                     <button type="button" data-toggle="collapse" data-target="#notes"
                             class="btn-sm visible-xs visible-sm collapsed btn-default btn btn-block m-t-sm">
                         All notes <i class="fa fa-angle-down"></i>
                     </button>
                 </div>
-
+                </div>
+				</form>
 
 
                 <div id="notes" class="collapse">
@@ -119,7 +143,7 @@ $(function(){
                 <div class="panel-body" style="text-align:center">
 		                   <div class="btn-group">
 								<c:if test="${pg>1}">
-									<a  class="btn btn-default" href="private_memo.do?pg=${pg-1}">
+									<a  class="btn btn-default" href="private_memo.do?pg=${pg-1}&q=${q}&ps=${ps}">
 										&nbsp;<i class="fa fa-chevron-left"></i>
 									</a>
 								</c:if>
@@ -132,7 +156,7 @@ $(function(){
 											</button>
 										</c:when>
 										<c:otherwise>
-											<a class="btn btn-default" href="private_memo.do?pg=${i}">
+											<a class="btn btn-default" href="private_memo.do?pg=${i}&q=${q}&ps=${ps}">
 												${i}
 											</a>
 										</c:otherwise>
@@ -140,7 +164,7 @@ $(function(){
 								</c:forEach>
 
 								<c:if test="${pg < pagecount}">
-									<a class="btn btn-default" href="private_memo.do?pg=${pg+1}">
+									<a class="btn btn-default" href="private_memo.do?pg=${pg+1}&q=${q}&ps=${ps}">
 										&nbsp;<i class="fa fa-chevron-right"></i>
 									</a>
 								</c:if>
@@ -158,28 +182,25 @@ $(function(){
         <div class="col-md-9" >
             <div class="hpanel">
                 <div class="panel-body" style="background: ${first_memo.color};" id="memo_detail_panel_body_color">					
-
+					<div class="text-center hidden">
+                        We couldn't find any notes for you.
+                    </div>
                     <div class="tab-content">
-                     <a  href="#"id="memo_plus"><span class="glyphicon glyphicon-plus"></span></a>
-                    	<form method="post">
-                     	<%-- <input type="hidden" name="update_memo_no" value="${memo_no_chk}"> --%> 
-                    	<%-- <input type="hidden" name="color_no" value="${first_memo.color_no}"> --%>
-                    	<input type="hidden" name="title" value="${first_memo.title}" >
+                     <a  href="#"id="first_memo_plus"><span class="glyphicon glyphicon-plus"></span></a>
+                      <div class="pull-right">
+                      	<a href="removememo.do?memo_no=${memo_no_chk}" id="first_memo_delete"><b><span class="glyphicon glyphicon-trash"></span></b></a>
+                     </div>             
+                     	<input type="hidden" id="first_update_memo_no" value="${memo_no_chk}">     	
                         <div id="note1" class="tab-pane active">
                             <div class="pull-right text-muted m-l-lg" id="memo_detail_date" >
                                 ${first_memo.memo_date}
                             </div>
-                            <h3 id="memo_detail_title">${first_memo.title }</h3>
+                            <h3 ><input type="text"  id="first_memo_title" value="${first_memo.title}" style="border:0px;background-color:${first_memo.color}"></h3>
                             <hr/>
                             <div class="note-content" style="background: ${first_memo.color};" id="memo_detail_background">
-                                <textarea class="form-control" style="background: ${first_memo.color};"  id="memo_detail_content" name="memo_content">${first_memo.memo_content}</textarea>
-                            </div>
-                            <div class="btn-group">
-                                <button class="btn btn-sm btn-default"><i class="fa fa-thumbs-o-up"></i> Save</button>
-                                <button type="button" onclick="location.href='removememo.do?memo_no=${memo_no_chk}'"class="btn btn-sm btn-default"><i class="fa fa-trash"></i> Remove</button>
+                                <textarea class="form-control" style="background: ${first_memo.color};"  id="first_memo_content" >${first_memo.memo_content}</textarea>
                             </div>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

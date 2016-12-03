@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCount" resultType="int"> 
 		select nvl(count(*),0) 
 		from memo 
-		where emp_no=#{emp_no}
+		where emp_no=#{param1} and (memo_content like '%${param2}%' or title like '%${param2}%')
 	</select>
 	
 	<!-- 로그인한 인원이 갖고 있는 메모 중 가장 큰 번호 구하는 쿼리문 -->
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select  rownum num, n.memo_no, n.emp_no, n.title, n.memo_content, n.memo_date, n.color_no, n.color, n.color_name  from (
 					select memo_no,emp_no,title,memo_content,memo_date, m.color_no, color, color_name
 					from memo m  join memocolor c  on m.color_no = c.color_no 
-					where m.emp_no=#{param3}
+					where m.emp_no=#{param3} and (memo_content like '%${param4}%' or title like '%${param4}%')
 					order by to_number(m.memo_no) DESC
 				)n 
 			)  where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}		
@@ -68,11 +68,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 메모 수정(제목, 내용, 색상)-->
-	<update id="updateMemo" parameterType="kr.or.epm.VO.Memo">
+	<update id="updateMemo">
 		update memo 
-		set memo_content=#{memo_content},
-    		memo_date=to_char(sysdate,'yyyy-mm-dd') 
-			where memo_no = #{memo_no}
+		set memo_content=#{param2},
+    		memo_date=to_char(sysdate,'yyyy-mm-dd'), 
+    		title=#{param3}
+			where memo_no = #{param1}
 	</update>
 	
 	

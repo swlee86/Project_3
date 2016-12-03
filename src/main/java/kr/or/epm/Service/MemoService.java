@@ -26,10 +26,10 @@ public class MemoService {
 	private SqlSession sqlSession;
 	
 	//메모 화면에서 리스트를 불러오는 서비스 함수
-	public List<Memo> selectMemo(int cpage, int pagesize, String emp_no){
+	public List<Memo> selectMemo(int cpage, int pagesize, String emp_no, String query){
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+cpage +" /"+pagesize +"/"+emp_no);
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
-		List<Memo> list = memodao.selectMemo(cpage, pagesize, emp_no); 
+		List<Memo> list = memodao.selectMemo(cpage, pagesize, emp_no,query); 
 		return list;
 	};
 	
@@ -71,9 +71,9 @@ public class MemoService {
 	}
 	
 	//메모를 수정하는 서비스 함수
-	public int updateMemo(Memo dto){
+	public int updateMemo(String update_memo_no, String memo_content, String memo_title){
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
-		int result = memodao.updateMemo(dto);
+		int result = memodao.updateMemo(update_memo_no,memo_content,memo_title);
 		return result;
 	}
 	
@@ -86,9 +86,10 @@ public class MemoService {
 
 	
 	//총 글수
-	public int selectCount(String emp_no) {
+	public int selectCount(String emp_no, String query) {
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
-		int total =  memodao.selectCount(emp_no);	
+		int total =  memodao.selectCount(emp_no,query);	
+		System.out.println("total : "+total);
 		return total;
 	}
 }
