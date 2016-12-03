@@ -81,7 +81,7 @@
         
     	//조직도 아이콘 클릭시
     	$('#organicSelect').click(function(){
-    		var litag = "<ui style='list-style:none;''>";
+    	
     		
     		$('#organization').empty();
     		$('#empList').empty();
@@ -90,7 +90,7 @@
     		$.ajax({
     			url : "oranicChartFirst.do",
     			success : function(data) {
-    				
+    				var litag = "<ul style='list-style:none;margin-left:-40px;'>";
     				choose = 1;
     				var departMent = "";
 
@@ -99,18 +99,16 @@
     				});
 
     				$.each(departMent, function(index) {
-    					litag += "<li onclick='seeDepart(this, "
+    					litag += "<li style='padding:4px;' onclick='seeDepart(this, "
     				    litag +=departMent[index].branch_no
-    				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-    					litag +="</ul>";
-    					
+    				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
     					litag+="<div id='dept_div"
-    					litag+=departMent[index].branch_no
-    					litag+="'></div>";
-    					
-    					
+        				litag+=departMent[index].branch_no
+        				litag+="'></div>";	
     				});
-    		
+    				
+						litag +="</ul>";
+    					
     					$('#organization').html(litag);
     					
 
@@ -122,11 +120,13 @@
 
 //부서 출력 하는 아작스
 function seeDepart(obj, choose) {
+	
+	console.log("부서 출력 함수는 ????? "+obj  + "  /  choose ???? : "+choose);
 	//전역 부서 선택시
     departcho = choose;
 	var div_id = "dept_div"+choose;
 	$("#"+div_id).empty();
-	var litag = "<ui>";
+	var litag = "<ul style='list-style:none; padding:10px;'>";
 	
 	console.log(div_id);
 	var name = $(obj).text();
@@ -145,24 +145,17 @@ function seeDepart(obj, choose) {
 			});
 
 			$.each(dept, function(index) {
-					litag += "<li onclick='seelow_Depart(this, "
+					litag += "<li style='padding:2px;' onclick='seelow_Depart(this, "
 				    litag +=dept[index].dept_no
-				    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
-					litag +="</ul>";
-					
+				    litag +=")'>&nbsp;&nbsp;&nbsp;&nbsp;"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
 					litag+="<div id='low_dept_div"
 					litag+=dept[index].dept_no
 					litag+="'></div>";
-				
-				
-				/* 
-				$(obj).append(
-						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,"+dept[index].dept_no+")'>"
-								+ dept[index].dept_name + "</span>");
-				
-				 */
 			});
+			litag +="</ul>";
 			$("#"+div_id).html(litag);
+			
+			
 		}
 	});
 }
@@ -171,7 +164,6 @@ function seeDepart(obj, choose) {
 function seelow_Depart(obj,departcho) {
 	alert("부서 : "+choose);
 	deptNumber= departcho;
-	var litag = "<ui>";
 	var div_id = "low_dept_div"+departcho;
 	$("#"+div_id).empty();
 	
@@ -182,20 +174,17 @@ function seelow_Depart(obj,departcho) {
 		},
 
 		success : function(data) {
-
+			var litag = "<ul style='list-style:none;'>";
 			var low_dept = "";
 			$.each(data, function(index) {
 				low_dept = data[index];
 			});
 			$.each(low_dept, function(index) {
-				litag += "<li onclick='seeEmpMember(this, "
+				litag += "<li style='padding:2px;' onclick='seeEmpMember(this, "
 				litag +=low_dept[index].low_dept_no
 				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
-				litag +="</ul>";
-					
-				
 			});
-			
+			litag +="</ul>";
 			$("#"+div_id).html(litag);
 			
 		}

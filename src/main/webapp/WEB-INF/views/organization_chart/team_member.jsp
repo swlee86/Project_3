@@ -30,7 +30,7 @@
 			<div class="hpanel panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel-body">
 					<a data-toggle="collapse" data-parent="#accordion" href="#organization" aria-expanded="true" id="organicSelect"> 
-					<i class="fa fa-chevron-down pull-right text-muted"></i> 조직도
+					<i class="fa fa-chevron-down pull-right text-muted"></i>조직도
 					</a>
 					<div>
 					<hr>
