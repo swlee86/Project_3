@@ -84,8 +84,7 @@
 							<tr>
 								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">상세 프로젝트 내용</th>
                               	<td colspan="3">
-                        	    	<input type="text" class="form-control table-input" id="pjd_content" value="${pjd.pjd_content}" disabled="disabled" style="border: 0px; background-color: white;">
-                              	</td> 
+                              		<textarea class="form-control table-input" id="pjd_content"  disabled="disabled" style="resize:none; border: 0px; background-color: white;" rows="5">${pjd.pjd_content}</textarea>
 							</tr>
 						</table>
 						
@@ -147,6 +146,8 @@
 <script>
 $(function(){
 	var index = 0;	
+	
+	//추가버튼누를때
 	$('#add_btn').click(function(){
 		
 		//alert(index);
@@ -257,6 +258,7 @@ function addclick(id){
 	}
 }
 
+//프로젝트 상세의 상세내용 수정
 function modify_pjdd(id){
 	
 	var modify_i = id.substr(11);
@@ -361,7 +363,7 @@ function modify_pjdd(id){
 }
 
 
-
+//프로젝트 상세의 내용 수정
 function modify_pjd(){
 	
 	if($('#modify_pjd_btn').val()=="수정"){
@@ -379,7 +381,7 @@ function modify_pjd(){
 		var pjd_end = $('#pjd_end').val();
 		
 		
-		//alert("pjd_no" + pjd_no + "/ pjd_title" + pjd_title + "/ pjd_content "+pjd_content + "/ pj_step_no"+ pj_step_no + "/ pjd_start" + pjd_start + "/ pjd_end" + pjd_end);
+		alert("pjd_no" + pjd_no + "/ pjd_title" + pjd_title + "/ pjd_content "+pjd_content + "/ pj_step_no"+ pj_step_no + "/ pjd_start" + pjd_start + "/ pjd_end" + pjd_end);
 		
 	 	$.ajax(
 				{
@@ -394,6 +396,20 @@ function modify_pjd(){
 					},
 					success : function(data){
 						alert("수정 완료되었습니다.");
+						
+						//전체 프로젝트의 진행상황도 업데이트 시켜줘야함
+						$.ajax(
+								{
+									url : "updatePj_step_state.do",
+									data : {
+										"pjd_no" : pjd_no,
+									},
+									success : function(data) {
+										
+									}
+							
+							
+						});
 					}
 				}
 		);		

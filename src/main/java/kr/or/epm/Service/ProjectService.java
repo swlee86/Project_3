@@ -253,4 +253,15 @@ public class ProjectService {
 		return pjlist;
 	}
 
+	//현재 상세프로젝트랑 같은 프로젝트에 포함된 모든 상세 프로젝트들의 상태 가져오기
+	public List<String> selectPjstepno_Of_includePjdno(String pjd_no){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		
+		List<String> pjstepnolist = null;
+		
+		pjstepnolist = dao.selectPjstepno_Of_includePjdno(pjd_no);
+		
+		return pjstepnolist;
+		
+	}
 }

@@ -207,4 +207,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and ${param1} like '%${param2}%'
       order by s.step asc, pj_start desc
 	</select>
+	
+	<!-- 현재 상세프로젝트가 포함된 프로젝트의 모든 상세 프로젝트들의 진행상황 가져오기 ( = pj_no가 같은 pjd들의 진행상황 )   -->
+	<select id="selectPjstepno_Of_includePjdno" resultType="String">
+		select pj_step_no from pjd 
+   		where pj_no = (select pj_no from pjd where pjd_no=#{pjd_no})
+	</select>
 </mapper>
