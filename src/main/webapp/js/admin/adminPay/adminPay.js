@@ -70,5 +70,13 @@ $(function(){
 				);
 	});
 	
-	
 });
+
+//급여 상세 보기 클릭시 실행 됨 - 
+function detailPay(obj){
+	
+	var id = $(obj).attr("id");
+	alert("버튼  아이디 값 : "+id);
+	location.href="adminSalaryListDetail.do?date="+id;
+}
+	

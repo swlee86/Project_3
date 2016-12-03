@@ -116,9 +116,9 @@
 									<th style="text-align: center;">부서</th>
 									<th style="text-align: center;">하위 부서</th>
 									<th style="text-align: center;">직위</th>
-									<th style="text-align: center;">입사일자</th>
-									<th style="text-align: center;">연락처</th>
-									<th style="text-align: center;">e-mail</th>
+									<th style="text-align: center;">은행명</th>
+									<th style="text-align: center;">계좌번호</th>
+									<th style="text-align: center;">연봉</th>
 									<th />
 								</tr>
 							</thead>
@@ -133,26 +133,17 @@
 									<td style="text-align: center;">영업부</td>
 									<td style="text-align: center;">영업1팀</td>
 									<td style="text-align: center;">계장</td>
+									<td style="text-align: center;">계장</td>
 									<td style="text-align: center;">2016-01-01</td>
 									<td style="text-align: center;">01011111111</td>
-									<td style="text-align: center;">brown@epm.com</td>
-									<td style="text-align: center;"><button type="button"
-											class="btn btn-sm btn-success"
+									<td style="text-align: center;">
+									<button type="button" class="btn btn-sm btn-success"
 											onclick="location.href='adminSalaryModify.do'">수정</button></td>
 								</tr>
-
-
 							</tbody>
 						</table>
 					</div>
-					<div class="row" style="text-align: right; margin-right: 5px;">
-						<button type="button" class="btn btn-sm btn-success"
-							onclick="location.href='adminSalaryView.do'">목록</button>
-					</div>
-
-
-
-				</div>
+			    </div>
 			</div>
 		</div>
 	</div>

@@ -75,7 +75,16 @@ public class PayService {
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 	    result = dao.updatePay(pay_no);
 		return result;
-		
+	}
+	
+	
+	//급여 선택 월 정보 리스트 뿌려주기  - > 카드 에서 상세보기 버튼 클릭시 사용됨
+	public List<PayList> select_payMoth_Detail(String date){
+		System.out.println("기지급 급여 관리 : "+date);
+		PayDAO dao = sqlsession.getMapper(PayDAO.class);
+	    List<PayList> list = dao.select_payMoth_Detail(date);
+	    System.out.println("급여 list size: "+list.size());
+	    return list;
 	}
 	
 	

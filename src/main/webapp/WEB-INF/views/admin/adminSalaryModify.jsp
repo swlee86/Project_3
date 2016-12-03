@@ -36,7 +36,7 @@
 	                    		<tbody>
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">사번</th>
-	                    				<td><input type="text" class="form-control input-sm" name="emp_no"></td>
+	                    				<td><input type="text" class="form-control input-sm" name="emp_no" readonly="readonly"></td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>연봉</th>
 	                    			    <td colspan="3"><input type="text" class="form-control input-sm" name="salary"></td>
 	                    			</tr>
@@ -44,36 +44,36 @@
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">지점</th>
 	                    				<td>
 	                    					
-	                    						<input type="text" class="form-control input-sm" name="branch">
+	                    						<input type="text" class="form-control input-sm" name="branch" readonly="readonly">
 	                    					
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">부서</th>
 	                    				<td>
 	                    					
-	                    						<input type="text" class="form-control input-sm" name="dept">
+	                    						<input type="text" class="form-control input-sm" name="dept" readonly="readonly">
 	                    					
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서</th>
 	                    				<td>
 	                    					
-	                    						<input type="text" class="form-control input-sm"  name="low_dept">
+	                    						<input type="text" class="form-control input-sm"  name="low_dept" readonly="readonly">
 	                    					
 	                    				</td>
 	                    			</tr>
 	                    		
 	                    			<tr>
 	                    				
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">은행</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>은행</th>
 	                    				<td><input type="text" class="form-control input-sm" name="bank"></td>
-	                    					<th style="width:10%; text-align: right; background-color:#f5f5f5">계좌번호</th>
+	                    					<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>계좌번호</th>
 	                    				<td colspan="3"><input type="text" class="form-control input-sm" name="account"></td>
 	                    			</tr>
 
 	                    		</tbody>
 	                    	</table>
 	                    	<div class="form-group" style="text-align:center">
-	                    		<input type="submit" class="btn btn-success btn-sm" value="등록" style="margin-right:10px">
-	                    		<input type="button" class="btn btn-default btn-sm" value="취소">
+	                    		<input type="submit" class="btn btn-success btn-sm" value="저장" style="margin-right:10px">
+	                    		<input type="reset" class="btn btn-default btn-sm" value="취소">
 	                    	</div>
                     	</form>
                     </div>
