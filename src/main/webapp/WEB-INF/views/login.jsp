@@ -20,16 +20,30 @@
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 
 <!-- App styles -->
-<link rel="stylesheet"
-	href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 <!--구글 API-->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id"
 	content="279959715456-km9o7eijb5j8sr8kn9i98dtmitu5l1tt.apps.googleusercontent.com">
+<style>
+	body{
+		background-image: url("images/landing/header.jpg");
+	}
+	
+	h3{
+		color: white;
+	}
+	
+	small{
+		color: white;
+	}
+	
+</style>
 </head>
-<body class="fixed-navbar fixed-sidebar">
+<body class="fixed-navbar fixed-sidebar media-body">
+	
 	<div class="splash">
 		<div class="color-line"></div>
 		<div class="splash-title">
@@ -44,6 +58,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="container">
 		<div class="heading">
 
@@ -51,17 +67,21 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="text-center m-b-md">
-							<h3>로그인</h3>
-							<small>WelCome 2pm! <c:if test="${param.error != null}">
-									<div>
-										로그인실패<br>
-										<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-       										이유 : <c:out
-												value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+							<div id="page-top">
+								<div class="heading">
+									<h3 style="color: white">로그인</h3>
+									<small>WelCome 2pm! <c:if test="${param.error != null}">
+											<div>
+												로그인실패<br>
+												<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+		       										이유 : <c:out
+														value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+												</c:if>
+											</div>
 										</c:if>
-									</div>
-								</c:if>
-							</small>
+									</small>
+								</div>
+							</div>
 						</div>
 						<div class="hpanel">
 							<div class="panel-body">

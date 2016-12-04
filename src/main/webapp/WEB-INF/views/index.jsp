@@ -15,200 +15,234 @@
 			</p>
 		</div>
 	</div>
-
+	
 	<div class="row">
-		<div class="col-lg-6">
+	&nbsp;
+	</div>
+	<hr>
+	<div class="row">
+	 <div class="col-lg-6">
 			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#pro-1"><b>진행중 프로젝트</b></a></li>
+					<li class=""><a data-toggle="tab" href="#pro-2"><b>승인할 프로젝트 </b></a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="pro-1" class="tab-pane active">
+						<div class="panel-body list">
+							<div class="table-responsive project-list">
+								<table class="table table-striped table-condensed">
+									<thead>
+										<tr>
+											<th colspan="2">프로젝트명</th>
+											<th>진행상황</th>
+											<th>진행률</th>
+											<th>종료일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="pjlist" items="${pjlist}" >
+											<tr>
+												<td><a href="projectDetail.do?pj_no=${pjlist.pj_no}">${pjlist.pj_title}</a><br />
+													<small><i class="fa fa-clock-o"></i> Created
+														${pjlist.pj_start}</small></td>
+												<td></td>
+												<td><span class="pie">1/5</span></td>
+												<td><strong>20%</strong></td>
+												<td>${pjlist.pj_end}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-					미확인 업무 리스트&nbsp;&nbsp;&nbsp;&nbsp; <span><small><a
-							href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
-				</div>
-				<div class="panel-body list">
-					<div class="table-responsive project-list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>Work_Name</th>
-									<th>마감일</th>
-									<th>요청자 사번</th>
-									<th>요청자명</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="tasklist" items="${tasklist}">
-									<tr>
-										<c:choose>
-											<c:when test="${tasklist.send_date < systemdate}">
-												<td><a style="color: red"
-													href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-													<small><i class="fa fa-clock-o"></i> Sended
-														${tasklist.send_date }</small></td>
-											</c:when>
-											<c:when test="${tasklist.send_date == systemdate}">
-												<td><a style="color: blue"
-													href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-													<small><i class="fa fa-clock-o"></i> Sended
-														${tasklist.send_date }</small></td>
-											</c:when>
-											<c:otherwise>
+					<div id="pro-2" class="tab-pane">
+						<div class="panel-body list">
+							<div class="table-responsive project-list">
+								<table class="table table-striped table-condensed">
+									<thead>
+										<tr >
+											<th colspan="2">프로젝트명</th>
+											<th style="text-align:center">책임자</th>
+											<th style="text-align:center">기 &nbsp;&nbsp; 간</th>
+											<th style="text-align:center">승인여부</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="approve_pjlist" items="${approve_pjlist}" >
+											<tr >
 												<td><a
-													href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-													<small><i class="fa fa-clock-o"></i> Sended
-														${tasklist.send_date }</small></td>
-											</c:otherwise>
-										</c:choose>
-										<td>${tasklist.deadline}</td>
-										<td>${tasklist.emp_no }</td>
-										<td>${tasklist.emp_name}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+													href="project_approve_detailview.do?pj_no=${approve_pjlist.pj_no}">${approve_pjlist.pj_title}</a></td>
+												<td></td>
+												<td style="text-align:center">${approve_pjlist.emp_name }</td>
+												<td style="text-align:center">${approve_pjlist.pj_start} ~ ${approve_pjlist.pj_end}</td>
+												<td style="text-align:center">
+													<c:choose>
+														<c:when test="${approve_pjlist.step_no == '2'}">
+															<button class="btn btn-xs btn-danger" disabled>
+																<b>승인거부</b>
+															</button>
+														</c:when>
+														<c:when test="${approve_pjlist.step_no == '3'}">
+															<button class="btn btn-xs btn-primary2" disabled>
+																&nbsp;&nbsp;&nbsp;<b>보&nbsp;&nbsp;류</b>&nbsp;&nbsp;&nbsp;
+															</button>
+														</c:when>
+														<c:when test="${approve_pjlist.step_no == '4'}">
+															<button class="btn btn-xs btn-warning2" disabled>
+																&nbsp;&nbsp;<b>미승인</b>&nbsp;&nbsp;
+															</button>
+														</c:when>
+													</c:choose>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="col-lg-6">
+	
+	
+	    <div class="col-lg-6">
 			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#task-1"><b>진행중 업무</b></a></li>
+					<li class=""><a data-toggle="tab" href="#task-2"><b>미확인 업무</b></a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="task-1" class="tab-pane active">	
+						<div class="panel-body list">
+						<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+							<div class="table-responsive project-list">
+								<table class="table table-striped table-condensed">
+									<thead>
+										<tr>
+											<th>업무명</th>
+											<th style="text-align:center">마감일</th>
+											<th style="text-align:center">요청자 사번</th>
+											<th style="text-align:center">요청자명</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="mytasklist" items="${mytasklist}" > 
+											<tr>
+												<c:choose>
+													<c:when test="${mytasklist.deadline < systemdate}">
+														<td><a style="color: red"
+															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
+															<small><i class="fa fa-clock-o"></i> Sended
+																${mytasklist.send_date }</small></td>
+													</c:when>
+													<c:when test="${mytasklist.deadline == systemdate}">
+														<td><a style="color: blue"
+															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
+															<small><i class="fa fa-clock-o"></i> Sended
+																${mytasklist.send_date }</small></td>
+													</c:when>
+													<c:otherwise>
+														<td><a
+															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
+															<small><i class="fa fa-clock-o"></i> Sended
+																${mytasklist.send_date }</small></td>
+													</c:otherwise>
+												</c:choose>
+												<td style="text-align:center">${mytasklist.deadline}</td>
+												<td style="text-align:center">${mytasklist.emp_no}</td>
+												<td style="text-align:center">${mytasklist.emp_name}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-					진행중인 업무 리스트&nbsp;&nbsp;&nbsp;&nbsp; <span><small><a
-							href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
-				</div>
-				<div class="panel-body list">
-					<div class="table-responsive project-list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>Work_Name</th>
-									<th>마감일</th>
-									<th>요청자 사번</th>
-									<th>요청자명</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="mytasklist" items="${mytasklist}" begin="0"
-									end="2">
-									<tr>
-										<c:choose>
-											<c:when test="${mytasklist.deadline < systemdate}">
-												<td><a style="color: red"
-													href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-													<small><i class="fa fa-clock-o"></i> Sended
-														${mytasklist.send_date }</small></td>
-											</c:when>
-											<c:when test="${mytasklist.deadline == systemdate}">
-												<td><a style="color: blue"
-													href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-													<small><i class="fa fa-clock-o"></i> Sended
-														${mytasklist.send_date }</small></td>
-											</c:when>
-											<c:otherwise>
-												<td><a
-													href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-													<small><i class="fa fa-clock-o"></i> Sended
-														${mytasklist.send_date }</small></td>
-											</c:otherwise>
-										</c:choose>
-										<td>${mytasklist.deadline}</td>
-										<td>${mytasklist.emp_no }</td>
-										<td>${mytasklist.emp_name}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+				
+					<div id="task-2" class="tab-pane "> <!-- 미확인 -->
+						<div class="panel-body list">	
+							<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+							<!-- <div class="panel-body"> -->
+								<div class="table-responsive project-list">
+									<table class="table table-striped table-condensed">
+										<thead>
+											<tr>
+												<th>업무명</th>
+												<th style="text-align:center">마감일</th>
+												<th style="text-align:center">요청자명</th>
+											<!-- 	<th style="text-align:center">승인단계</th> -->
+												<th style="text-align:center">첨부파일</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="tasklist" items="${tasklist}">
+												<tr>
+													<c:choose>
+														<c:when test="${tasklist.send_date < systemdate}">
+															<td><a style="color: red"
+																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
+																<small><i class="fa fa-clock-o"></i> Sended
+																	${tasklist.send_date }</small></td>
+														</c:when>
+														<c:when test="${tasklist.send_date == systemdate}">
+															<td><a style="color: blue"
+																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
+																<small><i class="fa fa-clock-o"></i> Sended
+																	${tasklist.send_date }</small></td>
+														</c:when>
+														<c:otherwise>
+															<td><a
+																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
+																<small><i class="fa fa-clock-o"></i> Sended
+																	${tasklist.send_date }</small></td>
+														</c:otherwise>
+													</c:choose>
+													<td style="text-align:center">${tasklist.deadline}</td>
+													<td style="text-align:center">${tasklist.emp_name}</td>
+												<%-- 	<td style="text-align:center">
+														<c:choose>
+															<c:when test="${ tasklist.step_no == '2' }">
+																<button class="btn btn-xs btn-danger" disabled>승인거부</button>
+															</c:when>
+															<c:when test="${ tasklist.step_no == '3' }">
+																<button class="btn btn-xs btn-primary2" disabled>보류</button>
+															</c:when>
+															<c:when test="${ tasklist.step_no == '4' }">
+																<button class="btn btn-xs btn-warning2" disabled>미승인</button>
+															</c:when>
+														</c:choose>
+
+													</td> --%>
+													<td style="text-align:center">
+														<c:if test="${not empty tasklist.file_name}">
+															<i class="fa fa-check text-success"></i>
+														</c:if>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							<!-- </div> -->
+						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
-
 	</div>
 
-	<div class="row">
-		<div class="col-lg-6">
-			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					진행 중인 프로젝트
-				</div>
-				<div class="panel-body list">
-					<div class="table-responsive project-list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th colspan="2">Project_Name</th>
-									<th>진행상황</th>
-									<th>진행률</th>
-									<th>종료일</th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:forEach var="pjlist" items="${pjlist}">
-								<tr>
-									<td><a href="projectDetail.do?pj_no=${pjlist.pj_no}">${pjlist.pj_title}</a><br /> <small><i
-											class="fa fa-clock-o"></i> Created ${pjlist.pj_start}</small>
-									</td>
-									<td></td>
-									<td><span class="pie">1/5</span></td>
-									<td><strong>20%</strong></td>
-									<td>${pjlist.pj_end}</td>
-								</tr>
-							</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-lg-6">
-			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					승인이 필요한 프로젝트
-				</div>
-				<div class="panel-body list">
-					<div class="table-responsive project-list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th colspan="2">Project_Name</th>
-									<th>책임자</th>
-									<th>시작일</th>
-									<th>종료일</th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:forEach var="approve_pjlist" items="${approve_pjlist}">
-								<tr>
-									<td><a href="project_approve_detailview.do?pj_no=${approve_pjlist.pj_no}">${approve_pjlist.pj_title}</a></td>
-									<td></td>
-									<td>${approve_pjlist.emp_name }</td>
-									<td>${approve_pjlist.pj_start}</td>
-									<td>${approve_pjlist.pj_end}</td>
-								</tr>
-							</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
+
+
+
+
+
+
 
 	<!-- chart 최근 근무현황 -->
 	<div class="row" style="height: 350px;">

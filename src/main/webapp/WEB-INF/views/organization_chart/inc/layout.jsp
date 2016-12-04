@@ -69,6 +69,8 @@
 
 <script>
 
+	var firstTree = 0;
+	var secondTree = 0;
     $(function () {
         $('.demo2').click(function(){
             swal({
@@ -99,7 +101,7 @@
     				});
 
     				$.each(departMent, function(index) {
-    					litag += "<li style='padding:4px;' onclick='seeDepart(this, "
+    					litag += "<li style='padding:2px;' onclick='seeDepart(this, "
     				    litag +=departMent[index].branch_no
     				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
     					litag+="<div id='dept_div"
@@ -143,7 +145,9 @@ function seeDepart(obj, choose) {
 			$.each(data, function(index) {
 				dept = data[index];
 			});
-
+			
+			if(firstTree == 0){
+			firstTree = 1;	
 			$.each(dept, function(index) {
 					litag += "<li style='padding:2px;' onclick='seelow_Depart(this, "
 				    litag +=dept[index].dept_no
@@ -153,8 +157,12 @@ function seeDepart(obj, choose) {
 					litag+="'></div>";
 			});
 			litag +="</ul>";
-			$("#"+div_id).html(litag);
 			
+			$("#"+div_id).html(litag);
+			}else{
+				firstTree = 0;
+				$("#"+div_id).html();	
+			}
 			
 		}
 	});
@@ -179,13 +187,21 @@ function seelow_Depart(obj,departcho) {
 			$.each(data, function(index) {
 				low_dept = data[index];
 			});
+			
+			if(secondTree == 0){
+			secondTree = 1;	
 			$.each(low_dept, function(index) {
 				litag += "<li style='padding:2px;' onclick='seeEmpMember(this, "
 				litag +=low_dept[index].low_dept_no
-				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
 			});
 			litag +="</ul>";
 			$("#"+div_id).html(litag);
+				
+			}else{
+				secondTree = 0;
+				$("#"+div_id).html();
+			}
 			
 		}
 
@@ -212,29 +228,38 @@ function seeEmpMember(obj,low_dept_no){
                    low_dept_no: empListNumber
                  },
             success:function(data){
+            	
                var emp = "";
-               $.each(data, function(index){
-                  emp = data[index];
-                  console.log(emp);
-               });
+               $.each(data.emp, function(index){
+                  emp = data.emp[index];
+                   makeTable+="<div class='col-md-4'>"
+               	   makeTable+="<div class='hpanel hgreen contact-panel'>"
+               	   makeTable+="<div class='panel-body'>"
+               	   makeTable+="<h3>"	   
+               	   makeTable+="<a href='' data-toggle='modal' data-target="	
+               	   makeTable+="#myModal"
+               	   makeTable+= emp.emp_no
+               	   makeTable+=">"+emp.emp_name
+               	   makeTable+="<span style='font-size: 15px'>"+emp.emp_no+"</span>"		
+               	   makeTable+="</a></h3>"            		
+               	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp.branch_name+"</div>"   
+               	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp.cell_phone+"<br>"+emp.branch_name+">"+emp.dept_name+" > "+emp.low_dept_name+"</p></div></div></div>"
+			   });
                
-               $.each(emp, function(index){
-            	   makeTable+="<div class='col-md-4'>"
-            	   makeTable+="<div class='hpanel hgreen contact-panel'>"
-            	   makeTable+="<div class='panel-body'>"
-            	   makeTable+="<h3>"	   
-            	   makeTable+="<a href='' data-toggle='modal' data-target="	
-            	   makeTable+="#myModal"
-            	   makeTable+=emp[index].emp_no
-            	   makeTable+=">"+emp[index].emp_name
-            	   makeTable+="<span style='font-size: 15px'>"+emp[index].emp_no+"</span>"		
-            	   makeTable+="</a></h3>"            		
-            	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp[index].branch_name+"</div>"   
-            	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp[index].cell_phone+"<br>"+emp[index].branch_name+">"+emp[index].dept_name+" > "+emp[index].low_dept_name+"</p></div></div></div>"
-            	   
-
-               });
-              
+               //대표 이름 뿌리는 것 
+               $('#masterName').html(data.master.emp_name);
+               
+               //부서 전화번호
+               $('#phone').html(data.master.tel);
+               //부서 팩스번호
+               $('#fax').html(data.master.fax);
+               
+               //부서 이름
+               $('#deptName').html(data.master.low_dept_name);
+               
+               //총인원수
+               $('#total').html(data.count);
+              	
                $('#empList').empty();
                $('#empList').append(makeTable);
              }    

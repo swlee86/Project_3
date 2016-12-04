@@ -41,7 +41,7 @@
 			<div class="panel-body">
 				<div class="row" style="text-align:right; margin-right:5px;">
             		<div class="form-group col-md-8">
-						<select class="form-control" id="ctg" onchange="selectCtg()">
+						<select class="form-control input-sm" id="ctg" onchange="selectCtg()">
 							<option value="all">전체</option>
 							<option value="write">내가 작성한 프로젝트</option>
 							<option value="include">내가 포함된 프로젝트</option>
@@ -67,7 +67,7 @@
                 <br> 
 				
 				<div class="table-responsive" id="projectList">
-					<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+					<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped" >
 						<thead>
 							<tr>
 								<th>책임자</th>
@@ -101,21 +101,23 @@
 									</td>
 									
 									<td>
-										<c:if test="${list.pj_step_name=='진행'}">
-											<span class="label label-success" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">진행</span>
-										</c:if>
-										<c:if test="${list.pj_step_name=='미진행'}">
-											<span class="label label-primary" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">미진행</span>
-										</c:if>
-										<c:if test="${list.pj_step_name=='완료'}">
-											<span class="label label-default" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">완료</span>
-										</c:if>
-										<c:if test="${list.pj_step_name=='중단'}">
-											<span class="label label-danger" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">중단</span>
-										</c:if>
-										<c:if test="${list.pj_step_name=='보류'}">
-											<span class="label label-warning" style="margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;">보류</span>
-										</c:if>
+										<div style="padding-top: 10px;">
+											<c:if test="${list.pj_step_name=='진행'}">
+												<span class="label label-success" style="width: 60px;padding-left:15px;padding-right:15px;">진&nbsp;&nbsp;&nbsp;&nbsp;행</span>
+											</c:if>
+											<c:if test="${list.pj_step_name=='미진행'}">
+												<span class="label label-info" style=" width: 60px;padding-left:15px;padding-right:15px;">미진행</span>
+											</c:if>
+											<c:if test="${list.pj_step_name=='완료'}">
+												<span class="label label-default" style=" width: 60px;padding-left:15px;padding-right:15px;">완&nbsp;&nbsp;&nbsp;&nbsp;료</span>
+											</c:if>
+											<c:if test="${list.pj_step_name=='중단'}">
+												<span class="label label-danger" style=" width: 60px;padding-left:15px;padding-right:15px;">중&nbsp;&nbsp;&nbsp;&nbsp;단</span>
+											</c:if>
+											<c:if test="${list.pj_step_name=='보류'}">
+												<span class="label label-warning" style="width: 60px;padding-left:15px;padding-right:15px;">보&nbsp;&nbsp;&nbsp;&nbsp;류</span>
+											</c:if>
+										</div>
 									</td>
 								</tr>			
 							</c:forEach>
@@ -137,7 +139,7 @@
 
 <script src="vendor/jquery/dist/jquery.min.js"></script>
  <script>
- 
+
  //프로젝트 리스트에서 프로젝트 카테고리(전체 / 내가쓴것 / 내가 포함된것 )변경시킬때
 function selectCtg(){
 	
@@ -179,22 +181,22 @@ function selectCtg(){
 			                           data.project[index].pj_progress+" role='progressbar' class='progress-bar progress-bar-warning active'>"+
 			                           data.project[index].pj_progress+"%</div>";
 		                           }
-		                           makeTable += "</div></td><td>";
+		                           makeTable += "</div></td><td><div style='padding-top: 10px;''>";
 		                           
 		                           
 		                           if(data.project[index].pj_step_name == "진행"){
-		                        	   makeTable += "<span class='label label-success' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>진행</span>"
+		                        	   makeTable += "<span class='label label-success' style='width: 60px;padding-left:15px;padding-right:15px;'>진    행</span>"
 		                           } if(data.project[index].pj_step_name == "미진행"){
-		                        	   makeTable += "<span class='label label-primary' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>미진행</span>"
+		                        	   makeTable += "<span class='label label-info' style='width: 60px;padding-left:15px;padding-right:15px;'>미진행</span>"
 		                           } if(data.project[index].pj_step_name == "완료"){
-		                        	   makeTable += "<span class='label label-default' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>완료</span>"
+		                        	   makeTable += "<span class='label label-default' style='width: 60px;padding-left:15px;padding-right:15px;'>완    료</span>"
 		                           } if(data.project[index].pj_step_name == "중단"){
-		                        	   makeTable += "<span class='label label-danger' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>중단</span>"
+		                        	   makeTable += "<span class='label label-danger' style='width: 60px;padding-left:15px;padding-right:15px;'>중    단</span>"
 		                           } if(data.project[index].pj_step_name == "보류"){
-		                        	   makeTable += "<span class='label label-danger' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>보류</span>"
+		                        	   makeTable += "<span class='label label-warning' style='width: 60px;padding-left:15px;padding-right:15px;'>보    류</span>"
 		                           }
 
-		                           makeTable += "</td></tr>";
+		                           makeTable += "</div></td></tr>";
 		                           
 		                     }); 
 		                     makeTable += "</tbody></table>";
@@ -250,22 +252,22 @@ function searchPj(){
                            data.project[index].pj_progress+" role='progressbar' class='progress-bar progress-bar-warning active'>"+
                            data.project[index].pj_progress+"%</div>";
                        }
-                       makeTable += "</div></td><td>";
+                       makeTable += "</div></td><td><div style='padding-top: 10px;''>";
                        
                        
                        if(data.project[index].pj_step_name == "진행"){
-                    	   makeTable += "<span class='label label-success' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>진행</span>"
+                    	   makeTable += "<span class='label label-success' style='width: 60px;padding-left:15px;padding-right:15px;'>진    행</span>"
                        } if(data.project[index].pj_step_name == "미진행"){
-                    	   makeTable += "<span class='label label-primary' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>미진행</span>"
+                    	   makeTable += "<span class='label label-info' style='width: 60px;padding-left:15px;padding-right:15px;'>미진행</span>"
                        } if(data.project[index].pj_step_name == "완료"){
-                    	   makeTable += "<span class='label label-default' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>완료</span>"
+                    	   makeTable += "<span class='label label-default' style='width: 60px;padding-left:15px;padding-right:15px;'>완    료</span>"
                        } if(data.project[index].pj_step_name == "중단"){
-                    	   makeTable += "<span class='label label-danger' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>중단</span>"
+                    	   makeTable += "<span class='label label-danger' style='width: 60px;padding-left:15px;padding-right:15px;'>중    단</span>"
                        } if(data.project[index].pj_step_name == "보류"){
-                    	   makeTable += "<span class='label label-danger' style='margin-top: -5px; width: 20%;padding-left:15px;padding-right:15px;'>보류</span>"
+                    	   makeTable += "<span class='label label-warning' style='width: 60px;padding-left:15px;padding-right:15px;'>보    류</span>"
                        }
 
-                       makeTable += "</td></tr>";
+                       makeTable += "</div></td></tr>";
                        
                  }); 
                  makeTable += "</tbody></table>";

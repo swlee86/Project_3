@@ -13,12 +13,13 @@
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.do">홈</a></li>
-					<li><span>프로젝트 관리</span></li>
-					<li><a href="projects.do">프로젝트 생성</a></li>
+					<li><a href="project_list.do">전체 프로젝트</a></li>
+					<li><a href="projectDetail.do?pj_no=${pjd.pj_no}">상세 프로젝트</a></li>
+					<li><a href="#">상세프로젝트의 상세보기 </a></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">프로젝트 상세보기</h2>
-			<small>프로젝트 진척률을 확인하세요</small>
+			<h2 class="font-light m-b-xs">상세프로젝트의  상세보기</h2>
+			<small>진행 중인 상세 프로젝트 내용을 확인하실 수 있습니다</small>
 		</div>
 	</div>
 </div>
@@ -87,8 +88,8 @@
                               		<textarea class="form-control table-input" id="pjd_content"  disabled="disabled" style="resize:none; border: 0px; background-color: white;" rows="5">${pjd.pjd_content}</textarea>
 							</tr>
 						</table>
-						
-						<div class="col-md-offset-10 col-md-2">
+						</br>
+						<div align="right">
 							<c:if test="${pj_emp_no==login_emp_no}">
 								<input type="button" id="modify_pjd_btn" class="btn btn-default btn-md" value="수정" onclick="modify_pjd()">
 							</c:if>
@@ -99,8 +100,7 @@
 					</br>
 					</br>
 				
-					<div class="table-responsive">
-						<div class="table-responsive">
+					<div class="">
 							<table class="table table-bordered table-striped" id="pjdd_table">
 								<tr>
 									<th width="10%">작업완료</th>
@@ -129,12 +129,11 @@
 								</c:forEach>
 							</table>
 							
-							<div class="col-md-offset-11 col-md-1">
+							<div align="right" ><!--class="col-md-offset-11 col-md-1" -->
 								<c:if test="${pj_emp_no==login_emp_no}">
 									<input type="button" id="add_btn" class="btn btn-success" value="추가" >
 								</c:if>
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>

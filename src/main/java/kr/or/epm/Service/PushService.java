@@ -43,10 +43,11 @@ public class PushService {
 		System.out.println("테스크 뽑으러 왔어요~");
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 
-		int start = cpage * pgsize - (pgsize - 1);
-		int end = (cpage * pgsize) - 2; // 최대 3개까지만
+		int start = 1 + (cpage * pgsize - 5);//(pgsize - 1);
+		int end = (cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
 
 		List<Task> tasklist = pushdao.selecttasklist(emp_no, start, end);
+		System.out.println("@@@@@@@@@@@@tasklist : " + tasklist.toString());
 		return tasklist;
 	}
 
@@ -55,9 +56,8 @@ public class PushService {
 		System.out.println("my 테스크 뽑으러 왔어요~");
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 
-		int start = cpage * pgsize - (pgsize - 1);
-		int end = (cpage * pgsize) - 2; // 최대 3개까지만
-
+		int start = 1 + (cpage * pgsize - 5);//(pgsize - 1);
+		int end =(cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
 		List<Task> tasklist = pushdao.selectmytasklist(emp_no);
 		return tasklist;
 	}
@@ -65,8 +65,8 @@ public class PushService {
 	// 미승인된 프로젝트 리스트를 뽑는 함수
 	public List<Pj> selectPj_rec(String emp_no, int cpage, int pgsize) {
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-		int start = cpage * pgsize - (pgsize - 1);
-		int end = (cpage * pgsize) - 2; // 최대 3개까지만
+		int start = 1 + (cpage * pgsize - 5);//(pgsize - 1);
+		int end = (cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
 		List<Pj> projectlist = pushdao.selectPj_rec(emp_no, start, end);
 		return projectlist;
 	}

@@ -397,7 +397,7 @@
     		                   var  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>번호</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>선택</th></tr>";
     		                   $.each(emp, function(index){
     		                         makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
-    		                      
+    		                  
     		                   });
     		                   makeTable += "</table>";
     		                   $('#empList2').empty();
@@ -552,12 +552,13 @@
     //주소록 선택시
     function recF(obj){
        //수신자 사번
-       var emp_no = $(obj).parent().parent().children().eq(0).html();
-       var name = $(obj).parent().parent().children().eq(1).html();
+       var name = $(obj).parent().parent().children().eq(2).html();
+       var emp_no = $(obj).parent().parent().children().eq(1).html();
        
-       
+       console.log("name : "+name);
        console.log("emp_no : "+ emp_no);
-		
+ 
+       
        $.ajax(
 				{
 					type : "post",

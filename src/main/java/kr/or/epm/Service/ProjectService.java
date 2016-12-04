@@ -1,6 +1,7 @@
 package kr.or.epm.Service;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -264,4 +265,18 @@ public class ProjectService {
 		return pjstepnolist;
 		
 	}
+	
+	//PJ의 Pj_step_no 업데이트
+	public int updatePjstepno(String pjd_no, String pj_step_no){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		System.out.println("들어온 pjd_no : " + pjd_no +"들어온 pj_step_no : " + pj_step_no);
+		int result = 0;
+		HashMap map = new HashMap();
+		map.put("pjd_no", pjd_no);
+		map.put("pj_step_no", pj_step_no);
+		result = dao.updatePjstepno(map);
+		System.out.println("PJ의 pj_step_no 업데이트  : " + result);
+		return result;
+	}
+
 }

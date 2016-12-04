@@ -95,10 +95,16 @@ public class OrganizationChartController {
 	      System.out.println("이엠피 정보 컨트롤러");
 	      List<Organization> list = null;
 	      list = organizationchart.selectEmpInfo(low_dept_no);
+	      
+	      //하위부서 대표 뽑기
+	      Organization master = organizationchart.selectEmpMaster(low_dept_no);
+	      
 	      for(int i =0; i < list.size(); i++){
 	         System.out.println("사원정보: " +list.get(i).getEmp_name()+"/ 사번: "+list.get(i).getEmp_no());
 	      }
+	      model.addAttribute("master", master);
 	      model.addAttribute("emp", list);
+	      model.addAttribute("count", list.size());
 	      return jsonview;
 	   }
 
