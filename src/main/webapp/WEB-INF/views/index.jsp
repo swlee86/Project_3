@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
-<jsp:useBean id="now" class="java.util.Date"/>
-<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="systemdate"/>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="systemdate" />
 <!-- 채팅 테스트용 아이디 세션 -->
-<%session.setAttribute("id", "PSJ"); %>
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
@@ -16,41 +15,17 @@
 			</p>
 		</div>
 	</div>
+
 	<div class="row">
-	    <div class="col-md-6">
-					사내 공지사항
-        	<div class="hpanel">
-                <div class="v-timeline vertical-container animate-panel table-responsive"  data-child="vertical-timeline-block" data-delay="1">
-                	
-                <c:forEach var="cplist" items="${companyList}">
-                    <div class="vertical-timeline-block">
-                        <div class="vertical-timeline-icon navy-bg">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="vertical-timeline-content">
-                            <div class="p-sm">
-                                <span class="vertical-date pull-right">등록일 : ${cplist.regdate}<br/><small>조회수 : ${cplist.hit}</small> </span>
-                                <h5><a href="detailinfo_board_list.do?no=${cplist.no}&currentpage=1&pagesize=10">${cplist.title }</a></h5>
-                            </div>
-                            <div class="panel-footer">
-                               	작성자 : ${cplist.emp_name}
-                            </div>
-                        </div>
-                    </div>
-                    </c:forEach>
-                </div>
-       		 </div>
- 		   </div>
-    
-    		<div class="col-lg-6">
+		<div class="col-lg-6">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
 						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 							class="closebox"><i class="fa fa-times"></i></a>
 					</div>
-					미확인 업무 리스트&nbsp;&nbsp;&nbsp;&nbsp;
-					<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+					미확인 업무 리스트&nbsp;&nbsp;&nbsp;&nbsp; <span><small><a
+							href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
 				</div>
 				<div class="panel-body list">
 					<div class="table-responsive project-list">
@@ -64,46 +39,49 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="tasklist" items="${tasklist}">
-								<tr>
-									<c:choose>
-									<c:when test="${tasklist.send_date < systemdate}">
-									<td><a style="color:red" href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br /> <small><i
-											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
-									</td>
-									</c:when>
-									<c:when test="${tasklist.send_date == systemdate}">
-									<td><a style="color:blue" href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br /> <small><i
-											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
-									</td>
-									</c:when>
-									<c:otherwise>
-									<td><a href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br /> <small><i
-											class="fa fa-clock-o"></i> Sended ${tasklist.send_date }</small>
-									</td>
-									</c:otherwise>
-									</c:choose>
-									<td>${tasklist.deadline}</td>
-									<td>${tasklist.emp_no }</td>
-									<td>${tasklist.emp_name}</td>
-								</tr>
-							</c:forEach>
+								<c:forEach var="tasklist" items="${tasklist}">
+									<tr>
+										<c:choose>
+											<c:when test="${tasklist.send_date < systemdate}">
+												<td><a style="color: red"
+													href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
+													<small><i class="fa fa-clock-o"></i> Sended
+														${tasklist.send_date }</small></td>
+											</c:when>
+											<c:when test="${tasklist.send_date == systemdate}">
+												<td><a style="color: blue"
+													href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
+													<small><i class="fa fa-clock-o"></i> Sended
+														${tasklist.send_date }</small></td>
+											</c:when>
+											<c:otherwise>
+												<td><a
+													href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
+													<small><i class="fa fa-clock-o"></i> Sended
+														${tasklist.send_date }</small></td>
+											</c:otherwise>
+										</c:choose>
+										<td>${tasklist.deadline}</td>
+										<td>${tasklist.emp_no }</td>
+										<td>${tasklist.emp_name}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-    
-    	<div class="col-lg-6">
+
+		<div class="col-lg-6">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
 						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
 							class="closebox"><i class="fa fa-times"></i></a>
 					</div>
-					진행중인 업무 리스트&nbsp;&nbsp;&nbsp;&nbsp;
-					<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+					진행중인 업무 리스트&nbsp;&nbsp;&nbsp;&nbsp; <span><small><a
+							href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
 				</div>
 				<div class="panel-body list">
 					<div class="table-responsive project-list">
@@ -117,39 +95,45 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="mytasklist" items="${mytasklist}" begin="0" end="2">
-								<tr>
-									<c:choose>
-									<c:when test="${mytasklist.deadline < systemdate}">
-									<td><a style="color:red" href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br /> <small><i
-											class="fa fa-clock-o"></i> Sended ${mytasklist.send_date }</small>
-									</td>
-									</c:when>
-									<c:when test="${mytasklist.deadline == systemdate}">
-									<td><a style="color:blue" href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br /> <small><i
-											class="fa fa-clock-o"></i> Sended ${mytasklist.send_date }</small>
-									</td>
-									</c:when>
-									<c:otherwise>
-									<td><a href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br /> <small><i
-											class="fa fa-clock-o"></i> Sended ${mytasklist.send_date }</small>
-									</td>
-									</c:otherwise>
-									</c:choose>
-									<td>${mytasklist.deadline}</td>
-									<td>${mytasklist.emp_no }</td>
-									<td>${mytasklist.emp_name}</td>
-								</tr>
-							</c:forEach>
+								<c:forEach var="mytasklist" items="${mytasklist}" begin="0"
+									end="2">
+									<tr>
+										<c:choose>
+											<c:when test="${mytasklist.deadline < systemdate}">
+												<td><a style="color: red"
+													href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
+													<small><i class="fa fa-clock-o"></i> Sended
+														${mytasklist.send_date }</small></td>
+											</c:when>
+											<c:when test="${mytasklist.deadline == systemdate}">
+												<td><a style="color: blue"
+													href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
+													<small><i class="fa fa-clock-o"></i> Sended
+														${mytasklist.send_date }</small></td>
+											</c:when>
+											<c:otherwise>
+												<td><a
+													href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
+													<small><i class="fa fa-clock-o"></i> Sended
+														${mytasklist.send_date }</small></td>
+											</c:otherwise>
+										</c:choose>
+										<td>${mytasklist.deadline}</td>
+										<td>${mytasklist.emp_no }</td>
+										<td>${mytasklist.emp_name}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-    
-    
-    		<div class="col-lg-6">
+
+	</div>
+
+	<div class="row">
+		<div class="col-lg-6">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
@@ -224,8 +208,28 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="col-lg-6">
+	</div>
+
+	<!-- chart 최근 근무현황 -->
+	<div class="row" style="height: 350px;">
+		<div class="col-lg-6" style="height: 400px;">
+			<div class="hpanel">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+							class="closebox"><i class="fa fa-times"></i></a>
+					</div>
+					현재까지의 추가 근무 현황(기준: 분)
+				</div>
+				<div class="panel-body" style="height: 350px;">
+					<div>
+						<div id="ct-chart4" class="ct-perfect-fourth"
+							style="height: 300px; width: 98%;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+					<div class="col-lg-6">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
@@ -245,58 +249,78 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:choose>
-							<c:when test="${null eq maillist }">
-								<div><h6>메일의 경우 보안 관계상 메일 읽기에서 한 번 더 로그인 후 조회 가능합니다</h6></div>
-							</c:when>
-							<c:otherwise>
-							<c:forEach var="maillist" items="${maillist}">
-								<tr>
 								<c:choose>
-									<c:when test="${maillist.emp_no eq '=?UTF-8?Q?Google_=EC=BB=A4=EB=AE=A4=EB=8B=88=ED=8B=B0=ED=8C=80?= <googlecommunityteam-noreply@google.com>'}">
-										<td><a href="#">googlecommunityteam-noreply@google.com</a></td>
+									<c:when test="${null eq maillist }">
+										<div>
+											<h6>메일의 경우 보안 관계상 메일 읽기에서 한 번 더 로그인 후 조회 가능합니다</h6>
+										</div>
 									</c:when>
 									<c:otherwise>
-										<td><a href="#">${maillist.emp_no}</a></td>
+										<c:forEach var="maillist" items="${maillist}">
+											<tr>
+												<c:choose>
+													<c:when
+														test="${maillist.emp_no eq '=?UTF-8?Q?Google_=EC=BB=A4=EB=AE=A4=EB=8B=88=ED=8B=B0=ED=8C=80?= <googlecommunityteam-noreply@google.com>'}">
+														<td><a href="#">googlecommunityteam-noreply@google.com</a></td>
+													</c:when>
+													<c:otherwise>
+														<td><a href="#">${maillist.emp_no}</a></td>
+													</c:otherwise>
+												</c:choose>
+												<td><a href="#"
+													onClick="javascript:window.open('${pageContext.request.contextPath}/mail/data/${maillist.mail_content}.html','popup','scrollbars=no, resizable=no, width=500px,height=800px')">${maillist.title}</a></td>
+												<td class="text-right mail-date">${maillist.rec_check}</td>
+											</tr>
+										</c:forEach>
 									</c:otherwise>
-                        		</c:choose>
-									<td><a href="#" onClick="javascript:window.open('${pageContext.request.contextPath}/mail/data/${maillist.mail_content}.html','popup','scrollbars=no, resizable=no, width=500px,height=800px')">${maillist.title}</a></td>
-									<td class="text-right mail-date">${maillist.rec_check}</td>
-								</tr>
-						</c:forEach>
-						</c:otherwise>
-						</c:choose>
+								</c:choose>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-	<!-- chart 최근 근무현황 -->
-	<div class="row" style="height: 350px;">
-		<div class="col-lg-12" style="height: 400px;">
+	</div>
+	<br/><br/>
+	<%-- 	<div class="col-md-6">
+			사내 공지사항
 			<div class="hpanel">
-            <div class="panel-heading">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                    <a class="closebox"><i class="fa fa-times"></i></a>
-                </div>
-                현재까지의 추가 근무 현황(기준: 분)
-            </div>
-            <div class="panel-body"  style="height: 350px;">
-                <div>
-                    <div id="ct-chart4" class="ct-perfect-fourth" style="height: 300px; width: 98%;"></div>
-                </div>
-            </div>
-        </div>
-	</div>
-	</div>
-</div>
-<c:forEach var="commutelist" items="${commutelist}">
-<input type="hidden" id="regdate" name="regdate[]" value="${commutelist.regdate}">
-<input type="hidden" id="add_time" name="add_time[]" value="${commutelist.add_time}">
-</c:forEach>
+				<div
+					class="v-timeline vertical-container animate-panel table-responsive"
+					data-child="vertical-timeline-block" data-delay="1">
+
+					<c:forEach var="cplist" items="${companyList}">
+						<div class="vertical-timeline-block">
+							<div class="vertical-timeline-icon navy-bg">
+								<i class="fa fa-calendar"></i>
+							</div>
+							<div class="vertical-timeline-content">
+								<div class="p-sm">
+									<span class="vertical-date pull-right">등록일 :
+										${cplist.regdate}<br />
+									<small>조회수 : ${cplist.hit}</small>
+									</span>
+									<h5>
+										<a
+											href="detailinfo_board_list.do?no=${cplist.no}&currentpage=1&pagesize=10">${cplist.title }</a>
+									</h5>
+								</div>
+								<div class="panel-footer">작성자 : ${cplist.emp_name}</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+ --%>
+	
+	
+	<c:forEach var="commutelist" items="${commutelist}">
+		<input type="hidden" id="regdate" name="regdate[]"
+			value="${commutelist.regdate}">
+		<input type="hidden" id="add_time" name="add_time[]"
+			value="${commutelist.add_time}">
+	</c:forEach>
 
 </div>
 <!-- 	<div class="row">
@@ -404,8 +428,8 @@
 			</div>
 		</div>
 	</div> -->
-	<div class="row">
-<!-- 		<div class="col-lg-3">
+<div class="row">
+	<!-- 		<div class="col-lg-3">
 			<div class="hpanel stats">
 				<div class="panel-heading">
 					<div class="panel-tools">
@@ -465,7 +489,7 @@
 			</div>
 		</div> -->
 
-<!-- 		<div class="col-lg-3">
+	<!-- 		<div class="col-lg-3">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
@@ -516,54 +540,51 @@
 				</div>
 			</div>
 		</div> -->
-	</div>
+</div>
 
 
 
 
 <script>
-$(function(){
-var datereg = [];
-var add_time = [];	
-var check_obj = document.getElementsByName('regdate[]') ;
-var check_add_time = document.getElementsByName('add_time[]') ;
+	$(function() {
+		var datereg = [];
+		var add_time = [];
+		var check_obj = document.getElementsByName('regdate[]');
+		var check_add_time = document.getElementsByName('add_time[]');
 
+		for (var i = 0; i <= check_obj.length - 1; i++) {
+			datereg.push(check_obj.item(i).value);
 
-for( var i = 0; i <= check_obj.length-1; i++ ){
-	datereg.push(check_obj.item(i).value);			
-	
-	}
-	
-for( var i = 0; i <= check_add_time.length-1; i++ ){
-	console.log("for문 1차 통과");
-	var data = check_add_time.item(i).value
-	var hour = data.substring(0,2);
-	var minute = data.substring(3,6);
-	var hourtominute = hour*60;
-	var resultdata = Number(minute)+Number(hourtominute);
-	console.log(hourtominute);
-	console.log(minute);
-	console.log(resultdata);
-	add_time.push(resultdata);			
-	
-	}
+		}
 
-console.log(datereg);
-console.log(add_time);
-	
-new Chartist.Bar('#ct-chart4', {
-    labels: datereg,
-    series: [
-    	add_time
-    ]
-}, {
-    seriesBarDistance: 10,
-    reverseData: true,
-    horizontalBars: true,
-    axisY: {
-        offset: 70
-    }
-});
+		for (var i = 0; i <= check_add_time.length - 1; i++) {
+			console.log("for문 1차 통과");
+			var data = check_add_time.item(i).value
+			var hour = data.substring(0, 2);
+			var minute = data.substring(3, 6);
+			var hourtominute = hour * 60;
+			var resultdata = Number(minute) + Number(hourtominute);
+			console.log(hourtominute);
+			console.log(minute);
+			console.log(resultdata);
+			add_time.push(resultdata);
 
-});
+		}
+
+		console.log(datereg);
+		console.log(add_time);
+
+		new Chartist.Bar('#ct-chart4', {
+			labels : datereg,
+			series : [ add_time ]
+		}, {
+			seriesBarDistance : 10,
+			reverseData : true,
+			horizontalBars : true,
+			axisY : {
+				offset : 70
+			}
+		});
+
+	});
 </script>
