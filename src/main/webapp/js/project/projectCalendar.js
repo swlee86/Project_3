@@ -81,12 +81,9 @@ $(function() {
 	
 });
 
-function goProejct(){
-	
-	
-	/*console.log("0번째 c차일드  이큐ㄹㄹ부모 의 이전 : " +$(this).parent().prev().children().eq(0).val());*/
-	console.log("자식놈 까지만 html : " +$(this).parent().prev().text());
-	
+//캘린더 이벤트 클릭시 상세보기로 이동
+function goProejct(obj){
+	location.href="projectDetail.do?pj_no="+$('#hiddenCal').val();
 }
 
 function calendar(){
@@ -120,7 +117,7 @@ function calendar(){
 				$('#projectId').html(event.title);
 				$('#startDate').html(startDate);
 				$('#endDate').html(endDate);
-				$('#hiddenCal').html(event.id);
+				$('#hiddenCal').val(event.id);
 				var resultDate = calDateRange(startDate, endDate);
 				$('#playProject').html(resultDate);
 			}

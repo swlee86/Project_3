@@ -40,7 +40,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				<button type="button" id="calendar_DetailBtn" class="btn btn-primary" onclick='goProejct()'>프로젝트 보러가기</button>
+				<button type="button" id="calendar_DetailBtn" class="btn btn-primary" onclick="goProejct()">프로젝트 보러가기</button>
 			</div>
 		</div>
 	</div>
