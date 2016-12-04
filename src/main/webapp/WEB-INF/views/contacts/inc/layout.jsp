@@ -90,6 +90,10 @@
 </style>
 
  <script>
+ 	//조직도 트리 할때 사용하는 전역변수
+ 	var firstTree = 0;
+	var secondTree = 0;
+	/////////////////////////
  
  	function ajaxjieun(index) {
  		$.ajax(
@@ -326,16 +330,17 @@
 		});
 		
 		$('#conmodal').click(function(){
-			console.log('모달클릭함');  //비동기로 저보가져옴
+			console.log('모달클릭함');  //비동기로 정보가져옴
 			console.log('클릭한 번호 :'+$('#contact_no').val());
 			
 		});
 
 	    //참조자 아이콘 클릭시
         $('#organization_add').click(function() {
+        	
         	orgclick();
        		var  empSelectNumber = 1;
-			var litag = "<ui style='list-style:none;''>";   		
+			var litag = "<ul style='margin-left:-40px; list-style:none;'>";   		
     		$('#organization').empty();
     		$('#empList').empty();
     		$('#empList2').empty();
@@ -354,17 +359,16 @@
        				});
 
        				$.each(departMent, function(index) {
-       					litag += "<li onclick='seeDepart(this,"
+       					litag += "<li style='padding:2px;' onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
        						litag +=departMent[index].branch_no
-        				    litag +=")' > <img src='${pageContext.request.contextPath}/img/line.PNG' class='grouplineimg'> <span class='org_list_class'>"+departMent[index].branch_name+" &nbsp;("+departMent[index].branch_no+")</span></li>";
-        					litag +="</ul>";
+        				    litag +=")'><i class='fa fa-sitemap'><span class='org_list_class'>"+departMent[index].branch_name+" &nbsp;("+departMent[index].branch_no+")</span></li></i>";
         					
         					litag+="<div id='dept_div"
         					litag+=departMent[index].branch_no
         					litag+="'></div>";
            				});
-
+       				litag +="</ul>";
        				$('#organization').html(litag);
 
        			}
@@ -426,11 +430,11 @@
 	
 	 //부서 출력 하는 아작스
     function seeDepart(obj, empSelectNumber, choose) {
-    	//전역 부서 선택시
+		//전역 부서 선택시
         departcho = choose;
 		var div_id = "dept_div"+choose;
 		$("#"+div_id).empty();
-		var litag = "<ui>";
+		var litag = "<ul style='list-style:none; padding:5px;'>";
 
     	var name = $(obj).text();
 
@@ -447,20 +451,24 @@
     			$.each(data, function(index) {
     				dept = data[index];
     			});
-
+    			if(firstTree == 0){
+    				firstTree = 1;	
+    				
     			$.each(dept, function(index) {
     				litag += "<li onclick='seelow_Depart(this, "
     					litag +=empSelectNumber+","
     				    litag +=dept[index].dept_no
-    				    litag +=")' >"+'&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/line.PNG" class="grouplineimg"> <span class="org_list_class">'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
-    					litag +="</ul>";
-    					
+    				    litag +=")' >"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
     					litag+="<div id='low_dept_div"
     					litag+=dept[index].dept_no
     					litag+="'></div>";
     			});
-    			
+    			litag +="</ul>";
     			$("#"+div_id).html(litag);
+    			}else{
+    				firstTree = 0;
+    				$("#"+div_id).html();	
+    			}
     		}
     	});
     }
@@ -469,7 +477,7 @@
     function seelow_Depart(obj,empSelectNumber,departcho) {
     	console.log("부서 : "+choose);
     	deptNumber= departcho;
-    	var litag = "<ui>";
+    	var litag = "<ul style='list-style:none;'>";
     	var div_id = "low_dept_div"+departcho;
     	$("#"+div_id).empty();
 
@@ -485,15 +493,23 @@
     			$.each(data, function(index) {
     				low_dept = data[index];
     			});
+    			
+    			if(secondTree == 0){
+    				secondTree = 1;	
     			$.each(low_dept, function(index) {
     				litag += "<li onclick='seeEmpMember(this, "
     				litag += empSelectNumber+","
     				litag +=low_dept[index].low_dept_no
-    				litag +=")' >"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/line.PNG" class="grouplineimg"> <span class="org_list_class">'+low_dept[index].low_dept_name+" ("+low_dept[index].low_dept_no+")</span></li>";
-    				litag +="</ul>";
-    				
+    				litag +=")' >"+'<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"("+low_dept[index].low_dept_no+")</span></li>";
     			});
+    			
+    			litag +="</ul>";
     			$("#"+div_id).html(litag);
+    			
+    			}else{
+    				secondTree = 0;
+    				$("#"+div_id).html();
+    			}
     		}
 
     	});

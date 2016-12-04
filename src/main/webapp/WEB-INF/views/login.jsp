@@ -62,7 +62,6 @@
 	
 	<div class="container">
 		<div class="heading">
-
 			<div class="login-container">
 				<div class="row">
 					<div class="col-md-12">
@@ -112,11 +111,10 @@
 										value="${loginRedirect}" /> <a
 										class="btn btn-default btn-block" href="#" id="googlelogout"
 										onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-										로그아웃</a> <input type="submit" class="btn btn-success btn-block"
-										value="로그인" id="loginSubmitBtn"> <a
-										class="btn btn-default btn-block" href="addMember.do">회원가입</a>
-									<a class="btn btn-default btn-block" data-toggle="modal"
-										data-target="#findId">아이디 찾기</a> 
+										로그아웃</a> 
+									<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
+									<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
+									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#findId">아이디 찾기</a> 
 									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
 
 								</form>
@@ -135,43 +133,45 @@
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="color-line"></div>
+				<form class="form-horizontal" action="findId.do" method="POST" id="findIdForm">
 				<div class="modal-header">
 					<h4 class="modal-title">아이디 찾기</h4>
 					<small class="font-bold">찾으실 아이디를 입력하세요</small>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
  						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">사번</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" placeholder="사번">
+									<input type="text" name="emp_no" id="emp_no" class="form-control" placeholder="사번">
 								</div>
 							</div>
 
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">이름</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control"  placeholder="이름">
+									<input type="text" name="emp_name" id="emp_name" class="form-control"  placeholder="이름">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">연락처</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control"  placeholder="부서번호">
+									<input type="text" class="form-control" name="cell_phone" id="cell_phone"  placeholder="연락처">
 								</div>
 							</div>
 						
 						</div>
-					</form>
+					
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-default" href="login.do"data-dismiss="modal">취소하기</a>
-					<a class="btn btn-success" href="findID_Result.do">아이디찾기</a>
+					<a class="btn btn-default" data-dismiss="modal">취소하기</a>
+					<input type="button" class="btn btn-success" id="findIdBtn" value="아이디찾기">
 				</div>
+				</form>
 			</div>
 		</div>
+		
 	</div>
 	
 	<!--비밀번호 찾기-->
@@ -179,13 +179,13 @@
 		aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
+				<form class="form-horizontal" action="findPw.do" method="POST">
 				<div class="color-line"></div>
 				<div class="modal-header">
 					<h4 class="modal-title">비밀번호 찾기</h4>
 					<small class="font-bold">찾으실 비밀번호를 입력하세요</small>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
  						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">아이디</label>
@@ -216,12 +216,13 @@
 							</div>
 						
 						</div>
-					</form>
+					
 				</div>
 				<div class="modal-footer">
 					<a class="btn btn-default" href="login.do"data-dismiss="modal">취소하기</a>
-					<a class="btn btn-success" href="findID_Result.do">PW찾기</a>
+					<input type="submit" class="btn btn-success" value="비밀번호찾기">
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -259,6 +260,30 @@
 
 
 	<script>
+	
+	$(function(){
+		
+		$('#findIdBtn').click(function(){
+			
+			if($('#emp_no').val() == ''){ 
+				alert("사번을 입력해주세요 !");
+				$('#emp_no').focus();
+			}else if( $('#emp_name').val() == '' ){
+				alert("이름을 입력해주세요 !");
+				$('#emp_name').focus();
+			}else if( $('#cell_phone').val() == ''){
+				alert('전화번호를 입력해주세요 !');
+				$('#cell_phone').focus();
+			}else{
+				$('#findIdForm').submit();
+				$('#emp_no').val('');
+				$('#emp_name').val('');
+				$('#cell_phone').val('');
+			}
+			
+		});
+		
+	});
 	
 	function onSignIn(googleUser) {
 		  var profile = googleUser.getBasicProfile();

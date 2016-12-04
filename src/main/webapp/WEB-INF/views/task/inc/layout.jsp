@@ -294,6 +294,11 @@ ul {
    
    //사원정보 뽑아서 담을 배열
    var empInfoArray = new Array();
+	
+   //트리구조 출력시 접히기 하려고. 만듬//////////////////
+   var firstTree = 0;
+   var secondTree = 0;
+   ///////////////////////////////////////////
    
    //부서 선택시
    var departcho;
@@ -301,7 +306,6 @@ ul {
    var low_deptNumber;
    //사원
    var empListNumber;
-   
    var choose;
    
    // 업무 삭제하기
@@ -341,7 +345,7 @@ ul {
                changeMonth : true,
                dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
                      '일요일' ],
-               dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+               dayNamesMin : [ '일','월', '화', '수', '목', '금', '토'],
                monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
                      '9', '10', '11', '12' ],
                monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
@@ -383,6 +387,14 @@ ul {
       
       $(function() {
     	  
+    	  //모달 창 닫기 
+    	  $('#closeModal').click(function(){
+    		 firstTree = 0;
+    		 secondTree = 0;
+    		 $('#myModal6').modal('toggle'); 
+    	  });
+    	  
+    	  
       // 입력한 datepicker의 업무 기한 넘겨주기
          $('#taskForm').submit(function(){
             var deadline = $('#makeuserUpdateDate').val();
@@ -397,7 +409,7 @@ ul {
          // 참조자 아이콘 클릭시
          $('#deptA').click(function() {
         	var empSelectNumber = 2;
- 			var litag = "<ui style='list-style:none;'>"; 
+ 			var litag = "<ul style='list-style:none;margin-left:0px;'>"; 
  			
      		$('#organization').empty();
      		$('#empList').empty();
@@ -405,27 +417,25 @@ ul {
               	$.ajax({
         			url : "taskWriteModal.do",
         			success : function(data) {
-        				 $('#myModal6').modal();
+        				$('#myModal6').modal();
         				choose = 2;
         				var departMent = "";
 
         				$.each(data, function(index) {
         					departMent = data[index];
         				});
-
+							
         				$.each(departMent, function(index) {
-           					litag += "<li onclick='seeDepart(this,"
-           						litag +=empSelectNumber +","
-           						litag +=departMent[index].branch_no
-            				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-            					litag +="</ul>";
-            					
-            					litag+="<div id='dept_div"
-            					litag+=departMent[index].branch_no
-            					litag+="'></div>";
-               				});
-
-           				$('#organization').html(litag);
+          					litag += "<li style='padding:6px;'onclick='seeDepart(this,"
+          					litag +=empSelectNumber +","
+          					litag +=departMent[index].branch_no
+           				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
+           				    litag+="<div id='dept_div"
+               				litag+=departMent[index].branch_no
+               				litag+="'></div>";
+						});
+        				litag +="</ul>";
+						$('#organization').html(litag);
         			}
         		})
             });
@@ -434,7 +444,7 @@ ul {
          //수신자 아이콘 클릭시
          $('#recIcon').click(function(){
         	var empSelectNumber = 1;
- 			var litag = "<ui style='list-style:none;''>";   		
+ 			var litag = "<ul style='list-style:none;margin-left:0px;'>";   		
         	$('#organization').empty();
             $('#empList').empty();
             $.ajax({
@@ -452,17 +462,15 @@ ul {
                   console.log("departMent : " + departMent);
 
                   $.each(departMent, function(index) {
-     					litag += "<li onclick='seeDepart(this,"
+     					litag += "<li style='padding:6px;' onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
        						litag +=departMent[index].branch_no
-        				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-        					litag +="</ul>";
-        					
+        				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
         					litag+="<div id='dept_div"
         					litag+=departMent[index].branch_no
         					litag+="'></div>";
                   });
-                  
+                  litag +="</ul><hr/>";
                   $('#organization').html(litag);
 
                }
@@ -477,7 +485,7 @@ ul {
         departcho = choose;
   		var div_id = "dept_div"+choose;
 		$("#"+div_id).empty();
-		var litag = "<ui>";
+		var litag = "<hr/><ul style='list-style:none; padding:10px;'>";
 	
       	var name = $(obj).text();
 
@@ -493,20 +501,26 @@ ul {
       			$.each(data, function(index) {
       				dept = data[index];
       			});
-
+      			
+      			if(firstTree == 0){
+      				firstTree = 1;
+      			
       			$.each(dept, function(index) {
       				
-      				litag += "<li onclick='seelow_Depart(this, "
+      				litag += "<li style='padding:1px;' onclick='seelow_Depart(this, "
     					litag +=empSelectNumber+","
     				    litag +=dept[index].dept_no
-    				    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
-    					litag +="</ul>";
-    					
+    				    litag +=")'>&nbsp;&nbsp;"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+"/"+dept[index].dept_no+"</li></i>";
     					litag+="<div id='low_dept_div"
     					litag+=dept[index].dept_no
     					litag+="'></div>";
       			});
+      			litag +="</ul><hr/>";
       			$("#"+div_id).html(litag);
+      			}else{
+      				firstTree = 0;
+    				$("#"+div_id).html();	
+      			}
       		}
       	});
       }
@@ -514,7 +528,7 @@ ul {
       //하위 부서 클릭시
       function seelow_Depart(obj,empSelectNumber,departcho) {	
     	deptNumber= departcho;
-    	var litag = "<ui>";
+    	var litag = "<ul style='list-style:none;'>";
     	var div_id = "low_dept_div"+departcho;
     	$("#"+div_id).empty();
       	$.ajax({
@@ -529,15 +543,22 @@ ul {
       			$.each(data, function(index) {
       				low_dept = data[index];
       			});
+      			
+      			if(secondTree == 0){
+      				secondTree = 1;
       			$.each(low_dept, function(index) {
-    				litag += "<li onclick='seeEmpMember(this, "
+    				litag += "<li style='padding:4px;' onclick='seeEmpMember(this, "
         				litag += empSelectNumber+","
         				litag +=low_dept[index].low_dept_no
-        				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
-        				litag +="</ul>";
-		
+        				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
       			});
+      			litag +="</ul><hr/>";
     			$("#"+div_id).html(litag);
+      			}else{
+      				secondTree = 0;
+    				$("#"+div_id).html();	
+    			}
+    			
       		}
 
       	});
