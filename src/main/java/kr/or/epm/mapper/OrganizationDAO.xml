@@ -112,5 +112,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       on d.low_dept_no = e.low_dept_no
    </select>
    
+   <!--조직도에서 대표 정보만 뽑는 쿼리 -->
+   <select id="selectMasterEmpInfo" resultType="kr.or.epm.VO.Organization">
+      select e.emp_no, e.emp_name, l.low_dept_name, l.tel, l.fax
+	  from emp e join low_dept l
+	  on e.low_dept_no = l.low_dept_no
+	  join position p 
+	  on e.position_no = p.position_no
+	  where l.low_dept_no = #{low_dept_no} and p.step = '2'  
+   </select>
+   
 
 </mapper>

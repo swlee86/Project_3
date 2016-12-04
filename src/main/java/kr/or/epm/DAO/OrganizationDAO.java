@@ -45,7 +45,10 @@ public interface OrganizationDAO {
 	
     //조직도에 사용될 모든 사원정보 출력하기
     public List<Organization> selectEmpInfoAll();
-
+    
+    //조직도에 사용될  하위부서 대표만 정보 출력 하기
+    public Organization selectMasterEmpInfo(String low_dept_no);
+    
 	//등록인 정보 구하기
 	public Emp selectInfoSearch(String id);
 

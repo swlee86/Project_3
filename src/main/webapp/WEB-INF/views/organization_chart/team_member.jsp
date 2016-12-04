@@ -47,20 +47,24 @@
                         <div class="p-m">
 						<font size="4em"><b>부서정보</b> <i class="fa fa-list-alt"></i></font><br>
                             <div>
-                                <span class="font-extra-bold">부서장 : </span>
-                              	 박지은
+                                 <span class="font-extra-bold">부서명 : </span>
+                              	 <span id="deptName"></span>
+                            </div>
+                            <div>
+                                 <span class="font-extra-bold">부서장 : </span>
+                              	 <span id="masterName"></span>
                             </div>
                             <div>
                                 <span class="font-extra-bold">전화번호 : </span>
-                              	031-123-1234
+                            	<span id="phone"></span>
+                            </div>
+                            <div>
+                                <span class="font-extra-bold">팩스번호 : </span>
+                            	<span id="fax"></span>
                             </div>
                             <div>
                                 <span class="font-extra-bold">총 인원 : </span>
-                                12명
-                            </div>
-                            <div>
-                                <span class="font-extra-bold">담당업무 : </span>
-                                	사회복지(아동, 노인, 장애인 등)
+                                <span id="total"></span>
                             </div>
                         </div>
                     </div>
