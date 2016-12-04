@@ -201,7 +201,7 @@ public class ProjectController {
 		
 		model.addAttribute("pjdlist",pjdlist);
 		model.addAttribute("peopleList",peopleList);
-		
+		model.addAttribute("pj_no",pj_no);
 		return "project.projects";
 	}
 	

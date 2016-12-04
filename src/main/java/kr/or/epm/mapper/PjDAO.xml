@@ -213,4 +213,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pj_step_no from pjd 
    		where pj_no = (select pj_no from pjd where pjd_no=#{pjd_no})
 	</select>
+	
+	<!-- 프로젝트의 진행단계 업데이트 -->
+	<update id="updatePjstepno" parameterType="hashmap">
+		update pj set pj_step_no = #{pj_step_no} where pj_no = (select pj_no from pjd where pjd_no=#{pjd_no})
+	</update>
 </mapper>
