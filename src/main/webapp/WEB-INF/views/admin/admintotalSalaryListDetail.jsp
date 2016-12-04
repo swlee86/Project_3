@@ -18,7 +18,9 @@
 					</span>
 				</div>
 			</div>
-			<h2 class="font-light m-b-xs">급여 내역 상세 조회</h2>
+			<h2 class="font-light m-b-xs">
+			<i onclick="location.href='adminSalaryView.do'"
+					class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;급여 내역 상세 조회</h2>
 		</div>
 	</div>
 </div>
@@ -86,10 +88,6 @@
 
 							</tbody>
 						</table>
-					</div>
-					<div class="row" style="text-align: right; margin-right: 5px;">
-						<button type="button" class="btn btn-sm btn-success"
-							onclick="location.href='adminSalaryView.do'">목록</button>
 					</div>
 				</div>
 			</div>
