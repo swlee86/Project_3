@@ -161,6 +161,7 @@ public class AdminController {
 	@RequestMapping("/adminSalaryManage.do")
 	public String salaryInfo(Model model){
 		
+		//급여일 설정
 	  String pay_date= adminservice.selectpay_date();
 	  System.out.println("급여일: "+pay_date);	
 	  
@@ -170,8 +171,16 @@ public class AdminController {
 		  model.addAttribute("result", "0");
 	  }
 		model.addAttribute("pay_date", pay_date);
+		
+	  //리스트 출력
+		List<PayList> list = payservice.selectPayList_Manage();
+		model.addAttribute("paylist", list);
+		int count =list.size();
+		model.addAttribute("count", count);
+		
 		return "admin.adminSalaryManage";
 	}
+	
 	//기지급 급여 내역 페이지
 	@RequestMapping("/adminSalaryList.do")
 	public String totalSalaryList(Model model){		
@@ -203,7 +212,10 @@ public class AdminController {
 	
 	//급여 기본 정보 등록/수정 페이지
 	@RequestMapping("/adminSalaryModify.do")
-	public String salaryInfoModify(){
+	public String salaryInfoModify(String emp_no, Model model){
+		
+		PayList pay =payservice.selectPayList_Modify(emp_no);
+		model.addAttribute("pay", pay);
 		
 		return "admin.adminSalaryModify";
 	}
@@ -239,6 +251,32 @@ public class AdminController {
 		
 		return null;
 	}
+	
+	//관리자 > 급여관리 > 급여 기본 정보 수정
+	@RequestMapping("/adminSalary_Modify.do")
+	public String adminSalary_Modify(PayList list, Model model){
+		System.out.println(" 급여 정보 수정" +list.toString());
+		
+		int result =payservice.update_pay_Info_emp(list);
+		System.out.println("급여 정보 수정 결과 :------------------"+result);
+		
+		String msg = "";
+		String link = "";
+		
+		if(result >=2){
+			msg = "수정 성공!";
+			link = "adminSalaryModify.do?emp_no="+list.getEmp_no();
+		}else{
+			msg = "수정 실패!";
+			link = "adminSalaryModify.do?emp_no="+list.getEmp_no();
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("link",link);
+		
+		return "admin.admin_redirect";
+	}
+	
 	
 	
 }

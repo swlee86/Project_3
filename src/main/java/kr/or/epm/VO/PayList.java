@@ -20,10 +20,37 @@ public class PayList {
 	private String master_check;
 	private String mgr_check;
 	private String pay_date;
+	private int salary;
+	private String account;
+	private String bank;
+	private String regdate;
 	
 	
 	
-	
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public String getBank() {
+		return bank;
+	}
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 	public String getPay_date() {
 		return pay_date;
 	}
@@ -114,13 +141,15 @@ public class PayList {
 	public void setCommute_no(String commute_no) {
 		this.commute_no = commute_no;
 	}
+	
 	@Override
 	public String toString() {
 		return "PayList [pay_no=" + pay_no + ", emp_no=" + emp_no + ", commute_no=" + commute_no + ", total_pay="
 				+ total_pay + ", give_date=" + give_date + ", branch_name=" + branch_name + ", dept_name=" + dept_name
 				+ ", low_dept_name=" + low_dept_name + ", emp_name=" + emp_name + ", position_name=" + position_name
 				+ ", acc_commute_time=" + acc_commute_time + ", acc_add_time=" + acc_add_time + ", master_check="
-				+ master_check + ", mgr_check=" + mgr_check + ", pay_date=" + pay_date + "]";
+				+ master_check + ", mgr_check=" + mgr_check + ", pay_date=" + pay_date + ", salary=" + salary
+				+ ", account=" + account + ", bank=" + bank + ", regdate=" + regdate + "]";
 	}
 	
 	

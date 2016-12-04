@@ -68,7 +68,7 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-heading">
-					전체 사원: <font color="#ff757f">100</font> 명
+					전체 사원: <font color="#ff757f">${count}</font> 명
 				</div>
 				<div class="panel-body">
 					<div class="row text-right">
@@ -116,6 +116,7 @@
 									<th style="text-align: center;">부서</th>
 									<th style="text-align: center;">하위 부서</th>
 									<th style="text-align: center;">직위</th>
+									<th style="text-align: center;">입사일</th>
 									<th style="text-align: center;">은행명</th>
 									<th style="text-align: center;">계좌번호</th>
 									<th style="text-align: center;">연봉</th>
@@ -124,30 +125,59 @@
 							</thead>
 
 							<tbody>
-
+							
+							<c:choose>
+							  <c:when test="${!empty paylist}">
+                               <c:forEach var="list" items="${paylist}" varStatus="status">
 								<tr>
-									<td style="text-align: center;">1</td>
-									<td style="text-align: center;">11111111</td>
-									<td style="text-align: center;">브라운</td>
-									<td style="text-align: center;">제주</td>
-									<td style="text-align: center;">영업부</td>
-									<td style="text-align: center;">영업1팀</td>
-									<td style="text-align: center;">계장</td>
-									<td style="text-align: center;">계장</td>
-									<td style="text-align: center;">2016-01-01</td>
-									<td style="text-align: center;">01011111111</td>
+									<td style="text-align: center;">${status.count}</td>
+									<td style="text-align: center;">${list.emp_no}</td>
+									<td style="text-align: center;">${list.emp_name}</td>
+									<td style="text-align: center;">${list.branch_name}</td>
+									<td style="text-align: center;">${list.dept_name}</td>
+									<td style="text-align: center;">${list.low_dept_name}</td>
+									<td style="text-align: center;">${list.position_name}</td>
+									<td style="text-align: center;">${list.regdate}</td>
+									<td style="text-align: center;">${list.bank}</td>
+									<td style="text-align: center;">${list.account}</td>
+									<td style="text-align: center;">${list.salary}</td>
 									<td style="text-align: center;">
 									<button type="button" class="btn btn-sm btn-success"
-											onclick="location.href='adminSalaryModify.do'">수정</button></td>
+											onclick="location.href='adminSalaryModify.do?emp_no='+${list.emp_no}">수정</button></td>
 								</tr>
+									</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td colspan="11" style="text-align: center;">
+												<h4>데이터가 없습니다.</h4>
+											</td>
+										</tr>	
+									</c:otherwise>
+								</c:choose>
 							</tbody>
 						</table>
 					</div>
 			    </div>
+			    
+			    <div class="panel-footer" style="text-align: center;">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default">
+							&nbsp;<i class="fa fa-chevron-left"></i>
+						</button>
+						<button class="btn btn-default active">1</button>
+						<button class="btn btn-default">2</button>
+						<button class="btn btn-default">3</button>
+						<button class="btn btn-default">4</button>
+						<button type="button" class="btn btn-default ">
+							&nbsp;<i class="fa fa-chevron-right"></i>
+						</button>
+					</div>
+				</div>
+			    
 			</div>
 		</div>
 	</div>
 </div>
 
-
-
+			

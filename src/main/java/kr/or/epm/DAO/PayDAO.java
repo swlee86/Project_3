@@ -59,4 +59,17 @@ public interface PayDAO {
 	//급여지급일 수정하기
 	public int updatepay_date(Set_pay_date setpay);
 	
+	//급여 기본 정보 관리 리스트
+	public List<PayList> selectPayList_Manage();
+	
+	//급여 기본 정보 수정 페이지
+	public PayList selectPayList_Modify(String emp_no);
+	
+	//급여 기본 정보 수정 > 연봉 update
+	public int update_pay_Info_emp(PayList paylist);
+	
+	//급여 기본 정보 수정  > 은행, 계좌번호 update
+	public int update_pay_Info_empdetail(PayList paylist);
+	
+	
 }
