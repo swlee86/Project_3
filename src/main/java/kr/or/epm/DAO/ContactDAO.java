@@ -16,11 +16,8 @@ import kr.or.epm.VO.Emp_contact;
 
 public interface ContactDAO {
 	
-	//주소록 추가시 이름별 검색
-	public List<Emp> contact_insert_search_emp_name(String field2, String word);
-
-	//주소록 추가시 부서별 검색
-	public List<Emp> contact_insert_search_low_dept_name(String field2, String query2);
+	//주소록 추가시 이름별,부서명별 검색
+	public List<Emp> contact_insert_search(HashMap<String, String> map);
 
 
 	//전체 그룹 조회
@@ -137,6 +134,8 @@ public interface ContactDAO {
 
 	//그룹번호를 1(선택없음)로 바꿈
 	public int updateGroups_delete_change(String emp_no,String group_no);
+
+
 
 
 

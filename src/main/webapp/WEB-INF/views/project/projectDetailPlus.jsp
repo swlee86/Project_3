@@ -3,39 +3,50 @@
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" /> 
 
 <script>
-/* $(function(){
-	$('.showhide').click(function(){
-		$('panel-body').css('display')
+ $(function(){
+	 
+	 var pdplus;
+	 
+	$('.showhide2').click(function(){
+		console.log('showhide2 : '+ $(this).attr('id'));
+		pdplus = $(this).attr('id');
+		$('.'+pdplus).slideUp();
 	});
-});	 */
+	$('.showup2').click(function(){
+		console.log('showup2 : '+ $(this).attr('id'));
+		pdplus = $(this).attr('id');
+		$('.'+pdplus).slideDown();
+	});
+});	 
 </script>
 <div class="pjd_table row" id="pjd_table" >
 		<div class="col-lg-12">
 			<div class="hpanel hblue">
 				<div class="panel-heading hbuilt">
 					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> 
-						<a class="closebox"><i class="fa fa-times"></i></a>
+						<a class="showhide2 showhide3" ><i class="fa fa-chevron-up"></i></a> 
+						<a class="showup2 showup3"><i class="fa fa-chevron-down"></i></a>
 					</div>
-					상세 프로젝트 +
+					상세 프로젝트  - 추가
 				</div>
 				
-				<div class="panel-body" style="display:block">		
+				
+				<div class="panel-body pdplus" >		
 					<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 기간</th>
 											<td>
 												<div class="form-group">
-													시작일 :
+													
 													<div class="input-group date">
 														<input type="text" class="formstartDate pjd_start_plus form-control input-sm "  name="" value="" size="20px">
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
-													&nbsp;&nbsp;~&nbsp;&nbsp;
-													종료일 :
+													&nbsp;&nbsp; <b>~</b> &nbsp;&nbsp;
+													
 													<div class="input-group date">
-														<input type="text" class="formendDate pjd_end_plus form-control" value="" name="" size="20px"> 
+														<input type="text" class="formendDate pjd_end_plus form-control input-sm" value="" name="" size="20px"> 
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
 					                            </div>

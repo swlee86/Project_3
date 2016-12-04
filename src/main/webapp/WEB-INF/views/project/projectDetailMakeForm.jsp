@@ -2,6 +2,19 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" /> 
+
+<script>
+ $(function(){
+	 
+	$('.showhide_first').click(function(){
+		$('.pdplus_0').slideUp();
+	});
+	$('.showup_first').click(function(){
+		$('.pdplus_0').slideDown();
+	});
+});	 
+</script>
+
 <!--프로젝트 생성 폼-->
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
@@ -25,43 +38,45 @@
 	</div>
 </div>
 <div class="content animate-panel">
-<button id="pjd_detail_btn">추가</button>
+ 
 	<form class="form-inline" action="project_detail_plus_try.do" method="post">
-		폼<input type="text" name="pjd_count" id="pjd_count" value="0">
+		
+		<input type="hidden" name="pjd_count" id="pjd_count" value="0">
+		<a id="pjd_detail_btn"  class="btn w-xs btn-warning"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Plus <i class="fa fa-plus"></i></a>
 		<div class="pull-right" style="text-align:center;">
 			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-close"></i></a>
 		<!-- 	<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a> -->
 			
 			<button type="submit" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
 		</div>
-		<br><br>
+		<br>
 	<div class="pjd_table row" id="pjd_table" >
 		<div class="col-lg-12">
 			<div class="hpanel hblue">
 				<div class="panel-heading hbuilt">
 					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> 
-						 <a class="closebox"><i class="fa fa-times"></i></a>
+						<a class="showhide_first"><i class="fa fa-chevron-up"></i></a> 
+						 <a class="showup_first"><i class="fa fa-chevron-down"></i></a>  <!-- <i class="fa fa-times"></i> -->
 					</div>
-					상세 프로젝트 - 1
+					상세 프로젝트 - 기본
 				</div>
 				
-				<div class="panel-body">		
+				<div class="panel-body pdplus_0">		
 					<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 기간</th>
 											<td>
 												<div class="form-group">
-													시작일 :
+													
 													<div class="input-group date">
 														<input type="text" class="form-control input-sm formstartDate" name="pjd[0].pjd_start" value="" size="20px">
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
-													&nbsp;&nbsp;~&nbsp;&nbsp;
-													종료일 :
+													&nbsp;&nbsp; <b>~</b> &nbsp;&nbsp;
+													
 													<div class="input-group date">
-														<input type="text" class="formendDate form-control" name="pjd[0].pjd_end" value="" size="20px"> 
+														<input type="text" class="formendDate form-control input-sm" name="pjd[0].pjd_end" value="" size="20px"> 
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
 					                            </div>

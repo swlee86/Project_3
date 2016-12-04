@@ -51,7 +51,7 @@
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%;padding-top:15px;">생년월일</th>
 										<td>
 											<div class="form-inline">
-												<input type="text" class="form-control " id="addenrollDate" name="birth">
+												<input type="text" class="form-control input-sm" id="addenrollDate" name="birth">
 											</div>
 										</td>
 									</tr>
@@ -139,10 +139,10 @@
 	        		<div id="tab-1" class="tab-pane active">
 	        			<div class="panel-body">
 	        				<div class="row">  
-				               <div class="col-md-4" style="border: 1px solid #ddd;" id="organization">
+				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="organization">
 				                  
 				               </div>   
-				               <div class="col-md-8" id="empList">
+				               <div class=" col-md-8" id="empList" >
 				                  	
 				               </div>
 				            </div>
@@ -167,17 +167,20 @@
 												<input type="text" class="form-control input-sm" id="con_ins_org_sea_query" />
 												<span class="input-group-btn">
 													<a href="#" class="btn btn-default input-sm" id="con_ins_org_sea_btn" style="color: #fd7d86">
-														<span class="fa fa-search"></span>
+														<b><span class="fa fa-search"></span></b>
 													</a>
 												</span>
 											</div>
 										</div>
-									</div>
+									</div>	
 									
 				               </div>
+				               
 				               <br>
-				                <div class="col-md-12" id="empList2"  style="border: 1px solid #ddd;">
-				                  	
+				               <div class="row">
+					               <div class="col-md-12" id="empList2"  >
+					                  	
+					               </div>
 				               </div>   
 				            </div>
 	        			</div>

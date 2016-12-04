@@ -37,15 +37,15 @@
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 기간</th>
 										<td>
 											<div class="form-group">
-												시작일 :
+												
 												<div class="input-group date">
 													<input type="text" class="formstartDate form-control input-sm" value="" name="pj_start" size="20px">
 													<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 												</div>
-												&nbsp;&nbsp;~&nbsp;&nbsp;
-												종료s일 :
+												&nbsp;&nbsp; <b>~</b> &nbsp;&nbsp;
+											
 												<div class="input-group date">
-													<input type="text"  class="formendDate form-control" value="" name="pj_end" size="20px"> 
+													<input type="text"  class="formendDate form-control input-sm" value="" name="pj_end" size="20px"> 
 													<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 												</div>
 				                            </div>

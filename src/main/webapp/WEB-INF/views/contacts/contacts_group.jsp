@@ -65,20 +65,19 @@
 				<div class="panel-body">
 					<a data-toggle="collapse" data-parent="#accordion"  href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
 					</a>
-					<div id="q1" class="panel-collapse collapse groupdiv" id="accordiongroup" >
-						<br>
-						<ul>
+					<div id="q1" class="panel-collapse collapse groupdiv" id="accordiongroup">
+						<div style="margin-bottom:10px"> </div>
 							<c:forEach items="${grouplist}" var="g">
 								<c:choose>
 									<c:when test="${g.group_no == 1}"></c:when> 
 									<c:otherwise>
-											<li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	
+										&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/line.PNG" class="grouplineimg"><img src="${pageContext.request.contextPath}/img/fileimg.png" style="width:14px;height:14px;">&nbsp;&nbsp;<a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a><br>	
 									</c:otherwise>
 								</c:choose>
 		
 								<%-- <li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	 --%>
 							</c:forEach>
-						</ul>
+						
 						
 					</div>
 				</div>
@@ -100,20 +99,19 @@
 						<div class="col-md-5">
 							<div class="col-md-11">
 								<div class="row groupdiv" style=" border: 1px solid #ddd; height:300px">
-									<input type="hidden" id="grouplistsize" value="${grouplistsize}"> 
-									<ul>
+									<div style="background-color:#f6f6f6;padding:10px 0 10px 12px;margin-bottom:5px"><b>개인그룹 목록</b></div>
+									<input type="hidden" id="grouplistsize" value="${grouplistsize}" > 
+									
 										<c:forEach items="${grouplist}" var="g">
 											<c:choose>
 												<c:when test="${g.group_no == 1}"></c:when>
 												<c:otherwise>
-													<li>
-														<a href="#" class="contact_group_class" id="${g.group_no}">${g.group_name}</a>
-													</li>
+													&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/line.PNG" class="grouplineimg"><img src="${pageContext.request.contextPath}/img/fileimg.png" style="width:14px;height:14px;">&nbsp;&nbsp;<a href="#" class="contact_group_class" id="a${g.group_no}" >${g.group_name}</a><br>			
 												</c:otherwise>
 											</c:choose>
 											
 										</c:forEach> 
-									</ul>
+								
 								</div>
 								<br>
 								<div class="row">
