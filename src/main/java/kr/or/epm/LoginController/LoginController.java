@@ -15,6 +15,7 @@ import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Util.Util;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 
 /*
@@ -131,18 +132,21 @@ public class LoginController {
 		return "myinfo.editMyinfo_Redirect";
 	}
 
-/*		//아이디찾기
+		//아이디찾기
 		@RequestMapping("/findId.do")
-		public String findId(){
-			return "find.findID";
+		public String findId(Emp emp){
+			System.out.println("아이디 찾기 : "+emp.toString());
+			return null;
 		}
+		
 		
 		//비밀번호찾기
 		@RequestMapping("/findPw.do")
 		public String findPw(){			
-			return "find.findPW";
+			return null;
 		}
 		
+		/*
 		//아이디찾기 결과
 		@RequestMapping("/findID_Result.do")
 		public String findIdResult(){

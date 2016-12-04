@@ -71,6 +71,7 @@
 
 	var firstTree = 0;
 	var secondTree = 0;
+	
     $(function () {
         $('.demo2').click(function(){
             swal({

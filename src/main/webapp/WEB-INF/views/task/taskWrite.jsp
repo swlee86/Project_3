@@ -30,131 +30,127 @@
 					<div class="table-responsive">
 						<form id="taskForm" method="POST" enctype="multipart/form-data">
 							<div class="table-responsive">
-								<table cellpadding="1" cellspacing="1" class="table table-bordered" style="margin-bottom: 0px;">
+								<table cellpadding="1" cellspacing="1"
+									class="table table-bordered" style="margin-bottom: 0px;">
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; 
-												   padding-right: 10px; width: 10%">
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 업무 명
 										</th>
-										<td colspan="3">
-											<input type="text" class="form-control input-sm" name="task_name">
-										</td>
+										<td colspan="3"><input type="text"
+											class="form-control input-sm" name="task_name"></td>
 									</tr>
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; 
-											       padding-right: 10px; width: 10%">
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 업무 유형
 										</th>
 										<td colspan="3">
 											<div class="radio radio-success radio-inline">
-												<input type="radio" id="inlineRadio1" name="cg_no"
-													   value="1"><label for="inlineRadio1">업무 요청</label>
+												<input type="radio" id="inlineRadio1" name="cg_no" value="1"><label
+													for="inlineRadio1">업무 요청</label>
 											</div>
 											<div class="radio radio-success radio-inline">
-												<input type="radio" id="inlineRadio2" name="cg_no"
-													   value="2"><label for="inlineRadio2">업무 보고</label>
+												<input type="radio" id="inlineRadio2" name="cg_no" value="2"><label
+													for="inlineRadio2">업무 보고</label>
 											</div>
 											<div class="radio radio-success radio-inline">
-												<input type="radio" id="inlineRadio3" name="cg_no"
-													   value="3"><label for="inlineRadio3">업무 일지</label>
+												<input type="radio" id="inlineRadio3" name="cg_no" value="3"><label
+													for="inlineRadio3">업무 일지</label>
 											</div>
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; 
-											padding-right: 10px; width: 10%">
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 수신자 사번
 										</th>
-										<td id="rec_no_td">
-											<span class="input-group"> 
-												<input type="text" class="form-control input-sm" 
-												   	   id="rec_emp_no" name="rec_emp_no" /> 
-													<a type="button" class="btn btn-default input-group-addon" id="recIcon">
-														<span style="color: #fd7d86">
-															<i class="fa fa-user-plus"></i>
-														</span>
-													</a>
-											</span>
-										</td>
-										<th style="background-color: #f5f5f5; text-align: right; 
-											       padding-right: 10px; width: 10%">
+										<td id="rec_no_td"><span class="input-group"> <input
+												type="text" class="form-control input-sm" id="rec_emp_no"
+												name="rec_emp_no" /> <a type="button"
+												class="btn btn-default input-group-addon" id="recIcon">
+													<span style="color: #fd7d86"> <i
+														class="fa fa-user-plus"></i>
+												</span>
+											</a>
+										</span></td>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 수신자 명
 										</th>
-										<td style="width: 40%" id="rec_name_td">
-											<input type="text" class="form-control input-sm" 
-												   id="rec_name" name="rec_name">
-										</td>
+										<td style="width: 40%" id="rec_name_td"><input
+											type="text" class="form-control input-sm" id="rec_name"
+											name="rec_name"></td>
 									</tr>
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; 
-											padding-right: 10px; width: 10%">
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 참조자 사번
 										</th>
-										<td id="task_no_td">
-											<span class="input-group"> 
-												<input type="text" class="form-control input-sm" 
-													   name="emp_no" readonly> 
-													<a type="button" class="btn btn-default input-group-addon" id="deptA"> 
-														<span style="color: #fd7d86">
-															<i class="fa fa-user-plus"></i>
-														</span>
-													</a>
-											</span>
-										</td>
-										<th style="background-color: #f5f5f5; text-align: right; 
-												   padding-right: 10px; width: 10%">
+										<td id="task_no_td"><span class="input-group"> <input
+												type="text" class="form-control input-sm" name="emp_no"
+												readonly> <a type="button"
+												class="btn btn-default input-group-addon" id="deptA"> <span
+													style="color: #fd7d86"> <i class="fa fa-user-plus"></i>
+												</span>
+											</a>
+										</span></td>
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 참조자 명
 										</th>
-										<td style="width: 40%" id="task_name_td">
-											<input type="text" class="form-control input-sm" id="task_name">
+										<td style="width: 40%" id="task_name_td"><input
+											type="text" class="form-control input-sm" id="task_name">
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; 
-										`		   padding-right: 10px; width: 10%">
-											<font color="#f05050">*</font> 업무 기한
-											<input type="hidden" id="deadline" name="deadline">
+										<th
+											style="background-color: #f5f5f5; text-align: right; ` padding-right: 10px; width: 10%">
+											<font color="#f05050">*</font> 업무 기한 <input type="hidden"
+											id="deadline" name="deadline">
 										</th>
 										<td colspan="3">
 											<div class="form-inline">
 												<div class="input-group date">
 													<input type="text" class="form-control input-sm"
-														   id="makeuserUpdateDate"> 
-														<span class="input-group-addon" style="color: #fd7d86">
-															<i class="fa fa-calendar"></i>
-														</span>
+														id="makeuserUpdateDate"> <span
+														class="input-group-addon" style="color: #fd7d86"> <i
+														class="fa fa-calendar"></i>
+													</span>
 												</div>
 											</div>
 										</td>
 									</tr>
 								</table>
 								<table cellpadding="1" cellspacing="1"
-									   class="table table-bordered " style="margin-top: 0px;">
+									class="table table-bordered " style="margin-top: 0px;">
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="coral">*</font> 내용
 										</th>
-										<td>
-											<textarea cols="10" rows="10" class="form-control" name="content"></textarea>
-										</td>
+										<td><textarea cols="10" rows="10" class="form-control"
+												name="content"></textarea></td>
 									</tr>
 									<tr>
-										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
+										<th
+											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<i class="pe-7s-paperclip"></i> 첨부 파일
 										</th>
-										<td>
-											<input type="file" name="uploadfile" class="form-control input-sm">
-										</td>
+										<td><input type="file" name="uploadfile"
+											class="form-control input-sm"></td>
 									</tr>
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 10px;">
-									<input type="submit" id="submitBtn" class="btn btn-sm btn-success demo2" value="완료"
-										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px" onclick="send()">
+									<input type="submit" id="submitBtn"
+										class="btn btn-sm btn-success demo2" value="완료"
+										style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px"
+										onclick="send()">
 								</div>
 							</div>
-							<input type="hidden" id="hiddenEmp_no" value="">
-							<input type="hidden" id="hiddenMenuName" value="업무">
+							<input type="hidden" id="hiddenEmp_no" value=""> <input
+								type="hidden" id="hiddenMenuName" value="업무">
 						</form>
 					</div>
 				</div>
@@ -163,27 +159,104 @@
 	</div>
 </div>
 
+<!-- <div class="modal fade hmodal-success" id="myModal6" tabindex="-1"
+	role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header" style="height: 50px;">
+				<h4 class="modal-title">
+					<font color="#6a6c6f" size="4em"> <b>수신자 선택</b>
+					</font>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-4" id="organization"></div>
+					<div class="col-md-8" id="empList">사원리스트</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="closeModal" type="button" class="btn btn-default btn-sm">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+ -->
+
+
 <div class="modal fade hmodal-success" id="myModal6" tabindex="-1"
 	role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header"
-				 style="height: 50px; padding-top: 10px; padding-bottom: 0px">
-				<h4 class="modal-title">
-					<font color="#6a6c6f" size="4em">
-						<b>수신자 선택</b>
-					</font>
-				</h4>
+				style="height: 50px; padding-top: 10px; padding-bottom: 0px">
+				<h3 class="modal-title">
+					<font color="#6a6c6f" size="4em"><i class="fa fa-table"></i>
+						<b>사원 선택</b></font>
+				</h3>
 			</div>
 			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-4" style="border: 1px solid gray;" id="organization"></div>
-					<div class="col-md-8" id="empList">사원리스트</div>
+				<!-- <div class="hpanel"> -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#tab-1"><span
+							style="font-weight: 600; font-size: 13px">조직도</span></a></li>
+					<li class=""><a data-toggle="tab" href="#tab-2"><span
+							style="font-weight: 600; font-size: 13px">검색</span></a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="tab-1" class="tab-pane active">
+						<div class="panel-body">
+							<div class="row">
+								<div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;"
+									id="organization"></div>
+								<div class=" col-md-8" id="empList"></div>
+							</div>
+						</div>
+					</div>
+					<div id="tab-2" class="tab-pane">
+						<div class="panel-body">
+							<div class="row">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="form-inline">
+											<select class="form-control input-sm"
+												id="con_ins_org_sea_field">
+												<option value="emp_name">사원명</option>
+												<option value="low_dept_name">하위부서명</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-inline">
+											<div class="input-group">
+												<input type="text" class="form-control input-sm"
+													id="con_ins_org_sea_query" /> <span
+													class="input-group-btn"> <a href="#"
+													class="btn btn-default input-sm" id="con_ins_org_sea_btn"
+													style="color: #fd7d86"> <b><span
+															class="fa fa-search"></span></b>
+												</a>
+												</span>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<br>
+								<div class="row">
+									<div class="col-md-12" id="empList2"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+				<button id="closeModal" type="button" class="btn btn-default btn-sm">닫기</button>
 			</div>
 		</div>
 	</div>
