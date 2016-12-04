@@ -313,28 +313,24 @@ public class ContactService {
 		System.out.println("contact_insert_search 서비스 탐");
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
 		String field2 = "emp_name";
-		String word = "%%";
+		String query2 = "%%";
 		
 		
 		if(field != null && !field.equals("")){
 			field2 = field;
-			System.out.println("field2: "+field2);
 		}
 		
 		if(query != null && !query.equals("")){	
-			word = query;
-			
+			query2 = query;		
 		}
-		System.out.println("word: "+word);
-	/*	if(field2.equals("emp_name")){
-			System.out.println("이름검색");
-			emp = contactDAO.contact_insert_search_emp_name(field2, query2);
-		}else if(field2.equals("low_dept_name")){
-			System.out.println("하위부서검색");
-			emp = contactDAO.contact_insert_search_low_dept_name(field2, query2);
-		}	*/
+		System.out.println("field2: "+field2);
+		System.out.println("query2: "+query2);
 		
-		List<Emp> emp = contactDAO.contact_insert_search_emp_name(field2, word);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("field", field2);
+		map.put("query", query2);
+			
+		List<Emp> emp = contactDAO.contact_insert_search(map);
 		
 		return emp;
 	}

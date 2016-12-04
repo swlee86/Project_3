@@ -61,7 +61,28 @@
 	border-radius : 2px;
 	box-shadow : inset 0 0 1px #999;
 }
-.groupdiv ul > li a:hover {
+.groupdiv a:hover {
+	background : #e7f4f9;
+	border-radius : 2px;
+	box-shadow : inset 0 0 1px #ccc;
+}
+.grouplineimg{
+	display:inline-block;
+	text-decoration:none;
+	margin:0;
+	padding:0;
+	vertical-align:top;
+	text-align:left;
+	width:10px;
+	height:10px;	
+}
+
+.group-clicked2{
+	background : #beebff;
+	border-radius : 2px;
+	box-shadow : inset 0 0 1px #999;
+}
+.groupdiv2 span:hover {
 	background : #e7f4f9;
 	border-radius : 2px;
 	box-shadow : inset 0 0 1px #ccc;
@@ -156,8 +177,10 @@
 		//그룹수정
 		$('.contact_group_class').click(function(){
 			console.log('.contact_group_class 클릭');
-			console.log('그룹번호: ' + $(this).attr('id') );
+			console.log('@그룹번호 a:' + $(this).attr('id') );
+			console.log('@그룹번호replace:>' + $(this).attr('id').replace("a","")+"<");
 			id = $(this).attr('id');
+			var no = $(this).attr('id').replace("a","");
 			console.log('그룹명 : ' + $('#'+id).html());
 			
 			$('.contact_group_class').removeClass("group-clicked");
@@ -166,9 +189,9 @@
 			$('#group_name').val($('#'+id).html());
 			$('#contact_group_from_action').attr('action','contacts_group_update.do');
 			$('#pre_group_no').show();
-			$('#pre_group_no').val(id);
+			$('#pre_group_no').val(no);
 			$('#contact_group_from_submit').val('수정');
-			$('#contact_group_delete_btn').attr('href','contacts_group_delete.do?group_no='+id);
+			$('#contact_group_delete_btn').attr('href','contacts_group_delete.do?group_no='+no);
 			$('#contact_group_delete_btn').show();
 		});
 		
@@ -185,6 +208,7 @@
 		});
 		
 		
+
 		
 		//수정 사진 유지 확인
 		//contact_img_update
@@ -202,6 +226,7 @@
 		});
 		
 		
+	
 		
 		//그룹이름 
 		var groupnumber = $('#groupnumber').val();
@@ -308,14 +333,18 @@
 
 	    //참조자 아이콘 클릭시
         $('#organization_add').click(function() {
+        	orgclick();
        		var  empSelectNumber = 1;
 			var litag = "<ui style='list-style:none;''>";   		
     		$('#organization').empty();
     		$('#empList').empty();
-                 
+    		$('#empList2').empty();
+    		$('#con_ins_org_sea_query').val('');
+    		  
              	$.ajax({
        			url : "taskWriteModal.do",
        			success : function(data) {
+       				
        				 $('#myModal6').modal();
        				choose = 1;
        				var departMent = "";
@@ -328,7 +357,7 @@
        					litag += "<li onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
        						litag +=departMent[index].branch_no
-        				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
+        				    litag +=")' > <img src='${pageContext.request.contextPath}/img/line.PNG' class='grouplineimg'> <span class='org_list_class'>"+departMent[index].branch_name+" &nbsp;("+departMent[index].branch_no+")</span></li>";
         					litag +="</ul>";
         					
         					litag+="<div id='dept_div"
@@ -344,6 +373,7 @@
 		
 	    //주소록 추가시  검색해서 보여주는 script
         $('#con_ins_org_sea_btn').click(function(){
+        	
         	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
         	$.ajax(
     				{
@@ -359,17 +389,19 @@
     						 var emp = "";
     		                    $.each(data, function(index){
     		                       emp = data[index];
-    		                       console.log(emp);
+    		                       console.log("객체 : "+emp);
+									console.log("emp:"+ data[index]);    		                       	
     		                   });
-    		                   
-    		                   var  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th/>";
+    		                    console.log("객체s : "+emp[0]);
+    		                  
+    		                   var  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>번호</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>선택</th></tr>";
     		                   $.each(emp, function(index){
-    		                         makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></tr>";   
+    		                         makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
     		                      
     		                   });
     		                   makeTable += "</table>";
     		                   $('#empList2').empty();
-    		                   $('#empList2').append(makeTable);
+    		                   $('#empList2').append(makeTable); 
     					}
     				}		
     			)
@@ -379,6 +411,18 @@
 		
 	});
 	
+ 	//조직도 클릭시 클릭이벤트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 	function orgclick(){
+		//조직도에서 그룹 클릭시 이벤트
+		$('.org_list_class').click(function(){
+			console.log('.org_list_class 클릭');
+			console.log($(this));
+			$(this).addClass("group-clicked2");
+			$('.org_list_class').removeClass("group-clicked2");
+			$(this).addClass("group-clicked2");
+			
+		});
+ 	}
 	
 	 //부서 출력 하는 아작스
     function seeDepart(obj, empSelectNumber, choose) {
@@ -397,6 +441,7 @@
     			branch_no : departcho
     		},
     		success : function(data) {
+    			
     			var dept;
     			console.log(data);
     			$.each(data, function(index) {
@@ -407,7 +452,7 @@
     				litag += "<li onclick='seelow_Depart(this, "
     					litag +=empSelectNumber+","
     				    litag +=dept[index].dept_no
-    				    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
+    				    litag +=")' >"+'&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/line.PNG" class="grouplineimg"> <span class="org_list_class">'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
     					litag +="</ul>";
     					
     					litag+="<div id='low_dept_div"
@@ -422,7 +467,7 @@
 
     //하위 부서 클릭시
     function seelow_Depart(obj,empSelectNumber,departcho) {
-    	alert("부서 : "+choose);
+    	console.log("부서 : "+choose);
     	deptNumber= departcho;
     	var litag = "<ui>";
     	var div_id = "low_dept_div"+departcho;
@@ -444,7 +489,7 @@
     				litag += "<li onclick='seeEmpMember(this, "
     				litag += empSelectNumber+","
     				litag +=low_dept[index].low_dept_no
-    				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+    				litag +=")' >"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/line.PNG" class="grouplineimg"> <span class="org_list_class">'+low_dept[index].low_dept_name+" ("+low_dept[index].low_dept_no+")</span></li>";
     				litag +="</ul>";
     				
     			});
@@ -468,9 +513,9 @@
        alert("selectNo : " + empSelectNumber);
        var makeTable = "";
        if(empSelectNumber == 1){
-        makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th/>";
+        makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th>선택</th></tr>";
        }else{
-        makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+        makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th></tr>";
        }
        
        $.ajax(
@@ -483,7 +528,7 @@
               	  var emp = "";
                     $.each(data, function(index){
                        emp = data[index];
-                       console.log(emp);
+                       console.log("emp 머나오징:"+emp);
                    });
                    
                    $.each(emp, function(index){

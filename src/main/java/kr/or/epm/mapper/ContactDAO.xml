@@ -9,14 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 주소록 기능 구현 mapper
 -->
 	<!-- 주소록 추가시 이름별 검색 -->
-	<select id="contact_insert_search_emp_name" resultType="kr.or.epm.VO.Emp">
+	<select id="contact_insert_search" resultType="kr.or.epm.VO.Emp">
 		select emp_no,emp_name from emp e
-		<if test="#{param1} != null and #{param1}.equals('emp_name')">
-			where emp_name like '%${param2}%'
+		<if test="field != null and field.equals('emp_name')">
+			where ${field} like '%${query}%'  
 		</if>
-		<if test="#{param1} != null and #{param1}.equals('low_dept_name')">
+		<if test="field != null and field.equals('low_dept_name')">
 			 join low_dept l on e.low_dept_no=l.low_dept_no  
-			where  l.low_dept_name like '%${param2}%'
+			where  ${field} like '%${query}%'
 		</if>
 	</select>
 	

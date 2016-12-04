@@ -42,9 +42,9 @@ public class MemoController {
 		Memo first_memo = null;
 
 		String emp_no = memoservice.selectMemoEmpno(id);
-		if ((memo_no == null || memo_no.equals("null") || memo_no.equals(""))) {
+	/*	if ((memo_no == null || memo_no.equals("null") || memo_no.equals(""))) {
 			memo_no = memoservice.selectMaxNo(emp_no);
-		}
+		}*/
 		
 		
 		int totalcount = 0;
@@ -75,21 +75,25 @@ public class MemoController {
 		
 		
 		
-		try {
-			first_memo = memoservice.selectMemo_detail(memo_no);
-			memolist = memoservice.selectMemo(cpage, pagesize, emp_no,query);
-		} catch (Exception e) {
-			e.getMessage();
-		} finally {
-			mv.addAttribute("list", memolist);
-			mv.addAttribute("first_memo", first_memo);
-			mv.addAttribute("memo_no_chk", memo_no);
-			mv.addAttribute("pagecount", pagecount);
-			mv.addAttribute("pg",cpage);
-			mv.addAttribute("totalcount",totalcount);
-			mv.addAttribute("q", query);
-			mv.addAttribute("ps", pagesize);
+		//first_memo = memoservice.selectMemo_detail(memo_no);
+		memolist = memoservice.selectMemo(cpage, pagesize, emp_no,query);
+		
+		System.out.println("memolist 사이즈 : "+memolist.size());
+		if(memolist.size() != 0){
+			first_memo = memolist.get(0);
+			
 		}
+		
+		
+		mv.addAttribute("list", memolist);
+		mv.addAttribute("first_memo", first_memo);
+		//mv.addAttribute("memo_no_chk", memo_no);
+		mv.addAttribute("pagecount", pagecount);
+		mv.addAttribute("pg",cpage);
+		mv.addAttribute("totalcount",totalcount);
+		mv.addAttribute("q", query);
+		mv.addAttribute("ps", pagesize);
+		
 		return "memo.private_memo";
 	}
 	

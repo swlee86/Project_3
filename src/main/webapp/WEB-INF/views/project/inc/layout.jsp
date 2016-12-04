@@ -358,7 +358,17 @@
 					$('#kung_pjd_table').append(data);
 					
 					calendar();
-									
+							
+					$('.pdplus').addClass('pdplus_' + pjd_count);
+					$('.pdplus').removeClass('pdplus');
+					
+					$('.showhide3').attr('id','pdplus_' + pjd_count);
+					$('.showhide3').removeClass('showhide3');
+					
+					$('.showup3').attr('id','pdplus_' + pjd_count);
+					$('.showup3').removeClass('showup3');
+					
+					
 					$('.pjd_start_plus').attr('name','pjd[' + pjd_count + '].pjd_start');
 					$('.pjd_start_plus').removeClass('pjd_start_plus');
 					

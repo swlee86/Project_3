@@ -27,7 +27,7 @@ public class MemoService {
 	
 	//메모 화면에서 리스트를 불러오는 서비스 함수
 	public List<Memo> selectMemo(int cpage, int pagesize, String emp_no, String query){
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+cpage +" /"+pagesize +"/"+emp_no);
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+cpage +" /"+pagesize +"/"+emp_no+"/"+query);
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
 		List<Memo> list = memodao.selectMemo(cpage, pagesize, emp_no,query); 
 		return list;
