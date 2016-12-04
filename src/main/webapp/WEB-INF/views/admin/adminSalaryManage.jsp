@@ -23,45 +23,6 @@
 	</div>
 </div>
 
-
-<div class="content animate-panel">
-<input type="hidden" id="dayJudgement" value=${result}>
-		<div class="hpanel">
-			<div class="panel-body">
-				
-				<h4><i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;
-					현재 급여일 : <span id="dbAddDate">${pay_date}일</span><input type="button" id="showBtn" class="col-md-offset-1 btn btn-default" value="설정하기">	</h4>
-				<hr/>			
-				
-				<div id="settingAddDate">	
-				<h4>
-					<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여일
-					설정
-				</h4>
-				<div class="col-md-1">
-					<span class="form-control">지급일</span>
-				</div>
-				<div class="col-md-4">
-					<select class="form-control" id="daySelect">
-						<c:forEach begin="1" end="31" var="i">
-							<option value=${i}>${i}</option>
-						</c:forEach>
-					</select>
-				</div>
-				<div class="form-group">
-					<button type="button" class="btn btn-md btn-default" id="savepayDateBtn">
-						<span class="fa fa-search"></span>&nbsp;&nbsp;저장
-					</button>
-				</div>
-				
-				</div>
-				
-				
-		  </div>
-	 </div>
-</div>
-
-
 <div class="content animate-panel">
 	<div class="row">
 
