@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<style>
+	a{
+		border: 0px none;
+	}
+</style>
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12">
@@ -26,6 +30,7 @@
 				<small class="font-bold">Lorem Ipsum is simply dummy text.</small>
 			</div>
 			<div class="modal-body">
+				<input type="hidden" id="hiddenCal">
 				<p>책임자 : <span id="charge"></span></p>
 				<p>부서   : <span id="depart"></span></p>
 				<hr/>
@@ -35,7 +40,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary">프로젝트 보러가기</button>
+				<button type="button" id="calendar_DetailBtn" class="btn btn-primary" onclick='goProejct()'>프로젝트 보러가기</button>
 			</div>
 		</div>
 	</div>
