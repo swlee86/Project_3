@@ -149,8 +149,8 @@
 										onclick="send()">
 								</div>
 							</div>
-							<input type="hidden" id="hiddenEmp_no" value=""> <input
-								type="hidden" id="hiddenMenuName" value="업무">
+							<input type="hidden" id="hiddenEmp_no"> 
+							<input type="hidden" id="hiddenMenuName" value="업무">
 						</form>
 					</div>
 				</div>
