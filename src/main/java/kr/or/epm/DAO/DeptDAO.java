@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.DeptJoinBonus;
+import kr.or.epm.VO.Set_bonus;
 
 /*
  * 작성자 : 박성준
@@ -55,6 +56,9 @@ public interface DeptDAO {
 	
 	//상여금 지급 여부 설정
 	int update_bonusCheck(@Param("dept_no") String dept_no, @Param("bonus_check") String bonus_check);
+	
+	//상여금 조회하기
+	Set_bonus select_bonus_check(String dept_no);
 
 }
 

@@ -100,7 +100,7 @@
 							</table>
 						</div>
 						<input type="hidden" id="payDate">
-						<input type="hidden" id="chkhidden" name="chkhidden"> 
+						<input type="hidden" id="emp_no" name="emp_no"> 
 						<input type="hidden" id="hiddenCommute" name="hiddenCommute">
 						<div class="col-md-offset-11 col-md-1">
 							<input type="submit" class="btn btn-success" value="마감하기">
