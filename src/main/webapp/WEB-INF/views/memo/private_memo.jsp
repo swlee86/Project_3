@@ -196,7 +196,7 @@ $(function(){
 					<c:choose>
 						<c:when test="${empty first_memo}">
 							<div class="text-center">
-		                        	메모를 찾을수 없습니다.
+		                        	<a href="removememo.do?memo_no=${first_memo.memo_no}" id="first_memo_delete"><b><span class="glyphicon glyphicon-trash"></span></b></a> 메모가 없습니다.
 		                    </div>
 	                    </c:when>
 	                    <c:otherwise>
