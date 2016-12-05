@@ -85,10 +85,9 @@ $(function(){
 		
 		
 		if(dept_no != ''){
-			return false;
-			//return true;
+			return true;
 		}else{
-			alert("선택 요망!");
+			alert("지급 여부를 설정할 부서를 선택해주세요!");
 			return false;
 		}
 		

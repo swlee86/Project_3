@@ -71,7 +71,7 @@
                 <table cellpadding="1" cellspacing="1" class="table table-hover table-bordered table-condensed" >
                    <thead>
                     <tr style="background-color:#f9fafc">
-                    	<th><input type="checkbox" id="allCheck" 
+                    	<th style="text-align:center;"><input type="checkbox" id="allCheck" 
 								name="Allcheckbox" style="width:20px; height:20px;"></th>
                         <th  style="text-align:center;"> NO </th>
                         <th  style="text-align:center;">지점명</th>
@@ -83,7 +83,7 @@
                    <c:forEach var="list" items="${list}" varStatus="status">
                      <tr>
                     	<td style="text-align:center;padding-top:10px;">
-                    		<input type="checkbox" class="i-checks" name="checkboxadd" id="${list.dept_no}">
+                    		<input type="checkbox" name="checkboxadd" id="${list.dept_no}" style="width:20px; height:20px;">
                     	</td>
                     	<td  style="text-align:center;padding-top:10px;">${status.count}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.branch_name}</td>

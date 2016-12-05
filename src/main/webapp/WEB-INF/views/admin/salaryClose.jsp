@@ -92,8 +92,8 @@
 								<tbody>
 									<c:forEach var="list" items="${list}">
 										<tr>
-											<td style="text-align: center;"><input type="checkbox" 
-												name="checkbox" value="${list.pay_no}" style="width:20px; height:20px;">
+											<td style="text-align: center;">
+											<input type="checkbox" name="checkbox" value="${list.pay_no}" style="width:20px; height:20px;">
 											</td>
 											<td style="text-align: center;">${list.emp_no}</td>
 											<td style="text-align: center;">${list.emp_name}</td>
