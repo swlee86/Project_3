@@ -40,6 +40,11 @@ public class ProjectCallendarAjaxController {
 		System.out.println("emp No : "+emp_no);
 		//내가 쓴것들만 뽑아냄
 		List<Pj> result = projectservice.selectPj_callendar(emp_no);
+		
+		for(int i = 0; i < result.size(); i++){
+			System.out.println("플젝트 갑자기 뭔데 : " +result.get(i).toString());
+		}
+		
 		model.addAttribute("wlist", result);
 		//내가 참여자로 된 것.
 		model.addAttribute("emp_no", emp_no);

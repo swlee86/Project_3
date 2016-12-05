@@ -1,7 +1,8 @@
 ////////////////
-//작성 일 : 2016-11-26
+//작성 일 : 2016-11-26\
 //작성 자 : 박성준
 //목   적  : 전자 결재시 각 문서들 작업시 사용하는 js 파일
+
 
 
 
@@ -74,6 +75,10 @@ function calDateRange(val1, val2)
     }
 
 
+//트리구조 출력시 접히기 하려고. 만듬//////////////////
+var firstTree = 0;
+var secondTree = 0;
+///////////////////////////////////////////
 
 $(function() {
 	
@@ -106,7 +111,7 @@ $(function() {
 	//결재자 아이콘 클릭시 - > 트리 구조.	
 	$('#draft_Ok_Icon').click(function(){
 		var empSelectNumber = 1;
-		var litag = "<ui style='list-style:none;''>";   		
+		var litag = "<ul style='list-style:none;margin-left:-40px;'>";   		
     	$('#organization').empty();
         $('#empList').empty();
         $.ajax({
@@ -124,18 +129,16 @@ $(function() {
               console.log("departMent : " + departMent);
 
               $.each(departMent, function(index) {
- 					litag += "<li onclick='seeDepart(this,"
+ 					litag += "<li style='padding:2px;' onclick='seeDepart(this,"
    						litag +=empSelectNumber +","
    						litag +=departMent[index].branch_no
-    				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-    					litag +="</ul>";
-    					
+    				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";	
     					litag+="<div id='dept_div"
     					litag+=departMent[index].branch_no
     					litag+="'></div>";
               });
               
-
+              litag +="</ul>";
               $('#organization').html(litag);
 
            }
@@ -146,7 +149,7 @@ $(function() {
 	$('#draft_line_Icon').click(function(){
 		
 		var empSelectNumber = 2;
-		var litag = "<ui style='list-style:none;'>";   		
+		var litag = "<ul style='list-style:none;margin-left:-40px;'>";   		
  		$('#organization').empty();
  		$('#empList').empty();
               
@@ -162,17 +165,15 @@ $(function() {
     				});
 
     				$.each(departMent, function(index) {
-       					litag += "<li onclick='seeDepart(this,"
+       					litag += "<li  style='padding:2px;' onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
        						litag +=departMent[index].branch_no
-        				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-        					litag +="</ul>";
-        					
+        				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
         					litag+="<div id='dept_div"
         					litag+=departMent[index].branch_no
         					litag+="'></div>";
            				});
-
+    				litag +="</ul>";	
        				$('#organization').html(litag);
 
     			}
@@ -320,7 +321,7 @@ $(function() {
         departcho = choose;
 		var div_id = "dept_div"+choose;
 		$("#"+div_id).empty();
-		var litag = "<ui>";
+		var litag = "<hr/><ul style='list-style:none; padding:5px;'>";
 	
     	var name = $(obj).text();
 
@@ -336,20 +337,29 @@ $(function() {
     			$.each(data, function(index) {
     				dept = data[index];
     			});
+    			
 
+      			if(firstTree == 0){
+      				firstTree = 1;
     			$.each(dept, function(index) {
     				
-    				litag += "<li onclick='seelow_Depart(this, "
+    				litag += "<li  onclick='seelow_Depart(this, "
   					litag +=empSelectNumber+","
   				    litag +=dept[index].dept_no
-  				    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
-  					litag +="</ul>";
+  				    litag +=")'>"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
+  					
   					
   					litag+="<div id='low_dept_div"
   					litag+=dept[index].dept_no
   					litag+="'></div>";
     			});
+    			litag +="</ul><hr/>";
     			$("#"+div_id).html(litag);
+    			
+	    		}else{
+	    			firstTree = 0;
+					$("#"+div_id).html();	
+    			}
     		}
     	});
     }
@@ -358,7 +368,7 @@ $(function() {
     //하위 부서 클릭시
     function seelow_Depart(obj,empSelectNumber,departcho) {	
   	deptNumber= departcho;
-  	var litag = "<ui>";
+  	var litag = "<ul style='list-style:none;'>";
   	var div_id = "low_dept_div"+departcho;
   	$("#"+div_id).empty();
     	$.ajax({
@@ -373,17 +383,25 @@ $(function() {
     			$.each(data, function(index) {
     				low_dept = data[index];
     			});
+    			
+    			if(secondTree == 0){
+      				secondTree = 1;
     			$.each(low_dept, function(index) {
   				litag += "<li onclick='seeEmpMember(this, "
       				litag += empSelectNumber+","
       				litag +=low_dept[index].low_dept_no
-      				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+      				litag +=")'>"+'<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
       				litag +="</ul>";
       				dept_Name = low_dept[index].low_dept_name;	
     			});
-  			$("#"+div_id).html(litag);
+    			litag +="</ul><hr/>";
+    			$("#"+div_id).html(litag);
+    		
+	    		}else{
+	    			secondTree = 0;
+					$("#"+div_id).html();	
+	    		}
     		}
-
     	});
     }
     

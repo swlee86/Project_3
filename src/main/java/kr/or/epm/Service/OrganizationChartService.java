@@ -69,9 +69,10 @@ public class OrganizationChartService {
 		System.out.println("서비스 selectEmpInfo : " + low_dept_no);
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
-
+		
 		try{
-			list = organizationDAO.selectEmpInfo(low_dept_no);			
+			list = organizationDAO.selectEmpInfo(low_dept_no);
+			
 		}catch(Exception e){
 			e.getMessage();
 		}finally{
@@ -81,6 +82,20 @@ public class OrganizationChartService {
 		}
 		return list;
 	}
+	
+	//하위 부서 대표 뽑기 > 조직도에서 사용
+	public Organization selectEmpMaster(String low_dept_no){
+		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
+		Organization Daepyo = null;
+		try{
+			Daepyo = organizationDAO.selectMasterEmpInfo(low_dept_no);
+		}catch(Exception e){
+			e.getMessage();
+		}
+		
+		return Daepyo;
+	}
+	
 	
 	// 사원 정보 전부 불러오는 서비스 함수
 	public List<Organization> selectEmpInfoAll() {

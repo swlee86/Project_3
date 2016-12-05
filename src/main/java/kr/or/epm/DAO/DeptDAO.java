@@ -48,7 +48,8 @@ public interface DeptDAO {
 	//특정 부서 조회하기
 	DeptJoinBonus selectDept(String dept_no);	
 	
-	
+	//전체 부서 출력하기
+	List<Dept> select_allDept();
 
 }
 

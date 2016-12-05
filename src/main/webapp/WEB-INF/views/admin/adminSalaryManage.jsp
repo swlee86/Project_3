@@ -23,52 +23,13 @@
 	</div>
 </div>
 
-
-<div class="content animate-panel">
-<input type="hidden" id="dayJudgement" value=${result}>
-		<div class="hpanel">
-			<div class="panel-body">
-				
-				<h4><i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;
-					현재 급여일 : <span id="dbAddDate">${pay_date}일</span><input type="button" id="showBtn" class="col-md-offset-1 btn btn-default" value="설정하기">	</h4>
-				<hr/>			
-				
-				<div id="settingAddDate">	
-				<h4>
-					<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여일
-					설정
-				</h4>
-				<div class="col-md-1">
-					<span class="form-control">지급일</span>
-				</div>
-				<div class="col-md-4">
-					<select class="form-control" id="daySelect">
-						<c:forEach begin="1" end="31" var="i">
-							<option value=${i}>${i}</option>
-						</c:forEach>
-					</select>
-				</div>
-				<div class="form-group">
-					<button type="button" class="btn btn-md btn-default" id="savepayDateBtn">
-						<span class="fa fa-search"></span>&nbsp;&nbsp;저장
-					</button>
-				</div>
-				
-				</div>
-				
-				
-		  </div>
-	 </div>
-</div>
-
-
 <div class="content animate-panel">
 	<div class="row">
 
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-heading">
-					전체 사원: <font color="#ff757f">100</font> 명
+					전체 사원: <font color="#ff757f">${count}</font> 명
 				</div>
 				<div class="panel-body">
 					<div class="row text-right">
@@ -116,47 +77,68 @@
 									<th style="text-align: center;">부서</th>
 									<th style="text-align: center;">하위 부서</th>
 									<th style="text-align: center;">직위</th>
-									<th style="text-align: center;">입사일자</th>
-									<th style="text-align: center;">연락처</th>
-									<th style="text-align: center;">e-mail</th>
+									<th style="text-align: center;">입사일</th>
+									<th style="text-align: center;">은행명</th>
+									<th style="text-align: center;">계좌번호</th>
+									<th style="text-align: center;">연봉</th>
 									<th />
 								</tr>
 							</thead>
 
 							<tbody>
-
+							
+							<c:choose>
+							  <c:when test="${!empty paylist}">
+                               <c:forEach var="list" items="${paylist}" varStatus="status">
 								<tr>
-									<td style="text-align: center;">1</td>
-									<td style="text-align: center;">11111111</td>
-									<td style="text-align: center;">브라운</td>
-									<td style="text-align: center;">제주</td>
-									<td style="text-align: center;">영업부</td>
-									<td style="text-align: center;">영업1팀</td>
-									<td style="text-align: center;">계장</td>
-									<td style="text-align: center;">2016-01-01</td>
-									<td style="text-align: center;">01011111111</td>
-									<td style="text-align: center;">brown@epm.com</td>
-									<td style="text-align: center;"><button type="button"
-											class="btn btn-sm btn-success"
-											onclick="location.href='adminSalaryModify.do'">수정</button></td>
+									<td style="text-align: center;">${status.count}</td>
+									<td style="text-align: center;">${list.emp_no}</td>
+									<td style="text-align: center;">${list.emp_name}</td>
+									<td style="text-align: center;">${list.branch_name}</td>
+									<td style="text-align: center;">${list.dept_name}</td>
+									<td style="text-align: center;">${list.low_dept_name}</td>
+									<td style="text-align: center;">${list.position_name}</td>
+									<td style="text-align: center;">${list.regdate}</td>
+									<td style="text-align: center;">${list.bank}</td>
+									<td style="text-align: center;">${list.account}</td>
+									<td style="text-align: center;">${list.salary}</td>
+									<td style="text-align: center;">
+									<button type="button" class="btn btn-sm btn-success"
+											onclick="location.href='adminSalaryModify.do?emp_no='+${list.emp_no}">수정</button></td>
 								</tr>
-
-
+									</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td colspan="11" style="text-align: center;">
+												<h4>데이터가 없습니다.</h4>
+											</td>
+										</tr>	
+									</c:otherwise>
+								</c:choose>
 							</tbody>
 						</table>
 					</div>
-					<div class="row" style="text-align: right; margin-right: 5px;">
-						<button type="button" class="btn btn-sm btn-success"
-							onclick="location.href='adminSalaryView.do'">목록</button>
+			    </div>
+			    
+			    <div class="panel-footer" style="text-align: center;">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default">
+							&nbsp;<i class="fa fa-chevron-left"></i>
+						</button>
+						<button class="btn btn-default active">1</button>
+						<button class="btn btn-default">2</button>
+						<button class="btn btn-default">3</button>
+						<button class="btn btn-default">4</button>
+						<button type="button" class="btn btn-default ">
+							&nbsp;<i class="fa fa-chevron-right"></i>
+						</button>
 					</div>
-
-
-
 				</div>
+			    
 			</div>
 		</div>
 	</div>
 </div>
 
-
-
+			

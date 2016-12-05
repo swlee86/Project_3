@@ -40,20 +40,19 @@
 					<a data-toggle="collapse" data-parent="#accordion"  href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
 					</a>
 					<div id="q1" class="panel-collapse collapse groupdiv" id="accordiongroup" style="display:block">
-						<br>
-						<ul>
+					<div style="margin-bottom:10px"> </div>
 							<c:forEach items="${grouplist}" var="g">
 								<c:choose>
 									<c:when test="${g.group_no == 1}"></c:when> 
 									<c:otherwise>
-											<li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	
+										&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/line.PNG" class="grouplineimg"><img src="${pageContext.request.contextPath}/img/fileimg.png" style="width:14px;height:14px;">&nbsp;&nbsp;<a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a><br>	
 									</c:otherwise>
 								</c:choose>
 								
 								
 								<%-- <li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	 --%>
 							</c:forEach>
-						</ul>
+						
 						
 					</div>
 				</div>
@@ -117,8 +116,8 @@
 											<div class="input-group">
 												<input type="text" class="form-control input-sm" name="q" />
 												<span class="input-group-btn">
-													<button class="btn btn-default input-sm" type="submit" style="color: #f05050">
-														<span class="fa fa-search"></span>
+													<button class="btn btn-default input-sm" type="submit" style="color: #fd7d86">
+														<b><span class="fa fa-search"></span></b>
 													</button>
 												</span>
 											</div>
@@ -214,7 +213,7 @@
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header text-center" style="height:180px;padding-top:25px">
-				<h4 class="modal-title"><img alt="logo" id="m_img" class="img-circle m-b" style="width:150px;height:150px"></h4>
+				<h4 class="modal-title"><img alt="logo" id="m_img" class="img-circle m-b" style="width:130px;height:130px"></h4>
 			</div>
 			<div class="modal-body">
 				<table class="table  table-condensed  table-bordered">

@@ -82,7 +82,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where branch_name = #{param1} and dept_name=#{param2}
 	</select>
 	
-	
+	<!-- 전체 부서 조회 -->
+	<select id="select_allDept" resultType="kr.or.epm.VO.Dept">
+	   select dept_no, dept_name, branch_name from dept order by branch_name
+	</select>
 
 	
 </mapper>

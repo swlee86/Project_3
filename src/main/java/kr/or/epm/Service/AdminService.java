@@ -1,5 +1,6 @@
 package kr.or.epm.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,20 +18,18 @@ import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.DeptJoinBonus;
 import kr.or.epm.VO.LowDeptJoin;
 import kr.or.epm.VO.Low_dept;
+import kr.or.epm.VO.Pay;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
 import kr.or.epm.VO.Set_homepage;
 import kr.or.epm.VO.Set_pay_date;
 import kr.or.epm.VO.Set_time;
-import net.sf.json.JSONArray;
 
 @Service
 public class AdminService {
 
 	@Autowired
 	private SqlSession sqlsession;
-	
-	
 	
 	//지점 관리 페이지
 	public List<Branch> listBranch(){
@@ -288,6 +287,27 @@ public class AdminService {
 		int result = paydao.updatepay_date(date);
 		return result;
 		
+	}
+	
+	//기지급 급여 내역 리스트 페이지
+	public List<Pay> total_paylist(String dTime){
+		PayDAO paydao = sqlsession.getMapper(PayDAO.class);
+		
+		List<Pay> paylist = paydao.selectPay_all();	
+		for(int i = 0; i < paylist.size(); i++){
+			paylist.get(i).setGive_date(paylist.get(i).getGive_date().substring(0, 7));
+			System.out.println("연도ㅡ 월별 : "+paylist.get(i).getTotal_pay() + "  /  날짜 : "+paylist.get(i).getGive_date());	
+		}
+	    
+	   return paylist;
+	}
+	 
+	//급여 설정 관리 > 상여금 설정 리스트 출력
+	public List<Dept> select_allDept(){
+		DeptDAO dao = sqlsession.getMapper(DeptDAO.class);
+		List<Dept> dept =dao.select_allDept();
+		System.out.println(" 전체 부서 사이즈 --------------"+dept.size());
+		return dept;
 	}
 	
 	

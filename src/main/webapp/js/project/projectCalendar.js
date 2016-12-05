@@ -7,10 +7,12 @@ var dbdate = [];
 $(function() {
 	
 	
+	
 	var date = new Date();
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
+	
 	
 	$.ajax({
 		url : "projectcalendarData.do",
@@ -21,26 +23,30 @@ $(function() {
 			//내가 참여자로 들어가있는 것
 			var data2 = data.list;
 			//내가 쓴 프로젝트 리스트만
-			var data3 = data.list;
+			//var data3 = data.list;
 			
 			var loginEmp_no = data.emp_no;
 			
 			
 			 for(var i = 0; i < data2.length; i++){
 				 
+				 
 				 //console.log("제목  : " +data2[i].pj_title + " / 시작날 : "+data2[i].pj_start+" /종료날 "+data2[i].pj_end);
-				 console.log("#######이엠피 엔오 : " +data2[i].emp_no+ "  / 내 이엠피 로그인  : "+loginEmp_no);
+				 //console.log("#######이엠피 엔오 : " +data2[i].emp_no+ "  / 내 이엠피 로그인  : "+loginEmp_no);
 				 if(loginEmp_no == data2[i].emp_no){
-				 eventData= {
+				 //내가 쓴 것
+					eventData= {
 							 title: data2[i].pj_title ,
 							 start: data2[i].pj_start,
 							 end: data2[i].pj_end,
 							 id : data2[i].pj_no, 
-							 backgroundColor : "#FF0000",
+							 backgroundColor : "#9b59b6",
+							 color:"#9b59b6"
 				 			}
-				 
+
 				 dbdate.push(eventData);
 				 }else{
+					 //내가 참여자
 					 eventData= {
 						 title: data2[i].pj_title ,
 						 start: data2[i].pj_start,
@@ -48,8 +54,8 @@ $(function() {
 						 id : data2[i].pj_no,
 						 dept : data2[i].dept_name,
 						 name : data2[i].emp_name,
-						 backgroundColor : "#008000",
-						 color : "#0000FF"
+						 backgroundColor : "#F0AD4E",
+						 color:"#F0AD4E"
 				 	}
 				dbdate.push(eventData);	 	
 				 }
@@ -72,12 +78,17 @@ $(function() {
 	
 	//calendar.fullCalendar('renderEvent', eventData , true);
 	
+	
 });
+
+//캘린더 이벤트 클릭시 상세보기로 이동
+function goProejct(obj){
+	location.href="projectDetail.do?pj_no="+$('#hiddenCal').val();
+}
 
 function calendar(){
 	$('#fullCal').fullCalendar(
 			{
-
 			header : {
 				left : 'prev,next today',
 				center : 'title',
@@ -92,7 +103,7 @@ function calendar(){
 			// DB에서 가져온 값으로 해당 날짜에 붙이는 기능
 			events : dbdate,
 			eventClick: function(event){
-				
+				console.log("이벤트 확인좀 : "+event.id);
 				//시작 날짜
 				var startDate = new Date(event.start);
 				startDate=dateToYYYYMMDD(startDate);
@@ -106,7 +117,7 @@ function calendar(){
 				$('#projectId').html(event.title);
 				$('#startDate').html(startDate);
 				$('#endDate').html(endDate);
-				
+				$('#hiddenCal').val(event.id);
 				var resultDate = calDateRange(startDate, endDate);
 				$('#playProject').html(resultDate);
 			}
@@ -147,4 +158,6 @@ function calDateRange(val1, val2)
  var result1 = result/1000/60/60/24;
  return result1;
 }
+
+
 

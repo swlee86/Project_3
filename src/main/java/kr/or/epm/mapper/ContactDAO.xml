@@ -8,6 +8,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	작성자 : 박지은
 	사용 목적 : 주소록 기능 구현 mapper
 -->
+	<!-- 주소록 추가시 이름별 검색 -->
+	<select id="contact_insert_search" resultType="kr.or.epm.VO.Emp">
+		select emp_no,emp_name from emp e
+		<if test="field != null and field.equals('emp_name')">
+			where ${field} like '%${query}%'  
+		</if>
+		<if test="field != null and field.equals('low_dept_name')">
+			 join low_dept l on e.low_dept_no=l.low_dept_no  
+			where  ${field} like '%${query}%'
+		</if>
+	</select>
+	
 	
 	<!-- 등록인 사번 구하는 함수 -->
 	<select id="selectInfoSearch" resultType="kr.or.epm.VO.Emp">

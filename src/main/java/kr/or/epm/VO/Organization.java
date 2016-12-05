@@ -21,10 +21,25 @@ public class Organization {
 	private String email;
 	private String emp_tel;
 	
+	//12-4 조직도에서 사용될 객체 추가
+	private String fax;
+	private String tel;
 	
-	
-	
-	
+	public String getFax() {
+		return fax;
+	}
+
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 
 	public String getEmp_tel() {
 		return emp_tel;
@@ -158,9 +173,12 @@ public class Organization {
 	public String toString() {
 		return "Organization [branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name="
 				+ low_dept_name + ", emp_name=" + emp_name + ", depth0=" + depth0 + ", depth1=" + depth1 + ", depth2="
-				+ depth2 + ", emp_no=" + emp_no + ", cell_phone=" + cell_phone + ", branch_no=" + branch_no + "]";
+				+ depth2 + ", emp_no=" + emp_no + ", cell_phone=" + cell_phone + ", branch_no=" + branch_no
+				+ ", dept_no=" + dept_no + ", low_dept_no=" + low_dept_no + ", birth=" + birth + ", pic=" + pic
+				+ ", email=" + email + ", emp_tel=" + emp_tel + ", fax=" + fax + ", tel=" + tel + "]";
 	}
 
+	
 
 	
 

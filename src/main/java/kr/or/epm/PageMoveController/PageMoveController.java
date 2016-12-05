@@ -76,6 +76,9 @@ public class PageMoveController {
  				System.err.println(e.getMessage());
  			}finally{
  				model.addAttribute("tasklist", tasklist);
+ 				System.out.println("미확인 업무 tasklist tostring : "+tasklist.toString());
+ 				System.out.println("미확인 업무 tasklist size : "+tasklist.size());
+ 				//model.addAttribute("tasklistsize", tasklist.size());
  			}
  			
  		}
@@ -92,6 +95,9 @@ public class PageMoveController {
  				System.err.println(e.getMessage());
  			}finally{
  				model.addAttribute("mytasklist", mytasklist);
+ 				System.out.println("mytasklist.size() : "+mytasklist.size());
+ 				System.out.println("mytasklist tostirng : "+mytasklist.toString());
+ 				//model.addAttribute("mytasklistsize", mytasklist.size());
  			}
  			
  			
@@ -148,6 +154,8 @@ public class PageMoveController {
  			}catch(Exception e){
  				System.err.println(e.getMessage());
  			}finally{
+ 				System.out.println("approve_pjlist : "+approve_pjlist.toString());
+ 				System.out.println("approve_pjlist size : "+approve_pjlist.size());
  				model.addAttribute("approve_pjlist", approve_pjlist);
  			}
  		}

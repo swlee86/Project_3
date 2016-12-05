@@ -20,6 +20,7 @@ import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Low_dept;
+import kr.or.epm.VO.Pay;
 import kr.or.epm.VO.PayList;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.PositionJoin;
@@ -160,30 +161,51 @@ public class AdminController {
 	@RequestMapping("/adminSalaryManage.do")
 	public String salaryInfo(Model model){
 		
-	  String pay_date= adminservice.selectpay_date();
-	  System.out.println("급여일: "+pay_date);	
-	  
-	  if(pay_date !=null){
-		  model.addAttribute("result", "1");
-	  }else{
-		  model.addAttribute("result", "0");
-	  }
-		model.addAttribute("pay_date", pay_date);
+	  //리스트 출력
+		List<PayList> list = payservice.selectPayList_Manage();
+		model.addAttribute("paylist", list);
+		int count =list.size();
+		model.addAttribute("count", count);
+		
 		return "admin.adminSalaryManage";
 	}
+	
 	//기지급 급여 내역 페이지
 	@RequestMapping("/adminSalaryList.do")
-	public String totalSalaryList(){
+	public String totalSalaryList(Model model){		
+		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy", Locale.KOREA );
+		Date currentTime = new Date( );
+		String dTime = formatter.format ( currentTime );
+		System.out.println ("현재 년도  : "+dTime ); 
+		
+		List<Pay> list = adminservice.total_paylist(dTime);
+		model.addAttribute("list", list);
 		return "admin.admintotalSalaryList";
 	}
+	
+	
 	//기지급 급여 목록에서 특정 월 클릭시 상세보기
 	@RequestMapping("/adminSalaryListDetail.do")
-	public String totalSalaryListDetail(){
+	public String totalSalaryListDetail(String date, Model model){
+		
+		System.out.println("넘어온 데이트 : "+date);
+		List<PayList> list = payservice.select_payMoth_Detail(date);
+		for(int i = 0; i < list.size(); i++){
+			System.out.println(list.get(i).toString());
+		}
+		model.addAttribute("count", list.size());
+		model.addAttribute("paylist", list);
 		return "admin.admintotalSalaryListDetail";
 	}
+	
+	
 	//급여 기본 정보 등록/수정 페이지
 	@RequestMapping("/adminSalaryModify.do")
-	public String salaryInfoModify(){
+	public String salaryInfoModify(String emp_no, Model model){
+		
+		PayList pay =payservice.selectPayList_Modify(emp_no);
+		model.addAttribute("pay", pay);
+		
 		return "admin.adminSalaryModify";
 	}
 	
@@ -219,5 +241,52 @@ public class AdminController {
 		return null;
 	}
 	
+	//관리자 > 급여관리 > 급여 기본 정보 수정
+	@RequestMapping("/adminSalary_Modify.do")
+	public String adminSalary_Modify(PayList list, Model model){
+		System.out.println(" 급여 정보 수정" +list.toString());
+		
+		int result =payservice.update_pay_Info_emp(list);
+		System.out.println("급여 정보 수정 결과 :------------------"+result);
+		
+		String msg = "";
+		String link = "";
+		
+		if(result >=2){
+			msg = "수정 성공!";
+			link = "adminSalaryModify.do?emp_no="+list.getEmp_no();
+		}else{
+			msg = "수정 실패!";
+			link = "adminSalaryModify.do?emp_no="+list.getEmp_no();
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("link",link);
+		
+		return "admin.admin_redirect";
+	}
+	
+	//급여 설정 관리 페이지로 이동
+	@RequestMapping("/adminSalarySetting.do")
+	public String adminSalarySetting(Model model){
+		
+		//급여일 설정
+		  String pay_date= adminservice.selectpay_date();
+		  System.out.println("급여일: "+pay_date);	
+		  
+		  if(pay_date !=null){
+			  model.addAttribute("result", "1");
+		  }else{
+			  model.addAttribute("result", "0");
+		  }
+			model.addAttribute("pay_date", pay_date);
+			
+		//상여금 설정 > 리스트 출력
+			List<Dept> list =adminservice.select_allDept();
+			model.addAttribute("list", list);
+			
+			
+		return "admin.adminSalarySetting";
+	}
 	
 }

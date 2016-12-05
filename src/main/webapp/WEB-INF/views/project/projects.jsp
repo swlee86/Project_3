@@ -14,88 +14,108 @@
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.do">홈</a></li>
-					<li><span>프로젝트 상세보기</span></li>S
-					<li><a href="projects.do">진행중인 프로젝트</a></li>
+					<li><a href="project_list.do">전체 프로젝트</a></li>
+					<li><a href="#">상세 프로젝트</a></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">진행중인 프로젝트</h2>
-			<small>부서에서 진행 중인 프로젝트를 확인하실 수 있습니다</small>
+			<h2 class="font-light m-b-xs">상세 프로젝트</h2>
+			<small>진행 중인 프로젝트의 상세 내용을 확인하실 수 있습니다</small>
 		</div>
 	</div>
 </div>
 <div class="content animate-panel normalheader transition animated fadeIn media-body">
-	
+	<c:set var="count" value="0"/>
 		<div class="row projects">
 			<c:forEach var="i" items="${pjdlist}" step="1">
-			 	<div class="col-lg-6">
-					<div class="hpanel hgreen">
-						<div class="panel-body">
-							<!--프로젝트 상세 히든 번호-->
-							<input type="hidden" class="hiddenValue" value="${i.pjd_no}"> 
-							<span class="label label-success pull-right" style="margin-top: -5px;">NEW</span>
-							<div class="row">
-								<div class="col-sm-8">
-									<div class="row">
-										<div class="col-sm-4">
-											<h4 class="projectName">${i.pjd_title}</h4>
-										</div>
-										<div class="col-sm-4">
-											<h4 class="makeUser">${i.emp_name}</h4>
-										</div>
-									</div>
-		
-		
-									<br />
-		
-									<div class="row">
-										<div class="col-sm-4">
-											<div class="project-label">시작일</div>
-											<small>${i.pjd_start}</small>
-										</div>
-										<div class="col-sm-4">
-											<div class="project-label">종료일</div>
-											<small>${i.pjd_end}</small>
-										</div>
-										<div class="col-sm-4">
-											<div class="project-label">PROGRESS</div>
-											<div class="progress m-t-xs full progress-small">
-												<c:if test="${i.pjd_progress !=0 }">
-													<div style="width: ${i.pjd_progress}%"   aria-valuemax="100" aria-valuemin="0"
-														aria-valuenow="${i.pjd_progress}" role="progressbar"
-														class=" progress-bar progress-bar-success" ></div>
-												</c:if>
+				<c:set var="count" value="${count+1}" />
+			 		<div class="col-lg-6">
+					 	<c:if test="${count%2==1 && count!=1}">
+							  <br>
+						</c:if>
+						<div class="hpanel hgreen">
+							<div class="panel-body">
+								<!--프로젝트 상세 히든 번호-->
+								<input type="hidden" class="hiddenValue" value="${i.pjd_no}"> 
+								<!-- <span class="label label-success pull-right" style="margin-top: -5px;">NEW</span> -->
+								<div class="row">
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-4">
+												<h4 class="projectName">${i.pjd_title}</h4>
+											</div>
+											<div class="col-sm-4">
+												<h4 class="makeUser">${i.emp_name}</h4>
 											</div>
 										</div>
-									</div>
-									<br />
-									<p style="height: 36px;">${i.pjd_content}</p>
-								</div>
+										<br />
 		
-								<div class="col-sm-4 project-info">
-									<div class="project-value" style="margin-top: 5px;">
-										<small>참여자</small>
+										<div class="row">
+											<div class="col-sm-3">
+												<div class="project-label">시작일</div>
+												<small>${i.pjd_start}</small>
+											</div>
+											<div class="col-sm-3">
+												<div class="project-label">종료일</div>
+												<small>${i.pjd_end}</small>
+											</div>
+											<div class="col-sm-3">
+												<div class="project-label">진행률</div>
+												<div class="progress m-t-xs full progress-small">
+													<c:if test="${i.pjd_progress !=0 }">
+														<div style="width: ${i.pjd_progress}%"   aria-valuemax="100" aria-valuemin="0"
+														aria-valuenow="${i.pjd_progress}" role="progressbar"
+														class=" progress-bar progress-bar-success" ></div>
+													</c:if>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<div class="project-label">진행단계</div>
+													<div style="padding-top: 5px;">
+														<c:if test="${i.pj_step_name=='진행'}">
+															<span class="label label-success">&nbsp;&nbsp;진&nbsp;&nbsp;&nbsp;&nbsp;행&nbsp;&nbsp;</span>
+														</c:if>
+														<c:if test="${i.pj_step_name=='미진행'}">
+															<span class="label label-info">&nbsp;미&nbsp;진&nbsp;행&nbsp;</span>
+														</c:if>
+														<c:if test="${i.pj_step_name=='완료'}">
+															<span class="label label-default">&nbsp;&nbsp;완&nbsp;&nbsp;&nbsp;&nbsp;료&nbsp;&nbsp;</span>
+														</c:if>
+														<c:if test="${i.pj_step_name=='중단'}">
+															<span class="label label-danger">&nbsp;&nbsp;중&nbsp;&nbsp;&nbsp;&nbsp;단&nbsp;&nbsp;</span>
+														</c:if>
+														<c:if test="${i.pj_step_name=='보류'}">
+															<span class="label label-warning">&nbsp;&nbsp;보&nbsp;&nbsp;&nbsp;&nbsp;류&nbsp;&nbsp;</span>
+														</c:if>
+													</div>
+											</div>
+										</div>
+										<br />
+										<p style="height: 36px;">${i.pjd_content}</p>
 									</div>
-									<br />
-									<div class="project-people">
-										<c:forEach var="j" items="${peopleList[i.rownum-1]}">
-											<a href="" data-toggle="modal" data-target="#myModal" id="pjdmodal_${j.emp_no}" class="selectpeople">
-												<img alt="logo" class="img-circle" src="${pageContext.request.contextPath}/img/upload/${j.pic}"></a>
-										</c:forEach>
+		
+									<div class="col-sm-2 project-info">
+										<div class="project-value" style="margin-top: 5px;">
+											<div class="project-label">참여자</div>
+										</div>
+										<br />
+										<div class="project-people">
+											<c:forEach var="j" items="${peopleList[i.rownum-1]}">
+												<a href="" data-toggle="modal" data-target="#myModal" id="pjdmodal_${j.emp_no}" class="selectpeople">
+													<img alt="logo" class="img-circle" src="${pageContext.request.contextPath}/img/upload/${j.pic}"></a>
+											</c:forEach>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="panel-footer">
-						<div style="text-align:right">
-							<button class="btn btn-sm btn-success" onclick="detailProjectCheckList(this)" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
-								<a class="btn w-xs btn-success btn-block" href="projectdetail_detailview.do?pjd_no=${i.pjd_no}">상세보기</a>
-							</button>
+							<div class="panel-footer">
+								<div style="text-align:right">
+									<a class="btn btn-success btn-sm" href="projectdetail_detailview.do?pjd_no=${i.pjd_no}" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">상세보기</a>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</c:forEach>				
-	</div>
+			</c:forEach>				
+		</div>
 </div>
 
 

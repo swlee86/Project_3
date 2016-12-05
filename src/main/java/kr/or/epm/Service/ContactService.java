@@ -306,6 +306,34 @@ public class ContactService {
 		System.out.println("result : "+result );
 		return result;
 	}
+
+
+	//주소록 추가시 검색해서 사원 뽑아오는 함수
+	public List<Emp>  contact_insert_search(String field, String query) {
+		System.out.println("contact_insert_search 서비스 탐");
+		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
+		String field2 = "emp_name";
+		String query2 = "%%";
+		
+		
+		if(field != null && !field.equals("")){
+			field2 = field;
+		}
+		
+		if(query != null && !query.equals("")){	
+			query2 = query;		
+		}
+		System.out.println("field2: "+field2);
+		System.out.println("query2: "+query2);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("field", field2);
+		map.put("query", query2);
+			
+		List<Emp> emp = contactDAO.contact_insert_search(map);
+		
+		return emp;
+	}
 	
 }
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.ContactService;
 import kr.or.epm.VO.C_group;
@@ -34,6 +35,20 @@ public class ContactController {
 	
 	@Autowired
 	private ContactService contactService; 
+	@Autowired
+	private View jsonview;
+	
+	//주소록 사원 등록시 검색해서 부르는 함수
+	@RequestMapping(value = "/contact_insert_search.do", method=RequestMethod.POST)
+	public View  contact_insert_search(String field,String query, Model model){
+		System.out.println("contact_insert_search() 컨트롤 탐");	
+		System.out.println("field : "+field+"/query :"+query);
+		List<Emp>  emp = contactService.contact_insert_search(field,query);	
+		System.out.println("emp tostring : "+emp.toString());
+		System.out.println("emp siee:"+emp.size());
+		model.addAttribute("emp", emp);
+		return jsonview;
+	}
 	
 	// SideBar(aside.jsp) 주소록 클릭시 구동
 	@RequestMapping(value = "/contacts.do")

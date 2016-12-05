@@ -47,13 +47,13 @@
             <li>
                 <a href="contacts.do"> <span class="nav-label">주소록</span><span class="label label-warning pull-right"></span> </a>
             </li>
-            <li>
+       <!--      <li>
                 <a href="#"><span class="nav-label">개인 일정 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="registration_schedule.do">일정 등록</a></li>
                     <li><a href="calendar_schedule.do">일정 보기</a></li>
                 </ul>
-            </li>
+            </li> -->
             <li>
                 <a href="#"><span class="nav-label">메일 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
@@ -99,7 +99,7 @@
                 <a href="#"><span class="nav-label">프로젝트 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="project_list.do">전체 프로젝트</a></li>
-                    <li><a href="projects.do">진행중인 프로젝트</a></li>
+<!--                     <li><a href="projects.do">진행중인 프로젝트</a></li> -->
                     <li><a href="projectApprove.do">프로젝트 승인 대기함</a></li> 
                 </ul>
             </li>

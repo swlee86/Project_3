@@ -69,6 +69,9 @@
 
 <script>
 
+	var firstTree = 0;
+	var secondTree = 0;
+	
     $(function () {
         $('.demo2').click(function(){
             swal({
@@ -81,7 +84,7 @@
         
     	//조직도 아이콘 클릭시
     	$('#organicSelect').click(function(){
-    		var litag = "<ui style='list-style:none;''>";
+    	
     		
     		$('#organization').empty();
     		$('#empList').empty();
@@ -90,7 +93,7 @@
     		$.ajax({
     			url : "oranicChartFirst.do",
     			success : function(data) {
-    				
+    				var litag = "<ul style='list-style:none;margin-left:-40px;'>";
     				choose = 1;
     				var departMent = "";
 
@@ -99,18 +102,16 @@
     				});
 
     				$.each(departMent, function(index) {
-    					litag += "<li onclick='seeDepart(this, "
+    					litag += "<li style='padding:2px;' onclick='seeDepart(this, "
     				    litag +=departMent[index].branch_no
-    				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-    					litag +="</ul>";
-    					
+    				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
     					litag+="<div id='dept_div"
-    					litag+=departMent[index].branch_no
-    					litag+="'></div>";
-    					
-    					
+        				litag+=departMent[index].branch_no
+        				litag+="'></div>";	
     				});
-    		
+    				
+						litag +="</ul>";
+    					
     					$('#organization').html(litag);
     					
 
@@ -122,11 +123,13 @@
 
 //부서 출력 하는 아작스
 function seeDepart(obj, choose) {
+	
+	console.log("부서 출력 함수는 ????? "+obj  + "  /  choose ???? : "+choose);
 	//전역 부서 선택시
     departcho = choose;
 	var div_id = "dept_div"+choose;
 	$("#"+div_id).empty();
-	var litag = "<ui>";
+	var litag = "<ul style='list-style:none; padding:10px;'>";
 	
 	console.log(div_id);
 	var name = $(obj).text();
@@ -143,26 +146,25 @@ function seeDepart(obj, choose) {
 			$.each(data, function(index) {
 				dept = data[index];
 			});
-
+			
+			if(firstTree == 0){
+			firstTree = 1;	
 			$.each(dept, function(index) {
-					litag += "<li onclick='seelow_Depart(this, "
+					litag += "<li style='padding:2px;' onclick='seelow_Depart(this, "
 				    litag +=dept[index].dept_no
-				    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
-					litag +="</ul>";
-					
+				    litag +=")'>&nbsp;&nbsp;&nbsp;&nbsp;"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
 					litag+="<div id='low_dept_div"
 					litag+=dept[index].dept_no
 					litag+="'></div>";
-				
-				
-				/* 
-				$(obj).append(
-						"<br>&nbsp;&nbsp;<span onclick='seelow_Depart(this,"+dept[index].dept_no+")'>"
-								+ dept[index].dept_name + "</span>");
-				
-				 */
 			});
+			litag +="</ul>";
+			
 			$("#"+div_id).html(litag);
+			}else{
+				firstTree = 0;
+				$("#"+div_id).html();	
+			}
+			
 		}
 	});
 }
@@ -171,7 +173,6 @@ function seeDepart(obj, choose) {
 function seelow_Depart(obj,departcho) {
 	alert("부서 : "+choose);
 	deptNumber= departcho;
-	var litag = "<ui>";
 	var div_id = "low_dept_div"+departcho;
 	$("#"+div_id).empty();
 	
@@ -182,21 +183,26 @@ function seelow_Depart(obj,departcho) {
 		},
 
 		success : function(data) {
-
+			var litag = "<ul style='list-style:none;'>";
 			var low_dept = "";
 			$.each(data, function(index) {
 				low_dept = data[index];
 			});
-			$.each(low_dept, function(index) {
-				litag += "<li onclick='seeEmpMember(this, "
-				litag +=low_dept[index].low_dept_no
-				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
-				litag +="</ul>";
-					
-				
-			});
 			
+			if(secondTree == 0){
+			secondTree = 1;	
+			$.each(low_dept, function(index) {
+				litag += "<li style='padding:2px;' onclick='seeEmpMember(this, "
+				litag +=low_dept[index].low_dept_no
+				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+			});
+			litag +="</ul>";
 			$("#"+div_id).html(litag);
+				
+			}else{
+				secondTree = 0;
+				$("#"+div_id).html();
+			}
 			
 		}
 
@@ -223,29 +229,38 @@ function seeEmpMember(obj,low_dept_no){
                    low_dept_no: empListNumber
                  },
             success:function(data){
+            	
                var emp = "";
-               $.each(data, function(index){
-                  emp = data[index];
-                  console.log(emp);
-               });
+               $.each(data.emp, function(index){
+                  emp = data.emp[index];
+                   makeTable+="<div class='col-md-4'>"
+               	   makeTable+="<div class='hpanel hgreen contact-panel'>"
+               	   makeTable+="<div class='panel-body'>"
+               	   makeTable+="<h3>"	   
+               	   makeTable+="<a href='' data-toggle='modal' data-target="	
+               	   makeTable+="#myModal"
+               	   makeTable+= emp.emp_no
+               	   makeTable+=">"+emp.emp_name
+               	   makeTable+="<span style='font-size: 15px'>"+emp.emp_no+"</span>"		
+               	   makeTable+="</a></h3>"            		
+               	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp.branch_name+"</div>"   
+               	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp.cell_phone+"<br>"+emp.branch_name+">"+emp.dept_name+" > "+emp.low_dept_name+"</p></div></div></div>"
+			   });
                
-               $.each(emp, function(index){
-            	   makeTable+="<div class='col-md-4'>"
-            	   makeTable+="<div class='hpanel hgreen contact-panel'>"
-            	   makeTable+="<div class='panel-body'>"
-            	   makeTable+="<h3>"	   
-            	   makeTable+="<a href='' data-toggle='modal' data-target="	
-            	   makeTable+="#myModal"
-            	   makeTable+=emp[index].emp_no
-            	   makeTable+=">"+emp[index].emp_name
-            	   makeTable+="<span style='font-size: 15px'>"+emp[index].emp_no+"</span>"		
-            	   makeTable+="</a></h3>"            		
-            	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp[index].branch_name+"</div>"   
-            	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp[index].cell_phone+"<br>"+emp[index].branch_name+">"+emp[index].dept_name+" > "+emp[index].low_dept_name+"</p></div></div></div>"
-            	   
-
-               });
-              
+               //대표 이름 뿌리는 것 
+               $('#masterName').html(data.master.emp_name);
+               
+               //부서 전화번호
+               $('#phone').html(data.master.tel);
+               //부서 팩스번호
+               $('#fax').html(data.master.fax);
+               
+               //부서 이름
+               $('#deptName').html(data.master.low_dept_name);
+               
+               //총인원수
+               $('#total').html(data.count);
+              	
                $('#empList').empty();
                $('#empList').append(makeTable);
              }    

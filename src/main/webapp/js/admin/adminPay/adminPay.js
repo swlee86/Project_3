@@ -70,5 +70,38 @@ $(function(){
 				);
 	});
 	
+	//상여금 지급 여부 설정 > 확정 버튼 클릭시
+	$('#add_pay_div').click(function(){
+		
+		
+		var dept_no='';
+		
+		$("input[name=checkboxadd]:checked").each(function() {
+			var id = $(this).attr('id');
+			
+			dept_no+=id +",";
+			alert(dept_no);
+		});
+		
+		
+		if(dept_no != ''){
+			return false;
+			//return true;
+		}else{
+			alert("선택 요망!");
+			return false;
+		}
+		
+	});
+	
 	
 });
+
+//급여 상세 보기 클릭시 실행 됨 - 
+function detailPay(obj){
+	
+	var id = $(obj).attr("id");
+	alert("버튼  아이디 값 : "+id);
+	location.href="adminSalaryListDetail.do?date="+id;
+}
+	

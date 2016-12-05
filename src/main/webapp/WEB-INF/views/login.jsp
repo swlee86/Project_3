@@ -20,16 +20,30 @@
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 
 <!-- App styles -->
-<link rel="stylesheet"
-	href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 <!--구글 API-->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id"
 	content="279959715456-km9o7eijb5j8sr8kn9i98dtmitu5l1tt.apps.googleusercontent.com">
+<style>
+	body{
+		background-image: url("images/landing/header.jpg");
+	}
+	
+	h3{
+		color: white;
+	}
+	
+	small{
+		color: white;
+	}
+	
+</style>
 </head>
-<body class="fixed-navbar fixed-sidebar">
+<body class="fixed-navbar fixed-sidebar media-body">
+	
 	<div class="splash">
 		<div class="color-line"></div>
 		<div class="splash-title">
@@ -44,24 +58,29 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="container">
 		<div class="heading">
-
 			<div class="login-container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="text-center m-b-md">
-							<h3>로그인</h3>
-							<small>WelCome 2pm! <c:if test="${param.error != null}">
-									<div>
-										로그인실패<br>
-										<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-       										이유 : <c:out
-												value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+							<div id="page-top">
+								<div class="heading">
+									<h3 style="color: white">로그인</h3>
+									<small>WelCome 2pm! <c:if test="${param.error != null}">
+											<div>
+												로그인실패<br>
+												<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+		       										이유 : <c:out
+														value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+												</c:if>
+											</div>
 										</c:if>
-									</div>
-								</c:if>
-							</small>
+									</small>
+								</div>
+							</div>
 						</div>
 						<div class="hpanel">
 							<div class="panel-body">
@@ -92,11 +111,10 @@
 										value="${loginRedirect}" /> <a
 										class="btn btn-default btn-block" href="#" id="googlelogout"
 										onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-										로그아웃</a> <input type="submit" class="btn btn-success btn-block"
-										value="로그인" id="loginSubmitBtn"> <a
-										class="btn btn-default btn-block" href="addMember.do">회원가입</a>
-									<a class="btn btn-default btn-block" data-toggle="modal"
-										data-target="#findId">아이디 찾기</a> 
+										로그아웃</a> 
+									<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
+									<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
+									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#findId">아이디 찾기</a> 
 									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
 
 								</form>
@@ -115,43 +133,45 @@
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="color-line"></div>
+				<form class="form-horizontal" action="findId.do" method="POST" id="findIdForm">
 				<div class="modal-header">
 					<h4 class="modal-title">아이디 찾기</h4>
 					<small class="font-bold">찾으실 아이디를 입력하세요</small>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
  						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">사번</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" placeholder="사번">
+									<input type="text" name="emp_no" id="emp_no" class="form-control" placeholder="사번">
 								</div>
 							</div>
 
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">이름</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control"  placeholder="이름">
+									<input type="text" name="emp_name" id="emp_name" class="form-control"  placeholder="이름">
 								</div>
 							</div>
 							
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">연락처</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control"  placeholder="부서번호">
+									<input type="text" class="form-control" name="cell_phone" id="cell_phone"  placeholder="연락처">
 								</div>
 							</div>
 						
 						</div>
-					</form>
+					
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-default" href="login.do"data-dismiss="modal">취소하기</a>
-					<a class="btn btn-success" href="findID_Result.do">아이디찾기</a>
+					<a class="btn btn-default" data-dismiss="modal">취소하기</a>
+					<input type="button" class="btn btn-success" id="findIdBtn" value="아이디찾기">
 				</div>
+				</form>
 			</div>
 		</div>
+		
 	</div>
 	
 	<!--비밀번호 찾기-->
@@ -159,13 +179,13 @@
 		aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
+				<form class="form-horizontal" action="findPw.do" method="POST">
 				<div class="color-line"></div>
 				<div class="modal-header">
 					<h4 class="modal-title">비밀번호 찾기</h4>
 					<small class="font-bold">찾으실 비밀번호를 입력하세요</small>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
  						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">아이디</label>
@@ -196,12 +216,13 @@
 							</div>
 						
 						</div>
-					</form>
+					
 				</div>
 				<div class="modal-footer">
 					<a class="btn btn-default" href="login.do"data-dismiss="modal">취소하기</a>
-					<a class="btn btn-success" href="findID_Result.do">PW찾기</a>
+					<input type="submit" class="btn btn-success" value="비밀번호찾기">
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -239,6 +260,30 @@
 
 
 	<script>
+	
+	$(function(){
+		
+		$('#findIdBtn').click(function(){
+			
+			if($('#emp_no').val() == ''){ 
+				alert("사번을 입력해주세요 !");
+				$('#emp_no').focus();
+			}else if( $('#emp_name').val() == '' ){
+				alert("이름을 입력해주세요 !");
+				$('#emp_name').focus();
+			}else if( $('#cell_phone').val() == ''){
+				alert('전화번호를 입력해주세요 !');
+				$('#cell_phone').focus();
+			}else{
+				$('#findIdForm').submit();
+				$('#emp_no').val('');
+				$('#emp_name').val('');
+				$('#cell_phone').val('');
+			}
+			
+		});
+		
+	});
 	
 	function onSignIn(googleUser) {
 		  var profile = googleUser.getBasicProfile();

@@ -75,9 +75,45 @@ public class PayService {
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 	    result = dao.updatePay(pay_no);
 		return result;
+	}
+	
+	
+	//급여 선택 월 정보 리스트 뿌려주기  - > 카드 에서 상세보기 버튼 클릭시 사용됨
+	public List<PayList> select_payMoth_Detail(String date){
+		System.out.println("기지급 급여 관리 : "+date);
+		PayDAO dao = sqlsession.getMapper(PayDAO.class);
+	    List<PayList> list = dao.select_payMoth_Detail(date);
+	    System.out.println("급여 list size: "+list.size());
+	    return list;
+	}
+	
+	//급여 기본정보 관리 리스트
+	public List<PayList> selectPayList_Manage(){
+		PayDAO dao = sqlsession.getMapper(PayDAO.class);
+		List<PayList> list = dao.selectPayList_Manage();
+		System.out.println(" 서비스  sizeeeeeeeeeeeeeeee: "+list.size());
+		return list;
 		
 	}
 	
+	//급여 기본 정보 수정 페이지
+	public PayList selectPayList_Modify(String emp_no){
+		PayDAO dao = sqlsession.getMapper(PayDAO.class);
+		PayList pay =dao.selectPayList_Modify(emp_no);
+		System.out.println(" 서비스 pay : ::::::::::::::"+pay.toString());
+		return pay;
+	}
+	
+	//급여 기본 정보 수정 > 연봉 수정
+	public int update_pay_Info_emp(PayList paylist){
+		PayDAO dao = sqlsession.getMapper(PayDAO.class);
+		int result =dao.update_pay_Info_emp(paylist);
+		result += dao.update_pay_Info_empdetail(paylist);
+		return result;
+	}
+	
+	
+	//급여 기본 정보 수정 > 은행, 계좌번호 수정
 	
 
 }

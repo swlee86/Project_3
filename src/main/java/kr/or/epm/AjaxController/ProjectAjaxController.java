@@ -179,16 +179,11 @@ public class ProjectAjaxController {
 	}
 	
 	// 검색하기
-	@RequestMapping(value = "/project_list.do", method = RequestMethod.POST)
-	public View project_list_search(HttpServletRequest request, Principal principal, Model model) {
+	@RequestMapping(value = "/project_search_list.do")
+	public View project_list_search(HttpServletRequest request,  Model model) {
 
 		System.out.println("project 검색을 시작합니다");
 
-		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
 
 		String key = request.getParameter("selectSearch");
 		String value = request.getParameter("input");
@@ -199,8 +194,71 @@ public class ProjectAjaxController {
 		// 목록 가져오기
 		List<Pj> list = projectservice.searchPj(key,value);
 
-		model.addAttribute("searchList", list);
+		model.addAttribute("project", list);
 
 		return jsonview;
+	}
+	
+	//프로젝트의 진행 단계 업데이트
+	@RequestMapping(value="/updatePj_step_state.do")
+	public View updatePj_step_state(HttpServletRequest request, Model model){
+		
+		System.out.println("updatepj_step_state 들어옴");
+		
+		String pjd_no = request.getParameter("pjd_no");
+		
+		System.out.println("들어온 pjd_no :" + pjd_no);
+		
+		//pjd_no가 들어간 pj_no가져와서 pj_no에 포함된 모든 pjd의 진행상황 가져오기
+		List<String> pjstepno = projectservice.selectPjstepno_Of_includePjdno(pjd_no);
+		
+		String pj_step_no = "2";
+		int[] pjstepno_count = new int[]{0,0,0,0,0};
+		//1 : 진행 , 2 : 미진행 , 3 : 보류 , 4 : 완료 , 5 : 중단
+		
+		for(int i = 0; i < pjstepno.size(); i++){
+			int index =  Integer.parseInt(pjstepno.get(i));
+			pjstepno_count[index-1]++;
+			//System.out.println("pjstepno값 : " + pjstepno.get(i));
+		}
+		
+		/*for(int i=0; i < pjstepno_count.length; i++){
+			System.out.println(i+1 + "번째 : " +pjstepno_count[i]);
+		}*/
+		
+		//if 가져온 진행상황들 중 중단이 있는지 확인 - 중단(5)이 있으면 pj의 진행상황을 중단으로
+		if(pjstepno_count[4]!=0){
+			System.out.println("중단있음");
+			pj_step_no="5";
+		}
+		
+		//else if 가져온 진행상황들 중 보류가 있는지 확인 - 보류(3)가 있으면 pj의 진행상황을 보류로
+		else if(pjstepno_count[2]!=0){
+			System.out.println("보류있음");
+			pj_step_no="3";
+		}
+		//else if 가져온 진행상황들 모두가 완료 상태이면 - pj의 진행상황을 완료로
+		else if(pjstepno_count[0]==0 && pjstepno_count[1]==0 && pjstepno_count[2]==0 && pjstepno_count[4]==0 && pjstepno_count[3]!=0){
+			System.out.println("완료상태");
+			pj_step_no="4";
+		}
+		//else if 가져온 진행상황들 중 진행이 있는지 확인 - 진행이 있으면 pj의 진행상황을 진행으로
+		else if(pjstepno_count[0]!=0){
+			System.out.println("진행상태");
+			pj_step_no="1";
+		}
+			
+		//else if  else는 보류도 없고, 중단도 없고, 완료도 없고, 진행도 없을 때  - pj의 진행상황을 미진행으로
+		else{
+			System.out.println("미진행상태");
+			pj_step_no="2";
+		}
+		
+		System.out.println("상태 : " + pj_step_no);
+		//pj의 상태를 업데이트
+		int result = projectservice.updatePjstepno(pjd_no, pj_step_no);
+		
+		return jsonview;
+		
 	}
 }

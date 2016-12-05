@@ -135,10 +135,11 @@
 				//출근시간 전역 변수에 셋팅
 				startWorkStatus.setHours(h, m, 0, 0);
 
-				$('#start').html(h + ":" + m);
+				var startTime = h+":"+m;
+				//$('#start').html(h + ":" + m);
 
 				//시작 시간
-				stTime = $('#start').html();
+				//stTime = $('#start').html();
 
 				//종료 시간
 				//endTime = $('#end').html();
@@ -149,15 +150,20 @@
 						 {
 							url : "insertCommute_in.do",
 							data : {
-										in_time : $("#start").html()
+										in_time : startTime,
 										//,emp_no : '91001050',  //현 로그인 계쩡의 emp_no로 수정해야함
 								   },
 							success : function(data){	
-								console.log("@@@@@@@@@@@@data: "+data + "/ data.emp : "+data.emp);
-								console.log("data.emp.emp_no : "+data.emp.emp_no);
-								console.log("data.emp.emp_name : "+data.emp.emp_name);
-								$('#commute_empno').html(data.emp.emp_no);
-								$('#commute_empname').html(data.emp.emp_name);
+								if(data.result=="2"){
+									alert("출근시간 오류!\n관리자에게 문의하세요")
+								}else{
+									console.log("@@@@@@@@@@@@data: "+data + "/ data.emp : "+data.emp);
+									console.log("data.emp.emp_no : "+data.emp.emp_no);
+									console.log("data.emp.emp_name : "+data.emp.emp_name);
+									$('#start').html(startTime);
+									$('#commute_empno').html(data.emp.emp_no);
+									$('#commute_empname').html(data.emp.emp_name);
+								}
 							}
 						 }
 				)
