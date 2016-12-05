@@ -83,9 +83,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 전체 부서 조회 -->
-	<select id="select_allDept" resultType="kr.or.epm.VO.Dept">
-	   select dept_no, dept_name, branch_name from dept order by branch_name
+	<select id="select_allDept" resultType="kr.or.epm.VO.DeptJoinBonus">
+	    select d.dept_no, dept_name, branch_name, bonus_check
+	   from dept d join set_bonus b
+	   on d.dept_no=b.dept_no
+	   where d.his_check='1'
+	   order by branch_name
 	</select>
 
+	<!--부서별 상여금 지급 여부 설정  -->
+     <update id="update_bonusCheck">
+       update set_bonus 
+       set bonus_check=#{param2} 
+       where dept_no=#{param1}
+     </update>		
 	
 </mapper>

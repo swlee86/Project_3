@@ -2,6 +2,8 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.DeptJoinBonus;
 
@@ -50,6 +52,9 @@ public interface DeptDAO {
 	
 	//전체 부서 출력하기
 	List<Dept> select_allDept();
+	
+	//상여금 지급 여부 설정
+	int update_bonusCheck(@Param("dept_no") String dept_no, @Param("bonus_check") String bonus_check);
 
 }
 
