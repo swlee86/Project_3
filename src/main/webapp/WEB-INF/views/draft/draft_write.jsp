@@ -125,15 +125,11 @@
 						<div class="panel-body" id="document_table" style="border: none;">
 
 						</div>
-
-						<br> <br>
-
 						<div class="pull-right" style="text-align: center;">
 							<input type="submit" class="btn btn-sm btn-success"
 								id="submitBtn" value="결재 요청"
 								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 						</div>
-
 					</form>
 				</div>
 			</div>

@@ -33,7 +33,11 @@
 <link rel="stylesheet"
 	  href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	  type="text/css" />
-
+	  
+<!-- datepicker -->
+<link rel="stylesheet" href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+	
 <style>
 	.flag {
 		font-weight: bold;
@@ -43,6 +47,10 @@
 	#datatable td {
 		padding: 3px;
 		color: #424242;
+	}
+	
+	.nb {
+		border: none;
 	}
 	
 </style>
@@ -109,6 +117,9 @@
 	<script src="vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 	<script src="vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 
+	<!-- datepicker -->
+	<script src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
+	
 	<!--전자결재 script  -->
 	<script src="js/electronic_sanction/electronic_sanction.js"></script>
 
@@ -137,6 +148,7 @@
 					   },
 				success : function(result) {
 					$("#document_table").html(result);
+					draft_datepicker();
 				}
 			});
 		};
@@ -151,27 +163,23 @@
 			if(choose == '1') {
 				draft.action = "draftOffice.do";
 			} else if(choose == '2') {
-				draft.action = "draftOffice.do";
+				draft.action = "draftCooperation.do";
 			} else if(choose == '3') {
-				draft.action = "draftOffice.do";
+				draft.action = "draftBreak.do";
 			}
 			
 			draft.submit();
 		});
 		
-		// Initialize Example 1
-        $('#example1').dataTable( {
-            "ajax": 'api/datatables.json',
-            dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
-            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
-            buttons: [
-                {extend: 'copy',className: 'btn-sm'},
-                {extend: 'csv',title: 'ExampleFile', className: 'btn-sm'},
-                {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm'},
-                {extend: 'print',className: 'btn-sm'}
-            ]
-        });
+		$(function() {
+			// 휴가 종료 날짜 선택시 시작 이후의 날짜만 선택할 수 있도록
+			// 휴가 시작 날짜 선택시 현재 날짜 이후의 날짜만 선택할 수 있도록
+		});
 		
+		function draft_datepicker() {
+			$("#breakdatepicker1").datepicker();
+			$("#breakdatepicker2").datepicker();
+		}
 	</script>
 </body>
 </html>

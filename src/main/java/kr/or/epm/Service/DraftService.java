@@ -12,6 +12,7 @@ import kr.or.epm.DAO.DraftDAO;
 import kr.or.epm.DAO.Draft_lineDAO;
 import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Cooperation;
+import kr.or.epm.VO.Draft;
 import kr.or.epm.VO.Draft_line;
 import kr.or.epm.VO.Draft_ref;
 import kr.or.epm.VO.Office;
@@ -66,6 +67,26 @@ public class DraftService {
 		int result = 0;
 		
 		return result;
+	}
+	
+	// 등록하기 위한 전자결재 번호 가져오기
+	public String selectDraft_no() {
+		System.out.println("SERVICE] 등록을 위해 결재 번호를 가져옵니다");
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		String draft_no = dao.selectDraft_no();
+		
+		return draft_no; 
+	}
+	
+	// 등록하기 위한 기본정보 가져오기
+	public Draft selectDraft_basic(String emp_no) {
+		System.out.println("SERVICE] 등록을 위해 기본 정보를 가져옵니다");
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		Draft draft = dao.selectDraft_basic(emp_no);
+		
+		return draft;
 	}
 	
 	// 대외발신공문 수신 리스트 불러오기

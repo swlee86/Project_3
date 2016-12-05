@@ -62,6 +62,12 @@ public interface DraftDAO {
 	public int insertOffice(Office office);
 	
 	
+	// 결재 등록을 위해 기본정보 가져오기
+	public Draft selectDraft_basic(String emp_no);
+
+	// 결재 등록을 위해 전자결재 문서 번호 가져오기
+	public String selectDraft_no();
+	
 	// 수신 리스트 확인하기
 	// 결재 번호 가져오기
 	public List<String> selectDraft_noList();

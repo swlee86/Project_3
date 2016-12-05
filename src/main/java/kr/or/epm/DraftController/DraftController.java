@@ -14,6 +14,7 @@ import kr.or.epm.Service.DraftService;
 import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Common;
 import kr.or.epm.VO.Cooperation;
+import kr.or.epm.VO.Draft;
 import kr.or.epm.VO.Draft_line;
 import kr.or.epm.VO.Draft_ref;
 import kr.or.epm.VO.Office;
@@ -58,8 +59,15 @@ public class DraftController {
 		System.out.println("id : " + id);
 		String emp_no = commonservice.selectEmp_no(id);
 		System.out.println("로그인한 사원의 emp_no : " + emp_no);
-		
 		model.addAttribute("emp_no", emp_no);
+		
+		// 전자결재 번호
+		String draft_no = service.selectDraft_no();
+		model.addAttribute("draft_no", draft_no);
+		
+		// 등록을 위한 기본정보 가져오기
+		Draft draft = service.selectDraft_basic(emp_no);
+		model.addAttribute("draft", draft);
 		
 		return returnForm;
 	}
@@ -202,7 +210,7 @@ public class DraftController {
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
 		
-		return "draft.office";
+		return "draft.office_detail";
 	}
 	
 	// 협조문 상세
@@ -238,7 +246,7 @@ public class DraftController {
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
 		
-		return "draft.cooperation";
+		return "draft.cooperation_detail";
 	}
 	
 	// 휴가신청서 상세
@@ -268,6 +276,6 @@ public class DraftController {
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
 		
-		return "draft.break";
+		return "draft.break_detail";
 	}
 }

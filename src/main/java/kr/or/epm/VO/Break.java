@@ -32,6 +32,16 @@ public class Break {
 	private String low_dept_name;
 	private String cell_phone;
 	
+	private String break_tel;
+	
+	public String getBreak_tel() {
+		return break_tel;
+	}
+
+	public void setBreak_tel(String break_tel) {
+		this.break_tel = break_tel;
+	}
+
 	public String getCell_phone() {
 		return cell_phone;
 	}
