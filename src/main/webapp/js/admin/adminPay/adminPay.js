@@ -73,23 +73,58 @@ $(function(){
 	//상여금 지급 여부 설정 > 확정 버튼 클릭시
 	$('#add_pay_div').click(function(){
 		
-		
+		var arr = new Array();
 		var dept_no='';
 		
+		
 		$("input[name=checkboxadd]:checked").each(function() {
-			var id = $(this).attr('id');
 			
-			dept_no+=id +",";
-			alert(dept_no);
+			var obj = new Object();
+			
+			dept_no = $(this).attr('id');
+			var bonus_check = $("#selectbonus"+dept_no+" option:selected").text();
+			console.log(" 부서번호 : "+dept_no + "   ////     "+bonus_check);
+			
+		    obj.dept_no=dept_no;
+			obj.bonus_check=bonus_check;
+			
+			arr.push(obj);
+			
+			
 		});
 		
 		
 		if(dept_no != ''){
-			return true;
+			//return true;
+			
+			 var param = JSON.stringify(arr);
+			    
+				$.ajax(
+						   {
+								url : "give_bonus_check.do",
+								type: "post",
+								data : {
+											param : param
+								       },
+								success : function(data){
+		                           
+		                           console.log("결과 : "+data.result);
+		                           swal({
+		                                title: "상여금 지급 여부 확정",
+		                                text: "지급 확정에 성공하였습니다",
+		                                type: "success"
+		                            });	
+		                            
+		                            window.location.reload();
+								}
+				           }
+				      );
+			
 		}else{
 			alert("지급 여부를 설정할 부서를 선택해주세요!");
 			return false;
 		}
+		
 		
 	});
 	

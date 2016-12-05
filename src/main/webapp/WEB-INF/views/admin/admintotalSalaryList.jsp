@@ -10,7 +10,7 @@
 					<i class="fa fa-arrow-up"></i>
 				</div>
 			</a>
-
+			
 			<h2 class="font-light m-b-xs">
 				<i onclick="location.href='adminSalaryView.do'"
 					class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;급여 내역 조회
@@ -27,8 +27,17 @@
 							</button>
 						</div>
 					</form>
+					<div id="hbreadcrumb" class="pull-right m-t-lg">
+					<ol class="hbreadcrumb breadcrumb">
+						<li><a href="index.do">홈</a></li>
+						<li><span>급여 관리</span></li>
+						<li><a href="adminSalaryList.do">급여 내역 조회</a></li>
+					</ol>
+			    </div>
 				</div>
+				
 			</div>
+			
 		</div>
 	</div>
 </div>

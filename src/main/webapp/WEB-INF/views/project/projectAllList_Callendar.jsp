@@ -9,6 +9,19 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="hpanel">
+				<div class="panel-heading">
+					<form class="form-inline">
+						<div class="form-group">
+								<span>내가 참여자인 프로젝트 : </span>
+								<p class="form-control" style="background-color: #9b59b6; margin-top:5px; width:50px;height:10px;color:#9b59b6;"></p>
+						</div>
+						<br/>
+						<div class="form-group">				
+							<span>내가 작성한 프로젝트 : </span>
+							<p class="form-control" style="background-color: #F0AD4E;  margin-top:5px; width:50px;height:10px;color:#F0AD4E;"></p>
+						</div>
+					</form>
+				</div>
 				<div class="panel-body">
 					<div id="fullCal"></div>
 				</div>

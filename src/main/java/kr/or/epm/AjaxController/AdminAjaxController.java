@@ -223,4 +223,46 @@ public class AdminAjaxController {
 		return jsonview;
 	}
 	
+	
+	//관리자 > 부서별 상여금 지급 여부 설정
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/give_bonus_check.do")
+	public View give_bonus_check(HttpServletRequest request, Model model){
+		
+		String str = request.getParameter("param");
+		 str.trim();
+	     str.trim();
+		System.out.println("상여금 :     =============="+str);
+		
+		List<Map<String,String>> map = new ArrayList<Map<String,String>>();
+        map = JSONArray.fromObject(str);
+        int result = 0;
+        
+        int num = 0;
+        for(Map<String, String> m : map) {
+        	System.out.println("몇번 호출이니 ? "+num);
+        	num++;
+            System.out.println(m.get("dept_no") + " : " + m.get("bonus_check"));
+            
+            
+            try {
+                result = adminservice.update_bonusCheck(m.get("dept_no"), m.get("bonus_check"));
+        
+            } catch (Exception e) {
+                e.getMessage();
+            } finally {
+                if (result > 0) {
+                    System.out.println("상여금 지급 여부 확정 완료");
+                } else {
+                    System.out.println("ERROR");
+                }
+            }
+        }
+		model.addAttribute("result", result);
+		
+		return jsonview;
+	}
+	
+	
+	
 }

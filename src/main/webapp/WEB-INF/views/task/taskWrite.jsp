@@ -88,7 +88,7 @@
 											<font color="#f05050">*</font> 참조자 사번
 										</th>
 										<td id="task_no_td"><span class="input-group"> <input
-												type="text" class="form-control input-sm" name="emp_no"
+												type="text" class="form-control input-sm" name="emp_no" id="chamjoInput"
 												readonly> <a type="button"
 												class="btn btn-default input-group-addon" id="deptA"> <span
 													style="color: #fd7d86"> <i class="fa fa-user-plus"></i>

@@ -12,12 +12,12 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Calendar</span></li>
+					<li><a href="index.do">홈</a></li>
+					<li><span>급여 관리</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">급여 관리</h2>
+			<small>급여 관련 정보를 관리할 수 있습니다.</small>
 		</div>
 	</div>
 </div>
@@ -46,12 +46,12 @@
                 <div class="hpanel">
                     <div class="panel-body">
                         <div class="text-center">
-                            <h2 class="m-b-xs">금월 급여 내역</h2>
+                            <h2 class="m-b-xs">급여 마감 관리</h2>
                            <div class="m">
                                 <i class="pe-7s-science fa-5x"></i>
                             </div>
                             <p class="small">
-                                                 지급 예정 급여 목록 조회
+                                                 금월 급여 마감 관리
                             </p>
                             <button class="btn btn-success btn-sm" id="moveSalaryPlanList">이동</button>
                         </div>

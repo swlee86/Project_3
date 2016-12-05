@@ -24,6 +24,20 @@ public class LoginService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//사용자 이름 구하는것 - web socket 채팅할때 사용할 것
+	public String selectUserName(String id){
+		
+		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
+		//사번 
+		EmpJoinEmp_Detail emp = dao.selectEmp_Name(id);
+		System.out.println(" 사번 :===================== "+emp.getEmp_no());
+		EmpJoinEmp_Detail emp_name = dao.selectEmp_Name_Emp(emp.getEmp_no());
+		System.out.println(" 사원 이름 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+emp_name.getEmp_name());
+		
+		return emp_name.getEmp_name();
+	}
+	
+	
 	//사용자 개인 정보 수정할 때 사용하는 메서드 (데이터 뿌려줌)
 	public EmpJoinEmp_Detail modifyInfo(String id){
 		

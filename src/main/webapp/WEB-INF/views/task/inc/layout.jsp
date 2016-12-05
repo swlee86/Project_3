@@ -595,7 +595,9 @@ ul {
                          emp = data[index];
                          console.log(emp);
                      });
-                     
+					
+                      
+                      
                      $.each(emp, function(index){
                         if(empSelectNumber == 1){   
                            makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
@@ -629,7 +631,7 @@ ul {
             if(empInfoArray.length > 1){
                console.log("if 내부 : " +empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
                //화면에 보이는 input 은 그냥 때려넣음
-               $("#task_no").val(empInfoArray[0].emp_no);
+               $("#chamjoInput").val(empInfoArray[0].emp_no);
                $('#task_name').val(empInfoArray[0].emp_name);
                
                var input_no = "";
@@ -641,7 +643,7 @@ ul {
                $('#task_no_td').append(input_no);
                $('#task_name_td').append(input_name);
             }else{
-               $("#task_no").val(empInfoArray[0].emp_no);
+               $("#chamjoInput").val(empInfoArray[0].emp_no);
                $('#task_name').val(empInfoArray[0].emp_name);            
             }
          
@@ -687,14 +689,14 @@ ul {
     		  changeMonth : true,
               dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
                     '일요일' ],
-              dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+              dayNamesMin : ['일','월', '화', '수', '목', '금', '토'],
               monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
                     '9', '10', '11', '12' ],
               monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
                     '8월', '9월', '10월', '11월', '12월' ],
               dateFormat : 'yy-mm-dd',
               changeYear : true
-    		  
+              
     	  });
     	  
       }
