@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.epm.MailController.ReceiveMailImap;
 import kr.or.epm.Service.CompanyBoardService;
+import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.ProjectService;
 import kr.or.epm.Service.PushService;
 import kr.or.epm.Util.Util;
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Company;
+import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Mail;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Task;
@@ -32,6 +34,9 @@ public class PageMoveController {
 	private PushService pushService;
 	
 	@Autowired
+	private LoginService service;
+	
+	@Autowired
 	private CompanyBoardService companyBoardService;
 	
 	@Autowired
@@ -41,8 +46,19 @@ public class PageMoveController {
 	@RequestMapping("/index.do")
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, Principal principal) {
 		HttpSession session = request.getSession();
+		
+		//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
+		String id = principal.getName();
+		System.out.println("아이디  : "+id);
+		EmpJoinEmp_Detail empinfo = service.selectUserName(id);
+		///
+		
+		
+		
 		String emp_no = (String)session.getAttribute("emp_no");
 		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
+			
+		
 		session.setAttribute("emp_no", emp_no);
 		
 		///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////

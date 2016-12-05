@@ -41,6 +41,7 @@ public class Broadsocket {
 	@OnClose
 	public void onClose(Session session) {
 		// Remove session from the connected sessions set
+		System.out.println("삭제했어욥!!");
 		clients.remove(session);
 	}
 }

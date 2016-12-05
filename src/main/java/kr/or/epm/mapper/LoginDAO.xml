@@ -30,4 +30,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from emp_detail where googleapiid=#{id}
 	</select>
 	
+	<!-- 아이디로 사번 가져오기 -->
+	
+	<select id="selectEmp_Name" resultType="kr.or.epm.VO.EmpJoinEmp_Detail">
+		select emp_no from emp_detail where id=#{id}
+	</select>
+	
+	<!-- 사번으로 사원이름 가져오기 -->
+	<select id="selectEmp_Name_Emp" resultType="kr.or.epm.VO.EmpJoinEmp_Detail">
+	   select emp_name from emp where emp_no=#{emp_no}
+	</select>
+	
 </mapper>
