@@ -14,7 +14,16 @@ public class DeptJoinBonus {
 	private String his_check;
 	private String set_date;
 	private int bonus_percent;
+	private String bonus_check;
 	
+	
+	
+	public String getBonus_check() {
+		return bonus_check;
+	}
+	public void setBonus_check(String bonus_check) {
+		this.bonus_check = bonus_check;
+	}
 	public String getDept_no() {
 		return dept_no;
 	}
@@ -67,8 +76,8 @@ public class DeptJoinBonus {
 	public String toString() {
 		return "DeptJoinBonus [dept_no=" + dept_no + ", branch_no=" + branch_no + ", branch_name=" + branch_name
 				+ ", dept_name=" + dept_name + ", pre_dept_no=" + pre_dept_no + ", his_check=" + his_check
-				+ ", set_date=" + set_date + ", bonus_percent=" + bonus_percent + "]";
+				+ ", set_date=" + set_date + ", bonus_percent=" + bonus_percent + ", bonus_check=" + bonus_check + "]";
 	}
-
+	
 	
 }

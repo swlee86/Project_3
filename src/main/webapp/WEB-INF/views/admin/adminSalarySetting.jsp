@@ -89,9 +89,17 @@
                         <td  style="text-align:center;padding-top:10px;">${list.branch_name}</td>
                         <td  style="text-align:center;padding-top:10px;">${list.dept_name}</td>
                        <td>
-                        	<select class="form-control input-sm">
-                        		<option>미지급</option>
-						        <option>지급</option>
+                        	<select class="form-control input-sm" id="selectbonus${list.dept_no}">
+                        	   <c:choose>
+                        	   		<c:when test="${list.bonus_check ==1}">
+		                        		<option>미지급</option>
+								        <option selected="selected">지급</option>
+						        	</c:when>
+						        	<c:otherwise>
+						        	    <option selected="selected">미지급</option>
+								        <option>지급</option>
+						        	</c:otherwise>
+						        </c:choose>
                             </select>
                         </td>
                     </tr>
