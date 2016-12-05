@@ -96,7 +96,7 @@ public class PageMoveController {
  			}finally{
  				model.addAttribute("mytasklist", mytasklist);
  				System.out.println("mytasklist.size() : "+mytasklist.size());
- 				System.out.println("mytasklist tostirng : "+mytasklist.toString());
+ 				System.out.println("~~~~~~~~~~~~~~~~~~~mytasklist tostirng : "+mytasklist.toString());
  				//model.addAttribute("mytasklistsize", mytasklist.size());
  			}
  			
@@ -135,7 +135,7 @@ public class PageMoveController {
  		}else{
  			try{
  				pjlist = projectservice.selectPj_callendar(emp_no); 				
- 				System.out.println("프로젝트 리스트 사이즈 : " +pjlist.size());
+ 				System.out.println("@@@@@@@프로젝트 리스트 사이즈 : " +pjlist.size());
  			}catch(Exception e){
  				System.err.println(e.getMessage());
  			}finally{
