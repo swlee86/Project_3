@@ -125,7 +125,7 @@ public class AdminController {
 		return "admin.admin_redirect";
 	}
 	
-	//시간 등록 페이지 이동
+	/*//시간 등록 페이지 이동
 	@RequestMapping("/adminTimeInfo.do")
 	public String timeInfo(){
 		return "admin.adminTimeInfo";
@@ -134,7 +134,7 @@ public class AdminController {
 	@RequestMapping("/adminCommute.do")
 	public String commuteTime(){
 		return "admin.adminCommute";
-	}
+	}*/
 
 	//급여 관리 메뉴 목록 페이지
 	@RequestMapping("/adminSalaryView.do")
@@ -215,8 +215,13 @@ public class AdminController {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
 		Date currentTime = new Date( );
-		String dTime = formatter.format ( currentTime );
-		System.out.println ("연월 : "+dTime );
+		String dTime2 = formatter.format ( currentTime );
+		System.out.println ("연월 : "+dTime2 );
+		String[] dTimearray = dTime2.split("-");
+		int darrayS = Integer.parseInt(dTimearray[1])-1;
+		String dTime =dTimearray[0]+"-"+darrayS;
+		System.out.println(" 한달전 ????????????????"+dTime);
+		
 		
 		List<PayList> Commutelist = commuteservice.selectCommute_all_Close(dTime);
 		
@@ -229,16 +234,39 @@ public class AdminController {
 	
 	//관리자 - 근태마감 - 확정 하기
 	@RequestMapping(value="/commuteAdminEnd.do", method=RequestMethod.POST)
-	public String CommuteEnd(String chkhidden){
+	public String CommuteEnd(String hiddenCommute, Model model){
 		//commute_no 뽑아서 배열에 담아둠
-		String[] commute_no = chkhidden.split(",");
+		String[] commute_no = hiddenCommute.split(",");
+		
 		for(int i = 0; i < commute_no.length; i++){
 			System.out.println("근태 마감 확정 컨트롤러 입니다.  : :::: "+commute_no[i]);
 		}
 		
-		int result = commuteservice.updateCommute_mgr_check(commute_no);
+		int result=0;
 		
-		return null;
+		String link = null;
+		String msg = null;
+		try{
+			for(int i=0; i<commute_no.length; i++){
+				result = commuteservice.updateCommute_mgr_check(commute_no[i]);
+			}
+			
+		}catch (Exception e) {
+			e.getMessage();
+		}finally{
+			if(result>0){
+				link = "CommuteAdmin.do";
+				msg = "급여 마감이 완료되었습니다.";
+			}else{
+				link = "CommuteAdmin.do";
+				msg = "급여 마감에 실패하였습니다.";
+			}
+			model.addAttribute("link", link);
+			model.addAttribute("msg", msg);
+		}
+		
+		
+		return "admin.admin_redirect";
 	}
 	
 	//관리자 > 급여관리 > 급여 기본 정보 수정

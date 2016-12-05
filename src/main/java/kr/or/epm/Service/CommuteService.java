@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.CommuteDAO;
+import kr.or.epm.DAO.PayDAO;
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.PayList;
@@ -133,11 +134,18 @@ public class CommuteService {
 	}
 	
 	//관리자용 - 근태 마감  확인 - 
-	public int updateCommute_mgr_check(String[] commute_no) {
-
+	public int updateCommute_mgr_check(String commute_no) {
+		System.out.println("근태 마감 확정");
+		int result=0;
+		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
+	    result = dao.updateCommute_Close(commute_no);
+	    System.out.println(" 서비스  근태 마감 resulttttttttttttttttttt: "+result);
+	    if(result>0){
+	    	
+	    }
+	    
+		return result;
 		
-		
-		return 0;
 	}
 	
 	//오늘의 근태정보 조회
@@ -384,7 +392,7 @@ public class CommuteService {
 		return emp;
 	}
 	
-	//근태 마감 관리 - > 서비스
+	//근태 마감 관리 리스트 - > 서비스
 	public List<PayList> selectCommute_all_Close(String dTime){
 		
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class); 

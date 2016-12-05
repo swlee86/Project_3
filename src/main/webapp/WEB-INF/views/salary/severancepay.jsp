@@ -14,7 +14,7 @@
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.do">홈</a></li>
 					<li><span>급여 관리</span></li>
-					<li><a href="severancepay.do">퇴직급 계산</a></li>
+					<li><a href="severancepay.do">퇴직금 계산</a></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">퇴직금 계산</h2>

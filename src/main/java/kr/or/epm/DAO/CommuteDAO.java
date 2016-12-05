@@ -74,8 +74,11 @@ public interface CommuteDAO {
 	//아이디로 회원정보 가져오기
 	public Emp selectInfoSearch(String id);
 
-	//관리자 > 근태 마감.
+	//관리자 > 근태 마감 페이지 리스트
 	public List<PayList> selectCommute_all_Close(String dTime);
+	
+    //관리자 > 근태 마감 확정
+	public int updateCommute_Close(String commute_no);
 	
 	
 }

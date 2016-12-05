@@ -184,11 +184,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select commute_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, mgr_check
    from emp e join position p
    on e.position_no = p.position_no
-  join (select commute_no, emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time, mgr_check
-         from commute
-         where to_char(to_date(regdate), 'yyyy-mm') =#{param1}
-         group by emp_no, mgr_check, commute_no) c
-   on e.emp_no = c.emp_no
+  join (select g.emp_no,g.acc_commute_time,g.acc_add_time,commute_no,mgr_check from (select emp_no,max(acc_commute_time) as acc_commute_time,max(acc_add_time) as acc_add_time 
+        from commute where substr(regdate, 0,7)=#{param1} group by emp_no) g 
+        join commute c
+        on g.emp_no = c.emp_no and g.acc_commute_time = c.acc_commute_time and g.acc_add_time = c.acc_add_time
+        ) f 
+   on e.emp_no = f.emp_no
    join (select e.emp_no, b.branch_name, d.dept_name, l.low_dept_name
          from emp e join low_dept l
          on e.low_dept_no = l.low_dept_no
@@ -198,5 +199,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          on b.branch_no = d.branch_no) d
    on e.emp_no = d.emp_no
 	</select>
+	
+	<!-- 관리자 급여 마감 확정 -->
+	<update id="updateCommute_Close" parameterType="String">
+	  update commute set mgr_check='1' where commute_no=#{commute_no}
+	</update>
 	
 </mapper>
