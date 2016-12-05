@@ -607,8 +607,7 @@ $(function(){
 <script>
 
 	$(function(){
-		console.log("######################### :  new Date()" + (new Date().getDate()-1));
-		console.log("@@@@@@@@@@@@@@@@@@@@@@@ " + (2016-12-05 <= (new Date().getDate()-1)));
+			
 	    // Initialize Example 1
 	    $('#example1').footable();
 	    
@@ -640,10 +639,14 @@ $(function(){
 		         dateFormat: 'yy-mm-dd',
 		         changeYear: true,
 		         beforeShowDay: function(date){
-		        	 if(date <= new Date()) return [false];
+		        	var loadDt = new Date();
+		     		var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+		        	 
+		        	 if(date < dayday) return [false];  //선택못해
 		        	 return [true];
 		         },
 		         onSelect: function(selected) {
+		        	 
 		        	 $('.formendDate').datepicker("option","minDate", selected)
 		         }
 		});	
@@ -658,7 +661,10 @@ $(function(){
 	         dateFormat: 'yy-mm-dd',
 	         changeYear: true,
 	         beforeShowDay: function(date){
-	        	 if(date <= new Date()) return [false];
+	        	 var loadDt = new Date();
+		     	 var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+		     	 
+	        	 if(date < dayday) return [false];
 	        	 return [true];
 	         }, 
 	         onSelect: function(selected) {
@@ -666,12 +672,6 @@ $(function(){
 	        }
 		});
 
-/* 		function noBefore(date){  // 이전 날짜들은 선택막기
-		    if (date < new Date())
-		        return [false];
-		    return [true];
-		}
- */
 		$('#contact').submit(function(){
 		
 			$.ajax(
