@@ -202,7 +202,7 @@
                 		${ br.draft_date } 
            	 	</div>
             	<div style="margin-left: 2%;">
-                	<a href="forum_details.html"><h4> ${ br.draft_title } </h4></a>
+                	<a href="break_detail.do?draft_no=${ br.draft_no }"><h4> ${ br.draft_title } </h4></a>
             	</div>
             </div>
             <div class="col-md-2 forum-info" style="margin-top: 7px;">

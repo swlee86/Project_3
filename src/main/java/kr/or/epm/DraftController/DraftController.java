@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.DraftService;
 import kr.or.epm.VO.Break;
+import kr.or.epm.VO.Common;
 import kr.or.epm.VO.Cooperation;
 import kr.or.epm.VO.Draft_line;
 import kr.or.epm.VO.Draft_ref;
@@ -214,7 +215,13 @@ public class DraftController {
 		// 협조문 상세 가져오기
 		Cooperation detail = service.selectCooperation_detail(draft_no);
 		model.addAttribute("detail", detail);
-
+		
+		String low_dept_no = detail.getLow_dept_no();
+		
+		// 협조문 수신부서 상세 가져오기
+		Common attach = commonservice.selectAttach(low_dept_no);
+		model.addAttribute("attach", attach);
+		
 		// 결재라인 가져오기
 		List<Draft_line> linedetail = service.selectDraft_line(draft_no);
 		model.addAttribute("linedetail", linedetail);
@@ -235,6 +242,7 @@ public class DraftController {
 	}
 	
 	// 휴가신청서 상세
+	@RequestMapping(value="break_detail.do", method=RequestMethod.GET)
 	public String break_detail(String draft_no, Model model) {
 		
 		System.out.println("CONTROLLE] 휴가 신청서 상세 페이지");

@@ -26,7 +26,52 @@ public class Break {
 
 	private String emp_name;
 	private String rec_check;
+	private String position_name;
+	private String branch_name;
+	private String dept_name;
+	private String low_dept_name;
+	private String cell_phone;
 	
+	public String getCell_phone() {
+		return cell_phone;
+	}
+
+	public void setCell_phone(String cell_phone) {
+		this.cell_phone = cell_phone;
+	}
+
+	public String getPosition_name() {
+		return position_name;
+	}
+
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
+	}
+
+	public String getBranch_name() {
+		return branch_name;
+	}
+
+	public void setBranch_name(String branch_name) {
+		this.branch_name = branch_name;
+	}
+
+	public String getDept_name() {
+		return dept_name;
+	}
+
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
+
+	public String getLow_dept_name() {
+		return low_dept_name;
+	}
+
+	public void setLow_dept_name(String low_dept_name) {
+		this.low_dept_name = low_dept_name;
+	}
+
 	public String getRec_check() {
 		return rec_check;
 	}

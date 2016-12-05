@@ -276,7 +276,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 협조문 상세 -->
 	<select id="selectCooperation_detail" resultType="kr.or.epm.VO.Cooperation">
 		select d.draft_no, d.cg_no, draft_title, draft_content, d.emp_no, draft_date, file_name, step_no,
-       		   c.branch_no, c.dept_no, c.low_dept_no,
+       		   c.low_dept_no,
        		   e.emp_name, l.branch_name, l.dept_name, l.low_dept_name
 		from draft d join cooperation c
 		on d.draft_no = c.draft_no
@@ -288,10 +288,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 휴가 신청서 상세 -->
-	<select id="selectBreak_detail">
+	<select id="selectBreak_detail" resultType="kr.or.epm.VO.Break">
 		select d.draft_no, d.cg_no, draft_title, draft_content, d.emp_no, draft_date, file_name, step_no,
-       	   	   break_start, break_end, break_term, break_cg_name,
-       		   e.emp_name, l.branch_name, l.dept_name, l.low_dept_name
+       	   	   break_start, break_end, break_term, break_cg_name, cell_phone,
+       		   e.emp_name, l.branch_name, l.dept_name, l.low_dept_name, p.position_name
 		from draft d join break b
 		on d.draft_no = b.draft_no
 		join break_cg c
@@ -300,6 +300,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on d.emp_no = e.emp_no
 		join low_dept l 
 		on e.low_dept_no = l.low_dept_no
+    	join position p
+    	on e.position_no = p.position_no
 		where d.draft_no = #{draft_no}
 	</select>
 	

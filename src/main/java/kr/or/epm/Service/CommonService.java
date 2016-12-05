@@ -11,6 +11,7 @@ import kr.or.epm.DAO.BranchDAO;
 import kr.or.epm.DAO.CommonDAO;
 import kr.or.epm.DAO.DeptDAO;
 import kr.or.epm.VO.Branch;
+import kr.or.epm.VO.Common;
 import kr.or.epm.VO.Dept;
 
 @Service
@@ -35,6 +36,15 @@ public class CommonService {
 		emp_name = dao.selectEmp_name(id);
 		
 		return emp_name;
+	}
+	
+	// 하위부서번호로 지점명, 부서명, 하위부서명 출력
+	public Common selectAttach(String low_dept_no) {
+		
+		CommonDAO dao = sqlsession.getMapper(CommonDAO.class);
+		Common common = dao.selectAttach_for_low_dept_no(low_dept_no);
+		
+		return common;
 	}
 	
 }

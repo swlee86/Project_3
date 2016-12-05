@@ -25,8 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where emp_no = #{emp_no}
 	</select>
 	
-	<!-- 하위부서번호로 지점명, 부서명, 하위부서명 가져오기 -->
-	<select id="selectAttach" resultType="kr.or.epm.VO.Common">
+	<!-- 사원번호로 지점명, 부서명, 하위부서명 가져오기 -->
+	<select id="selectAttach_for_emp_no" resultType="kr.or.epm.VO.Common">
 		select b.branch_name, d.dept_name, l.low_dept_name
 		from emp e join low_dept l
 		on e.low_dept_no = l.low_dept_no
@@ -35,6 +35,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join branch b
 		on b.branch_no = d.branch_no
 		where e.emp_no = #{emp_no}
+	</select>
+	
+	<!-- 하위부서번호로 지점명, 부서명, 하위부서명 가져오기 -->
+	<select id="selectAttach_for_low_dept_no" resultType="kr.or.epm.VO.Common">
+		select branch_name, dept_name, low_dept_name
+		from low_dept
+		where low_dept_no = #{low_dept_no}
 	</select>
 	
 	<select id="selectEmp_no" resultType="String">

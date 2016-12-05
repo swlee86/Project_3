@@ -12,8 +12,7 @@
             <div class="col-lg-12">
                 <div class="hpanel blog-article-box" id="print">
                     <div class="panel-heading" style="padding-bottom: 15px;">
-                        <h4>2 P M</h4>
-                        <small>경기도 성남시 분당구 삼평동 대왕판교로 670길(구 682번지) 유스페이스2 B동 8층 / 070.5039.5803,5807 / FAX 070.7614.3450</small>
+                        <h4>협 조 문</h4>
                     </div>
                     <div class="panel-body" style="color: black; font-size: 13px; border-top: 5px solid #34495E;">
                        <table width="100%" id="datatable">
@@ -25,22 +24,22 @@
                        		</tr>
                        		<tr height="14px"></tr>
                        		<tr>
-                       			<td class="flag">발신 지점</td>
-                       			<td width="20%">${ detail.branch_name }</td>
-                       			<td width="13%" class="flag">발신 부서</td>
-                       			<td>${ detail.dept_name } &nbsp;&nbsp; ${ detail.low_dept_name }</td>
+                       			<td class="flag">발신</td>
+                       			<td colspan="3">${ detail.branch_name } &nbsp;&nbsp; ${ detail.dept_name } &nbsp;&nbsp; ${ detail.low_dept_name }</td>
                        		</tr>
                        		<tr>
                        			<td class="flag">발신자 사번</td>
-                       			<td>${ detail.emp_no }</td>
-                       			<td class="flag">발신자 명</td>
+                       			<td width="30%">${ detail.emp_no }</td>
+                       			<td class="flag" width="13%">발신자 명</td>
                        			<td>${ detail.emp_name }</td>
                        		</tr>
                        		<tr>
-                       			<td class="flag">수신처</td>
-                       			<td>${ detail.rec_place }</td>
-                       			<td class="flag">수신자 명</td>
-                       			<td>${ detail.rec_person }</td>
+                       			<td class="flag">발신일</td>
+                       			<td colspan="3">${ detail.draft_date }</td>
+                       		</tr>
+                       		<tr>
+                       			<td class="flag">수신</td>
+                       			<td>${ attach.branch_name } &nbsp;&nbsp; ${ attach.dept_name } &nbsp;&nbsp; ${ low_dept_name }</td>
                        		</tr>
                        		<tr height="35px"></tr>
                        		<tr>
