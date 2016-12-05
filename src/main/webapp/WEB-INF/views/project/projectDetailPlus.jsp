@@ -67,7 +67,7 @@
 	                     							
 	                     							</span>
 	                        						<span class="input-group-btn">
-														<button class="organization_add pjd_count_plus btn input-sm btn-default "  type="button"  ><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
+														<button class="organization_add2 pjd_count_plus btn input-sm btn-default "  type="button"  ><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
 													</span>
 	                   	  						</span>
 											</td>
@@ -134,7 +134,7 @@
 											<div class="input-group">
 												<input type="text" class="form-control input-sm" id="con_ins_org_sea_query" />
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-default input-sm con_ins_org_sea_btn_plus pjd_plus"  style="color: #fd7d86">
+													<button type="button" class="btn btn-default input-sm con_ins_org_sea_btn_plus "  value="" style="color: #fd7d86">
 														<b><span class="fa fa-search"></span></b>
 													</button>
 												</span>
@@ -232,10 +232,11 @@ function calendar(){
 	    });
 
 	    //조직도
-	      $('.organization_add').click(function() {
+	      $('.organization_add2').click(function() {
 	    	console.log("$(this) : "+$(this));
 	    	console.log("조직도 버튼 누른 value: " + $(this).attr('value'));
 	    	
+	    	sip = $(this).attr('value');
 	    	pjd_count = $(this).attr('value');
 	    	console.log("pjd_count : "+pjd_count);
 	    	$('.multiDiv_'+pjd_count).empty();
@@ -276,14 +277,22 @@ function calendar(){
 	   		})
 	    }); 
 	    
+
+	  	
+	 }
+
+
+	 	var sip;
+	 	
+	$(function(){
 	    
 	  	//주소록 추가시  검색해서 보여주는 script
 	      $('.con_ins_org_sea_btn_plus').click(function(){ 
-	    	console.log('con_ins_org_sea_btn_plus : ' + $(this).attr('value'));
-		    
+	    	  console.log("sipsipsipsipsip sipsipsipsipsip: "+sip);
+	   
 	      	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
 	      	
-	    
+	      	pjd_count =sip;
 	          
 	         $.ajax(
 	      			{
@@ -321,12 +330,7 @@ function calendar(){
 	      				}		
 	      			)
 	          });
-	  	
-	 }
-
-
-	 	
-		
+	});
 	
 	
 	
@@ -503,7 +507,7 @@ function calendar(){
 	         });
 	         console.log("@@@@@@@ 사원  정보: "+empInfoArray);
 	         console.log("@@@@@@@ 배열 사이즈: "+empInfoArray.length);
-	            if(empInfoArray.length > 1){
+	            if(empInfoArray.length >= 1){
 	               //화면에 보이는 input 은 그냥 때려넣음
 	               //$("#multiDiv").val(empInfoArray[0].emp_no);
 	               //$('#multiDiv').val(empInfoArray[0].emp_name);

@@ -41,7 +41,7 @@ public interface OrganizationDAO {
 	
 	// 사원정보 출력하기
 	// 사용
-	public List<Organization> selectEmpInfo(String low_dept_no);
+	public List<Organization> selectEmpInfo(String low_dept_no, String id);
 	
     //조직도에 사용될 모든 사원정보 출력하기
     public List<Organization> selectEmpInfoAll();
