@@ -10,15 +10,18 @@
 					<i class="fa fa-arrow-up"></i>
 				</div>
 			</a>
-
+	
+			<h2 class="font-light m-b-xs"> 
+			<i onclick="location.href='adminSalaryView.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;금월 급여 마감 관리</h2>
+		    
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
-				<div class="p-sm">
-					<span class="vertical-date pull-right"> Saturday <br /> <small>12:17:43
-							PM</small>
-					</span>
-				</div>
+				<ol class="hbreadcrumb breadcrumb">
+					<li><a href="index.do">홈</a></li>
+					<li><span>급여 관리</span></li>
+					<li><a href="adminSalary.do">금월 급여 마감 관리</a></li>
+				</ol>
 			</div>
-			<h2 class="font-light m-b-xs"> <i onclick="location.href='adminSalaryView.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;당월 지급 예정 급여 내역</h2>
+		
 		</div>
 	</div>
 </div>
