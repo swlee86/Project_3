@@ -195,8 +195,11 @@ $(function(){
                 <div class="panel-body" style="background: ${first_memo.color};" id="memo_detail_panel_body_color">					
 					<c:choose>
 						<c:when test="${empty first_memo}">
+						 <div class="tab-content">
+							<a  href="#"id="first_memo_plus"><span class="glyphicon glyphicon-plus"></span></a> 
 							<div class="text-center">
-		                        	<a href="removememo.do?memo_no=${first_memo.memo_no}" id="first_memo_delete"><b><span class="glyphicon glyphicon-trash"></span></b></a> 메모가 없습니다.
+		                        	  메모가 없습니다.
+		                    </div>
 		                    </div>
 	                    </c:when>
 	                    <c:otherwise>
