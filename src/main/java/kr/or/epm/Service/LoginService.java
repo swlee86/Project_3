@@ -25,7 +25,7 @@ public class LoginService {
 	private SqlSession sqlSession;
 	
 	//사용자 이름 구하는것 - web socket 채팅할때 사용할 것
-	public EmpJoinEmp_Detail selectUserName(String id){
+	public String selectUserName(String id){
 		
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		//사번 
@@ -34,7 +34,7 @@ public class LoginService {
 		EmpJoinEmp_Detail emp_name = dao.selectEmp_Name_Emp(emp.getEmp_no());
 		System.out.println(" 사원 이름 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+emp_name.getEmp_name());
 		
-		return null;
+		return emp_name.getEmp_name();
 	}
 	
 	
