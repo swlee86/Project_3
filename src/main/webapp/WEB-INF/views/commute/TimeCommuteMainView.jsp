@@ -41,24 +41,19 @@
 
 					<div class="row">
 						<div class="col-lg-12">
-
-							<form action="" class="form-inline">
-								<div class="form-group">
-									<label class="form-control col-md-8">접속 IP : ${ip}</label>
-									<div class="col-md-2">
-										<input class="btn btn-default" type="button" value="출근" id="startWorkBtn">
-									</div>
-									<div class="col-md-2">
-										<input class="btn btn-default" type="button" value="퇴근" id="endWorkBtn">
-									</div>
-									<!-- <div class="col-md-2">
-										<input class="btn btn-default" type="button" value="조퇴" id="stopWorkBtn">
-									</div> -->
-								</div>
-							</form>
+							<div class="col-md-4">
+								<input class="btn btn-info" type="button" value="출근" id="startWorkBtn">
+									 &nbsp;&nbsp;&nbsp;
+								<input class="btn btn-primary2" type="button" value="퇴근" id="endWorkBtn">
+							</div>
 						</div>
 					</div>
-
+					<br>
+					<div class="panel-body">
+		                <div>
+		                    <div id="CommuteChart"></div>
+		                </div>
+		            </div>
 					<br />
 					<div class="table-responsive">
 						<table cellpadding="1" cellspacing="1"
@@ -79,7 +74,6 @@
 							</tr>
 						</table>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -87,8 +81,6 @@
 </div>
 
 <script src="vendor/jquery/dist/jquery.min.js"></script>
-
-
 <script>
 	//전역변수 - 시작 날짜 시간 
 	var startWorkStatus = new Date();
@@ -222,6 +214,9 @@
 			workingTime(stTime, endTime);
 		}); */
 
+		
+		
+				
 	});
 
 	//근무시간 구하는 함수.
@@ -313,4 +308,69 @@
 		}
 		return i;
 	}
+</script>
+
+
+
+<!-- 차트 -->
+<link rel="stylesheet" href="vendor/c3/c3.min.css" />
+<script src="vendor/d3/d3.min.js"></script>
+<script src="vendor/c3/c3.min.js"></script>
+<script>
+$(function(){
+	var jsondata = ${chartcommute};
+	var regdate = [];
+	var c_time = [];
+	var a_time = [];
+	c_time.push('정상근무시간');
+	a_time.push('추가근무시간');
+	 $.each(jsondata.chartlist,function(index,obj){
+		 regdate.push(obj.regdate);
+		 c_time.push(obj.c_time);
+		 a_time.push(obj.a_time);
+		 console.log(obj.regdate +"/"+obj.c_time+"/"+obj.a_time);
+	 });
+	c3.generate({
+		 bindto: '#CommuteChart',
+		 
+         data:{
+
+             columns: [
+            	 c_time,
+            	 a_time
+             ],
+             colors:{
+            	 정상근무시간: '#62cb31',
+            	 추가근무시간: '#ffb606'
+             },
+             type: 'bar',
+             groups: [
+                 ['정상근무시간', '추가근무시간']
+             ]
+         },
+         axis : {
+             x : {
+            	  type: 'category',
+                  categories: regdate,
+            	 //type : 'category',
+                 //type : 'timeseries',
+                 tick: {
+                     //format: '%Y-%m-%d',
+                     entered: true,
+                   //format: '%Y' // format string is also available for timeseries data
+                 },
+            
+             },
+             y:{
+            	 tick:{
+            		 format : function(d){return d+'분';}
+            	 }
+             }
+         }
+	});
+		
+});
+
+
+
 </script>

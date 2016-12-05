@@ -4,6 +4,20 @@
 <!-- 구글 로그인 api Start -->
 <!-- 행아웃 필요 스크립트 -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script>
+$(function(){
+	$('#sidebar').click(function(){
+		
+		$.ajax({
+				url:"/views/inc/rightsidebar.jsp",
+				success:function(result) {
+					$("#header").html(result);
+				}
+			});
+	});
+});
+</script>
 <meta name="google-signin-client_id" content="279959715456-km9o7eijb5j8sr8kn9i98dtmitu5l1tt.apps.googleusercontent.com">
 <!-- 구글 로그인 api End -->
 <!-- Header -->

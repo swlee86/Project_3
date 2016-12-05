@@ -50,8 +50,9 @@ public class PageMoveController {
 		//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
 		String id = principal.getName();
 		System.out.println("아이디  : "+id);
-		EmpJoinEmp_Detail empinfo = service.selectUserName(id);
-		///
+		String empinfo = service.selectUserName(id);
+		session.setAttribute("userName", empinfo);
+		/////////////////////////////////
 		
 		
 		

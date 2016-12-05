@@ -40,10 +40,14 @@ public class ContactController {
 	
 	//주소록 사원 등록시 검색해서 부르는 함수
 	@RequestMapping(value = "/contact_insert_search.do", method=RequestMethod.POST)
-	public View  contact_insert_search(String field,String query, Model model){
+	public View  contact_insert_search(Principal principal, String field,String query, Model model){
 		System.out.println("contact_insert_search() 컨트롤 탐");	
 		System.out.println("field : "+field+"/query :"+query);
-		List<Emp>  emp = contactService.contact_insert_search(field,query);	
+		
+		String id= principal.getName();
+		System.out.println("id : "+id);
+		
+		List<Emp>  emp = contactService.contact_insert_search(field,query,id);	
 		System.out.println("emp tostring : "+emp.toString());
 		System.out.println("emp siee:"+emp.size());
 		model.addAttribute("emp", emp);

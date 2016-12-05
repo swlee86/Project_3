@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select emp_no, emp_name, birth, branch_name, low_dept_name, dept_name, cell_phone
       from emp e join low_dept d
       on d.low_dept_no = e.low_dept_no
-      where d.low_dept_no = #{low_dept_no}
+      where d.low_dept_no = #{param1} and e.emp_no ! = ( select emp_no from emp_detail where id=#{param2})
    </select>
    
    <!-- 부서를 출력하기 위해 부서번호 가져오기 -->

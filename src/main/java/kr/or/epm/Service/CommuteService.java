@@ -17,6 +17,8 @@ import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.PayList;
 import kr.or.epm.VO.Set_time;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 
 
@@ -401,5 +403,46 @@ public class CommuteService {
 		return list;
 	}
 
-	
+	//차트에 이용하는 근무시간, 추가근무시간
+	public JSONObject selectChartCommute(String emp_no){
+		System.out.println("selectChartCommute서비스 들어옴");
+		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
+		List<Commute> chartcommutelist = null;
+		chartcommutelist = dao.selectChartCommute(emp_no);
+		System.out.println("차트 : " + chartcommutelist.size());
+		
+		JSONObject jsonObject = new JSONObject();
+		JSONArray array = new JSONArray();
+		
+		for(int i = 0; i < chartcommutelist.size(); i++){
+			String c_time = chartcommutelist.get(i).getCommute_time();
+			String a_time = chartcommutelist.get(i).getAdd_time();
+			
+			if(c_time != null && a_time != null){
+				String c_time_h = c_time.substring(0,2);
+				String c_time_m = c_time.substring(3,5);
+				int c_time_parse_min = (Integer.parseInt(c_time_h)*60) + Integer.parseInt(c_time_m);
+				System.out.println("c_time : " + c_time_parse_min);
+				
+				String a_time_h = a_time.substring(0,2);
+				String a_time_m = a_time.substring(3,5);
+				int a_time_parse_min = (Integer.parseInt(a_time_h)*60) + Integer.parseInt(a_time_m);
+				System.out.println("a_time : " + a_time_parse_min);
+				
+				int c_time_result = c_time_parse_min-a_time_parse_min;
+				
+				JSONObject obj = new JSONObject();
+				obj.put("regdate", chartcommutelist.get(i).getRegdate());
+				obj.put("c_time", c_time_result);
+				obj.put("a_time", a_time_parse_min);
+				
+				array.add(obj);
+			}
+		
+			
+		}
+		
+		jsonObject.put("chartlist", array);
+		return jsonObject;
+	}
 }

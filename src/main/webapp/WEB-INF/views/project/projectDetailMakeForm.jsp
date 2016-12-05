@@ -12,6 +12,10 @@
 	$('.showup_first').click(function(){
 		$('.pdplus_0').slideDown();
 	});
+	
+
+	
+	
 });	 
 </script>
 
@@ -90,16 +94,19 @@
 										<tr>
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
 											<td>
-												<span class="input-group">
-	                     							<!-- <input type="text" class="form-control input-sm" id="rec_emp_name" name="pjd[0].rec_emp_name"/>
-	                     							<input type="hidden" name="pjd[0].rec_emp_no" id="rec_emp_no"> -->
+											<div class="col-md-3">
+											<div class="form-inline">
+												
+												<!-- <span class="input-group">      -->                							
 	                     							<span class="multiDiv_0">
 	                     							
 	                     							</span>
-	                        						<span class="input-group-btn">
+	                        						<span class="">
 														<button class=" btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
 													</span>
-	                   	  						</span>
+	                   	  					<!-- 	</span> -->
+	                   	  						</div>
+	                   	  						</div>
 											</td>
 										</tr>																	
 									
@@ -125,7 +132,7 @@
 </div>    
 
 
-<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade hmodal-success" id="myModal7" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-md">
       <div class="modal-content">
          <div class="color-line"></div>
@@ -135,29 +142,29 @@
          <div class="modal-body">
          	<!-- <div class="hpanel"> -->
 	         	<ul class="nav nav-tabs">
-	                <li class="active"><a data-toggle="tab" href="#tab-1"><span style="font-weight: 600;font-size:13px">조직도</span></a></li>
-	                <li class=""><a data-toggle="tab" href="#tab-2"><span style="font-weight: 600;font-size:13px">검색</span></a></li>
+	                <li class="active"><a data-toggle="tab" href="#tabp-1"><span style="font-weight: 600;font-size:13px">조직도</span></a></li>
+	                <li class=""><a data-toggle="tab" href="#tabp-2"><span style="font-weight: 600;font-size:13px">검색</span></a></li>
 	            </ul>
 	        	<div class="tab-content">
-	        		<div id="tab-1" class="tab-pane active">
+	        		<div id="tabp-1" class="tab-pane active">
 	        			<div class="panel-body">
 	        				<div class="row">  
-				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="organization">
+				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="porganization">
 				                  
 				               </div>   
-				               <div class=" col-md-8" id="empList" >
+				               <div class=" col-md-8" id="emppList" >
 				                  	
 				               </div>
 				            </div>
 	        			</div>
 	        		</div>
-	        		<div id="tab-2" class="tab-pane">
+	        		<div id="tabp-2" class="tab-pane">
 	        			<div class="panel-body">
 	        				<div class="row">   
 				               <div class="row"> 
 									<div class="col-md-3">
 										<div class="form-inline">
-											<select class="form-control input-sm" id="con_ins_org_sea_field">
+											<select class="form-control input-sm" id="conp_ins_org_sea_field">
 												<option value="emp_name">사원명</option>
 												<option value="low_dept_name">하위부서명</option>
 											</select>
@@ -168,7 +175,7 @@
 										<div class="form-inline">
 											<div class="input-group">
 											<input type="hidden" id="con_ins_org_sea_btn_sel" value="2">
-												<input type="text" class="form-control input-sm" id="con_ins_org_sea_query" />
+												<input type="text" class="form-control input-sm" id="conp_ins_org_sea_query" />
 												<span class="input-group-btn">
 													<a href="#" class="btn btn-default input-sm" id="con_ins_org_sea_btn" style="color: #fd7d86">
 														<b><span class="fa fa-search"></span></b>
@@ -182,7 +189,7 @@
 				               
 				               <br>
 				               <div class="row">
-					               <div class="col-md-12" id="empList2"  >
+					               <div class="col-md-12" id="emppList2"  >
 					                  	
 					               </div>
 				               </div>   
