@@ -513,6 +513,9 @@ $(function(){
 					$('.pjd_content_plus').attr('name','pjd[' + pjd_count + '].pjd_content');
 					$('.pjd_content_plus').removeClass('pjd_content_plus');
 					
+					$('.pjd_plus').attr('value',pjd_count);
+					$('.pjd_plus').removeClass('pjd_plus');
+					
 					$('#pjd_count').val(pjd_count);
 					
 				}

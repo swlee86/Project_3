@@ -134,9 +134,9 @@
 											<div class="input-group">
 												<input type="text" class="form-control input-sm" id="con_ins_org_sea_query" />
 												<span class="input-group-btn">
-													<a href="#" class="btn btn-default input-sm" id="con_ins_org_sea_btn" style="color: #fd7d86">
+													<button type="button" class="btn btn-default input-sm con_ins_org_sea_btn_plus pjd_plus"  style="color: #fd7d86">
 														<b><span class="fa fa-search"></span></b>
-													</a>
+													</button>
 												</span>
 											</div>
 										</div>
@@ -235,14 +235,17 @@ function calendar(){
 	      $('.organization_add').click(function() {
 	    	console.log("$(this) : "+$(this));
 	    	console.log("조직도 버튼 누른 value: " + $(this).attr('value'));
+	    	
 	    	pjd_count = $(this).attr('value');
 	    	console.log("pjd_count : "+pjd_count);
 	    	$('.multiDiv_'+pjd_count).empty();
-	    	
-	   		var  empSelectNumber = 2;
-			var litag = "<ui style='list-style:none;''>";   		
-			$('#organization').empty();
+	    	$('#organization').empty();
 			$('#empList').empty();
+			$('#empList2').empty();
+			$('#con_ins_org_sea_query').val('');
+			
+	   		var  empSelectNumber = 2;
+			var litag = "<ui style='list-style:none; margin-left:-40px;''>";   		
 	             
 	         	$.ajax({
 	   			url : "taskWriteModal.do",
@@ -256,22 +259,69 @@ function calendar(){
 	   				});
 	
 	   				$.each(departMent, function(index) {
-	   					litag += "<li onclick='seeDepart2("+pjd_count+", this,"
+	   					litag += "<li style='padding:2px;' onclick='seeDepart2("+pjd_count+", this,"
 	   						litag +=empSelectNumber +","
 	   						litag +=departMent[index].branch_no
-	    				    litag +=")'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li>";
-	    					litag +="</ul>";
+	    				    litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
+	    					//litag +="</ul>";
 	    					
 	    					litag+="<div id='dept_div"
 	    					litag+=departMent[index].branch_no
 	    					litag+="'></div>";
 	       				});
-	
+	   				litag +="</ul>";
 	   				$('#organization').html(litag);
 	
 	   			}
 	   		})
 	    }); 
+	    
+	    
+	  	//주소록 추가시  검색해서 보여주는 script
+	      $('.con_ins_org_sea_btn_plus').click(function(){ 
+	    	console.log('con_ins_org_sea_btn_plus : ' + $(this).attr('value'));
+		    
+	      	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
+	      	
+	    
+	          
+	         $.ajax(
+	      			{
+	      				type : "post",
+	      				url  : "contact_insert_search.do",
+	      				data : {
+	      						"field" : $('#con_ins_org_sea_field').val(),
+	      						"query" : $('#con_ins_org_sea_query').val()
+	      				},
+	      				success : function(data){
+	      							console.log(data);
+	      						 	var emp = "";
+	      						 	var  makeTable;
+	      						 	
+	      		                    $.each(data, function(index){
+	      		                    	emp = data[index];
+	      		                        console.log("객체 : "+emp);
+	  									console.log("emp:"+ data[index]);    		                       	
+	      		                    });
+	      		                    
+	      		                    
+	      		                    makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>번호</th><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
+	      		                    
+	      		                    $.each(emp, function(index){
+	      		  	                  //여러명
+	      		  	                   makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td><input type='checkbox'  name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";   		  	                 
+	      		  	               });
+	      		  	               
+	   		                    	makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check("+pjd_count+")>";
+	   		                    	
+	      		                   
+	      		                   $('#empList2').empty();
+	      		                   $('#empList2').append(makeTable); 
+	      					}
+	      				}		
+	      			)
+	          });
+	  	
 	 }
 
 
@@ -288,7 +338,7 @@ function calendar(){
 		    departcho = choose;
 			var div_id = "dept_div"+choose;
 			$("#"+div_id).empty();
-			var litag = "<ui>";
+			var litag = "<ui style='list-style:none; padding:5px;'>";
 		
 			var name = $(obj).text();
 		
@@ -305,19 +355,26 @@ function calendar(){
 						dept = data[index];
 					});
 		
-					$.each(dept, function(index) {
-						litag += "<li onclick='seelow_Depart2("+pjd_count+", this, "
-							litag +=empSelectNumber+","
-						    litag +=dept[index].dept_no
-						    litag +=")'>"+'&nbsp;&nbsp;ㄴ'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
-							litag +="</ul>";
-							
-							litag+="<div id='low_dept_div"
-							litag+=dept[index].dept_no
-							litag+="'></div>";
-					});
-					
-					$("#"+div_id).html(litag);
+					if(firstTree == 0){
+	    				firstTree = 1;	
+	    				
+						$.each(dept, function(index) {
+							litag += "<li onclick='seelow_Depart2("+pjd_count+", this, "
+								litag +=empSelectNumber+","
+							    litag +=dept[index].dept_no
+							    litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
+								//litag +="</ul>";
+								
+								litag+="<div id='low_dept_div"
+								litag+=dept[index].dept_no
+								litag+="'></div>";
+						});
+						litag +="</ul>";
+						$("#"+div_id).html(litag);
+					}else{
+	    				firstTree = 0;
+	    				$("#"+div_id).html();	
+    				}
 				}
 			});
 		}
@@ -326,7 +383,7 @@ function calendar(){
 		function seelow_Depart2(pjd_count, obj,empSelectNumber,departcho) {
 			alert("부서 : "+choose);
 			deptNumber= departcho;
-			var litag = "<ui>";
+			var litag = "<ui style='list-style:none;'>";
 			var div_id = "low_dept_div"+departcho;
 			$("#"+div_id).empty();
 		
@@ -342,15 +399,23 @@ function calendar(){
 					$.each(data, function(index) {
 						low_dept = data[index];
 					});
-					$.each(low_dept, function(index) {
-						litag += "<li onclick='seeEmpMember2("+pjd_count+", this, "
-						litag += empSelectNumber+","
-						litag +=low_dept[index].low_dept_no
-						litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ㄴ'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+					
+					if(secondTree == 0){
+	    				secondTree = 1;
+						$.each(low_dept, function(index) {
+							litag += "<li onclick='seeEmpMember2("+pjd_count+", this, "
+							litag += empSelectNumber+","
+							litag +=low_dept[index].low_dept_no
+							litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+low_dept[index].low_dept_name+"("+low_dept[index].low_dept_no+")</span></li>";
+							
+							
+						});
 						litag +="</ul>";
-						
-					});
-					$("#"+div_id).html(litag);
+						$("#"+div_id).html(litag);
+					}else{
+	    				secondTree = 0;
+	    				$("#"+div_id).html();
+	    			}
 				}
 		
 			});
@@ -369,11 +434,10 @@ function calendar(){
 		   //alert("taskEmpModal : "+low_dept);
 		   //alert("selectNo : " + empSelectNumber);
 		   var makeTable = "";
-		   if(empSelectNumber == 1){
-		    makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
-		   }else{
-		    makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
-		   }
+		   
+		  
+		   makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th><input type='checkbox'></th><th>사번</th><th>이름</th></tr>";
+		  
 		   
 		   $.ajax(
 		         {
@@ -393,6 +457,7 @@ function calendar(){
 		                     makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
 		                  }                 
 		               });
+		               
 		               makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check("+pjd_count+")>";
 		               $('#empList').empty();
 		               $('#empList').append(makeTable);
@@ -450,7 +515,7 @@ function calendar(){
 	               for(var i = 0; i < empInfoArray.length; i++){
 		              console.log("pjd_count: "+ pjd_count + "/ input : " +empInfoArray[i].emp_no +" / "+empInfoArray[i].emp_name);
 	                  input_no += "<input type='hidden' class='form-control' name='pjd[" + pjd_count + "].rec_emp_no' value='"+empInfoArray[i].emp_no+"'>";
-	                  input_name +="<input type='text' class='form-control' name='pjd[" + pjd_count + "].rec_emp_name' value='"+empInfoArray[i].emp_name+"'>";
+	                  input_name +="<input type='text' class='form-control input-sm' name='pjd[" + pjd_count + "].rec_emp_name' value='"+empInfoArray[i].emp_name+"'>";
 	               }
 	              
 	               empInfoArray.splice(0,empInfoArray.length);
