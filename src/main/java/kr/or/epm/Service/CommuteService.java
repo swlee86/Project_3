@@ -147,6 +147,8 @@ public class CommuteService {
 	public int updateCommute_mgr_check(String commute_no, String emp_no) {
 		System.out.println("근태 마감 확정");
 		int result=0;
+		int payinsert_result=0;
+		
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 	    result = dao.updateCommute_Close(commute_no);
 	   
@@ -156,36 +158,69 @@ public class CommuteService {
 	    	EmpDAO empdao = sqlsession.getMapper(EmpDAO.class);
 	    	//1. 기본급여
 	    	Emp emp=empdao.selectEmp(emp_no);
+	    
 	    	//emp_no로 emp에서 연봉 가져오기
 	    	int salary = emp.getSalary()/12;
 	    	
 	    	Pay pay =new Pay();
 	    	//emp > basic_pay(기본급여) 세팅하기---------------------1)
 	    	pay.setBasic_pay(salary);
+	    	System.out.println(" 기본 급여 : =======================1)"+pay.getBasic_pay());
 	    	
 	    	//2.상여금
 	        Low_deptDAO low_deptdao =sqlsession.getMapper(Low_deptDAO.class);
 	        //emp의 low_dept_no로 dept_no 가져오기
 	        LowDeptJoin lowDeptjoin =low_deptdao.selectLow_dept_detail(emp.getLow_dept_no());
 	        String dept_no =lowDeptjoin.getDept_no();
-	        
+	        System.out.println("================================"+dept_no);
 	        DeptDAO deptdao = sqlsession.getMapper(DeptDAO.class);
 	        //dept_no로 상여금 지급하는 부서 가져오기
 	        Set_bonus set_bonus =deptdao.select_bonus_check(dept_no);
+	        
+	        if(set_bonus != null){
+	        System.out.println("if 내부 탑니다!!!!!!!!!!!!!!!!!!!!!!!!");
 	        double bonus_percent = set_bonus.getBonus_percent()/(double)100;
 	        //상여금 구해서 setting----------------------------------2)
 	        int bonus =	(int)(bonus_percent*pay.getBasic_pay());
+	        System.out.println("==========================================뽀너스2) : "+bonus);
 	        pay.setBonus(bonus);
 	        
 	        //3.추가급여
-	        add_Pay(emp, commute_no);
+	        int add_pay=add_Pay(emp, commute_no);
+	        pay.setAdd_pay(add_pay);
 	        
+	        //4.총급여 더하기
+	        int total_pay = pay.getBasic_pay()+pay.getAdd_pay()+pay.getBonus();
+	        System.out.println(" 총급여 ----------------------------------4)"+total_pay);
+	        pay.setTotal_pay(total_pay);
+	        pay.setEmp_no(emp_no);
+	        
+	        //bonus 없는경우
+	        }else{
+	        	pay.setBonus(0);
+	        	System.out.println(" ===========================보너스 : "+pay.getBonus());
+	        	//3. 추가급여
+	        	
+	        	System.out.println("엘스부분탑니다요!!@$@$!@$@!");
+	        	int add_pay=add_Pay(emp, commute_no);
+	        	pay.setAdd_pay(add_pay);
+	        	
+	        	//4. 총급여
+	        	int total_pay = pay.getBasic_pay()+pay.getAdd_pay()+pay.getBonus();
+	        	System.out.println(" 총급여 ----------------------------------4)"+total_pay);
+	        	pay.setTotal_pay(total_pay);
+	        	pay.setEmp_no(emp_no);
+		      	
+	        }
 	    	
-	    	//PayDAO paydao = sqlsession.getMapper(PayDAO.class);
-	    	//result = paydao.insertPay(emp_no);
+	    	PayDAO paydao = sqlsession.getMapper(PayDAO.class);
+	    	
+	    	//급여 insert 결과
+	    	payinsert_result = paydao.insertPay(pay);
+	    	System.out.println(" 최종 %%%%%%%%%%%%%%%%%%%%%%%%% 급여 insert: "+payinsert_result);
 	    }
 	    
-		return result;
+		return payinsert_result;
 		
 	}
 	
@@ -206,6 +241,9 @@ public class CommuteService {
         String acc_add_time = commute.getAcc_add_time();
         System.out.println(" 월 누적 추가근무시간 ========================"+acc_add_time);
         
+        if(acc_add_time.equals("0")){
+        	result=0;
+        }else{	
         //시간 환산하기
         String[] time=acc_add_time.split(":");
         System.out.println(" 시간 배열 ::::::::::::::::::::::::"+time[0]+ " //////"+time[1]);
@@ -213,23 +251,36 @@ public class CommuteService {
         	System.out.println("앞에 붙은 0을 잘라요 [0] ============="+time[0].substring(0));
         		if(time[1].startsWith("0")){
         			System.out.println("앞에 붙은 0을 잘라요 [1]============="+time[1].substring(0));
+        			int hour =Integer.parseInt(time[0].substring(0));
+        			double minute = Integer.parseInt(time[1].substring(0))/(double)60;
+        			double add_time =hour+minute;
+            		result = (int)(add_time * add_pay_cost);
+            		System.out.println(" 최종 추가급여 : ===============3)"+result);
         		}else{
+        			int hour =Integer.parseInt(time[0].substring(0));
+        			double minute = Integer.parseInt(time[1])/(double)60;
+            		double add_time =Integer.parseInt(time[0])+minute;
+            		result = (int)(add_time * add_pay_cost);
+            		System.out.println(" 최종 추가급여 : ===============3)"+result);
         			
         		}
         }else{
         	if(time[1].startsWith("0")){
         		System.out.println("앞에 붙은 0을 잘라요 [1]============="+time[1].substring(0));
         		int hour = Integer.parseInt(time[0]);
-        		
+        		double minute = Integer.parseInt(time[1].substring(0))/(double)60;
+        		double add_time =hour+minute;
+        		result = (int)(add_time * add_pay_cost);
+        		System.out.println(" 최종 추가급여 : ===============3)"+result);
         	}else{
         		//분을 시간으로 환산하기
         		double minute = Integer.parseInt(time[1])/(double)60;
         		double add_time =Integer.parseInt(time[0])+minute;
         		result = (int)(add_time * add_pay_cost);
+        		System.out.println(" 최종 추가급여 : ===============3)"+result);
         	}
+         }
         }
-      
-        
 		return result;
 	}
 	

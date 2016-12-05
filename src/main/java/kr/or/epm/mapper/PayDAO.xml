@@ -11,9 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 급여 등록하기 -->
-	<insert id="insertPay">
+	<insert id="insertPay" parameterType="kr.or.epm.VO.Pay">
 		insert into pay(pay_no, emp_no, basic_pay, severance_pay, bonus, add_pay, total_pay, give_date, master_check)
-		values(pay_seq.nextval, #{emp_no}, #{basic_pay}, #{severance_pay}, #{bonus}, #{add_pay}, #{total_pay}, #{give_date}, '0')
+		values(pay_seq.nextval, #{emp_no}, #{basic_pay}, 0, #{bonus}, #{add_pay}, #{total_pay}, null, '0')
 	</insert>
 
 	<!-- 본인의 급여 내역 조회하기 -->
