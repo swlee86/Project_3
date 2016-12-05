@@ -602,7 +602,7 @@ $(function(){
 	        airMode: true,
 	    }); 
 		
-		//프로젝트 시작일
+		//프로젝트 시작일  유효성 검사//////////////////////////////////////////////
 		$('.formstartDate').datepicker({
 			     changeMonth: true, 
 		         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
@@ -610,10 +610,27 @@ $(function(){
 		         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		         dateFormat: 'yy-mm-dd',
-		         changeYear: true
+		         changeYear: true,
+		         minDate : 0,
+		         onClose: function( selectedDate ) {    
+               // 시작일(fromDate) datepicker가 닫힐때
+               // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                $(".formendDate").datepicker( "option", "minDate", selectedDate );
+		    	 
+		
+		        
+		        $('.formendDate').datepicker("option","beforeShow", function(){
+			        var td = $('.formstartDate').val().split("-");
+			        td[1] = td[1]-1;
+			        
+			        var mDate = new Date(td[0], td[1],td[2]);
+			        var nDate = new Date(td[0], td[1],td[2]);
+			      
+		        });
+		     }   
 		});	
 		
-
+		//종료 날짜 
 		$('.formendDate').datepicker({
 			 changeMonth: true, 
 	         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
@@ -623,7 +640,7 @@ $(function(){
 	         dateFormat: 'yy-mm-dd',
 	         changeYear: true
 		});
- 
+		//////////////////////////////////////////////
 		
 		$('#contact').submit(function(){
 		
