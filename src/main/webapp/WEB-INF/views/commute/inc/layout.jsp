@@ -302,7 +302,7 @@
 						 //번호값 뽑아서 셋팅함
 						  console.log("거른것 : "+commute_no2);
 						 $('#hiddenCommute').val(commute_no2);
-						 return false;
+						 return true;
 					 }else{
 						 alert("근태 마감하실 사원을 선택하세요");
 						 return false;	 
