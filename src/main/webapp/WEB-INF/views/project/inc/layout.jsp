@@ -607,6 +607,8 @@ $(function(){
 <script>
 
 	$(function(){
+		console.log("######################### :  new Date()" + (new Date().getDate()-1));
+		console.log("@@@@@@@@@@@@@@@@@@@@@@@ " + (2016-12-05 <= (new Date().getDate()-1)));
 	    // Initialize Example 1
 	    $('#example1').footable();
 	    
@@ -638,7 +640,7 @@ $(function(){
 		         dateFormat: 'yy-mm-dd',
 		         changeYear: true,
 		         beforeShowDay: function(date){
-		        	 if(date < new Date()) return [false];
+		        	 if(date <= new Date()) return [false];
 		        	 return [true];
 		         },
 		         onSelect: function(selected) {
@@ -656,7 +658,7 @@ $(function(){
 	         dateFormat: 'yy-mm-dd',
 	         changeYear: true,
 	         beforeShowDay: function(date){
-	        	 if(date < new Date()) return [false];
+	        	 if(date <= new Date()) return [false];
 	        	 return [true];
 	         }, 
 	         onSelect: function(selected) {
