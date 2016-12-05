@@ -12,11 +12,11 @@
 			</a>
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
-				<div class="p-sm">
-					<span class="vertical-date pull-right"> Saturday <br /> <small>12:17:43
-							PM</small>
-					</span>
-				</div>
+				<ol class="hbreadcrumb breadcrumb">
+					<li><a href="index.do">홈</a></li>
+					<li><span>급여 관리</span></li>
+					<li><a href="adminSalaryManage.do">급여 기본 정보 관리</a></li>
+				</ol>
 			</div>
 			<h2 class="font-light m-b-xs"> <i onclick="location.href='adminSalaryView.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;급여 기본 정보 관리</h2>
 		</div>
@@ -81,7 +81,7 @@
 									<th style="text-align: center;">은행명</th>
 									<th style="text-align: center;">계좌번호</th>
 									<th style="text-align: center;">연봉</th>
-									<th />
+									<th style="text-align: center;">수정</th>
 								</tr>
 							</thead>
 

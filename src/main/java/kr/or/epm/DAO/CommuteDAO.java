@@ -77,5 +77,6 @@ public interface CommuteDAO {
 	//관리자 > 근태 마감.
 	public List<PayList> selectCommute_all_Close(String dTime);
 	
-	
+	//차트에 사용할 근무시간, 추가근무시간 가져오기 ( 최근 7일 )
+	public List<Commute> selectChartCommute(String emp_no);
 }

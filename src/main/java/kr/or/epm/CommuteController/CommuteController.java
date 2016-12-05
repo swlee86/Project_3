@@ -1,6 +1,7 @@
 package kr.or.epm.CommuteController;
 
 
+import java.io.Console;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import kr.or.epm.VO.Commute;
  */
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.PayList;
+import net.sf.json.JSONObject;
 
 @Controller
 public class CommuteController {
@@ -53,7 +55,7 @@ public class CommuteController {
 		Emp emp = commuteservice.selectInfoSearch(id);
 		
 		String emp_no = emp.getEmp_no();
-		commute =  commuteservice.selectCommute_today(emp_no); // 임시로 emp_no를 91001050로 테스트
+		commute =  commuteservice.selectCommute_today(emp_no);
 		if(commute == null){
 			System.out.println("null임");
 			commute = commuteservice.selectempinfo(emp_no);			
@@ -61,6 +63,13 @@ public class CommuteController {
 			System.out.println("null아님");
 		}
 		
+		
+		//근태 chart : 최근 7일의 정상근무시간, 추가근무시간
+		JSONObject chartcommute = null;
+		chartcommute = commuteservice.selectChartCommute(emp_no);
+		System.out.println(chartcommute.toString());
+		
+		model.addAttribute("chartcommute",chartcommute);
 		model.addAttribute("commute",commute);
 		model.addAttribute("ip",ip);
 		

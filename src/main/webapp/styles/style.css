@@ -1610,7 +1610,7 @@ body {
   }
 }
 #right-sidebar {
-  background-color: #fff;
+  /* background-color: #fff; */
   border-left: 1px solid #e4e5e7;
   position: fixed;
   top: 0;
@@ -1620,9 +1620,10 @@ body {
   right: 0;
   display: none;
   overflow: auto;
+  opacity: 0.8;
 }
 #right-sidebar.sidebar-open {
-  display: block;
+   display: block; 
 }
 .fixed-small-header .small-header {
   position: fixed;

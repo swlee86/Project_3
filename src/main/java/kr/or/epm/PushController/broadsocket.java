@@ -70,10 +70,10 @@ public class broadsocket extends TextWebSocketHandler {
 		    }catch(Exception e){
 		    	
 		    }
-		    
+		    System.out.println("======================== users"+users.keySet());
 	     		//특정 사람 뽑는 부분
 			    for (String mapkey : users.keySet()){
-			    	System.out.println(mapkey);
+			    	System.out.println("mapkey 는 뭔데 : " +mapkey);
 			    	if(mapkey.equals(emp_no)){
 			    		//map에 저장된 session들에게 메세지를 보냄
 			    		System.out.println("Map에서 아이디 뽑음 : " + mapkey + " / " + users.get(mapkey));

@@ -27,4 +27,12 @@ public interface LoginDAO {
 	//구글 로그인 id로 아이디 비밀번호 데이터 받아오기
 	String selectGoogleLoginData(String id);
 	
+	//아이디로 사번 조회하기
+	EmpJoinEmp_Detail selectEmp_Name(String id);
+	
+	//사번으로 이름 조회하기
+	EmpJoinEmp_Detail selectEmp_Name_Emp(String emp_no);
+	
+	//
+	
 }

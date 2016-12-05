@@ -88,7 +88,7 @@
 											<font color="#f05050">*</font> 참조자 사번
 										</th>
 										<td id="task_no_td"><span class="input-group"> <input
-												type="text" class="form-control input-sm" name="emp_no"
+												type="text" class="form-control input-sm" name="emp_no" id="chamjoInput"
 												readonly> <a type="button"
 												class="btn btn-default input-group-addon" id="deptA"> <span
 													style="color: #fd7d86"> <i class="fa fa-user-plus"></i>
@@ -149,8 +149,8 @@
 										onclick="send()">
 								</div>
 							</div>
-							<input type="hidden" id="hiddenEmp_no" value=""> <input
-								type="hidden" id="hiddenMenuName" value="업무">
+							<input type="hidden" id="hiddenEmp_no"> 
+							<input type="hidden" id="hiddenMenuName" value="업무">
 						</form>
 					</div>
 				</div>
@@ -184,45 +184,39 @@
 </div>
  -->
 
-
-<div class="modal fade hmodal-success" id="myModal6" tabindex="-1"
-	role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-md">
-		<div class="modal-content">
-			<div class="color-line"></div>
-			<div class="modal-header"
-				style="height: 50px; padding-top: 10px; padding-bottom: 0px">
-				<h3 class="modal-title">
-					<font color="#6a6c6f" size="4em"><i class="fa fa-table"></i>
-						<b>사원 선택</b></font>
-				</h3>
-			</div>
-			<div class="modal-body">
-				<!-- <div class="hpanel"> -->
-				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#tab-1"><span
-							style="font-weight: 600; font-size: 13px">조직도</span></a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2"><span
-							style="font-weight: 600; font-size: 13px">검색</span></a></li>
-				</ul>
-				<div class="tab-content">
-					<div id="tab-1" class="tab-pane active">
-						<div class="panel-body">
-							<div class="row">
-								<div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;"
-									id="organization"></div>
-								<div class=" col-md-8" id="empList"></div>
-							</div>
-						</div>
-					</div>
-					<div id="tab-2" class="tab-pane">
-						<div class="panel-body">
-							<div class="row">
-								<div class="row">
+<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog modal-md">
+      <div class="modal-content">
+         <div class="color-line"></div>
+         <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
+            <h3 class="modal-title"><font color="#6a6c6f" size="4em"><i class="fa fa-table"></i> <b>사원 선택</b></font></h3>
+         </div>
+         <div class="modal-body">
+         	<!-- <div class="hpanel"> -->
+	         	<ul class="nav nav-tabs">
+	                <li class="active"><a data-toggle="tab" href="#tab-1"><span style="font-weight: 600;font-size:13px">조직도</span></a></li>
+	                <li class=""><a data-toggle="tab" href="#tab-2"><span style="font-weight: 600;font-size:13px">검색</span></a></li>
+	            </ul>
+	        	<div class="tab-content">
+	        		<div id="tab-1" class="tab-pane active">
+	        			<div class="panel-body">
+	        				<div class="row">  
+				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="organization">
+				                  
+				               </div>   
+				               <div class=" col-md-8" id="empList" >
+				                  	
+				               </div>
+				            </div>
+	        			</div>
+	        		</div>
+	        		<div id="tab-2" class="tab-pane">
+	        			<div class="panel-body">
+	        				<div class="row">   
+				               <div class="row"> 
 									<div class="col-md-3">
 										<div class="form-inline">
-											<select class="form-control input-sm"
-												id="con_ins_org_sea_field">
+											<select class="form-control input-sm" id="con_ins_org_sea_field">
 												<option value="emp_name">사원명</option>
 												<option value="low_dept_name">하위부서명</option>
 											</select>
@@ -232,32 +226,34 @@
 									<div class="col-md-6">
 										<div class="form-inline">
 											<div class="input-group">
-												<input type="text" class="form-control input-sm"
-													id="con_ins_org_sea_query" /> <span
-													class="input-group-btn"> <a href="#"
-													class="btn btn-default input-sm" id="con_ins_org_sea_btn"
-													style="color: #fd7d86"> <b><span
-															class="fa fa-search"></span></b>
-												</a>
+												<input type="text" class="form-control input-sm" id="con_ins_org_sea_query" />
+												<span class="input-group-btn">
+													<a href="#" class="btn btn-default input-sm" id="con_ins_org_sea_btn" style="color: #fd7d86">
+														<b><span class="fa fa-search"></span></b>
+													</a>
 												</span>
 											</div>
 										</div>
-									</div>
-
-								</div>
-
-								<br>
-								<div class="row">
-									<div class="col-md-12" id="empList2"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button id="closeModal" type="button" class="btn btn-default btn-sm">닫기</button>
-			</div>
-		</div>
-	</div>
+									</div>	
+									
+				               </div>
+				               
+				               <br>
+				               <div class="row">
+					               <div class="col-md-12" id="empList2"  >
+					                  	
+					               </div>
+				               </div>   
+				            </div>
+	        			</div>
+	        		</div>
+	        	</div>
+        	 <!-- </div> -->
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
+         </div>
+      
+   </div>
+</div>
 </div>

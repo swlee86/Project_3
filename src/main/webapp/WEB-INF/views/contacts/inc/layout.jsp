@@ -95,6 +95,18 @@
 	var secondTree = 0;
 	/////////////////////////
  
+	function orgclick(){
+		//조직도에서 그룹 클릭시 이벤트
+		$('span .org_list_class').click(function(){
+			console.log('.org_list_class 클릭');
+			console.log($(this));
+			$(this).addClass("group-clicked2");
+			$('.org_list_class').removeClass("group-clicked2");
+			$(this).addClass("group-clicked2");
+			
+		});
+	}
+		
  	function ajaxjieun(index) {
  		$.ajax(
 				{
@@ -120,19 +132,15 @@
 				}		
 			)
  	}
- 	
-
- 	
+ 		
  	//상세보기
-	$(function(){
-		
+	$(function(){		
 /* 		if($('#contactmsg').val() == -1){
 			 swal({
 	                title: "주소록 그룹 관리를 할 수 없습니다.",
 	                text: "주소록에 한명 이상의 사람을 넣어주세요."
 	            });
-		} */
-		
+		} */		
 		var listsize = $('#listsize').val();
 		console.log("listsize  : "+listsize);
 		
@@ -173,8 +181,7 @@
 			$('#pre_group_no').hide();
 		});
 		
-		$('#contact_group_from').hide();
-		
+		$('#contact_group_from').hide();		
 		console.log("grouplistsize : "+$('#grouplistsize').val());
 		
 		var id;
@@ -198,8 +205,7 @@
 			$('#contact_group_delete_btn').attr('href','contacts_group_delete.do?group_no='+no);
 			$('#contact_group_delete_btn').show();
 		});
-		
-		
+				
 		//목록 -> 주소록 그룹
 		$('.contact_list_group_class').click(function(){
 			console.log('.contact_list_group_class 클릭');
@@ -210,10 +216,7 @@
 			$('#'+id).addClass("group-clicked");
 			$('#'+id).attr('href','contacts.do?group='+id);  
 		});
-		
-		
-
-		
+					
 		//수정 사진 유지 확인
 		//contact_img_update
 		$('#contact_img_update').change(function(){
@@ -229,19 +232,12 @@
 		        }
 		});
 		
-		
-	
-		
+				
 		//그룹이름 
 		var groupnumber = $('#groupnumber').val();
 		console.log("groupnumber : "+groupnumber);
-
 		$('#'+groupnumber).addClass("group-clicked");
 		
- 	/* 	if(groupnumber > 0){
- 			$('#accordiongroup').css('display','block');
-		}
-		 */
 		
 		/* 초성별 */
 		$('#all').click(function(){
@@ -332,7 +328,6 @@
 		$('#conmodal').click(function(){
 			console.log('모달클릭함');  //비동기로 정보가져옴
 			console.log('클릭한 번호 :'+$('#contact_no').val());
-			
 		});
 
 	    //참조자 아이콘 클릭시
@@ -362,7 +357,7 @@
        					litag += "<li style='padding:2px;' onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
        						litag +=departMent[index].branch_no
-        				    litag +=")'><i class='fa fa-sitemap'><span class='org_list_class'>"+departMent[index].branch_name+" &nbsp;("+departMent[index].branch_no+")</span></li></i>";
+        				    litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
         					
         					litag+="<div id='dept_div"
         					litag+=departMent[index].branch_no
@@ -374,6 +369,16 @@
        			}
        		})
         });
+	    
+    	//조직도에서 그룹 클릭시 이벤트
+		$('span .org_list_class').click(function(){
+			console.log('.org_list_class 클릭');
+			console.log($(this));
+			$(this).addClass("group-clicked2");
+			$('.org_list_class').removeClass("group-clicked2");
+			$(this).addClass("group-clicked2");
+			
+		});
 		
 	    //주소록 추가시  검색해서 보여주는 script
         $('#con_ins_org_sea_btn').click(function(){
@@ -400,7 +405,7 @@
     		                  
     		                   var  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>번호</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>선택</th></tr>";
     		                   $.each(emp, function(index){
-    		                         makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
+    		                         makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn  btn-outline btn-success' onclick='recF2(this)'><i class='fa fa-check'></i></button></td></tr>";   
     		                  
     		                   });
     		                   makeTable += "</table>";
@@ -415,10 +420,10 @@
 		
 	});
 	
- 	//조직도 클릭시 클릭이벤트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*  	//조직도 클릭시 클릭이벤트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  	function orgclick(){
 		//조직도에서 그룹 클릭시 이벤트
-		$('.org_list_class').click(function(){
+		$('span .org_list_class').click(function(){
 			console.log('.org_list_class 클릭');
 			console.log($(this));
 			$(this).addClass("group-clicked2");
@@ -426,7 +431,7 @@
 			$(this).addClass("group-clicked2");
 			
 		});
- 	}
+ 	} */
 	
 	 //부서 출력 하는 아작스
     function seeDepart(obj, empSelectNumber, choose) {
@@ -455,19 +460,19 @@
     				firstTree = 1;	
     				
     			$.each(dept, function(index) {
-    				litag += "<li onclick='seelow_Depart(this, "
-    					litag +=empSelectNumber+","
-    				    litag +=dept[index].dept_no
-    				    litag +=")' >"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
-    					litag+="<div id='low_dept_div"
-    					litag+=dept[index].dept_no
-    					litag+="'></div>";
-    			});
-    			litag +="</ul>";
-    			$("#"+div_id).html(litag);
+	    				litag += "<li onclick='seelow_Depart(this, "
+	    				litag +=empSelectNumber+","
+	    				litag +=dept[index].dept_no
+	    				litag +=")' >"+'<i class="fa fa-long-arrow-right"></i><span>'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
+	    				litag+="<div id='low_dept_div"
+	    				litag+=dept[index].dept_no
+	    				litag+="'></div>";
+	    			});
+	    			litag +="</ul>";
+	    			$("#"+div_id).html(litag);
     			}else{
-    				firstTree = 0;
-    				$("#"+div_id).html();	
+	    				firstTree = 0;
+	    				$("#"+div_id).html();	
     			}
     		}
     	});
@@ -496,12 +501,12 @@
     			
     			if(secondTree == 0){
     				secondTree = 1;	
-    			$.each(low_dept, function(index) {
-    				litag += "<li onclick='seeEmpMember(this, "
-    				litag += empSelectNumber+","
-    				litag +=low_dept[index].low_dept_no
-    				litag +=")' >"+'<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"("+low_dept[index].low_dept_no+")</span></li>";
-    			});
+	    			$.each(low_dept, function(index) {
+	    				litag += "<li onclick='seeEmpMember(this, "
+	    				litag += empSelectNumber+","
+	    				litag +=low_dept[index].low_dept_no
+	    				litag +=")' >"+'<i class="fa fa-long-arrow-right"></i><span>'+low_dept[index].low_dept_name+"("+low_dept[index].low_dept_no+")</span></li>";
+	    			});
     			
     			litag +="</ul>";
     			$("#"+div_id).html(litag);
@@ -519,7 +524,7 @@
     function seeEmpMember(obj,empSelectNumber,low_dept_no){
        //체크
        var empListNumber = low_dept_no;
- 		 alert("사원뽑기 : "+empListNumber);
+ 	console.log("사원뽑기 : "+empListNumber);
        
        console.log(obj);
        
@@ -566,7 +571,43 @@
 
     
     //주소록 선택시
-    function recF(obj){
+        function recF(obj){
+       //수신자 사번
+       var name = $(obj).parent().parent().children().eq(1).html();
+       var emp_no = $(obj).parent().parent().children().eq(0).html();
+       
+       console.log("name : "+name);
+       console.log("emp_no : "+ emp_no);
+ 
+       
+       $.ajax(
+				{
+					type : "post",
+					url  : "contact_fam_insert.do",
+					data : {
+						"emp_no" : emp_no
+					},
+					success : function(data){
+						console.log("data : " + data);
+						console.log("조직도 data.pic : " + data.pic);
+						if(data != null){
+							$('#name').val(name);
+							$('#addenrollDate').val(data.birth);
+							$('#attach').val(data.branch_name+' '+data.dept_name+' '+data.low_dept_name);
+							$('#mail').val(data.email);
+							$('#tel1').val(data.emp_tel);
+							$('#tel2').val(data.cell_phone);
+						 	$('#empimg').val(data.pic); 
+						 	$('#uploadfile').hide();
+							$('#myModal6').modal("hide");
+						}
+					}
+				}		
+			)
+    }
+    
+    //탭선택시
+    function recF2(obj){
        //수신자 사번
        var name = $(obj).parent().parent().children().eq(2).html();
        var emp_no = $(obj).parent().parent().children().eq(1).html();

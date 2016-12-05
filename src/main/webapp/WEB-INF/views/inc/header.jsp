@@ -279,14 +279,14 @@ $('#birthDay').click(function(){
 			//최종 보스 allData - > 위에 선언한 데이터들의 값들을 뽑아서 넘겨준다. pollingchk.do 로 감  (PushController 로 이동 )
 			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount, "taskApproval":taskApprovalCount, "projectApproval":projectApprovalCount};
 			$(function(){
-				
+			/* alert("푸쉬 카운트 : " +allData.pushcount + " / projectcount : "+allData.projectcount + " taskcount : "+allData.taskcount + " /    projectApproval : "+allData.projectApproval); */
     		$.ajax({
     			url : "pollingchk.do",
     			data : allData,
     			success : function(data) {
     				
-    						}
-    				})
+    					}
+    				});
     			})
         };
 		
@@ -299,7 +299,7 @@ $('#birthDay').click(function(){
 					 emp_no : document.getElementById("hiddenEmp_no").value,
 	   				 menuname : document.getElementById("hiddenMenuName").value
 	   			  	}
-				 	
+			alert("대체 왜 씨파 "+msg.emp_no + " / menuname : "+msg.menuname);	 	
 			console.log("메세지를 봅시다 : " +msg);
 			webSocket.send(JSON.stringify(msg));
 		}

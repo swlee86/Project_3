@@ -309,6 +309,22 @@ public class AdminService {
 		System.out.println(" 전체 부서 사이즈 --------------"+dept.size());
 		return dept;
 	}
-	
+
+	//상여금 지급 여부 설정
+	public int update_bonusCheck(String dept_no, String bonus_check){
+		DeptDAO dao = sqlsession.getMapper(DeptDAO.class);
+		if( bonus_check.equals("지급")){
+			System.out.println("if 탐");
+			bonus_check = "1";	
+		}else{
+			System.out.println("엘스탐");
+			bonus_check= "0";
+		}
+		System.out.println(" dept_no: "+dept_no +"/////////// bonus_check:    "+bonus_check);
+		int result =dao.update_bonusCheck(dept_no, bonus_check);
+		System.out.println(" 서비스ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 바뀐값 : " + bonus_check+ " result :"+ result);
+		return result;
+		
+	}
 	
 }
