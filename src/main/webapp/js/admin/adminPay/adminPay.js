@@ -70,6 +70,30 @@ $(function(){
 				);
 	});
 	
+	//상여금 지급 여부 설정 > 확정 버튼 클릭시
+	$('#add_pay_div').click(function(){
+		
+		
+		var dept_no='';
+		
+		$("input[name=checkboxadd]:checked").each(function() {
+			var id = $(this).attr('id');
+			
+			dept_no+=id +",";
+			alert(dept_no);
+		});
+		
+		
+		if(dept_no != ''){
+			return true;
+		}else{
+			alert("지급 여부를 설정할 부서를 선택해주세요!");
+			return false;
+		}
+		
+	});
+	
+	
 });
 
 //급여 상세 보기 클릭시 실행 됨 - 

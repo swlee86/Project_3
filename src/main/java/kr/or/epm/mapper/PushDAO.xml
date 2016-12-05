@@ -24,7 +24,7 @@ select step_no ,task_no, task_name, DEADLINE, emp_no, emp_name, send_date,file_n
 
 	<!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
 	<select id="selectmytasklist" resultType="kr.or.epm.VO.Task">
-		select t.task_no, t.cg_no, task_name, rec_name, emp_name, t.task_step_no, deadline, rec_emp_no 
+		select t.task_no, t.cg_no, task_name, rec_name, emp_name, t.task_step_no, deadline, rec_emp_no , t.send_date, t.file_name, t.sign
 from task t join task_step s
 on t.task_step_no = s.task_step_no
 left outer join (select p.task_no, p.emp_no, t.cg_no

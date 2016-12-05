@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-   <div class="col-md-4">
+     <div class="col-md-4">
                 <div class="hpanel">
                     <div class="panel-body">
                         <div class="text-center">
@@ -74,6 +74,22 @@
                         </div>
                     </div>
                 </div>
+        </div>
+         <div class="col-md-4">
+                <div class="hpanel">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h2 class="m-b-xs">급여 설정 관리</h2>
+                           <div class="m">
+                                <i class="pe-7s-science fa-5x"></i>
+                            </div>
+                            <p class="small">
+                                                 급여일 및 부서별 상여금 설정 관리
+                            </p>
+                            <button class="btn btn-success btn-sm" id="moveSalarySetting">이동</button>
+                        </div>
+                    </div>
                 </div>
+        </div>
     </div>
   </div>

@@ -19,7 +19,7 @@
 	<div class="row">
 	&nbsp;
 	</div>
-	<hr>
+	<hr style="border: 1px solid #ddd;">
 	<div class="row">
 	 <div class="col-lg-6">
 			<div class="hpanel">
@@ -35,21 +35,45 @@
 									<thead>
 										<tr>
 											<th colspan="2">프로젝트명</th>
-											<th>진행상황</th>
-											<th>진행률</th>
-											<th>종료일</th>
+											<th style="text-align:center">진행률</th>
+											<th style="text-align:center">진행단계</th>
+											<th style="text-align:center">기 &nbsp;&nbsp; 간</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="pjlist" items="${pjlist}" >
+										<c:forEach var="pjlist" items="${pjlist}" begin="0" end="4">
 											<tr>
-												<td><a href="projectDetail.do?pj_no=${pjlist.pj_no}">${pjlist.pj_title}</a><br />
-													<small><i class="fa fa-clock-o"></i> Created
-														${pjlist.pj_start}</small></td>
+												<td>
+													<a href="projectDetail.do?pj_no=${pjlist.pj_no}">
+														<c:choose>
+															<c:when test="${fn:length(pjlist.pj_title) > 10}">${fn:substring(pjlist.pj_title,0,10)} ...</c:when>
+															<c:otherwise>${fn:substring(pjlist.pj_title,0,10)}</c:otherwise>
+														</c:choose>
+													</a>
+												</td>
 												<td></td>
-												<td><span class="pie">1/5</span></td>
-												<td><strong>20%</strong></td>
-												<td>${pjlist.pj_end}</td>
+												<td style="text-align:center"><span class="pie">${pjlist.pj_progress}/100</span><small> ${pjlist.pj_progress}%</small></td>
+												<td style="text-align:center">
+													<c:choose>
+														<c:when test="${pjlist.pj_step_no == 1}">
+															<span class="label label-success" style="width: 60px;padding-left:15px;padding-right:15px;">진&nbsp;&nbsp;&nbsp;&nbsp;행</span>
+														</c:when>
+														<c:when test="${pjlist.pj_step_no == 2}">
+															<span class="label label-info" style=" width: 60px;padding-left:15px;padding-right:15px;">미진행</span>
+														</c:when>
+														<c:when test="${pjlist.pj_step_no == 3}">
+															<span class="label label-warning" style="width: 60px;padding-left:15px;padding-right:15px;">보&nbsp;&nbsp;&nbsp;&nbsp;류</span>
+														</c:when>
+														<c:when test="${pjlist.pj_step_no == 4}">
+															<span class="label label-default" style=" width: 60px;padding-left:15px;padding-right:15px;">완&nbsp;&nbsp;&nbsp;&nbsp;료</span>
+														</c:when>
+														<c:when test="${pjlist.pj_step_no == 5}">
+															<span class="label label-danger" style=" width: 60px;padding-left:15px;padding-right:15px;">중&nbsp;&nbsp;&nbsp;&nbsp;단</span>
+														</c:when>
+														<c:otherwise>오류</c:otherwise>
+													</c:choose>
+												</td>
+												<td style="text-align:center"><small><i class="fa fa-clock-o"></i> </small> ${fn:substring(pjlist.pj_start,5, fn:length(pjlist.pj_start))} ~ ${fn:substring(pjlist.pj_end,5, fn:length(pjlist.pj_end))}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -72,11 +96,21 @@
 									<tbody>
 										<c:forEach var="approve_pjlist" items="${approve_pjlist}" >
 											<tr >
-												<td><a
-													href="project_approve_detailview.do?pj_no=${approve_pjlist.pj_no}">${approve_pjlist.pj_title}</a></td>
+												<td>
+													<a href="project_approve_detailview.do?pj_no=${approve_pjlist.pj_no}">
+														<c:choose>
+															<c:when test="${fn:length(approve_pjlist.pj_title) > 10}">${fn:substring(approve_pjlist.pj_title,0,10)} ...</c:when>
+															<c:otherwise>${fn:substring(approve_pjlist.pj_title,0,10)}</c:otherwise>
+														</c:choose><%-- ${approve_pjlist.pj_title} --%>
+													</a>
+												</td>
 												<td></td>
 												<td style="text-align:center">${approve_pjlist.emp_name }</td>
-												<td style="text-align:center">${approve_pjlist.pj_start} ~ ${approve_pjlist.pj_end}</td>
+												<td style="text-align:center">
+													<small><i class="fa fa-clock-o"></i> </small>  
+													${fn:substring(approve_pjlist.pj_start,5, fn:length(approve_pjlist.pj_start))} ~ ${fn:substring(approve_pjlist.pj_end,5, fn:length(approve_pjlist.pj_end))} 
+													<%-- ${approve_pjlist.pj_start} ~ ${approve_pjlist.pj_end} --%>
+												</td>
 												<td style="text-align:center">
 													<c:choose>
 														<c:when test="${approve_pjlist.step_no == '2'}">
@@ -117,15 +151,15 @@
 				<div class="tab-content">
 					<div id="task-1" class="tab-pane active">	
 						<div class="panel-body list">
-						<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
 							<div class="table-responsive project-list">
 								<table class="table table-striped table-condensed">
 									<thead>
 										<tr>
 											<th>업무명</th>
 											<th style="text-align:center">마감일</th>
-											<th style="text-align:center">요청자 사번</th>
+											<th style="text-align:center">진행단계</th>
 											<th style="text-align:center">요청자명</th>
+											<th style="text-align:center">중 &nbsp;&nbsp; 요</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -135,36 +169,64 @@
 													<c:when test="${mytasklist.deadline < systemdate}">
 														<td><a style="color: red"
 															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> Sended
-																${mytasklist.send_date }</small></td>
+															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
+																${mytasklist.send_date}</small></td>
 													</c:when>
 													<c:when test="${mytasklist.deadline == systemdate}">
 														<td><a style="color: blue"
 															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> Sended
-																${mytasklist.send_date }</small></td>
+															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
+																${mytasklist.send_date}</small></td>
 													</c:when>
 													<c:otherwise>
 														<td><a
 															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> Sended
-																${mytasklist.send_date }</small></td>
+															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
+																${mytasklist.send_date}</small></td>
 													</c:otherwise>
 												</c:choose>
 												<td style="text-align:center">${mytasklist.deadline}</td>
-												<td style="text-align:center">${mytasklist.emp_no}</td>
+												<td style="text-align:center">
+												 <c:choose>
+												<c:when test="${mytasklist.task_step_no == '1'}">
+														<button class="btn btn-xs btn-warning" disabled><small>&nbsp;&nbsp;진&nbsp;행&nbsp;&nbsp;</small></button>
+													</c:when>
+													<c:when test="${mytasklist.task_step_no == '2'}">
+														<button class="btn btn-xs btn-warning2" disabled><small>&nbsp;미진행&nbsp;</small></button>
+													</c:when>
+													<c:when test="${mytasklist.task_step_no == '3' }">
+														<button class="btn btn-xs btn-primary2" disabled><small>&nbsp;&nbsp;보&nbsp;류&nbsp;&nbsp;</small></button>
+													</c:when>
+													<c:when test="${mytasklist.task_step_no== '4'}">
+														<button class="btn btn-xs btn-info" disabled><small>&nbsp;&nbsp;완&nbsp;료&nbsp;&nbsp;</small></button>
+													</c:when>
+													<c:when test="${mytasklist.task_step_no== '5'}">
+														<button class="btn btn-xs btn-danger" disabled><small>&nbsp;&nbsp;중&nbsp;단&nbsp;&nbsp;</small></button>
+													</c:when>
+												</c:choose> 
+												
+												</td>
 												<td style="text-align:center">${mytasklist.emp_name}</td>
+												<td style="text-align:center">
+													<c:if test="${mytasklist.sign == 1}">
+														<i class="fa fa-check text-success"></i>
+													</c:if>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
-						</div>
+							<div class="pull-right">
+								<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+							</div>	
+						</div>	
+									
 					</div>
 				
 					<div id="task-2" class="tab-pane "> <!-- 미확인 -->
 						<div class="panel-body list">	
-							<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+							
 							<!-- <div class="panel-body"> -->
 								<div class="table-responsive project-list">
 									<table class="table table-striped table-condensed">
@@ -184,19 +246,19 @@
 														<c:when test="${tasklist.send_date < systemdate}">
 															<td><a style="color: red"
 																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> Sended
+																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
 																	${tasklist.send_date }</small></td>
 														</c:when>
 														<c:when test="${tasklist.send_date == systemdate}">
 															<td><a style="color: blue"
 																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> Sended
+																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
 																	${tasklist.send_date }</small></td>
 														</c:when>
 														<c:otherwise>
 															<td><a
 																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> Sended
+																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
 																	${tasklist.send_date }</small></td>
 														</c:otherwise>
 													</c:choose>
@@ -218,7 +280,7 @@
 													</td> --%>
 													<td style="text-align:center">
 														<c:if test="${not empty tasklist.file_name}">
-															<i class="fa fa-check text-success"></i>
+															<b><i class="fa fa-paperclip text-success"></i></b>
 														</c:if>
 													</td>
 												</tr>
@@ -227,9 +289,11 @@
 									</table>
 								</div>
 							<!-- </div> -->
+							<div class="pull-right">
+								<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+							</div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>

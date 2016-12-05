@@ -197,6 +197,11 @@
 	$('#moveSalaryManage').click(function(){
 		location.href="adminSalaryManage.do";
 	});
+	//급여관리 - 급여 설정 관리 페이지로 이동
+	$('#moveSalarySetting').click(function(){
+		location.href="adminSalarySetting.do";
+	});
+	
 	
 	$('#giveBtn').click(function(){
 		

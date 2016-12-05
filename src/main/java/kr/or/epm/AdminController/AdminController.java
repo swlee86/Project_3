@@ -161,17 +161,6 @@ public class AdminController {
 	@RequestMapping("/adminSalaryManage.do")
 	public String salaryInfo(Model model){
 		
-		//급여일 설정
-	  String pay_date= adminservice.selectpay_date();
-	  System.out.println("급여일: "+pay_date);	
-	  
-	  if(pay_date !=null){
-		  model.addAttribute("result", "1");
-	  }else{
-		  model.addAttribute("result", "0");
-	  }
-		model.addAttribute("pay_date", pay_date);
-		
 	  //리스트 출력
 		List<PayList> list = payservice.selectPayList_Manage();
 		model.addAttribute("paylist", list);
@@ -277,6 +266,27 @@ public class AdminController {
 		return "admin.admin_redirect";
 	}
 	
-	
+	//급여 설정 관리 페이지로 이동
+	@RequestMapping("/adminSalarySetting.do")
+	public String adminSalarySetting(Model model){
+		
+		//급여일 설정
+		  String pay_date= adminservice.selectpay_date();
+		  System.out.println("급여일: "+pay_date);	
+		  
+		  if(pay_date !=null){
+			  model.addAttribute("result", "1");
+		  }else{
+			  model.addAttribute("result", "0");
+		  }
+			model.addAttribute("pay_date", pay_date);
+			
+		//상여금 설정 > 리스트 출력
+			List<Dept> list =adminservice.select_allDept();
+			model.addAttribute("list", list);
+			
+			
+		return "admin.adminSalarySetting";
+	}
 	
 }

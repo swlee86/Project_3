@@ -301,7 +301,14 @@ public class AdminService {
 	    
 	   return paylist;
 	}
-	
+	 
+	//급여 설정 관리 > 상여금 설정 리스트 출력
+	public List<Dept> select_allDept(){
+		DeptDAO dao = sqlsession.getMapper(DeptDAO.class);
+		List<Dept> dept =dao.select_allDept();
+		System.out.println(" 전체 부서 사이즈 --------------"+dept.size());
+		return dept;
+	}
 	
 	
 }
