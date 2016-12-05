@@ -121,7 +121,7 @@ public class PageMoveController {
  		}
 		
 		/////////////////////인덱스에 띄워 줄 근태 차트 리스트 내용 구하기 시작////////////////////////////////////////////////////
-		List<Commute> commutelist = null;
+/*		List<Commute> commutelist = null;
 		if(emp_no_chk==true){
  			String commutemsg = "근태 내역은 로그인 후 내용 확인 가능합니다";
  			model.addAttribute("commutemsg", commutemsg);
@@ -140,7 +140,28 @@ public class PageMoveController {
  				
  			}
  			
- 		}
+ 		}*/
+		
+		String deptavg = "";
+		String myavg = "";
+		if(emp_no_chk==true){
+			String commutemsg = "근태 내역은 로그인 후 내용 확인 가능합니다";
+ 			model.addAttribute("commutemsg", commutemsg);
+		}else{
+			try{
+				deptavg = pushService.avgcommute_dept(emp_no);
+				System.out.println("@!@!@!@!@!부서의 평균 근무시간 : "+deptavg);
+				myavg = pushService.avgcommute_my(emp_no);
+				System.out.println("@!@!@!@!@!나의 평균 근무시간 : " + myavg);
+ 			}catch(Exception e){
+ 				System.err.println(e.getMessage());
+
+ 			}finally{
+ 				model.addAttribute("deptavg", deptavg);
+ 				model.addAttribute("myavg",myavg);
+ 				
+ 			}
+		}
 		
 		
 		/////////////////////인덱스에 띄워 줄 프로젝트 내용 구하기 시작////////////////////////////////////////////////////
