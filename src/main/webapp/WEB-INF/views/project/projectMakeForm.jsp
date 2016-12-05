@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />  
 <script src="vendor/toastr/build/toastr.min.js"></script>
  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+
 <script>
 $(function(){
-	
 	 toastr.options = {	 
 			 "closeButton": true,
 			  "debug": false,
@@ -25,33 +25,41 @@ $(function(){
 			  "hideMethod": "fadeOut"
 	        };
 	 
-	 
-	//날짜 필수. 제목필수, 내용 필수, 책임자 필수
-	$('#submit_btn').click(function(){
-		console.log("ss : "+$('.note-editable').text());
-		
-		if($('#pj_start').val() ==""){
-			toastr.warning('시작일을 선택해 주세요');
-			return false;
-		}
-		if($('#pj_end').val() =="" ){
-			toastr.warning('종료일을 선택해 주세요');
-			return false;
-		}
-		if($('#pj_title').val() ==""){
-			toastr.warning('제목을 입력해 주세요');
-			return false;
-		}
-		if($('#rec_emp_name').val() ==""){
-			toastr.warning('수신자를 선택해 주세요');
-			return false;
-		}
-		if($('.note-editable').text() ==""){
-			toastr.warning('내용을 입력해 주세요');
-			return false;
-		}
-	});
+		//날짜 필수. 제목필수, 내용 필수, 책임자 필수
+		$('#submit_btn').click(function(){
+			
+			console.log("ss : "+$('.note-editable').text());
+			
+			if($('#pj_start').val() ==""){
+				toastr.warning('시작일을 선택해 주세요');
+				$('#pj_start').focus();
+				return false;
+			}
+			if($('#pj_end').val() =="" ){
+				toastr.warning('종료일을 선택해 주세요');
+				$('#pj_end').focus();
+				return false;
+			}
+			if($('#pj_title').val() ==""){
+				toastr.warning('제목을 입력해 주세요');
+				$('#pj_title').focus();
+				return false;
+			}
+			if($('#rec_emp_name').val() ==""){
+				toastr.warning('수신자를 선택해 주세요');
+				$('#rec_emp_name').focus();
+				return false;
+			}
+			if($('.note-editable').text() ==""){
+				toastr.warning('내용을 입력해 주세요');
+				$('.note-editable').focus();
+				return false;
+			}
+			
+		});
 });
+	
+
 </script>
 <!--프로젝트 생성 폼-->
 <div class="normalheader transition animated fadeIn media-body">
@@ -130,7 +138,7 @@ $(function(){
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 내용</th>
 										<td>
 											<div>
-											<textarea cols="10" rows="10"   id="pj_content" placeholder="내용" style="width:100%" name="pj_content" class="summernote"></textarea>
+											<textarea cols="20" rows="20"   id="pj_content" placeholder="내용" style="width:100%;" name="pj_content" class="summernote"></textarea>
 											</div>
 										</td>
 									</tr>
