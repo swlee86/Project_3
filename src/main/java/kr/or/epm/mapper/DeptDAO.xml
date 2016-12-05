@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 관리자 > 부서관리 > 부서 조회하기 -->
 	<select id="selectChooseDept" parameterType="String" resultType="kr.or.epm.VO.DeptJoinBonus">
-	select d.dept_no, d.branch_name, d.branch_no, d.dept_name, s.bonus_percent
+	select d.dept_no, d.branch_name, d.branch_no, d.dept_name, s.bonus_percent, s.bonus_check
 	from dept d join set_bonus s
 	on d.dept_no = s.dept_no
 	where his_check='1' and d.dept_no=#{dept_no}
@@ -96,6 +96,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        update set_bonus 
        set bonus_check=#{param2} 
        where dept_no=#{param1}
-     </update>		
+     </update>	
+     
+     <!--상여금 지급하는 부서 조회하기  -->	
+     <select id="select_bonus_check" resultType="kr.or.epm.VO.Set_bonus">
+     	select set_date, dept_no, bonus_percent, bonus_check from set_bonus 
+     	where dept_no=#{dept_no} and bonus_check='1'
+     </select>
 	
 </mapper>

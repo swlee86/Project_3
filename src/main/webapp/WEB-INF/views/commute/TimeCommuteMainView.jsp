@@ -312,7 +312,7 @@
 
 
 
-<!-- 차트 -->
+<!-- c3 Stacked Bar Chart 차트 -->
 <link rel="stylesheet" href="vendor/c3/c3.min.css" />
 <script src="vendor/d3/d3.min.js"></script>
 <script src="vendor/c3/c3.min.js"></script>
@@ -352,12 +352,8 @@ $(function(){
              x : {
             	  type: 'category',
                   categories: regdate,
-            	 //type : 'category',
-                 //type : 'timeseries',
-                 tick: {
-                     //format: '%Y-%m-%d',
+                  tick: {
                      entered: true,
-                   //format: '%Y' // format string is also available for timeseries data
                  },
             
              },

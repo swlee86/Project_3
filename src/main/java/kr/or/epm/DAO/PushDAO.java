@@ -25,4 +25,9 @@ public interface PushDAO {
 	
 	List<Commute> commutelist(String emp_no, String startData, String endData);
 	
+	//평균 근무시간 - 부서
+	String selectavgcommute_dept(String emp_no);
+	
+	//평균 근무시간 - 내것
+	String selectavgcommute_my(String emp_no);
 }

@@ -291,17 +291,21 @@
 				if(result2 <= 3){
 				
 					var commute_no2='';
+					var emp_no = '';
 					$("input[name=checkbox]:checked").each(function() {
 						//pay_no.push($(this).val());
 						var mgr_check = $(this).parent().parent().children().last().text();
+						
 						if(mgr_check != '확정'){
 							commute_no2+=$(this).val() +",";
+							emp_no +=$(this).parent().next().next().html()+",";
 						}
 					});
 					 if(commute_no2 != ''){
 						 //번호값 뽑아서 셋팅함
 						  console.log("거른것 : "+commute_no2);
 						 $('#hiddenCommute').val(commute_no2);
+						 $('#emp_no').val(emp_no);
 						 return true;
 					 }else{
 						 alert("근태 마감하실 사원을 선택하세요");

@@ -234,12 +234,16 @@ public class AdminController {
 	
 	//관리자 - 근태마감 - 확정 하기
 	@RequestMapping(value="/commuteAdminEnd.do", method=RequestMethod.POST)
-	public String CommuteEnd(String hiddenCommute, Model model){
+	public String CommuteEnd(String hiddenCommute, String emp_no, Model model){
 		//commute_no 뽑아서 배열에 담아둠
 		String[] commute_no = hiddenCommute.split(",");
-		
+		String[] emp_noArray = emp_no.split(",");
 		for(int i = 0; i < commute_no.length; i++){
 			System.out.println("근태 마감 확정 컨트롤러 입니다.  : :::: "+commute_no[i]);
+		}
+		
+		for(int i = 0; i < emp_noArray.length; i++){
+			System.out.println("이엠피 엔오 번호좀 : "+emp_noArray[i]);
 		}
 		
 		int result=0;
@@ -248,7 +252,8 @@ public class AdminController {
 		String msg = null;
 		try{
 			for(int i=0; i<commute_no.length; i++){
-				result = commuteservice.updateCommute_mgr_check(commute_no[i]);
+				result = commuteservice.updateCommute_mgr_check(commute_no[i], emp_noArray[i]);
+				System.out.println("result 부분 컨트롤러  업뎃 치고서 : "+result);
 			}
 			
 		}catch (Exception e) {
