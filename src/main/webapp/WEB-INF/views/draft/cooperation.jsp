@@ -30,7 +30,17 @@
                        		</tr>
                        		<tr>
                        			<td class="flag">수신</td>
-                       			<td colspan="4"> 여기 붙여야..
+                       			<td colspan="4" id="sanction_DraftOk_no_td"> 
+									<span class="input-group">
+										<input type="text" class="form-control input-sm" readonly
+												id="choosedept">
+											<a type="button" class="btn btn-default input-group-addon"
+											   onclick="choosedept()"> 
+												<span style="color: #fd7d86">
+													<i class="fa fa-user-plus"></i>
+												</span>
+											</a>
+									</span>
                        			</td>
                        		</tr>
                        		<tr height="70px"></tr>
@@ -58,3 +68,31 @@
             </div>
         </div>
     </div>
+    
+    
+<!-- 협조문 모달-->
+<div class="modal fade hmodal-success" id="myModal6" tabindex="-1"
+	role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header"
+				style="height: 50px; padding-top: 10px; padding-bottom: 0px">
+				<h4 class="modal-title">
+					<font color="#6a6c6f" size="4em"><b>수신 부서 선택124235</b></font>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-9" style="border: 1px solid gray;"
+						id="organization"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-sm"
+					data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+    

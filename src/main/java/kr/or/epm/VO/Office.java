@@ -233,8 +233,8 @@ public class Office {
 				+ ", rec_addr_detail=" + rec_addr_detail + ", cg_no=" + cg_no + ", draft_title=" + draft_title
 				+ ", draft_content=" + draft_content + ", emp_no=" + emp_no + ", draft_date=" + draft_date
 				+ ", file_name=" + file_name + ", step_no=" + step_no + ", rec_del_check=" + rec_del_check
-				+ ", del_check=" + del_check + "]";
+				+ ", del_check=" + del_check + ", uploadfile=" + uploadfile + ", emp_name=" + emp_name + ", rec_check="
+				+ rec_check + ", low_dept_name=" + low_dept_name + ", dept_name=" + dept_name + ", branch_name="
+				+ branch_name + "]";
 	}
-
-	
 }

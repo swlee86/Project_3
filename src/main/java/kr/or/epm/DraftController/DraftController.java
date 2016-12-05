@@ -74,18 +74,37 @@ public class DraftController {
 	
 	// 대외발신공문 등록
 	@RequestMapping(value="/draftOffice.do", method=RequestMethod.POST)
-	public String draftWriteOk(Office office, String draft_line_emp_no, String draft_ref_emp_no) {
+	public String draftWriteOk(Principal principal, Model model, Office office, String draft_line_emp_no, String draft_ref_emp_no) {
 		System.out.println("CONTROLLER] 대외발신공문 등록");
+		String cg_no = "1";
 		
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		model.addAttribute("emp_no", emp_no);
+				
 		System.out.println("office : " + office.toString());
 		System.out.println("draft_line_emp_no : " + draft_line_emp_no.toString());
 		System.out.println("draft_ref_emp_no : " + draft_ref_emp_no.toString());
-		//service.insertOffice(office);
+		office.setEmp_no(emp_no);
+		office.setCg_no(cg_no);
+		
+		service.insertOffice(office);
+		System.out.println("전자결재 문서 등록 성공");
+		
+		String draft_no = office.getDraft_no();
+		String[] linelist = draft_line_emp_no.split(",");
+		String[] reflist = draft_ref_emp_no.split(",");
+		
+		service.insertDraft_line(draft_no, linelist);
+		System.out.println("결재라인 등록 성공");
+		service.insertDraft_ref(draft_no, reflist);
+		System.out.println("참조자 등록 성공");
 		
 		return "draft.draft_write";
 	}
-	
-	// insert 작업은 일시 정지 : 진도가 너무 안나가....
 	
 	// 결재 대기함 페이지 요청
 	@RequestMapping(value="/draft_rec.do", method=RequestMethod.GET)

@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -121,7 +120,7 @@
 	<script src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
 	
 	<!--전자결재 script  -->
-	<script src="js/electronic_sanction/electronic_sanction.js"></script>
+	<script src="js/draft/draft.js"></script>
 
 	<!--우편번호 API-->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -132,54 +131,5 @@
 	<!--월별 캘린더.-->
 	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
 	
-	<script type="text/javascript">
-	
-		// 결재 유형을 변경할 때마다
-		function checkDraft() {
-			$('#document_table').empty();
-			
-			var choose = $("input[name='cg_no']:checked").val();
-
-			$.ajax({
-				url : "draftForm.do",
-				type : "get",
-				data : {
-						cg_no : choose
-					   },
-				success : function(result) {
-					$("#document_table").html(result);
-					draft_datepicker();
-				}
-			});
-		};
-		
-		$("#submitBtn").click(function() {
-			var choose = $("input[name='cg_no']:checked").val();
-			console.log("check1");
-			console.log(choose);
-			
-			draft.method = "post";
-			
-			if(choose == '1') {
-				draft.action = "draftOffice.do";
-			} else if(choose == '2') {
-				draft.action = "draftCooperation.do";
-			} else if(choose == '3') {
-				draft.action = "draftBreak.do";
-			}
-			
-			draft.submit();
-		});
-		
-		$(function() {
-			// 휴가 종료 날짜 선택시 시작 이후의 날짜만 선택할 수 있도록
-			// 휴가 시작 날짜 선택시 현재 날짜 이후의 날짜만 선택할 수 있도록
-		});
-		
-		function draft_datepicker() {
-			$("#breakdatepicker1").datepicker();
-			$("#breakdatepicker2").datepicker();
-		}
-	</script>
 </body>
 </html>

@@ -32,8 +32,11 @@ public class DraftService {
 		
 		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
 		
+		System.out.println("확인 중 : " + office.toString());
 		resultDraft = dao.insertDraft(office);
+		System.out.println("1111");
 		resultOffice = dao.insertOffice(office);
+		System.out.println("2222");
 		
 		if(resultDraft > 0 && resultOffice > 0) {
 			result = 1;
