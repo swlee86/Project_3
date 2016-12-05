@@ -106,21 +106,7 @@
 	<script src="scripts/homer.js"></script>
 
 	<script>
-		/* 
-		 $('#student').click(function(){      
-		 $('#studentForm').css('display','block');
-		 $('#schoolForm').css('display','none');
-		 $('#student').attr('class','btn btn-primary active');
-		 $('#school').attr('class','btn btn-primary');
-		 });
 
-		 $('#school').click(function(){
-		 $('#studentForm').css('display','none');
-		 $('#schoolForm').css('display','block');
-		 $('#school').attr('class','btn btn-primary active');
-		 $('#student').attr('class','btn btn-primary');
-
-		 }); */
 		 
 		 
 		//select box에서 월별 조회 선택시 나타날 div(monthpicker)
@@ -356,7 +342,7 @@
 				changeMonth : true,
 	               dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
 	                     '일요일' ],
-	               dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+	               dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
 	               monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
 	                     '9', '10', '11', '12' ],
 	               monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
@@ -385,7 +371,7 @@
 				if (option == '' || date == '') {
 					alert("조회할 조건을 선택하세요");
 				} else {
-					alert("option: "+option +" /date "+date);
+					alert("option: "+option +" // date : "+date  +" // result : "+result);
 					$.ajax({
 						url : "sevSearch.do",
 						data : {
@@ -394,7 +380,7 @@
 							minusDate : result
 						},
 						success : function(data) {
-							console.log(data);
+							console.log(data.day + " success day ");
 							$('#jung').html();
 							$('#total').html();
 							$('#severance_pay').html();

@@ -53,12 +53,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         acc_commute_time, acc_add_time, total_pay, give_date
 		from emp e join pay y
 		on e.emp_no = y.emp_no
-		join (select emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time
+		join (select emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time, mgr_check
 		      from commute
 		      where to_char(to_date(regdate), 'yyyy-mm') = #{param2}
-		      group by emp_no) c
+		      group by emp_no, mgr_check) c
 		on e.emp_no = c.emp_no
-		where give_date is null and e.emp_no=#{param1}
+		where give_date is null and e.emp_no=#{param1} and c.mgr_check='1'
 		order by TO_NUMBER(pay_no) desc
 	</select>
 	
@@ -73,15 +73,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 급여 마감 관리 전체 급여 내역 조회하기 -->
 	<select id="selectPay_all_Close" resultType="kr.or.epm.VO.PayList">
+
 	select pay_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, total_pay, give_date, master_check
 	from emp e join position p
 	on e.position_no = p.position_no
 	join pay y
 	on e.emp_no = y.emp_no
-	join (select emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time
+	join (select emp_no, max(acc_commute_time) as acc_commute_time, max(acc_add_time) as acc_add_time, mgr_check
 	      from commute
 	      where to_char(to_date(regdate), 'yyyy-mm') = #{param1}
-	      group by emp_no) c
+	      group by emp_no, mgr_check) c
 	on e.emp_no = c.emp_no
 	join (select e.emp_no, b.branch_name, d.dept_name, l.low_dept_name
 	      from emp e join low_dept l
@@ -91,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	      join branch b
 	      on b.branch_no = d.branch_no) d
 	on e.emp_no = d.emp_no
-	where give_date is null
+	where give_date is null and c.mgr_check='1'
 	order by TO_NUMBER(pay_no) desc
 	</select>
 	
@@ -124,7 +125,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pay_no, p.emp_no, e.emp_name, basic_pay, bonus, add_pay, total_pay, give_date
 		from pay p join emp e
 		on p.emp_no = e.emp_no
-		where give_date is null
+	    join commute c
+	    on e.emp_no=c.emp_no
+		where give_date is null and c.mgr_check='1'
 		order by e.position_no
 	</select>
 	
@@ -199,6 +202,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    where emp_no=#{emp_no}
 	  </update>
 	  
+	  <!-- 급여 기본 정보 수정 > 계좌/은행명 -->
 	  <update id="update_pay_Info_empdetail" parameterType="kr.or.epm.VO.PayList">
 	    update emp_detail set bank=#{bank}, account=#{account}
 	    where emp_no=#{emp_no}

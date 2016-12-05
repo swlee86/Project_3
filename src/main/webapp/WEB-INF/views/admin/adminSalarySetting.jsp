@@ -12,11 +12,11 @@
 			</a>
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
-				<div class="p-sm">
-					<span class="vertical-date pull-right"> Saturday <br /> <small>12:17:43
-							PM</small>
-					</span>
-				</div>
+				<ol class="hbreadcrumb breadcrumb">
+					<li><a href="index.do">홈</a></li>
+					<li><span>급여 관리</span></li>
+					<li><a href="adminSalarySetting.do">급여 설정 관리</a></li>
+				</ol>
 			</div>
 			<h2 class="font-light m-b-xs"> <i onclick="location.href='adminSalaryView.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;급여 설정 관리</h2>
 		</div>
