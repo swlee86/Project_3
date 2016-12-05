@@ -111,4 +111,18 @@ public class PushService {
 		return commutelist;
 	}
 
+	
+	//근태 평균 근무시간 차트 데이터 가져오는  - 부서 평균
+	public String avgcommute_dept(String emp_no){
+		PushDAO dao =sqlsession.getMapper(PushDAO.class);
+		String avgdept = dao.selectavgcommute_dept(emp_no);
+		return avgdept;
+	}
+	
+	//근태 평균 근무시간 차트 데이터 가져오는 함수 - 나의 평균
+	public String avgcommute_my(String emp_no){
+		PushDAO dao =sqlsession.getMapper(PushDAO.class);
+		String avgmy = dao.selectavgcommute_my(emp_no);
+		return avgmy;
+	}
 }

@@ -68,5 +68,24 @@ select emp_no from emp_detail where id=#{id}
 select regdate, in_time, out_time, add_time from (select regdate, in_time, out_time, add_time from commute where emp_no=#{param1} and add_time is not null and add_time!='00:00' and regdate between to_char(to_date(#{param2}, 'YYYY-MM-dd'), 'YYYY-MM-dd') and to_char(to_date(#{param3}, 'YYYY-MM-dd'), 'YYYY-MM-dd') order by regdate asc)
 </select>
 
+<!-- 평균 근무시간 - 부서 -->
+<select id="selectavgcommute_dept" parameterType="String" resultType="String">
+select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60)+ 
+           sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))    
+    from (select commute_time from commute c
+    join emp e
+    on c.emp_no=e.emp_no
+    where e.low_dept_no =  
+    (select low_dept_no from emp where emp_no=#{emp_no})
+    and commute_time is not null
+    and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm'))
+</select>
 
+<!-- 평균 근무시간 - 내것 -->
+<select id="selectavgcommute_my" parameterType="String" resultType="String">
+select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60 ) +
+           sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))
+    from commute where emp_no=#{emp_no} and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm') and commute_time is not null
+</select>
+	
 </mapper>
