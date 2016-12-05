@@ -309,7 +309,7 @@ public class ContactService {
 
 
 	//주소록 추가시 검색해서 사원 뽑아오는 함수
-	public List<Emp>  contact_insert_search(String field, String query) {
+	public List<Emp>  contact_insert_search(String field, String query, String id) {
 		System.out.println("contact_insert_search 서비스 탐");
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
 		String field2 = "emp_name";
@@ -329,6 +329,7 @@ public class ContactService {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("field", field2);
 		map.put("query", query2);
+		map.put("id", id);
 			
 		List<Emp> emp = contactDAO.contact_insert_search(map);
 		

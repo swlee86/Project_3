@@ -173,6 +173,7 @@ public class SalaryAjaxController {
 		int month=0;
 		List<Pay> list = new ArrayList<Pay>();
 		long diffDays=0;
+		int sev=0;
 		 
 		String id = principal.getName();
 		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
@@ -220,13 +221,8 @@ public class SalaryAjaxController {
 		 
 		    System.out.println("날짜 차이: "+diffDays);
 	
-		     
-		
-		
-		}catch (Exception e) {
-			e.getMessage();
-		}finally {
-			int total_pay = 0;
+		    //
+		    int total_pay = 0;
 			 for(int j=0; j<list.size(); j++){
 				 total_pay +=list.get(j).getTotal_pay();
 		    	 System.out.println("list size: "+list.size());
@@ -241,9 +237,16 @@ public class SalaryAjaxController {
 			 int pyungMoney = (total_pay / pyung);
 			 System.out.println("하루 평균 급여 "+pyungMoney+" 만원");
 			 
-			 
-			 int sev = (int) (pyungMoney*30*diffDays/365);
+			 //퇴직금
+			 sev = (int) (pyungMoney*30*diffDays/365);
 			 System.out.println("퇴직금: "+sev);
+		     
+		
+		
+		}catch (Exception e) {
+			e.getMessage();
+		}finally {
+			
 			 
 			 //퇴직금
 			 model.addAttribute("dayMoney",sev);

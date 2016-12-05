@@ -38,7 +38,8 @@ public class LoginController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-
+	
+	
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginview(HttpServletRequest request) {

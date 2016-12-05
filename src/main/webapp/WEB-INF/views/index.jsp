@@ -310,7 +310,7 @@
 
 	<!-- chart 최근 근무현황 -->
 	<div class="row" style="height: 350px;">
-		<div class="col-lg-6" style="height: 400px;">
+		<!-- <div class="col-lg-6" style="height: 400px;">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
@@ -322,6 +322,23 @@
 				<div class="panel-body" style="height: 350px;">
 					<div>
 						<div id="ct-chart4" class="ct-perfect-fourth"
+							style="height: 300px; width: 98%;"></div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<div class="col-lg-6" style="height: 400px;">
+			<div class="hpanel">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+							class="closebox"><i class="fa fa-times"></i></a>
+					</div>
+					이번 달 우리 부서 평균 근무 시간(기준: 분)
+				</div>
+				<div class="panel-body" style="height: 350px;">
+					<div>
+						<div id="avgCommuteChart" class="ct-perfect-fourth"
 							style="height: 300px; width: 98%;"></div>
 					</div>
 				</div>
@@ -641,10 +658,13 @@
 </div>
 
 
-
+<link rel="stylesheet" href="vendor/c3/c3.min.css" />
+<script src="vendor/d3/d3.min.js"></script>
+<script src="vendor/c3/c3.min.js"></script>
 
 <script>
 	$(function() {
+		/*
 		var datereg = [];
 		var add_time = [];
 		var check_obj = document.getElementsByName('regdate[]');
@@ -672,7 +692,7 @@
 		console.log(datereg);
 		console.log(add_time);
 
-		new Chartist.Bar('#ct-chart4', {
+		 new Chartist.Bar('#ct-chart4', {
 			labels : datereg,
 			series : [ add_time ]
 		}, {
@@ -682,7 +702,46 @@
 			axisY : {
 				offset : 70
 			}
-		});
+		}); */
+		
+		var deptavg = ${deptavg};
+		var myavg = ${myavg};
+
+		//console.log("dept : "+deptavg +"/ myavg : "+ myavg);
+		
+ 		c3.generate({
+			 bindto: '#avgCommuteChart',
+			 
+	         data:{
+	             columns: [
+	            	 ['평균 근무 시간',deptavg, myavg],
+	            	 
+	             ], 
+	             colors:{
+	            	'평균 근무 시간' : '#62cb31',
+	             },
+	             type: 'bar',
+	             
+	         },
+	         bar:{
+	        	width : 25	 
+	         },
+	         
+	         axis : {
+	        	 rotated : true,
+	        	 x:{
+	        		 type: 'category',
+	        		 categories:['부서 평균','나의 평균'],
+	        	 },
+	         
+	             y:{
+	            	 tick:{
+	            		 format : function(d){return d+'분';}
+	            	 }
+	             }
+	         }
+		}); 
+
 
 	});
 </script>

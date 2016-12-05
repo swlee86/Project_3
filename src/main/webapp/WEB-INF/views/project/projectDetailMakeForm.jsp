@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" /> 
-
+<script src="vendor/toastr/build/toastr.min.js"></script>
+ <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 <script>
  $(function(){
 	 
@@ -12,7 +13,78 @@
 	$('.showup_first').click(function(){
 		$('.pdplus_0').slideDown();
 	});
-});	 
+	
+
+
+	 toastr.options = {	 
+			 "closeButton": true,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+	        };
+	 
+	 
+	//날짜 필수. 제목필수, 내용 필수, 책임자 필수
+	$('#submit_btn').click(function(){
+		console.log("폼갯수 : "+ $('#pjd_count').val());
+		console.log("d "+$('#pjd_start_0').val());
+		
+		//console.log("ss : "+$('.note-editable').text());
+		var f_index = ($('#pjd_count').val()+1);
+		
+		 for (var i = 0; i < f_index; i++) {  
+			 if($('#pjd_start_'+i).val() ==""){
+					toastr.warning('시작일을 선택해 주세요');
+					$('#pjd_start_'+i).focus();
+					return false;
+				}
+         }
+		 
+		 for (var i = 0; i < f_index ; i++) {  
+			 if($('#pjd_end_'+i).val() ==""){
+					toastr.warning('종료일을 선택해 주세요');
+					$('#pjd_end_'+i).focus();
+					return false;
+				}
+         }
+
+		 for (var i = 0; i < f_index ; i++) {  
+			 if($('#pjd_title_'+i).val() ==""){
+					toastr.warning('제목을 입력해 주세요');
+					$('#pjd_title_'+i).focus();
+					return false;
+				}
+         }
+		 
+		 for (var i = 0; i < f_index ; i++) {  
+			console.log( " > " + $('.multiDiv_'+i).html());
+			 if($('.multiDiv_'+i).html() == ""){
+					toastr.warning('수신자를 선택해 주세요');
+					return false;
+				}
+         }
+		 
+
+		if($('.note-editable').text() ==""){
+			toastr.warning('내용을 입력해 주세요');
+			return false;
+		}
+		
+	});
+	
+
+ });
 </script>
 
 <!--프로젝트 생성 폼-->
@@ -39,15 +111,15 @@
 </div>
 <div class="content animate-panel">
  
-	<form class="form-inline" action="project_detail_plus_try.do" method="post">
+	<form class="form-inline" action="#" method="post">
 		
-		<input type="hidden" name="pjd_count" id="pjd_count" value="0">
+		<input type="text" name="pjd_count" id="pjd_count" value="0">
 		<a id="pjd_detail_btn"  class="btn w-xs btn-warning"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Plus <i class="fa fa-plus"></i></a>
 		<div class="pull-right" style="text-align:center;">
 			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-close"></i></a>
 		<!-- 	<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a> -->
 			
-			<button type="submit" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
+			<button type="button" id="submit_btn" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
 		</div>
 		<br>
 	<div class="pjd_table row" id="pjd_table" >
@@ -70,13 +142,13 @@
 												<div class="form-group">
 													
 													<div class="input-group date">
-														<input type="text" class="form-control input-sm formstartDate" name="pjd[0].pjd_start" value="" size="20px">
+														<input type="text" class="form-control input-sm formstartDate" name="pjd[0].pjd_start"  id="pjd_start_0"  value="" size="20px">
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
 													&nbsp;&nbsp; <b>~</b> &nbsp;&nbsp;
 													
 													<div class="input-group date">
-														<input type="text" class="formendDate form-control input-sm" name="pjd[0].pjd_end" value="" size="20px"> 
+														<input type="text" class="formendDate form-control input-sm" name="pjd[0].pjd_end" id="pjd_end_0" value="" size="20px"> 
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
 					                            </div>
@@ -84,22 +156,23 @@
 										</tr>
 										<tr>
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 제목</th>
-											<td><input type="text" class="form-control input-sm" placeholder="제목" name="pjd[0].pjd_title" style="width:100%"></td>
+											<td><input type="text" class="form-control input-sm" placeholder="제목" name="pjd[0].pjd_title" id="pjd_title_0" style="width:100%"></td>
 										</tr>	
 								
 										<tr>
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
 											<td>
-												<span class="input-group">
-	                     							<!-- <input type="text" class="form-control input-sm" id="rec_emp_name" name="pjd[0].rec_emp_name"/>
-	                     							<input type="hidden" name="pjd[0].rec_emp_no" id="rec_emp_no"> -->
-	                     							<span class="multiDiv_0">
-	                     							
-	                     							</span>
-	                        						<span class="input-group-btn">
+											<div class="col-md-3">
+											<div class="form-inline">
+												
+												<!-- <span class="input-group">      -->                							
+	                     							<span class="multiDiv_0"></span>
+	                        						<span class="">
 														<button class=" btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
 													</span>
-	                   	  						</span>
+	                   	  					<!-- 	</span> -->
+	                   	  						</div>
+	                   	  						</div>
 											</td>
 										</tr>																	
 									
@@ -125,7 +198,7 @@
 </div>    
 
 
-<div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade hmodal-success" id="myModal7" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-md">
       <div class="modal-content">
          <div class="color-line"></div>
@@ -135,29 +208,29 @@
          <div class="modal-body">
          	<!-- <div class="hpanel"> -->
 	         	<ul class="nav nav-tabs">
-	                <li class="active"><a data-toggle="tab" href="#tab-1"><span style="font-weight: 600;font-size:13px">조직도</span></a></li>
-	                <li class=""><a data-toggle="tab" href="#tab-2"><span style="font-weight: 600;font-size:13px">검색</span></a></li>
+	                <li class="active"><a data-toggle="tab" href="#tabp-1"><span style="font-weight: 600;font-size:13px">조직도</span></a></li>
+	                <li class=""><a data-toggle="tab" href="#tabp-2"><span style="font-weight: 600;font-size:13px">검색</span></a></li>
 	            </ul>
 	        	<div class="tab-content">
-	        		<div id="tab-1" class="tab-pane active">
+	        		<div id="tabp-1" class="tab-pane active">
 	        			<div class="panel-body">
 	        				<div class="row">  
-				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="organization">
+				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="porganization">
 				                  
 				               </div>   
-				               <div class=" col-md-8" id="empList" >
+				               <div class=" col-md-8" id="emppList" >
 				                  	
 				               </div>
 				            </div>
 	        			</div>
 	        		</div>
-	        		<div id="tab-2" class="tab-pane">
+	        		<div id="tabp-2" class="tab-pane">
 	        			<div class="panel-body">
 	        				<div class="row">   
 				               <div class="row"> 
 									<div class="col-md-3">
 										<div class="form-inline">
-											<select class="form-control input-sm" id="con_ins_org_sea_field">
+											<select class="form-control input-sm" id="conp_ins_org_sea_field">
 												<option value="emp_name">사원명</option>
 												<option value="low_dept_name">하위부서명</option>
 											</select>
@@ -168,7 +241,7 @@
 										<div class="form-inline">
 											<div class="input-group">
 											<input type="hidden" id="con_ins_org_sea_btn_sel" value="2">
-												<input type="text" class="form-control input-sm" id="con_ins_org_sea_query" />
+												<input type="text" class="form-control input-sm" id="conp_ins_org_sea_query" />
 												<span class="input-group-btn">
 													<a href="#" class="btn btn-default input-sm" id="con_ins_org_sea_btn" style="color: #fd7d86">
 														<b><span class="fa fa-search"></span></b>
@@ -182,7 +255,7 @@
 				               
 				               <br>
 				               <div class="row">
-					               <div class="col-md-12" id="empList2"  >
+					               <div class="col-md-12" id="emppList2"  >
 					                  	
 					               </div>
 				               </div>   

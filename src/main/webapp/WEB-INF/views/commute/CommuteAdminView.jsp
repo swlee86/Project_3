@@ -14,8 +14,8 @@
 
 				<div id="hbreadcrumb" class="pull-right m-t-lg">
 					<ol class="hbreadcrumb breadcrumb">
-						<li><a href="index.html">Dashboard</a></li>
-						<li><span>App views</span></li>
+						<li><a href="index.html">홈</a></li>
+						<li><span>근태관리</span></li>
 						<li class="active"><span>(관리자) 근태마감</span></li>
 					</ol>
 				</div>
@@ -46,6 +46,7 @@
 										<input type="checkbox" id="allCheck" 
 											name="Allcheckbox" style="width:20px; height:20px;">
 										</th>
+										<th style="text-align: center;">N O</th>
 										<th style="text-align: center;">사 번</th>
 										<th style="text-align: center;">이 름</th>
 										<th style="text-align: center;">지점</th>
@@ -61,11 +62,12 @@
 									<c:choose>
 										<c:when test="${!empty Commutelist}">
 										<%-- <c:when test="${Commutelist != null || Commutelist != ''}"> --%>
-											<c:forEach var="list" items="${Commutelist}">
+											<c:forEach var="list" items="${Commutelist}" varStatus="status">
 												<tr>
 													<td style="text-align: center;"><input type="checkbox" 
 														name="checkbox" value="${list.commute_no}" style="width:20px; height:20px;">
 													</td>
+													<td style="text-align: center;">${status.count}</td>
 													<td style="text-align: center;">${list.emp_no}</td>
 													<td style="text-align: center;">${list.emp_name}</td>
 													<td style="text-align: center;">${list.branch_name}</td>
@@ -98,7 +100,8 @@
 							</table>
 						</div>
 						<input type="hidden" id="payDate">
-						<input type="hidden" id="chkhidden" name="chkhidden"> 
+						<input type="hidden" id="emp_no" name="emp_no"> 
+						<input type="hidden" id="hiddenCommute" name="hiddenCommute">
 						<div class="col-md-offset-11 col-md-1">
 							<input type="submit" class="btn btn-success" value="마감하기">
 						</div>

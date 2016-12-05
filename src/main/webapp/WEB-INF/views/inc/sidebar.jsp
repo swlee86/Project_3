@@ -8,7 +8,7 @@
         <div class="profile-picture">
             
             <a href="${pageContext.request.contextPath}/index.do">
-                <img src="${pageContext.request.contextPath}/images/sang.jpg" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
+                <img src="${pageContext.request.contextPath}/images/jo.jpg" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
             </a>
 			<div class="stats-label text-color">
                 <span class="font-extra-bold font-uppercase">~님 환영합니다.</span>
@@ -116,7 +116,7 @@
                 <ul class="nav nav-second-level">
                 	<li><a href="Commute.do">일일 근태 등록</a></li>
            			<li><a href="CommuteMonth.do">월별 근태 조회</a></li>
-           			<li><a href="CommuteAdmin.do">근태 마감(관리자)</a></li>
+           			<!-- <li><a href="CommuteAdmin.do">근태 마감(관리자)</a></li> -->
                 </ul>
             </li>
             <li>
@@ -163,6 +163,7 @@
                     <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminSalaryView.do">급여관리</a></li>
+                    <li><a href="CommuteAdmin.do">근태관리</a></li>
                 </ul>
             </li>
             <li>

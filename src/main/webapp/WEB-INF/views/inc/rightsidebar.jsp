@@ -78,7 +78,7 @@ function onOpen(event) {
      var msg = {
            type : "message",
            text : mytextA.value,
-           id : "${sessionScope.chatName}"
+           id : "${sessionScope.userName}"
          }
      content.value += msg.id + " : " + mytextA.value +"\n";
       
@@ -95,6 +95,3 @@ function onOpen(event) {
 
 
 </script>
-
-
-
