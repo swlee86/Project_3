@@ -3,15 +3,22 @@
 
 
 <aside id="menu">
+     
     <div id="navigation">
         <div class="profile-picture">
+            
             <a href="${pageContext.request.contextPath}/index.do">
-                <img src="${pageContext.request.contextPath}/images/profile.jpg" class="img-circle m-b" alt="logo">
+                <img src="${pageContext.request.contextPath}/images/sang.jpg" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
             </a>
-
-            <div class="stats-label text-color">
+			<div class="stats-label text-color">
+                <span class="font-extra-bold font-uppercase">~님 환영합니다.</span>
+					
+			</div>
+			<!--  
+	        <div class="stats-label text-color">
                 <span class="font-extra-bold font-uppercase">Project_3</span>
-
+				
+				
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                         <small class="text-muted">Founder of App <b class="caret"></b></small>
@@ -24,23 +31,21 @@
                         <li><a href="login.html">Logout</a></li>
                     </ul>
                 </div>
-
-
                 <div id="sparkline1" class="small-chart m-t-sm"></div>
                 <div>
                     <h4 class="font-extra-bold m-b-xs">
                         $260 104,200
                     </h4>
                     <small class="text-muted">Your income from the last year in sales product X.</small>
-                </div>
+                </div>--> 
             </div>
         </div>
         
 		<!-- <span class="label label-success pull-right">버튼달고 싶으면 여기에 메세지 입력</span> -->
         <ul class="nav" id="side-menu">
-            <li class="active">
+            <!-- <li class="active">
                 <a href="index.do"> <span class="nav-label">Main</span> <span class="label label-success pull-right"></span> </a>
-            </li>
+            </li> -->
             <li>
                 <a href="private_memo.do"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right"></span> </a>
             </li>
@@ -158,9 +163,6 @@
                     <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminSalaryView.do">급여관리</a></li>
-                    <li><a href="adminCommute.do">시간 정보 관리</a></li>
-                    <li><a href="adminSalesList.do">매출 관리</a></li>
-                    <li><a href="client.do">거래처</a></li>
                 </ul>
             </li>
             <li>
