@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+
+<div class="normalheader transition animated fadeIn media-body">
 <div class="content animate-panel content-boxed">
 <div style="margin: 10px;">
 	<span class="up_btn">
@@ -14,7 +15,7 @@
 		</button>
 	</span>
 	<span class="up-btn">
-		<a class="btn btn-default btn-m">
+		<a class="btn btn-default btn-m" data-toggle="modal" data-target="#draft_ref_Modal">
 			참조자 확인
 		</a>
 	</span>
@@ -91,14 +92,34 @@
 				<small class="font-bold">제 ${ detail.draft_no }호 문서의 결재자들을 확인합니다.</small>
 			</div>
 			<div class="modal-body">
-				<table>
+				<table style="width: 100%;">
 					<c:if test="${ linecount <= 0 }">
 						<tr>
-							<td>등록된 결재자가 존재하지 않습니다.</td>
+							<td colspan="10">등록된 결재자가 존재하지 않습니다.</td>
 						</tr>
 					</c:if>
-					<c:forEach var="line" items="">
-					
+					<c:forEach var="line" items="${ linedetail }">
+						<tr>
+							<td class="flag" width="7%">사원 번호</td>
+							<td width="7%">${ line.emp_no }</td>
+							<td class="flag" width="7%">직위</td>
+							<td width="7%">${ line.position_name }</td>
+							<td class="flag" width="7%">소속</td>
+							<td width="7%">${ line.branch_name } &nbsp; ${ line.dept_name } &nbsp; ${ line.low_dept_name }</td>
+							<td class="flag" width="7%">성명</td>
+							<td width="7%">${ line.emp_name }</td>
+							<td class="flag" width="7%">승인결과</td>
+							<td width="7%">
+                       			<c:choose>
+                       				<c:when test="${ line.app_check == '1' }">
+                       					<img alt="승인" src="img/approval.png" style="width:30%; height: 30px;">
+                       				</c:when>
+                       				<c:when test="${ line.app_check == '0' }">
+                       					<img alt="거부" src="img/denied.png" style="width:30%; height: 30px;">
+                       				</c:when>
+                       			</c:choose>
+                       		</td>
+						</tr>
 					</c:forEach>
 				</table>
 			</div>
@@ -108,4 +129,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>

@@ -281,18 +281,22 @@ public class DraftController {
 		// 결재라인 가져오기
 		List<Draft_line> linedetail = service.selectDraft_line(draft_no);
 		model.addAttribute("linedetail", linedetail);
+		System.out.println("결재라인 가져오자 : " + linedetail.toString());
 		
 		// 결재라인 인원수
 		int linecount = linedetail.size();
 		model.addAttribute("linecount", linecount);
+		System.out.println("결재라인 인원 수를 뽑아보자 : " + linecount);
 		
 		// 전자결재 참조자 가져오기
 		List<Draft_ref> refdetail = service.selectDraft_ref(draft_no);
 		model.addAttribute("refdetail", refdetail);
+		System.out.println("터졌나 확인확인2222");
 		
 		// 전자결재 인원수
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
+		System.out.println("터졌나 확인확인333333");
 		
 		return "draft.office_detail";
 	}

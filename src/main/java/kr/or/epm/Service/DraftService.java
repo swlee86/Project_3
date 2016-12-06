@@ -387,7 +387,8 @@ public class DraftService {
 		
 		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
 		List<Draft_ref> reflist = dao.selectDraft_ref_data(draft_no);
-				
+		
+		System.out.println("터졌나 확인확인111");
 		return reflist;
 	}
 }
