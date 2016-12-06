@@ -16,6 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       where dept_no=#{dept_no} and his_check='1'
     </select>
 
+    
+
 	<!-- 하위 부서 조회하기-->
 	<select id="selectLow_dept" resultType="kr.or.epm.VO.Low_dept">
 		select branch_name, dept_name, low_dept_name

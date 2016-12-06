@@ -101,6 +101,7 @@
 							<div class="panel-body">
 								<form class="form-horizontal">
 								  <input type="hidden" id="hidden" name="branch_no">
+								  <input type="hidden" id="hiddenBranchName" name="notChange_branch_Name">
 								   <div class="form-group">
 										<div class="col-md-4">
 											<label>지점명</label>
