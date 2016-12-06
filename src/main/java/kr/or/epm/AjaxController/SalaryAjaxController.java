@@ -148,10 +148,10 @@ public class SalaryAjaxController {
 					e.getMessage();
 				}finally{
 					if(result>0){
-						link = "salaryClose.do";
+						link = "adminSalary.do";
 						msg = "급여 마감이 완료되었습니다.";
 					}else{
-						link = "salaryClose.do";
+						link = "adminSalary.do";
 						msg = "급여 마감에 실패하였습니다.";
 					}
 					model.addAttribute("link", link);
