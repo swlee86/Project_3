@@ -62,6 +62,19 @@ public class AdminService {
 		return result;
 	}
 
+	//지점 삭제하기 전 부서 존재 여부 조회하기
+	public List<Dept> select_dept_beforeDelete(String branch_no){
+		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
+		List<Dept> list =deptDAO.select_dept_beforeDelete(branch_no);
+		return list;
+	}
+	
+	//지점 삭제하기
+	public int delete_branch(String branch_no){
+		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
+		int result =branchDAO.delete_branch(branch_no);
+		return result;
+	}
 	
 	//부서 페이지 사용 - 지점에 따른 부서 리스트 출력
 	public List<Dept> listDept(String branch_name){
@@ -125,6 +138,15 @@ public class AdminService {
 		//상여금 설정 인서트
 		result += deptDAO.addDept_set_bonus(dto);
 		
+		return result;
+	}
+	
+	//부서 삭제하기
+	public int dept_delete(String dept_no){
+		
+		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
+		int result = deptDAO.dept_delete(dept_no);
+		System.out.println(" 부서 삭제한 결과 ======================="+result);
 		return result;
 	}
 	
@@ -192,6 +214,13 @@ public class AdminService {
 		result += lowdao.update_time(LowDeptJoin);
 		System.out.println("부서 수정 결과4 최종*******************************8)"+result);
 		
+		return result;
+	}
+	
+	//하위 부서 삭제하기 
+	public int low_dept_delete(String low_dept_no){
+		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
+		int result = lowdao.low_dept_delete(low_dept_no);
 		return result;
 	}
 	

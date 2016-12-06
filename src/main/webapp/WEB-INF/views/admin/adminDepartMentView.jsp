@@ -10,16 +10,14 @@
 					<i class="fa fa-arrow-up"></i>
 				</div>
 			</a>
-
-			<div id="hbreadcrumb" class="pull-right m-t-lg">
-				<div class="p-sm">
-					<span class="vertical-date pull-right"> Saturday <br /> <small>12:17:43
-							PM</small>
-					</span>
-
-				</div>
+            <div id="hbreadcrumb" class="pull-right m-t-lg">
+              <ol class="hbreadcrumb breadcrumb">
+				<li><a href="index.do">홈</a></li>
+				<li><span>부서관리</span></li>
+				<li><a href="adminDownDepartment.do">부서 관리</a></li>
+			   </ol>
 			</div>
-			<h2 class="font-light m-b-xs">부서 관리</h2>
+			<h2 class="font-light m-b-xs"><i onclick="location.href='adminDepartWidget.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;부서 관리</h2>
 		</div>
 	</div>
 </div>
@@ -35,9 +33,6 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
 								<h2>조회</h2>
 							</div>
 
@@ -66,10 +61,7 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
-								<h2>부서 등록</h2>
+									<h2>부서 등록</h2>
 							</div>
 
 							<div class="panel-body">
@@ -104,9 +96,6 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
 								<h2>부서 정보(조회, 수정)</h2>
 							</div>
 
@@ -139,11 +128,15 @@
 											<input type="text" class="form-control" id="bonus_percent" name="bonus_percent" readonly="readonly">
 										</div>
 									</div>
-						    		<div class="form-group">
-										<div class="col-md-offset-2 col-md-6">
+						    		
+										<div class="col-md-offset-4 col-md-2">
 											<input type="button" class="btn btn-success" id="modifyDeptBtn" value="수정">
 										</div>
-									</div>
+									
+										<div class="col-md-2">
+											<input type="button" class="btn btn-success" id="deleteDeptBtn" value="삭제">
+										</div>
+									
 
 								</form>
 							</div>

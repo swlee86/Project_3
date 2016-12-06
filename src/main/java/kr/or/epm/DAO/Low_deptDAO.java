@@ -55,4 +55,7 @@ public interface Low_deptDAO {
 	
 	//출퇴근 시간 변경 5)
 	public int update_time(LowDeptJoin lowDeptJoin);
+	
+	//하위부서 삭제하기
+	public int low_dept_delete(String low_dept_no);
 }

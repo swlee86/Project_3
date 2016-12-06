@@ -142,7 +142,7 @@ public class AdminController {
 		return "admin.adminSalaryView";
 	}
 	
-	//당월 지급 예정 급여 내역 목록 페이지
+	//급여 마감 내역 목록 페이지
 	@RequestMapping("/adminSalary.do")
 	public String salaryManage(Model model){
 		
@@ -157,6 +157,7 @@ public class AdminController {
 		
 		List<PayList> list = payservice.selectPay_all_Close(dTime);
 		String pay_date= adminservice.selectpay_date();
+		System.out.println(" 급여일 ------------------------"+pay_date);
 		
 		model.addAttribute("date", dTime);
 		model.addAttribute("list", list);
