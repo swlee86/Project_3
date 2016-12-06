@@ -13,12 +13,12 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Calendar</span></li>
+					<li><a href="index.html">홈</a></li>
+					<li><span>부서 관리</span></li>
+					<li class="active"><span>지점 관리</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">지점 관리</h2>
+			<h2 class="font-light m-b-xs"><i onclick="location.href='adminDepartWidget.do'" class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;지점 관리</h2>
 		</div>
 	</div>
 </div>
@@ -34,9 +34,6 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
 								<h2>조회</h2>
 							</div>
 
@@ -62,9 +59,6 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
 								<h2>지점 등록</h2>
 							</div>
 
@@ -101,10 +95,7 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
-								<h2>지점 정보(조회, 수정)</h2>
+							   <h2>지점 정보(조회, 수정)</h2>
 							</div>
 
 							<div class="panel-body">
@@ -147,11 +138,13 @@
 											<input type="text" class="form-control" readonly="readonly" id="sample6_re_address2" name="addr_detail">
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="col-md-offset-2 col-md-6">
+									
+										<div class="col-md-offset-4 col-md-2">
 											<input type="button" class="btn btn-success" id="modifyBranchsubmitBtn" value="수정">
 										</div>
-									</div>
+									    <div class="col-md-2">
+											<input type="button" class="btn btn-success" id="deleteBranchsubmitBtn" value="삭제">
+										</div>
 									
 								</form>
 							</div>
@@ -166,10 +159,7 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
-								<h2>지점 등록</h2>
+									<h2>지점 등록</h2>
 							</div>
 
 							<div class="panel-body">
@@ -223,12 +213,7 @@
 							<div class="panel-footer"></div>
 						</div>
 					</div>
-					
-					
-					
-					
-					
-				</div>
+			    </div>
 			</div>
 		</div>
 	</div>

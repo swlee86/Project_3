@@ -94,7 +94,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="list" items="${list}" varStatus="status">
+								
+								<c:choose>
+								  <c:when test="${!empty list}">
+								
+									 <c:forEach var="list" items="${list}" varStatus="status">
 										<tr>
 											<td style="text-align: center;">
 											<input type="checkbox" name="checkbox" value="${list.pay_no}" style="width:20px; height:20px;">
@@ -109,16 +113,26 @@
 											<td style="text-align: center;">${list.acc_commute_time}</td>
 											<td style="text-align: center;">${list.acc_add_time}</td>
 											<td style="text-align: center;">${list.total_pay}</td>
-											<c:choose>
-												<c:when test="${list.master_check ==1}">
+											
+												<c:if test="${list.master_check ==1}">
 													<td style="text-align: center;">확정</td>
-												</c:when>
-												<c:otherwise>
+												</c:if>
+												<c:if test="${list.master_check ==0}">
 													<td style="text-align: center;">미확정</td>
-												</c:otherwise>
-											</c:choose>
+												</c:if>
+											
 										</tr>
-									</c:forEach>
+										</c:forEach>
+								     </c:when>
+									 <c:otherwise>
+										<tr>
+											<td colspan="10" style="text-align: center;">급여 목록이
+												없습니다.</td>
+										</tr>
+									</c:otherwise>
+									</c:choose>
+										
+									
 								</tbody>
 							</table>
 						</div>

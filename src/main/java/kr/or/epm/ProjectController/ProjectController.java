@@ -172,6 +172,8 @@ public class ProjectController {
 		pj.setEmp_no(emp.getEmp_no());
 		
 		//model.addAttribute("pj", pj);
+		model.addAttribute("pj_start", pj.getPj_start());
+		model.addAttribute("pj_end", pj.getPj_end());
 		this.pj2 = pj;
 		return "project.projectDetailMakeForm";
 	}

@@ -70,8 +70,33 @@ public class AdminAjaxController {
 	public View branchModify(Branch dto, Model model){
 		System.out.println("정보 수정 dto: "+dto.toString());
 		int result = adminservice.branchModify(dto);
-		System.out.println("지점 정보 수정  결과: "+result);
+		System.out.println("지점 정보 수정  결과:============================ "+result);
 		model.addAttribute("result", result);
+		return jsonview;
+	}
+	
+	//지점 삭제
+	@RequestMapping("/branch_delete.do")
+	public View branch_delete(String branch_no, Model model){
+		int result=0;
+		List<Dept> list =adminservice.select_dept_beforeDelete(branch_no);
+		System.out.println(" 부서 사이증???????????????????????/"+list.size());
+		
+		
+		if(list.size()>0){
+			model.addAttribute("result", "소속 부서를 먼저 삭제해주세요");
+			System.out.println(" 부서가 존재해서 지점 삭제 불가 ********************");
+		}else{
+			result =adminservice.delete_branch(branch_no);
+				if(result >= 1){
+					System.out.println(" 지점 삭제 성공**********************");
+					model.addAttribute("result", "삭제 성공");
+				}else{
+					System.out.println(" 지점 삭제 실패************************* ");
+					model.addAttribute("result", "삭제 실패");
+				}
+		}
+		
 		return jsonview;
 	}
 	
@@ -125,6 +150,31 @@ public class AdminAjaxController {
 		return jsonview;
 	}
 	
+	//부서 삭제하기 
+	@RequestMapping("/dept_delete.do")
+	public View dept_delete(String dept_no, Model model){
+		System.out.println(" 부서삭제하기에 넘어온 부서번홓ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ"+dept_no);
+		int result =0;
+		//하위부서가 존재하는지 먼저 확인
+		List<Low_dept> low_dept =adminservice.select_lowdept_name(dept_no);
+		System.out.println(" 부서 삭제 : 하위부서 리스트 사이즈 : "+low_dept.size());
+		if(low_dept.size()>0){
+			model.addAttribute("result", "하위부서를 먼저 삭제해주세요");
+			System.out.println(" 하위부서가 존재해서 부서 삭제 불가 ********************");
+		}else{
+		
+			 result =adminservice.dept_delete(dept_no);
+				if(result >= 1){
+					System.out.println(" 부서 삭제 성공**********************");
+					model.addAttribute("result", "삭제 성공");
+				}else{
+					System.out.println(" 부서 삭제 실패************************* ");
+					model.addAttribute("result", "삭제 실패");
+				}
+		}
+		return jsonview;
+	}
+	
 	//하위 부서  > 조회 > 하위 부서 selectbox
 	@RequestMapping("/lowDeptSelect.do")
 	public View lowDeptSelect(String dept_name, Model model){
@@ -160,6 +210,21 @@ public class AdminAjaxController {
 	public View low_dept_Modify(LowDeptJoin LowDeptJoin, Model model){
 		int result = adminservice.updateLow_dept(LowDeptJoin);
 		if(result >= 4){
+			System.out.println("성공");
+			model.addAttribute("result", "성공");
+		}else{
+			System.out.println("실패 ");
+			model.addAttribute("result", "실패");
+		}
+		return jsonview;
+	}
+	
+	//하위부서 삭제하기 
+	@RequestMapping("/low_dept_delete.do")
+	public View low_dept_delete(String low_dept_no, Model model){
+		System.out.println(" 넘어온 하위부서번호 :  **************************   "+low_dept_no);
+		int result =adminservice.low_dept_delete(low_dept_no); 
+		if(result >= 1){
 			System.out.println("성공");
 			model.addAttribute("result", "성공");
 		}else{

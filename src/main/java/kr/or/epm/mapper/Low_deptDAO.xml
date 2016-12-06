@@ -97,7 +97,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!--변경된 하위부서번호 조회 3)-->
 	<select id="select_re_low_dept_no" parameterType="kr.or.epm.VO.LowDeptJoin">
-		select low_dept_no from low_dept where pre_low_dept_no = #{low_dept_no}
+		select low_dept_no from low_dept where pre_low_dept_no = #{low_dept_no} and his_check='1'
  	</select>
  	
  	<!--홈페이지 시간변경 4) -->
@@ -116,5 +116,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="select_low_dept_no" resultType="kr.or.epm.VO.LowDeptJoin">
  	  select low_dept_no, pre_low_dept_no from low_dept where low_dept_name=#{low_dept_name} and his_check='1'
  	</select>
+ 	
+ 	<!-- 하위 부서 삭제하기 -->
+ 	<update id="low_dept_delete">
+ 	 update low_dept set his_check='0' where low_dept_no=#{low_dept_no} and his_check='1'
+ 	</update>
  	
 </mapper>
