@@ -6,6 +6,76 @@
  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 <script>
  $(function(){
+	 console.log($('#pj_start').val() +" ~ "+$('#pj_end').val());
+	
+	 var totalpj_start = new Date($('#pj_start').val());
+	 var totalpj_end = new Date($('#pj_end').val());
+	 
+	 console.log("new date" + totalpj_start);
+	 console.log("new date" + totalpj_end);
+	 
+	 var arre = $('#pj_start').val().split('-');
+	 
+	 console.log("arre : " + arre[0]);
+	 console.log("arre : " + arre[1]);
+	 console.log("arre : " + arre[2]);
+	 
+	 $('.formstartDate1').datepicker({
+         changeMonth: true, 
+          dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+          dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
+          monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+          monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+          dateFormat: 'yy-mm-dd',
+          changeYear: true,
+          beforeShowDay: function(date){
+        	  
+        	  var loadDt1 = totalpj_start
+              var loadDt = totalpj_end;
+       	   
+       	   	  var dayday1  = new Date(Date.parse(loadDt1) - 1 * 1000 * 60 * 60 * 24); // 시작일 
+              var dayday =new Date(loadDt);  //종료일
+               
+              if(date > dayday || date < dayday1) return [false];  //선택못해
+            
+              return [true];
+            
+            
+          },
+          onSelect: function(selected) {
+             $('.formendDate1').datepicker("option","minDate", selected)
+          }
+ });   
+ 
+
+ $('.formendDate1').datepicker({
+      changeMonth: true, 
+       dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+       dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
+       monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+       monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+       dateFormat: 'yy-mm-dd',
+       changeYear: true,
+       beforeShowDay: function(date){
+
+    	   var loadDt1 = totalpj_start
+           var loadDt = totalpj_end;
+    	   
+    	   var dayday1  = new Date(Date.parse(loadDt1) - 1 * 1000 * 60 * 60 * 24); // 시작일 
+           var dayday =new Date(loadDt);  //종료일
+            
+           if(date > dayday || date < dayday1) return [false];  //선택못해
+           return [true];
+           
+        }, 
+        onSelect: function(selected) {
+           $('.formstartDate1').datepicker("option","maxDate", selected)
+       }
+ });
+	 
+	 
+	 
+	 
 	 
 	$('.showhide_first').click(function(){
 		$('.pdplus_0').slideUp();
@@ -110,7 +180,9 @@
 	</div>
 </div>
 <div class="content animate-panel">
- 
+ 	<input type="text" value="${pj_start}" id="pj_start"> ~
+ 	<input type="text" value="${pj_end}" id="pj_end">
+ 	
 	<form class="form-inline" action="#" method="post">
 		
 		<input type="text" name="pjd_count" id="pjd_count" value="0">
@@ -142,13 +214,13 @@
 												<div class="form-group">
 													
 													<div class="input-group date">
-														<input type="text" class="form-control input-sm formstartDate" name="pjd[0].pjd_start"  id="pjd_start_0"  value="" size="20px">
+														<input type="text" class="form-control input-sm formstartDate1" name="pjd[0].pjd_start"  id="pjd_start_0"  value="" size="20px">
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
 													&nbsp;&nbsp; <b>~</b> &nbsp;&nbsp;
 													
 													<div class="input-group date">
-														<input type="text" class="formendDate form-control input-sm" name="pjd[0].pjd_end" id="pjd_end_0" value="" size="20px"> 
+														<input type="text" class="formendDate1 form-control input-sm" name="pjd[0].pjd_end" id="pjd_end_0" value="" size="20px"> 
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
 					                            </div>

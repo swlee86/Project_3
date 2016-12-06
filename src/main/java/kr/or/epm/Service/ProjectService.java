@@ -278,5 +278,14 @@ public class ProjectService {
 		System.out.println("PJ의 pj_step_no 업데이트  : " + result);
 		return result;
 	}
+	
+	//pjd_no로 PJ의 시작일 종료일 가져오기
+	public Pj selectPjDate(String pjd_no){
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		Pj pjdate = null;
+		pjdate = dao.selectPjDate(pjd_no);
+		System.out.println("PJ 시작일 : " + pjdate.getPj_start() + "PJ의 종료일 : " + pjdate.getPj_end());
+		return pjdate;
+	}
 
 }
