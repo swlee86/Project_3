@@ -70,7 +70,7 @@ public class AdminAjaxController {
 	public View branchModify(Branch dto, Model model){
 		System.out.println("정보 수정 dto: "+dto.toString());
 		int result = adminservice.branchModify(dto);
-		System.out.println("지점 정보 수정  결과: "+result);
+		System.out.println("지점 정보 수정  결과:============================ "+result);
 		model.addAttribute("result", result);
 		return jsonview;
 	}
