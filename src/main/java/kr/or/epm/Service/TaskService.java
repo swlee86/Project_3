@@ -73,7 +73,7 @@ public class TaskService {
 		return list;
 	}
 
-	//조직도 모달떄문에 만든거
+	//조직도 모달 > 자신의 정보 제외 시킬ㄹ려고 떄문에 만든거
 	public List<Organization> selectEmpInfo_exclude(String low_dept_name,String id) {
 		System.out.println("서비스 selectEmpInfo : " + low_dept_name);
 		List<Organization> list = null;

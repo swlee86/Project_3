@@ -68,14 +68,14 @@
        $('#rec_emp_no').val(emp_no);
        $('#rec_emp_name').val(name);
 
-       $('#myModal6').modal("hide");
+       $('#myModal7').modal("hide");
      }   
 
 $(function(){
    //주소록 추가시  검색해서 보여주는 script
     $('#con_ins_org_sea_btn').click(function(){
        console.log("몇개선택?? : "+ $('#con_ins_org_sea_btn_sel').val());
-       console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
+       console.log('field : '+ $('#conp_ins_org_sea_field').val()+"/word:"+$('#conp_ins_org_sea_query').val());
        
         var choice = $('#con_ins_org_sea_btn_sel').val();
         
@@ -84,8 +84,8 @@ $(function(){
                 type : "post",
                 url  : "contact_insert_search.do",
                 data : {
-                      "field" : $('#con_ins_org_sea_field').val(),
-                      "query" : $('#con_ins_org_sea_query').val()
+                      "field" : $('#conp_ins_org_sea_field').val(),
+                      "query" : $('#conp_ins_org_sea_query').val()
                 },
                 success : function(data){
                          console.log(data);
@@ -119,8 +119,8 @@ $(function(){
                                  makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check2()>";
                               }
                              
-                             $('#empList2').empty();
-                             $('#empList2').append(makeTable); 
+                             $('#emppList2').empty();
+                             $('#emppList2').append(makeTable); 
                    }
                 }      
              )
@@ -136,10 +136,10 @@ $(function(){
           
             var  empSelectNumber = Number(choice);
          var litag = "<ui style='list-style:none; margin-left:-40px;'>";         
-         $('#organization').empty();
-         $('#empList').empty();
-         $('#empList2').empty();
-          $('#con_ins_org_sea_query').val('');
+         $('#porganization').empty();
+         $('#emppList').empty();
+         $('#emppList2').empty();
+          $('#conp_ins_org_sea_query').val('');
           
           if(choice == 2){
              $('.multiDiv_0').empty();
@@ -150,7 +150,7 @@ $(function(){
                  {
                      url : "taskWriteModal.do",
                      success : function(data) {
-                            $('#myModal6').modal();
+                            $('#myModal7').modal();
                            choose = Number(choice);
                            var departMent = "";
    
@@ -169,7 +169,7 @@ $(function(){
                                litag+="'></div>";
                                });
                            litag +="</ul>";
-                           $('#organization').html(litag);
+                           $('#porganization').html(litag);
                         }
                      })
                 }
@@ -359,8 +359,8 @@ $(function(){
                     }
                   
                 
-                  $('#empList').empty();
-                  $('#empList').append(makeTable);
+                  $('#emppList').empty();
+                  $('#emppList').append(makeTable);
                 }    
                
             }
@@ -380,7 +380,7 @@ $(function(){
       $('#rec_emp_no').val(emp_no);
       $('#rec_emp_name').val(name);
 
-      $('#myModal6').modal("hide");
+      $('#myModal7').modal("hide");
    }
    
    
@@ -444,7 +444,7 @@ $(function(){
              $('.multiDiv_0').val(empInfoArray2[0].emp_name);            
           }
        
-       $("#myModal6").modal("hide");
+       $("#myModal7").modal("hide");
     }
    
    
@@ -619,8 +619,9 @@ $(function(){
                beforeShowDay: function(date){
                  var loadDt = new Date();
                  var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-                  if(date < dayday) return [false];  //선택못해
-                  return [true];
+                  
+                 if(date < dayday) return [false];  //선택못해
+                 return [true];
                },
                onSelect: function(selected) {
                   $('.formendDate').datepicker("option","minDate", selected)
@@ -635,7 +636,17 @@ $(function(){
             monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
             dateFormat: 'yy-mm-dd',
-            changeYear: true
+            changeYear: true,
+            beforeShowDay: function(date){
+                var loadDt = new Date();
+                var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+                
+                if(date < dayday) return [false];
+                return [true];
+             }, 
+             onSelect: function(selected) {
+                $('.formstartDate_plus').datepicker("option","maxDate", selected)
+            }
       });
  
       
