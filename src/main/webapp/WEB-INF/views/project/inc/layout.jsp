@@ -645,7 +645,7 @@ $(function(){
                 return [true];
              }, 
              onSelect: function(selected) {
-                $('.formstartDate_plus').datepicker("option","maxDate", selected)
+                $('.formstartDate').datepicker("option","maxDate", selected)
             }
       });
  
