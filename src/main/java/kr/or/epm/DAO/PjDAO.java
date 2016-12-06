@@ -82,5 +82,7 @@ public interface PjDAO {
 	//프로젝트의 진행단계 업데이트
 	public int updatePjstepno(HashMap map);
 
+	//프로젝트의 시작일, 종료일 가져오기
+	public Pj selectPjDate(String pjd_no);
 	
 }

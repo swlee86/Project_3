@@ -129,8 +129,9 @@ public class SalaryAjaxController {
 	
 	//급여 관리 > 급여 마감 확정
 			@RequestMapping(value="/SalaryCloseCheck.do", method=RequestMethod.POST)
-			public String salaryCloseCheck(Model model, String pay_no2){
-				 System.out.println("급여 마감 ajaxcontoller: "+pay_no2);
+			public String salaryCloseCheck(Model model, String pay_no2, String give_date){
+				 
+				System.out.println("급여 마감 ajaxcontoller: "+pay_no2 + "////급여일 : "+give_date);
 				 String[] pay_no= pay_no2.split(",");
 				 for(int i=0; i<pay_no.length; i++){
 					 System.out.println("split: "+pay_no[i]);
@@ -141,7 +142,7 @@ public class SalaryAjaxController {
 				String msg = null;
 				try{
 					for(int i=0; i<pay_no.length; i++){
-					result = payservice.updatePay(pay_no[i]);
+					result = payservice.updatePay(pay_no[i], give_date);
 					}
 					
 				}catch (Exception e) {
