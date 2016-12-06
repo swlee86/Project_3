@@ -16,23 +16,24 @@ $(function(){
 		alert("디비 데이트 : "+ dbdate);
 		var result2 = calDateRange(today,dbdate);
 		
-		
-		
 		//기간이 3일 이하
 		if(result2 <= 3){
 		
 		
 		alert("테스트!!");
-		//var pay_no = new Array();
+		
 		var pay_no2='';
 		$("input[name=checkbox]:checked").each(function() {
-			//pay_no.push($(this).val());
+			
 			pay_no2+=$(this).val() +",";
 		});
 		
-		
 			if(pay_no2 != ''){
+			//pay_no
 				$('#hiddenPay').val(pay_no2);
+				//급여일
+				$('#hidden_date').val(dbdate);
+				alert($('#hiddenPay').val() +"######################"+$('#hidden_date').val());
 				return true;
 			}else{
 				alert("급여 마감하실 사원을 선택하세요!");
@@ -42,7 +43,6 @@ $(function(){
 		}else{
 			alert("마감 기간이 아닙니다.");
 			return false;
-			
 		}
 		
 	});
@@ -171,11 +171,11 @@ function detailPay(obj){
 
 //디비 에서 읽어온 날짜.  매월 25일 임
 function db_dateChek(){
-	alert("디비 날짜");
 	var date = new Date();
 	var year  = date.getFullYear();
     var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
-    var day   = "${pay_date}";
+    var day   = $('#give_date').val();
+   
     if (("" + month).length == 1) { month = "0" + month; }
     if (("" + day).length   == 1) { day   = "0" + day;   }
 	//오늘 날짜 전역변수에도 담음

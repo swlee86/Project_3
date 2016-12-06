@@ -136,12 +136,15 @@
 								</tbody>
 							</table>
 						</div>
+					
 						<input type="hidden" name="pay_no2" id="hiddenPay">
-						<input type="hidden" id="payDate_sal">
+						<input type="hidden" id="hidden_date" name="give_date">
+						<input type="hidden" id="give_date" value="${pay_date}">
 						<div class="row" style="text-align: right; margin-right: 5px;">
 							<input type="submit" class="btn btn-sm btn-success" value="마감 확정">
 						</div>
 					</form>
+						
 				</div>
 			</div>
 		</div>

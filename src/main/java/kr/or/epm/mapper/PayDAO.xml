@@ -120,7 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	      join branch b
 	      on b.branch_no = d.branch_no) d
 	on e.emp_no = d.emp_no
-	where give_date is null and f.mgr_check='1'
+	where f.mgr_check='1'
 	order by TO_NUMBER(pay_no) desc
 
 	</select>
@@ -162,10 +162,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 관리자] 급여 확정하기 -->
-	<update id="updatePay">
+	<update id="updatePay" parameterType="String">
 		update pay
-		set master_check = '1'
-		where pay_no = #{pay_no}
+		set master_check = '1', give_date=#{param2}
+		where pay_no = #{param1}
 	</update>
 	
 	<!-- 급여지급일 조회하기 -->
