@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import kr.or.epm.DAO.BranchDAO;
 import kr.or.epm.DAO.DeptDAO;
@@ -58,8 +59,41 @@ public class AdminService {
 	//지점 정보 수정 
 	public int branchModify(Branch dto){
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
+		int update_dept=0;
+		int last=0;
+		
+		//지점 정보 수정 
 		int result = branchDAO.branchModify(dto);
-		return result;
+	    
+		//지점 정보 수정된 경우
+		if(result > 0){
+			
+			//수정한 지점 정보 가져오기
+			Branch branch =branchDAO.select_newBranch(dto.getBranch_no());
+			
+			//수정 전 지점 his_check 0으로 update
+			int his_update=branchDAO.update_pre_dept(dto.getBranch_no());
+			System.out.println("his update ============="+his_update);
+			System.out.println(" 수정한 지점 정보 ================"+branch.toString());
+			
+			//소속 부서 개수
+			int dept_count =branchDAO.countDept(branch);
+			System.out.println(" 소속 부서 개수====================="+dept_count);
+			
+			//소속 부서 update
+			for(int i=0; i<dept_count; i++){
+				update_dept +=branchDAO.update_new_dept(branch);
+				System.out.println(" 부서 update 결과 ============"+update_dept);
+			}
+			
+			if(update_dept>=dept_count){
+				last=1;
+			}else{
+				last=0;
+			}
+			
+		}
+		return last;
 	}
 
 	//지점 삭제하기 전 부서 존재 여부 조회하기

@@ -19,9 +19,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into branch values (branch_seq.nextval, #{branch_name}, #{postcode},#{addr},#{addr_detail},null,1,0)
 	</insert>
 	
-	<!-- 지점 정보 수정 -->
-	<update id="branchModify" parameterType="kr.or.epm.VO.Branch">
-		update branch set branch_no=branch_seq.nextval, branch_name = #{branch_name}, postcode=#{postcode},addr=#{addr},addr_detail=#{addr_detail}, pre_branch_no=#{branch_no}, his_check=1 where branch_no=${branch_no}
+	<!-- 지점 정보 수정 1)-->
+	<insert id="branchModify" parameterType="kr.or.epm.VO.Branch">
+		insert into branch(branch_no, branch_name, postcode, addr, addr_detail, pre_branch_no, his_check, depth) 
+		values(branch_seq.nextval, #{branch_name}, #{postcode}, #{addr}, #{addr_detail}, #{branch_no}, 1, 0) 
+    </insert>
+		
+	<!--  수정된 지점 정보 select 2)-->
+	<select id="select_newBranch" resultType="kr.or.epm.VO.Branch">
+		select branch_name, branch_no, pre_branch_no from branch where pre_branch_no=#{branch_no} and his_check='1'
+	</select>
+	
+	<!-- 소속 부서 개수 구하기 3)-->
+	<select id="countDept" parameterType="kr.or.epm.VO.Branch" resultType="Integer">
+	    select count(*) from dept where branch_no=#{pre_branch_no}
+	</select>
+	
+	<!-- 수정된 지점의 소속 부서 update 4)-->
+	<update id="update_new_dept" parameterType="kr.or.epm.VO.Branch">
+		update dept set branch_no=#{branch_no}, branch_name = #{branch_name} where branch_no=#{pre_branch_no} and his_check='1'
+	</update>
+	
+	<update id="update_pre_dept" parameterType="String">
+	  update branch set his_check='0' where branch_no=#{branch_no}
 	</update>
 	
 	<!--지점 삭제 -->
