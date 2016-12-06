@@ -98,6 +98,7 @@
 								<c:choose>
 								  <c:when test="${!empty list}">
 								
+								
 									 <c:forEach var="list" items="${list}" varStatus="status">
 										<tr>
 											<td style="text-align: center;">
