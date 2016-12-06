@@ -93,6 +93,7 @@ public class OrganizationChartController {
 	   @RequestMapping("/empChartMember.do")
 	   public View downEmpTree(String low_dept_no, Model model){
 	      System.out.println("이엠피 정보 컨트롤러");
+			
 	      List<Organization> list = null;
 	      list = organizationchart.selectEmpInfo(low_dept_no);
 	      

@@ -60,12 +60,12 @@ public class TaskService {
 	}
 
 	// 업무 등록시 / 모달 -> 사원 정보 이름 트리 구조
-	public List<Organization> selectEmpInfo(String low_dept_name,String id) {
+	public List<Organization> selectEmpInfo(String low_dept_name) {
 		System.out.println("서비스 selectEmpInfo : " + low_dept_name);
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
 
-		list = organizationDAO.selectEmpInfo(low_dept_name,id);
+		list = organizationDAO.selectEmpInfo(low_dept_name);
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println("이름 : " + list.get(i).getEmp_name() + " / 사번 : " + list.get(i).getEmp_no());
 		}
@@ -73,6 +73,21 @@ public class TaskService {
 		return list;
 	}
 
+	//조직도 모달떄문에 만든거
+	public List<Organization> selectEmpInfo_exclude(String low_dept_name,String id) {
+		System.out.println("서비스 selectEmpInfo : " + low_dept_name);
+		List<Organization> list = null;
+		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
+
+		list = organizationDAO.selectEmpInfo_modal(low_dept_name,id);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println("이름 : " + list.get(i).getEmp_name() + " / 사번 : " + list.get(i).getEmp_no());
+		}
+
+		return list;
+	}
+	
+	
 	
 	// 업무 등록
 	public int insertTask(Task task) {
