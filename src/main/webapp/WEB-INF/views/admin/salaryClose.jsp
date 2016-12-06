@@ -80,6 +80,7 @@
 										<input type="checkbox" id="allCheck" 
 											name="Allcheckbox" style="width:20px; height:20px;">
 										</th>
+										<th style="text-align: center;">N O</th>
 										<th style="text-align: center;">사 번</th>
 										<th style="text-align: center;">이 름</th>
 										<th style="text-align: center;">지점</th>
@@ -93,11 +94,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="list" items="${list}">
+									<c:forEach var="list" items="${list}" varStatus="status">
 										<tr>
 											<td style="text-align: center;">
 											<input type="checkbox" name="checkbox" value="${list.pay_no}" style="width:20px; height:20px;">
 											</td>
+											<td style="text-align: center;">${status.count}</td>
 											<td style="text-align: center;">${list.emp_no}</td>
 											<td style="text-align: center;">${list.emp_name}</td>
 											<td style="text-align: center;">${list.branch_name}</td>
@@ -121,28 +123,16 @@
 							</table>
 						</div>
 						<input type="hidden" name="pay_no2" id="hiddenPay">
+						<input type="hidden" id="payDate_sal">
 						<div class="row" style="text-align: right; margin-right: 5px;">
 							<input type="submit" class="btn btn-sm btn-success" value="마감 확정">
 						</div>
 					</form>
 				</div>
-
-
-				<div class="panel-footer" style="text-align: center;">
-					<div class="btn-group">
-						<button type="button" class="btn btn-default">
-							&nbsp;<i class="fa fa-chevron-left"></i>
-						</button>
-						<button class="btn btn-default active">1</button>
-						<button class="btn btn-default">2</button>
-						<button class="btn btn-default">3</button>
-						<button class="btn btn-default">4</button>
-						<button type="button" class="btn btn-default ">
-							&nbsp;<i class="fa fa-chevron-right"></i>
-						</button>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<br />
+<br />

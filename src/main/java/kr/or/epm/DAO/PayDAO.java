@@ -15,7 +15,7 @@ import kr.or.epm.VO.Set_pay_date;
 public interface PayDAO {
 	
 	// 급여 지급일 이후 급여 등록하기
-	public int insertPay();
+	public int insertPay(Pay pay);
 	
 	// 본인의 급여 내역 조회하기
 	public List<Pay> selectPay_mine_all(String emp_no);
