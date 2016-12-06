@@ -89,7 +89,7 @@ public class LoginService {
 	}
 	
 	//아이디 찾기 아작시 구동시 사용
-	public String selectFindId(Emp emp){
+	public String selectFindId(EmpJoinEmp_Detail emp){
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		String id = dao.selectEmp_FindId(emp);
 		return id;

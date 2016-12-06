@@ -35,6 +35,6 @@ public interface LoginDAO {
 	EmpJoinEmp_Detail selectEmp_Name_Emp(String emp_no);
 	
 	//로그인 시 아이디 찾기
-	String selectEmp_FindId(Emp emp);
+	String selectEmp_FindId(EmpJoinEmp_Detail emp);
 	
 }

@@ -136,10 +136,11 @@ public class LoginController {
 
 		//아이디찾기
 		@RequestMapping(value="/findId.do", method=RequestMethod.POST)
-		public View findId(Emp emp){
+		public View findId(EmpJoinEmp_Detail emp, Model model){
 			System.out.println("아이디 찾기 : "+emp.toString());
-			String findId = service.selectFindId(Emp emp);
-			
+			String findId = service.selectFindId(emp);
+			System.out.println("찾은 아이디는 ??? "+findId);
+			model.addAttribute("id", findId);
 			return jsonview;
 		}
 		
