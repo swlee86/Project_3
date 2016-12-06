@@ -341,7 +341,7 @@ $(function(){
 	   
 	   $.ajax(
 	         {
-	            url: "taskEmpModal.do",
+	            url: "taskEmpModal_exclude.do",
 	            data:{
 	          	  low_dept_no: empListNumber
 	                 },
@@ -511,12 +511,17 @@ $(function(){
 					
 					
 					$('.pjd_start_plus').attr('name','pjd[' + pjd_count + '].pjd_start');
+					$('.pjd_start_plus').attr('id','pjd_start_'+pjd_count);
+					//$('.pjd_start_plus').addClass('formstartDate'+pjd_count);
 					$('.pjd_start_plus').removeClass('pjd_start_plus');
 					
 					$('.pjd_end_plus').attr('name','pjd[' + pjd_count + '].pjd_end'); 
+					$('.pjd_end_plus').attr('id','pjd_end_'+pjd_count);
+					//$('.pjd_end_plus').addClass('formendDate'+pjd_count); 				
 					$('.pjd_end_plus').removeClass('pjd_end_plus');
 					
 					$('.pjd_title_plus').attr('name','pjd[' + pjd_count + '].pjd_title');
+					$('.pjd_title_plus').attr('id','pjd_title_'+pjd_count);
 					$('.pjd_title_plus').removeClass('pjd_title_plus');
 					
 				/* 	$('.pjd_emp_no_plus').attr('name','pjd[' + pjd_count + '].emp_no');
@@ -641,12 +646,10 @@ $(function(){
 		         beforeShowDay: function(date){
 		        	var loadDt = new Date();
 		     		var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-		        	 
 		        	 if(date < dayday) return [false];  //선택못해
 		        	 return [true];
 		         },
 		         onSelect: function(selected) {
-		        	 
 		        	 $('.formendDate').datepicker("option","minDate", selected)
 		         }
 		});	

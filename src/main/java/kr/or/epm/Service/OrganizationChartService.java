@@ -65,13 +65,13 @@ public class OrganizationChartService {
 	}
 
 	// 사원 정보 이름 트리 구조
-	public List<Organization> selectEmpInfo(String low_dept_no,String id) {
+	public List<Organization> selectEmpInfo(String low_dept_no) {
 		System.out.println("서비스 selectEmpInfo : " + low_dept_no);
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
 		
 		try{
-			list = organizationDAO.selectEmpInfo(low_dept_no,id);
+			list = organizationDAO.selectEmpInfo(low_dept_no);
 			
 		}catch(Exception e){
 			e.getMessage();

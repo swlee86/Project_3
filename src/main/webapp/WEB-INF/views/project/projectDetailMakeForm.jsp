@@ -70,7 +70,7 @@
 		 for (var i = 0; i < f_index ; i++) {  
 			console.log( " > " + $('.multiDiv_'+i).html());
 			 if($('.multiDiv_'+i).html() == ""){
-					toastr.warning('수신자를 선택해 주세요');
+					toastr.warning('참여자를 선택해 주세요');
 					return false;
 				}
          }

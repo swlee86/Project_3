@@ -17,6 +17,53 @@
 		pdplus = $(this).attr('id');
 		$('.'+pdplus).slideDown();
 	});
+	
+	
+	
+	/* 
+	//달력
+	var text = $('.formstartDate'+pjd_count).datepicker({
+		 changeMonth: true, 
+	     dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+	     dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+	     monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	     dateFormat: 'yy-mm-dd',
+	     changeYear: true,
+	     beforeShowDay: function(date){
+	        var loadDt = new Date();
+	     	var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+	     	
+	        if(date < dayday) return [false];  //선택못해
+	        	 return [true];
+	      },
+	      onSelect: function(selected) {
+	        	$('.formendDate'+pjd_count).datepicker("option","minDate", selected)
+	      }
+	});	
+
+	var text2 = $('.formendDate'+pjd_count).datepicker({
+		 changeMonth: true, 
+	     dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+	     dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+	     monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	     dateFormat: 'yy-mm-dd',
+	     changeYear: true,
+	     beforeShowDay: function(date){
+        	 var loadDt = new Date();
+	     	 var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+	     	 
+        	 if(date < dayday) return [false];
+        	 return [true];
+         }, 
+         onSelect: function(selected) {
+        	 $(".formstartDate"+pjd_count).datepicker("option","maxDate", selected)
+        }
+	});	
+	 */
+	
+	
 });	 
 </script>
 <div class="pjd_table row" id="pjd_table" >
@@ -40,13 +87,13 @@
 												<div class="form-group">
 													
 													<div class="input-group date">
-														<input type="text" class="formstartDate pjd_start_plus form-control input-sm "  name="" value="" size="20px">
+														<input type="text" class=" pjd_start_plus form-control input-sm cal formstartDate_plus"  id="" name="" size="20px">
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
 													&nbsp;&nbsp; <b>~</b> &nbsp;&nbsp;
 													
 													<div class="input-group date">
-														<input type="text" class="formendDate pjd_end_plus form-control input-sm" value="" name="" size="20px"> 
+														<input type="text" class=" pjd_end_plus form-control input-sm formendDate_plus" value="" name="" size="20px"> 
 														<span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
 													</div>
 					                            </div>
@@ -187,35 +234,32 @@
 	//조직도 트리 할때 사용하는 전역변수
 	var firstTree2 = 0;
 	var secondTree2 = 0;
+
+	
+	
+	function cc() {
+		$(".cal").datepicker({
+			changeMonth: true, 
+	           dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+	           dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+	           monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	           monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	           dateFormat: 'yyyy-mm-dd',
+	           changeYear: true
+		});	
+	}
+	
 	
 function calendar(){
 	//달력
-	var text = $('.formstartDate').datepicker({
-		 changeMonth: true, 
-	     dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-	     dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-	     monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-	     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	     dateFormat: 'yy-mm-dd',
-	     changeYear: true
-	});	
-
-	var text2 = $('.formendDate').datepicker({
-		 changeMonth: true, 
-	     dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-	     dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-	     monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-	     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	     dateFormat: 'yy-mm-dd',
-	     changeYear: true
-	});	
-
+	alert("tqtq" + pjd_count);
+	cc();
 
 	//섬머노트
 	 $('.summernote').summernote();
 
 	    var sHTML = $('.summernote').code();
-
+	    
 	   // console.log(sHTML);
 
 	    $('.summernote1').summernote({
@@ -285,6 +329,79 @@ function calendar(){
 	 	var sip;
 	 	
 	$(function(){
+		
+		
+		
+		$('.formstartDate_plus').click(function(){
+			console.log(">>>>>>>>>>>"+$(this));
+			$(this).datepicker({
+				 changeMonth: true, 
+			     dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+			     dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+			     monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+			     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			     dateFormat: 'yy-mm-dd',
+			     changeYear: true,
+			     beforeShowDay: function(date){
+			        var loadDt = new Date();
+			     	var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+			     	
+			        if(date < dayday) return [false];  //선택못해
+			        	 return [true];
+			      },
+			      onSelect: function(selected) {
+			        	$('.formendDate_plus').datepicker("option","minDate", selected)
+			      }
+			});	
+		});
+		
+
+		$('.formendDate_plus').click(function(){
+			console.log("<<<<<<<<"+$(this));
+			$(this).datepicker({
+			 changeMonth: true, 
+		     dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+		     dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+		     monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+		     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		     dateFormat: 'yy-mm-dd',
+		     changeYear: true,
+		     beforeShowDay: function(date){
+	        	 var loadDt = new Date();
+		     	 var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+		     	 
+	        	 if(date < dayday) return [false];
+	        	 return [true];
+	         }, 
+	         onSelect: function(selected) {
+	        	 $('.formstartDate_plus').datepicker("option","maxDate", selected)
+	        }
+		});	
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	    
 	  	//주소록 추가시  검색해서 보여주는 script
 	      $('.con_ins_org_sea_btn_plus').click(function(){ 
