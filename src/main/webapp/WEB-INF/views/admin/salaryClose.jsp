@@ -80,6 +80,7 @@
 										<input type="checkbox" id="allCheck" 
 											name="Allcheckbox" style="width:20px; height:20px;">
 										</th>
+										<th style="text-align: center;">N O</th>
 										<th style="text-align: center;">사 번</th>
 										<th style="text-align: center;">이 름</th>
 										<th style="text-align: center;">지점</th>
@@ -93,11 +94,17 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="list" items="${list}">
+								
+								<c:choose>
+								  <c:when test="${!empty list}">
+								
+								
+									 <c:forEach var="list" items="${list}" varStatus="status">
 										<tr>
 											<td style="text-align: center;">
 											<input type="checkbox" name="checkbox" value="${list.pay_no}" style="width:20px; height:20px;">
 											</td>
+											<td style="text-align: center;">${status.count}</td>
 											<td style="text-align: center;">${list.emp_no}</td>
 											<td style="text-align: center;">${list.emp_name}</td>
 											<td style="text-align: center;">${list.branch_name}</td>
@@ -107,42 +114,43 @@
 											<td style="text-align: center;">${list.acc_commute_time}</td>
 											<td style="text-align: center;">${list.acc_add_time}</td>
 											<td style="text-align: center;">${list.total_pay}</td>
-											<c:choose>
-												<c:when test="${list.master_check ==1}">
+											
+												<c:if test="${list.master_check ==1}">
 													<td style="text-align: center;">확정</td>
-												</c:when>
-												<c:otherwise>
+												</c:if>
+												<c:if test="${list.master_check ==0}">
 													<td style="text-align: center;">미확정</td>
-												</c:otherwise>
-											</c:choose>
+												</c:if>
+											
 										</tr>
-									</c:forEach>
+										</c:forEach>
+								     </c:when>
+									 <c:otherwise>
+										<tr>
+											<td colspan="10" style="text-align: center;">급여 목록이
+												없습니다.</td>
+										</tr>
+									</c:otherwise>
+									</c:choose>
+										
+									
 								</tbody>
 							</table>
 						</div>
+					
 						<input type="hidden" name="pay_no2" id="hiddenPay">
+						<input type="hidden" id="hidden_date" name="give_date">
+						<input type="hidden" id="give_date" value="${pay_date}">
 						<div class="row" style="text-align: right; margin-right: 5px;">
 							<input type="submit" class="btn btn-sm btn-success" value="마감 확정">
 						</div>
 					</form>
-				</div>
-
-
-				<div class="panel-footer" style="text-align: center;">
-					<div class="btn-group">
-						<button type="button" class="btn btn-default">
-							&nbsp;<i class="fa fa-chevron-left"></i>
-						</button>
-						<button class="btn btn-default active">1</button>
-						<button class="btn btn-default">2</button>
-						<button class="btn btn-default">3</button>
-						<button class="btn btn-default">4</button>
-						<button type="button" class="btn btn-default ">
-							&nbsp;<i class="fa fa-chevron-right"></i>
-						</button>
-					</div>
+						
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<br />
+<br />

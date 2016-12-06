@@ -21,6 +21,9 @@ public interface DeptDAO {
 	//부서 조회하기
 	DeptJoinBonus selectChooseDept(String dept_no);
 	
+	//지점번호로 부서 조회하기 > 지점 삭제시 사용
+	List<Dept> select_dept_beforeDelete(String branch_no);
+	
 	//부서 번호만 뽑아오기
 	String selectDeptNo(String branch_name, String dept_name);
 	
@@ -47,6 +50,9 @@ public interface DeptDAO {
 	
 	//부서 수정 > 상여금 수정 5)
 	int modifyset_bonus(DeptJoinBonus deptJoinBonus);
+	
+	//부서 삭제하기
+	int dept_delete(String dept_no);
 	
 	//특정 부서 조회하기
 	DeptJoinBonus selectDept(String dept_no);	

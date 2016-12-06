@@ -21,6 +21,7 @@
 		</div>
 	</div>
 </div>
+	
 <div class="row">
 	<div class="col-lg-12">
 		<div class="normalheader transition animated fadeIn">
@@ -41,10 +42,13 @@
 
 					<div class="row">
 						<div class="col-lg-12">
-							<div class="col-md-4">
+							<div class="col-md-9">
 								<input class="btn btn-info" type="button" value="출근" id="startWorkBtn">
 									 &nbsp;&nbsp;&nbsp;
 								<input class="btn btn-primary2" type="button" value="퇴근" id="endWorkBtn">
+							</div>
+							<div class="col-md-3">
+								<div id="flipcountdownbox1" class="xdsoft" align="right"></div>
 							</div>
 						</div>
 					</div>
@@ -79,6 +83,21 @@
 		</div>
 	</div>
 </div>
+
+
+<script  src="vendor/flipcountdown-master/jquery.min.js"></script>
+<script  src="vendor/flipcountdown-master/jquery.flipcountdown.js"></script>
+<link rel="stylesheet" type="text/css" href="vendor/flipcountdown-master/jquery.flipcountdown.css" />
+<script>
+// 디지털 시계
+jQuery(function($){
+	$('#flipcountdownbox1').flipcountdown({
+		size:"sm"
+
+	});
+});
+</script>
+
 
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script>
@@ -366,7 +385,5 @@ $(function(){
 	});
 		
 });
-
-
 
 </script>

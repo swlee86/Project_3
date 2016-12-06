@@ -11,9 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 급여 등록하기 -->
-	<insert id="insertPay">
+	<insert id="insertPay" parameterType="kr.or.epm.VO.Pay">
 		insert into pay(pay_no, emp_no, basic_pay, severance_pay, bonus, add_pay, total_pay, give_date, master_check)
-		values(pay_seq.nextval, #{emp_no}, #{basic_pay}, #{severance_pay}, #{bonus}, #{add_pay}, #{total_pay}, #{give_date}, '0')
+		values(pay_seq.nextval, #{emp_no}, #{basic_pay}, 0, #{bonus}, #{add_pay}, #{total_pay}, null, '0')
 	</insert>
 
 	<!-- 본인의 급여 내역 조회하기 -->
@@ -71,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by give_date asc
 	</select>
 	
-	<!-- 급여 마감 관리 전체 급여 내역 조회하기 -->
+	<!-- 급여 마감 관리 전체 급여 내역 조회하기 
 	<select id="selectPay_all_Close" resultType="kr.or.epm.VO.PayList">
 
 	select pay_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, total_pay, give_date, master_check
@@ -95,6 +95,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where give_date is null and c.mgr_check='1'
 	order by TO_NUMBER(pay_no) desc
 	</select>
+	-->
+	
+	
+	<!-- 급여 마감 관리 전체 급여 내역 조회하기 -->
+	<select id="selectPay_all_Close" resultType="kr.or.epm.VO.PayList">
+
+	select pay_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, total_pay, give_date, master_check
+	from emp e join position p
+	on e.position_no = p.position_no
+	join pay y
+	on e.emp_no = y.emp_no
+	join (select g.emp_no,g.acc_commute_time,g.acc_add_time,commute_no,mgr_check from (select emp_no,max(acc_commute_time) as acc_commute_time,max(acc_add_time) as acc_add_time 
+	        from commute where substr(regdate, 0,7)=#{param1} group by emp_no) g 
+	        join commute c
+	        on g.emp_no = c.emp_no and g.acc_commute_time = c.acc_commute_time and g.acc_add_time = c.acc_add_time
+	        ) f 
+	on e.emp_no = f.emp_no
+	join (select e.emp_no, b.branch_name, d.dept_name, l.low_dept_name
+	      from emp e join low_dept l
+	      on e.low_dept_no = l.low_dept_no
+	      join dept d
+	      on l.dept_no = d.dept_no
+	      join branch b
+	      on b.branch_no = d.branch_no) d
+	on e.emp_no = d.emp_no
+	where f.mgr_check='1'
+	order by TO_NUMBER(pay_no) desc
+
+	</select>
+	
 	
 	<!--월별 급여 상세 보기 - 카드에서 버튼 클릭시 해당 월 급여 지급 리스트 뜸. -  관리자 > 급여 > 급여내역 조회 -->
 	<select id="select_payMoth_Detail" resultType="kr.or.epm.VO.PayList">
@@ -132,10 +162,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 관리자] 급여 확정하기 -->
-	<update id="updatePay">
+	<update id="updatePay" parameterType="String">
 		update pay
-		set master_check = '1'
-		where pay_no = #{pay_no}
+		set master_check = '1', give_date=#{param2}
+		where pay_no = #{param1}
 	</update>
 	
 	<!-- 급여지급일 조회하기 -->

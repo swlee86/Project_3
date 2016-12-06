@@ -142,18 +142,27 @@ public class AdminController {
 		return "admin.adminSalaryView";
 	}
 	
-	//당월 지급 예정 급여 내역 목록 페이지
+	//급여 마감 내역 목록 페이지
 	@RequestMapping("/adminSalary.do")
 	public String salaryManage(Model model){
 		
 		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
 		Date currentTime = new Date( );
-		String dTime = formatter.format ( currentTime );
-		System.out.println ("연월 : "+dTime ); 
+		String dTime2 = formatter.format ( currentTime );
+		System.out.println ("연월 : "+dTime2 );
+		String[] dTimearray = dTime2.split("-");
+		int darrayS = Integer.parseInt(dTimearray[1])-1;
+		String dTime =dTimearray[0]+"-"+darrayS;
+		System.out.println(" 한달전 ????????????????"+dTime);
 		
 		List<PayList> list = payservice.selectPay_all_Close(dTime);
+		String pay_date= adminservice.selectpay_date();
+		System.out.println(" 급여일 ------------------------"+pay_date);
+		
 		model.addAttribute("date", dTime);
 		model.addAttribute("list", list);
+		model.addAttribute("pay_date", pay_date);
+		
 		return "admin.salaryClose";
 	}
 	
@@ -320,6 +329,14 @@ public class AdminController {
 			
 			
 		return "admin.adminSalarySetting";
+	}
+	
+	//회원 탈퇴 신청 리스트 보기
+	@RequestMapping("/adminCheckWithdrawal.do")
+	public String CheckWithdrawal(){
+		
+		
+		return "admin.adminCheckWithdrawal";
 	}
 	
 }

@@ -287,8 +287,8 @@
 				var result2 = calDateRange(today,dbdate);
 				
 					
-				//기간이 3일 이하
-				if(result2 <= 3){
+				//기간이 5일 이하
+				if(result2 <= 5){
 				
 					var commute_no2='';
 					var emp_no = '';

@@ -86,6 +86,17 @@ public class TaskController {
 
 	// 4.업무 등록시 조직도 하위 부서 클릭시 사원 정보 출력
 	@RequestMapping("/taskEmpModal.do")
+	public View downEmpTree(String low_dept_no, Model model) {
+		System.out.println("CONTROLLER] 하위부서 클릭");
+		List<Organization> list = null;
+		
+		list = service.selectEmpInfo(low_dept_no);
+		model.addAttribute("emp", list);
+		return jsonview;
+	}
+
+	//조직도 모달에서 자신의 정보 제외시키는 부분   
+	@RequestMapping("/taskEmpModal_exclude.do")
 	public View downEmpTree(String low_dept_no, Model model,Principal principal) {
 		System.out.println("CONTROLLER] 하위부서 클릭");
 		List<Organization> list = null;
@@ -93,11 +104,12 @@ public class TaskController {
 		String id= principal.getName();
 		System.out.println("id : "+id);
 		
-		list = service.selectEmpInfo(low_dept_no,id);
+		list = service.selectEmpInfo_exclude(low_dept_no,id);
 		model.addAttribute("emp", list);
 		return jsonview;
 	}
-
+	
+	
 	// 업무 등록 페이지 요청
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.GET)
 	public String taskWrite(Model model) {

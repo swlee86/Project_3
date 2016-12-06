@@ -313,7 +313,7 @@ $('#birthDay').click(function(){
 					 emp_no : document.getElementById("hiddenEmp_no").value,
 	   				 menuname : document.getElementById("hiddenMenuName").value
 	   			  	}
-			alert("대체 왜 씨파 "+msg.emp_no + " / menuname : "+msg.menuname);	 	
+			//alert("대체 왜 씨파 "+msg.emp_no + " / menuname : "+msg.menuname);	 	
 			console.log("메세지를 봅시다 : " +msg);
 			webSocket.send(JSON.stringify(msg));
 		}

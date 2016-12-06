@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import kr.or.epm.DAO.BranchDAO;
 import kr.or.epm.DAO.DeptDAO;
@@ -58,10 +59,56 @@ public class AdminService {
 	//지점 정보 수정 
 	public int branchModify(Branch dto){
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
+		int update_dept=0;
+		int last=0;
+		
+		//지점 정보 수정 
 		int result = branchDAO.branchModify(dto);
-		return result;
+	    
+		//지점 정보 수정된 경우
+		if(result > 0){
+			
+			//수정한 지점 정보 가져오기
+			Branch branch =branchDAO.select_newBranch(dto.getBranch_no());
+			
+			//수정 전 지점 his_check 0으로 update
+			int his_update=branchDAO.update_pre_dept(dto.getBranch_no());
+			System.out.println("his update ============="+his_update);
+			System.out.println(" 수정한 지점 정보 ================"+branch.toString());
+			
+			//소속 부서 개수
+			int dept_count =branchDAO.countDept(branch);
+			System.out.println(" 소속 부서 개수====================="+dept_count);
+			
+			//소속 부서 update
+			for(int i=0; i<dept_count; i++){
+				update_dept +=branchDAO.update_new_dept(branch);
+				System.out.println(" 부서 update 결과 ============"+update_dept);
+			}
+			
+			if(update_dept>=dept_count){
+				last=1;
+			}else{
+				last=0;
+			}
+			
+		}
+		return last;
 	}
 
+	//지점 삭제하기 전 부서 존재 여부 조회하기
+	public List<Dept> select_dept_beforeDelete(String branch_no){
+		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
+		List<Dept> list =deptDAO.select_dept_beforeDelete(branch_no);
+		return list;
+	}
+	
+	//지점 삭제하기
+	public int delete_branch(String branch_no){
+		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
+		int result =branchDAO.delete_branch(branch_no);
+		return result;
+	}
 	
 	//부서 페이지 사용 - 지점에 따른 부서 리스트 출력
 	public List<Dept> listDept(String branch_name){
@@ -125,6 +172,15 @@ public class AdminService {
 		//상여금 설정 인서트
 		result += deptDAO.addDept_set_bonus(dto);
 		
+		return result;
+	}
+	
+	//부서 삭제하기
+	public int dept_delete(String dept_no){
+		
+		DeptDAO deptDAO =  sqlsession.getMapper(DeptDAO.class);
+		int result = deptDAO.dept_delete(dept_no);
+		System.out.println(" 부서 삭제한 결과 ======================="+result);
 		return result;
 	}
 	
@@ -192,6 +248,13 @@ public class AdminService {
 		result += lowdao.update_time(LowDeptJoin);
 		System.out.println("부서 수정 결과4 최종*******************************8)"+result);
 		
+		return result;
+	}
+	
+	//하위 부서 삭제하기 
+	public int low_dept_delete(String low_dept_no){
+		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
+		int result = lowdao.low_dept_delete(low_dept_no);
 		return result;
 	}
 	

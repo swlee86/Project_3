@@ -69,11 +69,11 @@ public class PayService {
 	}
 	
 	//급여 마감 확정
-	public int updatePay(String pay_no){
+	public int updatePay(String pay_no, String give_date){
 		System.out.println("급여 마감 확정");
 		int result=0;
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
-	    result = dao.updatePay(pay_no);
+	    result = dao.updatePay(pay_no, give_date);
 		return result;
 	}
 	

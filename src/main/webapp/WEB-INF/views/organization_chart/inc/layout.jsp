@@ -247,6 +247,9 @@ function seeEmpMember(obj,low_dept_no){
                	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp.cell_phone+"<br>"+emp.branch_name+">"+emp.dept_name+" > "+emp.low_dept_name+"</p></div></div></div>"
 			   });
                
+               //테스트
+               console.log("ㅗ : " + data.master.emp_name);
+               
                //대표 이름 뿌리는 것 
                $('#masterName').html(data.master.emp_name);
                

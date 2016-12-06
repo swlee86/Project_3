@@ -66,7 +66,7 @@
 	                        	<td>
 	                        		<div class="form-inline">
 	                        			<div class="input-group date">
-    		  								<input type="text" class="form-control table-input input-sm formstartDate" id="pjd_start" name="input" value="${pjd.pjd_start}" disabled="disabled" style="background-color: white;">
+    		  								<input type="text" class="form-control table-input input-sm formstartDate_detail" id="pjd_start" name="input" value="${pjd.pjd_start}" disabled="disabled" style="background-color: white;">
     		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
     		 							</div>
     		 						</div>
@@ -75,7 +75,7 @@
 	                       		<td>	                       		
 	                       			<div class="form-inline">
 	                        			<div class="input-group date">
-    		  								<input type="text" class="form-control table-input input-sm formendDate" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white;">
+    		  								<input type="text" class="form-control table-input input-sm formendDate_detail" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white;">
     		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
     		 							</div>
     		 						</div>
@@ -91,7 +91,7 @@
 						</br>
 						<div align="right">
 							<c:if test="${pj_emp_no==login_emp_no}">
-								<input type="button" id="modify_pjd_btn" class="btn btn-default btn-md" value="수정" onclick="modify_pjd()">
+								<input type="button" id="modify_pjd_btn" class="btn btn-primary2 btn-md" value="수정" onclick="modify_pjd()">
 							</c:if>
 						</div>
 						
@@ -122,7 +122,7 @@
 									</td>
 									<td id="modify_td_${list.pjdd_no}">${list.pjdd_content}</td>
 									<c:if test="${pj_emp_no==login_emp_no}">
-										<td><input type="button" class="btn btn-default" value="수정" onclick="modify_pjdd(this.id)" id="modify_btn_${list.pjdd_no}"></td>
+										<td><input type="button" class="btn btn-primary2" value="수정" onclick="modify_pjdd(this.id)" id="modify_btn_${list.pjdd_no}"></td>
 									</c:if>
 									<td hidden="hidden"><input type="hidden"  readonly="readonly" value="${list.pjdd_no}"></td>
 								</tr>
@@ -140,7 +140,8 @@
 		</div>
 	</div>
 </div>
-
+<script src="vendor/toastr/build/toastr.min.js"></script>
+ <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script>
 $(function(){
@@ -161,7 +162,37 @@ $(function(){
 		index = index+1;
 	});
 
+	
+	
+	//alert창
+	toastr.options = {	 
+			 "closeButton": true,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+	        };
+	 
+		//날짜 필수. 제목필수, 내용 필수, 책임자 필수
+		$('#modify_pjd_btn').click(function(){
+			if($('#modify_pjd_btn').val()=="수정완료"){
 
+				
+			}
+			
+			
+			
+		});
 	
 	
 })
@@ -208,7 +239,7 @@ function addclick(id){
 												appendTable+="<input type='checkbox' class='icheckbox_square-green' disabled='disabled'>";
 											}
 											appendTable+="</td><td id='modify_td_"+pjdd[index].pjdd_no+"'>"+pjdd[index].pjdd_content+"</td>"+
-														 "<td><input type='button' class='btn btn-default' value='수정' onclick='modify_pjdd(this.id)' id='modify_btn_"+pjdd[index].pjdd_no+"'></td>"+
+														 "<td><input type='button' class='btn btn-primary2' value='수정' onclick='modify_pjdd(this.id)' id='modify_btn_"+pjdd[index].pjdd_no+"'></td>"+
 														 "<td hidden='hidden'><input type='hidden'  readonly='readonly' value='"+pjdd[index].pjdd_no+"'></td></tr>";
 											
 										});
@@ -275,6 +306,7 @@ function modify_pjdd(id){
 	
 	if(val=="수정"){
 		$('#modify_btn_'+modify_i).val("수정완료");
+		$('#modify_btn_'+modify_i).attr('class','btn btn-md btn-warning');
 		if(checked!=true){
 			$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",false);
 		}
@@ -291,7 +323,7 @@ function modify_pjdd(id){
 	}
 	if(val=="수정완료"){
 		$('#modify_btn_'+modify_i).val("수정");
-		
+		$('#modify_btn_'+modify_i).attr('class','btn btn-md btn-primary2');
 		$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",true);
 		
 		var content = $('#modify_td_'+modify_i).children().val();
@@ -367,6 +399,7 @@ function modify_pjd(){
 	
 	if($('#modify_pjd_btn').val()=="수정"){
 		$('.table-input').attr('disabled',false);
+		$('#modify_pjd_btn').attr('class','btn btn-md btn-warning');
 		$('#modify_pjd_btn').val("수정완료");
 	}
 	
@@ -378,6 +411,28 @@ function modify_pjd(){
 		var pj_step_no = $("#step_no > option:selected").val();
 		var pjd_start =$('#pjd_start').val();
 		var pjd_end = $('#pjd_end').val();
+		
+		
+		if($('#pjd_title').val() ==""){
+			toastr.warning('제목을 입력해 주세요');
+			$('#pjd_title').focus();
+			return false;
+		}
+		if($('#pjd_start').val() ==""){
+			toastr.warning('시작일을 선택해 주세요');
+			$('#pjd_start').focus();
+			return false;
+		}
+		if($('#pjd_end').val() =="" ){
+			toastr.warning('종료일을 선택해 주세요');
+			$('#pjd_end').focus();
+			return false;
+		}
+		if($('#pjd_content').val() ==""){
+			toastr.warning('내용을 입력해 주세요');
+			$('#pjd_content').focus();
+			return false;
+		}
 		
 		
 		alert("pjd_no" + pjd_no + "/ pjd_title" + pjd_title + "/ pjd_content "+pjd_content + "/ pj_step_no"+ pj_step_no + "/ pjd_start" + pjd_start + "/ pjd_end" + pjd_end);
@@ -415,6 +470,51 @@ function modify_pjd(){
 		
 		$('.table-input').attr('disabled',true);
 		$('#modify_pjd_btn').val("수정");
+		$('#modify_pjd_btn').attr('class','btn btn-md btn-primary2');
+
 	}
 }
+</script>
+
+<script>
+//프로젝트 시작일
+$(function(){
+var pj_start ='${pj_date.pj_start}';
+var pj_end = '${pj_date.pj_end}';
+ 
+
+
+alert("////"+pj_start+"////"+pj_end);
+      $('.formstartDate_detail').datepicker({
+              changeMonth: true, 
+               dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+               dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
+               monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+               monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+               dateFormat: 'yy-mm-dd',
+               changeYear: true,
+              // minDate : 
+               beforeShowDay: function(date){
+                 //var loadDt = new Date();
+                 //var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+                 //if 
+                 if(date < dayday) return [false];  //선택못해
+                  return [true];
+               },
+               onSelect: function(selected) {
+                  $('.formendDate_detail').datepicker("option","minDate", selected)
+               }
+      });   
+      
+
+      $('.formendDate_detail').datepicker({
+          changeMonth: true, 
+            dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+            dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
+            monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            dateFormat: 'yy-mm-dd',
+            changeYear: true
+      });
+});  
 </script>
