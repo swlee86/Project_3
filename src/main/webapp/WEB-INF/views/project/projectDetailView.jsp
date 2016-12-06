@@ -91,7 +91,7 @@
 						</br>
 						<div align="right">
 							<c:if test="${pj_emp_no==login_emp_no}">
-								<input type="button" id="modify_pjd_btn" class="btn btn-default btn-md" value="수정" onclick="modify_pjd()">
+								<input type="button" id="modify_pjd_btn" class="btn btn-primary2 btn-md" value="수정" onclick="modify_pjd()">
 							</c:if>
 						</div>
 						
@@ -140,7 +140,8 @@
 		</div>
 	</div>
 </div>
-
+<script src="vendor/toastr/build/toastr.min.js"></script>
+ <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script>
 $(function(){
@@ -161,7 +162,37 @@ $(function(){
 		index = index+1;
 	});
 
+	
+	
+	//alert창
+	toastr.options = {	 
+			 "closeButton": true,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+	        };
+	 
+		//날짜 필수. 제목필수, 내용 필수, 책임자 필수
+		$('#modify_pjd_btn').click(function(){
+			if($('#modify_pjd_btn').val()=="수정완료"){
 
+				
+			}
+			
+			
+			
+		});
 	
 	
 })
@@ -367,6 +398,7 @@ function modify_pjd(){
 	
 	if($('#modify_pjd_btn').val()=="수정"){
 		$('.table-input').attr('disabled',false);
+		$('#modify_pjd_btn').attr('class','btn btn-md btn-warning');
 		$('#modify_pjd_btn').val("수정완료");
 	}
 	
@@ -378,6 +410,28 @@ function modify_pjd(){
 		var pj_step_no = $("#step_no > option:selected").val();
 		var pjd_start =$('#pjd_start').val();
 		var pjd_end = $('#pjd_end').val();
+		
+		
+		if($('#pjd_title').val() ==""){
+			toastr.warning('제목을 입력해 주세요');
+			$('#pjd_title').focus();
+			return false;
+		}
+		if($('#pjd_start').val() ==""){
+			toastr.warning('시작일을 선택해 주세요');
+			$('#pjd_start').focus();
+			return false;
+		}
+		if($('#pjd_end').val() =="" ){
+			toastr.warning('종료일을 선택해 주세요');
+			$('#pjd_end').focus();
+			return false;
+		}
+		if($('#pjd_content').val() ==""){
+			toastr.warning('내용을 입력해 주세요');
+			$('#pjd_content').focus();
+			return false;
+		}
 		
 		
 		alert("pjd_no" + pjd_no + "/ pjd_title" + pjd_title + "/ pjd_content "+pjd_content + "/ pj_step_no"+ pj_step_no + "/ pjd_start" + pjd_start + "/ pjd_end" + pjd_end);
@@ -415,6 +469,8 @@ function modify_pjd(){
 		
 		$('.table-input').attr('disabled',true);
 		$('#modify_pjd_btn').val("수정");
+		$('#modify_pjd_btn').attr('class','btn btn-md btn-primary2');
+
 	}
 }
 </script>
