@@ -40,6 +40,10 @@
 	type="text/css" />
 
 	<style>
+		.detailSpan{
+		
+		}
+		
 		#sortable{
 			padding-left:0px;
 		 	list-style:none;
