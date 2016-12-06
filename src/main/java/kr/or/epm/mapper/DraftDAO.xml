@@ -156,8 +156,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where emp_no = #{emp_no}
 	</select>
 	
-	<!-- 전자결재 등록하기 -->
-	<insert id="insertDraft">
+	<!-- 전자결재_대외발신공문 등록하기 -->
+	<insert id="insertDraft_office">
 		insert into draft(draft_no, cg_no, 
 						  draft_title, draft_content, emp_no, 
 						  draft_date, file_name, rec_date, del_check, 
@@ -176,6 +176,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{draft_no}, #{rec_place, jdbcType=VARCHAR}, #{rec_fax, jdbcType=VARCHAR},
 			   #{rec_person, jdbcType=VARCHAR}, #{rec_tel, jdbcType=VARCHAR}, #{rec_postcode, jdbcType=VARCHAR},
 			   #{rec_addr, jdbcType=VARCHAR}, #{rec_addr_detail, jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 전자결재_협조문 등록하기 -->
+	<insert id="insertDraft_cooperation">
+		insert into draft(draft_no, cg_no, 
+						  draft_title, draft_content, emp_no, 
+						  draft_date, file_name, rec_date, del_check, 
+						  rec_del_check, step_no)
+		values(#{draft_no}, #{cg_no},
+			   #{draft_title}, #{draft_content}, #{emp_no},
+			   to_char(sysdate, 'yyyy-mm-dd'), #{file_name, jdbcType=VARCHAR}, null, 
+			   '0', '0', '4')
+	</insert>
+	
+	<!-- 협조문 등록하기 -->
+	<insert id="insertCooperation">
+		insert into cooperation(draft_no, low_dept_no)
+		values(#{draft_no}, #{low_dept_no})
+	</insert>
+	
+	<!-- 전자결재 휴가신청서 -->
+	<insert id="insertDraft_break">
+		insert into draft(draft_no, cg_no, 
+						  draft_title, draft_content, emp_no, 
+						  draft_date, file_name, rec_date, del_check, 
+						  rec_del_check, step_no)
+		values(#{draft_no}, #{cg_no},
+			   '휴가를 신청합니다.', #{draft_content}, #{emp_no},
+			   to_char(sysdate, 'yyyy-mm-dd'), #{file_name, jdbcType=VARCHAR}, null, 
+			   '0', '0', '4')
+	</insert>
+	
+	<!-- 휴가신청서 등록하기 -->
+	<insert id="insertBreak">
+		insert into break(draft_no, break_start, break_end, break_term, break_cg_no, break_tel)
+		values(#{draft_no}, #{break_start}, #{break_end}, to_date(#{break_end}) - to_date(#{break_start}), 
+			   #{break_cg_no}, #{break_tel})
 	</insert>
 	
 	<!-- 결재 번호 가져오기 -->
@@ -199,6 +236,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rownum = '1' and
       		  z.emp_no = #{param2} and
       		  cg_no = #{param3}
+	</select>
+	
+	<!-- 참조당한 대외발신공문 결재 문서 리스트 -->
+	<select id="selectDraft_ref_Office" resultType="kr.or.epm.VO.Office">
+		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no, 
+       	  	   e.emp_name, rec_place, rec_addr, rec_date
+		from draft_ref r join draft d
+		on r.draft_no = d.draft_no
+		join emp e
+		on r.emp_no = e.emp_no
+		join office o
+		on d.draft_no = o.draft_no
+		where r.emp_no = #{emp_no}
+	</select>
+	
+	<!-- 참조당한 협조문 결재 문서 리스트 -->
+	<select id="selectDraft_ref_Cooperaion" resultType="kr.or.epm.VO.Cooperation">
+		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
+       		   e.emp_name, low_dept_name, dept_name, branch_name, rec_date
+		from draft_ref r join draft d
+		on r.draft_no = d.draft_no
+		join emp e
+		on r.emp_no = e.emp_no
+		join low_dept l
+		on e.low_dept_no = l.low_dept_no
+		where r.emp_no = #{emp_no}
+	</select>
+	
+	<!-- 참조당한 휴가신청서 결재 문서 리스트 -->
+	<select id="selectDraft_ref_Break" resultType="kr.or.epm.VO.Break">
+		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
+       		   break_term, break_cg_name, e.emp_name, rec_date
+		from draft_ref r join draft d
+		on r.draft_no = d.draft_no
+		join break b
+		on r.draft_no = b.draft_no
+		join break_cg g
+		on b.break_cg_no = g.break_cg_no
+		join emp e
+		on r.emp_no = e.emp_no
+		where r.emp_no = #{emp_no}
 	</select>
 	
 	<!-- 대외발신공문 수신 리스트 -->

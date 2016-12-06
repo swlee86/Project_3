@@ -12,7 +12,9 @@
                        <table width="100%" id="datatable">
                        		<tr>
                        			<td width="13%" class="flag">문서 번호</td>
-                       			<td>제 ${ draft_no }호</td>
+                       			<td>
+                       				제 <input type="text" class="nb" name="draft_no" readonly style="text-align: right; width: 40px;" value="${ draft_no }"> 호
+                       			</td>
                        			<td></td>
                        			<td></td>
                        			<td></td>
@@ -52,7 +54,7 @@
                        						<span class="input-group-addon">
                        							<span class="fa fa-calendar"></span>
                        						</span>
-                       						<input type="text" id="breakdatepicker1" class="form-control">
+                       						<input type="text" name="break_start" id="breakdatepicker1" class="form-control">
                        					</span>
                        				</span> 
                        				<span style="display: inline-block; border:none; width: 10%; text-align: center;">부터</span>
@@ -61,7 +63,7 @@
                        						<span class="input-group-addon">
                        							<span class="fa fa-calendar"></span>
                        						</span>
-                       						<input type="text" id="breakdatepicker2" class="form-control">
+                       						<input type="text" name="break_end" id="breakdatepicker2" class="form-control">
                        					</span>
                        				</span>
                        			</td>

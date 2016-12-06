@@ -94,7 +94,7 @@
                     <br><br>
                     
                     <div class="pull-right" style="text-align: center;">
-                    	<input type="button" onclick="location.href='draft_rec.do'"
+                    	<input type="button" id="backBtn"
 							   class="btn btn-sm btn-default" value="뒤로가기"
 							   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 					</div>

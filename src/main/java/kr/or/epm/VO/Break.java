@@ -224,7 +224,10 @@ public class Break {
 				+ ", break_term=" + break_term + ", break_cg_no=" + break_cg_no + ", break_cg_name=" + break_cg_name
 				+ ", cg_no=" + cg_no + ", draft_title=" + draft_title + ", draft_content=" + draft_content + ", emp_no="
 				+ emp_no + ", draft_date=" + draft_date + ", file_name=" + file_name + ", step_no=" + step_no
-				+ ", rec_del_check=" + rec_del_check + ", del_check=" + del_check + "]";
+				+ ", rec_del_check=" + rec_del_check + ", del_check=" + del_check + ", emp_name=" + emp_name
+				+ ", rec_check=" + rec_check + ", position_name=" + position_name + ", branch_name=" + branch_name
+				+ ", dept_name=" + dept_name + ", low_dept_name=" + low_dept_name + ", cell_phone=" + cell_phone
+				+ ", break_tel=" + break_tel + "]";
 	}
 
 }

@@ -16,6 +16,8 @@
                        			<td>
                        				제 <input type="text" class="nb" name="draft_no" readonly style="text-align: right; width: 40px;" value="${ draft_no }"> 호
                        			</td>
+                       			<td></td>
+                       			<td></td>
                        		</tr>
                        		<tr height="14px"></tr>
                        		<tr>
@@ -28,45 +30,50 @@
                        		</tr>
                        		<tr>
                        			<td class="flag" width="13%">발신자 명</td>
-                       			<td><input type="text" class="nb" readonly name="emp_name" value="${ draft.emp_name }"></td>
+                       			<td colspan="3"><input type="text" class="nb" readonly name="emp_name" value="${ draft.emp_name }"></td>
                        		</tr>
                        		<tr height="14px"></tr>
                        		<tr>
                        			<td class="flag">수신처</td>
-                       			<td>
+                       			<td colspan="3">
                        				<input type="text" name="rec_place" class="form-control">
                        			</td>
                        		</tr>
                        		<tr>
                        			<td class="flag">수신자 명</td>
-                       			<td>
+                       			<td colspan="3">
                        				<input type="text" name="rec_person" class="form-control">                      			
                        			</td>
                        		</tr>
                        		<tr>
-                       			<td class="flag">FAX</td>
+                       			<td class="flag">연락처</td>
+                       			<td width="36%">
+                       				<input type="text" name="rec_tel" class="form-control">                      			
+                       			</td>
+                       			<td class="flag" style="text-align: center;">FAX</td>
                        			<td>
                        				<input type="text" name="rec_fax" class="form-control">                      			
-                       			</td>
-                       			<td class="flag" style="text-align: center;">연락처</td>
-                       			<td>
-                       				<input type="text" name="rec_tel" class="form-control">                      			
                        			</td>
                        		</tr>
                        		<tr>
                        			<td class="flag">우편번호</td>
                        			<td>
-                       				<input type="text" name="rec_postcode" class="form-control">                      			
+                       			<div class="input-group">
+                       				<input type="text" id="rec_postcode" readonly name="rec_postcode" class="form-control">                      			
+                       				<span class="input-group-btn">
+										<input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-success"  value="우편번호 찾기">
+									</span>
+                       			</div>
                        			</td>
                        		</tr>
                        		<tr>
                        			<td class="flag">기본주소</td>
                        			<td>
-                       				<input type="text" name="rec_addr" class="form-control">                      			
+                       				<input type="text" id="sample6_address" readonly name="rec_addr" class="form-control">                      			
                        			</td>
                        			<td class="flag" style="text-align: center;">상세주소</td>
                        			<td>
-                       				<input type="text" name="rec_addr_detail" class="form-control">                      			
+                       				<input type="text" id="sample6_address2" name="rec_addr_detail" class="form-control">                      			
                        			</td>
                        		</tr>
                        		<tr height="55px"></tr>

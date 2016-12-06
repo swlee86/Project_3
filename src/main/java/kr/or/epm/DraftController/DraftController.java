@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.DraftService;
@@ -74,7 +75,7 @@ public class DraftController {
 	
 	// 대외발신공문 등록
 	@RequestMapping(value="/draftOffice.do", method=RequestMethod.POST)
-	public String draftWriteOk(Principal principal, Model model, Office office, String draft_line_emp_no, String draft_ref_emp_no) {
+	public String draftWriteOffice(Principal principal, Model model, Office office, String draft_line_emp_no, String draft_ref_emp_no) {
 		System.out.println("CONTROLLER] 대외발신공문 등록");
 		String cg_no = "1";
 		
@@ -106,7 +107,77 @@ public class DraftController {
 		return "draft.draft_write";
 	}
 	
-	// 결재 대기함 페이지 요청
+	// 협조문 등록
+	@RequestMapping(value="/draftCooperation.do", method=RequestMethod.POST)
+	public String draftWriteCooperation(Principal principal, Model model, Cooperation cooperation, String draft_line_emp_no, String draft_ref_emp_no) {
+		System.out.println("CONTROLLER] 협조문 등록");
+		String cg_no = "2";
+		
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		model.addAttribute("emp_no", emp_no);
+				
+		System.out.println("cooperation : " + cooperation.toString());
+		System.out.println("draft_line_emp_no : " + draft_line_emp_no.toString());
+		System.out.println("draft_ref_emp_no : " + draft_ref_emp_no.toString());
+		cooperation.setEmp_no(emp_no);
+		cooperation.setCg_no(cg_no);
+		
+		service.insertCooperation(cooperation);
+		System.out.println("협조문 문서 등록 성공");
+		
+		String draft_no = cooperation.getDraft_no();
+		String[] linelist = draft_line_emp_no.split(",");
+		String[] reflist = draft_ref_emp_no.split(",");
+		
+		service.insertDraft_line(draft_no, linelist);
+		System.out.println("결재라인 등록 성공");
+		service.insertDraft_ref(draft_no, reflist);
+		System.out.println("참조자 등록 성공");
+		
+		return "draft.draft_write";
+	}
+	
+	// 휴가신청서 등록
+	@RequestMapping(value="/draftBreak.do", method=RequestMethod.POST)
+	public String draftWriteBreak(Principal principal, Model model, Break break2, String draft_line_emp_no, String draft_ref_emp_no) {
+		System.out.println("CONTROLLER] 휴가신청서 등록");
+		String cg_no = "3";
+		
+		System.out.println("hgjksfd : " + break2.toString());
+		
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		model.addAttribute("emp_no", emp_no);
+				
+		System.out.println("cooperation : " + break2.toString());
+		System.out.println("draft_line_emp_no : " + draft_line_emp_no.toString());
+		System.out.println("draft_ref_emp_no : " + draft_ref_emp_no.toString());
+		break2.setEmp_no(emp_no);
+		break2.setCg_no(cg_no);
+		
+		service.insertBreak(break2);
+		System.out.println("휴가신청서 문서 등록 성공");
+		
+		String draft_no = break2.getDraft_no();
+		String[] linelist = draft_line_emp_no.split(",");
+		String[] reflist = draft_ref_emp_no.split(",");
+		
+		service.insertDraft_line(draft_no, linelist);
+		System.out.println("결재라인 등록 성공");
+		service.insertDraft_ref(draft_no, reflist);
+		System.out.println("참조자 등록 성공");
+		
+		return "draft.draft_write";
+	}
+	
+	// 결재 수신함 페이지 요청
 	@RequestMapping(value="/draft_rec.do", method=RequestMethod.GET)
 	public String draft_rec(Principal principal, Model model) {
 		System.out.println("CONTROLLER] 결재 대기함 페이지");
@@ -127,7 +198,6 @@ public class DraftController {
 		System.out.println("대외발신공문 수신함 글 개수 : " + officecount);
 		model.addAttribute("officecount", officecount);
 		
-		
 		// 협조문
 		// 목록 가져오기
 		List<Cooperation> cooperationlist = service.selectCooperation_rec(emp_no);
@@ -137,7 +207,6 @@ public class DraftController {
 		int cooperationcount = cooperationlist.size();
 		System.out.println("협조문 수신함 글 개수 : " + cooperationcount);
 		model.addAttribute("cooperationcount", cooperationcount);
-		
 		
 		// 휴가신청서
 		// 목록 가져오기
@@ -151,10 +220,6 @@ public class DraftController {
 		 
 		return "draft.draft_rec";
 	}
-	
-	// 결재 대기함 상세
-	
-	// 결재 대기함 상세 > 승인 처리
 	
 	// 결재 송신함 페이지 요청
 	@RequestMapping(value="/draft.do", method=RequestMethod.GET)

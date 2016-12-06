@@ -2,6 +2,8 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Cooperation;
 import kr.or.epm.VO.Draft;
@@ -55,12 +57,20 @@ public interface DraftDAO {
 	*/
 	
 	// 결재 등록하기
-	// 기본 전자 결재 등록하기
-	public int insertDraft(Office office);
-	
+	// draft_대외발신공문 등록하기
+	public int insertDraft_office(Office office);
 	// 대외발신공문 등록하기
 	public int insertOffice(Office office);
 	
+	// draft_협조문 등록하기
+	public int insertDraft_cooperation(Cooperation cooperation);
+	// 협조문 등록하기
+	public int insertCooperation(Cooperation cooperation);
+	
+	// draft_휴가신청서 등록하기
+	public int insertDraft_break(Break break2);
+	// 휴가신청서 등록하기
+	public int insertBreak(Break break2);
 	
 	// 결재 등록을 위해 기본정보 가져오기
 	public Draft selectDraft_basic(String emp_no);
@@ -74,6 +84,15 @@ public interface DraftDAO {
 	
 	// 결재라인 차례 확인하기
 	public String selectDraft_line(String draft_no, String emp_no, String cg_no);
+	
+	// 참조당한 대외발신공문 결재 문서 리스트 가져오기
+	public List<Office> selectDraft_ref_Office(String emp_no);
+	
+	// 참조당한 협조문 결재 문서 리스트 가져오기
+	public List<Cooperation> selectDraft_ref_Cooperaion(String emp_no);
+	
+	// 참조당한 휴가신청서 결재 문서 리스트 가져오기
+	public List<Break> selectDraft_ref_Break(String emp_no);
 	
 	// 대외발신공문 수신 리스트
 	public Office selectOffice_rec(String draft_no, String emp_no);

@@ -72,11 +72,21 @@
     <div class="panel-body">
         <div class="row">
         	<div class="col-md-8 forum-heading">
-				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
-					<c:if test="${ office.rec_check == '0' }">
-            		<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
-            		</c:if>
-                		${ office.draft_date } 
+				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;">
+				<c:choose>
+					<c:when test="${ office.rec_check != null }">
+						<c:if test="${ office.rec_check == '0' }">
+            				<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
+            			</c:if>
+                			${ office.draft_date } 
+                	</c:when>
+                	<c:when test="${ office.rec_check == null }">
+                		<c:if test="${ office.rec_date == null }">
+                			<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
+            			</c:if>
+                			${ office.draft_date } 
+                	</c:when>
+                </c:choose>
            	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="office_detail.do?draft_no=${ office.draft_no }"><h4> ${ office.draft_title } </h4></a>
@@ -135,10 +145,20 @@
         <div class="row">
         	<div class="col-md-8 forum-heading">
 				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
-					<c:if test="${ cooper.rec_check == '0' }">
-            		<span class="label label-warning pull-left" style="margin-right: 5px;">New</span>
-            		</c:if>
-                		${ cooper.draft_date } 
+				<c:choose>
+					<c:when test="${ cooper.rec_check != null }">
+						<c:if test="${ cooper.rec_check == '0' }">
+            				<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
+            			</c:if>
+                			${ cooper.draft_date } 
+                	</c:when>
+                	<c:when test="${ cooper.rec_check == null }">
+                		<c:if test="${ cooper.rec_date == null }">
+                			<span class="label label-warning pull-left" style="margin-right: 5px;">New</span>
+            			</c:if>
+                			${ cooper.draft_date } 
+                	</c:when>
+                </c:choose>
            	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="cooperation_detail.do?draft_no=${ cooper.draft_no }"><h4> ${ cooper.draft_title } </h4></a>
@@ -195,11 +215,22 @@
     <div class="panel-body">
         <div class="row">
         	<div class="col-md-8 forum-heading">
-				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
-					<c:if test="${ br.rec_check == '0' }">
-            		<span class="label label-info pull-left" style="margin-right: 5px;">New</span>
-            		</c:if>
-                		${ br.draft_date } 
+				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 	
+                <c:choose>
+					<c:when test="${ br.rec_check != null }">
+						<c:if test="${ br.rec_check == '0' }">
+            				<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
+            			</c:if>
+                			${ br.draft_date } 
+                	</c:when>
+                	<c:when test="${ br.rec_check == null }">
+                		<c:if test="${ br.rec_date == null }">
+                			<span class="label label-info pull-left" style="margin-right: 5px;">New</span>
+            			</c:if>
+                			${ br.draft_date } 
+                	</c:when>
+                </c:choose>
+           	 	
            	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="break_detail.do?draft_no=${ br.draft_no }"><h4> ${ br.draft_title } </h4></a>

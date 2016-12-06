@@ -111,7 +111,6 @@ $(function() {
            				});
     				litag +="</ul>";	
        				$('#organization').html(litag);
-
     			}
     		})
 
@@ -186,6 +185,7 @@ $(function() {
 
     var dept_Name = "";
     var dept_Name2 = new Array();
+ 	var dept_No = new Array();
     
     //하위 부서 클릭시
     function seelow_Depart(obj,empSelectNumber,departcho) {
@@ -210,8 +210,7 @@ $(function() {
   	    			if(secondTree == 0){
   	      				secondTree = 1;
   	    			$.each(low_dept, function(index) {
-
-  	    				console.log("이값을 가져가고 싶다고 : " + low_dept[index].low_dept_name);
+  	    				dept_No.push(low_dept[index].low_dept_no)
   	      				dept_Name2.push(low_dept[index].low_dept_name);
   	      				dept_Name = low_dept[index].low_dept_name;
   	  				litag += "<li><i class='fa fa-long-arrow-right'></i>"+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"<input type='button' class='btn btn-success' style='margin-left: 8px; font-size: 9pt; height: 4pt;' value='선택' onclick='check2("+index+")'></li></ul>";
@@ -253,11 +252,11 @@ $(function() {
     }
     
     function check2(index) {
-    	console.log(dept_Name2[index]);
-    	var choosedept = dept_Name2[index];
+    	var choosedept_no =  dept_No[index];
+    	var choosedept_name = dept_Name2[index];
     	// 협조문에서 수신부서 선택 시
-    	
-        $("#choosedept").val(choosedept);
+        $("#choosedept_name").val(choosedept_name);
+        $("#choosedept_no").val(choosedept_no);
   	    $("#myModal6").modal("hide");
     };
     
@@ -292,7 +291,6 @@ $(function() {
     	              	  var emp = "";
     	                    $.each(data, function(index){
     	                       emp = data[index];
-    	                       console.log(emp);
     	                   });
     	                   
     	                   $.each(emp, function(index){
@@ -310,7 +308,6 @@ $(function() {
     	                   $('#empList').empty();
     	                   $('#empList').append(makeTable);
     	                 }    
-    	                
     	             }
     	        );
     }
@@ -318,7 +315,6 @@ $(function() {
     // 체크박스 선택후 버튼 클릭시 호출
     function check(low_deptNumber){
     	var checkNumber = testEmpSelectNumber;
-    	//alert("empSelectNumber : "+checkNumber);
        // 체크박스 크기만큼 배열 생성
        var checkResult = new Array();
        empInfoArray.splice(0,empInfoArray.length);
@@ -331,7 +327,6 @@ $(function() {
        
        if(checkNumber == 1){
       	 if(empInfoArray.length > 1) {
-               console.log("if 내부 : " + empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
                // 화면에 보이는 input 은 그냥 때려넣음
                $("#draft_Ok_emp_no").val(empInfoArray[0].emp_no);
                $("#draft_Ok_emp_name").val(empInfoArray[0].emp_name);
@@ -344,15 +339,11 @@ $(function() {
                   input_name +="<input type='text' class='form-control' readonly class='forDelete' value='"+empInfoArray[i].emp_name+"'>";
                }
                
-               console.log("info Array IF 탐 " + input_no);
-               
                $('#sanction_DraftOk_no_td').append(input_no);
                $('#sanction_DraftName_td').append(input_name);
             
       	 	}else{
       	 		// 한 명일 경우
-      	 		console.log("if  else  내부 : " +empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
-            	console.log("info Array ELSE 탐");
                $("#draft_Ok_emp_no").val(empInfoArray[0].emp_no);
                $("#draft_Ok_emp_name").val(empInfoArray[0].emp_name);            
             }
@@ -365,8 +356,6 @@ $(function() {
        }else if(checkNumber == 2){
        
           if(empInfoArray.length > 1){
-        	  alert("여기타면 참조자를 선택한거야!!! 그것도 한 명 이상ㅎㅎ")
-             console.log("if 내부 : " +empInfoArray[0].emp_no +" / "+empInfoArray[0].emp_name);
              //화면에 보이는 input 은 그냥 때려넣음
              $("#draft_ref_emp_no").val(empInfoArray[0].emp_no);
              $('#draft_ref_emp_name').val(empInfoArray[0].emp_name);
@@ -378,14 +367,10 @@ $(function() {
                 input_name +="<input type='text' class='form-control' readonly class='forDelete' value='"+empInfoArray[i].emp_name+"'>";
              }
              
-             console.log("info Array IF 탐 "+input_no);
-             
              $('#sanction_writeNo_td').append(input_no);
              $('#sanction_writename_td').append(input_name);
           }else{
            
-          	console.log("info Array ELSE 탐")
-          	
              $("#draft_ref_emp_no").val(empInfoArray[0].emp_no);
              $('#draft_ref_emp_name').val(empInfoArray[0].emp_name);            
           }
@@ -469,8 +454,6 @@ $(function() {
 	
 	$("#submitBtn").click(function() {
 		var choose = $("input[name='cg_no']:checked").val();
-		console.log("check1");
-		console.log(choose);
 		
 		draft.method = "post";
 		
@@ -492,7 +475,7 @@ $(function() {
 	        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
 	        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	        dateFormat: 'yyyy-mm-dd',
+	        dateFormat: 'yy-mm-dd',
 	        changeYear: true
 		});
 		$("#breakdatepicker2").datepicker({
@@ -501,7 +484,7 @@ $(function() {
 	        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
 	        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	        dateFormat: 'yyyy-mm-dd',
+	        dateFormat: 'yy-mm-dd',
 	        changeYear: true
 		});
 	}
@@ -538,3 +521,46 @@ $(function() {
     			}
     		});
 	}
+	
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var fullAddr = ''; 
+                var extraAddr = '';
+
+                if (data.userSelectedType === 'R') {
+                    fullAddr = data.roadAddress;
+
+                } else { 
+                    fullAddr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                document.getElementById('rec_postcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('sample6_address').value = fullAddr;
+
+                document.getElementById('sample6_address2').focus();
+            }
+        }).open();
+    }
+    
+    // 뒤로가기 버튼
+    $("#backBtn").click(function() {
+    	history.back();
+    });
+    
+    
+    // 상세 페이지에서 modal 창 보여주기
+    var modal = $modal.open({
+        templateUrl: 'views/draft/office_detail.jsp',
+        windowClass: "hmodal-success"
+    }); 

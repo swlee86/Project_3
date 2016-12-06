@@ -2,22 +2,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <div class="content animate-panel content-boxed">
-	<div>
-		<a class="btn btn-default buttons-print btn-sm" aria-controls="print">
+<div style="margin: 10px;">
+	<span class="up_btn">
+		<a class="btn btn-default buttons-print btn-m" aria-controls="print">
 			<span>Print</span>
 		</a>
-	</div>
-	<div>
-		<a class="btn btn-default buttons-print btn-sm" aria-controls="print">
-			결재라인 확인하기
+	</span>
+	<span class="up-btn">
+		<button class="btn btn-default btn-m" data-toggle="modal" data-target="#draft_line_Modal">
+			결재라인 확인
+		</button>
+	</span>
+	<span class="up-btn">
+		<a class="btn btn-default btn-m">
+			참조자 확인
 		</a>
-	</div>
-	<div>
-		<a class="btn btn-default buttons-print btn-sm" aria-controls="print">
-			참조자 확인하기
+	</span>
+	<span class="up-btn">
+		<a class="btn btn-default btn-m">
+			수신처 확인
 		</a>
-	</div>
-
+	</span>
+</div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="hpanel blog-article-box" id="print">
@@ -61,7 +67,7 @@
                     <br><br>
                     
                     <div class="pull-right" style="text-align: center;">
-                    	<input type="button" onclick="location.href='draft_rec.do'"
+                    	<input type="button" id="backBtn"
 							   class="btn btn-sm btn-default" value="뒤로가기"
 							   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 					</div>
@@ -71,3 +77,35 @@
             </div>
         </div>
     </div>
+    
+    
+    
+<!-- 결재라인 확인하기 Modal창 -->
+<div class="modal fade hmodal-success" id="draft_line_Modal" tabindex="-1"
+	 role="dialog" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			<div class="modal-header">
+				<h4 class="modal-title">결재 라인 확인</h4>
+				<small class="font-bold">제 ${ detail.draft_no }호 문서의 결재자들을 확인합니다.</small>
+			</div>
+			<div class="modal-body">
+				<table>
+					<c:if test="${ linecount <= 0 }">
+						<tr>
+							<td>등록된 결재자가 존재하지 않습니다.</td>
+						</tr>
+					</c:if>
+					<c:forEach var="line" items="">
+					
+					</c:forEach>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

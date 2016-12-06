@@ -70,7 +70,7 @@
         <div class="row">
         	<div class="col-md-9 forum-heading">
             	<div style="margin-left: 2%;">
-                	<a href="forum_details.html"><h4> ${ office.draft_title } </h4></a>
+                	<a href="office_detail.do?draft_no=${ office.draft_no }"><h4> ${ office.draft_title } </h4></a>
             	</div>
             	<div class="desc" style="margin-top: 10px; margin-left: 1%;">
                 		${ office.draft_date } 
@@ -122,7 +122,7 @@
         <div class="row">
         	<div class="col-md-9 forum-heading">
             	<div style="margin-left: 2%;">
-                	<a href="forum_details.html"><h4> ${ cooper.draft_title } </h4></a>
+                	<a href="cooperation_detail.do?draft_no=${ cooper.draft_no }"><h4> ${ cooper.draft_title } </h4></a>
             	</div>
             	<div class="desc" style="margin-top: 10px; margin-left: 1%;">
                 		${ cooper.draft_date } 
@@ -173,7 +173,7 @@
         <div class="row">
         	<div class="col-md-9 forum-heading">
             	<div style="margin-left: 2%;">
-                	<a href="forum_details.html"><h4> ${ br.draft_title } </h4></a>
+                	<a href="break_detail.do?draft_no=${ br.draft_no }"><h4> ${ br.draft_title } </h4></a>
             	</div>
             	<div class="desc" style="margin-top: 10px; margin-left: 1%;"> 
                 		${ br.draft_date } 
