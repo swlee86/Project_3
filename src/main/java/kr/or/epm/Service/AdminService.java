@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import kr.or.epm.DAO.BranchDAO;
 import kr.or.epm.DAO.DeptDAO;
@@ -63,7 +64,8 @@ public class AdminService {
 		
 		//지점 정보 수정 
 		int result = branchDAO.branchModify(dto);
-	
+	    
+		//지점 정보 수정된 경우
 		if(result > 0){
 			
 			//수정한 지점 정보 가져오기
@@ -89,6 +91,7 @@ public class AdminService {
 			}else{
 				last=0;
 			}
+			
 		}
 		return last;
 	}
