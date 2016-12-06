@@ -275,7 +275,19 @@
 				alert('전화번호를 입력해주세요 !');
 				$('#cell_phone').focus();
 			}else{
-				$('#findIdForm').submit();
+				$.ajax({
+					url:"findId.do",
+					data: {
+						emp_no : $('#emp_no').val(),
+						emp_name : $('#emp_name').val(),
+						cell_phone : $('#cell_phone').val()
+					},
+					type:"POST",
+					success : function(data){
+						alert("성공")
+					}
+					
+				});
 				$('#emp_no').val('');
 				$('#emp_name').val('');
 				$('#cell_phone').val('');

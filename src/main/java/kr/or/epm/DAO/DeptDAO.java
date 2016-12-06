@@ -51,6 +51,12 @@ public interface DeptDAO {
 	//부서 수정 > 상여금 수정 5)
 	int modifyset_bonus(DeptJoinBonus deptJoinBonus);
 	
+	//부서 수정 > 소속 하위부서 개수 구하기 6)
+	int count_lowDept(DeptJoinBonus deptJoinBonus);
+	
+	//부서 수정 > 소속 하위부서 정보 update 7)
+	int update_lowDept(DeptJoinBonus deptJoinBonus);
+	
 	//부서 삭제하기
 	int dept_delete(String dept_no);
 	

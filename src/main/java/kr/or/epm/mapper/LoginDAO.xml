@@ -41,4 +41,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   select emp_name from emp where emp_no=#{emp_no}
 	</select>
 	
+	<!-- 아이디 찾기 -->
+	<select id="selectEmp_FindId" resultType="String" parameterType="kr.or.epm.VO.EmpJoinEmp_Detail">
+	  select id
+	  from emp e join emp_detail d
+	  on e.emp_no =d.emp_no
+	  where e.emp_no= #{emp_no} and emp_name=#{emp_name} and cell_phone=#{cell_phone}
+	</select>
+	
 </mapper>

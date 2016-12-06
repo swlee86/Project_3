@@ -28,10 +28,16 @@ public interface BranchDAO {
 	//수정한 지점 소속 부서 update 4)
 	int update_new_dept(Branch branch);
 	
-	//이전 지점 his_check='0'
+	//이전 지점 his_check='0'   5)
 	int update_pre_dept(String branch_no);
 	
-	//지점 삭제하기
+	//지점의 소속 하위부서 개수 구하기    6) 
+	int countlow_dept(String pre_branch_name);
+	
+	//하위부서 업데이트 7)
+	int update_pre_lowDept(String branch_name, String pre_branch_name);
+	
+    //지점 삭제하기
 	int delete_branch(String branch_no);
 	
 }
