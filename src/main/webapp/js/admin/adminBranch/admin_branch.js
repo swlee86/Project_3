@@ -311,6 +311,34 @@ function departMentFuc(){
 					);
 		});
 		
+		//지점 삭제 버튼 클릭시
+		$('#deleteBranchsubmitBtn').click(function(){
+			console.log($('#hidden').val() +" 삭제할 지점 번호~~~~");
+			
+			$.ajax(
+					{
+						url:"branch_delete.do",
+						data:{
+							 branch_no: $('#hidden').val()
+							},
+						success: function(data){
+							
+							console.log(data.result);
+							alert(data.result);
+							
+							if(data.result=='삭제 성공'){
+								window.location.reload();
+							}else{
+								return false;
+							}
+							
+						}
+					}
+					);
+			
+		});
+		
+		
 		
         //부서 등록 div 숨김
 		$('#addDepartmentDiv').hide();
@@ -427,6 +455,33 @@ function departMentFuc(){
 			           }
 			      );
 			
+			
+		});
+		
+		//부서 삭제하기
+		$('#deleteDeptBtn').click(function(){
+			console.log(" 부서 번호 > 삭제: "+$('#hiddept_no').val());
+			
+			$.ajax(
+					{
+						url:"dept_delete.do",
+						data:{
+							 dept_no: $('#hiddept_no').val()
+							},
+						success: function(data){
+							
+							console.log(data.result);
+							alert(data.result);
+							
+							if(data.result=='삭제 성공'){
+								window.location.reload();
+							}else{
+								return false;
+							}
+							
+						}
+					}
+					);
 			
 		});
 		
@@ -603,6 +658,26 @@ function departMentFuc(){
 						}
 					}
 					);
+			
+		});
+		
+		//하위부서 삭제버튼 클릭시 
+		$('#deleteDownDepartBtn').click(function(){
+			console.log("하위 부서 번호 > 삭제 : "+$('#hiddenlow_dept_no').val());
+			$.ajax(
+					{
+						url:"low_dept_delete.do",
+						data:{
+							 low_dept_no: $('#hiddenlow_dept_no').val()
+							},
+						success: function(data){
+							console.log(data.result);
+							alert(data.result);
+							window.location.reload();
+						}
+					}
+					);
+			
 			
 		});
 		

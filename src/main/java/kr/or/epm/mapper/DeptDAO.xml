@@ -9,6 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select dept_name, dept_no from dept where branch_no = (select branch_no from branch where branch_name=#{branch_name}) and his_check=1
 	</select>
 
+    <!-- 지점번호로 부서 조회하기 > 지점 삭제시 사용-->
+    <select id="select_dept_beforeDelete" resultType="kr.or.epm.VO.Dept">
+    	select dept_no, dept_name from dept where branch_no=#{branch_no} and his_check='1'
+    </select>
+
 	<!-- 관리자 > 부서관리 > 부서 조회하기 -->
 	<select id="selectChooseDept" parameterType="String" resultType="kr.or.epm.VO.DeptJoinBonus">
 	select d.dept_no, d.branch_name, d.branch_no, d.dept_name, s.bonus_percent, s.bonus_check
@@ -63,8 +68,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update set_bonus set set_date=#{set_date}, dept_no=#{dept_no}, bonus_percent=#{bonus_percent} where dept_no=${pre_dept_no}
     </update>
     
-   
-  
+   <!--  부서 삭제하기-->
+    <update id="dept_delete" parameterType="String">
+      update dept set his_check='0' where dept_no=#{dept_no}
+    </update>
   
   
     <!--수정후 특정 부서 조회하기  -->
@@ -79,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectDeptNo" resultType="String" parameterType="String">
 		select dept_no
 		from dept
-		where branch_name = #{param1} and dept_name=#{param2}
+		where branch_name = #{param1} and dept_name=#{param2} and his_check='1'
 	</select>
 	
 	<!-- 전체 부서 조회 -->

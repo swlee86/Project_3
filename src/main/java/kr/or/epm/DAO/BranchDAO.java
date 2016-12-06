@@ -18,4 +18,7 @@ public interface BranchDAO {
 	//지점 정보 새로 수정
 	int branchModify(Branch dto);
 
+	//지점 삭제하기
+	int delete_branch(String branch_no);
+	
 }
