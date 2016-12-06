@@ -79,7 +79,7 @@ public class PageMoveController {
 		//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
 		if(emp_no_chk==false){
 			id = principal.getName();			
-			System.out.println("아이디  : "+id);
+			System.out.println("아이디+++++++++++++++++++++++++  : "+id);
 			String empinfo = service.selectUserName(id);
 			session.setAttribute("userName", empinfo);
 		}
