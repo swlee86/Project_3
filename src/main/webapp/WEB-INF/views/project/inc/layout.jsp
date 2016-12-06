@@ -28,8 +28,7 @@
 	
 	<link rel="stylesheet" href="vendor/fooTable/css/footable.core.min.css" />
 	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
-	<link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
-		  
+	  
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
@@ -69,14 +68,14 @@
  	   $('#rec_emp_no').val(emp_no);
  	   $('#rec_emp_name').val(name);
 
- 	   $('#myModal7').modal("hide");
+ 	   $('#myModal6').modal("hide");
      }	
 
 $(function(){
 	//주소록 추가시  검색해서 보여주는 script
     $('#con_ins_org_sea_btn').click(function(){
     	console.log("몇개선택?? : "+ $('#con_ins_org_sea_btn_sel').val());
-    	console.log('field : '+ $('#conp_ins_org_sea_field').val()+"/word:"+$('#conp_ins_org_sea_query').val());
+    	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
     	
         var choice = $('#con_ins_org_sea_btn_sel').val();
         
@@ -85,8 +84,8 @@ $(function(){
     				type : "post",
     				url  : "contact_insert_search.do",
     				data : {
-    						"field" : $('#conp_ins_org_sea_field').val(),
-    						"query" : $('#conp_ins_org_sea_query').val()
+    						"field" : $('#con_ins_org_sea_field').val(),
+    						"query" : $('#con_ins_org_sea_query').val()
     				},
     				success : function(data){
     							console.log(data);
@@ -120,8 +119,8 @@ $(function(){
  		                    		makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check2()>";
  		                    	}
     		                   
-    		                   $('#emppList2').empty();
-    		                   $('#emppList2').append(makeTable); 
+    		                   $('#empList2').empty();
+    		                   $('#empList2').append(makeTable); 
     					}
     				}		
     			)
@@ -132,26 +131,17 @@ $(function(){
        
 	    //전체프로젝트 - 참조자 아이콘 클릭시
 	    $('#organization_add').click(function() {
-	    	
-	    	$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){     	   
-	              console.log("@@@po.value : "+po.value);
-	  	          console.log('@@@push : '+$(this).parent().next().html());  
-	           });
-	    	
-	    	
-	    	
 	    	console.log("몇개선택?? : "+ $('#con_ins_org_sea_btn_sel').val());
-	    	var choice = Number($('#con_ins_org_sea_btn_sel').val());   // 1 : 한개 선택(전체프로젝특)  2: 두개 선택(상세프로젝트기본) 
+	    	var choice = $('#con_ins_org_sea_btn_sel').val();   // 1 : 한개 선택(전체프로젝특)  2: 두개 선택(상세프로젝트기본) 
 	    	
-	   		var  empSelectNumber = choice;
+	   		var  empSelectNumber = Number(choice);
 			var litag = "<ui style='list-style:none; margin-left:-40px;'>";   		
-			$('#porganization').empty();
-			$('#emppList').empty();
-			$('#emppList2').empty();
+			$('#organization').empty();
+			$('#empList').empty();
+			$('#empList2').empty();
     		$('#con_ins_org_sea_query').val('');
     		
     		if(choice == 2){
-    			console.log('if지워');
     			$('.multiDiv_0').empty();
     		}
 	 		
@@ -160,8 +150,8 @@ $(function(){
 	        		{
 	   					url : "taskWriteModal.do",
 	   					success : function(data) {
-	   				 			$('#myModal7').modal();
-	   							choose = choice;
+	   				 			$('#myModal6').modal();
+	   							choose = Number(choice);
 	   							var departMent = "";
 	
 	   							$.each(data, function(index) {
@@ -179,7 +169,7 @@ $(function(){
 	    								litag+="'></div>";
 	       							});
 	   							litag +="</ul>";
-	   							$('#porganization').html(litag);
+	   							$('#organization').html(litag);
 	   						}
 	   					})
 	    			}
@@ -323,14 +313,14 @@ $(function(){
 	function seeEmpMember(obj,empSelectNumber,low_dept_no){
 	   //체크
 	   var empListNumber = low_dept_no;
-		alert("사원뽑기 : "+empListNumber);
+		//alert("사원뽑기 : "+empListNumber);
 	   console.log("@@@@@@empSelectNumber : " + empSelectNumber);
 	   console.log(obj);
 	   
 	   //클릭한 text 값 뽑아옴.
 	   var low_dept = $(obj).text();
-	   alert("taskEmpModal : "+low_dept);
-	   alert("selectNo : " + empSelectNumber);
+	   //alert("taskEmpModal : "+low_dept);
+	   //alert("selectNo : " + empSelectNumber);
 	   var makeTable = "";
 	  
 	   if(empSelectNumber == 1){
@@ -369,8 +359,8 @@ $(function(){
 	           	   }
 	               
 	             
-	               $('#emppList').empty();
-	               $('#emppList').append(makeTable);
+	               $('#empList').empty();
+	               $('#empList').append(makeTable);
 	             }    
 	            
 	         }
@@ -390,7 +380,7 @@ $(function(){
 	   $('#rec_emp_no').val(emp_no);
 	   $('#rec_emp_name').val(name);
 
-	   $('#myModal7').modal("hide");
+	   $('#myModal6').modal("hide");
 	}
 	
 	
@@ -402,8 +392,8 @@ $(function(){
 		    this.emp_name = emp_name;
 		 }
 		 
-		//사원정보 뽑아서 담을 배열
-	 var empInfoArray2 = new Array();
+		 //사원정보 뽑아서 담을 배열
+		 var empInfoArray2 = new Array();
 		 
 		 //부서 선택시
 		 var departcho;
@@ -417,24 +407,19 @@ $(function(){
 	
 	   //체크박스 선택후 버튼 클릭시 호출
     function check2(){
-    	 
-    	console.log('---------------------------------');
+
+		   
        //체크박스 크기만큼 배열 생성
        var checkResult2 = new Array();
        $(":checkbox[name='chkbtn2']:checked").each(function(pi,po){
-    	   
           //이름 
           checkResult2[pi] = po.value;
-          console.log("po.value : "+po.value);
           //사번
           empInfoArray2.push(new empInfo2($(this).parent().next().html(),checkResult2[pi]));
-          console.log('push : '+$(this).parent().next().html(),checkResult2[pi]);
-          
        });
        console.log("####사원  정보: "+empInfoArray2);
        console.log("####배열 사이즈: "+empInfoArray2.length);
-          if(empInfoArray2.length >= 1){
-        	  console.log('333333333333333333333333333333');
+          if(empInfoArray2.length > 1){
              //화면에 보이는 input 은 그냥 때려넣음
              //$("#multiDiv").val(empInfoArray[0].emp_no);
              //$('#multiDiv').val(empInfoArray[0].emp_name);
@@ -446,30 +431,20 @@ $(function(){
              for(var i = 0; i < empInfoArray2.length; i++){
 	              console.log("pjd_count: "+ 0 + "/ input : " +empInfoArray2[i].emp_no +" / "+empInfoArray2[i].emp_name);
                 input_no2 += "<input type='hidden' class='form-control' name='pjd[0].rec_emp_no' value='"+empInfoArray2[i].emp_no+"'>";
-                input_name2 +="<input type='text' size='20px'  readonly class='form-control input-sm' name='pjd[0].rec_emp_name' value='"+empInfoArray2[i].emp_name+"'>";
+                input_name2 +="<input type='text' class='form-control input-sm' name='pjd[0].rec_emp_name' value='"+empInfoArray2[i].emp_name+"'>";
              }
             
-            
+             empInfoArray2.splice(0,empInfoArray2.length);
+             console.log("####사원  정보 지우기 : "+empInfoArray2);
+             console.log("empInfoArray2 지우기 : " + empInfoArray2.length);
                $('.multiDiv_0').append(input_no2);
 	           $('.multiDiv_0').append(input_name2);
           }else{
-        	  console.log('2222222222222222222222222222222');
              $('.multiDiv_0').val(empInfoArray2[0].emp_no);
              $('.multiDiv_0').val(empInfoArray2[0].emp_name);            
           }
-          
-          empInfoArray2.splice(0,empInfoArray2.length);
-          console.log("####사원  정보 지우기 : "+empInfoArray2);
-          console.log("####사원  정보 지우기[0] : "+empInfoArray2[0]);
-          console.log("empInfoArray2 지우기 : " + empInfoArray2.length);
-          
-          $(":checkbox[name='chkbtn2']:checked").each(function(pi,po){     	   
-              console.log("@po.value : "+po.value);
-  	          console.log('@push : '+$(this).parent().next().html(),checkResult2[pi]);  
-           });
-          
-          
-       $("#myModal7").modal("hide");
+       
+       $("#myModal6").modal("hide");
     }
 	
 	
@@ -538,8 +513,8 @@ $(function(){
 					$('.pjd_content_plus').attr('name','pjd[' + pjd_count + '].pjd_content');
 					$('.pjd_content_plus').removeClass('pjd_content_plus');
 					
-					/* $('.pjd_plus').attr('value',pjd_count);
-					$('.pjd_plus').removeClass('pjd_plus'); */
+					$('.pjd_plus').attr('value',pjd_count);
+					$('.pjd_plus').removeClass('pjd_plus');
 					
 					$('#pjd_count').val(pjd_count);
 					
@@ -598,7 +573,6 @@ $(function(){
 <script src="vendor/fooTable/dist/footable.all.min.js"></script>
 <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 
-
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <!--풀캘린더 스크립트-->
@@ -607,7 +581,6 @@ $(function(){
 <script>
 
 	$(function(){
-			
 	    // Initialize Example 1
 	    $('#example1').footable();
 	    
@@ -633,45 +606,25 @@ $(function(){
 		$('.formstartDate').datepicker({
 			     changeMonth: true, 
 		         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-		         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+		         dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
 		         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		         dateFormat: 'yy-mm-dd',
-		         changeYear: true,
-		         beforeShowDay: function(date){
-		        	var loadDt = new Date();
-		     		var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-		        	 
-		        	 if(date < dayday) return [false];  //선택못해
-		        	 return [true];
-		         },
-		         onSelect: function(selected) {
-		        	 
-		        	 $('.formendDate').datepicker("option","minDate", selected)
-		         }
+		         changeYear: true
 		});	
 		
 
 		$('.formendDate').datepicker({
 			 changeMonth: true, 
 	         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-	         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+	         dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
 	         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 	         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 	         dateFormat: 'yy-mm-dd',
-	         changeYear: true,
-	         beforeShowDay: function(date){
-	        	 var loadDt = new Date();
-		     	 var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-		     	 
-	        	 if(date < dayday) return [false];
-	        	 return [true];
-	         }, 
-	         onSelect: function(selected) {
-	        	 $(".formstartDate").datepicker("option","maxDate", selected)
-	        }
+	         changeYear: true
 		});
-
+ 
+		
 		$('#contact').submit(function(){
 		
 			$.ajax(

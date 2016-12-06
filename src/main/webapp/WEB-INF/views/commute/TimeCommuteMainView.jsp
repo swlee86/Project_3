@@ -83,12 +83,14 @@
 		</div>
 	</div>
 </div>
+
+
 <script  src="vendor/flipcountdown-master/jquery.min.js"></script>
 <script  src="vendor/flipcountdown-master/jquery.flipcountdown.js"></script>
 <link rel="stylesheet" type="text/css" href="vendor/flipcountdown-master/jquery.flipcountdown.css" />
 <script>
+// 디지털 시계
 jQuery(function($){
-	var i = 1000;
 	$('#flipcountdownbox1').flipcountdown({
 		size:"sm"
 
@@ -384,8 +386,4 @@ $(function(){
 		
 });
 
-
-
 </script>
-
-
