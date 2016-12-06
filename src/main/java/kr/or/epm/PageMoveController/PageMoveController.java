@@ -151,8 +151,14 @@ public class PageMoveController {
 			try{
 				deptavg = pushService.avgcommute_dept(emp_no);
 				System.out.println("@!@!@!@!@!부서의 평균 근무시간 : "+deptavg);
+				if(deptavg==null){
+					deptavg="0";
+				}
 				myavg = pushService.avgcommute_my(emp_no);
 				System.out.println("@!@!@!@!@!나의 평균 근무시간 : " + myavg);
+				if(myavg==null){
+					myavg="0";
+				}
  			}catch(Exception e){
  				System.err.println(e.getMessage());
 
