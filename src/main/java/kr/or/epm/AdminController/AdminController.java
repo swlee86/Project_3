@@ -331,4 +331,12 @@ public class AdminController {
 		return "admin.adminSalarySetting";
 	}
 	
+	//회원 탈퇴 신청 리스트 보기
+	@RequestMapping("/adminCheckWithdrawal.do")
+	public String CheckWithdrawal(){
+		
+		
+		return "admin.adminCheckWithdrawal";
+	}
+	
 }

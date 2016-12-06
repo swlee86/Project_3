@@ -160,6 +160,7 @@
                 <ul class="nav nav-second-level">
                     <li><a href="adminEmployeeManage.do">사원정보관리</a></li>
                     <li><a href="adminEmployeeRoleManage.do">사원권한관리</a></li>
+                    <li><a href="adminCheckWithdrawal.do">탈퇴 신청 리스트 보기</a>
                     <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminSalaryView.do">급여관리</a></li>
