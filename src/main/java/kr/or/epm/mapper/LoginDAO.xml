@@ -49,4 +49,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  where e.emp_no= #{emp_no} and emp_name=#{emp_name} and cell_phone=#{cell_phone}
 	</select>
 	
+	<!--비밀번호 찾기-->
+	<select id="selectEmp_FindPw" resultType="String" parameterType="kr.or.epm.VO.EmpJoinEmp_Detail">
+		select pwd
+		from emp e join emp_detail d
+		on e.emp_no = d.emp_no
+		where d.id = #{id} and e.emp_no = #{emp_no} and emp_name = #{emp_name} and cell_phone = #{cell_phone} 
+	</select>
+	
+	<update id="updateEmp_TempPw" parameterType="String">
+		update emp_detail
+		set pwd = #{param2}
+		where emp_no = #{param1}
+	</update>
+	
 </mapper>

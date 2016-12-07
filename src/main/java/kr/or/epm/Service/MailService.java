@@ -60,9 +60,6 @@ public class MailService {
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
 			
-
-			
-			
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		} finally {

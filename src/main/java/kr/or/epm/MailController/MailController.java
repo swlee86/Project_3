@@ -143,11 +143,12 @@ public class MailController {
 		
 	}
 
-	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > sent 클릭시 구동
+	// SideBar(aside.jsp) 메일 서비스 > 메일쓰기 // 메일함 > send 클릭시 구동
 	@RequestMapping("/mailbox_compose.do")
 	public String mailbox_composeview(HttpSession session) {
 		
 		String sessionchk = (String) session.getAttribute("mailusedata");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$메일 ????  : "+sessionchk);
 		boolean test = Util.isEmpty(sessionchk);
 
 		if (test == true) {
@@ -168,6 +169,7 @@ public class MailController {
 	@RequestMapping("/mailbox_send.do")
 	public String mailbox_send(Model mv, HttpSession session) {
 	       String mailid = (String)session.getAttribute("googlemail");
+	       System.out.println("보낸 메일함 페이지 이동때 사용됨 ~~!!!!!!!!!!!!!!!!!!!!"+mailid);
 		   String sessionchk=(String)session.getAttribute("mailusedata");
 	       boolean test = Util.isEmpty(sessionchk);
 	       List<Mail> sendlist = null;

@@ -295,12 +295,6 @@ public class PageMoveController {
 		return "error_500";
 	}
 
-	// 사이드바에서 채팅 클릭시 구동
-	@RequestMapping("/chat_ws.do")
-	public String chat_wsview() {
-		return "chat.chat_ws";
-	}
-
 	//회사정보 게시판  > 글쓰기페이지이동 
 	@RequestMapping("/info_board_write.do")
 	public String info_board_write() {
