@@ -359,7 +359,7 @@ $(function(){
             	 a_time
              ],
              colors:{
-            	 정상근무시간: '#62cb31',
+            	 정상근무시간: '#ade494',
             	 추가근무시간: '#ffb606'
              },
              type: 'bar',

@@ -89,7 +89,7 @@
 			  "onclick": null,
 			  "showDuration": "300",
 			  "hideDuration": "1000",
-			  "timeOut": "5000",
+			  "timeOut": "2000",
 			  "extendedTimeOut": "1000",
 			  "showEasing": "swing",
 			  "hideEasing": "linear",
@@ -164,29 +164,29 @@
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.do">홈</a></li>
 					<li><span>프로젝트 관리</span></li>
-					<li><a href="projects.do">프로젝트 생성</a></li>
+					<li>프로젝트 작성</li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">프로젝트 상세 생성</h2>
+			<h2 class="font-light m-b-xs">프로젝트 상세 작성</h2>
 			<small>프로젝트의 상세정보를 입력하세요.</small>
 		</div>
 	</div>
 </div>
 <div class="content animate-panel">
- 	<input type="text" value="${pj_start}" id="pj_start"> ~
- 	<input type="text" value="${pj_end}" id="pj_end">
+ 	<input type="hidden" value="${pj_start}" id="pj_start">
+ 	<input type="hidden" value="${pj_end}" id="pj_end">
  	
-	<form class="form-inline" action="#" method="post">
+	<form class="form-inline" action="project_detail_plus_try.do" method="post">
 		
-		<input type="text" name="pjd_count" id="pjd_count" value="0">
-		<a id="pjd_detail_btn"  class="btn w-xs btn-warning"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Plus <i class="fa fa-plus"></i></a>
+		<input type="hidden" name="pjd_count" id="pjd_count" value="0">
+		<a id="pjd_detail_btn"  class="btn  btn-warning"  style="font-weight:600;font-size:13px"><i class="fa fa-plus"></i></a>
 		<div class="pull-right" style="text-align:center;">
 			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-close"></i></a>
 		<!-- 	<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a> -->
 			
-			<button type="button" id="submit_btn" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
+			<button type="submit" id="submit_btn" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
 		</div>
-		<br>
+		<br><br>
 	<div class="pjd_table row" id="pjd_table" >
 		<div class="col-lg-12">
 			<div class="hpanel hblue">
@@ -225,7 +225,7 @@
 										</tr>	
 								
 										<tr>
-											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
+											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 참여자</th>
 											<td>
 											<div class="col-md-3">
 											<div class="form-inline">

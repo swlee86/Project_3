@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Commute;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Push;
@@ -30,4 +31,6 @@ public interface PushDAO {
 	
 	//평균 근무시간 - 내것
 	String selectavgcommute_my(String emp_no);
+	
+	Emp selectLogin_Emp(String emp_no);
 }

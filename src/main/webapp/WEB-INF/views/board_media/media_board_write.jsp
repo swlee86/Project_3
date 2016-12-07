@@ -11,12 +11,12 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html">홈</a></li>
                     <li>
-                        <span>Board</span>
+                        <span>게시판</span>
                     </li>
                     <li class="active">
-                        <span>Media Board</span>
+                        <span>언론 게시판</span>
                     </li>
                 </ol>
             </div>

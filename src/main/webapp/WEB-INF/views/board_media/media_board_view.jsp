@@ -12,12 +12,12 @@
 
 			  <div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html">홈</a></li>
                     <li>
-                        <span>Board</span>
+                        <span>게시판</span>
                     </li>
                     <li class="active">
-                        <span>Media Board</span>
+                        <span>언론 게시판</span>
                     </li>
                 </ol>
             </div>
@@ -62,7 +62,7 @@
 								 <br><br>
 							</c:if>
 							 
-							dgss
+							
 							${list.content}
 
 							
@@ -101,7 +101,7 @@
 							</div>
 							<br>
 								<div class=" pull-right">
-									<a href="media_board_list.do?pg=${pg}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">뒤로가기</a>
+									<a href="media_board_list.do?pg=${pg}&pagesize=${pgsize}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">뒤로가기</a>
 									<%-- <c:if test="${list.empno ==pageContext.request.userPrincipal.name}"> --%>
 										<a href="media_board_update.do?no=${list.no}" class="btn btn-sm btn-success deletechk" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정하기</a>
 										<a href="media_board_delete.do?no=${list.no}" class="btn btn-sm btn-default" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>

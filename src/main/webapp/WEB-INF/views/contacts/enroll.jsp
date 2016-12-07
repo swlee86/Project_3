@@ -12,9 +12,9 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html">홈</a></li>
 					
-					<li class="active"><span>Contacts</span></li>
+					<li class="active"><span>주소록 등록</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">주소록 등록</h2>
@@ -62,9 +62,9 @@
 										<td><input type="text" class="form-control input-sm" placeholder="메일을 입력하세요." id="mail" name="mail"></td>
 									</tr>
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">집/개인 전화번호</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">연락처1</th>
 										<td><input type="text" class="form-control input-sm" placeholder="연락처를 입력하세요." id="tel1" name="tel1"></td>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">휴대폰번호</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">연락처2</th>
 										<td><input type="text"  class="form-control input-sm" placeholder="연락처를 입력하세요." id="tel2" name="tel2"></td>
 									</tr>
 									<tr>

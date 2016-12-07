@@ -32,6 +32,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.Service.PushService;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Push;
 
@@ -97,11 +98,13 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		System.out.println("########################로그인 성공시 스타트##################");
 		System.out.println("아이디 : " + authentication.getName());
 		
+		
+		
 		//알림에 각 항목의 카운트를 담기 위한 변수
 		String emp_no =null;
 		String taskcount = null;
 		String projectcount = null;
-		
+	
 		//내가 추가한 부분 try 내부에 dao 이용해서 쿼리문 돌려줘야함.
 		String approval = "1";
 		String taskApprovalcount = "1";
@@ -110,8 +113,12 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		emp_no = pushdao.selectEmp_no(authentication.getName());
-
+		
+		//로그인 시 사용하는 Emp
+		Emp emp = null;
+		
 		try{
+		    emp = pushdao.selectLogin_Emp(emp_no);
 			//ex) 승인 처리 후 확인 버튼 눌르는 경우 controller 부분에 추가 해준다. 쿼리문 씀 ////
 			System.out.println("사번? : " + emp_no);
 			taskcount = pushdao.taskCount(emp_no);
@@ -130,6 +137,8 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		
 		HttpSession session = request.getSession();
 		
+		session.setAttribute("Emp", emp);
+		
 		clearAuthenticationAttributes(request);
 		
 		//로그인 성공시 session 객체들 사용
@@ -145,6 +154,10 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		session.setAttribute("sessionApprovalcount", approval);//프로젝트 내가 승인 해야할 승인 여부 세션 생성 
 		
 		session.setAttribute("sessionpushcount", resultdata);
+		
+		//우리가 만드는 로그인 성공시 회원정보 담는 세션
+		session.setAttribute("emp", "TEST");
+		
 		
 		int intRedirectStrategy = decideRedirectStrategy(request, response);
 		switch(intRedirectStrategy){

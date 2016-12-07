@@ -13,9 +13,9 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html">홈</a></li>
 					<!-- <li><span>App views</span></li> -->
-					<li class="active"><span>Contacts</span></li>
+					<li class="active"><span>주소록</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">개인 주소록 </h2>
@@ -148,7 +148,7 @@
 															<%-- id : conmodal_${n}<br> --%>
 															<%-- 주소록 번호(contact_no_${n}) : ${list[n].contact_no}  --%>
 															<input type="hidden" id="contact_no_${n}" value="${list[n].contact_no}"> 
-															연락처1 : <c:if test="${not empty list[n].tel1}">${list[n].tel1}</c:if>
+															연락처2 : <c:if test="${not empty list[n].tel2}">${list[n].tel2}</c:if>
 															<br> 소속 : <c:if test="${not empty list[n].attach}">${list[n].attach}</c:if>
 															<br> 메일 : <c:if test="${not empty list[n].mail}">${list[n].mail}</c:if>
 														</p>

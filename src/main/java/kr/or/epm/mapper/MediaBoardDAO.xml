@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 from 
 					 	 (select no,emp_no,emp_name,hit,title,content,regdate,file_name
 					 	  from media 
-					 	  where ${param3} like '%${param4}%'  order by to_number(no) desc
+					 	  where ${param3} like '%${param4}%'  order by regdate desc, no desc
 						  ) n
 					) where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}
 	</select>
@@ -87,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 리플 뽑는 함수 -->
 	<select id="selectRowReply" resultType="kr.or.epm.VO.Re_MediaBoard">
-		select re_no, no, emp_no, content, regdate, emp_name from re_media where no = #{param1} and re_no = #{param2}
+		select re_no, no, emp_no, content, regdate, em p_name from re_media where no = #{param1} and re_no = #{param2}
 	</select>
 	
 	<!-- 현재 리플 번호 -->

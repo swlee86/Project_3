@@ -131,6 +131,7 @@ $(function(){
        
        //전체프로젝트 - 참조자 아이콘 클릭시
        $('#organization_add').click(function() {
+    	   firstTree = 0;   
           console.log("몇개선택?? : "+ $('#con_ins_org_sea_btn_sel').val());
           var choice = $('#con_ins_org_sea_btn_sel').val();   // 1 : 한개 선택(전체프로젝특)  2: 두개 선택(상세프로젝트기본) 
           
@@ -208,8 +209,8 @@ $(function(){
             });
    
             console.log("@@@ firstTree == 0 : "+(firstTree == 0));
-            if(firstTree == 0){
-            	  console.log("dept " + dept);
+           if(firstTree == 0){
+            	  console.log("@@@@@@@@@@@@@@@@@@@@@@@dept " + dept);
                    firstTree = 1;   
                    
                   $.each(dept, function(index) {
@@ -228,7 +229,8 @@ $(function(){
             }else{
                    firstTree = 0;
                    $("#"+div_id).html();   
-             }
+             } 
+             
          }
       });
    }
@@ -291,7 +293,7 @@ $(function(){
       if(empSelectNumber == 1){
        makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th>선택</th></tr>";
       }else{
-       makeTable = "<table  class='table table-condensed'><tr style='background-color:#f8f8f8'><th><input type='checkbox'></th><th>사번</th><th>이름</th></tr>";
+       makeTable = "<table  class='table table-condensed'><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
       }
       
       $.ajax(
@@ -384,7 +386,7 @@ $(function(){
        });
        console.log("####사원  정보: "+empInfoArray2);
        console.log("####배열 사이즈: "+empInfoArray2.length);
-          if(empInfoArray2.length > 1){
+          if(empInfoArray2.length >= 1){
              //화면에 보이는 input 은 그냥 때려넣음
              //$("#multiDiv").val(empInfoArray[0].emp_no);
              //$('#multiDiv').val(empInfoArray[0].emp_name);
@@ -396,7 +398,7 @@ $(function(){
              for(var i = 0; i < empInfoArray2.length; i++){
                  console.log("pjd_count: "+ 0 + "/ input : " +empInfoArray2[i].emp_no +" / "+empInfoArray2[i].emp_name);
                 input_no2 += "<input type='hidden' class='form-control' name='pjd[0].rec_emp_no' value='"+empInfoArray2[i].emp_no+"'>";
-                input_name2 +="<input type='text' class='form-control input-sm' name='pjd[0].rec_emp_name' value='"+empInfoArray2[i].emp_name+"'>";
+                input_name2 +="<input type='text' readonly class='form-control input-sm' name='pjd[0].rec_emp_name' value='"+empInfoArray2[i].emp_name+"'>";
              }
             
              empInfoArray2.splice(0,empInfoArray2.length);

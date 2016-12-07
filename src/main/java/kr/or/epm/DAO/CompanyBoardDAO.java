@@ -14,11 +14,15 @@ import kr.or.epm.VO.Emp_detail;
 public interface CompanyBoardDAO {
 	
 	int selectBoardCount();
+	
+	//검색한 글 개수
+	int selectBoardCount_post(String field, String query);
+	
 	//리스트 보기
 	List<Company> selectCompanyList(int start, int end);
 	
 	//검색한 리스트 보기
-	List<Company> selectSeacrchCompanyList(int start, int end, String title);
+	List<Company> selectSeacrchCompanyList(int cpage, int pgsize, String field, String query);
 	
 	
 	//글 상세보기

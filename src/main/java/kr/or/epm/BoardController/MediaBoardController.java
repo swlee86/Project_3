@@ -37,19 +37,22 @@ public class MediaBoardController {
 
 	// 언론게시판 > 언론게시판 리스트 페이지 이동
 	@RequestMapping(value = "/media_board_list.do")
-	public String media_board_list(String pg , String f , String q , Model model) {
+	public String media_board_list(String pagesize, String pg , String f , String q , Model model) {
 		System.out.println("media_board_list() 컨트롤러 탐");
 		
 		/*System.out.println("q : "+q +" q!==null : "+(q != null)+"q.equals('') : "+q.equals(""));*/
 		int totalcount = 0;
 		int cpage = 1;
 		int pagecount = 0;
-		int pagesize = 5;
+		int pgsize = 10;
 		
 		String field = "title";
 		String query ="%%";
 		
 		List<MediaBoard> list = null;	
+		if(pagesize != null && !pagesize.equals("")){
+            pgsize = Integer.parseInt(pagesize); 			// default 10건씩 
+        }
 		
 		if(pg != null && !pg.equals("")){
 			cpage = Integer.parseInt(pg);
@@ -65,20 +68,21 @@ public class MediaBoardController {
 
 		System.out.println("cpage:"+cpage+"/ field:"+field+"/ query:"+query+ "/ totalcount:"+totalcount);
 		
-	    if(totalcount % pagesize == 0){       
-	    	pagecount = totalcount/pagesize;
+	    if(totalcount % pgsize == 0){       
+	    	pagecount = totalcount/pgsize;
         }else{
-        	pagecount = (totalcount/pagesize) + 1;
+        	pagecount = (totalcount/pgsize) + 1;
         }
 		
 	    System.out.println("pagecount : " + pagecount);
 		
-		list = mediaboardservice.selectList(cpage, pagesize, field, query);
+		list = mediaboardservice.selectList(cpage, pgsize, field, query);
 		
 		model.addAttribute("f",field);
 		model.addAttribute("q",query);
 		model.addAttribute("pagecount", pagecount);
 		model.addAttribute("pg",cpage);
+		model.addAttribute("pgsize",pgsize);
 		model.addAttribute("totalcount",totalcount);
 		model.addAttribute("list", list);
 		
@@ -94,7 +98,7 @@ public class MediaBoardController {
 
 	// 언론게시판 > 언론게시판 상세보기 페이지 이동
 	@RequestMapping(value = "/media_board_view.do", method = RequestMethod.GET)
-	public String media_board_view(String no, String pg, Model model) {
+	public String media_board_view(String pagesize, String no, String pg, Model model) {
 		System.out.println("media_board_view() 컨트롤러 탐");
 		
 		System.out.println("no : "+ no + "pg : "+pg);
@@ -109,6 +113,7 @@ public class MediaBoardController {
 		model.addAttribute("list", list);
 		model.addAttribute("pg", pg);
 		model.addAttribute("relist", relist);
+		model.addAttribute("pgsize",pagesize);
 		
 		return "board_media.media_board_view";
 	}

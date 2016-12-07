@@ -47,9 +47,11 @@ public class DraftAjaxController {
 	
 	// 승인 처리하기
 	@RequestMapping(value="/updateDraft_approval.do", method=RequestMethod.POST)
-	public View updateDraft_approval(String draft_no) {
+	public View updateDraft_approval(String draft_no, String app_check) {
 		System.out.println("CONTROLLER-AJAX] 전자결재 승인처리");
 		System.out.println("넘겨진 draft_no : " + draft_no);
+		System.out.println("넘겨진 app_check : " + app_check);
+		
 		
 		
 		return jsonview;

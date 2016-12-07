@@ -11,8 +11,8 @@
   								authentication-success-handler-ref="customAuthenticationSuccessHandler"
   								/>
   <security:logout logout-success-url="/index.html" />
-  <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')" />
-  <security:intercept-url pattern="/*board.do" access="hasRole('ROLE_MASTER')" />
+<!--   <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')" />
+  <security:intercept-url pattern="/*board.do" access="hasRole('ROLE_MASTER')" /> -->
 </security:http>
 <security:authentication-manager>
      <security:authentication-provider>

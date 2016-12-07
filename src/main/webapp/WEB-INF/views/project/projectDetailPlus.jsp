@@ -58,14 +58,18 @@
                               </tr>   
                         
                               <tr>
-                                 <th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
+                                 <th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 참여자</th>
                                  <td>
-                                    <span class="input-group">
+                                 	<div class="col-md-3">
+										<div class="form-inline">
+                                  <!--   <span class="input-group"> -->
                                     	<span class="multiDiv"></span>
-                                        <span class="input-group-btn">
+                                        <span class="">
                                           <button class="organization_add2 pjd_count_plus btn input-sm btn-default "  type="button"  ><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
                                        </span>
-                                    </span>
+                                   <!--  </span> -->
+                                    </div>
+                                    </div>
                                  </td>
                               </tr>                                                   
                            
@@ -335,11 +339,13 @@ function calendar(){
             },
             success : function(data) {
                var dept;
-               console.log(data);
+               console.log('############부서출력 아작스 : data : '+data);
                $.each(data, function(index) {
+            	   console.log("#####each("+index+")    :   "+data[index]);
                   dept = data[index];
                });
       
+               console.log("### firstTree2 == 0 : "+(firstTree2 == 0));
                if(firstTree2 == 0){
                    firstTree2 = 1;   
                    
@@ -347,7 +353,7 @@ function calendar(){
                      litag += "<li onclick='seelow_Depart2("+pjd_count+", this, "
                         litag +=empSelectNumber+","
                          litag +=dept[index].dept_no
-                         litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
+                         litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+dept[index].dept_name+"("+dept[index].dept_no+")</span></li>";
                         //litag +="</ul>";
                         
                         litag+="<div id='low_dept_div"
@@ -420,7 +426,7 @@ function calendar(){
          //alert("selectNo : " + empSelectNumber);
          var makeTable = "";
    
-         makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th><input type='checkbox'></th><th>사번</th><th>이름</th></tr>";
+         makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
 
          $.ajax(
                {
@@ -498,7 +504,7 @@ function calendar(){
                   for(var i = 0; i < empInfoArray.length; i++){
                     console.log("pjd_count: "+ pjd_count + "/ input : " +empInfoArray[i].emp_no +" / "+empInfoArray[i].emp_name);
                      input_no += "<input type='hidden' class='form-control' name='pjd[" + pjd_count + "].rec_emp_no' value='"+empInfoArray[i].emp_no+"'>";
-                     input_name +="<input type='text' class='form-control input-sm' name='pjd[" + pjd_count + "].rec_emp_name' value='"+empInfoArray[i].emp_name+"'>";
+                     input_name +="<input type='text' readonly class='form-control input-sm' name='pjd[" + pjd_count + "].rec_emp_name' value='"+empInfoArray[i].emp_name+"'>";
                   }
                  
                   empInfoArray.splice(0,empInfoArray.length);

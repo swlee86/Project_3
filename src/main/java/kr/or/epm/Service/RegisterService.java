@@ -34,6 +34,7 @@ public class RegisterService {
 	
 	//관리자 > 사원 등록시 등록을 처리하는 함수(Emp에 insert)
 	public int insertEmp(Emp emp){
+		System.out.println("이엠피가 왜 ??? "+emp.toString());
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
 		int result = registerDao.insertEmp(emp);
 		return result;

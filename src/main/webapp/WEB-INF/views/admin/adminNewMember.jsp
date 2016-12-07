@@ -37,7 +37,7 @@
 	                    			<tr>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사번</th>
 	                    				<td><input type="text" class="form-control input-sm" name="emp_no"></td>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">구분번호</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">근무상태</th>
 	                    				<td colspan="3">
 	                    					<select class="form-control input-sm" name="cg_no">
 	                    					<c:forEach var="emphis" items="${emphis}">
@@ -47,7 +47,7 @@
 	                    				</td>
 	                    			</tr>
 	                    			<tr>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위번호</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위</th>
 	                    				<td>
 	                    					<select class="form-control input-sm" id="position_no" name="position_no">
 	                    					<c:forEach var="plist" items="${plist}">
@@ -55,7 +55,7 @@
 	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서번호</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서</th>
 	                    				<td colspan="3">
 	                    					<select class="form-control input-sm" id="position_no" id="low_dept_no" name="low_dept_no">
 	                    						<c:forEach var='dept'  items='${list}'>
@@ -78,7 +78,7 @@
 	                    			</tr>
 	                    			
 	                    			<tr>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>사내 연락처</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>개인 연락처</th>
 	                    				<td>
 	                    					<div class="form-inline">
 	                    						<input type="text" class="form-control input-sm" name="cell_phone">
@@ -87,7 +87,7 @@
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5"><font style="color:#f05050">*</font>연봉</th>
 	                    				<td style="width:20%">
 	                    					<div class="form-inline">
-	                    						<input type="text" class="form-control input-sm" value="5000"  name="salary"> 만원
+	                    						<input type="text" class="form-control input-sm" name="salary"> 만원
 	                    					</div>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">잔여 휴가일수</th>

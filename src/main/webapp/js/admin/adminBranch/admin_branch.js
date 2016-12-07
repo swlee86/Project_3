@@ -363,7 +363,7 @@ function departMentFuc(){
 		//부서 조회 버튼 클릭시
 		$('#seeDeptBtn').click(function(){
 			var select = $("#selectDept option:selected").val();
-			
+			alert("부서 조회 버튼 클릭시 !!: " +select);
 			$.ajax(
 					{
 						url:"selectDeptList.do",
@@ -371,7 +371,6 @@ function departMentFuc(){
 							  dept_no:select
 						       },
 						success:function(data){
-							
 							
 							//hidden
 							$('#hiddept_no').val(data.dept.dept_no);

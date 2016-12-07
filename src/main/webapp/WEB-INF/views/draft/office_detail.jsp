@@ -120,8 +120,11 @@
                        				<c:when test="${ line.app_check == '1' }">
                        					<img alt="승인" src="img/approval.png" style="width: auto; height: 30px;">
                        				</c:when>
-                       				<c:when test="${ line.app_check == '0' }">
-                       					<img alt="거부" src="img/denied.png" style="width: auto; height: 30px;">
+                       				<c:when test="${ line.app_check == '2' }">
+                       					<img alt="반려" src="img/denied.png" style="width: auto; height: 30px;">
+                       				</c:when>
+                       				<c:when test="${ line.app_check == '3' }">
+                       					<img alt="보류" src="img/pending.png" style="width: auto; height: 30px;">
                        				</c:when>
                        			</c:choose>
                        		</td>

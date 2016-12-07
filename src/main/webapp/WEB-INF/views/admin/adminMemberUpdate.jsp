@@ -55,7 +55,7 @@
 	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
-	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서번호</th>
+	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">하위부서</th>
 	                    				<td colspan="3">
 											<select class="form-control input-sm" id="low_dept_no" name="low_dept_no">
 	                    						<c:forEach var='dept'  items='${list}'>

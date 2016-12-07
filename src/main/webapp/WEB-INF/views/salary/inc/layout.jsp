@@ -128,7 +128,9 @@
 		            return null;
 		        // 년도, 월, 일로 분리
 		        var start_dt = val1.split(FORMAT);
+		        console.log("start_Dt :    "+start_dt);
 		        var end_dt = val2.split(FORMAT);
+		        console.log("start_Dt :    "+start_dt);
 		        // 월 - 1(자바스크립트는 월이 0부터 시작하기 때문에...)
 		        // Number()를 이용하여 08, 09월을 10진수로 인식하게 함.
 		        start_dt[1] = (Number(start_dt[1]) - 1) + "";
@@ -137,6 +139,7 @@
 		        var from_dt = new Date(start_dt[0], start_dt[1], start_dt[2]);
 		        var to_dt = new Date(end_dt[0], end_dt[1], end_dt[2]);
 		        var result = (to_dt.getTime() - from_dt.getTime());
+		       /* var result = (from_dt.getTime() - to_dt.getTime()); */
 		        var result1 = result/1000/60/60/24;
 		        return result1;
 		    }
@@ -358,20 +361,22 @@
 				var date = $('#selectDate').val();
 				
 				var ardate = date.split("-");
-				var makeDate = new Date(ardate[0],ardate[1],ardate[2]);				
+				var makeDate = new Date(ardate[0],ardate[1],ardate[2]);		
+				
 				makeDate=getFormatDate(makeDate);
 				
 				console.log("#########minus : "+makeDate + " ##### date : "+date);
 				
 				
 				//3개월 뺀 날짜 결과
+				                        //3개월전 날짜 , 선택한 날짜  
 				var result = calDateRange(makeDate,date);
 				
 				
 				if (option == '' || date == '') {
 					alert("조회할 조건을 선택하세요");
 				} else {
-					alert("option: "+option +" // date : "+date  +" // result : "+result);
+					alert("option: "+option +" // 선택한 날짜 date : "+date  +" // result : "+result);
 					$.ajax({
 						url : "sevSearch.do",
 						data : {
@@ -405,16 +410,31 @@
 		
 		//날짜 포맷 형식 맞출때 사용 하는 첫번째 함수.
 		function getFormatDate(date){
-			var year = date.getFullYear();                               
-			var month = date.getMonth()-3;
 			
+			var changemonth = date.getMonth();
+			var month;
+			if(changemonth == 0){
+				changemonth = 12;
+			
+				month =  changemonth-3;
+				console.log("첫번째 - 0 입니다."+month);
+			}else{
+				month = date.getMonth()-3;
+			}
+			
+			
+			var year = date.getFullYear();                               
+			
+			console.log("1. -3 한 month 를 봅시다 : "+month);
 			if(month <= 0){
+				console.log("2.if 내부를 타나요 ???  if 안에서 몬스는 ??? "+month);
 				year = year -1;
 				month = (12+date.getMonth())-3;
 				month = month >= 10 ? month : '0' + month; 
 			}
 
 			month = month >= 10 ? month : '0' + month; 
+			console.log("3.if 밖에서 month 는 ??? "+month);
 			
 			var day = date.getDate();  
 			day = day >= 10 ? day : '0' + day;       
