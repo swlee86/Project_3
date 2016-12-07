@@ -118,7 +118,7 @@ public class ProjectController {
 
 	
 	//프로젝트 상세상세 페이지 추가하기
-	@RequestMapping("/project_detail_plus.do")
+	@RequestMapping(value ="/project_detail_plus.do", method=RequestMethod.GET)
 	public String  project_detail_plus(){
 		System.out.println("project_detail_plus() 컨트롤 탐");	
 		return "project/projectDetailPlus";

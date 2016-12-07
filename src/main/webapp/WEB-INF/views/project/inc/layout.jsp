@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Page title -->
-    <title>EPM | WebApp admin theme</title>
+    <title>2PM</title>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -134,14 +134,15 @@ $(function(){
           console.log("몇개선택?? : "+ $('#con_ins_org_sea_btn_sel').val());
           var choice = $('#con_ins_org_sea_btn_sel').val();   // 1 : 한개 선택(전체프로젝특)  2: 두개 선택(상세프로젝트기본) 
           
-            var  empSelectNumber = Number(choice);
-         var litag = "<ui style='list-style:none; margin-left:-40px;'>";         
+          var  empSelectNumber = Number(choice);
+         var litag = "<ul style='list-style:none; margin-left:-40px;'>";         
          $('#porganization').empty();
          $('#emppList').empty();
          $('#emppList2').empty();
           $('#conp_ins_org_sea_query').val('');
           
           if(choice == 2){
+        	  console.log("상세프로젝트기본 비우기");
              $('.multiDiv_0').empty();
           }
           
@@ -172,48 +173,8 @@ $(function(){
                            $('#porganization').html(litag);
                         }
                      })
-                }
-          );   
+                });   
        
-   /*      //상세 프로젝트 - 참조자 아이콘 버튼 클릭시
-      $('#organization_addd').click(function(){
-         
-         var empSelectNumber = 2;
-         var litag = "<ui style='margin-left:-40px; list-style:none;'>";         
-          $('#organization').empty();
-          $('#empList').empty();
-          $('.multiDiv_0').empty();
-          $('#empList2').empty();
-          $('#con_ins_org_sea_query').val('');
-          
-                $.ajax({
-                url : "taskWriteModal.do",
-                success : function(data) {
-                    $('#myModal6').modal();
-                   choose = 2;
-                   var departMent = "";
-
-                   $.each(data, function(index) {
-                      departMent = data[index];
-                   });
-
-                   $.each(departMent, function(index) {
-                         litag += "<li style='padding:2px;' onclick='seeDepart(this,"
-                            litag +=empSelectNumber +","
-                            litag +=departMent[index].branch_no
-                           litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
-                          //litag +="</ul>";         
-                          litag+="<div id='dept_div"
-                          litag+=departMent[index].branch_no
-                          litag+="'></div>";
-                          });
-                   litag +="</ul>";
-                      $('#organization').html(litag);
-                }
-             })
-      }); */
-      
-      
    });
 
    
@@ -224,10 +185,11 @@ $(function(){
     //부서 출력 하는 아작스
    function seeDepart(obj, empSelectNumber, choose) {
       //전역 부서 선택시
+      console.log("@@@@@부서출력 아작스 : "+obj+"/"+empSelectNumber+"/"+choose);
        departcho = choose;
       var div_id = "dept_div"+choose;
       $("#"+div_id).empty();
-      var litag = "<ui style='list-style:none; padding:5px;'>";
+      var litag = "<ul style='list-style:none; padding:5px;'>";
    
       var name = $(obj).text();
    
@@ -239,12 +201,15 @@ $(function(){
          },
          success : function(data) {
             var dept;
-            console.log(data);
+            console.log("@@@@@부서출력 아작스 : data : "+data);
             $.each(data, function(index) {
+            	console.log("@@@@@each("+index+")    :   "+data[index]);
                dept = data[index];
             });
    
+            console.log("@@@ firstTree == 0 : "+(firstTree == 0));
             if(firstTree == 0){
+            	  console.log("dept " + dept);
                    firstTree = 1;   
                    
                   $.each(dept, function(index) {
@@ -272,7 +237,7 @@ $(function(){
    function seelow_Depart(obj,empSelectNumber,departcho) {
       alert("부서 : "+choose);
       deptNumber= departcho;
-      var litag = "<ui style='list-style:none;'>";
+      var litag = "<ul style='list-style:none;'>";
       var div_id = "low_dept_div"+departcho;
       $("#"+div_id).empty();
    
@@ -355,7 +320,7 @@ $(function(){
                   if(empSelectNumber == 1){
                         makeTable += "</table>";
                     }else{
-                         makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check2()>";
+                         makeTable += "</table><br><input type='button' class='btn  btn-success'  value='선택' onclick=check2()>";
                     }
                   
                 
@@ -472,9 +437,11 @@ $(function(){
                pjd_count = Number(pjd_count) + 1;          
                console.log("=>name pjd_count : "+pjd_count);
                $('#kung_pjd_table').append(data);
-               
+               console.log(data);
                calendar();
-                     
+            
+            
+            
                $('.pdplus').addClass('pdplus_' + pjd_count);
                $('.pdplus').removeClass('pdplus');
                
@@ -522,9 +489,63 @@ $(function(){
                $('.pjd_plus').removeClass('pjd_plus');
                
                $('#pjd_count').val(pjd_count);
+              
+            // 지정된 객체 처리시
+                $(document).find('.formstartDate2').removeClass('hasDatepicker').datepicker({
+                	changeMonth: true, 
+      	          dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+      	          dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
+      	          monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+      	          monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+      	          dateFormat: 'yy-mm-dd',
+      	          changeYear: true,
+      	          beforeShowDay: function(date){
+      	        	  
+      	        	  var loadDt1 =  new Date($('#pj_start').val());
+      	              var loadDt = new Date($('#pj_end').val());
+      	       	   
+      	       	   	  var dayday1  = new Date(Date.parse(loadDt1) - 1 * 1000 * 60 * 60 * 24); // 시작일 
+      	              var dayday =new Date(loadDt);  //종료일
+      	               
+      	              if(date > dayday || date < dayday1) return [false];  //선택못해
+      	            
+      	              return [true];
+      	            
+      	            
+      	          },
+      	          onSelect: function(selected) {
+      	             $('.formendDate2').datepicker("option","minDate", selected)
+      	          }
+                });
+            
+                $(document).find('.formendDate2').removeClass('hasDatepicker').datepicker({
+                	changeMonth: true, 
+         	       dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+         	       dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
+         	       monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+         	       monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+         	       dateFormat: 'yy-mm-dd',
+         	       changeYear: true,
+         	       beforeShowDay: function(date){
+
+         	    	   var loadDt1 = new Date($('#pj_start').val());
+         	           var loadDt = new Date($('#pj_end').val());
+         	    	   
+         	    	   var dayday1  = new Date(Date.parse(loadDt1) - 1 * 1000 * 60 * 60 * 24); // 시작일 
+         	           var dayday =new Date(loadDt);  //종료일
+         	            
+         	           if(date > dayday || date < dayday1) return [false];  //선택못해
+         	           return [true];
+         	           
+         	        }, 
+         	        onSelect: function(selected) {
+         	           $('.formstartDate2').datepicker("option","maxDate", selected)
+         	       }
+                });
                
             }
          });
+       
       });
          
    });   

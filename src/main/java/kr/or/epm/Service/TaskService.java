@@ -43,7 +43,7 @@ public class TaskService {
 		List<Organization> list = null;
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
 		list = organizationDAO.selectDept(branch_name);
-
+		System.out.println("list : " + list);
 		return list;
 	}
 
