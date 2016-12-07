@@ -75,7 +75,7 @@ public class BusinessBoardController {
 		}finally{
 			mv.addAttribute("list", list);
 			mv.addAttribute("cpage", cpage);
-			mv.addAttribute("psize", pgsize);
+			mv.addAttribute("pgsize", pgsize);
 			mv.addAttribute("pagecount", pagecount);
 			mv.addAttribute("totalcount", totalcount);
 		}
