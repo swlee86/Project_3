@@ -241,6 +241,15 @@ $(function(){
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script>
 
+$(function(){
+	$('#logout').click(function(){
+		var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	    });
+	});
+});
+
 $('#birthDay').click(function(){
 	$('#birthModal').modal();
 });	

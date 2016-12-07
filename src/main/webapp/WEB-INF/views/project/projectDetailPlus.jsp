@@ -4,64 +4,17 @@
 
 <script>
  $(function(){
-    
-    var pdplus;
-    
+ 
    $('.showhide2').click(function(){
       console.log('showhide2 : '+ $(this).attr('id'));
-      pdplus = $(this).attr('id');
+      var pdplus = $(this).attr('id');
       $('.'+pdplus).slideUp();
    });
    $('.showup2').click(function(){
       console.log('showup2 : '+ $(this).attr('id'));
-      pdplus = $(this).attr('id');
+      var pdplus = $(this).attr('id');
       $('.'+pdplus).slideDown();
    });
-   
-   
-   
-   /* 
-   //달력
-   var text = $('.formstartDate'+pjd_count).datepicker({
-       changeMonth: true, 
-        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dateFormat: 'yy-mm-dd',
-        changeYear: true,
-        beforeShowDay: function(date){
-           var loadDt = new Date();
-           var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-           
-           if(date < dayday) return [false];  //선택못해
-               return [true];
-         },
-         onSelect: function(selected) {
-              $('.formendDate'+pjd_count).datepicker("option","minDate", selected)
-         }
-   });   
-
-   var text2 = $('.formendDate'+pjd_count).datepicker({
-       changeMonth: true, 
-        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dateFormat: 'yy-mm-dd',
-        changeYear: true,
-        beforeShowDay: function(date){
-            var loadDt = new Date();
-            var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-            
-            if(date < dayday) return [false];
-            return [true];
-         }, 
-         onSelect: function(selected) {
-            $(".formstartDate"+pjd_count).datepicker("option","maxDate", selected)
-        }
-   });   
-    */
    
    
 });    
@@ -87,13 +40,13 @@
                                     <div class="form-group">
                                        
                                        <div class="input-group date">
-                                          <input type="text" class=" pjd_start_plus form-control input-sm cal formstartDate_plus"  id="" name="" size="20px">
+                                          <input type="text" class="formstartDate2 pjd_start_plus form-control input-sm "  id="" name="" value=""  size="20px">
                                           <span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
                                        </div>
                                        &nbsp;&nbsp; <b>~</b> &nbsp;&nbsp;
                                        
                                        <div class="input-group date">
-                                          <input type="text" class=" pjd_end_plus form-control input-sm formendDate_plus" value="" name="" size="20px"> 
+                                          <input type="text" class="formendDate2 pjd_end_plus form-control input-sm " value="" name="" size="20px"> 
                                           <span class="input-group-addon"><font style="color:#fd7d86 "><i class="fa fa-calendar"></i></font></span>
                                        </div>
                                            </div>
@@ -105,18 +58,18 @@
                               </tr>   
                         
                               <tr>
-                                 <th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">참여자</th>
+                                 <th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 참여자</th>
                                  <td>
-                                    <span class="input-group">
-                                             <!-- <input type="text" class="pjd_emp_name_plus form-control input-sm" name="" id=""/>
-                                             <input type="text" class="pjd_emp_no_plus form-control" name="" id=""> -->
-                                             <span class="multiDiv">
-                                             
-                                             </span>
-                                             <span class="input-group-btn">
+                                 	<div class="col-md-3">
+										<div class="form-inline">
+                                  <!--   <span class="input-group"> -->
+                                    	<span class="multiDiv"></span>
+                                        <span class="">
                                           <button class="organization_add2 pjd_count_plus btn input-sm btn-default "  type="button"  ><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
                                        </span>
-                                             </span>
+                                   <!--  </span> -->
+                                    </div>
+                                    </div>
                                  </td>
                               </tr>                                                   
                            
@@ -145,7 +98,7 @@
             <h3 class="modal-title"><font color="#6a6c6f" size="4em"><i class="fa fa-table"></i> <b>사원 선택</b></font></h3>
          </div>
          <div class="modal-body">
-            <!-- <div class="hpanel"> -->
+            <div class="hpanel">
                <ul class="nav nav-tabs">
                    <li class="active"><a data-toggle="tab" href="#tab-1"><span style="font-weight: 600;font-size:13px">조직도</span></a></li>
                    <li class=""><a data-toggle="tab" href="#tab-2"><span style="font-weight: 600;font-size:13px">검색</span></a></li>
@@ -201,7 +154,7 @@
                     </div>
                  </div>
               </div>
-            <!-- </div> -->
+            </div>
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
@@ -210,10 +163,11 @@
    </div>
 </div>
 </div>
-   
+
 
 
 <script>
+
    //스크립트 생성자
    function empInfo(emp_no, emp_name){
       this.emp_no = emp_no;
@@ -223,13 +177,13 @@
    //사원정보 뽑아서 담을 배열
    var empInfoArray = new Array();   
    //부서 선택시
-   var departcho;
+   var departcho2;
    //하위 부서 선택시
-   var low_deptNumber;
+   //var low_deptNumber;
    //사원
-   var empListNumber;
+   //var empListNumber;
    
-   var choose;
+   var choose2;
 
    //조직도 트리 할때 사용하는 전역변수
    var firstTree2 = 0;
@@ -237,54 +191,8 @@
 
    
    
-   function cc() {
-      $(".cal").datepicker({
-         changeMonth: true, 
-              dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-              dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-              monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-              monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-              dateFormat: 'yyyy-mm-dd',
-              changeYear: true
-      });   
-   }
-   
-   
 function calendar(){
-   //달력
-/*    var text = $('.formstartDate').datepicker({
-       changeMonth: true, 
-        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dateFormat: 'yy-mm-dd',
-        changeYear: true,
-        beforeShowDay: function(date){
-            var loadDt = new Date();
-            var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-            
-            if(date < dayday) return [false];
-            return [true];
-         }, 
-         onSelect: function(selected) {
-            $(".formstartDate").datepicker("option","maxDate", selected)
-        }
-   });   
-
-   var text2 = $('.formendDate').datepicker({
-       changeMonth: true, 
-        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dateFormat: 'yy-mm-dd',
-        changeYear: true
-   });    */
-
-   //alert("tqtq" + pjd_count);
-   //cc();
-
+	 
    //섬머노트
     $('.summernote').summernote();
 
@@ -306,132 +214,61 @@ function calendar(){
        });
 
        //조직도
-         $('.organization_add2').click(function() {
-          console.log("$(this) : "+$(this));
-          console.log("조직도 버튼 누른 value: " + $(this).attr('value'));
+	$('.organization_add2').click(function() {
+		console.log("$(this) : "+$(this));
+		console.log("조직도 버튼 누른 value: " + $(this).attr('value'));
           
-          sip = $(this).attr('value');
-          pjd_count = $(this).attr('value');
-          console.log("pjd_count : "+pjd_count);
-          $('.multiDiv_'+pjd_count).empty();
-          $('#organization').empty();
-         $('#empList').empty();
-         $('#empList2').empty();
-         $('#con_ins_org_sea_query').val('');
-         
-            var  empSelectNumber = 2;
-         var litag = "<ui style='list-style:none; margin-left:-40px;''>";         
+		sip = $(this).attr('value');
+		pjd_count = $(this).attr('value');
+		console.log("pjd_count : "+pjd_count);
+		$('.multiDiv_'+pjd_count).empty();
+		$('#organization').empty();
+		$('#empList').empty();
+		$('#empList2').empty();
+		$('#con_ins_org_sea_query').val('');
+		         
+		var  empSelectNumber = 2;
+		var litag = "<ul style='list-style:none; margin-left:-40px;''>";         
                 
-               $.ajax({
-               url : "taskWriteModal.do",
-               success : function(data) {
-                   $('#myModal6').modal();
-                  choose = 1;
-                  var departMent = "";
+		$.ajax(
+				{
+					url : "taskWriteModal.do",
+					success : function(data) {
+						$('#myModal6').modal();
+						choose2 = 1;
+                  		var departMent = "";
    
-                  $.each(data, function(index) {
-                     departMent = data[index];
-                  });
+					$.each(data, function(index) {
+						departMent = data[index];
+					});
    
-                  $.each(departMent, function(index) {
-                     litag += "<li style='padding:2px;' onclick='seeDepart2("+pjd_count+", this,"
-                        litag +=empSelectNumber +","
-                        litag +=departMent[index].branch_no
-                       litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
-                      //litag +="</ul>";
-                      
-                      litag+="<div id='dept_div"
-                      litag+=departMent[index].branch_no
-                      litag+="'></div>";
-                      });
-                  litag +="</ul>";
-                  $('#organization').html(litag);
-   
-               }
-            })
-       }); 
+					$.each(departMent, function(index) {
+						litag += "<li style='padding:2px;' onclick='seeDepart2("+pjd_count+", this,"
+						litag +=empSelectNumber +","
+						litag +=departMent[index].branch_no
+						litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
+						litag+="<div id='dept_div2"
+						litag+=departMent[index].branch_no
+                      	litag+="'></div>";
+					});
+					
+					litag +="</ul>";
+					$('#organization').html(litag);
+					}
+				}
+		)
+	}); 
+}//calender fun() end
+
+		
+		var sip;
        
-
-        
-    }
+		$(function(){
 
 
-       var sip;
-       
-   $(function(){
       
-      
-      
-      $('.formstartDate_plus').click(function(){
-         console.log(">>>>>>>>>>>"+$(this));
-         $(this).datepicker({
-             changeMonth: true, 
-              dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-              dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-              monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-              monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-              dateFormat: 'yy-mm-dd',
-              changeYear: true,
-              beforeShowDay: function(date){
-                 var loadDt = new Date();
-                 var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-                 
-                 if(date < dayday) return [false];  //선택못해
-                     return [true];
-               },
-               onSelect: function(selected) {
-                    $('.formendDate_plus').datepicker("option","minDate", selected)
-               }
-         });   
-      });
-      
-
-      $('.formendDate_plus').click(function(){
-         console.log("<<<<<<<<"+$(this));
-         $(this).datepicker({
-          changeMonth: true, 
-           dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-           dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-           monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-           monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-           dateFormat: 'yy-mm-dd',
-           changeYear: true,
-           beforeShowDay: function(date){
-               var loadDt = new Date();
-               var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
-               
-               if(date < dayday) return [false];
-               return [true];
-            }, 
-            onSelect: function(selected) {
-               $('.formstartDate_plus').datepicker("option","maxDate", selected)
-           }
-      });   
-      })
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+ /////////////////////////////////////////////////////////////////////////////////////////////////////
+ //조직도
        
         //주소록 추가시  검색해서 보여주는 script
          $('.con_ins_org_sea_btn_plus').click(function(){ 
@@ -484,12 +321,13 @@ function calendar(){
    
    
    //부서 출력 하는 아작스
-      function seeDepart2(pjd_count, obj, empSelectNumber, choose) {
+      function seeDepart2(pjd_count, obj, empSelectNumber, choose2) {
+	   console.log("seedepart2 클릭");
          //전역 부서 선택시
-          departcho = choose;
-         var div_id = "dept_div"+choose;
-         $("#"+div_id).empty();
-         var litag = "<ui style='list-style:none; padding:5px;'>";
+          departcho2 = choose2;
+         var div_id = "dept_div2"+choose2;
+         $("#p"+div_id).empty();
+         var litag = "<ul style='list-style:none; padding:5px;'>";
       
          var name = $(obj).text();
       
@@ -497,23 +335,25 @@ function calendar(){
             url : "taskDeptModal.do",
             type : "GET",
             data : {
-               branch_no : departcho
+               branch_no : departcho2
             },
             success : function(data) {
                var dept;
-               console.log(data);
+               console.log('############부서출력 아작스 : data : '+data);
                $.each(data, function(index) {
+            	   console.log("#####each("+index+")    :   "+data[index]);
                   dept = data[index];
                });
       
-               if(firstTree == 0){
-                   firstTree = 1;   
+               console.log("### firstTree2 == 0 : "+(firstTree2 == 0));
+               if(firstTree2 == 0){
+                   firstTree2 = 1;   
                    
                   $.each(dept, function(index) {
                      litag += "<li onclick='seelow_Depart2("+pjd_count+", this, "
                         litag +=empSelectNumber+","
                          litag +=dept[index].dept_no
-                         litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
+                         litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+dept[index].dept_name+"("+dept[index].dept_no+")</span></li>";
                         //litag +="</ul>";
                         
                         litag+="<div id='low_dept_div"
@@ -521,22 +361,22 @@ function calendar(){
                         litag+="'></div>";
                   });
                   litag +="</ul>";
-                  $("#"+div_id).html(litag);
+                  $("#p"+div_id).html(litag);
                }else{
-                   firstTree = 0;
-                   $("#"+div_id).html();   
+                   firstTree2 = 0;
+                   $("#p"+div_id).html();   
                 }
             }
          });
       }
       
       //하위 부서 클릭시
-      function seelow_Depart2(pjd_count, obj,empSelectNumber,departcho) {
-         alert("부서 : "+choose);
-         deptNumber= departcho;
-         var litag = "<ui style='list-style:none;'>";
-         var div_id = "low_dept_div"+departcho;
-         $("#"+div_id).empty();
+      function seelow_Depart2(pjd_count, obj,empSelectNumber,departcho2) {
+         alert("부서 : "+choose2);
+         deptNumber= departcho2;
+         var litag = "<ul style='list-style:none;'>";
+         var div_id = "low_dept_div"+departcho2;
+         $("#p"+div_id).empty();
       
          $.ajax({
             url : "tasklow_deptModal.do",
@@ -551,8 +391,8 @@ function calendar(){
                   low_dept = data[index];
                });
                
-               if(secondTree == 0){
-                   secondTree = 1;
+               if(secondTree2 == 0){
+                   secondTree2 = 1;
                   $.each(low_dept, function(index) {
                      litag += "<li onclick='seeEmpMember2("+pjd_count+", this, "
                      litag += empSelectNumber+","
@@ -562,10 +402,10 @@ function calendar(){
                      
                   });
                   litag +="</ul>";
-                  $("#"+div_id).html(litag);
+                  $("#p"+div_id).html(litag);
                }else{
-                   secondTree = 0;
-                   $("#"+div_id).html();
+                   secondTree2 = 0;
+                   $("#p"+div_id).html();
                 }
             }
       
@@ -585,14 +425,12 @@ function calendar(){
          //alert("taskEmpModal : "+low_dept);
          //alert("selectNo : " + empSelectNumber);
          var makeTable = "";
-         
-        
-         makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th><input type='checkbox'></th><th>사번</th><th>이름</th></tr>";
-        
-         
+   
+         makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
+
          $.ajax(
                {
-                  url: "taskEmpModal.do",
+                  url: "taskEmpModal_exclude.do",
                   data:{
                      low_dept_no: empListNumber
                        },
@@ -666,7 +504,7 @@ function calendar(){
                   for(var i = 0; i < empInfoArray.length; i++){
                     console.log("pjd_count: "+ pjd_count + "/ input : " +empInfoArray[i].emp_no +" / "+empInfoArray[i].emp_name);
                      input_no += "<input type='hidden' class='form-control' name='pjd[" + pjd_count + "].rec_emp_no' value='"+empInfoArray[i].emp_no+"'>";
-                     input_name +="<input type='text' class='form-control input-sm' name='pjd[" + pjd_count + "].rec_emp_name' value='"+empInfoArray[i].emp_name+"'>";
+                     input_name +="<input type='text' readonly class='form-control input-sm' name='pjd[" + pjd_count + "].rec_emp_name' value='"+empInfoArray[i].emp_name+"'>";
                   }
                  
                   empInfoArray.splice(0,empInfoArray.length);

@@ -17,7 +17,7 @@ $(function(){
 			  "onclick": null,
 			  "showDuration": "300",
 			  "hideDuration": "1000",
-			  "timeOut": "5000",
+			  "timeOut": "2000",
 			  "extendedTimeOut": "1000",
 			  "showEasing": "swing",
 			  "hideEasing": "linear",
@@ -75,10 +75,10 @@ $(function(){
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.do">홈</a></li>
 					<li><span>프로젝트 관리</span></li>
-					<li><a href="projects.do">프로젝트 생성</a></li>
+					<li>프로젝트 작성</li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">프로젝트 생성</h2>
+			<h2 class="font-light m-b-xs">프로젝트 작성</h2>
 			<small>새로운 프로젝트를 시작해 보세요!</small>
 		</div>
 	</div>
@@ -116,7 +116,7 @@ $(function(){
 									</tr>	
 								
 									<tr>
-										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%">수신자</th>
+										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 수신자</th>
 										<td>
 											<div class="form-group">
 											<div class="row">
