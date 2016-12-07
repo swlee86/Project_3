@@ -2,6 +2,7 @@ package kr.or.epm.DAO;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Emp_detail;
 
@@ -33,6 +34,7 @@ public interface LoginDAO {
 	//사번으로 이름 조회하기
 	EmpJoinEmp_Detail selectEmp_Name_Emp(String emp_no);
 	
-	//
+	//로그인 시 아이디 찾기
+	String selectEmp_FindId(EmpJoinEmp_Detail emp);
 	
 }

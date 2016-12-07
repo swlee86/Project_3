@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 소속 부서 개수 구하기 3)-->
 	<select id="countDept" parameterType="kr.or.epm.VO.Branch" resultType="Integer">
-	    select count(*) from dept where branch_no=#{pre_branch_no}
+	    select count(*) from dept where branch_no=#{pre_branch_no} and his_check='1'
 	</select>
 	
 	<!-- 수정된 지점의 소속 부서 update 4)-->
@@ -40,9 +40,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update dept set branch_no=#{branch_no}, branch_name = #{branch_name} where branch_no=#{pre_branch_no} and his_check='1'
 	</update>
 	
+	<!--수정전 지점 his_check=0 update  5)-->
 	<update id="update_pre_dept" parameterType="String">
 	  update branch set his_check='0' where branch_no=#{branch_no}
 	</update>
+	
+	<!-- 지점이름으로 소속 하위부서 개수 구하기 6) -->
+	<select id="countlow_dept" parameterType="String" resultType="Integer">
+	   select count(*) from low_dept where branch_name=#{param1} and his_check='1'
+	</select>
+	
+	<!-- 하위부서 update -->
+	<update id="update_pre_lowDept" parameterType="kr.or.epm.VO.Branch">
+		update low_dept set branch_name=#{param1} where branch_name=#{param2} and his_check='1'
+	</update>
+	
 	
 	<!--지점 삭제 -->
 	<update id="delete_branch" parameterType="String">
