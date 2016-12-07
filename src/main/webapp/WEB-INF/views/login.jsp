@@ -101,43 +101,49 @@ small {
 											title="Please enter you username" required=""
 											readonly="readonly" placeholder="구글 로그인 후 이용하세요"
 											name="username" id="username" value="" class="form-control">
-										<span class="help-block small">Your unique username to
-											app</span>
+										<span class="help-block small">
+										</span>
 									</div>
 									<div class="form-group">
 										<label class="control-label" for="password"
 											style="color: black;">비밀번호</label> <input type="password"
 											title="Please enter your password" placeholder="******"
 											required="required" value="" name="password" id="password"
-											class="form-control"> <span class="help-block small">Your
-											strong password</span>
+											class="form-control"> <span class="help-block small">비밀번호를 입력하세요
+											</span>
 									</div>
 									<div style="text-align: center;">
 										<div class="row">
-											<div class="col-md-offset-4 col-md-4">
-
-												<div class="g-signin2" data-onsuccess="onSignIn"
-													style="display: block;"></div>
-											</div>
-											<div class="col-md-offset-2 col-md-4" id="logOutDiv">
-												<input type="hidden" name="loginRedirect"
-													value="${loginRedirect}" /> <a class="btn btn-default"
-													href="#" id="googlelogout"
-													onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-													로그아웃</a>
-												<!-- <a class="btn btn-default" href="#" id="googlelogout">로그아웃</a> -->
-											</div>
+												<div class="col-md-offset-4 col-md-4">
+														<div class="g-signin2" data-onsuccess="onSignIn"
+														style="display: block;"></div>
+												</div>
+										</div>	
+									</div>
+									<div style="text-align:center">
+										<div class="row">	
+												<div class="col-md-offset-4 col-md-4" id="logOutDiv">
+													<input type="hidden" name="loginRedirect"
+														value="${loginRedirect}" /> <a class="btn btn-default"
+														href="#" id="googlelogout"
+														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
+														로그아웃</a>
+												</div>
+											
 										</div>
 									</div>
+									
 									<br />
 									<br />
 									<div style="text-align: center;">
 										<div class="row">
-											<div class="col-md-offset-1 col-md-9">
+											<div class="col-md-1"></div>
+											<div class="col-md-10">
 												<a class="btn btn-default" data-toggle="modal"
 													data-target="#findId">아이디 찾기</a> <a class="btn btn-default"
 													data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
 											</div>
+											<div class="col-md-1"></div>
 										</div>
 									</div>
 									<hr>
@@ -406,10 +412,8 @@ small {
 	$(function(){
 		
 		if($('#username').val() == ''){
-			alert("널입니다.");
 			$('#logOutDiv').hide();
 		}else{
-			alert("로그인 아닐때");
 			$('#logOutDiv').show();
 		}
 		
