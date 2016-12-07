@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
 <aside id="menu">
      
     <div id="navigation">
@@ -11,7 +9,7 @@
                 <img src="${pageContext.request.contextPath}/images/jo.jpg" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
             </a>
 			<div class="stats-label text-color">
-                <span class="font-extra-bold font-uppercase">~님 환영합니다.</span>
+                <span class="font-extra-bold font-uppercase">${Emp.emp_name} 님 환영합니다.</span>
 					
 			</div>
 			<!--  

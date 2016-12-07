@@ -77,17 +77,17 @@ $(function(){
             </a>
             <div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.do">Home</a></li>
+                    <li><a href="index.do">홈</a></li>
                   <!--   <li>
                         <span>Private_memo</span>
                     </li> -->
                     <li class="active">
-                        <span>Memo</span>
+                        <span>메모</span>
                     </li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                Memo
+                개인 메모
             </h2>
             <small>개인 메모를 입력하세요.</small>
         </div>
