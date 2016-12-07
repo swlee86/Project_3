@@ -12,9 +12,9 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html">홈</a></li>
 					<!-- <li><span>App views</span></li> -->
-					<li class="active"><span>Contacts</span></li>
+					<li class="active"><span>주소록</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">개인 주소록</h2>
