@@ -2,10 +2,13 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Cooperation;
 import kr.or.epm.VO.Draft;
 import kr.or.epm.VO.Draft_line;
+import kr.or.epm.VO.Draft_ref;
 import kr.or.epm.VO.Office;
 
 /**
@@ -17,7 +20,7 @@ import kr.or.epm.VO.Office;
 public interface DraftDAO {
 	
 	//사번을통해 부서, 이름을 추출하는건 공통 dao에서
-	
+/*	
 	//현재 로그인한 사원에게 온 전자결재 조회 ( 수신결재함 조회 )
 	public List<Draft> selectDraft_rec(String emp_no);
 	
@@ -51,14 +54,29 @@ public interface DraftDAO {
 	//결재라인에서  내가 포함된 미승인 결제들의 draft_no 목록 불러오기(내 차례인것만)
 	public List<String> selectDraftLine_myturn(String emp_no);
 	
+	*/
 	
 	// 결재 등록하기
-	// 기본 전자 결재 등록하기
-	public int insertDraft(Office office);
-	
+	// draft_대외발신공문 등록하기
+	public int insertDraft_office(Office office);
 	// 대외발신공문 등록하기
 	public int insertOffice(Office office);
 	
+	// draft_협조문 등록하기
+	public int insertDraft_cooperation(Cooperation cooperation);
+	// 협조문 등록하기
+	public int insertCooperation(Cooperation cooperation);
+	
+	// draft_휴가신청서 등록하기
+	public int insertDraft_break(Break break2);
+	// 휴가신청서 등록하기
+	public int insertBreak(Break break2);
+	
+	// 결재 등록을 위해 기본정보 가져오기
+	public Draft selectDraft_basic(String emp_no);
+
+	// 결재 등록을 위해 전자결재 문서 번호 가져오기
+	public String selectDraft_no();
 	
 	// 수신 리스트 확인하기
 	// 결재 번호 가져오기
@@ -67,13 +85,57 @@ public interface DraftDAO {
 	// 결재라인 차례 확인하기
 	public String selectDraft_line(String draft_no, String emp_no, String cg_no);
 	
+	// 참조당한 대외발신공문 결재 문서 리스트 가져오기
+	public List<Office> selectDraft_ref_Office(String emp_no);
+	
+	// 참조당한 협조문 결재 문서 리스트 가져오기
+	public List<Cooperation> selectDraft_ref_Cooperaion(String emp_no);
+	
+	// 참조당한 휴가신청서 결재 문서 리스트 가져오기
+	public List<Break> selectDraft_ref_Break(String emp_no);
+	
 	// 대외발신공문 수신 리스트
-	public Office selectOffice_rec(String draft_no);
+	public Office selectOffice_rec(String draft_no, String emp_no);
 	
 	// 협조문 수신 리스트
-	public Cooperation selectCooperation_rec(String draft_no);
+	public Cooperation selectCooperation_rec(String draft_no, String emp_no);
 	
 	// 휴가신청서 수신 리스트
-	public Break selectBreak_rec(String draft_no);
+	public Break selectBreak_rec(String draft_no, String emp_no);
 	
+	// 대외발신공문 송신 리스트
+	public List<Office> selectOffice(String emp_no);
+	
+	// 협조문 송신 리스트
+	public List<Cooperation> selectCooperation(String emp_no);
+	
+	// 휴가신청서 송신 리스트
+	public List<Break> selectBreak(String emp_no);
+	
+	// 대외발신공문 상세
+	public Office selectOffice_detail(String draft_no);
+	
+	// 협조문 상세
+	public Cooperation selectCooperation_detail(String draft_no);
+	
+	// 휴가신청서 상세
+	public Break selectBreak_detail(String draft_no);
+	
+	// 결재라인 정보 가져오기
+	public List<Draft_line> selectDraft_line_data(String draft_no);
+	
+	// 참조자 정보 가져오기
+	public List<Draft_ref> selectDraft_ref_data(String draft_no);
+	
+	// 상세처리 > 결재라인 수신여부(rec_check) 삽입
+	public int updateDraft_line(String draft_no);
+	
+	// 상세 처리 > 결재문서 수신일(rec_date) 삽입
+	public int updateDraft(String draft_no);
+	
+	// 수신함에서 삭제하기
+	public int rec_deleteDraft(String draft_no);
+	
+	// 송신함에서 삭제하기
+	public int deleteDraft(String draft_no);
 }

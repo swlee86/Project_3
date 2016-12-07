@@ -20,7 +20,10 @@ public interface CommonDAO {
 	public String selectEmp_name_for_emp_no(String emp_no);
 	
 	// 사원번호로 지점명, 부서명, 하위부서명 가져오기
-	public Common selectAttach();
+	public Common selectAttach_for_emp_no(String emp_no);
+	
+	// 하위부서번호로 지점명, 부서명, 하위부서명 가져오기
+	public Common selectAttach_for_low_dept_no(String low_dept_no);
 	
 	// 로그인한 id로 사원 emp_no 가져오기
 	public String selectEmp_no(String id);

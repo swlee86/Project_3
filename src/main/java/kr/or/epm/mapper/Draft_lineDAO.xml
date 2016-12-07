@@ -12,8 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 결재라인 등록하기 -->
 	<insert id="insertDraft_line">
-		insert into draft_line(draft_no, emp_no)
-		values(#{param1}, #{param2})
+		insert into draft_line(draft_no, emp_no, app_check, app_date, rec_check)
+		values(#{param1}, #{param2}, '0', null, '0')
 	</insert>
 	
 </mapper>

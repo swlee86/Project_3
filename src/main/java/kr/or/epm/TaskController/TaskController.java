@@ -308,6 +308,7 @@ public class TaskController {
 		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);	
 		session.setAttribute("sessiontaskcount", taskcount);
 		session.setAttribute("sessionpushcount", resultdata);
+		
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);

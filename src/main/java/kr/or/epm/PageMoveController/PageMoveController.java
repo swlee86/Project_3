@@ -47,20 +47,13 @@ public class PageMoveController {
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, Principal principal) {
 		HttpSession session = request.getSession();
 		
-		//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
-		String id = principal.getName();
-		System.out.println("아이디  : "+id);
-		String empinfo = service.selectUserName(id);
-		session.setAttribute("userName", empinfo);
-		/////////////////////////////////
-		
-		
-		
 		String emp_no = (String)session.getAttribute("emp_no");
 		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
 			
 		
 		session.setAttribute("emp_no", emp_no);
+		
+		
 		
 		///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
         List<Company> list = null;
@@ -81,7 +74,20 @@ public class PageMoveController {
 		
 		boolean emp_no_chk = Util.isEmpty(emp_no);
 		
+		String id = null;
+		
+		//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
+		if(emp_no_chk==false){
+			id = principal.getName();			
+			System.out.println("아이디+++++++++++++++++++++++++  : "+id);
+			String empinfo = service.selectUserName(id);
+			session.setAttribute("userName", empinfo);
+		}
+		
+		/////////////////////////////////
+		
 		List<Task> tasklist = null;
+		
 		///////////////////////인덱스에 띄워 줄 업무 내용 구하기 시작////////////////////////////////////////////////////
 		if(emp_no_chk==true){
  			String msg_task = "미확인 업무 내역은 로그인 후 내용 확인 가능합니다";

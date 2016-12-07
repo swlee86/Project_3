@@ -24,25 +24,78 @@ public class Break {
 	private String rec_del_check;
 	private String del_check;
 
-	private String rec_date;
 	private String emp_name;
+	private String rec_check;
+	private String position_name;
+	private String branch_name;
+	private String dept_name;
+	private String low_dept_name;
+	private String cell_phone;
 	
+	private String break_tel;
 	
-	
+	public String getBreak_tel() {
+		return break_tel;
+	}
+
+	public void setBreak_tel(String break_tel) {
+		this.break_tel = break_tel;
+	}
+
+	public String getCell_phone() {
+		return cell_phone;
+	}
+
+	public void setCell_phone(String cell_phone) {
+		this.cell_phone = cell_phone;
+	}
+
+	public String getPosition_name() {
+		return position_name;
+	}
+
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
+	}
+
+	public String getBranch_name() {
+		return branch_name;
+	}
+
+	public void setBranch_name(String branch_name) {
+		this.branch_name = branch_name;
+	}
+
+	public String getDept_name() {
+		return dept_name;
+	}
+
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
+
+	public String getLow_dept_name() {
+		return low_dept_name;
+	}
+
+	public void setLow_dept_name(String low_dept_name) {
+		this.low_dept_name = low_dept_name;
+	}
+
+	public String getRec_check() {
+		return rec_check;
+	}
+
+	public void setRec_check(String rec_check) {
+		this.rec_check = rec_check;
+	}
+
 	public String getEmp_name() {
 		return emp_name;
 	}
 
 	public void setEmp_name(String emp_name) {
 		this.emp_name = emp_name;
-	}
-
-	public String getRec_date() {
-		return rec_date;
-	}
-
-	public void setRec_date(String rec_date) {
-		this.rec_date = rec_date;
 	}
 
 	public String getDraft_no() {
@@ -171,7 +224,10 @@ public class Break {
 				+ ", break_term=" + break_term + ", break_cg_no=" + break_cg_no + ", break_cg_name=" + break_cg_name
 				+ ", cg_no=" + cg_no + ", draft_title=" + draft_title + ", draft_content=" + draft_content + ", emp_no="
 				+ emp_no + ", draft_date=" + draft_date + ", file_name=" + file_name + ", step_no=" + step_no
-				+ ", rec_del_check=" + rec_del_check + ", del_check=" + del_check + "]";
+				+ ", rec_del_check=" + rec_del_check + ", del_check=" + del_check + ", emp_name=" + emp_name
+				+ ", rec_check=" + rec_check + ", position_name=" + position_name + ", branch_name=" + branch_name
+				+ ", dept_name=" + dept_name + ", low_dept_name=" + low_dept_name + ", cell_phone=" + cell_phone
+				+ ", break_tel=" + break_tel + "]";
 	}
 
 }

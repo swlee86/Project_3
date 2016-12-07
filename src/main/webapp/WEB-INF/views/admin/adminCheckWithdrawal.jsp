@@ -43,7 +43,7 @@
                 <span class="detailSpan">부서 : 개발</span><br/>
                 <span class="detailSpan">부서번호 : 027772222</span><br/>
                 <span class="detailSpan">연락처 : 01011112222</span><br/>
-                <span>사내 연락처 : </span>
+                <span class="detailSpan">사내 연락처 : </span>
                 
                 <div class="text-muted font-bold m-b-xs"></div>
             </div>

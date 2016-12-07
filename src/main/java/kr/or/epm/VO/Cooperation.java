@@ -31,15 +31,14 @@ public class Cooperation {
      
     // 추가
 	private String emp_name;
-	private String rec_date;
+	private String rec_check;
 	
-	
-	public String getRec_date() {
-		return rec_date;
+	public String getRec_check() {
+		return rec_check;
 	}
 
-	public void setRec_date(String rec_date) {
-		this.rec_date = rec_date;
+	public void setRec_check(String rec_check) {
+		this.rec_check = rec_check;
 	}
 
 	public String getEmp_name() {
