@@ -91,6 +91,7 @@
 										</c:when>
 										<c:otherwise>
 										<tr>
+											<td></td>
 											<td colspan="10" style="text-align: center;">근태 목록이
 												없습니다.</td>
 										</tr>
