@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+
 <!-- 드래그앤드롭? -->
 <link rel="stylesheet" href="vendor/jquery-ui/themes/base/all.css">
 
@@ -43,6 +44,7 @@
 <link rel="stylesheet" href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css">
 <link rel="stylesheet" href="vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
  -->
+ 
 <style>
 	.flag {
 		font-weight: bold;
@@ -84,7 +86,6 @@
 	}
 	
 </style>
-
 </head>
 
 <body class="fixed-navbar fixed-sidebar">
@@ -151,6 +152,7 @@
 	<!-- 
 	<script src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
 	 -->
+	 
 	<!--전자결재 script  -->
 	<script src="js/draft/draft.js"></script>
 

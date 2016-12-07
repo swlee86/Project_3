@@ -142,7 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 등록을 위해 전자결재 번호 가져오기 -->
 	<select id="selectDraft_no" resultType="String">
-		select max(to_number(draft_no))+1
+		select nvl(max(to_number(draft_no))+1, '1')
 		from draft
 	</select>
 	

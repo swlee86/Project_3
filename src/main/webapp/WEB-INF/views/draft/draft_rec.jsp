@@ -1,8 +1,14 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 여기 animated 들어갔는데 변경할 부분 있으면 수정하자 -->
+<!--  
+	작성일 : 2016-12-06
+	작성자 : 백승아
+	사용 목적 : 전자결재 수신함 뷰
+-->
+
     <div class="normalheader transition animated fadeIn">
         <div class="hpanel">
             <div class="panel-body">
@@ -74,16 +80,12 @@
         	<div class="col-md-8 forum-heading">
 				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;">
 				<c:choose>
-					<c:when test="${ office.rec_check != null }">
-						<c:if test="${ office.rec_check == '0' }">
-            				<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
-            			</c:if>
+					<c:when test="${ office.rec_date == '0' }">
+            			<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
                 			${ office.draft_date } 
                 	</c:when>
-                	<c:when test="${ office.rec_check == null }">
-                		<c:if test="${ office.rec_date == null }">
-                			<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
-            			</c:if>
+                	<c:when test="${ office.rec_date == '1' }">
+                		<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
                 			${ office.draft_date } 
                 	</c:when>
                 </c:choose>
