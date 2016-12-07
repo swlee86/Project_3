@@ -20,34 +20,43 @@
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 
 <!-- App styles -->
-<link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet"
+	href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 <!--구글 API-->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id"
 	content="279959715456-km9o7eijb5j8sr8kn9i98dtmitu5l1tt.apps.googleusercontent.com">
+<!-- 외부 추가 js 파일 링크 -->
+<script src="js/custom/register.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
+	
 <style>
-	body{
-		background-image: url("images/landing/header.jpg");
-	}
-	
-	h3{
-		color: white;
-	}
-	
-	small{
-		color: white;
-	}
-	
-	.test{
-		margin-top:15px;
-	}
-	
+body {
+	background: url(images/mainImage.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h3 {
+	color: white;
+}
+
+small {
+	color: white;
+}
+
+.test {
+	margin-top: 15px;
+}
 </style>
 </head>
 <body class="fixed-navbar fixed-sidebar media-body">
-	
+
 	<div class="splash">
 		<div class="color-line"></div>
 		<div class="splash-title">
@@ -62,8 +71,8 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<div class="container">
 		<div class="heading">
 			<div class="login-container">
@@ -93,52 +102,59 @@
 									<div class="form-group">
 										<label class="control-label" for="username"
 											style="color: black;">아이디</label> <input type="text"
-											title="Please enter you username" required="" readonly="readonly"
-											placeholder="구글 로그인 후 이용하세요" name="username" id="username" value=""
-											class="form-control"> <span class="help-block small">Your
-											unique username to app</span>
+											title="Please enter you username" required=""
+											readonly="readonly" placeholder="구글 로그인 후 이용하세요"
+											name="username" id="username" value="" class="form-control">
+										<span class="help-block small">
+										</span>
 									</div>
 									<div class="form-group">
 										<label class="control-label" for="password"
 											style="color: black;">비밀번호</label> <input type="password"
 											title="Please enter your password" placeholder="******"
 											required="required" value="" name="password" id="password"
-											class="form-control"> <span class="help-block small">Your
-											strong password</span>
+											class="form-control"> <span class="help-block small">비밀번호를 입력하세요
+											</span>
 									</div>
 									<div style="text-align: center;">
 										<div class="row">
-											<div class="col-md-offset-4 col-md-4">
-												 
-												 <div class="g-signin2" data-onsuccess="onSignIn"
-													style="display: block;"></div> 
-											</div>						
-											 <div class="col-md-offset-2 col-md-4" id="logOutDiv">
-												<input type="hidden" name="loginRedirect"
-													value="${loginRedirect}" />  <a class="btn btn-default"
-													href="#" id="googlelogout"
-													onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-													로그아웃</a>  	 
-													<!-- <a class="btn btn-default" href="#" id="googlelogout">로그아웃</a> -->
-											</div>			
+												<div class="col-md-offset-4 col-md-4">
+														<div class="g-signin2" data-onsuccess="onSignIn"
+														style="display: block;"></div>
+												</div>
+										</div>	
+									</div>
+									<div style="text-align:center">
+										<div class="row">	
+												<div class="col-md-offset-4 col-md-4" id="logOutDiv">
+													<input type="hidden" name="loginRedirect"
+														value="${loginRedirect}" /> <a class="btn btn-default"
+														href="#" id="googlelogout"
+														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
+														로그아웃</a>
+												</div>
+											
 										</div>
 									</div>
-									<br/><br/>
-									<div style="text-align:center;">
+									
+									<br />
+									<br />
+									<div style="text-align: center;">
 										<div class="row">
-											<div class="col-md-offset-1 col-md-9">
-													<a class="btn btn-default" data-toggle="modal" data-target="#findId">아이디 찾기</a>
-													<a class="btn btn-default" data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
+											<div class="col-md-1"></div>
+											<div class="col-md-10">
+												<a class="btn btn-default" data-toggle="modal"
+													data-target="#findId">아이디 찾기</a> <a class="btn btn-default"
+													data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
 											</div>
+											<div class="col-md-1"></div>
 										</div>
 									</div>
 									<hr>
-									
-									<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
-									<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
-								
-									
 
+									<input type="submit" class="btn btn-success btn-block"
+										value="로그인" id="loginSubmitBtn"> <a 
+										class="btn btn-default btn-block" id="addMemberAjaxAtag">회원가입</a>
 								</form>
 							</div>
 						</div>
@@ -155,68 +171,74 @@
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="color-line"></div>
-				<form class="form-horizontal" action="findId.do" method="POST" id="findIdForm">
-				<div class="modal-header">
-					<h4 class="modal-title">아이디 찾기</h4>
-					<small class="font-bold" id="result_IdSmall">찾으실 아이디를 입력하세요</small>
-				</div>
-				<div class="modal-body">
- 						<div class="row">
+				<form class="form-horizontal" action="findId.do" method="POST"
+					id="findIdForm">
+					<div class="modal-header">
+						<h4 class="modal-title">아이디 찾기</h4>
+						<small class="font-bold" id="result_IdSmall">찾으실 아이디를
+							입력하세요</small>
+					</div>
+					<div class="modal-body">
+						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">사번</label>
 								<div class="col-md-8">
-									<input type="text" name="emp_no" id="emp_no" class="form-control" placeholder="사번">
+									<input type="text" name="emp_no" id="emp_no"
+										class="form-control" placeholder="사번">
 								</div>
 							</div>
 
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">이름</label>
 								<div class="col-md-8">
-									<input type="text" name="emp_name" id="emp_name" class="form-control"  placeholder="이름">
+									<input type="text" name="emp_name" id="emp_name"
+										class="form-control" placeholder="이름">
 								</div>
 							</div>
-							
+
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">연락처</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="cell_phone" id="cell_phone"  placeholder="연락처">
+									<input type="text" class="form-control" name="cell_phone"
+										id="cell_phone" placeholder="연락처">
 								</div>
 							</div>
-							
-							
+
+
 						</div>
-					
-				</div>
-				<div class="modal-footer">
-					<a class="btn btn-default" data-dismiss="modal" id="cancleFindIdBtn">취소하기</a>
-					<input type="button" class="btn btn-success" id="findIdBtn" value="아이디찾기">
-				</div>
+
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" data-dismiss="modal"
+							id="cancleFindIdBtn">취소하기</a> <input type="button"
+							class="btn btn-success" id="findIdBtn" value="아이디찾기">
+					</div>
 				</form>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 	<!--비밀번호 찾기-->
 	<div class="modal fade" id="findPw" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<form class="form-horizontal" action="findPw.do" method="POST">
-				<div class="color-line"></div>
-				<div class="modal-header">
-					<h4 class="modal-title">비밀번호 찾기</h4>
-					<small class="font-bold">찾으실 비밀번호를 입력하세요</small>
-				</div>
-				<div class="modal-body">
- 						<div class="row">
+					<div class="color-line"></div>
+					<div class="modal-header">
+						<h4 class="modal-title">비밀번호 찾기</h4>
+						<small class="font-bold">찾으실 비밀번호를 입력하세요</small>
+					</div>
+					<div class="modal-body">
+						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">아이디</label>
 								<div class="col-md-8">
 									<input type="text" class="form-control" placeholder="아이디">
 								</div>
 							</div>
-							
+
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">사번</label>
 								<div class="col-md-8">
@@ -227,33 +249,137 @@
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">이름</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control"  placeholder="이름">
+									<input type="text" class="form-control" placeholder="이름">
 								</div>
 							</div>
-							
+
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">연락처</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control"  placeholder="010-1111-2222">
+									<input type="text" class="form-control"
+										placeholder="010-1111-2222">
 								</div>
 							</div>
-						
+
 						</div>
-					
-				</div>
-				<div class="modal-footer">
-					<a class="btn btn-default" href="login.do"data-dismiss="modal">취소하기</a>
-					<input type="submit" class="btn btn-success" value="비밀번호찾기">
-				</div>
+
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-default" href="login.do" data-dismiss="modal">취소하기</a>
+						<input type="submit" class="btn btn-success" value="비밀번호찾기">
+					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	
 
 
+	<!--회원 가입-->
+	<div class="modal fade" id="AddMemberForm" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form class="form-horizontal" action="addMember.do" method="POST">
+					<div class="modal-body" style="height:500px;">
+						<h3>회원가입</h3>
+						<small>2PM 의 다양한 기능을 느껴보세요!</small>
+						<div class="form-group col-lg-12">
+							<label style="color: black;">사번 확인</label>
+							<div class="input-group">
+								<input type="text" value="" id="Register_emp_no" class="form-control"
+									name="emp_no"> <span class="input-group-btn"
+									id="numchkmsg"> <input type="button"
+									class="btn btn-success " id="numchk" value="사번 확인">
+								</span>
+							</div>
+							<span id="numchkresult" style="color: blue;"></span>
+						</div>
 
+						<div class="form-group col-lg-12">
+							<label style="color: black;">ID</label>
+							<div class="input-group">
+								<input type="text" value="" id="Register_id" class="form-control"
+									name="id"> <span class="input-group-btn"> <input
+									type="button" class="btn btn-success " id="idchk" value="중복 체크">
+								</span>
+							</div>
+							<span id="idchkresult" style="color: blue;"></span>
+						</div>
 
+						<div class="form-group col-lg-6">
+							<label style="color: black;">Password</label> <input
+								type="password" value="" id="pwd" class="form-control"
+								name="pwd">
+						</div>
+						<div class="form-group col-lg-6">
+							<label style="color: black;">Repeat Password</label> <input
+								type="password" value="" id="pwdchk" class="form-control"
+								name="pwdchk">
+						</div>
+						<div class="form-group col-lg-12">
+							<label style="color: black;">주소</label>
+							<div class="input-group">
+								<input type="text" id="sample6_postcode" name="postcode"
+									class="form-control" placeholder="우편번호"> <span
+									class="input-group-btn"> <input type="button"
+									onclick="sample6_execDaumPostcode()" class="btn btn-success "
+									value="우편번호 찾기">
+								</span>
+							</div>
+							<div class="row">
+								<br>
+								<div class=" col-lg-6">
+									<input type="text" id="sample6_address" name="addr"
+										class="form-control" placeholder="기본주소">
+								</div>
+								<div class=" col-lg-6">
+									<input type="text" id="sample6_address2" name="addr_detail"
+										class="form-control" placeholder="상세주소">
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group col-lg-12">
+							<label style="color: black;">E-mail</label>
+							<div class="row">
+								<div class="col-lg-12">
+									<input type="text" id="email" 
+										class="form-control" name="email" readonly="readonly">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group col-lg-12">
+							<label style="color: black;">계좌번호</label>
+							<div class="row">
+								<div class=" col-lg-6">
+									<select class="form-control" name="bank">
+										<option value="국민">국민</option>
+										<option value="신한">신한</option>
+										<option value="기업">기업</option>
+										<option value="SC은행">SC은행</option>
+										<option value="우체국">우체국</option>
+										<option value="농협">농협</option>
+									</select>
+								</div>
+								<div class=" col-lg-6">
+									<input type="text" value="" id="account" class="form-control"
+										name="account">
+								</div>
+								<input type="hidden" id="googleId" value="${registerGoogleId}"
+									name="googleapiid">
+							</div>
+						</div>
+					</div>
+					<div class="text-center">
+						<input type="submit" class="btn btn-success" value="회원 가입">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+					<br/><br/>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -290,12 +416,31 @@
 	$(function(){
 		
 		if($('#username').val() == ''){
-			alert("널입니다.");
 			$('#logOutDiv').hide();
 		}else{
-			alert("로그인 아닐때");
 			$('#logOutDiv').show();
 		}
+		
+		//회원 가입 버튼 클릭시 처음 실행되는 아작스 함수.
+		$('#addMemberAjaxAtag').click(function(){
+			$.ajax({
+				url : "addMember.do",
+				type : "GET",
+				success : function(data){
+					console.log("성공시 : "+data.choose);
+					if(data.choose == '1'){
+						alert(data.data);
+					}else{
+						console.log("엘스탐 : "+data.success);
+						alert(data.success);
+						$('#AddMemberForm').modal();
+						$('#googleId').val(data.registerGoogleId);
+						$('#email').val(data.registerGoogleMail);
+					}
+				}
+			});
+		});
+		
 		
 		$('#googlelogout').click(function(){
 			signOut();
@@ -371,8 +516,52 @@
 		    auth2.signOut().then(function () {
 		      console.log('User signed out.');
 		      console.log("마지막");
+		      <%session.invalidate();%>
 		    });
 		  } 
+
+		//주소 api 사용	 
+	    function sample6_execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var fullAddr = ''; // 최종 주소 변수
+	                var extraAddr = ''; // 조합형 주소 변수
+
+	                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    fullAddr = data.roadAddress;
+
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    fullAddr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    //법정동명이 있을 경우 추가한다.
+	                    if(data.bname !== ''){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있을 경우 추가한다.
+	                    if(data.buildingName !== ''){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+	                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+	                document.getElementById('sample6_address').value = fullAddr;
+
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById('sample6_address2').focus();
+	            }
+	        }).open();
+	    }
 
 	  
 	  $(function(){
@@ -380,7 +569,37 @@
 			  $('#username').val("구글 로그인 후 이용하세요");
 		  });
 		  
+		  $('#numchk').click(function() {
+			  alert("아이디 검사 !!  :  "+$('#emp_no').val());
+				$.ajax({
+					type : "post",
+					url : "numchk.do",
+					data : "emp_no=" + $('#Register_emp_no').val(),
+					success : function(data) {
+						console.log(data);
+						$('#numchkresult').empty();
+						$('#numchkresult').append(data.numcheck);
+					}
+				})
+			});
+			
+			$('#idchk').click(function() {
+				$.ajax({
+					type : "post",
+					url : "idchk.do",
+					data : "id=" + $('#Register_id').val(),
+					success : function(data) {
+						console.log(data);
+						$('#idchkresult').empty();
+						$('#idchkresult').append(data.idcheck);
+					}
+				})
+			});
+		  
 	  })
+	  
+	  
+	  
 	</script>
 </body>
 </html>

@@ -84,5 +84,11 @@ public interface PjDAO {
 
 	//프로젝트의 시작일, 종료일 가져오기
 	public Pj selectPjDate(String pjd_no);
+
+	//프로젝트 송신 전체 갯수 가져오기
+	public int selectSendCount(String emp_no, String field, String query);
+
+	//프로젝트 송신 대기함 리스트 
+	public List<Pj> select_Send_Pj_rec(String emp_no,String field, String query);
 	
 }

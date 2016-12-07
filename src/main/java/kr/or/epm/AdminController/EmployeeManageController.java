@@ -103,7 +103,7 @@ public class EmployeeManageController {
 		} catch (Exception e) {
 			e.getMessage();
 		} finally {
-			if (result > 0) {
+			if (result > 1) {
 				System.out.println("반영 성공");
 				answer = "adminEmployeeManage.do";
 				data = "사원정보 등록에 성공하였습니다.";

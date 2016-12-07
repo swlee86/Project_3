@@ -6,10 +6,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.View;
 
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.RegisterService;
@@ -27,7 +27,10 @@ import kr.or.epm.VO.Emp_detail;
 
 @Controller
 public class RegisterController {
-
+	
+	@Autowired
+	private View jsonview;
+	
 	@Autowired
 	private LoginService service;
 	
@@ -39,7 +42,7 @@ public class RegisterController {
 	
 	//회원가입 클릭시 view 페이지 보여주는 함수
 	@RequestMapping(value="/addMember.do", method=RequestMethod.GET)
-	public String insertMember(HttpSession session, Model model){
+	public View insertMember(HttpSession session, Model model){
 		String google = (String)session.getAttribute("googleApiKey");
 		String googlemail = (String)session.getAttribute("googlemail");
 		String data="";
@@ -53,17 +56,20 @@ public class RegisterController {
 		//db에 저장 되어 있는 구글 아이디 탐색
 		 String iddata = service.selectGoogleLoginData(google);
 		 boolean test = Util.isEmpty(iddata);
-		
+		System.out.println("boolean 형태의 test 뭐나옴 : "+test);
 		 if(test!=true){
+			 model.addAttribute("choose","1");
 			 data="아이디가 존재합니다. 다른 아이디로 가입하시려면 구글 로그아웃 후 이용하세요";
 			 answer = "login.do";
 			 model.addAttribute("data", data);
 			 model.addAttribute("answer", answer);
-			 return "register.registerRedirect";
+			 return jsonview;
 		 }else{
+			model.addAttribute("choose","2");
+			model.addAttribute("success", "가입하실수 있는 아이디입니다. 가입을 진행해주세요 !");
 			model.addAttribute("registerGoogleId", google);
 			model.addAttribute("registerGoogleMail", googlemail);
-			return "register.addMember";
+			return jsonview;
 		 }
 		 
 	}
