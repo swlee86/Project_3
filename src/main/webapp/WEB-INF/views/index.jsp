@@ -12,7 +12,9 @@
 			<h2>Welcome to 2PM</h2>
 			<p>
 				스타트업 및 중소기업의 <strong>프로젝트 관리, 인사, 일정 관리</strong>를 위한 그 모든 프로그램
+				
 			</p>
+			<h4>히밤 : </h4>${sessionScope.emp}
 		</div>
 	</div>
 	
