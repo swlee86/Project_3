@@ -5,7 +5,6 @@
 </div>-->
 	<div class="container">
 		<div class="heading">
-
 			<div class="register-container">
 				<div class="row">
 					<div class="col-md-12">

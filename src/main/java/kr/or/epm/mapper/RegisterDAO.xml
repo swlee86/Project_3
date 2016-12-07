@@ -10,11 +10,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break}, #{cell_phone})
 	</insert>
 	
-	<!-- 회원 가입시 인서트 처리되는 쿼리문 -->
+	<!-- 회원 가입시 인서트 처리되는 쿼리문 1) -->
 	<insert id="insertEmp_detail">
 		INSERT INTO emp_detail(emp_no, id, pwd, bank, addr, addr_detail, account ,postcode, googleapiid)
 	    VALUES(#{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode}, #{googleapiid})
 	</insert>
+	
+	<!--회원 가입시 인서트 처리되는 쿼리문 2)  -->
+	<insert id="insertEmp_his" parameterType="String">
+		insert into emp_his(emp_no, his_no, cg_no, regdate) values(#{param1}, emp_his_seq.nextval, '1', #{param2})
+	</insert>
+	
 	
 	<update id="updateEmail" parameterType="kr.or.epm.VO.Emp">
 		update emp set email=#{email} where emp_no=#{emp_no}

@@ -1,6 +1,9 @@
 package kr.or.epm.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,15 @@ public class RegisterService {
 		System.out.println("이엠피가 왜 ??? "+emp.toString());
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
 		int result = registerDao.insertEmp(emp);
+		
+		//현재날짜 구하기
+		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+		Date currentTime = new Date ( );
+		String dTime = formatter.format ( currentTime );
+		System.out.println ( "현재 날짜 :     "+dTime );
+		
+		result += registerDao.insertEmp_his(emp.getEmp_no(), dTime);
+		
 		return result;
 	}
 	

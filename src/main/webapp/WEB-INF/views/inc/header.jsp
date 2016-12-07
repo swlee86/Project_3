@@ -24,11 +24,9 @@ $(function(){
 <div id="header">
     <div class="color-line">
     </div>
-    <div id="logo" class="light-version" >
+    <div id="logo" class="light-version" style="background-image: url('images/headerLogo.png');">
     	<a href="index.do">
-	        <span>
-	            2PM
-	        </span>
+	        
 		</a>
     </div>
     <nav role="navigation">
