@@ -38,8 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 등록하기 -->
 	<insert id="insertPj">
-		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_emp_no, rec_del_check, pj_step_no, step_no)
-		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, '0', #{rec_emp_no}, '0', '2', '4')
+		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_emp_no, pj_step_no, step_no)
+		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, '0', #{rec_emp_no}, '2', '4')
 	</insert>
 	
 	<insert id="insertPjd_people">
@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
           		select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
           		from pj p join emp e on p.emp_no = e.emp_no
-          		where p.rec_emp_no = #{param5} and  p.rec_del_check = '0' and p.step_no != '1' and (${param3} like '%${param4}%')
+          		where p.rec_emp_no = #{param5} and p.step_no != '1' and (${param3} like '%${param4}%')
           		order by to_number(p.pj_no) DESC
         	)n 
     	)where num between 1 + (${param1} * ${param2})-${param2} and ${param1}*${param2}
@@ -102,12 +102,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		GROUP BY pjd_no,pjd_title,pjd_content,pjd_start,pjd_end
 	</select>
 	
-	<!-- 프로젝트 승인 대기함에서 삭제하기 -->
-	<update id="deletePj_rec">
-		update pj
-		set rec_del_check = '1'
-		where pj_no = #{pj_no}
-	</update>
 	
 	<!-- 프로젝트 진행 단계 처리하기 -->
 	<update id="updatePj_step">

@@ -17,7 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--회사 정보 게시판 리스트 읽어오기-->
 	<select id="selectCompanyList" resultType="kr.or.epm.VO.Company">
-		select no, emp_name,title, content, hit, file_name, regdate from(select rownum rn, no, emp_name,title, content, hit, file_name, regdate from (select no, emp_name,title, content, hit, file_name, regdate from company order by regdate desc)) where rn BETWEEN #{param1} and #{param2}
+		select no, emp_name,title, content, hit, file_name, regdate 
+		from
+			(select rownum rn, no, emp_name,title, content, hit, file_name, regdate 
+			from (select no, emp_name,title, content, hit, file_name, regdate 
+					from company order by regdate desc, no desc)) 
+		where rn BETWEEN #{param1} and #{param2}
 	</select>
 	
 	<select id="selectDetail" resultType="kr.or.epm.VO.Company">
@@ -26,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--게시판 글쓰기-->
 	<insert id="insertInfoBoard" parameterType="kr.or.epm.VO.Company">
-		insert into company (no,emp_no, emp_name, hit, title,content,regdate,file_name, del_check) 
+		insert into company (no,emp_no, emp_name, hit, title,content,regdate,file_name) 
 			values(
 						company_seq.nextval,
 						#{emp_no},
@@ -35,8 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						#{title},
 						#{content},
 						to_char(sysdate,'yyyy-mm-dd'),
-						#{file_name},
-						0
+						#{file_name}
 				  )
 	</insert>
 	
@@ -53,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 from 
 					 	 (select no,emp_no,emp_name,hit,title,content,regdate,file_name
 					 	  from company 
-					 	  where ${param3} like '%${param4}%'  order by regdate desc
+					 	  where ${param3} like '%${param4}%'  order by regdate desc , no desc
 						  ) n
 					) where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}
 	</select>
