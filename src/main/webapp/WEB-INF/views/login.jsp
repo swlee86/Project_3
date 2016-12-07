@@ -35,7 +35,11 @@
 	
 <style>
 body {
-	background-image: url("images/landing/header.jpg");
+	background: url(images/mainImage.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 h3 {
