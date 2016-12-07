@@ -102,7 +102,7 @@ public class RegisterController {
 				}finally{
 					if(resultrole>0){
 						System.out.println("반영 성공");
-						answer = "index.do";
+						answer = "login.do";
 						data = "회원 가입에 성공하였습니다.";
 					}else{
 						System.out.println("반영 실패");

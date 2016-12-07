@@ -34,13 +34,13 @@
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                		총 개시글 수 : <font color="coral">10</font> 개
+                		총 개시글 수 : <font color="coral">${totalcount}</font> 개
             </div>
             <form name="list">
 				<select name="pagesize" onchange="submit()" class="form-control" style="width: 20%; margin-left: 80%">
-					<c:forEach var="i" begin="10" end="100" step="10">
+					<c:forEach var="i" begin="5" end="25" step="5">
 						<c:choose>
-							<c:when test="${psize == i}">
+							<c:when test="${pgsize == i}">
 								<option value='${i}' selected>${i}건</option>
 							</c:when>
 							<c:otherwise>
@@ -83,7 +83,7 @@
                         <c:forEach begin="0" end="${list.depth}" step="1">
                         	&nbsp;&nbsp;&nbsp;
                         </c:forEach>
-                        	<a href="business_board_view.do?no=${list.no}&currentpage=${cpage}&pagesize=${psize}">${list.title}</a>&nbsp;&nbsp;&nbsp;
+                        	<a href="business_board_view.do?no=${list.no}&currentpage=${cpage}&pagesize=${pgsize}">${list.title}</a>&nbsp;&nbsp;&nbsp;
                         	<c:if test="${list.file_name != null}">
                         		<img alt="file"  src="images/fileimg.PNG">
                         	</c:if>
@@ -97,7 +97,7 @@
                     </tbody>
                 </table>
                  <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button" class="btn w-xs btn-success" onclick="location.href='business_board_write.do?&currentpage=${cpage}&pagesize=${psize}'">글 등록</button>
+                	<button type="button" class="btn w-xs btn-success" onclick="location.href='business_board_write.do?&currentpage=${cpage}&pagesize=${pgsize}'">글 등록</button>
                 </div>
 			</div>
 
@@ -105,7 +105,7 @@
              <div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
 					<c:if test="${cpage > 1}">
-                    	<button type="button" class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${cpage-1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
+                    	<button type="button" class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${cpage-1}&pagesize=${pgsize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
                     </c:if>
                     <c:forEach var="i" begin="1" end="${pagecount}" step="1">	
                     <c:choose>
@@ -113,12 +113,12 @@
                     		<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
                     	</c:when>
                     	<c:otherwise>
-							<button class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${i}&pagesize=${psize}'">${i}</button>                	
+							<button class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${i}&pagesize=${pgsize}'">${i}</button>                	
                     	</c:otherwise>
                     </c:choose>
 					</c:forEach>
 					<c:if test="${cpage < pagecount}">
-                    	<button type="button" class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${cpage+1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
+                    	<button type="button" class="btn btn-default" onclick="location.href='business_board_list.do?currentpage=${cpage+1}&pagesize=${pgsize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 	</c:if>
                 
                 </div>

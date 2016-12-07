@@ -238,7 +238,7 @@ function addclick(id){
 							            });
 							               
 							            $.each(pjdd, function(index){
-											appendTable+="<tr align='center' class='default_table'><td id='modify_tr_check_"+pjdd[index].pjdd_no+"'>";
+											appendTable+="<tr class='default_table'><td align='center' id='modify_tr_check_"+pjdd[index].pjdd_no+"'>";
 											if(pjdd[index].fin_check=='1'){
 												appendTable+="<input type='checkbox' class='icheckbox_square-green' checked='checked' disabled='disabled'>";
 											}else if(pjdd[index].fin_check=='0'){
