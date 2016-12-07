@@ -36,9 +36,25 @@
             <div class="panel-heading">
                 	총 개시글 수 : <font color="coral">${totalcount}</font> 개
             </div>
+            
 				<div class="panel-body">
 					<div class="row text-right">
-						<div class="col-md-6"></div>
+						<div class="col-md-6">
+							<form name="list">
+								<select name="pagesize" onchange="submit()" class="form-control input-sm" style="width: 20%;">
+									<c:forEach var="i" begin="5" end="25" step="5">
+										<c:choose>
+											<c:when test="${pgsize == i}">
+												<option value='${i}' selected>${i}건</option>
+											</c:when>
+											<c:otherwise>
+												<option value='${i}'>${i}건</option>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</select>
+							</form>
+						</div>
 						<form action="media_board_list.do" class="form-inline ">
 							<div class="col-md-2">
 								<div class="form-group">
@@ -85,7 +101,7 @@
 									<tr>
 										<td style="text-align: center">${n.no}</td>
 										<td>
-											<a href="media_board_view.do?no=${n.no}&pg${pg}">${n.title}
+											<a href="media_board_view.do?no=${n.no}&pg=${pg}&pagesize=${pgsize}">${n.title}
 											<c:if test="${not empty n.file_name}">
 												&nbsp;&nbsp;&nbsp;<img alt="file" src="images/fileimg.PNG">
 											</c:if></a>
@@ -108,22 +124,22 @@
 				<div class="panel-footer"  style="text-align:center;">
                 <div class="btn-group">
                 	<c:if test="${pg>1}">
-                		<button type="button" class="btn btn-default" onclick="location.href='media_board_list.do?pg=${pg-1}&f=${field}&q=${query}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
+                		<button type="button" class="btn btn-default" onclick="location.href='media_board_list.do?pg=${pg-1}&f=${field}&q=${query}&pagesize=${pgsize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
                 	</c:if>
                 	
-                    <c:forEach var="i" begin="1" end="${pagecount}">
+                    <c:forEach var="i" begin="1" end="${pagecount}" step="1">
                     	<c:choose>
                     		<c:when test="${pg==i}">
                     			<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
                     		</c:when>
                     		<c:otherwise>
-                    			 <button class="btn btn-default" onclick="location.href='media_board_list.do?pg=${i}&f=${field}&q=${query}'">${i}</button>
+                    			 <button class="btn btn-default" onclick="location.href='media_board_list.do?pg=${i}&f=${field}&q=${query}&pagesize=${pgsize}'">${i}</button>
                     		</c:otherwise>
                     	</c:choose> 	
                     </c:forEach>
                     
                    	<c:if test="${pg < pagecount}">
-                    	<button type="button" class="btn btn-default " onclick="location.href='media_board_list.do?pg=${pg+1}&f=${field}&q=${query}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
+                    	<button type="button" class="btn btn-default " onclick="location.href='media_board_list.do?pg=${pg+1}&f=${field}&q=${query}&pagesize=${pgsize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
                     </c:if>
                 </div>
               </div>

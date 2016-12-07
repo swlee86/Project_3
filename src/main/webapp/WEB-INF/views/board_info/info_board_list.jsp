@@ -36,31 +36,53 @@
             <div class="panel-heading">
                 	총 게시글 수 : <font color="coral">${totalcount}</font> 개
             </div>
-             <form name="list">
-				<select name="pagesize" onchange="submit()" class="form-control" style="width: 20%; margin-left: 80%">
-					<c:forEach var="i" begin="10" end="100" step="10">
-						<c:choose>
-							<c:when test="${psize == i}">
-								<option value='${i}' selected>${i}건</option>
-							</c:when>
-							<c:otherwise>
-								<option value='${i}'>${i}건</option>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</select>
-			</form>
+             
             
             <div class="panel-body">
-            	<div class="row" style="text-align:right; margin-right:5px;">
+            	<div class="row">
+            		<div class="col-md-6">
+            			<form name="list">
+							<select name="pagesize" onchange="submit()" class="form-control input-sm" style="width: 20%;">
+								<c:forEach var="i" begin="5" end="25" step="5">
+									<c:choose>
+										<c:when test="${psize == i}">
+											<option value='${i}' selected>${i}건</option>
+										</c:when>
+										<c:otherwise>
+											<option value='${i}'>${i}건</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</select>
+						</form>
+            		</div>
+            		<div class="text-right">
             			<form id="searchForm" action="info_board_list.do" class="form-inline" method="POST">
-                 			<select class="form-control input-sm">
-                    			<option>제목</option>
-                    		 </select> 	
-                    		 <input type="text" class="form-control input-sm" name="title" id="title"/>
-                    		 <button id="searchBtn" class="btn btn-sm btn-default" type="submit">&nbsp;<span class="fa fa-search" ></span> </button>
+                 			<div class="col-md-2">
+                 				<div class="form-group">
+                 					<select class="form-control input-sm" name="f">
+                    					<option value="title">제목</option>
+                    					<option value="emp_name">작성자</option>
+                    				</select> 	
+                    			</div>
+                    		</div>
+                    		
+                    		<div class="col-md-4">
+                    			<div class="form-group">
+                    				<div class="input-group">
+                    	            	<input type="text" class="form-control input-sm" name="q" id="title"/>
+                    					<span class="input-group-btn">
+                                  			<button id="searchBtn" class="btn btn-sm btn-default input-sm" type="submit"
+                                  			style="color: #f05050">
+                                  				<span class="fa fa-search" ></span>
+                                  			</button>
+                    					</span>
+                    				</div>
+                    			</div>
+                    		</div>
                 		</form>
-                </div>           	
+                	</div>
+                	</div>           	
                 <br>     
                 <hr style="border:1px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
@@ -83,7 +105,7 @@
                  						${list.title} <c:if test="${list.file_name != null}"><img alt="file" src="images/fileimg.PNG"></c:if>
                  					</a>
                  				</td>
-                 				<td>관리자</td>
+                 				<td>${list.emp_name}</td>
                  				<td>${list.regdate}</td>
                  				<td>${list.hit}</td>
                  			</tr> 

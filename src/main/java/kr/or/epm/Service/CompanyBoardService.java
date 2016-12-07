@@ -27,13 +27,16 @@ public class CompanyBoardService {
 
 	
 	//Company 제목 검색 리스트 가져오기
-	public List<Company> selectChooseBoard(String title, int cpage, int pgsize){
-		
+	public List<Company> selectChooseBoard(String query, int cpage, int pgsize, String field){
+		System.out.println("selectchooseBoard 서비스  query : "+ query + "/cpage : "+ cpage + "/pgsize : "+ pgsize + "/field : "+ field);
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
 		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
 		
-		List<Company> list = companyboarddao.selectSeacrchCompanyList(start, end, title);
+		//List<Company> list = companyboarddao.selectSeacrchCompanyList(start, end, title);
+		List<Company> list = companyboarddao.selectSeacrchCompanyList(cpage, pgsize,field,query);
+		
+		
 		for(int i = 0; i < list.size(); i++){
 			System.out.println("서비스 : "+list.get(i).toString());
 		}
@@ -68,6 +71,12 @@ public class CompanyBoardService {
 		return result;
 	}
 	
+	// Company 테이블의 열 갯수를 구하는 서비스 함수-post 로 검색할때
+	public int selectBoardCount_post(String field, String query) {
+		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
+		int result = companyboarddao.selectBoardCount_post(field,query);
+		return result;
+	}
 	
 	//회사 정보게시판 글쓰기
 	public int insertInfoBoard(Company company){

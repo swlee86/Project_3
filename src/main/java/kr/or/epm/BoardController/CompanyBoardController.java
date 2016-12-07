@@ -111,6 +111,7 @@ public class CompanyBoardController {
 		int no2 = Integer.parseInt(no);
 		try{
 			 company = companyBoardService.selectDetailBoard(no2);
+			 //companyBoardService.updateHit(no2);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -175,12 +176,13 @@ public class CompanyBoardController {
 	
 	//제목 검색
 	@RequestMapping(value ="/info_board_list.do", method=RequestMethod.POST)
-	public String searchInfo_board(String title, String pagesize, String currentpage, Model model){
-		System.out.println("검색하신 단어 : "+title);
-		
-		int totalcount = companyBoardService.selectBoardCount();
+	public String searchInfo_board(String q, String pagesize, String currentpage, String f, Model model){
+		System.out.println("검색하신 단어 : "+q);
+		System.out.println("q: " + q + " pagesize : " + pagesize + "currentpage : " + currentpage + "f : "+ f);
 		int pagecount = 0;
-
+		
+		String field = "title";
+		String query="%%";
 		
         if(pagesize == null || pagesize.trim().equals("")){
             pagesize = "10"; 			// default 10건씩 
@@ -190,14 +192,23 @@ public class CompanyBoardController {
             currentpage = "1";        //default 1 page
         }
         
+        if( q != null && !q.equals("")){
+        	query = q;
+        }
         
+        if( f != null && !f.equals("")){
+        	field = f;
+        }
+        
+		int totalcount = companyBoardService.selectBoardCount_post(field,query);
+
       
         int pgsize = Integer.parseInt(pagesize);  		// 10
         int cpage = Integer.parseInt(currentpage);     //1
                                
         
         if(totalcount % pgsize==0){        //전체 건수 , pagesize 
-            pagecount = totalcount/pgsize;
+        	pagecount = (totalcount/pgsize);
         }else{
             pagecount = (totalcount/pgsize) + 1;
         }
@@ -205,7 +216,7 @@ public class CompanyBoardController {
         List<Company> list = null;
 		
         try{
-        	list = companyBoardService.selectChooseBoard(title, cpage, pgsize);
+        	list = companyBoardService.selectChooseBoard(query, cpage, pgsize, field);
         	
         }catch (Exception e) {
 			e.printStackTrace();
