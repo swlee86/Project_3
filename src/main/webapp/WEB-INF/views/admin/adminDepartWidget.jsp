@@ -12,9 +12,8 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Calendar</span></li>
+					<li><a href="index.html">홈</a></li>
+					<li class="active"><span>부서관리</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">부서관리</h2>
