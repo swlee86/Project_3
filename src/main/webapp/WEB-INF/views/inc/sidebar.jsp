@@ -6,7 +6,7 @@
         <div class="profile-picture">
             
             <a href="${pageContext.request.contextPath}/index.do">
-                <img src="${pageContext.request.contextPath}/images/jo.jpg" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
+                <img src="${pageContext.request.contextPath}/images/ss.jpg" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
             </a>
 			<div class="stats-label text-color">
                 <span class="font-extra-bold font-uppercase">${Emp.emp_name} 님 환영합니다.</span>
@@ -82,7 +82,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
+                <a href="#" ><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="draftWrite.do">결재 등록</a></li>
                 	<li><a href="draft_rec.do">수신함</a></li>
@@ -169,5 +169,5 @@
             	&nbsp;
             </li>
         </ul>
-    </div>
+
 </aside>

@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
            select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
                 select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
                 from pj p join emp e on p.emp_no = e.emp_no
-                where p.rec_emp_no = #{param1} and  p.rec_del_check = '0' and p.step_no != '1' 
+                where p.rec_emp_no = #{param1} and p.step_no != '1' 
                 order by to_number(p.pj_no) DESC
            )n 
        )where num between ${param2} and ${param3}

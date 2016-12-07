@@ -34,7 +34,7 @@
     <div class="col-lg-12">
         <div class="hpanel">
             <div class="panel-heading">
-                		총 개시글 수 : <font color="coral">10</font> 개
+                		총 개시글 수 : <font color="coral">${totalcount}</font> 개
             </div>
             <form name="list">
 				<select name="pagesize" onchange="submit()" class="form-control" style="width: 20%; margin-left: 80%">
