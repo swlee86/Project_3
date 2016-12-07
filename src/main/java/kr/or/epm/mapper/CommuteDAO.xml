@@ -119,10 +119,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select in_time,out_time from (select rownum,in_time,out_time 
 		      from set_time 
 		      where low_dept_no =(select distinct(low_dept_no) 
-		                          from commute c 
-		                          join emp e 
-		                          on c.emp_no=e.emp_no 
-		                          where e.emp_no=#{emp_no}) 
+		                          from emp 
+		                          where emp_no=#{emp_no}) 
 		      order by set_date desc) 
 		where rownum=1
 	</select>
