@@ -128,6 +128,7 @@ public class AdminAjaxController {
 	//부서관리> 부서 조회하기
 	@RequestMapping("/selectDeptList.do")
 	public View selectDeptList(String dept_no, Model model){
+		System.out.println("새작업--------------------------------"+dept_no);
 	    DeptJoinBonus dept = adminservice.selectChooseDept(dept_no);
 		model.addAttribute("dept", dept);
 		return jsonview;

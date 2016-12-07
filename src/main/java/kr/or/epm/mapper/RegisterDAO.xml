@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- Role 테이블에서 해당 정보들을 모두 불러오는 쿼리 -->
 	<insert id="insertEmpRoleList" parameterType="int">
-		insert into emp_role(role_no, emp_no) values(99, #{emp_no})
+		insert into emp_role(role_no, emp_no) values(1, #{emp_no})
 	</insert>
 	
 	<!-- 근무상태 테이블에서 해당 내용들을 모두 불러오는 쿼리 -->
