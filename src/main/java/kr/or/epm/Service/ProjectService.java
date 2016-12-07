@@ -288,4 +288,24 @@ public class ProjectService {
 		return pjdate;
 	}
 
+	//프로젝트 송신 대기함
+	public int selectSendCount(String emp_no, String field, String query) {
+		System.out.println("selectSendCount() 서비스 ");
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+		int totalcount =  dao.selectSendCount(emp_no,field,query);
+		System.out.println("@totalcount : "+totalcount);
+		return totalcount;
+	}
+	
+	//프로젝트 송신 리스트 뽑기
+	public List<Pj> select_Send_Pj_rec(String field, String query, String emp_no) {
+		System.out.println("select_Send_Pj_rec() 서비스");
+		System.out.println("@emp_no : " + emp_no);
+		PjDAO dao = sqlsession.getMapper(PjDAO.class);
+
+		List<Pj> list = dao.select_Send_Pj_rec(emp_no,field,query);
+		System.out.println("list2 : "+list.toString());
+		return list;
+	}
+
 }

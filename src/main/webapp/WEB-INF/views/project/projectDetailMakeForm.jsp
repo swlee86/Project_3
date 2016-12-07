@@ -181,7 +181,7 @@
 		<input type="hidden" name="pjd_count" id="pjd_count" value="0">
 		<a id="pjd_detail_btn"  class="btn  btn-warning"  style="font-weight:600;font-size:13px"><i class="fa fa-plus"></i></a>
 		<div class="pull-right" style="text-align:center;">
-			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-close"></i></a>
+			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-chevron-down"></i></a>
 		<!-- 	<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a> -->
 			
 			<button type="submit" id="submit_btn" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>

@@ -24,6 +24,20 @@ $(function(){
 		$('#memo_plus_content').css('background-color',color);
 		
 	});
+	
+	
+	
+	//날짜 필수. 제목필수, 내용 필수, 책임자 필수
+	$('#submit_btn').click(function(){
+
+		if($('#pjd_start_'+i).val() ==""){
+					toastr.warning('시작일을 선택해 주세요');
+					$('#pjd_start_'+i).focus();
+					return false;
+			 }
+       
+
+	});
 });
 </script>
 
@@ -49,7 +63,7 @@ $(function(){
                                 <textarea class="form-control" id="memo_plus_content"  style="background: ;" placeholder="본문 입력" name="memo_content" wrap="hard"></textarea>
                             </div>
                             <div class="pull-right">
-                                <button class="btn btn-sm btn-default" type="submit"><span class="glyphicon glyphicon-ok"></span> <b>Save</b></button>
+                                <button class="btn btn-sm btn-default" id="submit_btn" type="submit"><span class="glyphicon glyphicon-ok"></span> <b>Save</b></button>
                             </div>
                         </form>
                         </div>

@@ -12,7 +12,7 @@
 				<div class="panel-heading">
 					<form class="form-inline">
 						<div class="form-group">
-								<span>내가 참여자인 프로젝트 : </span>
+								<span>내가 참여한 프로젝트 : </span>
 								<p class="form-control" style="background-color: #9b59b6; margin-top:5px; width:50px;height:10px;color:#9b59b6;"></p>
 						</div>
 						<br/>
