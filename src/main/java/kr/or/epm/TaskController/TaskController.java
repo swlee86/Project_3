@@ -68,6 +68,7 @@ public class TaskController {
 	@RequestMapping(value = "/taskDeptModal.do", method = RequestMethod.GET)
 	public View downDeptTree(String branch_no, Model model) {
 		System.out.println("CONTROLLER] 지점 클릭");
+		System.out.println("branch_no : " + branch_no);
 		List<Organization> list = null;
 		list = service.selectdeptname(branch_no);
 		model.addAttribute("deptname", list);

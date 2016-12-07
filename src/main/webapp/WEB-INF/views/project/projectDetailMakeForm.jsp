@@ -6,20 +6,13 @@
  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 <script>
  $(function(){
-	 console.log($('#pj_start').val() +" ~ "+$('#pj_end').val());
-	
 	 var totalpj_start = new Date($('#pj_start').val());
 	 var totalpj_end = new Date($('#pj_end').val());
 	 
 	 console.log("new date" + totalpj_start);
 	 console.log("new date" + totalpj_end);
-	 
-	 var arre = $('#pj_start').val().split('-');
-	 
-	 console.log("arre : " + arre[0]);
-	 console.log("arre : " + arre[1]);
-	 console.log("arre : " + arre[2]);
-	 
+
+
 	 $('.formstartDate1').datepicker({
          changeMonth: true, 
           dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
@@ -30,7 +23,7 @@
           changeYear: true,
           beforeShowDay: function(date){
         	  
-        	  var loadDt1 = totalpj_start
+        	  var loadDt1 = totalpj_start;
               var loadDt = totalpj_end;
        	   
        	   	  var dayday1  = new Date(Date.parse(loadDt1) - 1 * 1000 * 60 * 60 * 24); // 시작일 
@@ -58,7 +51,7 @@
        changeYear: true,
        beforeShowDay: function(date){
 
-    	   var loadDt1 = totalpj_start
+    	   var loadDt1 = totalpj_start;
            var loadDt = totalpj_end;
     	   
     	   var dayday1  = new Date(Date.parse(loadDt1) - 1 * 1000 * 60 * 60 * 24); // 시작일 
@@ -344,3 +337,6 @@
    </div>
 </div>
 </div>
+
+
+
