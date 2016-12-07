@@ -40,6 +40,10 @@
 		color: white;
 	}
 	
+	.test{
+		margin-top:15px;
+	}
+	
 </style>
 </head>
 <body class="fixed-navbar fixed-sidebar media-body">
@@ -89,8 +93,8 @@
 									<div class="form-group">
 										<label class="control-label" for="username"
 											style="color: black;">아이디</label> <input type="text"
-											title="Please enter you username" required=""
-											value="구글 로그인 후 이용하세요" name="username" id="username"
+											title="Please enter you username" required="" readonly="readonly"
+											placeholder="구글 로그인 후 이용하세요" name="username" id="username" value=""
 											class="form-control"> <span class="help-block small">Your
 											unique username to app</span>
 									</div>
@@ -98,24 +102,42 @@
 										<label class="control-label" for="password"
 											style="color: black;">비밀번호</label> <input type="password"
 											title="Please enter your password" placeholder="******"
-											required="" value="" name="password" id="password"
+											required="required" value="" name="password" id="password"
 											class="form-control"> <span class="help-block small">Your
 											strong password</span>
 									</div>
 									<div style="text-align: center;">
-										<div class="g-signin2" data-onsuccess="onSignIn"
-											style="display: block;"></div>
+										<div class="row">
+											<div class="col-md-offset-4 col-md-4">
+												 
+												 <div class="g-signin2" data-onsuccess="onSignIn"
+													style="display: block;"></div> 
+											</div>						
+											 <div class="col-md-offset-2 col-md-4" id="logOutDiv">
+												<input type="hidden" name="loginRedirect"
+													value="${loginRedirect}" />  <a class="btn btn-default"
+													href="#" id="googlelogout"
+													onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
+													로그아웃</a>  	 
+													<!-- <a class="btn btn-default" href="#" id="googlelogout">로그아웃</a> -->
+											</div>			
+										</div>
+									</div>
+									<br/><br/>
+									<div style="text-align:center;">
+										<div class="row">
+											<div class="col-md-offset-1 col-md-9">
+													<a class="btn btn-default" data-toggle="modal" data-target="#findId">아이디 찾기</a>
+													<a class="btn btn-default" data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
+											</div>
+										</div>
 									</div>
 									<hr>
-									<input type="hidden" name="loginRedirect"
-										value="${loginRedirect}" /> <a
-										class="btn btn-default btn-block" href="#" id="googlelogout"
-										onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-										로그아웃</a> 
+									
 									<input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn"> 
 									<a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
-									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#findId">아이디 찾기</a> 
-									<a class="btn btn-default btn-block" data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
+								
+									
 
 								</form>
 							</div>
@@ -136,7 +158,7 @@
 				<form class="form-horizontal" action="findId.do" method="POST" id="findIdForm">
 				<div class="modal-header">
 					<h4 class="modal-title">아이디 찾기</h4>
-					<small class="font-bold">찾으실 아이디를 입력하세요</small>
+					<small class="font-bold" id="result_IdSmall">찾으실 아이디를 입력하세요</small>
 				</div>
 				<div class="modal-body">
  						<div class="row">
@@ -160,12 +182,13 @@
 									<input type="text" class="form-control" name="cell_phone" id="cell_phone"  placeholder="연락처">
 								</div>
 							</div>
-						
+							
+							
 						</div>
 					
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-default" data-dismiss="modal">취소하기</a>
+					<a class="btn btn-default" data-dismiss="modal" id="cancleFindIdBtn">취소하기</a>
 					<input type="button" class="btn btn-success" id="findIdBtn" value="아이디찾기">
 				</div>
 				</form>
@@ -261,7 +284,27 @@
 
 	<script>
 	
+	
+		/* var auth2 = gapi.auth2.getAuthInstance(); */
+	
 	$(function(){
+		
+		if($('#username').val() == ''){
+			alert("널입니다.");
+			$('#logOutDiv').hide();
+		}else{
+			alert("로그인 아닐때");
+			$('#logOutDiv').show();
+		}
+		
+		$('#googlelogout').click(function(){
+			signOut();
+		});
+		
+		
+		$('#cancleFindIdBtn').click(function(){
+			$('#result_IdSmall').empty();
+		});
 		
 		$('#findIdBtn').click(function(){
 			
@@ -284,7 +327,12 @@
 					},
 					type:"POST",
 					success : function(data){
-						alert("성공")
+						$('#result_IdSmall').empty();
+						if(data.id != null){
+						$('#result_IdSmall').html("<br/><span style='color:blue;font-size:18px;'>아이디 : "+data.id+"</span>");
+						}else{
+							$('#result_IdSmall').html("<br/><span style='color:red;font-size:18px;'>정보가 없습니다.</span>");
+						}
 					}
 					
 				});
@@ -298,6 +346,7 @@
 	});
 	
 	function onSignIn(googleUser) {
+		  console.log("구글 로그인시 사용 : "+googleUser);
 		  var profile = googleUser.getBasicProfile();
 		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 		  console.log('Name: ' + profile.getName());
@@ -312,17 +361,18 @@
 				console.log("data : " + result.iddata);
 				console.log("googleloginid : " + result.googleloginid);
 					 $('#username').val(result.iddata);
-					 
 			  }
-			 });
+		});
 	}
 	
-	  function signOut() {
+	 function signOut() {
+		  	alert("로그아웃 버튼 클릭 !");
 		    var auth2 = gapi.auth2.getAuthInstance();
 		    auth2.signOut().then(function () {
 		      console.log('User signed out.');
+		      console.log("마지막");
 		    });
-		  }
+		  } 
 
 	  
 	  $(function(){

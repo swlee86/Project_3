@@ -63,6 +63,7 @@ public class LoginController {
 		 
 		//db에 저장 되어 있는 구글 아이디 탐색
 		 String iddata = service.selectGoogleLoginData(id);
+		 System.out.println("컨트롤러 확인합시다 : "+iddata);
 		 boolean test = Util.isEmpty(iddata);
 		 
 		 if(test==true){
@@ -75,6 +76,7 @@ public class LoginController {
 			 session.setAttribute("googleApiKey", id);
 			 session.setAttribute("googlemail", email);
 		 }else{
+			 System.out.println("엘스 부분 : "+email+ " / iddata : "+iddata);
 			 model.addAttribute("iddata", iddata);
 			 //로그인 데이터와 맞는 아이디가 있으면 정보를 session에 담음
 			 session.setAttribute("googleApiKey", id);
