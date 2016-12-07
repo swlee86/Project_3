@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -72,9 +73,10 @@
 										<td id="sanction_DraftOk_no_td">
 											<span class="input-group">
 												<input type="text" class="form-control input-sm" readonly
-													   id="draft_line_emp_no" name="draft_line_emp_no">
+													   id="draft_Ok_emp_no" name="draft_line_emp_no">
+													   
 													<a type="button" class="btn btn-default input-group-addon"
-													   id="draft_Ok_Icon"> 
+													   id="draft_line_Icon"> 
 														<span style="color: #fd7d86">
 															<i class="fa fa-user-plus"></i>
 														</span>
@@ -87,9 +89,10 @@
 										</th>
 										<td style="width: 40%" id="sanction_DraftName_td">
 											<input type="text" class="form-control input-sm" readonly
-												   id="draft_Ok_emp_name" name="draft_line_emp_name">
+												   id="draft_Ok_emp_name">
 										</td>
 									</tr>
+									
 									<tr>
 										<th style="background-color: #f5f5f5; text-align: right; 
 												   padding-right: 10px; width: 10%">
@@ -100,7 +103,7 @@
 												<input type="text" class="form-control input-sm" readonly
 													   id="draft_ref_emp_no" name="draft_ref_emp_no"> 
 												<a type="button" class="btn btn-default input-group-addon"
-												   id="draft_line_Icon"> 
+												   id="draft_ref_Icon"> 
 													<span style="color: #fd7d86">
 														<i class="fa fa-user-plus"></i>
 													</span>
@@ -113,7 +116,7 @@
 										</th>
 										<td style="width: 40%" id="sanction_writename_td">
 											<input type="text" class="form-control input-sm" readonly
-												   id="draft_ref_emp_name" name="draft_ref_emp_name">
+												   id="draft_ref_emp_name">
 										</td>
 									</tr>
 								</table>
@@ -125,15 +128,11 @@
 						<div class="panel-body" id="document_table" style="border: none;">
 
 						</div>
-
-						<br> <br>
-
 						<div class="pull-right" style="text-align: center;">
 							<input type="submit" class="btn btn-sm btn-success"
 								id="submitBtn" value="결재 요청"
 								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 						</div>
-
 					</form>
 				</div>
 			</div>
@@ -143,7 +142,7 @@
 
 
 
-<!--참조자용 모달-->
+<!-- 결재라인용 모달-->
 <div class="modal fade hmodal-success" id="myModal6" tabindex="-1"
 	role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-md">
@@ -152,7 +151,7 @@
 			<div class="modal-header"
 				style="height: 50px; padding-top: 10px; padding-bottom: 0px">
 				<h4 class="modal-title">
-					<font color="#6a6c6f" size="4em"><b>결재자 선택</b></font>
+					<font color="#6a6c6f" size="4em"><b>사원 선택</b></font>
 				</h4>
 			</div>
 			<div class="modal-body">

@@ -67,9 +67,9 @@ public class AdminAjaxController {
 	
 	//지점 정보 수정
 	@RequestMapping("/branchModify.do")
-	public View branchModify(Branch dto, Model model){
+	public View branchModify(Branch dto, Model model, String notChange_branch_Name){
 		System.out.println("정보 수정 dto: "+dto.toString());
-		int result = adminservice.branchModify(dto);
+		int result = adminservice.branchModify(dto,notChange_branch_Name);
 		System.out.println("지점 정보 수정  결과:============================ "+result);
 		model.addAttribute("result", result);
 		return jsonview;
@@ -139,7 +139,7 @@ public class AdminAjaxController {
 	
 	    int result =adminservice.insert_re_Dept(mydata);
 		
-	    if(result >= 3){
+	    if(result > 0){
 			System.out.println("성공");
 			model.addAttribute("result", "성공");
 		}else{

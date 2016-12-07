@@ -68,6 +68,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update set_bonus set set_date=#{set_date}, dept_no=#{dept_no}, bonus_percent=#{bonus_percent} where dept_no=${pre_dept_no}
     </update>
     
+   <!--부서 소속 하위부서 개수 구하기 5)-->
+   <select id="count_lowDept" parameterType="kr.or.epm.VO.DeptJoinBonus" resultType="Integer">
+     select count(*) from low_dept where dept_no=#{pre_dept_no}
+    </select>
+   
+   <!-- 하위부서의 부서번호, 부서 이름 update 6)-->
+   <update id="update_lowDept" parameterType="kr.or.epm.VO.DeptJoinBonus">
+   	 update low_dept set dept_no=#{dept_no}, dept_name=#{dept_name} where dept_no=#{pre_dept_no} and his_check='1'
+   </update>
+    
+    
+    
    <!--  부서 삭제하기-->
     <update id="dept_delete" parameterType="String">
       update dept set his_check='0' where dept_no=#{dept_no}

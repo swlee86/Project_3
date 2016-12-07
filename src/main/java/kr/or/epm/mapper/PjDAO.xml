@@ -218,4 +218,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updatePjstepno" parameterType="hashmap">
 		update pj set pj_step_no = #{pj_step_no} where pj_no = (select pj_no from pjd where pjd_no=#{pjd_no})
 	</update>
+	
+	<!-- 프로젝트의 시작일, 종료일 가져오기 -->
+	<select id="selectPjDate" resultType="kr.or.epm.VO.Pj">
+		select pj_start,pj_end from pj where pj_no = (select pj_no from pjd where pjd_no=#{pjd_no})	
+	</select>
+	
 </mapper>

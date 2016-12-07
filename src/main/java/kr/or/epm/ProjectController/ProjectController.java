@@ -271,6 +271,9 @@ public class ProjectController {
 		
 		String pj_emp_no = projectservice.selectPjwriteempno(pjd_no);
 		
+		//pj의 시작일, 종료일 데이터 가져오기
+		Pj pj_date =null; 
+		pj_date= projectservice.selectPjDate(pjd_no);
 		
 		//pj_step의 리스트
 		List<Pj_step> pj_step_list =projectservice.selectPjStepList();
@@ -282,7 +285,7 @@ public class ProjectController {
 		model.addAttribute("login_emp_no",login_emp_no);
 		model.addAttribute("pj_emp_no",pj_emp_no);
 		model.addAttribute("pj_step_list",pj_step_list);
-		
+		model.addAttribute("pj_date",pj_date);
 		return "project.projectDetailView";
 	}
 	

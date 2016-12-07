@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -134,10 +135,13 @@ public class LoginController {
 	}
 
 		//아이디찾기
-		@RequestMapping("/findId.do")
-		public String findId(Emp emp){
+		@RequestMapping(value="/findId.do", method=RequestMethod.POST)
+		public View findId(EmpJoinEmp_Detail emp, Model model){
 			System.out.println("아이디 찾기 : "+emp.toString());
-			return null;
+			String findId = service.selectFindId(emp);
+			System.out.println("찾은 아이디는 ??? "+findId);
+			model.addAttribute("id", findId);
+			return jsonview;
 		}
 		
 		

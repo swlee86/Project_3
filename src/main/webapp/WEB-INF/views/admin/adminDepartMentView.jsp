@@ -151,9 +151,6 @@
 						</div>
 						<div class="vertical-timeline-content">
 							<div class="p-sm">
-								<span class="vertical-date pull-right"> Saturday <br />
-									<small>12:17:43 PM</small>
-								</span>
 								<h2>부서 등록</h2>
 							</div>
 

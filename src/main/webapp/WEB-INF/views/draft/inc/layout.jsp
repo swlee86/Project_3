@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -21,10 +20,12 @@
 <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+<!-- 드래그앤드롭? -->
+<link rel="stylesheet" href="vendor/jquery-ui/themes/base/all.css">
 
 <!-- App styles -->
-<link rel="stylesheet"
-	  href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
 
@@ -33,6 +34,57 @@
 <link rel="stylesheet"
 	  href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	  type="text/css" />
+
+<!-- 우편번호 API -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	  
+<!-- datepicker -->
+<!-- 
+<link rel="stylesheet" href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+ -->
+<style>
+	.flag {
+		font-weight: bold;
+		font-size: 15px;
+	}
+	
+	.textcenter {
+		text-align: center;
+	}
+	
+	.marginbottom {
+		margin-bottom: 30px;
+	}
+	
+	#recTable td {
+		padding-bottom: 10px;
+	}
+	
+	#datatable td {
+		padding: 3px;
+		color: #424242;
+	}
+	
+	.nb {
+		border: none;
+	}
+	
+	.up_btn {
+		display: inline-block;
+		margin-right: 10px;
+	}
+	
+	.color {
+		color: #E9EEF3;
+	}
+	
+	.bgcolor {
+		background-color: white;
+	}
+	
+</style>
+
 </head>
 
 <body class="fixed-navbar fixed-sidebar">
@@ -82,9 +134,25 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
+	
+	<!-- DataTables -->
+	<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
+	<!-- DataTables buttons scripts -->
+	<script src="vendor/pdfmake/build/pdfmake.min.js"></script>
+	<script src="vendor/pdfmake/build/vfs_fonts.js"></script>
+	<script src="vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+
+	<!-- datepicker -->
+	<!-- 
+	<script src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
+	 -->
 	<!--전자결재 script  -->
-	<script src="js/electronic_sanction/electronic_sanction.js"></script>
+	<script src="js/draft/draft.js"></script>
 
 	<!--우편번호 API-->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -94,45 +162,6 @@
 	
 	<!--월별 캘린더.-->
 	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
-
-	<script type="text/javascript">
-		// 결재 유형을 변경할 때마다
-		
-		
-		function checkDraft() {
-			$('#document_table').empty();
-			
-			var choose = $("input[name='cg_no']:checked").val();
-
-			$.ajax({
-				url : "draftForm.do",
-				type : "get",
-				data : {
-						cg_no : choose
-					   },
-				success : function(result) {
-					$("#document_table").html(result);
-				}
-			});
-		};
-		
-		$("#submitBtn").click(function() {
-			var choose = $("input[name='cg_no']:checked").val();
-			console.log("check1");
-			console.log(choose);
-			
-			draft.method = "post";
-			
-			if(choose == '1') {
-				draft.action = "draftOffice.do";
-			} else if(choose == '2') {
-				draft.action = "draftOffice.do";
-			} else if(choose == '3') {
-				draft.action = "draftOffice.do";
-			}
-			
-			draft.submit();
-		});
-	</script>
+	
 </body>
 </html>

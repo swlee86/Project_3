@@ -246,10 +246,12 @@ function departMentFuc(){
 									selectBranchName : select
 							   },
 						success : function(data){
-							
 							$.each(data, function(index){
+
+								alert("성공했을때 아작스 부분 : "+data.branch_name+ " / index 는 ?? "+data[index].branch_name);
 								
 								$('#hidden').val(data[index].branch_no);
+								$('#hiddenBranchName').val(data[index].branch_name);
 								
 								$('#branchName2').val(data[index].branch_name);
 								$('#branchName2').attr("readonly",false);
@@ -290,7 +292,8 @@ function departMentFuc(){
 						url: "branchModify.do",
 						data : 
 						{
-						    branch_no : $('#hidden').val(),
+							notChange_branch_Name : $('#hiddenBranchName').val(),
+					        branch_no : $('#hidden').val(),
 							branch_name :  $('#branchName2').val(),
 							postcode : $('#sample6_re_postcode').val(),
 							addr : 	$('#sample6_re_address').val(),

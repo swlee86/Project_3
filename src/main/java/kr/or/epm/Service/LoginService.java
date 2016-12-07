@@ -3,12 +3,10 @@ package kr.or.epm.Service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import kr.or.epm.DAO.LoginDAO;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Emp_detail;
 
@@ -90,6 +88,11 @@ public class LoginService {
 		
 	}
 	
-	
+	//아이디 찾기 아작시 구동시 사용
+	public String selectFindId(EmpJoinEmp_Detail emp){
+		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
+		String id = dao.selectEmp_FindId(emp);
+		return id;
+	}
 	
 }

@@ -44,16 +44,22 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
+						<div align="right">
+							<p>
+								<i class="pe-7s-pen"></i>
+								진행상태수정/내용수정은 책임자에게 문의하세요
+							</p>
+						</div>
 						<table  id="pjd_detail_table" cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
 							<tr>
-								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">상세 프로젝트 제목</th>
-                              	<td id="pjd_name" width="30%">
-                              		<input type="text" class="form-control table-input" id="pjd_title" value="${pjd.pjd_title}" disabled="disabled" style="border: 0px; background-color: white;">
+								<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">상세 프로젝트<br> 제목</th>
+                              	<td id="pjd_name" width="35%">
+                              		<input type="text" class="form-control table-input input-sm" id="pjd_title" value="${pjd.pjd_title}" disabled="disabled" style="border: 0px; background-color: white;">
                               	</td>
-                              	<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">진행 상태</th>
-                              	<td id="pjd_step" width="30%">
+                              	<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">진행 상태</th>
+                              	<td id="pjd_step" width="35%">
 		                        	<div class="form-group">
-				    	            	<select class="form-control input-sm table-input" id="step_no" disabled="disabled">	
+				    	            	<select class="form-control input-sm table-input input-sm" id="step_no" disabled="disabled">	
 				    	            		<c:forEach var="s" items="${pj_step_list}">
 				    	            		   <option value="${s.pj_step_no}" ${pjd.pj_step_name == s.pj_step_name ? 'selected="selected"' : ''}>${s.pj_step_name}</option>
 				    	          			</c:forEach>
@@ -62,20 +68,20 @@
                               	</td>
 							</tr>
 							<tr>
-								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">시작일</th>
+								<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">시작일</th>
 	                        	<td>
 	                        		<div class="form-inline">
 	                        			<div class="input-group date">
-    		  								<input type="text" class="form-control table-input input-sm formstartDate" id="pjd_start" name="input" value="${pjd.pjd_start}" disabled="disabled" style="background-color: white;">
+    		  								<input type="text" class="form-control table-input input-sm formstartDate_detail" id="pjd_start" name="input" value="${pjd.pjd_start}" disabled="disabled" style="background-color: white;">
     		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
     		 							</div>
     		 						</div>
 	                        	</td>
-	                        	<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">종료일</th>
+	                        	<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">종료일</th>
 	                       		<td>	                       		
 	                       			<div class="form-inline">
 	                        			<div class="input-group date">
-    		  								<input type="text" class="form-control table-input input-sm formendDate" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white;">
+    		  								<input type="text" class="form-control table-input input-sm formendDate_detail" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white;">
     		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
     		 							</div>
     		 						</div>
@@ -83,7 +89,7 @@
 	                       		</td>
                            	</tr> 
 							<tr>
-								<th style="background-color:#f5f5f5; text-align:center;padding-right:10px; width:20%">상세 프로젝트 내용</th>
+								<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">상세 프로젝트<br> 내용</th>
                               	<td colspan="3">
                               		<textarea class="form-control table-input" id="pjd_content"  disabled="disabled" style="resize:none; border: 0px; background-color: white;" rows="5">${pjd.pjd_content}</textarea>
 							</tr>
@@ -103,16 +109,16 @@
 					<div class="">
 							<table class="table table-bordered table-striped" id="pjdd_table">
 								<tr>
-									<th width="10%">작업완료</th>
+									<th width="10%" style="text-align: center;">작업완료</th>
 									<th width="75%">작업내용</th>
 									<c:if test="${pj_emp_no==login_emp_no}">
-										<th width="15%">수정/수정완료</th>
+										<th width="15%"  style="text-align: center;">수정</th>
 									</c:if>
 									<th hidden="hidden"></th>
 								</tr>
 								<c:forEach var="list" items="${pjddlist}">
 								<tr class="default_table">
-									<td id="modify_tr_check_${list.pjdd_no}">
+									<td id="modify_tr_check_${list.pjdd_no}" align="center">
 										<c:if test="${list.fin_check=='1'}">
 											<input type="checkbox" class="icheckbox_square-green" checked="checked" disabled="disabled">
 										</c:if>
@@ -122,7 +128,7 @@
 									</td>
 									<td id="modify_td_${list.pjdd_no}">${list.pjdd_content}</td>
 									<c:if test="${pj_emp_no==login_emp_no}">
-										<td><input type="button" class="btn btn-default" value="수정" onclick="modify_pjdd(this.id)" id="modify_btn_${list.pjdd_no}"></td>
+										<td align="center"><input type="button" class="btn btn-primary2" value="수정" onclick="modify_pjdd(this.id)" id="modify_btn_${list.pjdd_no}"></td>
 									</c:if>
 									<td hidden="hidden"><input type="hidden"  readonly="readonly" value="${list.pjdd_no}"></td>
 								</tr>
@@ -152,9 +158,9 @@ $(function(){
 		
 		//alert(index);
 		
-		var appendTable="<tr class='add_table' id='add_btn_tr_"+index+"'><td><input type='checkbox' class='icheckbox_square-green'></td>"+
+		var appendTable="<tr class='add_table' id='add_btn_tr_"+index+"'><td align='center'><input type='checkbox' class='icheckbox_square-green'></td>"+
 						"<td><input type='text' class='form-control input-sm' id='add_txt_"+index+"'></td>"+
-						"<td><input type='button' class='btn btn-default add_btn' id='add_btn_"+index+"' onclick='addclick(this.id)' value='추가완료'></td>"+
+						"<td align='center'><input type='button' class='btn btn-info add_btn' id='add_btn_"+index+"' onclick='addclick(this.id)' value='추가완료'></td>"+
 						"<td hidden='hidden'><input type='hidden'  readonly='readonly'></td></tr>";
 		console.log($('#add_btn').val());
 		$('#pjdd_table').last().append(appendTable);
@@ -232,14 +238,14 @@ function addclick(id){
 							            });
 							               
 							            $.each(pjdd, function(index){
-											appendTable+="<tr class='default_table'><td id='modify_tr_check_"+pjdd[index].pjdd_no+"'>";
+											appendTable+="<tr align='center' class='default_table'><td id='modify_tr_check_"+pjdd[index].pjdd_no+"'>";
 											if(pjdd[index].fin_check=='1'){
 												appendTable+="<input type='checkbox' class='icheckbox_square-green' checked='checked' disabled='disabled'>";
 											}else if(pjdd[index].fin_check=='0'){
 												appendTable+="<input type='checkbox' class='icheckbox_square-green' disabled='disabled'>";
 											}
 											appendTable+="</td><td id='modify_td_"+pjdd[index].pjdd_no+"'>"+pjdd[index].pjdd_content+"</td>"+
-														 "<td><input type='button' class='btn btn-default' value='수정' onclick='modify_pjdd(this.id)' id='modify_btn_"+pjdd[index].pjdd_no+"'></td>"+
+														 "<td align='center'><input type='button' class='btn btn-primary2' value='수정' onclick='modify_pjdd(this.id)' id='modify_btn_"+pjdd[index].pjdd_no+"'></td>"+
 														 "<td hidden='hidden'><input type='hidden'  readonly='readonly' value='"+pjdd[index].pjdd_no+"'></td></tr>";
 											
 										});
@@ -284,7 +290,9 @@ function addclick(id){
 				}
 		); 
 	}else{
-		alert("작업내용을 입력하세요");
+		
+		toastr.warning('작업내용을 입력하세요');
+		$('#add_txt_'+add_i).focus();
 	}
 }
 
@@ -306,6 +314,7 @@ function modify_pjdd(id){
 	
 	if(val=="수정"){
 		$('#modify_btn_'+modify_i).val("수정완료");
+		$('#modify_btn_'+modify_i).attr('class','btn btn-md btn-warning');
 		if(checked!=true){
 			$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",false);
 		}
@@ -322,7 +331,7 @@ function modify_pjdd(id){
 	}
 	if(val=="수정완료"){
 		$('#modify_btn_'+modify_i).val("수정");
-		
+		$('#modify_btn_'+modify_i).attr('class','btn btn-md btn-primary2');
 		$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",true);
 		
 		var content = $('#modify_td_'+modify_i).children().val();
@@ -434,7 +443,7 @@ function modify_pjd(){
 		}
 		
 		
-		alert("pjd_no" + pjd_no + "/ pjd_title" + pjd_title + "/ pjd_content "+pjd_content + "/ pj_step_no"+ pj_step_no + "/ pjd_start" + pjd_start + "/ pjd_end" + pjd_end);
+		//alert("pjd_no" + pjd_no + "/ pjd_title" + pjd_title + "/ pjd_content "+pjd_content + "/ pj_step_no"+ pj_step_no + "/ pjd_start" + pjd_start + "/ pjd_end" + pjd_end);
 		
 	 	$.ajax(
 				{
@@ -473,4 +482,59 @@ function modify_pjd(){
 
 	}
 }
+</script>
+
+<script>
+//프로젝트 시작일
+$(function(){
+	var pj_start ='${pj_date.pj_start}';
+	var pj_end = '${pj_date.pj_end}';
+	 
+	$('.formstartDate_detail').datepicker({
+		changeMonth: true, 
+	    dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+	    dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
+	    monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    dateFormat: 'yy-mm-dd',
+		changeYear: true,
+		beforeShowDay: function(date){
+			var loadDt1 = pj_start;
+	 		var loadDt = pj_end;
+	      	   
+			var dayday1  = new Date(Date.parse(loadDt1) - 1 * 1000 * 60 * 60 * 24); // 시작일 
+			var dayday =new Date(loadDt);  //종료일
+	              
+			if(date > dayday || date < dayday1) return [false];  //선택못해
+	        return [true];
+	        },
+	        onSelect: function(selected) {
+	            $('.formendDate_detail').datepicker("option","minDate", selected)
+	        }
+	});   
+	
+	
+	$('.formendDate_detail').datepicker({
+	     changeMonth: true, 
+	      dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+	      dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
+	      monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	      monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	      dateFormat: 'yy-mm-dd',
+	      changeYear: true,
+	      beforeShowDay: function(date){
+	    	  var loadDt1 = pj_start;
+	    	  var loadDt = pj_end;
+	    	  
+	    	  var dayday1  = new Date(Date.parse(loadDt1) - 1 * 1000 * 60 * 60 * 24); // 시작일 
+	          var dayday =new Date(loadDt);  //종료일
+	           
+	          if(date > dayday || date < dayday1) return [false];  //선택못해
+	          return [true];   
+	       }, 
+	       onSelect: function(selected) {
+	          $('.formstartDate_detail').datepicker("option","maxDate", selected)
+	      }
+	});
+});  
 </script>
