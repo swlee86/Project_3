@@ -86,7 +86,6 @@
     </div>
     
     
-    
 <!-- 결재라인 확인하기 Modal창 -->
 <div class="modal fade hmodal-success" id="draft_line_Modal" tabindex="-1"
 	 role="dialog" aria-hidden="true" style="display: none;">
@@ -125,6 +124,9 @@
                        				</c:when>
                        				<c:when test="${ line.app_check == '3' }">
                        					<img alt="보류" src="img/pending.png" style="width: auto; height: 30px;">
+                       				</c:when>
+                       				<c:when test="${ line.app_check == '4' }">
+                       					미승인
                        				</c:when>
                        			</c:choose>
                        		</td>
@@ -232,30 +234,44 @@
 			<div class="modal-header">
 				<h4 class="modal-title">승인 처리</h4>
 				<small class="font-bold">제 ${ detail.draft_no }호 문서의 승인을 처리합니다.</small>
+				<input type="hidden" id="draft_no_hidden" value="${ detail.draft_no }">
 			</div>
 			
 			<div class="modal-body">
-				<span class="marginbottom color textcenter flag" id="dragarea"
-					 style="border: 5px solid #34495E; width: 100%; height: 120px; 
-					 	    display: inline-block; vertical-align: middle; line-height: 120px;">
-				</span>
-				<div class="row ui-sortable">
+					<c:choose>
+						<c:when test="${ app_check == '1' }">
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
+								  style="background-color: rgb(98,203,49)" value="승인"> </span>
+						</c:when>
+						<c:when test="${ app_check == '2' }">
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
+								  style="background-color: rgb(231,76,60)" value="반려"> </span>
+						</c:when>
+						<c:when test="${ app_check == '3' }">
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
+								  style="background-color: rgb(155,89,182)" value="보류"> </span>
+						</c:when>
+						<c:when test="${ app_check == '4' }">
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"></span>
+						</c:when>
+					</c:choose>
+					<div class="row ui-sortable">
                     <div class="col-md-4 border-right" id="cg_1"> 
                     	<div class="contact-stat gradLi ui-sortable-handle h-bg-green color"
                     		 style="border: 4px solid #4EA327;" id="one">
                     		<strong>승인</strong>
                     	</div> 
                     </div>
-                    <div class="col-md-4 border-right" id="cg_2"> 
-                    	<div class="contact-stat gradLi ui-sortable-handle h-bg-violet color"
-                    		 style="border: 4px solid #7C4792;" id="two">
-                    		<strong>보류</strong>
+                    <div class="col-md-4" id="cg_2"> 
+                    	<div class="contact-stat gradLi ui-sortable-handle h-bg-red color"
+                    		 style="border: 4px solid #B93D30;" id="two">
+                    		<strong>반려</strong>
                     	</div> 
                     </div>
-                    <div class="col-md-4" id="cg_3"> 
-                    	<div class="contact-stat gradLi ui-sortable-handle h-bg-red color"
-                    		 style="border: 4px solid #B93D30;" id="three">
-                    		<strong>반려</strong>
+                    <div class="col-md-4 border-right" id="cg_3"> 
+                    	<div class="contact-stat gradLi ui-sortable-handle h-bg-violet color"
+                    		 style="border: 4px solid #7C4792;" id="three">
+                    		<strong>보류</strong>
                     	</div> 
                     </div>
                 </div>

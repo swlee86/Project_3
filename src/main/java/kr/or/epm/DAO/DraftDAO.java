@@ -138,4 +138,7 @@ public interface DraftDAO {
 	
 	// 송신함에서 삭제하기
 	public int deleteDraft(String draft_no);
+	
+	// 최종 승인처리하기
+	public int updateDraft_step_no(String step_no, String draft_no);
 }

@@ -116,11 +116,12 @@ $(function() {
 
 	});
 	
+	// 드래그앤드롭 적용
 	$("#cg_1").sortable();
 	$("#cg_2").sortable();
 	$("#cg_3").sortable();
 	
-	  
+	// 드롭하는 영역
     $("#dragarea").droppable({
     	drop: function(event, ui) {
     		$(this).empty();
@@ -131,30 +132,32 @@ $(function() {
     			$(this).css('background', 'rgb(98,203,49)');
     			$(this).append("승인");
     		} else if(id == 'two') {
-    			$(this).css('background', 'rgb(155,89,182)');
-    			$(this).append("보류");
-    		} else if(id == 'three') {
     			$(this).css('background', 'rgb(231,76,60)');
     			$(this).append("반려");
-    		}
+    		} else if(id == 'three') {
+    			$(this).css('background', 'rgb(155,89,182)');
+    			$(this).append("보류");
+    		} 
         }
     });
     
+    // 승인 처리 부분에서 '처리' 버튼을 눌렀을 때!!
     $("#app_check").click(function() {
-    	var see = $(this).parent().prev().contents("#dragarea").text();
-    	var seenum = 0;
+    	var app_check = $(this).parent().prev().contents("#dragarea").text();
+    	var app_check_no = 0;
     	
-    	if(see == '승인') seenum = 1;
-    	else if(see == '보류') seenum = 2;
-    	else if(see === '반려') seenum = 3;
+    	if(app_check == '승인') app_check_no = 1;
+    	else if(app_check === '반려') app_check_no = 2;
+    	else if(app_check == '보류') app_check_no = 3;
     	
-    	alert(seenum);
+    	var draft_no = $("#draft_no_hidden").val();
     	
     	$.ajax({
     		url		: "updateDraft_approval.do",
     		type	: "post",
     		data	: {
-    					seenum : seenum
+    					draft_no : draft_no,
+    					app_check : app_check_no
     				  },
     		success	: function(data) {
     			 swal({
@@ -162,8 +165,6 @@ $(function() {
                      text: "승인 처리가 완료되었습니다",
                      type: "success"
                  });
-    			 
-    			 document.history.back();
     		}
     	});
     	
@@ -618,11 +619,6 @@ $(function() {
         windowClass: "hmodal-success"
     });
     
-    // 승인 처리 드래그 앤 드롭
-   /* function dragdrop(ev) {
-    	var data = ev.dataTransfer.getData("Text");
-    	ev.target.
-    }*/
   
     
     

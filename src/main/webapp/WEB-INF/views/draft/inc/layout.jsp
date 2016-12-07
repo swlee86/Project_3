@@ -45,6 +45,9 @@
 <link rel="stylesheet" href="vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
  -->
  
+<!-- alert -->
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+
 <style>
 	.flag {
 		font-weight: bold;
@@ -83,6 +86,15 @@
 	
 	.bgcolor {
 		background-color: white;
+	}
+	
+	.dragdrop {
+		border: 5px solid #34495E; 
+		width: 100%; 
+		height: 120px; 
+		display: inline-block; 
+		vertical-align: middle; 
+		line-height: 120px;
 	}
 	
 </style>
@@ -135,6 +147,7 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
+   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 	
 	<!-- DataTables -->
 	<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
@@ -165,5 +178,8 @@
 	<!--월별 캘린더.-->
 	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
 	
+   <!-- alert -->
+   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+   
 </body>
 </html>

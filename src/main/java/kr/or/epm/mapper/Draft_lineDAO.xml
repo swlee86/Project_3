@@ -13,7 +13,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 결재라인 등록하기 -->
 	<insert id="insertDraft_line">
 		insert into draft_line(draft_no, emp_no, app_check, app_date, rec_check)
-		values(#{param1}, #{param2}, '0', null, '0')
+		values(#{param1}, #{param2}, '4', null, '0')
 	</insert>
+	
+	<!-- 승인처리하기 -->
+	<update id="updateDraft_line_app">
+		update draft_line
+		set app_check = #{param3}, app_date = to_char(sysdate, 'yyyy-mm-dd')
+		where draft_no = #{param1} and emp_no = #{param2}
+	</update>
+	
+	<!-- 기존 승인 정보 가져오기 -->
+	<select id="selectApp_check" resultType="String">
+		select app_check
+		from draft_line
+		where draft_no = #{param1} and emp_no = #{param2}
+	</select>
+	
+	<!-- 선택한 결재문서에 대한 승인처리들 가져오기 -->
+	<select id="selectApp_check_all" resultType="String">
+		select app_check
+		from draft_line
+		where draft_no = #{draft_no}
+	</select>
 	
 </mapper>

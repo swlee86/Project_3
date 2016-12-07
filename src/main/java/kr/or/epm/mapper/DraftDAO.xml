@@ -229,7 +229,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  on l.emp_no = e.emp_no
 		      join position p
 			  on e.position_no = p.position_no
-			  where app_check = '0' and
+			  where app_check != '1' and
       				draft_no = #{param1}
       		  order by step desc) z join draft d
 		on z.draft_no = d.draft_no
@@ -450,6 +450,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update draft
 		set del_check = '1'
 		where draft_no = #{draft_no}
+	</update>
+	
+	<!-- 최종 승인 처리하기 -->
+	<update id="updateDraft_step_no">
+		update draft
+		set step_no = #{param1}
+		where draft_no = #{param2}
 	</update>
 	
 </mapper>
