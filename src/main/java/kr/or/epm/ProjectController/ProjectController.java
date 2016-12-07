@@ -3,6 +3,7 @@ package kr.or.epm.ProjectController;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.swing.text.View;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,15 +62,24 @@ public class ProjectController {
 	
 	//프로젝트 승인대기함 페이지 이동
 	@RequestMapping("/projectApprove.do")
-	public String  projectApprove(Model mv, Principal principal, String pg, String f , String q ){
+	public String  projectApprove(Model mv, String pg, String f , String q, HttpSession session, String f2 , String q2,String app_char){
 		System.out.println("projectApprove() 컨트롤 탐");	
+/*		
+		Emp emp2 = (Emp)session.getAttribute("Emp");
+		String emp_no2 = emp2.getEmp_no();
+		System.out.println("session으로 사번이 뽑히냐요????????????????? : "+emp_no2);
+		*/
+		String rec_emp_no = (String)session.getAttribute("emp_no");
 		
-		String id= principal.getName();
+		System.out.println(f2+"/"+q2+"/"+app_char);
+		System.out.println("session으로 사번이 뽑히냐요????????????????? : "+rec_emp_no);
+		
+/*		String id= principal.getName();
 		System.out.println("@id : "+id);
 		Emp emp = projectservice.selectInfoSearch(id); 
 		
 		String rec_emp_no = emp.getEmp_no();//로그인사번
-		System.out.println("rec_emp_no : "+rec_emp_no);
+		System.out.println("rec_emp_no : "+rec_emp_no);*/
 		
 		int totalcount = 0;
 		int cpage = 1;
@@ -80,6 +90,12 @@ public class ProjectController {
 		String field = "emp_name";
 		String query ="%%";
 		
+		String field2 = "emp_name";
+		String query2 ="%%";
+		
+		if(app_char == null || app_char.equals("")){
+			app_char = "1";
+		}
 		
 		if(pg != null && !pg.equals("")){
 			cpage = Integer.parseInt(pg);
@@ -89,6 +105,12 @@ public class ProjectController {
 		}
 		if(q != null && !q.equals("")){
 			query = q;
+		}
+		if(f2 != null && !f2.equals("")){
+			field2 = f2;
+		}
+		if(q2 != null && !q2.equals("")){
+			query2 = q2;
 		}
 		
 		
@@ -101,17 +123,21 @@ public class ProjectController {
 	        pagecount = (totalcount/pagesize) + 1;
 	      }
 		 
-		System.out.println("pagecount : " + pagecount);
+		 System.out.println("pagecount : " + pagecount);
 		 
 		List<Pj> list =projectservice.selectPj_rec(cpage, pagesize, field, query, rec_emp_no);
-		 
 		
+		List<Pj> sendlist =projectservice.select_Send_Pj_rec(field2, query2, rec_emp_no);
+		
+
 		mv.addAttribute("field",field);
 		mv.addAttribute("query",query);
 		mv.addAttribute("pagecount", pagecount);
 		mv.addAttribute("pg",cpage);
 		mv.addAttribute("totalcount",totalcount);
 		mv.addAttribute("list", list);
+		mv.addAttribute("sendlist", sendlist);
+		mv.addAttribute("app_char", app_char);
 		
 		return "project.projectApproveList";
 	}

@@ -611,7 +611,7 @@ $(function(){
    $(function(){
        // Initialize Example 1
        $('#example1').footable();
-       
+       $('#example2').footable();
       // Initialize summernote plugin
         $('.summernote').summernote();
 
