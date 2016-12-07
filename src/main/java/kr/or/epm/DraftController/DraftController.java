@@ -3,6 +3,8 @@ package kr.or.epm.DraftController;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -264,11 +266,23 @@ public class DraftController {
 	
 	// 대외발신공문 상세
 	@RequestMapping(value="/office_detail.do", method=RequestMethod.GET)
-	public String office_detail(String draft_no, Model model) {
+	public String office_detail(HttpSession session, String draft_no, Model model) {
 		
 		System.out.println("CONTROLLER] 대외발신공문 상세 페이지");
 		System.out.println("선택한 전자결재 번호 : " + draft_no);
 	
+		String emp_no = (String) session.getAttribute("emp_no");
+		
+		// 승인 권한 (hidden 속성 부여)
+		List<String> db_emp_no_list = service.selectDraft_line_emp_no(draft_no);
+		String session_emp_no = emp_no;
+		model.addAttribute("db_emp_no_list", db_emp_no_list);
+		model.addAttribute("session_emp_no", session_emp_no);
+		
+		// 기존 승인 정보 가져오기
+		String app_check = service.selectApp_check(draft_no, emp_no);
+		model.addAttribute("app_check", app_check);
+		
 		// 대외발신공문 상세 가져오기
 		Office detail = service.selectOffice_detail(draft_no);
 		model.addAttribute("detail", detail);
@@ -299,11 +313,17 @@ public class DraftController {
 	
 	// 협조문 상세
 	@RequestMapping(value="/cooperation_detail.do", method=RequestMethod.GET)
-	public String cooperation_detail(String draft_no, Model model) {
+	public String cooperation_detail(HttpSession session, String draft_no, Model model) {
 		
 		System.out.println("CONTROLLER] 협조문 상세 페이지");
 		System.out.println("선택한 전자결재 번호 : " + draft_no);
-	
+		
+		String emp_no = (String) session.getAttribute("emp_no");
+		
+		// 기존 승인 정보 가져오기
+		String app_check = service.selectApp_check(draft_no, emp_no);
+		model.addAttribute("app_check", app_check);
+		
 		// 협조문 상세 가져오기
 		Cooperation detail = service.selectCooperation_detail(draft_no);
 		model.addAttribute("detail", detail);
@@ -338,10 +358,16 @@ public class DraftController {
 	
 	// 휴가신청서 상세
 	@RequestMapping(value="break_detail.do", method=RequestMethod.GET)
-	public String break_detail(String draft_no, Model model) {
+	public String break_detail(HttpSession session, String draft_no, Model model) {
 		
 		System.out.println("CONTROLLE] 휴가 신청서 상세 페이지");
 		System.out.println("선택한 draft_no : " + draft_no);
+		
+		String emp_no = (String) session.getAttribute("emp_no");
+		
+		// 기존 승인 정보 가져오기
+		String app_check = service.selectApp_check(draft_no, emp_no);
+		model.addAttribute("app_check", app_check);
 		
 		// 휴가 신청서 상세 가져오기
 		Break detail = service.selectBreak_detail(draft_no);

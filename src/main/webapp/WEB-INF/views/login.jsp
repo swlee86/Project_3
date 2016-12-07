@@ -224,32 +224,32 @@ small {
 		aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
-				<form class="form-horizontal" action="findPw.do" method="POST">
+				<form class="form-horizontal" id="findPwForm" action="findPw.do" method="POST">
 					<div class="color-line"></div>
 					<div class="modal-header">
 						<h4 class="modal-title">비밀번호 찾기</h4>
-						<small class="font-bold">찾으실 비밀번호를 입력하세요</small>
+						<small class="font-bold" id="result_findPw">찾으실 비밀번호를 입력하세요</small>
 					</div>
 					<div class="modal-body">
 						<div class="row">
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">아이디</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" placeholder="아이디">
+									<input type="text" class="form-control" placeholder="아이디" id="findPw_Id" name="emp_id" required="required">
 								</div>
 							</div>
 
 							<div class="form-group col-lg-12">
 								<label class="col-sm-4 control-label" style="text-align: right;">사번</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" placeholder="사번">
+									<input type="text" class="form-control" placeholder="사번" id="findPw_no" name="emp_no" required="required">
 								</div>
 							</div>
 
 							<div class="form-group col-lg-12">
 								<label class="col-md-4 control-label" style="text-align: right;">이름</label>
 								<div class="col-md-8">
-									<input type="text" class="form-control" placeholder="이름">
+									<input type="text" class="form-control" placeholder="이름" id="findPw_name" name="emp_name" required="required">
 								</div>
 							</div>
 
@@ -257,7 +257,7 @@ small {
 								<label class="col-md-4 control-label" style="text-align: right;">연락처</label>
 								<div class="col-md-8">
 									<input type="text" class="form-control"
-										placeholder="010-1111-2222">
+										placeholder="010-1111-2222" name="cel_phone" id="findPw_phone" required="required">
 								</div>
 							</div>
 
@@ -266,7 +266,7 @@ small {
 					</div>
 					<div class="modal-footer">
 						<a class="btn btn-default" href="login.do" data-dismiss="modal">취소하기</a>
-						<input type="submit" class="btn btn-success" value="비밀번호찾기">
+						<input type="button" id="findPwBtn" class="btn btn-success" value="비밀번호찾기">
 					</div>
 				</form>
 			</div>
@@ -441,6 +441,37 @@ small {
 			});
 		});
 		
+		//비밀번호 찾기 모달 실행시 
+		$('#findPwBtn').click(function(){
+			
+			var id = $('#findPw_Id').val();
+			var emp_no = $('#findPw_no').val();
+			var name = $('#findPw_name').val();
+			var phone = $('#findPw_phone').val();
+			
+			alert("id : "+id + " / pw : "+emp_no + " / name : "+name+ " / phone : "+phone);
+			$.ajax({
+				url : "findPw.do",
+				type : "post",
+				data : {
+					id : id,
+					emp_no : emp_no,
+					emp_name : name,
+					cell_phone : phone
+				},
+				success : function(data){
+					
+					if(data.temp != null || data.temp != ''){
+						$('#result_findPw').html();
+						$('#result_findPw').html("<br/><span style='color:blue;font-size:18px;'>비밀번호 : "+data.temp+"</span>")
+					}else{
+						$('#result_findPw').html();
+						$('#result_findPw').html("<br/><span style='color:red;font-size:18px;'>정보를 확인해주세요!</span>");
+					}
+				}
+			});
+			
+		});
 		
 		$('#googlelogout').click(function(){
 			signOut();

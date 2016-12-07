@@ -3,6 +3,7 @@ package kr.or.epm.Service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.LoginDAO;
@@ -21,6 +22,9 @@ public class LoginService {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//사용자 이름 구하는것 - web socket 채팅할때 사용할 것
 	public String selectUserName(String id){
@@ -88,11 +92,26 @@ public class LoginService {
 		
 	}
 	
-	//아이디 찾기 아작시 구동시 사용
+	//아이디 찾기 아작스 구동시 사용
 	public String selectFindId(EmpJoinEmp_Detail emp){
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		String id = dao.selectEmp_FindId(emp);
 		return id;
 	}
+	
+	//비밀번호 찾기 아작스 구동시
+	public String selectFindPw(EmpJoinEmp_Detail emp){
+		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
+		String pw = dao.selectEmp_FindPw(emp);
+		pw = emp.getId()+"1";
+		emp.setPwd(this.bCryptPasswordEncoder.encode(pw));
+		int result = dao.updateEmp_TempPw(emp.getEmp_no(), emp.getPwd());
+		if(result > 0){
+			return pw;
+		}else{
+			return "실패";
+		}
+	}
+	
 	
 }
