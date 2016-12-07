@@ -82,7 +82,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
+                <a href="#" ><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="draftWrite.do">결재 등록</a></li>
                 	<li><a href="draft_rec.do">수신함</a></li>
@@ -169,5 +169,5 @@
             	&nbsp;
             </li>
         </ul>
-    </div>
+
 </aside>
