@@ -247,7 +247,7 @@ function calendar(){
 						litag +=empSelectNumber +","
 						litag +=departMent[index].branch_no
 						litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
-						litag+="<div id='dept_div2"
+						litag+="<div id='dept_div"
 						litag+=departMent[index].branch_no
                       	litag+="'></div>";
 					});
@@ -325,8 +325,8 @@ function calendar(){
 	   console.log("seedepart2 클릭");
          //전역 부서 선택시
           departcho2 = choose2;
-         var div_id = "dept_div2"+choose2;
-         $("#p"+div_id).empty();
+         var div_id = "dept_div"+choose2;
+         $("#"+div_id).empty();
          var litag = "<ul style='list-style:none; padding:5px;'>";
       
          var name = $(obj).text();
@@ -361,10 +361,10 @@ function calendar(){
                         litag+="'></div>";
                   });
                   litag +="</ul>";
-                  $("#p"+div_id).html(litag);
+                  $("#"+div_id).html(litag);
                }else{
                    firstTree2 = 0;
-                   $("#p"+div_id).html();   
+                   $("#"+div_id).html();   
                 }
             }
          });
@@ -376,7 +376,7 @@ function calendar(){
          deptNumber= departcho2;
          var litag = "<ul style='list-style:none;'>";
          var div_id = "low_dept_div"+departcho2;
-         $("#p"+div_id).empty();
+         $("#"+div_id).empty();
       
          $.ajax({
             url : "tasklow_deptModal.do",
@@ -402,10 +402,10 @@ function calendar(){
                      
                   });
                   litag +="</ul>";
-                  $("#p"+div_id).html(litag);
+                  $("#"+div_id).html(litag);
                }else{
                    secondTree2 = 0;
-                   $("#p"+div_id).html();
+                   $("#"+div_id).html();
                 }
             }
       
