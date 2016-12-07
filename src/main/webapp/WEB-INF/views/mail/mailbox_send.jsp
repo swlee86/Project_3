@@ -78,6 +78,8 @@
 								</tr>
 							</thead>
 							<tbody>	
+							<c:choose>	
+								<c:when test="${!empty maillist}">
 								<c:forEach var="list" items="${maillist}">
 								<tr>
 									<td>
@@ -90,6 +92,15 @@
 									<td>${list.send_date}</td>
 								</tr>
 								</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td colspan="4" style="text-align: center;">
+											보내신 메일이 없어요
+										</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>	
 							</tbody>
 						</table>
 					</div>
