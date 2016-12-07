@@ -37,4 +37,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where draft_no = #{draft_no}
 	</select>
 	
+	<!-- 권한 -->
+	<select id="selectDraft_line_emp_no" resultType="String">
+		select emp_no
+		from draft_line
+		where draft_no = #{draft_no}
+	</select>
 </mapper>

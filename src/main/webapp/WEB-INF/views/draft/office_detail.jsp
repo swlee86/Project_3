@@ -24,17 +24,24 @@
 			수신처 확인
 		</button>
 	</span>
-	<span class="up-btn pull-right">
-		<button class="btn btn-outline btn-primary btn-m bgcolor" data-toggle="modal" data-target="#draft_process_Modal">
-			승인 처리
-		</button>
-	</span>
+	
+	<c:forEach var="list" items="${ db_emp_no_list }">
+		<c:if test="${ list == session_emp_no }">
+			<span class="up-btn pull-right">
+				<button class="btn btn-outline btn-primary btn-m bgcolor" data-toggle="modal" data-target="#draft_process_Modal">
+				승인 처리
+				</button>
+			</span>
+		</c:if>
+	</c:forEach>
+	
+	
 </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="hpanel blog-article-box" id="print">
                     <div class="panel-heading" style="padding-bottom: 15px;">
-                        <h4>2 P M</h4>
+                        <h4><img alt="로고" src="img/logo1.png"></h4>
                         <small>경기도 성남시 분당구 삼평동 대왕판교로 670길(구 682번지) 유스페이스2 B동 8층 / 070.5039.5803,5807 / FAX 070.7614.3450</small>
                     </div>
                     <div class="panel-body" style="color: black; font-size: 13px; border-top: 5px solid #34495E;">

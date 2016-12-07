@@ -27,4 +27,7 @@ public interface Draft_lineDAO {
 	
 	// 결재 문서에 대한 승인 정보 전부 가져오기
 	public List<String> selectApp_check_all(String draft_no);
+	
+	// 권한을 위해 emp_no 가져오기
+	public List<String> selectDraft_line_emp_no(String draft_no);
 }

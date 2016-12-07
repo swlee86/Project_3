@@ -42,9 +42,16 @@ public class Office {
 	private String branch_name;
 	private String rec_date;
 	private String app_check;
+	private String position_name;
 	
-	
-	
+	public String getPosition_name() {
+		return position_name;
+	}
+
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
+	}
+
 	public String getApp_check() {
 		return app_check;
 	}

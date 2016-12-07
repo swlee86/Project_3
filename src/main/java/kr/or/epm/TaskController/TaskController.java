@@ -166,6 +166,7 @@ public class TaskController {
 			if ((result1 > 0) && (result2 > 0)) {
 				System.out.println("업무 등록에 성공하였습니다");
 			} else {
+				System.out.println(result1 + " || " + result2);
 				System.out.println("업무 등록에 실패하였습니다");
 			}
 		}

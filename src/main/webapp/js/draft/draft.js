@@ -165,6 +165,7 @@ $(function() {
                      text: "승인 처리가 완료되었습니다",
                      type: "success"
                  });
+    			 location.href("draft_rec.do");
     		}
     	});
     	

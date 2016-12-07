@@ -33,7 +33,16 @@ public class Cooperation {
 	private String emp_name;
 	private String rec_check;
 	private String rec_date;
-	 
+	private String app_check;
+	
+	public String getApp_check() {
+		return app_check;
+	}
+
+	public void setApp_check(String app_check) {
+		this.app_check = app_check;
+	}
+
 	public String getRec_date() {
 		return rec_date;
 	}

@@ -189,12 +189,19 @@ public class DraftService {
 		
 		// 참조당한 대외발신공문 결재 문서 리스트 불러오기
 		List<Office> office_reflist = dao.selectDraft_ref_Office(emp_no);
+		System.out.println("확인 중 : " + office_reflist.toString());
 		for(Office office2 : office_reflist) {
+			System.out.println("여기타니/?");
 			// 이미 리스트에 add되어 있으면 add하지 않겠다
-			for(int i=0; i<officelist.size(); i++) {
-				if(!office2.getDraft_no().equals(officelist.get(i).getDraft_no())) {
-					officelist.add(office2);
+			if(officelist.size()>0) {
+				for (int i = 0; i < officelist.size(); i++) {
+					if (!office2.getDraft_no().equals(officelist.get(i).getDraft_no())) {
+						officelist.add(office2);
+					}
 				}
+			}
+			else {
+				officelist.add(office2);
 			}
 		}
 		System.out.println("참조당한 대외발신 공문 리스트들 저장합니다 : " + officelist.toString());
@@ -214,6 +221,7 @@ public class DraftService {
 
 		// 결재 번호 가져오기
 		List<String> draft_no_list = dao.selectDraft_noList();
+		System.out.println("전체 결재 번호들 : " + draft_no_list.toString());
 
 		// 내 차례인 결재의 결재번호
 		String draft_line_no = null;
@@ -228,6 +236,8 @@ public class DraftService {
 			}
 		}
 		
+		System.out.println("내 차례의 결재번호들 : " + draft_line_list.toString());
+		
 		// 출력할 협조문 정보
 		Cooperation cooperation = null;
 		// 출력할 협조문 리스트들 저장
@@ -237,17 +247,30 @@ public class DraftService {
 			cooperation = dao.selectCooperation_rec(draft_no, emp_no);
 			cooperationlist.add(cooperation);
 		}
-
+		
+		System.out.println("결재라인이 적용된 출력할 협조문 : " + cooperationlist.toString());
+		System.out.println("그 길이 : " + cooperationlist.size());
+		
 		// 참조당한 협조문 결재문서 리스트 불러오기
 		List<Cooperation> cooperation_reflist = dao.selectDraft_ref_Cooperaion(emp_no);
+		
+		System.out.println("참조당한 협조문 리스트 : " + cooperation_reflist.toString());
+		System.out.println("그 길이 : " + cooperation_reflist.size());
 		for(Cooperation cooper : cooperation_reflist) {
 			// 이미 리스트에 add되어 있으면 add하지 않겠다
-			for(int i=0; i<cooperationlist.size(); i++) {
-				if(!cooper.getDraft_no().equals(cooperationlist.get(i).getDraft_no())) {
-					cooperationlist.add(cooper);
+			if(cooperationlist.size()>0) {
+				for (int i = 0; i < cooperationlist.size(); i++) {
+					if (!cooper.getDraft_no().equals(cooperationlist.get(i).getDraft_no())) {
+						cooperationlist.add(cooper);
+					}
 				}
 			}
+			else {
+				cooperationlist.add(cooper);
+			}
 		}
+		
+		System.out.println("최종 협조문 리스트 : " + cooperationlist.toString());
 		
 		return cooperationlist;
 	}
@@ -290,12 +313,18 @@ public class DraftService {
 		
 		// 참조 당한 휴가신청서 결재 문서 불러오기
 		List<Break> break_reflist = dao.selectDraft_ref_Break(emp_no);
+		
 		for(Break break2 : break_reflist) {
 			// 이미 리스트에 add되어 있으면 add하지 않겠다
-			for(int i=0; i<breaklist.size(); i++) {
-				if(!break2.getDraft_no().equals(breaklist.get(i).getDraft_no())) {
-					breaklist.add(break2);
+			if(breaklist.size() >0) {
+				for (int i = 0; i < breaklist.size(); i++) {
+					if (!break2.getDraft_no().equals(breaklist.get(i).getDraft_no())) {
+						breaklist.add(break2);
+					}
 				}
+			}
+			else {
+				breaklist.add(break2);
 			}
 		}
 		
@@ -488,5 +517,16 @@ public class DraftService {
 		}
 		
 		return result;
+	}
+	
+	// 승인 권한을 위해 draft_no 로 emp_no 불러오기
+	public List<String> selectDraft_line_emp_no(String draft_no) {
+		System.out.println("SERVICE] 권한 위해 emp_no 들을 불러옵니다");
+		
+		Draft_lineDAO dao = sqlsession.getMapper(Draft_lineDAO.class);
+		
+		List<String> list = dao.selectDraft_line_emp_no(draft_no);
+		
+		return list;
 	}
 }

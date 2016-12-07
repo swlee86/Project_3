@@ -248,7 +248,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on r.emp_no = e.emp_no
 		join office o
 		on d.draft_no = o.draft_no
-		where r.emp_no = #{emp_no}
+		where r.emp_no = #{emp_no} and step_no != '1'
 	</select>
 	
 	<!-- 참조당한 협조문 결재 문서 리스트 -->
@@ -261,7 +261,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on r.emp_no = e.emp_no
 		join low_dept l
 		on e.low_dept_no = l.low_dept_no
-		where r.emp_no = #{emp_no}
+    	join cooperation c
+    	on d.draft_no = c.draft_no
+		where r.emp_no = #{emp_no} and step_no != '1'
 	</select>
 	
 	<!-- 참조당한 휴가신청서 결재 문서 리스트 -->
@@ -276,7 +278,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on b.break_cg_no = g.break_cg_no
 		join emp e
 		on r.emp_no = e.emp_no
-		where r.emp_no = #{emp_no}
+		where r.emp_no = #{emp_no} and step_no != '1'
 	</select>
 	
 	<!-- 대외발신공문 수신 리스트 -->
@@ -355,7 +357,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select d.draft_no, rec_place, rec_fax, rec_person, rec_tel, 
 			   rec_postcode, rec_addr, rec_addr_detail, d.cg_no, draft_title,
          	   draft_content, d.emp_no, draft_date, file_name, 
-         	   low_dept_name, dept_name, branch_name, step_no, e.emp_name
+         	   low_dept_name, dept_name, branch_name, step_no, e.emp_name,
+         	   position_name
 		from office o 
 		join draft d 
 		on d.draft_no = o.draft_no
@@ -363,13 +366,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	on d.emp_no = e.emp_no
     	join low_dept l
     	on e.low_dept_no = l.low_dept_no 
+    	join position p
+    	on e.position_no = p.position_no
 		where d.draft_no = #{draft_no}
 	</select>
 	
 	<!-- 협조문 상세 -->
 	<select id="selectCooperation_detail" resultType="kr.or.epm.VO.Cooperation">
 		select d.draft_no, d.cg_no, draft_title, draft_content, d.emp_no, draft_date, file_name, step_no,
-       		   c.low_dept_no,
+       		   c.low_dept_no, app_check,
        		   e.emp_name, l.branch_name, l.dept_name, l.low_dept_name
 		from draft d join cooperation c
 		on d.draft_no = c.draft_no
@@ -377,6 +382,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on d.emp_no = e.emp_no
 		join low_dept l 
 		on e.low_dept_no = l.low_dept_no
+    	join draft_line n
+    	on d.draft_no = n.draft_no
 		where d.draft_no = #{draft_no}
 	</select>
 	
