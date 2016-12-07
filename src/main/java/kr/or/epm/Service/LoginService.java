@@ -83,7 +83,7 @@ public class LoginService {
 	public String selectGoogleLoginData(String id){
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		String iddata = dao.selectGoogleLoginData(id);
-		System.out.println(iddata);
+		System.out.println("디비에서 뽑아온것 : " + iddata);
 		return iddata;			
 		
 	}
