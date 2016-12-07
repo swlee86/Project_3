@@ -22,7 +22,7 @@ public class RegisterAjaxController {
 	@RequestMapping("/numchk.do")
 	public View numchk(String emp_no , Model model){	
 		System.out.println("numchk Ajax Start");
-		System.out.println(emp_no);
+		System.out.println("넘체크 : emp_no : " +emp_no);
 		String result = regiseterservice.selectEmpId(emp_no);
 		String answer= null;
 		System.out.println("사원번호 : " + result);
