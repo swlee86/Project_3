@@ -40,8 +40,16 @@ public class Office {
 	private String low_dept_name;
 	private String dept_name;
 	private String branch_name;
+	private String rec_date;
 	
-	
+	public String getRec_date() {
+		return rec_date;
+	}
+
+	public void setRec_date(String rec_date) {
+		this.rec_date = rec_date;
+	}
+
 	public String getLow_dept_name() {
 		return low_dept_name;
 	}

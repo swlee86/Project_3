@@ -413,9 +413,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 참조자 정보 가져오기 -->
 	<select id="selectDraft_ref_data" resultType="kr.or.epm.VO.Draft_ref">
-		select draft_no, r.emp_no, emp_name
+		select draft_no, r.emp_no, emp_name, 
+       		   position_name, branch_name, dept_name, low_dept_name
 		from draft_ref r join emp e
     	on r.emp_no = e.emp_no
+      	join position p
+      	on e.position_no = p.position_no
+      	join low_dept l
+      	on e.low_dept_no = l.low_dept_no
 		where draft_no = #{draft_no}
 	</select>
+	
+	<!-- rec_check 삽입 -->
+	<update id="updateDraft_line">
+		update draft_line
+		set rec_check = '1'
+		where draft_no = #{draft_no}
+	</update>
+	
+	<!-- rec_date 삽입 -->
+	<update id="updateDraft">
+		update draft
+		set rec_date = to_char(sysdate, 'yyyy-mm-dd')
+		where draft_no = #{draft_no}
+	</update>
+	
+	<!-- 수신함에서 삭제하기 -->
+	<update id="rec_deleteDraft">
+		update draft
+		set rec_del_check = '1'
+		where draft_no = #{draft_no}
+	</update>
+	
+	<!-- 송신함에서 삭제하기 -->
+	<update id="deleteDraft">
+		update draft
+		set del_check = '1'
+		where draft_no = #{draft_no}
+	</update>
+	
 </mapper>

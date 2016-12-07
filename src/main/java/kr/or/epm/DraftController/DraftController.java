@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.DraftService;
@@ -19,8 +18,6 @@ import kr.or.epm.VO.Draft;
 import kr.or.epm.VO.Draft_line;
 import kr.or.epm.VO.Draft_ref;
 import kr.or.epm.VO.Office;
-import kr.or.epm.VO.Task;
-import kr.or.epm.VO.Task_people;
 
 @Controller
 public class DraftController {
@@ -241,8 +238,7 @@ public class DraftController {
 		int officecount = officelist.size();
 		System.out.println("대외발신공문 송신함 글 개수 : " + officecount);
 		model.addAttribute("officecount", officecount);
-				
-				
+					
 		// 협조문
 		// 목록 가져오기
 		List<Cooperation> cooperationlist = service.selectCooperation(emp_no);
@@ -252,7 +248,6 @@ public class DraftController {
 		int cooperationcount = cooperationlist.size();
 		System.out.println("협조문 송신함 글 개수 : " + cooperationcount);
 		model.addAttribute("cooperationcount", cooperationcount);
-				
 				
 		// 휴가신청서
 		// 목록 가져오기
@@ -291,12 +286,13 @@ public class DraftController {
 		// 전자결재 참조자 가져오기
 		List<Draft_ref> refdetail = service.selectDraft_ref(draft_no);
 		model.addAttribute("refdetail", refdetail);
-		System.out.println("터졌나 확인확인2222");
 		
 		// 전자결재 인원수
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
-		System.out.println("터졌나 확인확인333333");
+		
+		// 상세 조회 처리 (rec_check, rec_date 변경)
+		service.rec_process(draft_no);
 		
 		return "draft.office_detail";
 	}
@@ -334,6 +330,9 @@ public class DraftController {
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
 		
+		// 상세 조회 처리 (rec_check, rec_date 변경)
+		service.rec_process(draft_no);
+		
 		return "draft.cooperation_detail";
 	}
 	
@@ -363,7 +362,38 @@ public class DraftController {
 		// 전자결재 인원수
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
+
+		// 상세 조회 처리 (rec_check, rec_date 변경)
+		service.rec_process(draft_no);
 		
 		return "draft.break_detail";
+	}
+	
+	// 수신함에서 삭제하기
+	@RequestMapping(value="draft_rec_delete.do", method=RequestMethod.GET)
+	public String draft_rec_delete(String draft_no, Model model) {
+		System.out.println("CONTROLLER] 수신함에서 삭제합니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		service.draft_rec_delete(draft_no);
+		
+		String link = "draft.draft_rec";
+		model.addAttribute("link", link);
+		
+		return "draft_redirect";
+	}
+	
+	// 송신함에서 삭제하기
+	@RequestMapping(value="draft_delete.do", method=RequestMethod.GET)
+	public String draft_delete(String draft_no, Model model) {
+		System.out.println("CONTROLLER] 송신함에서 삭제합니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		service.draft_delete(draft_no);
+		
+		String link = "draft.draft";
+		model.addAttribute("link", link);
+		
+		return "draft_redirect";
 	}
 }

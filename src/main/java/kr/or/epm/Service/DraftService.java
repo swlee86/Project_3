@@ -391,4 +391,42 @@ public class DraftService {
 		System.out.println("터졌나 확인확인111");
 		return reflist;
 	}
+	
+	// 상세 처리
+	public int rec_process(String draft_no) {
+		System.out.println("SERVICE] 상세 처리를 시작합니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		int result = 0;
+		
+		int result1 = dao.updateDraft(draft_no);
+		int result2 = dao.updateDraft_line(draft_no);
+				
+		if(result1 > 0 && result2 > 0) result = 1;
+		
+		return result;
+	}
+	
+	// 수신함에서 삭제하기
+	public int draft_rec_delete(String draft_no) {
+		System.out.println("SERVICE] 수신함에서 삭제합니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		int result = dao.rec_deleteDraft(draft_no);
+		
+		return result;
+	}
+	
+	// 송신함에서 삭제하기
+	public int draft_delete(String draft_no) {
+		System.out.println("SERVICE] 송신함에서 삭제합니다");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		int result = dao.deleteDraft(draft_no);
+		
+		return result;
+	}
 }

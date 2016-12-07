@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+<!-- 드래그앤드롭? -->
+<link rel="stylesheet" href="vendor/jquery-ui/themes/base/all.css">
 
 <!-- App styles -->
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -47,6 +49,18 @@
 		font-size: 15px;
 	}
 	
+	.textcenter {
+		text-align: center;
+	}
+	
+	.marginbottom {
+		margin-bottom: 30px;
+	}
+	
+	#recTable td {
+		padding-bottom: 10px;
+	}
+	
 	#datatable td {
 		padding: 3px;
 		color: #424242;
@@ -58,6 +72,15 @@
 	
 	.up_btn {
 		display: inline-block;
+		margin-right: 10px;
+	}
+	
+	.color {
+		color: #E9EEF3;
+	}
+	
+	.bgcolor {
+		background-color: white;
 	}
 	
 </style>

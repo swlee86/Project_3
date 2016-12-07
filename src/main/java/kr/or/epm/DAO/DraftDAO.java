@@ -126,4 +126,16 @@ public interface DraftDAO {
 	
 	// 참조자 정보 가져오기
 	public List<Draft_ref> selectDraft_ref_data(String draft_no);
+	
+	// 상세처리 > 결재라인 수신여부(rec_check) 삽입
+	public int updateDraft_line(String draft_no);
+	
+	// 상세 처리 > 결재문서 수신일(rec_date) 삽입
+	public int updateDraft(String draft_no);
+	
+	// 수신함에서 삭제하기
+	public int rec_deleteDraft(String draft_no);
+	
+	// 송신함에서 삭제하기
+	public int deleteDraft(String draft_no);
 }

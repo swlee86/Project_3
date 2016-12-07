@@ -2,11 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <div class="content animate-panel content-boxed">
-	<div>
-		<a class="btn btn-default buttons-print btn-sm" aria-controls="print">
+<div style="margin: 10px;">
+	<span class="up_btn">
+		<a class="btn btn-default buttons-print btn-m" aria-controls="print">
 			<span>Print</span>
 		</a>
-	</div>
+	</span>
+</div>
 
         <div class="row">
             <div class="col-lg-12">
@@ -99,6 +101,7 @@
 							   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 					</div>
 					
+					<br><br>
 					<br><br>
                 </div>
             </div>

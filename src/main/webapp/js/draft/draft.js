@@ -115,8 +115,61 @@ $(function() {
     		})
 
 	});
+	
+	$("#cg_1").sortable();
+	$("#cg_2").sortable();
+	$("#cg_3").sortable();
+	
+	  
+    $("#dragarea").droppable({
+    	drop: function(event, ui) {
+    		$(this).empty();
+    		
+    		var id = ui.helper["0"].id;
+    		
+    		if(id == 'one') {
+    			$(this).css('background', 'rgb(98,203,49)');
+    			$(this).append("승인");
+    		} else if(id == 'two') {
+    			$(this).css('background', 'rgb(155,89,182)');
+    			$(this).append("보류");
+    		} else if(id == 'three') {
+    			$(this).css('background', 'rgb(231,76,60)');
+    			$(this).append("반려");
+    		}
+        }
+    });
+    
+    $("#app_check").click(function() {
+    	var see = $(this).parent().prev().contents("#dragarea").text();
+    	var seenum = 0;
+    	
+    	if(see == '승인') seenum = 1;
+    	else if(see == '보류') seenum = 2;
+    	else if(see === '반려') seenum = 3;
+    	
+    	alert(seenum);
+    	
+    	$.ajax({
+    		url		: "updateDraft_approval.do",
+    		type	: "post",
+    		data	: {
+    					seenum : seenum
+    				  },
+    		success	: function(data) {
+    			 swal({
+                     title: "전자결재",
+                     text: "승인 처리가 완료되었습니다",
+                     type: "success"
+                 });
+    			 
+    			 document.history.back();
+    		}
+    	});
+    	
+    });
+	
 }); // onload
-
 
 // 부서 출력
 // 스크립트 생성자
@@ -558,9 +611,22 @@ $(function() {
     	history.back();
     });
     
-    
     // 상세 페이지에서 modal 창 보여주기
     var modal = $modal.open({
         templateUrl: 'views/draft/office_detail.jsp',
+        controller: ModalInstanceCtrl,
         windowClass: "hmodal-success"
-    }); 
+    });
+    
+    // 승인 처리 드래그 앤 드롭
+   /* function dragdrop(ev) {
+    	var data = ev.dataTransfer.getData("Text");
+    	ev.target.
+    }*/
+  
+    
+    
+    
+    
+    
+    

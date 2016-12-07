@@ -2,11 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <div class="content animate-panel content-boxed">
-	<div>
-		<a class="btn btn-default buttons-print btn-sm" aria-controls="print">
+<div style="margin: 10px;">
+	<span class="up_btn">
+		<a class="btn btn-default buttons-print btn-m" aria-controls="print">
 			<span>Print</span>
 		</a>
-	</div>
+	</span>
+</div>
 
         <div class="row">
             <div class="col-lg-12">
@@ -24,7 +26,7 @@
                        			<td></td>
                        			<td></td>
                        		</tr>
-                       		<tr height="14px"></tr>
+                       		<tr height="15px"></tr>
                        		<tr>
                        			<td colspan="6" class="flag">참조자 &nbsp; ${ refcount }인 </td>
                        		</tr>
@@ -41,7 +43,7 @@
                        		<c:if test="${ refcount == 0 }">
                        			<td colspan="6" style="padding-left: 10px;">참조자가 없습니다</td>
                        		</c:if>
-                       		<tr height="14px"></tr>
+                       		<tr height="20px"></tr>
                        		<tr>
                        			<td colspan="6" class="flag">결재라인 &nbsp; ${ linecount }인 </td>
                        		</tr>
@@ -64,7 +66,7 @@
                        			</tr>
                        		</c:forEach>
                        		
-                       		<tr height="14px"></tr>
+                       		<tr height="20px"></tr>
                        		<tr>
                        			<td class="flag">소속</td>
                        			<td colspan="5">${ detail.branch_name } &nbsp;&nbsp; ${ detail.dept_name } &nbsp;&nbsp; ${ detail.low_dept_name }</td>
@@ -116,8 +118,13 @@
                     	<input type="button" id="backBtn"
 							   class="btn btn-sm btn-default" value="뒤로가기"
 							   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+						<input type="button"
+							   class="btn btn-sm btn-danger" value="삭제" onclick="delete.do?draft_no=${detail.draft_no}"
+							   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+					
 					</div>
 					
+					<br><br>
 					<br><br>
                 </div>
             </div>
