@@ -146,6 +146,10 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		
 		session.setAttribute("sessionpushcount", resultdata);
 		
+		//우리가 만드는 로그인 성공시 회원정보 담는 세션
+		session.setAttribute("emp", "TEST");
+		
+		
 		int intRedirectStrategy = decideRedirectStrategy(request, response);
 		switch(intRedirectStrategy){
 		case 1:
