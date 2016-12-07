@@ -13,7 +13,8 @@
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.html">홈</a></li>
-					<li class="active"><span>주소록</span></li>
+					<li><span>주소록</span></li> 
+					<li class="active"><span>주소록 수정</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">주소록 수정</h2>
@@ -39,7 +40,7 @@
 										<td>	
 											<div class="form-group">	
 												<div class="input-group">
-													<input type="text" class="form-control input-sm" placeholder="이름을 입력하세요." name="name" id="name"  value="${contact.name}"/>
+													<input type="text" class="form-control input-sm" placeholder="이름을 입력하세요." name="name" id="enrol_name"  value="${contact.name}"/>
 													<span class="input-group-btn">
 														<button class="btn btn-default input-sm" type="button" id="organization_add">
 															<font style="color:#fd7d86 "> <span class="fa fa-user-plus"></span></font>
@@ -111,7 +112,7 @@
 							
 						</div>
 						<div class=" pull-right" style="text-align:center;">
-								<input type="submit"  class="btn btn-sm btn-success" value="등록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
+								<input type="submit"  class="btn btn-sm btn-success" id="submit_btn" value="등록" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 								<input type="button"  onclick="location.href='contacts.do'" class="btn btn-sm btn-default"  value="취 소" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">
 							</div>
 						</form>	

@@ -123,7 +123,7 @@ public class TaskController {
 	// 업무 > 업무 등록
 	@RequestMapping(value = "/taskWrite.do", method = RequestMethod.POST)
 	public String taskWriteOk(Principal principal, Task task, String emp_no, Model model) {
-
+		System.out.println("task: " + task.toString());
 		System.out.println("CONTROLLER] 업무 등록");
 		
 		String link = "taskWrite.do";
@@ -142,6 +142,10 @@ public class TaskController {
 
 		// 참여자 사번들 분리
 		String[] people = emp_no.split(",");
+		for(int i =0 ; i < people.length ; i++){
+			System.out.println("참여자 : " + people[i]);
+		}
+		
 		System.out.println("선택된 참여자 인원 : " + people.length);
 		
 		try {
