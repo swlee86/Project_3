@@ -202,6 +202,7 @@ public class AdminController {
 		for(int i = 0; i < list.size(); i++){
 			System.out.println(list.get(i).toString());
 		}
+		System.out.println(" 리스트 사이즈 ,,,,,,,,,,,,,,,,,,"+list.size());
 		model.addAttribute("count", list.size());
 		model.addAttribute("paylist", list);
 		return "admin.admintotalSalaryListDetail";

@@ -2,6 +2,8 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import kr.or.epm.VO.Pay;
 import kr.or.epm.VO.PayList;
 import kr.or.epm.VO.Set_pay_date;
@@ -42,7 +44,7 @@ public interface PayDAO {
 	public List<PayList> selectPay_all_Close(String dTime);
 	
 	//월별 급여 상세 보기 - 카드에서 버튼 클릭시 해당 월 급여 지급 리스트 뜸. -  관리자 > 급여 > 급여내역 조회
-	public List<PayList> select_payMoth_Detail(String date);
+	public List<PayList> select_payMoth_Detail(@Param("date") String date);
 	
 	// 전체 금월 예상 급여 조회하기
 	public List<Pay> selectPay();

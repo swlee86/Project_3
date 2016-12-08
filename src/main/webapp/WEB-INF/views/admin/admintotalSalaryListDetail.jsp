@@ -49,8 +49,6 @@
 									<th style="text-align: center;">부서</th>
 									<th style="text-align: center;">하위 부서</th>
 									<th style="text-align: center;">직위</th>
-									<th style="text-align: center;">총 근무시간</th>
-									<th style="text-align: center;">총 추가 근무시간</th>
 									<th style="text-align: center;">실지급액</th>
 									<th style="text-align: center;">지급일자</th>
 								</tr>
@@ -70,8 +68,6 @@
 												<td style="text-align: center;">${list.dept_name}</td>
 												<td style="text-align: center;">${list.low_dept_name}</td>
 												<td style="text-align: center;">${list.position_name}</td>
-												<td style="text-align: center;">${list.acc_commute_time}</td>
-												<td style="text-align: center;">${list.acc_add_time}</td>
 												<td style="text-align: center;">${list.total_pay}</td>
 												<td style="text-align: center;">${list.give_date}</td>
 											</tr>
