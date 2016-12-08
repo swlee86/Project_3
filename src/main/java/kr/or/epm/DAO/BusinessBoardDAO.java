@@ -8,8 +8,8 @@ import kr.or.epm.VO.Re_BusinessBoard;
 public interface BusinessBoardDAO {
 	
 	//BusinessBoard 들어갈 때 게시판 글 내용을 불러오는 함수
-	List<BusinessBoard> selectList(int start, int end);
-	int selectBoardCount();
+	List<BusinessBoard> selectList(int start, int end,String field, String query);
+	int selectBoardCount(String field, String query);
 	BusinessBoard selectDetail(int no);
 	List<Re_BusinessBoard> selectReList(int no);
 	Re_BusinessBoard selectWrite(String id);

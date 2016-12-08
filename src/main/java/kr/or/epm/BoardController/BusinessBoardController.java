@@ -38,9 +38,13 @@ public class BusinessBoardController {
 
 	//업무정보게시판  > 업무정보게시판  리스트 페이지 이동
 	@RequestMapping("/business_board_list.do")
-	public String business_board_list(Model mv, String pagesize, String currentpage){
-		int totalcount = businessboardservice.selectBoardCount();
+	public String business_board_list(Model mv, String pagesize, String currentpage,String f, String s){
+		int totalcount = 0;
 		int pagecount = 0;
+		
+		String field = "title";
+		String query ="%%";
+		
 		System.out.println("처음 들어온 currentpage : " + currentpage);
 		
         if(pagesize == null || pagesize.trim().equals("")){
@@ -50,25 +54,33 @@ public class BusinessBoardController {
         if(currentpage == null || currentpage.trim().equals("")){
             currentpage = "1";        //default 1 page
         }
-        
+        if(f != null && !f.equals("")){
+			field = f;
+		}
+		if(s != null && !s.equals("")){
+			query = s;
+		}
+		
         System.out.println("최종 currentpage : " + currentpage);
-        
-      
+
+		
+		
         int pgsize = Integer.parseInt(pagesize);  		// 10
         int cpage = Integer.parseInt(currentpage);     //1
                                
+        totalcount = businessboardservice.selectBoardCount(field, query);
         
         if(totalcount % pgsize==0){        //전체 건수 , pagesize 
             pagecount = totalcount/pgsize;
         }else{
             pagecount = (totalcount/pgsize) + 1;
         }
-		
+       
 		List<BusinessBoard> list = null;
 		
 		
 		try{
-			 list = businessboardservice.selectBoard(cpage, pgsize); 
+			 list = businessboardservice.selectBoard(cpage, pgsize,field, query); 
 			 System.out.println("list size chk : " +  list.size());
 		}catch(Exception e){
 			e.getMessage();

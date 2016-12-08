@@ -2,14 +2,14 @@ package kr.or.epm.BoardController;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,8 +62,9 @@ public class CompanyBoardController {
 	
 	//회사정보 게시판  > 리스트페이지이동 
 	@RequestMapping(value="/info_board_list.do", method=RequestMethod.GET)
-	public String info_board_list(String pagesize, String currentpage, Model model) {
-		
+	public String info_board_list(String pagesize, String currentpage, HttpSession session,Model model) {
+		String rec_emp_no = (String)session.getAttribute("emp_no");
+
 		int totalcount = companyBoardService.selectBoardCount();
 		int pagecount = 0;
 
@@ -99,6 +100,7 @@ public class CompanyBoardController {
 			model.addAttribute("psize", pgsize);
 			model.addAttribute("pagecount", pagecount);
 			model.addAttribute("totalcount", totalcount);
+			model.addAttribute("rec_emp_no",rec_emp_no);
 		}
         
 		return "board_info.info_board_list";
@@ -106,8 +108,12 @@ public class CompanyBoardController {
 	
 	//상세보기		  
 	@RequestMapping("/detailinfo_board_list.do")
-	public String detailView(String no, int currentpage, int pagesize, Model model){
+	public String detailView(String no, String currentpage, String pagesize, HttpSession session, Model model){
+		System.out.println("no : "+ no + "pagesize : "+pagesize);
+		String rec_emp_no = (String)session.getAttribute("emp_no");
+
 		Company company = null;
+		
 		int no2 = Integer.parseInt(no);
 		try{
 			 company = companyBoardService.selectDetailBoard(no2);
@@ -116,6 +122,9 @@ public class CompanyBoardController {
 			e.printStackTrace();
 		}finally{
 			model.addAttribute("company", company);
+			model.addAttribute("currentpage",currentpage);
+			model.addAttribute("pagesize",pagesize);
+			model.addAttribute("rec_emp_no",rec_emp_no);
 		}
 		
 		return "board_info.info_board_view";
@@ -230,5 +239,64 @@ public class CompanyBoardController {
 		return "board_info.info_board_list";
 	}
 	
+	//수정페이지로 이동
+	@RequestMapping(value = "/info_board_update.do", method = RequestMethod.GET)
+	public String info_board_update(String no, Model model) {
+		System.out.println("info_board_update() 컨트롤러 탐");
+		
+		Company company = companyBoardService.selectDetailBoard(Integer.parseInt(no));		
+		
+		
+		model.addAttribute("company",company);
+		System.out.println("리턴 ㄱㄱ");
+		return "board_info.info_board_rewrite";
+	}
+	
+	//수정 처리
+	@RequestMapping(value = "/info_board_update.do", method = RequestMethod.POST)
+	public String info_board_update(@RequestParam("uploadfile") MultipartFile file, Company company, Model model, HttpServletRequest request) {
+		System.out.println("info_board_update()처리 컨트롤러 탐");
+		int result = 0;
+			
+		//File cFile = new File("C:/images/", file.getOriginalFilename());
+		 String path = request.getRealPath("/company/upload/");
+			 System.out.println("=====> path : "+path);
+			File cFile = new File(path, file.getOriginalFilename());
+			
+			try {
+				file.transferTo(cFile);
+				System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
+				System.out.println("getPath : " +cFile.getPath());
+			} catch (IllegalStateException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
+			company.setFile_name(file.getOriginalFilename());
+			
+			System.out.println("=>update 후 title :"+company.getTitle()+"/내용: "+company.getContent()+"/ 파일 제목 : "+company.getFile_name());
+			
+			result = companyBoardService.updateRow(company);
+
+			System.out.println("=> 글번호update result : "+company.getNo());	
+		
+			if(result > 0){
+				return "redirect:detailinfo_board_list.do?no="+company.getNo();
+			}else{
+				return "redirect:info_board_list.do";
+			}
+		}
+	
+	//삭제하기
+	@RequestMapping(value = "/info_board_delete.do")
+		public String info_board_delete(String no) {
+			System.out.println("info_board_delete() 컨트롤러 탐");		
+			System.out.println("no : "+ no) ;
+			
+			companyBoardService.deleteRow(Integer.parseInt(no));				
+			return "redirect:info_board_list.do";
+		}
 	
 }

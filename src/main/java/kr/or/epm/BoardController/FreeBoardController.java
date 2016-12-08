@@ -28,10 +28,14 @@ public class FreeBoardController {
 	private FreeBoardService freeboardservice;
 	
 	//사원정보공유 게시판   > 리스트 페이지 이동
-	@RequestMapping(value="/free_board_list.do", method=RequestMethod.GET)
-	public String free_board_list(Model mv, String pagesize, String currentpage) {
-		int totalcount = freeboardservice.selectBoardCount();
+	@RequestMapping(value="/free_board_list.do")
+	public String free_board_list(Model mv, String pagesize, String currentpage, String f, String q) {
+		int totalcount = 0;
 		int pagecount = 0;
+		
+		String field = "title";
+		String query ="%%";
+		
 		System.out.println("처음 들어온 currentpage : " + currentpage);
 		
         if(pagesize == null || pagesize.trim().equals("")){
@@ -41,7 +45,15 @@ public class FreeBoardController {
         if(currentpage == null || currentpage.trim().equals("")){
             currentpage = "1";        //default 1 page
         }
+        if(f != null && !f.equals("")){
+			field = f;
+		}
+		if(q != null && !q.equals("")){
+			query = q;
+		}
         
+		totalcount = freeboardservice.selectBoardCount(field, query);
+		
         System.out.println("최종 currentpage : " + currentpage);
         
       
@@ -59,14 +71,14 @@ public class FreeBoardController {
 		
 		
 		try{
-			 list = freeboardservice.selectBoard(cpage, pgsize); 
+			 list = freeboardservice.selectBoard(cpage, pgsize, field, query); 
 			 System.out.println("list size chk : " +  list.size());
 		}catch(Exception e){
 			e.getMessage();
 		}finally{
 			mv.addAttribute("list", list);
 			mv.addAttribute("cpage", cpage);
-			mv.addAttribute("psize", pgsize);
+			mv.addAttribute("pgsize", pgsize);
 			mv.addAttribute("pagecount", pagecount);
 			mv.addAttribute("totalcount", totalcount);
 		}

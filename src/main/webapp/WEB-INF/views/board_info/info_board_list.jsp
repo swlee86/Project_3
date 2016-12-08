@@ -113,7 +113,9 @@
                     </tbody>
                 </table>
                 <div class="row" style="text-align:right; margin-right:5px;">
-                	<button type="button" class="btn w-xs btn-success" onclick="location.href='info_board_write.do'" >글 등록</button>
+                	<%-- <c:if test="${rec_emp_no}"> --%>
+	                	<button type="button" class="btn w-xs btn-success" onclick="location.href='info_board_write.do'" >글 등록</button>
+	                <%-- </c:if> --%>
                 </div>
 			</div>
 

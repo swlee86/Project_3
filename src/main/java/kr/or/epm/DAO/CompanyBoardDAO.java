@@ -3,7 +3,6 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Company;
-import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
 
 /*
@@ -34,6 +33,13 @@ public interface CompanyBoardDAO {
 	//시큐리티 통한 사원 정보 가져오기
 	Emp_detail selectEmpUserInfo(String id);
 	
+	//조회수 증가하는 함수
+	public int updateHit(int no);
 	
+	//수정하는 함수
+	public int updateRow(Company company);
+
+	//삭제하는 함수
+	public int deleteRow(int no);
 	
 }

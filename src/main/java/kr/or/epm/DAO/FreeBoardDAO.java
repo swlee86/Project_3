@@ -10,8 +10,8 @@ import kr.or.epm.VO.Re_FreeBoard;
 public interface FreeBoardDAO {
 	
 	//FreeBoard 들어갈 때 게시판 글 내용을 불러오는 함수
-	List<FreeBoard> selectList(int start, int end);
-	int selectBoardCount();
+	List<FreeBoard> selectList(int start, int end, String field, String query);
+	int selectBoardCount(String field, String query);
 	FreeBoard selectDetail(int no);
 	List<Re_FreeBoard> selectReList(int no);
 	Re_FreeBoard selectWrite(String id);

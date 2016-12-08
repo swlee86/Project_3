@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 언론게시판 글 상세내용 -->
 	<select id="selectDetail" resultType="kr.or.epm.VO.MediaBoard">
-		select no, emp_no, emp_name, title, content, regdate, file_name
+		select no, emp_no, emp_name, title, content, regdate, file_name, hit
 		from media
 		where no = #{no}
 	</select>

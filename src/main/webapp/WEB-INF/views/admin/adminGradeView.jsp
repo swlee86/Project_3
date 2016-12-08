@@ -43,7 +43,7 @@
 							<hr/>
 							<form class="form-horizontal" method="POST">
 								<div class="form-group">
-									<div class="col-md-offset-1 col-md-2">
+									<div class="col-md-offset-1 col-md-3">
 										<label>이름 </label>
 									</div>
 									<div class="col-md-5">
@@ -53,7 +53,7 @@
 									<div class="col-md-2"></div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-offset-1 col-md-2">
+									<div class="col-md-offset-1 col-md-3">
 										<label>기본급여</label>
 									</div>
 									<div class="col-md-5">
@@ -62,13 +62,13 @@
 									<div class="col-md-4"></div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-offset-1 col-md-2">
+									<div class="col-md-offset-1 col-md-3">
 										<label>추가급여</label>
 									</div>
 									<div class="col-md-5">
 										<input type="text" class="form-control" id="add_pay">
 									</div>
-									<div class="col-md-4"></div>
+									<div class="col-md-4"></div> 
 								</div>
 								
 								<div class="form-group">
@@ -98,7 +98,7 @@
 							<form class="form-horizontal" action="positionModify.do" id="modifyForm">
 								<div class="form-group">
 									
-									<div class="col-md-offset-3 col-md-5"id="selectPosition">
+									<div class="col-md-offset-4 col-md-5"id="selectPosition">
 										<select class="form-control" onchange="selectPosition();">
 												<option>선택</option>
 											<c:forEach var="list" items="${positionList}">
@@ -108,7 +108,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-offset-1 col-md-2">
+									<div class="col-md-offset-1 col-md-3">
 										<label>이름 </label>
 									</div>
 									<div class="col-md-5">
@@ -118,7 +118,7 @@
 									<div class="col-md-2"></div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-offset-1 col-md-2">
+									<div class="col-md-offset-1 col-md-3">
 										<label>기본급여</label>
 									</div>
 									<div class="col-md-5">
@@ -127,7 +127,7 @@
 									<div class="col-md-4"></div>
 								</div>
 								<div class="form-group">
-									<div class="col-md-offset-1 col-md-2">
+									<div class="col-md-offset-1 col-md-3">
 										<label>추가급여</label>
 									</div>
 									<div class="col-md-5">

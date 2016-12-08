@@ -93,7 +93,7 @@ public class AdminController {
 	}
 
 	//직위 관리 페이지
-	@RequestMapping("/adminGrade.do")
+	@RequestMapping(value="/adminGrade.do", method=RequestMethod.GET)
 	public String adminGrade(Model model){
 		List<PositionJoin> list = adminservice.listPosition();
 		System.out.println("리스트 : " +list.toString());

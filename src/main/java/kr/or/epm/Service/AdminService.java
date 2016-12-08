@@ -375,13 +375,29 @@ public class AdminService {
 	public int positionInsert(PositionJoin position) {
 		int result = 0;
 		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
-		result += positionDAO.insertPosition(position);
-
+		
+		
+		result = positionDAO.insertPosition(position);
+			
 		String p_no = positionDAO.selectPosition_no(position);
+		
 		position.setPosition_no(p_no);
-
-		result += positionDAO.insertSet_pay(position);
-		result += positionDAO.insertSet_add_Pay(position);
+		
+		if(result > 0){
+			result = 0;
+			result = positionDAO.insertSet_pay(position);
+		
+		}else{
+			return result;
+		}
+		
+		if(result > 0){
+			result = 0;
+			result = positionDAO.insertSet_add_Pay(position);
+		}else{
+			return result;
+		}
+			
 		return result;
 	}
 
