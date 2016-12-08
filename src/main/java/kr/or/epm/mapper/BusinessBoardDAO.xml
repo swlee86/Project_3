@@ -7,13 +7,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- business 게시판 글 리스트를 불러오는 쿼리문  -->
 <select id="selectList" resultType="kr.or.epm.VO.BusinessBoard">
-select no, title, emp_name,regdate, hit, low_dept_name, depth,step,refer from(select rownum rn, no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer from (select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer from business order by refer desc, step asc) order by rn) where rn between #{param1} and #{param2}
+select no, title, emp_name,regdate, hit, low_dept_name, depth,step,refer 
+	from(select rownum rn, no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer 
+		from (select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer 
+				from business where ${param3} like '%${param4}%' order by refer desc, step asc) order by rn) where rn between #{param1} and #{param2}
 
 </select >
 	
 <!-- business Board(business)의 총 갯수를 불러오는 쿼리문 -->
 <select id="selectBoardCount" resultType="int">
 select count(*) from business
+where ${param1} like '%${param2}%'
 </select>
 
 <!-- business Board list에서 글을 클릭하면 글 내용을 불러오는 쿼리문 -->

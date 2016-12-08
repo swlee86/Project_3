@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.CompanyBoardDAO;
+import kr.or.epm.DAO.MediaBoardDAO;
 import kr.or.epm.VO.Company;
-import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
 
 /*
@@ -60,9 +60,18 @@ public class CompanyBoardService {
 	public Company selectDetailBoard(int no){
 		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
 		Company company = companyboarddao.selectDetail(no);
+		updateHit(no);
+
 		return company;
 	}
 	
+	//조회수 증가하는 함수
+	public void updateHit(int no) {
+		System.out.println("updateHit() 서비스");
+		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
+		int result = companyboarddao.updateHit(no);
+		System.out.println("조회수 restult : "+result);
+	}
 
 	// Company 테이블의 열 갯수를 구하는 서비스 함수
 	public int selectBoardCount() {
@@ -96,5 +105,26 @@ public class CompanyBoardService {
 		return emp;
 	}
 	
+	// 게시판 상세글 불러오는 함수
+	public Company selectDetail(int no) {
+		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
+		Company list = companyboarddao.selectDetail(no);
+		updateHit(no);
+		return list;
+	}
 	
+	//글 수정하는 함수
+	public int updateRow(Company company) {
+		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
+		int result = companyboarddao.updateRow(company);
+		System.out.println("=> 처리결과 result : "+result);
+		return result;
+	}
+	
+	//삭제하는 함수
+	public int deleteRow(int no){
+		CompanyBoardDAO companyboarddao = sqlSession.getMapper(CompanyBoardDAO.class);
+		int result = companyboarddao.deleteRow(no); 
+		return result;
+	}
 }

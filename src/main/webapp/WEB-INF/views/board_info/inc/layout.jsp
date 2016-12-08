@@ -85,10 +85,33 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+
+<script src="vendor/toastr/build/toastr.min.js"></script>
+<link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+
 <script>
 
     $(function () {
-
+    	//alert창
+    	toastr.options = {	 
+    			 "closeButton": true,
+    			  "debug": false,
+    			  "newestOnTop": false,
+    			  "progressBar": false,
+    			  "positionClass": "toast-top-center",
+    			  "preventDuplicates": false,
+    			  "onclick": null,
+    			  "showDuration": "300",
+    			  "hideDuration": "1000",
+    			  "timeOut": "3000",
+    			  "extendedTimeOut": "1000",
+    			  "showEasing": "swing",
+    			  "hideEasing": "linear",
+    			  "showMethod": "fadeIn",
+    			  "hideMethod": "fadeOut"
+    	};
+    	
+    	
         // Initialize summernote plugin
         $('.summernote').summernote();
 
@@ -120,10 +143,41 @@
 			}
 		});
         
-        
-        
+		 $('.deletechk').click(function () {
+	            swal({
+	                        title: "삭제하시겠습니까?",
+	                        text: "확인을 클릭할시 글이 삭제 됩니다.",
+	                        type: "warning",
+	                        showCancelButton: true,
+	                        confirmButtonColor: "#DD6B55",
+	                        confirmButtonText: "확인",
+	                        cancelButtonText: "취소",
+	                        closeOnConfirm: false,
+	                        closeOnCancel: false },
+	                    function (isConfirm) {
+	                        if (isConfirm) {
+	                            swal("삭제되었습니다.", "Your imaginary file has been deleted.", "success");
+	                        } else {
+	                            swal("취소되었습니다.", "Your imaginary file is safe :)", "error");
+	                        }
+	                    });
+	        });
+    
+	    $('#writeForm').submit(function(){
+			if($('#title').val() == ''){
+				toastr.warning("제목을 입력해주세요");
+				$('#title').focus();
+				
+				return false;
+			}if($('#content').val() == ''){
+				toastr.warning("내용을 입력해주세요");
+				$('#content').focus();
+				return false;
+			}else{
+				return true;
+			}
+		});
     });
-
 </script>
 	
 </body>

@@ -116,10 +116,31 @@
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 
+<script src="vendor/toastr/build/toastr.min.js"></script>
+<link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+
 <script>
 
     $(function () {
-
+    	//alert창
+    	toastr.options = {	 
+    			 "closeButton": true,
+    			  "debug": false,
+    			  "newestOnTop": false,
+    			  "progressBar": false,
+    			  "positionClass": "toast-top-center",
+    			  "preventDuplicates": false,
+    			  "onclick": null,
+    			  "showDuration": "300",
+    			  "hideDuration": "1000",
+    			  "timeOut": "3000",
+    			  "extendedTimeOut": "1000",
+    			  "showEasing": "swing",
+    			  "hideEasing": "linear",
+    			  "showMethod": "fadeIn",
+    			  "hideMethod": "fadeOut"
+    	};
+    	
         // Initialize summernote plugin
         $('.summernote').summernote();
 
@@ -159,6 +180,21 @@
                         }
                     });
         });
+    
+        $('#writeForm').submit(function(){
+			if($('#title').val() == ''){
+				toastr.warning("제목을 입력해주세요");
+				$('#title').focus();
+				
+				return false;
+			}if($('#content').val() == ''){
+				toastr.warning("내용을 입력해주세요");
+				$('#content').focus();
+				return false;
+			}else{
+				return true;
+			}
+		});
     
     });
 

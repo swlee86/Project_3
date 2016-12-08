@@ -20,19 +20,20 @@ public class FreeBoardService {
 	private SqlSession sqlSession;
 	
 	//Business 테이블의 열 갯수를 구하는 서비스 함수
-	public int selectBoardCount(){
+	public int selectBoardCount(String field, String query){
 		FreeBoardDAO freeboarddao = sqlSession.getMapper(FreeBoardDAO.class);
-		int result = freeboarddao.selectBoardCount();
+		int result = 0;
+		result = freeboarddao.selectBoardCount(field, query);
 		return result;
 	}
 	
 	//FreeBoard의 리스트를 불러오는 함수(페이징 처리 포함)
-		public List<FreeBoard> selectBoard(int cpage, int pgsize){
+		public List<FreeBoard> selectBoard(int cpage, int pgsize, String field, String query){
 			int start = cpage * pgsize - (pgsize - 1);
 			int end = cpage * pgsize;
 			System.out.println(start + " / " + end);
 			FreeBoardDAO freeboarddao = sqlSession.getMapper(FreeBoardDAO.class);
-			List<FreeBoard> list = freeboarddao.selectList(start, end);
+			List<FreeBoard> list = freeboarddao.selectList(start, end, field, query);
 			return list;
 		}
 		

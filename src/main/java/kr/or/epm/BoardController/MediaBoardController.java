@@ -6,6 +6,7 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -98,9 +99,10 @@ public class MediaBoardController {
 
 	// 언론게시판 > 언론게시판 상세보기 페이지 이동
 	@RequestMapping(value = "/media_board_view.do", method = RequestMethod.GET)
-	public String media_board_view(String pagesize, String no, String pg, Model model) {
+	public String media_board_view(String pagesize, String no, String pg, HttpSession session, Model model) {
 		System.out.println("media_board_view() 컨트롤러 탐");
-		
+		String rec_emp_no = (String)session.getAttribute("emp_no");
+
 		System.out.println("no : "+ no + "pg : "+pg);
 		
 		MediaBoard list = null;
@@ -114,7 +116,8 @@ public class MediaBoardController {
 		model.addAttribute("pg", pg);
 		model.addAttribute("relist", relist);
 		model.addAttribute("pgsize",pagesize);
-		
+		model.addAttribute("rec_emp_no",rec_emp_no);
+
 		return "board_media.media_board_view";
 	}
 	

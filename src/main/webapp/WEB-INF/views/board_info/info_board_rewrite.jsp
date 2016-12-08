@@ -16,23 +16,22 @@
                         <span>게시판</span>
                     </li>
                     <li class="active">
-                        <span>언론 게시판</span>
+                        <span>회사정보 게시판</span>
                     </li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                	언론 게시판
+                	회사정보 게시판
             </h2>
-            <small>회사의 언론정보를 공유하는 게시판입니다.</small>
+            <small>회사의 정보를 확인하는 게시판입니다.</small>
 		</div>
 	</div>
 </div>
 <div class="content animate-panel">
-
 	<div class="row">
 		<div class="col-md-12">
 			<div class="hpanel email-compose">
-			<form method="post" action="" id="writeForm" class="form-horizontal"  enctype="multipart/form-data">
+			<form id="writeForm" method="post" action="" class="form-horizontal"  enctype="multipart/form-data">
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
@@ -40,9 +39,9 @@
 					<div class="p-xs">
 
 							<div class="form-group">
-								<label class="col-sm-1 control-label text-left"> 제 목 : </label>
+								<label class="col-sm-1 control-label text-left" > 제 목 : </label>
 								<div class="col-sm-11">
-									<input type="text" class="form-control input-sm" name="title" id="title" value="${list.title}">
+									<input type="text" class="form-control input-sm" name="title" id="title" value="${company.title}">
 								</div>
 							</div>
 							<div class="form-group">
@@ -53,7 +52,7 @@
 										<button class="btn btn-default" id="clip" type="button">
 											<i class="fa fa-paperclip"></i>
 										</button>
-										<input type="file" name="uploadfile" id="clipfile" value="${list.file_name}" style="display:none;float:left" class="form-control input-xs">
+										<input type="file" name="uploadfile" id="clipfile" value="${company.file_name}" style="display:none;float:left" class="form-control input-xs">
 										
 								<!-- 		<button class="btn btn-default" id="img" type="button">
 											<i class="fa fa-image"></i>
@@ -68,9 +67,7 @@
 					</div>
 				</div>
 				<div class="panel-body no-padding">
-					<div>
-					<textarea rows="20" cols="20" id="content" name="content"  class="summernote">${list.content}</textarea>
-					</div>
+					<textarea rows="20" cols="20" id="content" name="content"  class="summernote">${company.content}</textarea>
 				</div>
 
 
@@ -80,7 +77,7 @@
 							<button class="btn btn-default" type="submit">
 								<i class="fa fa-edit"></i> 글 수정
 							</button>
-							<button class="btn btn-default" type="button" onclick="location.href='media_board_list.do'">
+							<button class="btn btn-default" type="button" onclick="location.href='info_board_list.do'">
 								<i class="fa fa-refresh"></i> 목록으로
 							</button>
 						</div>
@@ -93,5 +90,6 @@
 			</div>
 		</div>
 	</div>
+	
 
 </div>
