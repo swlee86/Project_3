@@ -12,7 +12,6 @@ import kr.or.epm.Service.EmployeeManageService;
 import kr.or.epm.Service.RegisterService;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
-import kr.or.epm.VO.Emp_his_cg;
 import kr.or.epm.VO.EmployeeManage;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
