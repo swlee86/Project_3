@@ -70,7 +70,10 @@
 <script>
 
 $(function () {
-
+	$('#clip').click(function(){
+		console.log('클릭');
+		$('#clipfile').css('display','block');
+	});
     // Initialize summernote plugin
     $('.summernote').summernote();
 

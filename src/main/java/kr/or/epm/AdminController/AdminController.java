@@ -36,16 +36,17 @@ public class AdminController {
 
 	@Autowired
 	private RegisterService registerservice;
+	
 	@Autowired
 	private AdminService adminservice;
+	
 	@Autowired
 	private PayService payservice;
+	
 	@Autowired
 	private CommuteService commuteservice;
 	
-	
-	
-	//관리자 개발.
+	//관리자 개발
 	@RequestMapping(value="/adminDepart_depart.do",method=RequestMethod.GET)
 	@ResponseBody
 	public List<TestAdminDTO> departMent(String depart){
@@ -56,8 +57,6 @@ public class AdminController {
 		list.add(new TestAdminDTO("테스트", "25"));
 		return list;
 	}
-	
-	
 	
 	
 	//관리자 > 지점보기 페이지
