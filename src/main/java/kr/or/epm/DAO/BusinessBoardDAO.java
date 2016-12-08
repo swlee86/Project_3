@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.BusinessBoard;
+import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.Re_BusinessBoard;
 
 public interface BusinessBoardDAO {
@@ -18,4 +19,11 @@ public interface BusinessBoardDAO {
 	int insertReply(Re_BusinessBoard dto);
 	void updateHit(int no);
 	void updateStep(int refer, int step);
+	
+	//수정하는 함수
+	public int updateRow(BusinessBoard businessBoard);
+	
+	//삭제하는 함수
+	public int deleteRow(int no);
+	
 }

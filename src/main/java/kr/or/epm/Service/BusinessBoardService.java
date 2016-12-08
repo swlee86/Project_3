@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.BusinessBoardDAO;
+import kr.or.epm.DAO.MediaBoardDAO;
 import kr.or.epm.VO.BusinessBoard;
+import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.Re_BusinessBoard;
 
 @Service
@@ -87,4 +89,20 @@ public class BusinessBoardService {
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
 		businessboarddao.updateStep(refer, step);
 	}
+	
+	//글 수정하는 함수
+	public int updateRow(BusinessBoard businessBoard) {
+		BusinessBoardDAO businessBoardDAO = sqlSession.getMapper(BusinessBoardDAO.class);
+		int result = businessBoardDAO.updateRow(businessBoard);
+		System.out.println("=> 처리결과 result : "+result);
+		return result;
+	}
+	
+	//삭제하는 함수
+	public int deleteRow(int no){
+		BusinessBoardDAO businessBoardDAO = sqlSession.getMapper(BusinessBoardDAO.class);
+		int result = businessBoardDAO.deleteRow(no); 
+		return result;
+	}
+
 }
