@@ -223,19 +223,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 결재라인 차례 확인하기 -->
 	<select id="selectDraft_line" resultType="String">
-		select z.draft_no
-		from (select draft_no, l.emp_no, e.emp_name, p.position_name, p.step, app_check, app_date
-			  from draft_line l join emp e
-			  on l.emp_no = e.emp_no
-		      join position p
-			  on e.position_no = p.position_no
-			  where app_check != '1' and
-      				draft_no = #{param1}
-      		  order by step desc) z join draft d
-		on z.draft_no = d.draft_no
-		where rownum = '1' and
-      		  z.emp_no = #{param2} and
-      		  cg_no = #{param3}
+		select zz.draft_no
+		from (select rownum n, z.draft_no, z.emp_no
+      		  from (select draft_no, l.emp_no, e.emp_name, p.position_name, p.step, app_check, app_date
+          		 	from draft_line l join emp e
+            		on l.emp_no = e.emp_no
+            		join position p
+            		on e.position_no = p.position_no
+            		where app_check != '1' and
+                  		  draft_no = #{param1}
+      		  		order by step desc) z join draft d
+      		  on z.draft_no = d.draft_no
+      		  where cg_no = #{param3}) zz
+		where zz.n = 1 and
+      		  zz.emp_no = #{param2}
 	</select>
 	
 	<!-- 참조당한 대외발신공문 결재 문서 리스트 -->
