@@ -182,8 +182,6 @@ public class SalaryAjaxController {
 		try{
 		String[] selectdate =date.split("-");
 		
-		
-		//System.out.println("split : "+selectdate[i]);
 		   month = Integer.parseInt(selectdate[1]);
 		   System.out.println("선택한 월 : "+month);
 		   String zeroDate = "";
@@ -195,22 +193,24 @@ public class SalaryAjaxController {
 			   	
 			  		if(currentdate < 10){
 			   		 zeroDate = String.format("%02d", currentdate);
-			   		//System.out.println("0붙었나??"+zeroDate);
+			   		 System.out.println("0붙었나??"+zeroDate);
 			   		}else{
 			   			zeroDate = String.valueOf(currentdate);
+			   			System.out.println(" 0 안붙을 때  : "+zeroDate);
 			   		}
 			   		
 			   		String give_date=selectdate[0]+"-"+zeroDate;
-			   		//System.out.println("give_date: "+give_date);
+			   		System.out.println("give_date: "+give_date);
 			   		//최근 3개월 월별 급여 조회
 			   		Pay pay = payservice.selectPay_mine_Monthly(emp.getEmp_no(), give_date);
 			   		list.add(pay);
+			   		System.out.println(" paylist size: "+list.size());
 			   		
 			   }
 		    }
 		   //재직일수
 		   String regdate = payservice.selectRegdate(emp.getEmp_no());
-		   System.out.println("regdate: "+regdate +"선택한 날짜: "+date);
+		   System.out.println("regdate 입사일  : "+regdate +"선택한 날짜: "+date);
 		  
 		   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		   

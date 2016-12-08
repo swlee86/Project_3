@@ -127,7 +127,12 @@ small {
 									<div style="text-align:center">
 										<div class="row">	
 												<div class="col-md-offset-4 col-md-4" id="logOutDiv">
-													<input type="hidden" name="loginRedirect"
+													<%-- <input type="hidden" name="loginRedirect"
+														value="${loginRedirect}" /> <a class="btn btn-default"
+														href="#" id="googlelogout"
+														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
+														로그아웃</a> --%>
+														<input type="hidden" name="loginRedirect"
 														value="${loginRedirect}" /> <a class="btn btn-default"
 														href="#" id="googlelogout"
 														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
@@ -415,11 +420,11 @@ small {
 	
 	$(function(){
 		
-		if($('#username').val() == ''){
+		/* if($('#username').val() == ''){
 			$('#logOutDiv').hide();
 		}else{
 			$('#logOutDiv').show();
-		}
+		} */
 		
 		//회원 가입 버튼 클릭시 처음 실행되는 아작스 함수.
 		$('#addMemberAjaxAtag').click(function(){
@@ -547,7 +552,7 @@ small {
 		    auth2.signOut().then(function () {
 		      console.log('User signed out.');
 		      console.log("마지막");
-		      <%session.invalidate();%>
+		      <%-- <%session.invalidate();%> --%>
 		    });
 		  } 
 

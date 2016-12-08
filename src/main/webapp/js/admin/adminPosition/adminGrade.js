@@ -150,7 +150,6 @@ function checkPositionName(){
 			url : "insertPosition.do",
 			data :  {position_name: position, step:itemid.length, set_date:today,basic_pay:basic_pay, add_pay:add_pay}, 
 		    success : function(data){
-		    	
 		    	//내가 입력한것을 li 태그로 추가해줌
 				var li = "<li class='gradLi ui-sortable-handle' value='"+position+"'><i class='fa fa-thumbs-o-up'></i>"+position+"</li>";
 				//ul - li 에 추가
