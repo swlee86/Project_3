@@ -127,7 +127,8 @@
 								     </c:when>
 									 <c:otherwise>
 										<tr>
-											<td colspan="10" style="text-align: center;">급여 목록이
+										    <td></td> 
+											<td colspan="11" style="text-align: center;">급여 목록이
 												없습니다.</td>
 										</tr>
 									</c:otherwise>

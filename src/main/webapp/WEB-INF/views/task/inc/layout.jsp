@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 
 
 <!--jQuery UI CSS-->
@@ -276,6 +277,7 @@ ul {
    <script src="vendor/peity/jquery.peity.min.js"></script>
    <script src="vendor/sparkline/index.js"></script>
    <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+   <script src="vendor/toastr/build/toastr.min.js"></script>
    <!-- App scripts -->
    <script src="scripts/homer.js"></script>
    
@@ -351,8 +353,20 @@ ul {
                monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
                      '8월', '9월', '10월', '11월', '12월' ],
                dateFormat : 'yy-mm-dd',
-               changeYear : true
+               changeYear : true,
+               beforeShowDay: function(date){
+                   var loadDt = new Date();
+                   var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+                    
+                   if(date < dayday) return [false];  //선택못해
+                   return [true];
+                 },
+                 onSelect: function(selected) {
+                    $('.formendDate').datepicker("option","minDate", selected)
+                 }
             });
+      
+      
       $('.demo4').click(function() {
          swal({
             title : "삭제 하시겠습니까?",
@@ -374,18 +388,164 @@ ul {
             }
          });
       });
-      $('.demo2').click(function() {
+    /*   $('.demo2').click(function() {
          swal({
             title : "등록성공",
             text : "정상적으로 업무가 등록되었습니다.",
             type : "success"
          });
-      });
+      }); */
       
       
 
       
       $(function() {
+    	  
+    	  
+          $('#con_ins_org_sea_btn').click(function(){
+        	  console.log("@@@@con_sear 머나오닝ㅇㅇㅇㅇ???? : "+con_sear);
+        	  console.log("@@@@con_sear 머나오닝ㅇㅇㅇㅇ???? : "+(con_sear==2));
+          	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
+          	$.ajax(
+      				{
+      					type : "post",
+      					url  : "contact_insert_search.do",
+      					data : {
+      						"field" : $('#con_ins_org_sea_field').val(),
+      						"query" : $('#con_ins_org_sea_query').val()
+      						
+      					},
+      					success : function(data){
+      						console.log(data);
+      						 var emp = "";
+      						 var  makeTable ;
+      		                    $.each(data, function(index){
+      		                       emp = data[index];
+      		                       console.log("객체 : "+emp);
+  									console.log("emp:"+ data[index]);    		                       	
+      		                   });
+      		                    console.log("객체s : "+emp[0]);
+      		                  
+      		                    
+      		                  if(con_sear == 1){  
+                                  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>선택</th></tr>";
+                               }else if(con_sear ==2){
+                                  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
+                               }
+                               
+                               $.each(emp, function(index){
+                                  if(con_sear == 1){   
+                                     makeTable += "<tr style='text-align:center'><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
+                                  }
+                                  else if(con_sear == 2){  //여러명
+                                     makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+                                  }
+                               });
+                               
+                                if(con_sear == 1){  
+                                  makeTable += "</table>";
+                               }else if(con_sear ==2){
+                                  makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+                               }
+      		                    
+
+      		               
+      		                   $('#empList2').empty();
+      		                   $('#empList2').append(makeTable); 
+      		                 	con_sear = 0;
+      					}
+      				}		
+      			)
+          	
+          });
+          
+          
+          
+          
+          
+    	  
+    	 
+    	   toastr.options = {	 
+			 "closeButton": true,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "2000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+	        };
+    	   
+    	   //업무등록시  유효성
+			$('#submitBtn').click(function() {
+				console.log("이거탐?");
+				if ($('#upmoo').val() == "") {
+					toastr.warning('업무명을 입력해 주세요');
+					$('#upmoo').focus();
+					return false;
+				}
+				
+				if($(':radio[name="cg_no"]:checked').length < 1){
+					toastr.warning('업무유형을 입력해 주세요');                
+					$('#inlineRadio1').focus();
+					return false;
+				}
+				
+				if ($('#rec_emp_no').val() == "") {
+					toastr.warning('수신자사번을 입력해 주세요');
+					$('#rec_emp_no').focus();
+					return false;
+				}
+				
+				
+				if ($('#rec_name').val() == "") {
+					toastr.warning('수신자명을 입력해 주세요');
+					$('#rec_name').focus();
+					return false;
+				}
+				
+				if ($('#chamjoInput').val() == "") {
+					toastr.warning('참조자사번을 입력해 주세요');
+					$('#chamjoInput').focus();
+					return false;
+				}
+				
+				if ($('#task_name').val() == "") {
+					toastr.warning('참조자명을 입력해 주세요');
+					$('#task_name').focus();
+					return false;
+				}
+				
+				if ($('#makeuserUpdateDate').val() == "") {
+					toastr.warning('업무기한을 입력해 주세요');
+					$('#makeuserUpdateDate').focus();
+					return false;
+				}
+				
+				if ($('#content').val() == "") {
+					toastr.warning('내용을 입력해 주세요');
+					$('#content').focus();
+					return false;
+				}
+				
+			
+				 swal({
+			            title : "등록성공",
+			            text : "정상적으로 업무가 등록되었습니다.",
+			            type : "success"
+			         });	
+				
+			}); 
+    	  
+    	  
+    	  
     	  
     	  //모달 창 닫기 
     	  $('#closeModal').click(function(){
@@ -408,12 +568,19 @@ ul {
          
          // 참조자 아이콘 클릭시
          $('#deptA').click(function() {
+        	 
+        	 con_sear = 2;
+        	 console.log("@@@@con_sear : "+con_sear);
         	var empSelectNumber = 2;
  			var litag = "<ul style='list-style:none;margin-left:0px;'>"; 
  			
      		$('#organization').empty();
      		$('#empList').empty();
-                  
+     		$('#empList2').empty();
+     		$('#con_ins_org_sea_query').val('');
+     		$('#chamjoInput').val('');
+     		$('#task_name').val('');
+     		
               	$.ajax({
         			url : "taskWriteModal.do",
         			success : function(data) {
@@ -440,13 +607,19 @@ ul {
         		})
             });
          
+         var con_sear = 0;
          
          //수신자 아이콘 클릭시
          $('#recIcon').click(function(){
+        	 con_sear = 1;
+        	 console.log("@@@@con_sear : "+con_sear);
         	var empSelectNumber = 1;
  			var litag = "<ul style='list-style:none;margin-left:0px;'>";   		
         	$('#organization').empty();
             $('#empList').empty();
+        	$('#empList2').empty();
+     		$('#con_ins_org_sea_query').val('');
+     		
             $.ajax({
                url : "taskWriteModal.do",
                success : function(data) {
@@ -578,14 +751,14 @@ ul {
          alert("selectNo : " + empSelectNumber);
          var makeTable = "";
          if(empSelectNumber == 1){
-          makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
+          makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th>선택</th></tr>";
          }else{
-          makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+          makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
          }
          
          $.ajax(
                {
-                  url: "taskEmpModal.do",
+                  url: "taskEmpModal_exclude.do",
                   data:{
                 	  low_dept_no: empListNumber
                        },
@@ -600,7 +773,7 @@ ul {
                       
                      $.each(emp, function(index){
                         if(empSelectNumber == 1){   
-                           makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
+                           makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
                         }
                         else if(empSelectNumber == 2){
                            makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
@@ -637,8 +810,8 @@ ul {
                var input_no = "";
                var input_name = "";
                for(var i = 1; i < empInfoArray.length; i++){
-                  input_no += "<input type='text' class='form-control' name='emp_no' value='"+empInfoArray[i].emp_no+"'>";
-                  input_name +="<input type='text' class='form-control' value='"+empInfoArray[i].emp_name+"'>";
+                  input_no += "<input type='text' readonly class='form-control input-sm' name='emp_no' value='"+empInfoArray[i].emp_no+"'>";
+                  input_name +="<input type='text' readonly class='form-control input-sm' value='"+empInfoArray[i].emp_name+"'>";
                }
                $('#task_no_td').append(input_no);
                $('#task_name_td').append(input_name);
@@ -646,12 +819,14 @@ ul {
                $("#chamjoInput").val(empInfoArray[0].emp_no);
                $('#task_name').val(empInfoArray[0].emp_name);            
             }
-         
+           empInfoArray.splice(0,empInfoArray.length);
+           console.log("####사원  정보 지우기 : "+empInfoArray);
          $("#myModal6").modal("hide");
       }
       
       //수신자 선택시
       function recF(obj){
+    	
          //수신자 사번
          var rec_emp_no = $(obj).parent().parent().children().eq(0).html();
          //수신자 이름
@@ -660,7 +835,10 @@ ul {
          $('#hiddenEmp_no').val(rec_emp_no);
          $('#rec_name').val(rec_name);
          $('#myModal6').modal("hide");
+         con_sear = 0;
       }
+      
+
       
       // 검색하기
       function search() {

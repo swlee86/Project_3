@@ -17,7 +17,7 @@
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">업무 등록</h2>
-			<small>&nbsp;&nbsp;&nbsp;업무를 등록할 수 있습니다^^</small>
+			<small>업무를 등록할 수 있습니다^^</small>
 		</div>
 	</div>
 </div>
@@ -28,7 +28,7 @@
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
-						<form id="taskForm" method="POST" enctype="multipart/form-data">
+						<form   id="taskForm" method="POST" enctype="multipart/form-data">
 							<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1"
 									class="table table-bordered" style="margin-bottom: 0px;">
@@ -38,7 +38,7 @@
 											<font color="#f05050">*</font> 업무 명
 										</th>
 										<td colspan="3"><input type="text"
-											class="form-control input-sm" name="task_name"></td>
+											class="form-control input-sm" name="task_name" id="upmoo"></td>
 									</tr>
 									<tr>
 										<th
@@ -65,7 +65,7 @@
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 수신자 사번
 										</th>
-										<td id="rec_no_td"><span class="input-group"> <input
+										<td id="rec_no_td"><span class="input-group"> <input readonly
 												type="text" class="form-control input-sm" id="rec_emp_no"
 												name="rec_emp_no" /> <a type="button"
 												class="btn btn-default input-group-addon" id="recIcon">
@@ -78,8 +78,8 @@
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 수신자 명
 										</th>
-										<td style="width: 40%" id="rec_name_td"><input
-											type="text" class="form-control input-sm" id="rec_name"
+										<td style="width: 40%" id="rec_name_td"><input readonly
+											type="text" class="form-control input-sm" id="rec_name" 
 											name="rec_name"></td>
 									</tr>
 									<tr>
@@ -99,7 +99,7 @@
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 참조자 명
 										</th>
-										<td style="width: 40%" id="task_name_td"><input
+										<td style="width: 40%" id="task_name_td"><input  readonly
 											type="text" class="form-control input-sm" id="task_name">
 										</td>
 									</tr>
@@ -129,7 +129,7 @@
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="coral">*</font> 내용
 										</th>
-										<td><textarea cols="10" rows="10" class="form-control"
+										<td><textarea cols="10" rows="10" class="form-control" id="content"
 												name="content"></textarea></td>
 									</tr>
 									<tr>
@@ -144,7 +144,7 @@
 								</table>
 								<div class="row" style="text-align: right; margin-right: 10px;">
 									<input type="submit" id="submitBtn"
-										class="btn btn-sm btn-success demo2" value="완료"
+										class="btn btn-sm btn-success " value="완료"
 										style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px"
 										onclick="send()">
 								</div>

@@ -41,7 +41,25 @@ public class Office {
 	private String dept_name;
 	private String branch_name;
 	private String rec_date;
+	private String app_check;
+	private String position_name;
 	
+	public String getPosition_name() {
+		return position_name;
+	}
+
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
+	}
+
+	public String getApp_check() {
+		return app_check;
+	}
+
+	public void setApp_check(String app_check) {
+		this.app_check = app_check;
+	}
+
 	public String getRec_date() {
 		return rec_date;
 	}
@@ -179,7 +197,7 @@ public class Office {
 	}
 
 	public String getDraft_content() {
-		return draft_content;
+		return draft_content.replace("\r\n","<br>");
 	}
 
 	public void setDraft_content(String draft_content) {

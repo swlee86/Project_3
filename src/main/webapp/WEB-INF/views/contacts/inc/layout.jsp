@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- Page title -->
-<title>EPM</title>
+<title>2PM</title>
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -21,7 +21,8 @@
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
-
+  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+  
 <!-- App styles -->
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
@@ -135,6 +136,48 @@
  		
  	//상세보기
 	$(function(){		
+		
+		//주소록 그룹 등록 - 이름 필수
+		$('#contact_group_from_submit').click(function() {
+			console.log("이거탐?");
+			if ($('#group_name').val() == "") {
+				toastr.warning('그룹이름을 입력해 주세요');
+				$('#group_name').focus();
+				return false;
+			}
+		});
+		
+		
+		 toastr.options = {	 
+				 "closeButton": true,
+				  "debug": false,
+				  "newestOnTop": false,
+				  "progressBar": false,
+				  "positionClass": "toast-top-center",
+				  "preventDuplicates": false,
+				  "onclick": null,
+				  "showDuration": "300",
+				  "hideDuration": "1000",
+				  "timeOut": "2000",
+				  "extendedTimeOut": "1000",
+				  "showEasing": "swing",
+				  "hideEasing": "linear",
+				  "showMethod": "fadeIn",
+				  "hideMethod": "fadeOut"
+		        };
+		
+		 //주소록 등록시 - 제목 필수
+		$('#submit_btn').click(function() {
+			console.log("이거탐?");
+			if ($('#enrol_name').val() == "") {
+				toastr.warning('이름을 입력해 주세요');
+				$('#enrol_name').focus();
+				return false;
+			}
+		});
+		
+		
+		
 /* 		if($('#contactmsg').val() == -1){
 			 swal({
 	                title: "주소록 그룹 관리를 할 수 없습니다.",
@@ -536,12 +579,12 @@
        if(empSelectNumber == 1){
         makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th>선택</th></tr>";
        }else{
-        makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th></tr>";
+        makeTable = "<table class='table'><tr><th>선택</th><th>사번</th><th>이름</th></tr>";
        }
        
        $.ajax(
              {
-                url: "taskEmpModal.do",
+                url: "taskEmpModal_exclude.do",
                 data:{
               	  low_dept_no: empListNumber
                      },
@@ -692,6 +735,7 @@
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
 	<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+	<script src="vendor/toastr/build/toastr.min.js"></script>
 	<!-- App scripts -->
 	<script src="scripts/homer.js"></script>
 

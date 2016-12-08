@@ -80,7 +80,11 @@ public class PayService {
 	
 	//급여 선택 월 정보 리스트 뿌려주기  - > 카드 에서 상세보기 버튼 클릭시 사용됨
 	public List<PayList> select_payMoth_Detail(String date){
-		System.out.println("기지급 급여 관리 : "+date);
+	    String[] datearray = date.split("-");
+	    int month = Integer.parseInt(datearray[1])-1;
+		String com_date =datearray[0]+"-"+String.valueOf(month);
+		
+		System.out.println("기지급 급여 관리  급여 date : "+date +" 근태 date : "+ com_date);
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 	    List<PayList> list = dao.select_payMoth_Detail(date);
 	    System.out.println("급여 list size: "+list.size());
