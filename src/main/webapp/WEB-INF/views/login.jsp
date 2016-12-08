@@ -85,10 +85,10 @@ small {
 									<small>WelCome 2pm! 
 										<c:if test="${param.error != null}">
 											<div>
-												<%-- <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}"> --%>
+											
 		       										${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 													<c:remove scope="session" var="SPRING_SECURITY_LAST_EXCEPTION"/>
-												<%-- </c:if> --%>
+										
 											</div>
 										</c:if>
 									</small>
