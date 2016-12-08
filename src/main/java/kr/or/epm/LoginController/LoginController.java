@@ -148,9 +148,29 @@ public class LoginController {
 		
 		
 		//비밀번호찾기
-		@RequestMapping("/findPw.do")
-		public String findPw(){			
-			return null;
+		@RequestMapping(value="/findPw.do", method=RequestMethod.POST)
+		public View findPw(EmpJoinEmp_Detail emp, Model model){	
+			System.out.println("비밀번호 찾기 : "+emp.toString());
+			String pw = null;
+			
+			try{
+				
+				pw = service.selectFindPw(emp);
+				
+				System.out.println("pw : "+pw);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				
+				if(pw != null || pw != "실패"){
+					System.out.println("임시 비밀번호는요 ?????????????????????????? "+pw);
+					model.addAttribute("temp",pw);
+				}else{
+					model.addAttribute("temp","실패하였습니다.");
+				}
+			}			
+			return jsonview;
 		}
 		
 		/*

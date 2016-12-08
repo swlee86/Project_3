@@ -36,5 +36,9 @@ public interface LoginDAO {
 	
 	//로그인 시 아이디 찾기
 	String selectEmp_FindId(EmpJoinEmp_Detail emp);
+	//로그인 시 임시 비밀번호 찾기
+	String selectEmp_FindPw(EmpJoinEmp_Detail emp);
+	
+	int updateEmp_TempPw(String emp_no, String pwd);
 	
 }

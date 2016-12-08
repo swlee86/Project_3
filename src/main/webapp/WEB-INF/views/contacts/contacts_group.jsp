@@ -13,8 +13,8 @@
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.html">홈</a></li>
-					<!-- <li><span>App views</span></li> -->
-					<li class="active"><span>주소록</span></li>
+					<li><span>주소록</span></li> 
+					<li class="active"><span>주소록 그룹 관리</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">개인 주소록</h2>
@@ -126,7 +126,7 @@
 							 			<tr>
 							 				<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:20%"><font color="#f05050">*</font> 그룹명</th>
 											<td>
-												<input type="text" name="group_name" id="group_name"class="form-control  input-sm" >
+												<input type="text" name="group_name" id="group_name" class="form-control  input-sm" >
 												<input type="hidden" name="pre_group_no" id="pre_group_no" value="">
 											</td>
 							 			</tr>			 				

@@ -69,18 +69,37 @@
 #startBtn{
 	border: 0;
 	outline: 0;
+	width: 130px; 
+	height: 40px; 
+	font-size: 15px; 
+	opacity:0.1; 
+	background-color: #555555; 
+	color: white; 
+	z-index: 1;
+	animation-name: example;
+    animation-duration: 4s;
+    /*애니메이션 끝나구 고정.*/
+    animation-fill-mode: forwards;
+}
+
+
+/* Standard syntax */
+@keyframes example {
+    from {background-color: #555555;}
+    to {
+    	background-color: #3232FF;
+     	opacity : 0.8;	
+    	}
 }
 </style>
 </head>
 <body style="overflow-y:hidden">
 
-	<!-- Simple splash screen-->
-	<div class="splash">
+<div class="splash">
 		<div class="color-line"></div>
 		<div class="splash-title">
-			<h1>Homer - Responsive Admin Theme</h1>
-			<p>Special Admin Theme for small and medium webapp with very
-				clean and aesthetic style and feel.</p>
+			<h1>2PM</h1>
+			<p>Now loading...</p>
 			<div class="spinner">
 				<div class="rect1"></div>
 				<div class="rect2"></div>
@@ -100,7 +119,7 @@
 				<div class="centered">
 				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
-					<input type="button" id="startBtn" value="시작하기" style="width: 130px; height: 40px; font-size: 15px; opacity:0.3; background-color: #555555; color: white; z-index: 1;"> 
+					<input type="button" id="startBtn" value="시작하기"> 
 					<!-- <a href="login.do" class="btn"
 					style="width: 130px; height: 40px; font-size: 15px; opacity:0.3;">시작하기</a> -->
 				</div>

@@ -32,7 +32,25 @@ public class Cooperation {
     // 추가
 	private String emp_name;
 	private String rec_check;
+	private String rec_date;
+	private String app_check;
 	
+	public String getApp_check() {
+		return app_check;
+	}
+
+	public void setApp_check(String app_check) {
+		this.app_check = app_check;
+	}
+
+	public String getRec_date() {
+		return rec_date;
+	}
+
+	public void setRec_date(String rec_date) {
+		this.rec_date = rec_date;
+	}
+
 	public String getRec_check() {
 		return rec_check;
 	}

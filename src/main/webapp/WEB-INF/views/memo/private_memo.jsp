@@ -64,7 +64,6 @@ $(function(){
 			)
 	}
 
-	
 });
 </script>
 <div class="normalheader transition animated fadeIn">

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,12 +48,12 @@ public class DraftAjaxController {
 	
 	// 승인 처리하기
 	@RequestMapping(value="/updateDraft_approval.do", method=RequestMethod.POST)
-	public View updateDraft_approval(String draft_no, String app_check) {
+	public View updateDraft_approval(HttpSession session, String draft_no, String app_check, Model model) {
 		System.out.println("CONTROLLER-AJAX] 전자결재 승인처리");
 		System.out.println("넘겨진 draft_no : " + draft_no);
 		System.out.println("넘겨진 app_check : " + app_check);
 		
-		
+		service.updateDraft_line_app(session, draft_no, app_check);
 		
 		return jsonview;
 	}

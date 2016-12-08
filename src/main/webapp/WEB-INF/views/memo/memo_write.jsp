@@ -24,7 +24,36 @@ $(function(){
 		$('#memo_plus_content').css('background-color',color);
 		
 	});
-});
+	
+	
+
+	 toastr.options = {	 
+			 "closeButton": true,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "2000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+	        };
+	//제목 필수
+	$('#submit_btn').click(function() {
+		console.log("이거탐?");
+		if ($('#memo_plus_title').val() == "") {
+			toastr.warning('제목을 입력해 주세요');
+			$('#memo_plus_title').focus();
+			return false;
+		}
+	});
+	});
 </script>
 
         <div class="col-md-9">
@@ -49,7 +78,7 @@ $(function(){
                                 <textarea class="form-control" id="memo_plus_content"  style="background: ;" placeholder="본문 입력" name="memo_content" wrap="hard"></textarea>
                             </div>
                             <div class="pull-right">
-                                <button class="btn btn-sm btn-default" type="submit"><span class="glyphicon glyphicon-ok"></span> <b>Save</b></button>
+                                <button class="btn btn-sm btn-default" id="submit_btn" ><span class="glyphicon glyphicon-ok"></span> <b>Save</b></button>
                             </div>
                         </form>
                         </div>

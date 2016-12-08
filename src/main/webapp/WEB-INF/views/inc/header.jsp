@@ -16,6 +16,11 @@ $(function(){
 				}
 			});
 	});
+	
+	$('#logo').click(function(){
+		location.href="index.do";
+	});
+	
 });
 </script>
 <meta name="google-signin-client_id" content="279959715456-km9o7eijb5j8sr8kn9i98dtmitu5l1tt.apps.googleusercontent.com">
@@ -24,13 +29,7 @@ $(function(){
 <div id="header">
     <div class="color-line">
     </div>
-    <div id="logo" class="light-version" >
-    	<a href="index.do">
-	        <span>
-	            2PM
-	        </span>
-		</a>
-    </div>
+    <div id="logo" class="light-version" style="background-image: url('images/headerLogo.png');"></div>
     <nav role="navigation">
         <div class="header-link hide-menu">
         	&nbsp;<i class="fa fa-bars"></i></div>
