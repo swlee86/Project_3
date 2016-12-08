@@ -41,7 +41,7 @@
 <script>
 
 var webSocket;	
-webSocket = new WebSocket("ws://localhost:8090/epm/chat_ws");
+webSocket = new WebSocket("ws://192.168.0.236:8090/epm/chat_ws");
 
 var mytextA = document.getElementById('chatMessage');
 var content = document.getElementById('chatTextArea');
