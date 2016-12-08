@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectDetail" resultType="kr.or.epm.VO.Company">
-		select no, emp_name,title, content, hit, file_name, regdate from company where no = #{no}
+		select no, emp_no,emp_name,title, content, hit, file_name, regdate from company where no = #{no}
 	</select>
 	
 	<!--게시판 글쓰기-->
@@ -61,4 +61,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						  ) n
 					) where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}
 	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateHit">
+		update company set hit=hit+1 where no=#{no}
+	</update>
+	
+	<!-- 글 수정 -->
+	<update id="updateRow">
+		update company
+		set title=#{title}, 
+			content=#{content}, 
+			file_name=#{file_name,jdbcType=VARCHAR}
+		where no=#{no}
+	</update>	
+	
+	<!-- 글 제거 -->
+	<delete id="deleteRow">
+		delete company where no=#{no}
+	</delete>
+	
 </mapper>

@@ -28,14 +28,14 @@
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
-				<form method="POST" class="form-horizontal" action="CompanyBoardWrite.do" enctype="multipart/form-data">
+				<form method="POST" class="form-horizontal" id="writeForm" action="CompanyBoardWrite.do" enctype="multipart/form-data">
 				<div class="panel-heading hbuilt">
 					<div class="p-xs">
 						
 							<div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 제 목 : </label>
 								<div class="col-sm-11">
-									<input type="text" class="form-control input-sm" id="info_board_title" name="title"
+									<input type="text" class="form-control input-sm" id="title" name="title"
 										placeholder="안녕하세요">
 								</div>
 							</div>
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 				<div class="panel-body no-padding">
-					<textarea class="summernote" name="content"></textarea>
+					<textarea class="summernote" name="content" id="content"></textarea>
 				</div>
 		
 

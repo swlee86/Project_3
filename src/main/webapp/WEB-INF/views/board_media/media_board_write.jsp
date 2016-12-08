@@ -32,7 +32,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="hpanel email-compose">
-			<form method="post" action="" class="form-horizontal"  enctype="multipart/form-data">  
+			<form method="post" action="" class="form-horizontal" id="writeForm"enctype="multipart/form-data">  
 				<div class="panel-heading hbuilt">
 					<div class="p-xs h4">글쓰기</div>
 				</div>
@@ -43,7 +43,7 @@
 							<div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 제 목 : </label>
 								<div class="col-sm-11">
-									<input type="text" class="form-control input-sm" name="title">
+									<input type="text" class="form-control input-sm" name="title" id="title">
 								</div>
 							</div>
 							<div class="form-group">

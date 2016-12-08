@@ -17,19 +17,20 @@ public class BusinessBoardService {
 	private SqlSession sqlSession;
 	
 	//BusinessBoard의 리스트를 불러오는 함수(페이징 처리 포함)
-	public List<BusinessBoard> selectBoard(int cpage, int pgsize){
+	public List<BusinessBoard> selectBoard(int cpage, int pgsize, String field, String query){
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
 		System.out.println(start + " / " + end);
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);		
-		List<BusinessBoard> list = businessboarddao.selectList(start, end);
+		List<BusinessBoard> list = businessboarddao.selectList(start, end, field, query);
 		return list;
 	}
 	
 	//Business 테이블의 열 갯수를 구하는 서비스 함수
-	public int selectBoardCount(){
+	public int selectBoardCount(String field, String query){
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);
-		int result = businessboarddao.selectBoardCount();
+		int result = 0;
+		result = businessboarddao.selectBoardCount(field, query);
 		return result;
 	}
 	
