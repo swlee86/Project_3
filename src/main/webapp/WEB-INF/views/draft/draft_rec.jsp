@@ -1,8 +1,14 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 여기 animated 들어갔는데 변경할 부분 있으면 수정하자 -->
+<!--  
+	작성일 : 2016-12-06
+	작성자 : 백승아
+	사용 목적 : 전자결재 수신함 뷰
+-->
+
     <div class="normalheader transition animated fadeIn">
         <div class="hpanel">
             <div class="panel-body">
@@ -52,6 +58,8 @@
 </div>
 </form>
 
+
+<!-- 대외 발신 공문 -->
 <div class="hpanel forum-box">
     <div class="panel-heading">
                 <div class="pull-right" style="width: 35%;">
@@ -71,28 +79,19 @@
 	<c:forEach var="office" items="${ officelist }">
     <div class="panel-body">
         <div class="row">
-        	<div class="col-md-8 forum-heading">
+        <c:if test="${ officecount == 0 }">
+        	<div class=""> 대외 발신 공문 수신 내역이 없습니다 </div>
+        </c:if>
+        <c:if test="${ officecount != 0 }">
+        	<div class="col-md-6 forum-heading">
 				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;">
-				<c:choose>
-					<c:when test="${ office.rec_check != null }">
-						<c:if test="${ office.rec_check == '0' }">
-            				<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
-            			</c:if>
-                			${ office.draft_date } 
-                	</c:when>
-                	<c:when test="${ office.rec_check == null }">
-                		<c:if test="${ office.rec_date == null }">
-                			<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
-            			</c:if>
-                			${ office.draft_date } 
-                	</c:when>
-                </c:choose>
+                	${ office.draft_date } 
            	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="office_detail.do?draft_no=${ office.draft_no }"><h4> ${ office.draft_title } </h4></a>
             	</div>
             </div>
-            <div class="col-md-2 forum-info" style="margin-top: 7px;">
+            <div class="col-md-4 forum-info" style="margin-top: 7px;">
                 <span style="display: block; font-weight: 550; font-size: 18px;"> ${ office.rec_place } </span>
                 <small>${ office.rec_addr }</small>
             </div>
@@ -118,12 +117,14 @@
                 	</c:choose>
                 </span>
             </div>
+        </c:if>
         </div>
     </div>
 	</c:forEach>
 </div>
 
 
+<!-- 협조문 -->
 <div class="hpanel forum-box">
     <div class="panel-heading">
     	<div class="pull-right" style="width: 35%;">
@@ -143,22 +144,13 @@
 	<c:forEach var="cooper" items="${ cooperationlist }">
     <div class="panel-body">
         <div class="row">
+        <c:if test="${ cooperationcount == 0 }">
+        	<div class=""> 협조문 수신 내역이 없습니다 </div>
+        </c:if>
+        <c:if test="${ cooperationcount != 0 }">
         	<div class="col-md-8 forum-heading">
 				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 
-				<c:choose>
-					<c:when test="${ cooper.rec_check != null }">
-						<c:if test="${ cooper.rec_check == '0' }">
-            				<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
-            			</c:if>
-                			${ cooper.draft_date } 
-                	</c:when>
-                	<c:when test="${ cooper.rec_check == null }">
-                		<c:if test="${ cooper.rec_date == null }">
-                			<span class="label label-warning pull-left" style="margin-right: 5px;">New</span>
-            			</c:if>
-                			${ cooper.draft_date } 
-                	</c:when>
-                </c:choose>
+					${ cooper.draft_date }
            	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="cooperation_detail.do?draft_no=${ cooper.draft_no }"><h4> ${ cooper.draft_title } </h4></a>
@@ -190,11 +182,14 @@
                 	</c:choose>
                 </span>
             </div>
+        </c:if>
         </div>
     </div>
 	</c:forEach>
 </div>
 
+
+<!-- 휴가 신청서 -->
 <div class="hpanel forum-box">
     <div class="panel-heading">
 		<div class="pull-right" style="width: 35%;">
@@ -214,23 +209,13 @@
 	<c:forEach var="br" items="${ breaklist }">
     <div class="panel-body">
         <div class="row">
+        <c:if test="${ breakcount == 0 }">
+        	<div class=""> 휴가 신청서 수신 내역이 없습니다 </div>
+        </c:if>
+        <c:if test="${ breakcount != 0 }">
         	<div class="col-md-8 forum-heading">
 				<div class="desc" style="margin-bottom: 10px; margin-left: 1%;"> 	
-                <c:choose>
-					<c:when test="${ br.rec_check != null }">
-						<c:if test="${ br.rec_check == '0' }">
-            				<span class="label label-success pull-left" style="margin-right: 5px;">New</span>
-            			</c:if>
-                			${ br.draft_date } 
-                	</c:when>
-                	<c:when test="${ br.rec_check == null }">
-                		<c:if test="${ br.rec_date == null }">
-                			<span class="label label-info pull-left" style="margin-right: 5px;">New</span>
-            			</c:if>
-                			${ br.draft_date } 
-                	</c:when>
-                </c:choose>
-           	 	
+                	${ br.draft_date }
            	 	</div>
             	<div style="margin-left: 2%;">
                 	<a href="break_detail.do?draft_no=${ br.draft_no }"><h4> ${ br.draft_title } </h4></a>
@@ -262,11 +247,11 @@
                 	</c:choose>
                 </span>
             </div>
+        </c:if>
         </div>
     </div>
 	</c:forEach>
 </div>
-
 </div>
 </div>
 </div>

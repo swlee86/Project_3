@@ -82,13 +82,13 @@ small {
 							<div id="page-top">
 								<div class="heading">
 									<h3 style="color: white">로그인</h3>
-									<small>WelCome 2pm! <c:if test="${param.error != null}">
+									<small>WelCome 2pm! 
+										<c:if test="${param.error != null}">
 											<div>
-												로그인실패<br>
-												<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-		       										이유 : <c:out
-														value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-												</c:if>
+											
+		       										${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+													<c:remove scope="session" var="SPRING_SECURITY_LAST_EXCEPTION"/>
+										
 											</div>
 										</c:if>
 									</small>
@@ -102,8 +102,8 @@ small {
 									<div class="form-group">
 										<label class="control-label" for="username"
 											style="color: black;">아이디</label> <input type="text"
-											title="Please enter you username" required=""
-											readonly="readonly" placeholder="구글 로그인 후 이용하세요"
+											title="Please enter you username" required="required"
+											placeholder="구글 로그인 후 이용하세요"
 											name="username" id="username" value="" class="form-control">
 										<span class="help-block small">
 										</span>

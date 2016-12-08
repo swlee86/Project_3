@@ -172,13 +172,16 @@ public class CommuteService {
 	        //emp의 low_dept_no로 dept_no 가져오기
 	        LowDeptJoin lowDeptjoin =low_deptdao.selectLow_dept_detail(emp.getLow_dept_no());
 	        String dept_no =lowDeptjoin.getDept_no();
-	        System.out.println("================================"+dept_no);
+	        System.out.println("================================조회한 부서 번호"+dept_no);
 	        DeptDAO deptdao = sqlsession.getMapper(DeptDAO.class);
 	        //dept_no로 상여금 지급하는 부서 가져오기
 	        Set_bonus set_bonus =deptdao.select_bonus_check(dept_no);
 	        
+	        //상여금 있을 경우
 	        if(set_bonus != null){
 	        System.out.println("if 내부 탑니다!!!!!!!!!!!!!!!!!!!!!!!!");
+	        
+	        //상여금 비율
 	        double bonus_percent = set_bonus.getBonus_percent()/(double)100;
 	        //상여금 구해서 setting----------------------------------2)
 	        int bonus =	(int)(bonus_percent*pay.getBasic_pay());

@@ -106,8 +106,8 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		String projectcount = null;
 	
 		//내가 추가한 부분 try 내부에 dao 이용해서 쿼리문 돌려줘야함.
-		String approval = "1";
-		String taskApprovalcount = "1";
+		String approval = "0";
+		String taskApprovalcount = "0";
 		
 		int resultdata = 0;
 		System.out.println("푸쉬 주소값? : " + sqlsession.toString());

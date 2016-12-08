@@ -183,6 +183,8 @@ public class Task {
 				+ ", deadline=" + deadline + ", content=" + content + ", rec_emp_no=" + rec_emp_no + ", rec_name="
 				+ rec_name + ", rec_date=" + rec_date + ", emp_no=" + emp_no + ", emp_name=" + emp_name + ", send_date="
 				+ send_date + ", file_name=" + file_name + ", task_step_no=" + task_step_no + ", step_no=" + step_no
-				+ "]";
+				+ ", uploadfile=" + uploadfile + ", cg_name=" + cg_name + ", step_name=" + step_name + "]";
 	}
+
+	
 }

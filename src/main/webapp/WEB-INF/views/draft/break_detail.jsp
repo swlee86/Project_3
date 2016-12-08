@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
+<div class="normalheader transition animated fadeIn media-body">
 <div class="content animate-panel content-boxed">
 <div style="margin: 10px;">
 	<span class="up_btn">
-		<a class="btn btn-default buttons-print btn-m" aria-controls="print">
+		<a class="btn btn-outline btn-primary btn-m bgcolor" aria-controls="print">
 			<span>Print</span>
 		</a>
+	</span>
+	<span class="up-btn pull-right">
+		<button class="btn btn-outline btn-primary btn-m bgcolor" data-toggle="modal" data-target="#draft_process_Modal">
+			승인 처리
+		</button>
 	</span>
 </div>
 
@@ -133,3 +139,66 @@
             </div>
         </div>
     </div>
+    
+<!-- 승인 처리하기 Modal창 -->
+<div class="modal fade hmodal-success" id="draft_process_Modal" tabindex="-1"
+	 role="dialog" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="color-line"></div>
+			
+			<div class="modal-header">
+				<h4 class="modal-title">승인 처리</h4>
+				<small class="font-bold">제 ${ detail.draft_no }호 문서의 승인을 처리합니다.</small>
+				<input type="hidden" id="draft_no_hidden" value="${ detail.draft_no }">
+			</div>
+			
+			<div class="modal-body">
+					<c:choose>
+						<c:when test="${ app_check == '1' }">
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
+								  style="background-color: rgb(98,203,49)" value="승인"> </span>
+						</c:when>
+						<c:when test="${ app_check == '2' }">
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
+								  style="background-color: rgb(231,76,60)" value="반려"> </span>
+						</c:when>
+						<c:when test="${ app_check == '3' }">
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
+								  style="background-color: rgb(155,89,182)" value="보류"> </span>
+						</c:when>
+						<c:when test="${ app_check == '4' }">
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"></span>
+						</c:when>
+					</c:choose>
+					<div class="row ui-sortable">
+                    <div class="col-md-4 border-right" id="cg_1"> 
+                    	<div class="contact-stat gradLi ui-sortable-handle h-bg-green color"
+                    		 style="border: 4px solid #4EA327;" id="one">
+                    		<strong>승인</strong>
+                    	</div> 
+                    </div>
+                    <div class="col-md-4" id="cg_2"> 
+                    	<div class="contact-stat gradLi ui-sortable-handle h-bg-red color"
+                    		 style="border: 4px solid #B93D30;" id="two">
+                    		<strong>반려</strong>
+                    	</div> 
+                    </div>
+                    <div class="col-md-4 border-right" id="cg_3"> 
+                    	<div class="contact-stat gradLi ui-sortable-handle h-bg-violet color"
+                    		 style="border: 4px solid #7C4792;" id="three">
+                    		<strong>보류</strong>
+                    	</div> 
+                    </div>
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="app_check" class="btn btn-outline btn-success" data-dismiss="modal">
+					<i class="fa fa-check"></i>
+					<span class="bold">처리</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

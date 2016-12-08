@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet" href="vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+
 <!-- 드래그앤드롭? -->
 <link rel="stylesheet" href="vendor/jquery-ui/themes/base/all.css">
 
@@ -43,6 +44,10 @@
 <link rel="stylesheet" href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css">
 <link rel="stylesheet" href="vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
  -->
+ 
+<!-- alert -->
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+
 <style>
 	.flag {
 		font-weight: bold;
@@ -83,8 +88,16 @@
 		background-color: white;
 	}
 	
+	.dragdrop {
+		border: 5px solid #34495E; 
+		width: 100%; 
+		height: 120px; 
+		display: inline-block; 
+		vertical-align: middle; 
+		line-height: 120px;
+	}
+	
 </style>
-
 </head>
 
 <body class="fixed-navbar fixed-sidebar">
@@ -134,6 +147,7 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
+   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 	
 	<!-- DataTables -->
 	<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
@@ -151,6 +165,7 @@
 	<!-- 
 	<script src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
 	 -->
+	 
 	<!--전자결재 script  -->
 	<script src="js/draft/draft.js"></script>
 
@@ -163,5 +178,8 @@
 	<!--월별 캘린더.-->
 	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
 	
+   <!-- alert -->
+   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+   
 </body>
 </html>
