@@ -55,7 +55,7 @@ public class PayService {
 		System.out.println("입사일 조회 !");
 		PayDAO paydao = sqlsession.getMapper(PayDAO.class);
 		String regdate = paydao.selectRegdate(emp_no);
-		//System.out.println("입사일 : "+regdate);
+		System.out.println("입사일 : "+regdate);
 		return regdate;
 		
 	}
