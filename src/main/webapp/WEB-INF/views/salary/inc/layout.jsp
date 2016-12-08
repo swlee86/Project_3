@@ -130,16 +130,16 @@
 		        var start_dt = val1.split(FORMAT);
 		        console.log("start_Dt :    "+start_dt);
 		        var end_dt = val2.split(FORMAT);
-		        console.log("start_Dt :    "+start_dt);
+		        console.log("end_dt :    "+end_dt);
 		        // 월 - 1(자바스크립트는 월이 0부터 시작하기 때문에...)
 		        // Number()를 이용하여 08, 09월을 10진수로 인식하게 함.
 		        start_dt[1] = (Number(start_dt[1]) - 1) + "";
 		        end_dt[1] = (Number(end_dt[1]) - 1) + "";
 
-		        var from_dt = new Date(start_dt[0], start_dt[1], start_dt[2]);
-		        var to_dt = new Date(end_dt[0], end_dt[1], end_dt[2]);
+		        var from_dt = new Date(start_dt[0], start_dt[1], start_dt[2]);  //3개월전
+		        var to_dt = new Date(end_dt[0], end_dt[1], end_dt[2]);			//선택한 날짜
 		        var result = (to_dt.getTime() - from_dt.getTime());
-		       /* var result = (from_dt.getTime() - to_dt.getTime()); */
+		        //var result = (from_dt.getTime() - to_dt.getTime()); 
 		        var result1 = result/1000/60/60/24;
 		        return result1;
 		    }
@@ -385,7 +385,7 @@
 							minusDate : result
 						},
 						success : function(data) {
-							console.log(data.day + " success day ");
+							console.log(data.date + " / "+data.day +" / "+ data.dayMoney + " success day ");
 							$('#jung').html();
 							$('#total').html();
 							$('#severance_pay').html();
