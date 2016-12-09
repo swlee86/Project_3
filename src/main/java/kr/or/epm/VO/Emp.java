@@ -22,7 +22,6 @@ public class Emp {
 	private String branch_name;
 	private String dept_name;
 	private String low_dept_name;
-	
 	private String cg_name;
 	private String position_name;
 	

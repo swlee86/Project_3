@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <aside id="menu">
      
     <div id="navigation">
@@ -152,6 +153,9 @@
                     <li><a href="adminSalaryView.do">급여관리</a></li>
                     <li><a href="CommuteAdmin.do">근태관리</a></li>
                 </ul>
+            </li>
+            <li>
+            	<a href="#" onClick="javascript:window.open('http://192.168.0.116:3000/?id=${Emp.emp_name}', 'popup','scrollbars=no, width=500px,height=600px,resizable=no')">Node 채팅</a>
             </li>
             <li>
             	&nbsp;
