@@ -48,12 +48,6 @@
 										</td>
 									</tr>
 									<tr>
-										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 15%"><font
-											color="coral"></font><span style="color:white">파일 첨부</span></th>
-										<td><input type="file" class="form-control input-sm" size="100%"></td>
-									</tr>
-
-									<tr>
 										<th style="background-color: #34495e; text-align: right; padding-right: 30px; width: 10%"><font
 											color="coral"></font><span style="color:white">수신자 메일</span></th>
 										<td><input type="email" class="form-control input-sm" placeholder="example@naver.com" size="100%" name="recipients"></td>

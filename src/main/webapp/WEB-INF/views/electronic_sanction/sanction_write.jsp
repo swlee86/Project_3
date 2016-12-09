@@ -27,8 +27,8 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
+				<form id="documentForm" method="POST">
 					<div class="table-responsive">
-						<form id="documentForm" method="POST">
 							<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1"
 									class="table table-bordered ">
@@ -117,12 +117,13 @@
 					<br/><br/>
 						<div class=" pull-right" style="text-align: center;">
 							<input type="submit" class="btn btn-sm btn-success" value="결재 요청"
-								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px" onclick="send()">
 							<input type="button" onclick="location.href='sanction_list.do'"
 								class="btn btn-sm btn-default" value="취 소"
 								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 						</div>
-
+						<input type="hidden" id="hiddenEmp_no"> 
+						<input type="hidden" id="hiddenMenuName" value="업무">
 					</form>
 				</div>
 			</div>

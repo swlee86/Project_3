@@ -69,22 +69,21 @@
     
     
 <!-- 결재라인용 모달-->
-<div class="modal fade hmodal-success" id="myModal6" tabindex="-1"
+<div class="modal fade hmodal-success" id="myModal7" tabindex="-1"
 	role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-md">
+	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="color-line"></div>
 			<div class="modal-header"
 				style="height: 50px; padding-top: 10px; padding-bottom: 0px">
 				<h4 class="modal-title">
-					<font color="#6a6c6f" size="4em"><b>선택</b></font>
+					<font color="#6a6c6f" size="4em"><b>부서 선택</b></font>
 				</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-7" style="border: 1px solid gray;"
-						id="organization"></div>
-					<div class="col-md-8" id="empList">사원리스트</div>
+					<div class="col-md-12 groupdiv2 " style="border: 1px solid #ddd;" id="corganization"></div>
+					<div class="col-md-8" id="cempList">사원리스트</div>
 				</div>
 			</div>
 			<div class="modal-footer">

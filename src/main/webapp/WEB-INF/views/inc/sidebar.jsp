@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <aside id="menu">
      
     <div id="navigation">
@@ -145,13 +146,17 @@
                 <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="adminEmp_list.do">사원관리</a></li>
+                    <!-- 나중에 합칠거 -->
                     <li><a href="adminEmployeeRoleManage.do">사원권한관리</a></li>
-                    <li><a href="adminCheckWithdrawal.do">탈퇴 신청 리스트 보기</a>
+                    <li><a href="adminWithdrawal.do">탈퇴 요청</a>
                     <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminSalaryView.do">급여관리</a></li>
                     <li><a href="CommuteAdmin.do">근태관리</a></li>
                 </ul>
+            </li>
+            <li>
+            	<a href="#" onClick="javascript:window.open('http://192.168.0.116:3000/?id=${Emp.emp_name}', 'popup','scrollbars=no, width=500px,height=600px,resizable=no')">Node 채팅</a>
             </li>
             <li>
             	&nbsp;
