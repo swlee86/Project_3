@@ -33,8 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 언론게시판 글 상세내용 -->
 	<select id="selectDetail" resultType="kr.or.epm.VO.MediaBoard">
-		select no, emp_no, emp_name, title, content, regdate, file_name, hit
-		from media
+		select no,  m.emp_no, m.emp_name, e.pic, title, content, regdate, file_name, hit
+		from media m 
+    	join emp e on m.emp_no = e.emp_no
 		where no = #{no}
 	</select>
 
@@ -99,5 +100,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateHit">
 		update media set hit=hit+1 where no=#{no}
 	</update>
+	
+	<!-- 리플 삭제 -->
+	<delete id="deleteReply">
+		delete re_media where no=#{no}
+	</delete>
 	
 </mapper>

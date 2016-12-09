@@ -50,7 +50,7 @@
 				<div class="panel-body">
 					<div class="media">
 						<div class="media-image pull-left">
-							<img src="${pageContext.request.contextPath}/images/a6.jpg" alt="이미지">
+							<img src="${pageContext.request.contextPath}/img/upload/${list.pic}" alt="logo">
 							<div class="author-info">
 								<strong>${list.emp_name}</strong><br> ${list.regdate}
 							</div>
@@ -60,14 +60,16 @@
 							<hr>
 							<c:if test="${not empty list.file_name}">
 								<!-- <img src="C:\images\${list.file_name}" alt="이미지" width="500px"> -->
-								<img src="${pageContext.request.contextPath}/img/upload/${list.file_name}"  style="max-width: 80%;height: auto;  border-radius: 0%; width: inherit;" alt="기사이미지" width="70%">
-								 <br><br>
-							</c:if>
-							 
-							
-							${list.content}
+<%-- 								<img src="${pageContext.request.contextPath}/img/upload/${list.file_name}"  style="max-width: 80%;height: auto;  border-radius: 0%; width: inherit;" alt="기사이미지" width="70%">
+ --%>								
 
-							
+								<span class="pull-right">첨부파일 >
+									<a href="media_board_fileDown.do?name=${list.file_name}">${list.file_name}</a>
+								</span>
+							<br>
+							</c:if>			
+							${list.content}
+					
 							<!-- 리플 -->
 							<div class="forum-comments">
 							
@@ -79,7 +81,6 @@
 										<div class="media-body">
 											<span class="font-bold">${n.emp_name}</span> 
 											<small class="text-muted">${n.regdate}</small>
-											<!-- <a href="#" id="replydelete">삭제</a> -->
 											<div class="social-content">
 												${n.content}
 											</div>
@@ -87,10 +88,7 @@
 									</div>
 								</c:forEach>
 									<div  id="replybody">
-									</div>
-
-
-								
+									</div>	
 								<div class="input-group">
 									<input type="text" class="form-control " id="replytext" placeholder="Your comment"> 
 									<input type="hidden" id="no" value="${list.no}">
@@ -98,25 +96,20 @@
 										<input type="button" class="btn  btn-default" id="replysubmit" value=" 댓글 달기 ">
 									</span>
 								</div>
-							
-
 							</div>
 							<br>
-								<div class=" pull-right">
-									<a href="media_board_list.do?pg=${pg}&pagesize=${pgsize}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">뒤로가기</a>
-									<c:if test="${list.emp_no ==rec_emp_no}">
-										<a href="media_board_update.do?no=${list.no}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정하기</a>
-										<a href="media_board_delete.do?no=${list.no}" class="btn btn-sm btn-default deletechk" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>
-									</c:if>
-								</div>                                                  
-							</div>
+							<div class=" pull-right">
+								<a href="media_board_list.do?pg=${pg}&pagesize=${pgsize}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">뒤로가기</a>
+								<c:if test="${list.emp_no ==rec_emp_no}">
+									<a href="media_board_update.do?no=${list.no}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정하기</a>
+									<input type="text"  hidden="hidden" id = "listno" value="${list.no}">
+									<a class="btn btn-sm btn-default deletechk" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>
+								</c:if>
+							</div>                                                  
 						</div>
 					</div>
 				</div>
-
-
 			</div>
-
 		</div>
 	</div>
-
+</div>

@@ -17,7 +17,15 @@ public class BusinessBoard {
 	private String regdate;
 	private String file_name;
 	private MultipartFile uploadfile;
+	private String pic;
 	
+	
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 	public MultipartFile getUploadfile() {
 		return uploadfile;
 	}
@@ -102,15 +110,12 @@ public class BusinessBoard {
 	public void setFile_name(String file_name) {
 		this.file_name = file_name;
 	}
-	
 	@Override
 	public String toString() {
 		return "BusinessBoard [no=" + no + ", emp_no=" + emp_no + ", emp_name=" + emp_name + ", low_dept_no="
 				+ low_dept_no + ", low_dept_name=" + low_dept_name + ", refer=" + refer + ", depth=" + depth + ", step="
 				+ step + ", hit=" + hit + ", title=" + title + ", content=" + content + ", regdate=" + regdate
-				+ ", file_name=" + file_name + "]";
+				+ ", file_name=" + file_name + ", uploadfile=" + uploadfile + ", pic=" + pic + "]";
 	}
-	
-	
 	
 }

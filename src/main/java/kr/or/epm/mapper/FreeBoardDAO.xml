@@ -7,11 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- Free 게시판 글 리스트를 불러오는 쿼리문  -->
 <select id="selectList" resultType="kr.or.epm.VO.FreeBoard">
-select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer 
+select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer,file_name 
 from(select rownum rn, no, title, emp_name, regdate, hit, low_dept_name, 
-depth,step,refer 
+depth,step,refer,file_name 
 	from (select no, title, emp_name, regdate,
-		 hit, low_dept_name, depth,step,refer 
+		 hit, low_dept_name, depth,step,refer,file_name 
 		 	from free  where ${param3} like '%${param4}%' order by refer desc, step asc) order by rn) where rn between #{param1} and #{param2}
 
 </select >
@@ -84,5 +84,11 @@ update free set step=step+1, depth=depth+1 where refer=#{param1} and step>#{para
 <delete id="deleteRow">
 	delete free where no=#{no}
 </delete>
+
+<!-- 리플 삭제 -->
+<delete id="deleteReply">
+	delete re_free where no=#{no}
+</delete>
+	
 
 </mapper>

@@ -194,10 +194,12 @@ public class BusinessBoardController {
 	
 	//글쓰기 누르면 인서트 시키는 서비스 함수
 	@RequestMapping(value="/business_board_write.do", method=RequestMethod.POST)
-	public String business_board_write_Ok(@RequestParam("uploadfile") MultipartFile file, Principal principal, BusinessBoard board, Model mv){
-	
+	public String business_board_write_Ok(@RequestParam("uploadfile") MultipartFile file, Principal principal, BusinessBoard board, Model mv,HttpServletRequest request){
+		System.out.println("파일 업로드 :" + file.getOriginalFilename());
+
 		//파일 업로드 
-		File cFile = new File("C:/images/", file.getOriginalFilename());
+		 String path = request.getRealPath("/board/business_upload/");
+		File cFile = new File(path, file.getOriginalFilename());
 		try {
 			file.transferTo(cFile);
 			System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
@@ -247,12 +249,13 @@ public class BusinessBoardController {
 	
 	//파일 다운
 	@RequestMapping("/businessBoard_fileDown.do")
-	public void download(String name, HttpServletResponse response)
+	public void download(String name, HttpServletResponse response, HttpServletRequest request)
 			throws Exception {
-		File f = new File("C:/images/" + name);
-
+	
+		//파일 업로드 
+		String path = request.getRealPath("/board/business_upload/");
+		File f = new File(path + "/"+name);
 		String fname = new String(name.getBytes("utf-8"), "8859_1");
-		System.out.println(fname);
 
 		response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
 		FileInputStream fin = new FileInputStream(f);
@@ -275,6 +278,7 @@ public class BusinessBoardController {
 	public String answer(Model mv, int no, int currentpage, int pagesize){
 		String link = null;
 		BusinessBoard businessboard = null;
+		System.out.println("answer no : "+ no);
 		try{
 			businessboard = businessboardservice.selectDetail(no);
 		}catch(Exception e){
@@ -291,10 +295,12 @@ public class BusinessBoardController {
 	
 	//답변 인서트 컨트롤러  + 파일 업로드
 	@RequestMapping(value="/answer.do", method=RequestMethod.POST)
-	public String answerOk(@RequestParam("uploadfile") MultipartFile file, Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth){
-		
+	public String answerOk(@RequestParam("uploadfile") MultipartFile file, Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth,HttpServletRequest request){
 		//파일 업로드 
-		File cFile = new File("C:/images/", file.getOriginalFilename());
+		System.out.println("파일 업로드 :" + file.getOriginalFilename());
+ 
+		String path = request.getRealPath("/board/business_upload/");
+		File cFile = new File(path, file.getOriginalFilename());
 		try {
 			file.transferTo(cFile);
 			System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
@@ -368,7 +374,7 @@ public class BusinessBoardController {
 		int result = 0;
 		
 		//File cFile = new File("C:/images/", file.getOriginalFilename());
-		 String path = request.getRealPath("/media/upload/");
+		 String path = request.getRealPath("/board/business_upload/");
 		 System.out.println("=====> path : "+path);
 		File cFile = new File(path, file.getOriginalFilename());
 		
@@ -404,6 +410,7 @@ public class BusinessBoardController {
 		System.out.println("business_board_delete() 컨트롤러 탐");		
 		System.out.println("no : "+ no) ;
 			
+		businessboardservice.deleteReply(Integer.parseInt(no));
 		businessboardservice.deleteRow(Integer.parseInt(no));				
 		return "redirect:business_board_list.do";
 	}

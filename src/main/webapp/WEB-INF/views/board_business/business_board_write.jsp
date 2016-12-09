@@ -11,13 +11,13 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Mailbox</span></li>
+					<li><a href="index.html">홈</a></li>
+					<li><span>게시판</span></li>
+					<li class="active"><span>업무 정보 공유 게시판</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">업무 정보 공유 게시판</h2>
-			<small>Show users list in nice and color panels</small>
+			<small>회사의 업무를 정보들을 공유하는 게시판입니다.</small>
 		</div>
 	</div>
 </div>
@@ -39,16 +39,23 @@
 									<input type="text" class="form-control input-sm" placeholder="제목" name="title">
 								</div>
 							</div>
-							<!-- <div class="form-group">
+							<div class="form-group">
 								<label class="col-sm-1 control-label text-left">첨부파일 :
 								</label>
 								<div class="col-sm-11">
-									<div class="btn-group">
+									<!-- <div class="btn-group">
 										<input type="file" class="btn btn-default" name="uploadfile">
-									</div>
+							 -->		
+							 		<div class="btn-group">
+										<button class="btn btn-default" id="clip" type="button">
+											<i class="fa fa-paperclip"></i>
+										</button>
+										<input type="file" name="uploadfile" id="clipfile" style="display:none;float:left" class="form-control input-xs">
+							
+							 		</div>
 								</div>
-							</div> -->
-							<div class="form-group">
+							</div>
+							<!-- <div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 첨부<br>파일 :
 								</label>
 								<div class="col-sm-11">
@@ -58,13 +65,13 @@
 										</button>
 										<input type="file" name="uploadfile" id="clipfile" style="display:none;float:left" class="form-control input-xs">
 										
-								<!-- 		<button class="btn btn-default" id="img" type="button">
+									//	<button class="btn btn-default" id="img" type="button">
 											<i class="fa fa-image"></i>
 										</button>
-										<input type="file" name="file_name[1]"  id="imgfile"style="display:none" class="form-control input-xs"> -->
+										<input type="file" name="file_name[1]"  id="imgfile"style="display:none" class="form-control input-xs"> //
 									</div>
 								</div>
-							</div>
+							</div> -->
 							
 					</div>
 				</div>

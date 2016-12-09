@@ -82,6 +82,7 @@ public class FreeBoardController {
 			mv.addAttribute("list", list);
 			mv.addAttribute("cpage", cpage);
 			mv.addAttribute("pgsize", pgsize);
+			System.out.println("확인용1");
 			mv.addAttribute("pagecount", pagecount);
 			mv.addAttribute("totalcount", totalcount);
 		}
@@ -126,10 +127,12 @@ public class FreeBoardController {
 	
 	//글쓰기 누르면 인서트 시키는 서비스 함수 + 파일업로드
 	@RequestMapping(value="/free_board_write.do", method=RequestMethod.POST)
-	public String free_board_write_ok(@RequestParam("uploadfile") MultipartFile file, Principal principal, FreeBoard board, Model mv){
+	public String free_board_write_ok(@RequestParam("uploadfile") MultipartFile file, Principal principal, FreeBoard board, Model mv,HttpServletRequest request){
 	
 		//파일 업로드 
-			File cFile = new File("C:/images/", file.getOriginalFilename());
+		 String path = request.getRealPath("/board/free_upload/");
+
+			File cFile = new File(path, file.getOriginalFilename());
 			try {
 				file.transferTo(cFile);
 				System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
@@ -259,10 +262,13 @@ public class FreeBoardController {
 		
 		//답변 인서트 컨트롤러 
 		@RequestMapping(value="/answerfree.do", method=RequestMethod.POST)
-		public String answerOk(@RequestParam("uploadfile") MultipartFile file, Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth){
-			
+		public String answerOk(@RequestParam("uploadfile") MultipartFile file, Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth,HttpServletRequest request){
 			//파일 업로드 
-			File cFile = new File("C:/images/", file.getOriginalFilename());
+			System.out.println("파일 업로드 :" + file.getOriginalFilename());
+	 
+			String path = request.getRealPath("/board/free_upload/");
+			
+			File cFile = new File(path, file.getOriginalFilename());
 			try {
 				file.transferTo(cFile);
 				System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
@@ -324,11 +330,15 @@ public class FreeBoardController {
 		
 		//파일 다운
 		@RequestMapping("/FreeBoard_fileDown.do")
-		public void download(String name, HttpServletResponse response)
+		public void download(String name, HttpServletResponse response, HttpServletRequest request)
 				throws Exception {
-			File f = new File("C:/images/" + name);
-
+			//File f = new File("C:/images/" + name);
+			//파일 업로드 
+			//파일 업로드 
+			String path = request.getRealPath("/board/free_upload/");
+			File f = new File(path + "/"+name);
 			String fname = new String(name.getBytes("utf-8"), "8859_1");
+			
 			System.out.println(fname);
 
 			response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
@@ -365,7 +375,7 @@ public class FreeBoardController {
 			int result = 0;
 			
 			//File cFile = new File("C:/images/", file.getOriginalFilename());
-			 String path = request.getRealPath("/media/upload/");
+			 String path = request.getRealPath("/board/free_upload/");
 			 System.out.println("=====> path : "+path);
 			File cFile = new File(path, file.getOriginalFilename());
 			
@@ -400,7 +410,8 @@ public class FreeBoardController {
 		public String free_board_delete(String no) {
 			System.out.println("free_board_delete() 컨트롤러 탐");		
 			System.out.println("no : "+ no) ;
-				
+			
+			freeboardservice.deleteReply(Integer.parseInt(no));
 			freeboardservice.deleteRow(Integer.parseInt(no));				
 			return "redirect:free_board_list.do";
 		}
