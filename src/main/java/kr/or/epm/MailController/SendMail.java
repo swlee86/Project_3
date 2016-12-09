@@ -32,7 +32,6 @@ public class SendMail {
 			String result = null;
 			Mail mail = new Mail();
 			
-			
 			try{
 				
 				mail.setMail_content(bodys);
