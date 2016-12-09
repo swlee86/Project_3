@@ -29,7 +29,7 @@
 			<div class="hpanel">
 				 <div class="panel-body">
 				 	  <div class="table-responsive">
-                		<form class="inline" action="adminAddMember.do" method="post">
+                		<form class="inline" name="addmember" id="addmember">
 	                		<table cellpadding="1" cellspacing="1" class="table table-bordered ">
 	                    		<tbody>
 	                    			<tr>
@@ -40,14 +40,16 @@
 	                    				<th style="width: 10%; text-align: right; background-color:#f5f5f5">근무상태</th>
 	                    				<td style="width: 20%;">
 	                    					<select class="form-control input-sm" name="cg_no">
+	                    						<option value="0" selected>선택 안함</option>
 	                    					<c:forEach var="empcg" items="${ emp_cg }">
-	                    						<option value="${empcg.cg_no }">${empcg.cg_name}</option>
+	                    						<option value="${ empcg.cg_no }">${ empcg.cg_name }</option>
 	                    					</c:forEach>
 	                    					</select>
 	                    				</td>
 	                    				<th style="width:10%; text-align: right; background-color:#f5f5f5">직위</th>
 	                    				<td colspan="3">
 	                    					<select class="form-control input-sm" id="position" name="position_no">
+	                    						<option value="0" selected>선택 안함</option>
 	                    					<c:forEach var="plist" items="${ position }">
 	                    						<option value="${plist.position_no }">${plist.position_name}</option>
 	                    					</c:forEach>
@@ -58,6 +60,7 @@
 	                    				<th style="text-align: right; background-color:#f5f5f5">지점</th>
 	                    				<td>
 	                    					<select class="form-control input-sm" id="branchlist" name="branch_no">
+	                    							<option value="0" selected>선택 안함</option>
 	                    						<c:forEach var='blist' items='${branch}'>
 	                    							<option value='${blist.branch_no}'>${blist.branch_name}</option>
 	                    						</c:forEach>
@@ -65,17 +68,16 @@
 	                    				</td>
 	                    				<th style="text-align: right; background-color:#f5f5f5">부서</th>
 	                    				<td>
-	                    					<select class="form-control input-sm" id="deptlist" name="dept_no">
-	                    						<c:forEach var='blist' items='${branch}'>
-	                    							<option value='${blist.branch_no}'>${blist.branch_name}</option>
-	                    						</c:forEach>
+	                    					<select class="form-control input-sm" id="deptlist" name="dept_no" disabled="disabled">
+	                    							<option value="0" selected>지점을 선택해주세요</option>
 	                    					</select>
 	                    				</td>
 	                    				<th style="text-align: right; background-color:#f5f5f5">하위 부서</th>
 	                    				<td>
-	                    					<select class="form-control input-sm" id="low_dept_list" name="low_dept_no">
-	                    						<c:forEach var='blist' items='${branch}'>
-	                    							<option value='${blist.branch_no}'>${blist.branch_name}</option>
+	                    					<select class="form-control input-sm" id="low_dept_list" name="low_dept_no" disabled="disabled">
+	                    						<option value="0" selected>부서를 선택해주세요</option>
+	                    						<c:forEach var='llist' items='${ low_dept }'>
+	                    							<option value='${llist.low_dept_no}'>${llist.low_dept_name}</option>
 	                    						</c:forEach>
 	                    					</select>
 	                    				</td>
@@ -112,7 +114,7 @@
 	                    		</tbody>
 	                    	</table>
 	                    	<div class="pull-right" style="text-align:center">
-	                    		<input type="submit" class="btn btn-success btn-md" value="등록" style="margin-right:10px">
+	                    		<input type="submit" id="submitBtn" class="btn btn-success btn-md" value="등록" style="margin-right:10px">
 	                    		<input type="button" class="btn btn-default btn-md" value="돌아가기">
 	                    	</div>
                     	</form>

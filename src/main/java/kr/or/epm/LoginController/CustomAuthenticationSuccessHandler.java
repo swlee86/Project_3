@@ -110,7 +110,6 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 		String sanction = "0";
 		
 		int resultdata = 0;
-		System.out.println("푸쉬 주소값? : " + sqlsession.toString());
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		emp_no = pushdao.selectEmp_no(authentication.getName());
 		

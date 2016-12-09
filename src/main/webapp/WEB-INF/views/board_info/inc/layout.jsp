@@ -89,9 +89,17 @@
 <script src="vendor/toastr/build/toastr.min.js"></script>
 <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 
+<!-- alert 창 -->
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+
 <script>
 
     $(function () {
+    	$('#clip').click(function(){
+			console.log('클릭');
+			$('#clipfile').css('display','block');
+		});
     	//alert창
     	toastr.options = {	 
     			 "closeButton": true,
@@ -135,7 +143,8 @@
         //제목 검색 버튼 클릭 이벤트
 		$('#searchForm').submit(function(){
 			if($('#title').val() == ''){
-				alert("제목을 입력해주세요 !!");
+				
+				toastr.warning("제목을 입력해주세요");
 				$('#title').focus();
 				return false;
 			}else{
@@ -144,6 +153,7 @@
 		});
         
 		 $('.deletechk').click(function () {
+			 var no = '${company.no}';
 	            swal({
 	                        title: "삭제하시겠습니까?",
 	                        text: "확인을 클릭할시 글이 삭제 됩니다.",
@@ -156,18 +166,28 @@
 	                        closeOnCancel: false },
 	                    function (isConfirm) {
 	                        if (isConfirm) {
-	                            swal("삭제되었습니다.", "Your imaginary file has been deleted.", "success");
+	                        	 $.ajax({
+	                        		url : "info_board_delete.do",
+	                        		data : {
+	                        			no : no,
+	                        		},
+	                        		success : function(data){
+          								console.log(data);
+	                        		}
+	                        	}); 
+	                        	swal("삭제되었습니다.", "", "success");
+	                        	window.location.href='info_board_list.do';
 	                        } else {
-	                            swal("취소되었습니다.", "Your imaginary file is safe :)", "error");
+	                            swal("취소되었습니다.", "", "error");
 	                        }
-	                    });
+	                    }
+				 );
 	        });
     
 	    $('#writeForm').submit(function(){
 			if($('#title').val() == ''){
 				toastr.warning("제목을 입력해주세요");
 				$('#title').focus();
-				
 				return false;
 			}if($('#content').val() == ''){
 				toastr.warning("내용을 입력해주세요");
@@ -177,6 +197,7 @@
 				return true;
 			}
 		});
+	  
     });
 </script>
 	

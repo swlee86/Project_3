@@ -37,10 +37,12 @@ public class CompanyBoardController {
 	
 	//파일 다운
 	@RequestMapping("/info_board_fileDown.do")
-	public void download(String name, HttpServletResponse response)
+	public void download(String name, HttpServletResponse response, HttpServletRequest request)
 			throws Exception {
-		File f = new File("C:/images/" + name);
-
+		//File f = new File("C:/images/" + name);
+		//파일 업로드 
+		String path = request.getRealPath("/board/company_upload/");
+		File f = new File(path + "/"+name);
 		String fname = new String(name.getBytes("utf-8"), "8859_1");
 		System.out.println(fname);
 
@@ -88,6 +90,8 @@ public class CompanyBoardController {
         }else{
             pagecount = (totalcount/pgsize) + 1;
         }
+  
+        
         
         List<Company> list = null;
         try{
@@ -133,9 +137,14 @@ public class CompanyBoardController {
 	
 	//게시판 글쓰기
 	@RequestMapping(value="/CompanyBoardWrite.do", method=RequestMethod.POST)
-	public String test(@RequestParam("uploadfile") MultipartFile file, String title, String content, Principal principal, Model model){
+	public String test(@RequestParam("uploadfile") MultipartFile file, String title, String content, Principal principal, Model model, HttpServletRequest request){
 		
-		File cFile = new File("C:/images/", file.getOriginalFilename());
+		//File cFile = new File("C:/images/", file.getOriginalFilename());
+		String path = request.getRealPath("/board/company_upload/");
+		 System.out.println("=====> path : "+path);
+		File cFile = new File(path, file.getOriginalFilename());
+	
+		
 		try {
 			file.transferTo(cFile);
 			System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
@@ -259,7 +268,7 @@ public class CompanyBoardController {
 		int result = 0;
 			
 		//File cFile = new File("C:/images/", file.getOriginalFilename());
-		 String path = request.getRealPath("/company/upload/");
+		 String path = request.getRealPath("/board/company_upload/");
 			 System.out.println("=====> path : "+path);
 			File cFile = new File(path, file.getOriginalFilename());
 			

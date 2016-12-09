@@ -106,4 +106,11 @@ public class FreeBoardService {
 			int result = freeBoardDAO.deleteRow(no); 
 			return result;
 		}
+		
+		//리플 삭제
+		public int deleteReply(int no){
+			FreeBoardDAO freeBoardDAO = sqlSession.getMapper(FreeBoardDAO.class);
+			int result = freeBoardDAO.deleteReply(no); 
+			return result;
+		}
 }

@@ -60,14 +60,14 @@ public class AdminEmpController {
 		model.addAttribute("pagecount", pagecount);
 		model.addAttribute("totalcount", totalcount);
 		
-		return "admin.adminEmpList";
+		return "adminMember.adminEmpList";
 	}
 	
 	// 사원 등록 페이지
 	@RequestMapping(value="/adminAdd_member.do", method=RequestMethod.GET)
 	public String adminAdd_member(Model model) {
 		System.out.println("CONTROLLER] 사원 등록 페이지");
-		// 필요한게 잔여휴가일, 연봉, 이름, 생년월일, 개인연락처
+		
 		String newEmp_no = service.selectNew_emp_no();
 		model.addAttribute("emp_no", newEmp_no);
 		
@@ -80,6 +80,17 @@ public class AdminEmpController {
 		List<Branch> branch_list = service.selectBranch_list();
 		model.addAttribute("branch", branch_list);
 		
-		return "admin.adminAddMember";
+		return "adminMember.adminAddMember";
+	}
+	
+	// 사원 탈퇴 페이지
+	@RequestMapping(value="/adminWithdrawal.do", method=RequestMethod.GET)
+	public String adminWithdrawal(Model model) {
+		System.out.println("CONTROLLER] 사원 탈퇴 요청 페이지");
+		
+		List<Emp> list = service.selectEmp_withdrawal();
+		model.addAttribute("withdrawal", list);
+		
+		return "adminMember.adminWithdrawal";
 	}
 }

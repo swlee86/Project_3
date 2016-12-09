@@ -146,8 +146,9 @@
                 <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="adminEmp_list.do">사원관리</a></li>
+                    <!-- 나중에 합칠거 -->
                     <li><a href="adminEmployeeRoleManage.do">사원권한관리</a></li>
-                    <li><a href="adminCheckWithdrawal.do">탈퇴 신청 리스트 보기</a>
+                    <li><a href="adminWithdrawal.do">탈퇴 요청</a>
                     <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminSalaryView.do">급여관리</a></li>

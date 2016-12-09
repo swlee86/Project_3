@@ -39,36 +39,6 @@
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
 
-  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
-	<style>
-		.detailSpan{
-		
-		}
-		
-		#sortable{
-			padding-left:0px;
-		 	list-style:none;
-			width : 100%;
-			height : 100px;
-		}
-		
-		#sortable li{
-			font-size : 15px;
-			margin:20px;
-		}
-		
-		#branchUl{
-			 list-style:none;
-			 	
-		}
-		
-		.toast-message{
-			color :black;
-		}
-		
-	</style>
-
-
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
@@ -111,111 +81,22 @@
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
 
-	<!--월별 캘린더.-->
-	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
-
+<!--월별 캘린더.-->
+<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 
 <!-- alert -->
 <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
-<script src="vendor/toastr/build/toastr.min.js"></script>
-
-<!--부서관리 메뉴 js  --> 
-<script src="js/admin/adminBranch/admin_branch.js"></script>
-
-<!--직위관리 메뉴 js -->
-<script src="js/admin/adminPosition/adminGrade.js"></script>
-
-<!--급여 관리 메뉴 js  -->
-<script src="js/admin/adminPay/adminPay.js"></script>
 
 <!--우편번호 API-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
-<!--근태 관리 메뉴 js-->
-<script src="js/admin/adminCommute/adminCommute.js"></script>
 
 <!-- 사원 관리 메뉴 js-->
 <script src="js/admin/adminEmp/admin_emp.js"></script>
 
 <script>
-
-
-toastr.options = {    
-        "closeButton": true,
-         "debug": false,
-         "newestOnTop": false,
-         "progressBar": false,
-         "positionClass": "toast-top-center",
-         "preventDuplicates": false,
-         "onclick": null,
-         "showDuration": "300",
-         "hideDuration": "1000",
-         "timeOut": "2000",
-         "extendedTimeOut": "1000",
-         "showEasing": "swing",
-         "hideEasing": "linear",
-         "showMethod": "fadeIn",
-         "hideMethod": "fadeOut"
-         };
-	
-
-	$(function(){
-		
-		
-		//드래그 앤 드롭
-		$( "#sortable" ).sortable();
-	 
-		//시계
-	    $('.clockpicker').clockpicker({autoclose: true});
-
-		
-		var currentYear = (new Date()).getFullYear();
-		var startYear = currentYear - 10;
-		var options = {
-			startYear : startYear,
-			finalYear : currentYear,
-			pattern : 'yyyy-mm',
-			monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
-					'9월', '10월', '11월', '12월' ]
-		};
-	
-		//기지급 급여 목록페이지의 월별 조회시 사용
-		$('#totalSalListdate').monthpicker(options);	
-
-	});
-	
-
-	//근태 마감 전체선택 체크박스 
-	$('#allCheck').click(function(){
-		if($("#allCheck").prop("checked")) {
-			$("input[type=checkbox]").prop("checked",true);
-		}else{
-			$("input[type=checkbox]").prop("checked",false);
-		}				
-	});
-	
-	
-	//급여관리- 당월 지급 예정 급여 목록보기 페이지로 이동
-	$('#moveSalaryPlanList').click(function(){
-		location.href="adminSalary.do"
-	})
-	//급여관리 - 기지급 급여 목록보기 페이지로 이동
-	$('#movetotalSalaryList').click(function(){
-		location.href="adminSalaryList.do";
-	});
-	//급여관리-급여 기본 정보 관리 페이지로 이동
-	$('#moveSalaryManage').click(function(){
-		location.href="adminSalaryManage.do";
-	});
-	//급여관리 - 급여 설정 관리 페이지로 이동
-	$('#moveSalarySetting').click(function(){
-		location.href="adminSalarySetting.do";
-	});
-	
-	
 	$('#giveBtn').click(function(){
 		
     	var arr = new Array();

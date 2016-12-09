@@ -1,11 +1,14 @@
 package kr.or.epm.BoardController;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,7 +132,7 @@ public class MediaBoardController {
 		String id= principal.getName();
 		System.out.println("id : "+id);
 		
-		 String path = request.getRealPath("/img/upload/");
+		 String path = request.getRealPath("/board/media_upload/");
 		 System.out.println("=====> path : "+path);
 		File cFile = new File(path, file.getOriginalFilename());
 		
@@ -173,7 +176,9 @@ public class MediaBoardController {
 		System.out.println("media_board_delete() 컨트롤러 탐");		
 		System.out.println("no : "+ no) ;
 		
-		mediaboardservice.deleteRow(Integer.parseInt(no));				
+		mediaboardservice.deleteReply(Integer.parseInt(no));
+		mediaboardservice.deleteRow(Integer.parseInt(no));	
+		
 		return "redirect:media_board_list.do";
 	}
 	
@@ -195,7 +200,7 @@ public class MediaBoardController {
 		int result = 0;
 		
 		//File cFile = new File("C:/images/", file.getOriginalFilename());
-		 String path = request.getRealPath("/media/upload/");
+		 String path = request.getRealPath("/board/media_upload/");
 		 System.out.println("=====> path : "+path);
 		File cFile = new File(path, file.getOriginalFilename());
 		
@@ -258,4 +263,30 @@ public class MediaBoardController {
 		}
 		
 	
+		
+		//파일 다운
+		@RequestMapping("/media_board_fileDown.do")
+		public void download(String name, HttpServletResponse response, HttpServletRequest request)
+				throws Exception {
+			//File f = new File("C:/images/" + name);
+			//파일 업로드 
+			String path = request.getRealPath("/board/media_upload/");
+			File f = new File(path + "/"+name);
+			String fname = new String(name.getBytes("utf-8"), "8859_1");
+			System.out.println(fname);
+
+			response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
+			FileInputStream fin = new FileInputStream(f);
+			// 출력 도구 얻기 :response.getOutputStream()
+			ServletOutputStream sout = response.getOutputStream();
+			byte[] buf = new byte[1024]; // 전체를 다읽지 않고 1204byte씩 읽어서
+			int size = 0;
+			while ((size = fin.read(buf, 0, buf.length)) != -1) // buffer 에 1024byte
+			// 담고
+			{ // 마지막 남아있는 byte 담고 그다음 없으면 탈출
+				sout.write(buf, 0, size); // 1kbyte씩 출력
+			}
+			fin.close();
+			sout.close();
+		}
 }

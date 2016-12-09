@@ -91,7 +91,7 @@ public class EmployeeManageController {
 	}
 
 	// 관리자 > 사원관리 > 사원 등록에서 등록 버튼을 누르면 타게 되는 함수(인서트 처리를 담당한다)
-	@RequestMapping("/adminAddMember.do")
+	@RequestMapping("/adminAddMember2.do")
 	public String insertEmp(Emp emp, Model mv) {
 		System.out.println(emp.toString());
 		int result = 0;

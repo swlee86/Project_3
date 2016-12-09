@@ -45,18 +45,14 @@
 						<span class="text-success">업무 정보 공유 게시판
 						</span>
 					</span>
-					<%-- </span> 
 					<br/>
-					<span class="pull-right">첨부파일 ><a href="info_board_fileDown.do?name=${list.file_name}">${list.file_name}</a></span>
-					<span class="f"> 게시판 > 업무 정보 공유 게시판 > <span class="text-success">${list.low_dept_name}</span>
-					</span> --%>
 				</div>
 
 
 				<div class="panel-body">
 					<div class="media">
 						<div class="media-image pull-left">
-							<img src="${pageContext.request.contextPath}/images/a6.jpg" alt="이미지">
+							<img src="${pageContext.request.contextPath}/img/upload/${list.pic}" alt="이미지">
 							<div class="author-info">
 								<strong>${list.emp_name}</strong><br> ${list.regdate}
 							</div>
@@ -65,15 +61,18 @@
 							<h5>${list.title}</h5>
 							<hr>
 							<c:if test="${not empty list.file_name}">
-								<img src="${pageContext.request.contextPath}/img/upload/${list.file_name}"  style="max-width: 80%;height: auto;  border-radius: 0%; width: inherit;" alt="기사이미지" width="70%">
-								<br><br>
+								<span class="pull-right">첨부파일 >
+									<a href="businessBoard_fileDown.do?name=${list.file_name}">${list.file_name}</a>
+								</span>
+							<br>
 							</c:if>
+							
 							 	${list.content}
 							<!-- Comments -->
 							<div class="forum-comments">
 								<c:forEach var="re_list" items="${re_list}">
 									<div class="media">
-										<a class="pull-left"> <img src="${pageContext.request.contextPath}/images/a1.jpg" alt="profile-picture">
+										<a class="pull-left"> <img src="${pageContext. request.contextPath}/images/a1.jpg" alt="profile-picture">
 										</a>
 	
 										<div class="media-body">
@@ -105,7 +104,8 @@
 								<a href="answer.do?no=${list.no}&currentpage=${currentpage}&pagesize=${pagesize}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">답글 쓰기</a>							
 								<c:if test="${list.emp_no==rec_emp_no}">
 									<a href="business_board_update.do?no=${list.no}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정하기</a>
-									<a href="business_board_delete.do?no=${list.no}" class="btn btn-sm btn-default deletechk" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>
+									<input type="text"  hidden="hidden" id = "listno" value="${list.no}">
+									<a class="btn btn-sm btn-default deletechk" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>
 								</c:if>								
 							</div>
 						</div>
