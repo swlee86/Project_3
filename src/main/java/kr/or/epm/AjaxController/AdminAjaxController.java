@@ -64,6 +64,14 @@ public class AdminAjaxController {
 		return jsonview;
 	}
 	
+	//지점 추가시 중복된 지점이 있는지 체크하는 함수
+	@RequestMapping("/CheckBranch_Name.do")
+	public View CheckBranch(String branch_name, Model model){
+		System.out.println("지점 추가시 유효성 검사 함");
+		String result = adminservice.checkBranch_Name(branch_name);
+		model.addAttribute("result", result);
+		return jsonview;
+	}
 	
 	//지점 정보 수정
 	@RequestMapping("/branchModify.do")
