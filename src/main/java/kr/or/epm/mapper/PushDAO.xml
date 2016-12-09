@@ -91,4 +91,11 @@ select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60 
 <select id="selectLogin_Emp" resultType="kr.or.epm.VO.Emp">
 	select * from emp where emp_no = #{emp_no}
 </select>	
+
+
+<!--전자 결재 -->
+<!-- <select id="electronic_sanction" resultType="String">
+
+</select> -->
+
 </mapper>
