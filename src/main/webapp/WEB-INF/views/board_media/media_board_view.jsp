@@ -40,9 +40,9 @@
 					<span class="pull-right"> <i class="fa fa-clock-o"> </i> :
 						${list.regdate}
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"> </i> ${list.hit}
-						
-					</span> <span class="f"> 게시판 > <span class="text-success">언론
-							게시판</span>
+					</span> 
+					<span class="f"> 게시판 > 
+						<span class="text-success">언론 게시판</span>
 					</span>
 				</div>
 
@@ -102,15 +102,13 @@
 
 							</div>
 							<br>
-							${list.emp_no} <br>
-							'${rec_emp_no}'
 								<div class=" pull-right">
 									<a href="media_board_list.do?pg=${pg}&pagesize=${pgsize}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">뒤로가기</a>
 									<c:if test="${list.emp_no ==rec_emp_no}">
 										<a href="media_board_update.do?no=${list.no}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정하기</a>
 										<a href="media_board_delete.do?no=${list.no}" class="btn btn-sm btn-default deletechk" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>
 									</c:if>
-								</div>
+								</div>                                                  
 							</div>
 						</div>
 					</div>

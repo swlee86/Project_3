@@ -23,7 +23,7 @@ where ${param1} like '%${param2}%'
 <!-- business Board list에서 글을 클릭하면 글 내용을 불러오는 쿼리문 -->
 <!-- business Board 글 내용에서 답글을 누르면 답글을 띄울 때 본문 내용을 에디터에 띄워주는 쿼리문 -->
 <select id="selectDetail" resultType="kr.or.epm.VO.BusinessBoard">
-select no, title, content, emp_name,file_name, regdate, low_dept_name, refer, depth, step from business where no=#{no}
+select no, title, content, emp_no, emp_name,file_name, regdate, low_dept_name, refer, depth, step from business where no=#{no}
 </select>
 	
 <!-- business board list에서 글을 클릭하여 내용을 불러올 때 댓글 내용도 불러오는 쿼리문 -->	
@@ -67,4 +67,17 @@ update business SET hit=hit+1 where no=#{no}
 update business set step=step+1, depth=depth+1 where refer=#{param1} and step>#{param2}
 </update>
 
+<!-- 글 수정 -->
+<update id="updateRow">
+	update business
+	set title=#{title}, 
+		content=#{content}, 
+		file_name=#{file_name,jdbcType=VARCHAR}
+	where no=#{no}
+</update>	
+
+<!-- 글 제거 -->
+<delete id="deleteRow">
+	delete business where no=#{no}
+</delete>
 </mapper>
