@@ -96,6 +96,17 @@
 		vertical-align: middle; 
 		line-height: 120px;
 	}
+	.group-clicked2{
+	background : #beebff;
+	border-radius : 2px;
+	box-shadow : inset 0 0 1px #999;
+}
+.groupdiv2 span:hover {
+	background : #e7f4f9;
+	border-radius : 2px;
+	box-shadow : inset 0 0 1px #ccc;
+}
+
 	
 </style>
 </head>

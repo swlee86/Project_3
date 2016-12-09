@@ -70,7 +70,7 @@
 												   padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 결재 라인
 										</th>
-										<td id="sanction_DraftOk_no_td">
+										<td >
 											<span class="input-group">
 												<input type="text" class="form-control input-sm" readonly
 													   id="draft_Ok_emp_no" name="draft_line_emp_no">
@@ -81,15 +81,17 @@
 															<i class="fa fa-user-plus"></i>
 														</span>
 													</a>
+												
 											</span>
+												<div id="sanction_DraftOk_no_td"></div>
 										</td>
 										<th style="background-color: #f5f5f5; text-align: right; 
 												   padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 이름
 										</th>
-										<td style="width: 40%" id="sanction_DraftName_td">
-											<input type="text" class="form-control input-sm" readonly
-												   id="draft_Ok_emp_name">
+										<td style="width: 40%" >
+											<input type="text" class="form-control input-sm" readonly id="draft_Ok_emp_name">
+											<div id="sanction_DraftName_td"></div>
 										</td>
 									</tr>
 									
@@ -98,7 +100,7 @@
 												   padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 참조자
 										</th>
-										<td id="sanction_writeNo_td">
+										<td >
 											<span class="input-group">
 												<input type="text" class="form-control input-sm" readonly
 													   id="draft_ref_emp_no" name="draft_ref_emp_no"> 
@@ -109,14 +111,15 @@
 													</span>
 												</a>
 											</span>
+											<div id="sanction_writeNo_td"></div>
 										</td>
 										<th style="background-color: #f5f5f5; text-align: right; 
 												   padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 이름
 										</th>
-										<td style="width: 40%" id="sanction_writename_td">
-											<input type="text" class="form-control input-sm" readonly
-												   id="draft_ref_emp_name">
+										<td style="width: 40%" >
+											<input type="text" class="form-control input-sm"   id="draft_ref_emp_name" readonly >
+											<div id="sanction_writename_td"></div>
 										</td>
 									</tr>
 								</table>
@@ -170,7 +173,7 @@
 </div>
  -->
  <div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
-   <div class="modal-dialog modal-md">
+   <div class="modal-dialog modal-lg">
       <div class="modal-content">
          <div class="color-line"></div>
          <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
@@ -186,13 +189,22 @@
 	        		<div id="tab-1" class="tab-pane active">
 	        			<div class="panel-body">
 	        				<div class="row">  
-				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="organization">
+				               <div class="groupdiv2 col-md-3" style="border: 1px solid #ddd;" id="organization">
 				                  
 				               </div>   
-				               <div class=" col-md-8" id="empList" >
+				               <div class=" col-md-4" id="empList" >
 				                  	
-				               </div>
+				               </div>  
+				               <div class=" col-md-1">
+				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-arrow-right'></i></button>
+				               </div>  
+				                <div class=" col-md-4" style="border: 1px solid #ddd;"   >
+				                	<div class="row"><div style="background-color:#f6f6f6;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><b>선택</b></div></div>
+				                	
+				                  	<div id="empList_list"></div> 	
+				               </div>       
 				            </div>
+				           
 	        			</div>
 	        		</div>
 	        		<div id="tab-2" class="tab-pane">
@@ -211,6 +223,7 @@
 									<div class="col-md-6">
 										<div class="form-inline">
 											<div class="input-group">
+												<input type="hidden" id="org_sea_btn_sel" value="">
 												<input type="text" class="form-control input-sm" id="con_ins_org_sea_query" />
 												<span class="input-group-btn">
 													<a href="#" class="btn btn-default input-sm" id="con_ins_org_sea_btn" style="color: #fd7d86">
