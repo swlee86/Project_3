@@ -205,12 +205,12 @@ function addBranch_Check() {
 		success : function(data) {
 			console.log(data.result);
 			if (data.result > 0) {
-				//alert("등록 성공!");
-				 toastr.warning('등록 성공');
-				window.location.reload();
+				alert("등록 성공!");
+				
+				 window.location.reload();
 			} else {
-				//alert("등록 실패!!");
-				 toastr.warning('등록 실패');
+				alert("등록 실패!!");
+			
 			}
 		}
 	});
@@ -274,8 +274,6 @@ $(function() {
 			$('#sample6_address2').focus();
 			return false;
 		} else {
-			
-			alert("$('#addbranchName').val()"+$('#addbranchName').val());
 			
 			$.ajax({
 
@@ -417,11 +415,12 @@ $(function() {
 
 	//부서 등록 버튼 클릭시 등록 form 보여줌
 	$('#addDepartmentBtn').click(function() {
+		
 		var select = $("#choosebranch option:selected").val();
 		if (select == '선택') {
-			alert('부서를 등록하실 지점을 선택하세요')
+			alert('부서를 등록하실 지점을 선택하세요');
 			$('#addbranch_name').val('');
-		} else {
+		}else {
 			$('#addDepartmentDiv').show();
 			$('#addbranch_name').val(select);
 			$('#addbranch_name').attr("readonly", true);
@@ -431,42 +430,53 @@ $(function() {
 
 	//부서 조회 버튼 클릭시
 	$('#seeDeptBtn').click(function() {
+		
+		var bselect = $('#selectbranch option:selected').val();
 		var select = $("#selectDept option:selected").val();
-		$.ajax({
-			url : "selectDeptList.do",
-			data : {
-				dept_no : select
-			},
-			success : function(data) {
+		
+		if(bselect=='선택'){
+			alert('조회하실 지점을 선택하세요');
+		}else if(select=='선택'){
+			alert('조회하실 부서를 선택하세요');
+		}else{
+			$.ajax({
+				url : "selectDeptList.do",
+				data : {
+					dept_no : select
+				},
+				success : function(data) {
 
-				//hidden
-				$('#hiddept_no').val(data.dept.dept_no);
-				$('#hidbranch_no').val(data.dept.branch_no);
-				$('#hidbranch_name').val(data.dept.branch_name);
+					//hidden
+					$('#hiddept_no').val(data.dept.dept_no);
+					$('#hidbranch_no').val(data.dept.branch_no);
+					$('#hidbranch_name').val(data.dept.branch_name);
 
-				$('#branch_name').val(data.dept.branch_name);
+					$('#branch_name').val(data.dept.branch_name);
 
-				$('#dept_name').val(data.dept.dept_name);
-				$('#dept_name').attr("readonly", false);
+					$('#dept_name').val(data.dept.dept_name);
+					$('#dept_name').attr("readonly", false);
 
-				$('#bonus_percent').val(data.dept.bonus_percent);
-				$('#bonus_percent').attr("readonly", false);
+					$('#bonus_percent').val(data.dept.bonus_percent);
+					$('#bonus_percent').attr("readonly", false);
 
-			},
-			error : function() {
-				alert("부서를 선택해주세요!");
+				},
+				error : function() {
+					alert("부서를 선택해주세요!");
 
-				$('#branch_name').val('');
-				$('#branch_name').attr("readonly", true);
+					$('#branch_name').val('');
+					$('#branch_name').attr("readonly", true);
 
-				$('#dept_name').val('');
-				$('#dept_name').attr("readonly", true);
+					$('#dept_name').val('');
+					$('#dept_name').attr("readonly", true);
 
-				$('#bonus_percent').val('');
-				$('#bonus_percent').attr("readonly", true);
-			}
+					$('#bonus_percent').val('');
+					$('#bonus_percent').attr("readonly", true);
+				}
 
-		});
+			});
+		}
+		
+		
 
 	});
 
@@ -505,20 +515,40 @@ $(function() {
 		var bonus_percent=$('#addbonus_percent').val();
 		
 		if($('#adddept_name').val()==""){
-			 toastr.warning("부서명을 입력해주세요");
+			alert("부서명을 입력해주세요");
 			 $('#adddept_name').focus();
 	         return false;
 		}else if($('#addbonus_percent').val()==""){
-			toastr.warning("상여금 지급비율을 입력해주세요");
+			alert("상여금 지급비율을 입력해주세요");
 			 $('#addbonus_percent').focus();
 	         return false;
+		}else{
+			
+			$.ajax({
+
+				url : "dept_Name.do",
+				data : {
+					dept_name : dept_name,
+				},
+				success : function(data) {
+					//등록 가능
+					if (data.result == '성공') {
+						alert("등록가능한 부서 이름입니다.");
+						addDept_Check();
+					} else {
+						alert("동일한 이름의 부서가 존재합니다. 이름을 변경해 주세요!");
+						return false;
+					}
+
+				}
+			});
+			
 		}
 	});
 
 	//부서 삭제하기
 	$('#deleteDeptBtn').click(function() {
-		console.log(" 부서 번호 > 삭제: " + $('#hiddept_no').val());
-
+		
 		$.ajax({
 			url : "dept_delete.do",
 			data : {
@@ -562,6 +592,26 @@ $(function() {
 
 	//하위부서 조회 버튼 클릭시
 	$('#seeDepartBtn').click(function() {
+		
+		var bselect=$('#select_Branch option:selected').val();
+		var dselect=$("#select_Dept option:selected").val();
+		var select = $("#select_Low_Dept option:selected").val();
+		
+		if(bselect==''|| bselect=='선택'){
+			alert('조회하실 지점을 선택하세요');
+			$('#select_Branch').focus();
+		}else if(dselect==''|| dselect=='선택'){
+			alert('조회하실 부서를 선택하세요');
+			$('#select_Dept').focus();
+		}else if(select==''|| select=='선택'){
+			alert('조회하실 하위부서를 선택하세요');
+			$('#select_Low_Dept').focus();
+		}else{
+			
+		}
+		
+		
+		
 		$('#seeAndModifyDiv').show();
 		$('#addDiv').hide();
 
@@ -642,8 +692,7 @@ $(function() {
 	});
 
 	//하위 부서 추가
-	$('#addlowDeptBtn')
-			.click(
+	$('#addlowDeptBtn').click(
 					function() {
 
 						var date = dateChek();

@@ -68,8 +68,18 @@ public class AdminAjaxController {
 	@RequestMapping("/CheckBranch_Name.do")
 	public View CheckBranch(String branch_name, Model model){
 		System.out.println("지점 추가시 유효성 검사 함");
-		String result = adminservice.checkBranch_Name(branch_name);
-		model.addAttribute("result", result);
+		String list = adminservice.checkBranch_Name(branch_name);
+		
+		if(list == null || list == ""){
+			System.out.println("엘스 : "+list);
+			System.out.println("엘스탐!!!!!!!!!!!!!!!!!!!!");
+			list = "성공";
+		}else{
+			System.out.println("리스트 내용 :  " + list + "/ 내가 넘겨 받음 부서 이름 : "+branch_name);
+			list = "실패";
+		}
+		
+		model.addAttribute("result", list);
 		return jsonview;
 	}
 	
@@ -116,6 +126,18 @@ public class AdminAjaxController {
 		model.addAttribute("deptlist", list);
 		return jsonview;
 	}
+	
+	//부서관리 > 부서 등록시 부서명 유효성 검사
+	@RequestMapping("/dept_Name.do")
+	public View dept_Name(String dept_name, Model model){
+		System.out.println("부서 추가시 유효성 검사 함============" +dept_name);
+		
+		String result = adminservice.checkDept_Name(dept_name);
+		model.addAttribute("result", result);
+	    return jsonview;
+	}
+	
+	
 	
 	//부서 관리 > 부서 등록하기
 	@RequestMapping("/deptAdd.do")

@@ -55,25 +55,15 @@ public class AdminService {
 		System.out.println("브런치 이름 : "+branch_name);
 		
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
-		String result = null; 
+		String list=null;
 		try{
 		
-			String list = branchDAO.checkBranch_Name(branch_name);
-	    	if(list != null || list != ""){
-				System.out.println("리스트 내용 :  / 내가 넘겨 받음 부서 이름 : "+branch_name);
-				result = "실패";
-			}else{
-				System.out.println("엘스탐!!!!!!!!!!!!!!!!!!!!");
-				result = "성공";
-			}
-			
+			list = branchDAO.checkBranch_Name(branch_name);
+	    	
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("디비 돌고 난 다음 중복체크 결과 : "+result);
-		
-		return result;
+	  return list;
 	}
 	
 	// 지점 추가
@@ -276,7 +266,24 @@ public class AdminService {
 
 		return result;
 	}
-
+	
+	//부서 등록전 유효성 검사
+	public String checkDept_Name(String dept_name){
+		String result =null;
+		
+		DeptDAO deptdao =sqlsession.getMapper(DeptDAO.class);
+		result =deptdao.checkDept_name(dept_name);
+		System.out.println(" 부서 이름 잇니?????????"+result);
+		
+		if(result==null|| result==""){
+			result="성공";
+		}else{
+			result="실패";
+		}
+	   return result;
+	}
+	
+	
 	// 부서 등록하기
 	public int addBranch(DeptJoinBonus dto) {
 		// 우리가 입력한 지점 이름

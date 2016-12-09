@@ -30,6 +30,9 @@ public interface DeptDAO {
 	//부서 등록하기 1)
 	int insertDept(DeptJoinBonus deptJoinBonus);
 	
+	//부서 등록전 부서명 유효성 검사
+	String checkDept_name(String dept_name);
+	
 	//지점 번호 뽑아오기 2)
 	String selectBranchName_No(String branch_name);
 	
