@@ -111,7 +111,6 @@ function departMentFuc() {
 						+ "'>" + data.deptlist[index].dept_name + "</option>";
 			});
 			$('#selectDept').html(option);
-			alert('성공');
 		}
 	});
 }
@@ -135,7 +134,6 @@ function showDeptFuc() {
 						+ "'>" + data.deptlist[index].dept_name + "</option>";
 			});
 			$('#select_Dept').html(option);
-			alert('성공');
 		}
 	});
 }
@@ -159,7 +157,6 @@ function showDeptFuc2() {
 						+ "'>" + data.deptlist[index].dept_name + "</option>";
 			});
 			$('#select_Dept_add').html(option);
-			alert('성공');
 		}
 	});
 }
@@ -169,8 +166,7 @@ function showLowDeptFuc() {
 	var choosePosition = '';
 	$("#select_Dept option:selected").each(function() {
 		choosePosition = $(this).val();
-		alert(" 선택 : " + choosePosition)
-	});
+		});
 	$.ajax({
 		url : "lowDeptSelect.do",
 		data : {
@@ -185,7 +181,6 @@ function showLowDeptFuc() {
 						+ data.lowdeptlist[index].low_dept_name + "</option>";
 			});
 			$('#select_Low_Dept').html(option);
-			alert('성공');
 		}
 	});
 
@@ -205,12 +200,12 @@ function addBranch_Check() {
 		success : function(data) {
 			console.log(data.result);
 			if (data.result > 0) {
-				//alert("등록 성공!");
-				 toastr.warning('등록 성공');
-				window.location.reload();
+				alert("등록 성공!");
+				
+				 window.location.reload();
 			} else {
-				//alert("등록 실패!!");
-				 toastr.warning('등록 실패');
+				alert("등록 실패!!");
+			
 			}
 		}
 	});
@@ -238,6 +233,38 @@ function addDept_Check(){
 		}
 	});	
   }
+
+//하위부서 등록시 유효성 검사
+function addLow_Dept_Check(){
+	
+	var date = dateChek();
+
+	var LowDeptJoin = {
+		branch_name : $("#select_branch_add option:selected").val(),
+		dept_no : $("#select_Dept_add option:selected")
+				.val(),
+		dept_name : $("#select_Dept_add option:selected")
+				.text(),
+		low_dept_name : $('#add_low_dept_name').val(),
+		tel : $('#add_tel').val(),
+		fax : $('#add_fax').val(),
+		in_time : $('#add_in_time').val(),
+		out_time : $('#add_out_time').val(),
+		open : $('#add_open').val(),
+		close : $('#add_close').val(),
+		set_date : date
+	};
+
+	$.ajax({
+		url : "add_lowDept.do",
+		data : LowDeptJoin,
+		success : function(data) {
+			console.log(data.result);
+			alert(data.result);
+			window.location.reload();
+		}
+	});
+}
 
 $(function() {
 
@@ -275,8 +302,6 @@ $(function() {
 			return false;
 		} else {
 			
-			alert("$('#addbranchName').val()"+$('#addbranchName').val());
-			
 			$.ajax({
 
 				url : "CheckBranch_Name.do",
@@ -302,9 +327,7 @@ $(function() {
 
 	//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
 	$('#seeBranchBtn').click(function() {
-						var select = $(
-								"#departMentselectBranch option:selected")
-								.val();
+		var select = $("#departMentselectBranch option:selected").val();
             if(select=="선택"){
             	alert('조회하실 지점을 선택해주세요');
             }else{
@@ -317,27 +340,19 @@ $(function() {
 						$.each(data, function(index) {
 
 							$('#hidden').val(data[index].branch_no);
-							$('#hiddenBranchName').val(
-									data[index].branch_name);
+							$('#hiddenBranchName').val(data[index].branch_name);
 
-							$('#branchName2').val(
-									data[index].branch_name);
+							$('#branchName2').val(data[index].branch_name);
 							$('#branchName2').attr("readonly", false);
 
-							$('#sample6_re_postcode').val(
-									data[index].postcode);
-							$('#sample6_re_postcode').attr("readonly",
-									false);
+							$('#sample6_re_postcode').val(data[index].postcode);
+							$('#sample6_re_postcode').attr("readonly",false);
 
-							$('#sample6_re_address').val(
-									data[index].addr);
-							$('#sample6_re_address').attr("readonly",
-									false);
+							$('#sample6_re_address').val(data[index].addr);
+							$('#sample6_re_address').attr("readonly",false);
 
-							$('#sample6_re_address2').val(
-									data[index].addr_detail);
-							$('#sample6_re_address2').attr("readonly",
-									false);
+							$('#sample6_re_address2').val(data[index].addr_detail);
+							$('#sample6_re_address2').attr("readonly",false);
 						});
 
 					},
@@ -375,7 +390,7 @@ $(function() {
 				addr_detail : $('#sample6_re_address2').val()
 			},
 			success : function(data) {
-				console.log(data.result);
+				
 				if (data.result > 0) {
 					alert('정보수정 성공');
 					window.location.reload();
@@ -389,7 +404,7 @@ $(function() {
 
 	//지점 삭제 버튼 클릭시
 	$('#deleteBranchsubmitBtn').click(function() {
-		console.log($('#hidden').val() + " 삭제할 지점 번호~~~~");
+		
 
 		$.ajax({
 			url : "branch_delete.do",
@@ -398,7 +413,6 @@ $(function() {
 			},
 			success : function(data) {
 
-				console.log(data.result);
 				alert(data.result);
 
 				if (data.result == '삭제 성공') {
@@ -417,11 +431,12 @@ $(function() {
 
 	//부서 등록 버튼 클릭시 등록 form 보여줌
 	$('#addDepartmentBtn').click(function() {
+		
 		var select = $("#choosebranch option:selected").val();
 		if (select == '선택') {
-			alert('부서를 등록하실 지점을 선택하세요')
+			alert('부서를 등록하실 지점을 선택하세요');
 			$('#addbranch_name').val('');
-		} else {
+		}else {
 			$('#addDepartmentDiv').show();
 			$('#addbranch_name').val(select);
 			$('#addbranch_name').attr("readonly", true);
@@ -431,42 +446,53 @@ $(function() {
 
 	//부서 조회 버튼 클릭시
 	$('#seeDeptBtn').click(function() {
+		
+		var bselect = $('#selectbranch option:selected').val();
 		var select = $("#selectDept option:selected").val();
-		$.ajax({
-			url : "selectDeptList.do",
-			data : {
-				dept_no : select
-			},
-			success : function(data) {
+		
+		if(bselect=='선택'){
+			alert('조회하실 지점을 선택하세요');
+		}else if(select=='선택'){
+			alert('조회하실 부서를 선택하세요');
+		}else{
+			$.ajax({
+				url : "selectDeptList.do",
+				data : {
+					dept_no : select
+				},
+				success : function(data) {
 
-				//hidden
-				$('#hiddept_no').val(data.dept.dept_no);
-				$('#hidbranch_no').val(data.dept.branch_no);
-				$('#hidbranch_name').val(data.dept.branch_name);
+					//hidden
+					$('#hiddept_no').val(data.dept.dept_no);
+					$('#hidbranch_no').val(data.dept.branch_no);
+					$('#hidbranch_name').val(data.dept.branch_name);
 
-				$('#branch_name').val(data.dept.branch_name);
+					$('#branch_name').val(data.dept.branch_name);
 
-				$('#dept_name').val(data.dept.dept_name);
-				$('#dept_name').attr("readonly", false);
+					$('#dept_name').val(data.dept.dept_name);
+					$('#dept_name').attr("readonly", false);
 
-				$('#bonus_percent').val(data.dept.bonus_percent);
-				$('#bonus_percent').attr("readonly", false);
+					$('#bonus_percent').val(data.dept.bonus_percent);
+					$('#bonus_percent').attr("readonly", false);
 
-			},
-			error : function() {
-				alert("부서를 선택해주세요!");
+				},
+				error : function() {
+					alert("부서를 선택해주세요!");
 
-				$('#branch_name').val('');
-				$('#branch_name').attr("readonly", true);
+					$('#branch_name').val('');
+					$('#branch_name').attr("readonly", true);
 
-				$('#dept_name').val('');
-				$('#dept_name').attr("readonly", true);
+					$('#dept_name').val('');
+					$('#dept_name').attr("readonly", true);
 
-				$('#bonus_percent').val('');
-				$('#bonus_percent').attr("readonly", true);
-			}
+					$('#bonus_percent').val('');
+					$('#bonus_percent').attr("readonly", true);
+				}
 
-		});
+			});
+		}
+		
+		
 
 	});
 
@@ -483,11 +509,7 @@ $(function() {
 					bonus_percent : $('#bonus_percent').val(),
 					set_date : date
 				};
-				console.log(dto.dept_name + " / " + dto.bonus_percent + " / "
-						+ dto.set_date + "/ hidden ----: " + dto.dept_no
-						+ " / " + dto.branch_no + " / " + dto.branch_name);
-
-				$.ajax({
+				 $.ajax({
 					url : "modifyDept.do",
 					data : dto,
 					success : function(data) {
@@ -505,28 +527,46 @@ $(function() {
 		var bonus_percent=$('#addbonus_percent').val();
 		
 		if($('#adddept_name').val()==""){
-			 toastr.warning("부서명을 입력해주세요");
+			alert("부서명을 입력해주세요");
 			 $('#adddept_name').focus();
 	         return false;
 		}else if($('#addbonus_percent').val()==""){
-			toastr.warning("상여금 지급비율을 입력해주세요");
+			alert("상여금 지급비율을 입력해주세요");
 			 $('#addbonus_percent').focus();
 	         return false;
+		}else{
+			
+			$.ajax({
+
+				url : "dept_Name.do",
+				data : {
+					dept_name : dept_name,
+				},
+				success : function(data) {
+					//등록 가능
+					if (data.result == '성공') {
+						alert("등록가능한 부서 이름입니다.");
+						addDept_Check();
+					} else {
+						alert("동일한 이름의 부서가 존재합니다. 이름을 변경해 주세요!");
+						return false;
+					}
+
+				}
+			});
+			
 		}
 	});
 
 	//부서 삭제하기
 	$('#deleteDeptBtn').click(function() {
-		console.log(" 부서 번호 > 삭제: " + $('#hiddept_no').val());
-
+		
 		$.ajax({
 			url : "dept_delete.do",
 			data : {
 				dept_no : $('#hiddept_no').val()
 			},
 			success : function(data) {
-
-				console.log(data.result);
 				alert(data.result);
 
 				if (data.result == '삭제 성공') {
@@ -562,123 +602,190 @@ $(function() {
 
 	//하위부서 조회 버튼 클릭시
 	$('#seeDepartBtn').click(function() {
+		
+
 		$('#seeAndModifyDiv').show();
 		$('#addDiv').hide();
 
+		
+		var bselect=$('#select_Branch option:selected').val();
+		var dselect=$("#select_Dept option:selected").val();
 		var select = $("#select_Low_Dept option:selected").val();
-		$.ajax({
-			url : "search_low_dept.do",
-			data : {
-				low_dept_no : select
-			},
-			success : function(data) {
-				alert('조회 성공');
-				console.log(data.low_dept);
+		
+		if(bselect==''|| bselect=='선택'){
+			alert('조회하실 지점을 선택하세요');
+		}else if(dselect==''|| dselect=='선택'){
+			alert('조회하실 부서를 선택하세요');
+		}else if(select==''|| select=='선택'){
+			alert('조회하실 하위부서를 선택하세요');
+		}else{
 
-				$('#hiddendept_no').val(data.low_dept.dept_no);
-				$('#hiddenbranch_name').val(data.low_dept.branch_name);
-				$('#hiddenlow_dept_no').val(data.low_dept.low_dept_no);
+			var select = $("#select_Low_Dept option:selected").val();
+			$.ajax({
+				url : "search_low_dept.do",
+				data : {
+					low_dept_no : select
+				},
+				success : function(data) {
+						
+					$('#hiddendept_no').val(data.low_dept.dept_no);
+					$('#hiddenbranch_name').val(data.low_dept.branch_name);
+					$('#hiddenlow_dept_no').val(data.low_dept.low_dept_no);
 
-				$('#dept_name').val(data.low_dept.dept_name);
+					$('#dept_name').val(data.low_dept.dept_name);
 
-				$('#low_dept_name').val(data.low_dept.low_dept_name);
-				$('#low_dept_name').attr("readonly", false);
+					$('#low_dept_name').val(data.low_dept.low_dept_name);
+					$('#low_dept_name').attr("readonly", false);
 
-				$('#tel').val(data.low_dept.tel);
-				$('#tel').attr("readonly", false);
+					$('#tel').val(data.low_dept.tel);
+					$('#tel').attr("readonly", false);
 
-				$('#fax').val(data.low_dept.fax);
-				$('#fax').attr("readonly", false);
+					$('#fax').val(data.low_dept.fax);
+					$('#fax').attr("readonly", false);
 
-				$('#in_time').val(data.low_dept.in_time);
-				$('#in_time').attr("readonly", false);
+					$('#in_time').val(data.low_dept.in_time);
+					$('#in_time').attr("readonly", false);
 
-				$('#out_time').val(data.low_dept.out_time);
-				$('#out_time').attr("readonly", false);
+					$('#out_time').val(data.low_dept.out_time);
+					$('#out_time').attr("readonly", false);
 
-				$('#open').val(data.low_dept.open);
-				$('#open').attr("readonly", false);
+					$('#open').val(data.low_dept.open);
+					$('#open').attr("readonly", false);
 
-				$('#close').val(data.low_dept.close);
-				$('#close').attr("readonly", false);
+					$('#close').val(data.low_dept.close);
+					$('#close').attr("readonly", false);
 
-			},
-			error : function() {
-				alert("조회하실 조건을 선택해주세요!");
+				},
+				error : function() {
+					alert("조회하실 조건을 선택해주세요!");
 
-				$('#dept_name').val('');
-				$('#dept_name').attr("readonly", true);
+					$('#dept_name').val('');
+					$('#dept_name').attr("readonly", true);
 
-				$('#low_dept_name').val('');
-				$('#low_dept_name').attr("readonly", true);
+					$('#low_dept_name').val('');
+					$('#low_dept_name').attr("readonly", true);
 
-				$('#tel').val('');
-				$('#tel').attr("readonly", true);
+					$('#tel').val('');
+					$('#tel').attr("readonly", true);
 
-				$('#fax').val('');
-				$('#fax').attr("readonly", true);
+					$('#fax').val('');
+					$('#fax').attr("readonly", true);
 
-				$('#in_time').val('');
-				$('#in_time').attr("readonly", true);
+					$('#in_time').val('');
+					$('#in_time').attr("readonly", true);
 
-				$('#out_time').val('');
-				$('#out_time').attr("readonly", true);
+					$('#out_time').val('');
+					$('#out_time').attr("readonly", true);
 
-				$('#open').val('');
-				$('#open').attr("readonly", true);
+					$('#open').val('');
+					$('#open').attr("readonly", true);
 
-				$('#close').val('');
-				$('#close').attr("readonly", true);
-			}
+					$('#close').val('');
+					$('#close').attr("readonly", true);
+				}
 
-		});
+			});
+		}
+		
+		
+		
 
 	});
 
 	//하위 부서 추가 버튼 클릭시
 	$('#addDownDepartBtn').click(function() {
+		
+		$('#select_Branch').val('');
+		$("#select_Dept").val('');
+		$("#select_Low_Dept").val('');
+		
+		$('#dept_name').val('');
+		$('#dept_name').attr("readonly", true);
+
+		$('#low_dept_name').val('');
+		$('#low_dept_name').attr("readonly", true);
+
+		$('#tel').val('');
+		$('#tel').attr("readonly", true);
+
+		$('#fax').val('');
+		$('#fax').attr("readonly", true);
+
+		$('#in_time').val('');
+		$('#in_time').attr("readonly", true);
+
+		$('#out_time').val('');
+		$('#out_time').attr("readonly", true);
+
+		$('#open').val('');
+		$('#open').attr("readonly", true);
+
+		$('#close').val('');
+		$('#close').attr("readonly", true);
+		
 		$('#addDiv').show();
 		$('#seeAndModifyDiv').hide();
+		
+		
+	    $("#select_branch_add").val('');
+		$("#select_Dept_add").val('');
+		$('#add_low_dept_name').val('');
+		$('#add_tel').val('');
+		$('#add_fax').val('');
+		$('#add_in_time').val('');
+		$('#add_out_time').val('');
+		$('#add_open').val('');
+		$('#add_close').val('');
 	});
 
 	//하위 부서 추가
-	$('#addlowDeptBtn')
-			.click(
-					function() {
+	$('#addlowDeptBtn').click(function() {
 
-						var date = dateChek();
+		
+		var low_dept_name=$('#add_low_dept_name').val();
+		
+		if($('#select_branch_add option:selected').val()=='선택'){
+			alert('하위부서를 추가하실 지점을 선택하세요');
+		}else if($('#select_Dept_add option:selected').val()=='선택'){
+			alert('하위부서를 추가하실 부서를 선택하세요');
+	    }else if($('#add_low_dept_name').val()==''){
+	    	alert('등록할 하위부서명을 입력하세요');
+	    	$('#add_low_dept_name').focus();
+	    }else if($('#add_tel').val()==''){
+	    	alert('연락처를 입력하세요');
+	    	$('#add_tel').focus();
+	    }else if($('#add_fax').val()==''){
+	    	alert('팩스번호를 입력하세요');
+	    	$('#add_fax').focus();
+	    }else if($('#add_in_time').val()=='' || $('#add_out_time').val()==''){
+	    	alert('출퇴근시간을  설정하세요');
+	    	$('#add_in_time').focus();
+	    }else if($('#add_open').val()=='' || $('#add_close').val()==''){
+	    	alert('홈페이지 접근시간을  설정하세요');
+	    	$('#add_open').focus();
+	    }else{
 
-						var LowDeptJoin = {
-							branch_name : $(
-									"#select_branch_add option:selected").val(),
-							dept_no : $("#select_Dept_add option:selected")
-									.val(),
-							dept_name : $("#select_Dept_add option:selected")
-									.text(),
-							low_dept_name : $('#add_low_dept_name').val(),
-							tel : $('#add_tel').val(),
-							fax : $('#add_fax').val(),
-							in_time : $('#add_in_time').val(),
-							out_time : $('#add_out_time').val(),
-							open : $('#add_open').val(),
-							close : $('#add_close').val(),
-							set_date : date
-						};
-						console.log(":::DDDD : " + LowDeptJoin.branch_name
-								+ " / " + LowDeptJoin.dept_no + " / "
-								+ LowDeptJoin.low_dept_name);
+	    	$.ajax({
 
-						$.ajax({
-							url : "add_lowDept.do",
-							data : LowDeptJoin,
-							success : function(data) {
-								console.log(data.result);
-								alert(data.result);
-								window.location.reload();
-							}
-						});
+				url : "low_dept_Name.do",
+				data : {
+					low_dept_name : low_dept_name,
+				},
+				success : function(data) {
+					//등록 가능
+					if (data.result == '성공') {
+						alert("등록가능한 하위부서 이름입니다.");
+						addLow_Dept_Check();
+					} else {
+						alert("동일한 이름의 하위부서가 존재합니다. 이름을 변경해 주세요!");
+						return false;
+					}
 
-					});
+				}
+			});
+	    	
+	    }
+	});
 
 	//하위 부서 수정
 	$('#lowDeptModifyBtn').click(
@@ -700,12 +807,7 @@ $(function() {
 					close : $('#close').val(),
 					set_date : date
 				};
-				console.log(":::DDDD :  하위부서번호 : " + LowDeptJoin.low_dept_no
-						+ " / " + LowDeptJoin.dept_name + " / "
-						+ LowDeptJoin.dept_no + " / "
-						+ LowDeptJoin.low_dept_name + " / "
-						+ LowDeptJoin.branch_name);
-
+			
 				$.ajax({
 					url : "low_dept_Modify.do",
 					data : LowDeptJoin,
@@ -721,7 +823,7 @@ $(function() {
 
 	//하위부서 삭제버튼 클릭시 
 	$('#deleteDownDepartBtn').click(function() {
-		console.log("하위 부서 번호 > 삭제 : " + $('#hiddenlow_dept_no').val());
+		
 		$.ajax({
 			url : "low_dept_delete.do",
 			data : {
@@ -737,42 +839,36 @@ $(function() {
 	});
 
 	//개발부서 클릭시 아작스 이용
-	$('#depart')
-			.click(
-					function() {
+	$('#depart').click(function() {
 
-						$
-								.ajax({
-									url : "adminDepart_depart.do",
-									data : {
-										"depart" : $('#depart').html()
-									},
-									success : function(data) {
-										console.log(data);
-										var text = "<h3>" + $('#depart').html()
-												+ "</h3>";
-										text += "<table class='table'><tr><th></th><th>이름</th><th>나이</th>";
+	$.ajax({
+				url : "adminDepart_depart.do",
+				data : {
+					"depart" : $('#depart').html()
+				},
+				success : function(data) {
+					console.log(data);
+					var text = "<h3>" + $('#depart').html()
+							+ "</h3>";
+					text += "<table class='table'><tr><th></th><th>이름</th><th>나이</th>";
 
-										$
-												.each(
-														data,
-														function(index) {
-															console.log(index);
-															text += "<tr><td><input type='checkbox'></td><td>"
-																	+ data[index].name
-																	+ "</td><td>"
-																	+ data[index].age
-																	+ "</td><tr/>";
-														});
+					$.each(data,function(index) {
+								
+						text += "<tr><td><input type='checkbox'></td><td>"
+								+ data[index].name
+								+ "</td><td>"
+								+ data[index].age
+								+ "</td><tr/>";
+							});
 
-										text += "</table>";
-										text += "<input type='button' class='btn btn-default' value='버튼입니다'>";
-										$('#departList').html('');
-										$('#departList').html(text);
-									}
-								});
+					text += "</table>";
+					text += "<input type='button' class='btn btn-default' value='버튼입니다'>";
+					$('#departList').html('');
+					$('#departList').html(text);
+					}
+				});
 
-					});
+	});
 
 });
 

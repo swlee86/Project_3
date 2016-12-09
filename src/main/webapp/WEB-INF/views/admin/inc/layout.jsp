@@ -79,6 +79,7 @@
 
 <!-- Main Wrapper -->
 <div id="wrapper">
+
 <tiles:insertAttribute name="content" />
 
     <!-- Right sidebar -->

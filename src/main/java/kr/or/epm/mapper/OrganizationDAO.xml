@@ -83,9 +83,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 사원정보 > 조직도 모달 -->
    <select id="selectEmpInfo_modal" resultType="kr.or.epm.VO.Organization">
-      select emp_no, emp_name, birth, branch_name, low_dept_name, dept_name, cell_phone
+      select emp_no, emp_name, birth, branch_name, low_dept_name, dept_name, cell_phone,p.POSITION_NAME
       from emp e join low_dept d
       on d.low_dept_no = e.low_dept_no
+      join position p 
+      on p.position_no = e.position_no
       where d.low_dept_no = #{param1} and e.emp_no ! = ( select emp_no from emp_detail where id=#{param2})
    </select>
    

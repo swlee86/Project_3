@@ -29,6 +29,9 @@ public interface Low_deptDAO {
 	//하위 부서 조회하기 3)
 	public Set_time selectTime(String low_dept_no);
 	
+	//하위 부서 등록 전 유효성 검사
+	public String check_lowdept(String low_dept_name);
+	
 	// 하위 부서 등록하기 1)
 	public int insertLow_dept(LowDeptJoin lowDeptJoin);
 	
