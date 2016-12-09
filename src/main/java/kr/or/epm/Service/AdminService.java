@@ -342,6 +342,22 @@ public class AdminService {
 		low_dept.setOut_time(time.getOut_time());
 		return low_dept;
 	}
+	
+	//하위 부서 등록 전 유효성 검사
+	public String check_lowdept(String low_dept_name){
+		String result =null;
+		
+		Low_deptDAO dao = sqlsession.getMapper(Low_deptDAO.class);
+		result =dao.check_lowdept(low_dept_name);
+		System.out.println(" 하위 부서 이름 잇니?????????"+result);
+		
+		if(result==null|| result==""){
+			result="성공";
+		}else{
+			result="실패";
+		}
+	   return result;
+	}
 
 	// 하위 부서 > 등록하기
 	public int insertLow_dept(LowDeptJoin lowDeptJoin) {

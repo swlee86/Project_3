@@ -222,6 +222,17 @@ public class AdminAjaxController {
 		return jsonview;
 	}
 	
+	//하위부서 등록전 유효성 검사
+	@RequestMapping("/low_dept_Name.do")
+	public View check_lowdept(String low_dept_name, Model model){
+		System.out.println("하위부서 추가시 유효성 검사 함============" +low_dept_name);
+		
+		String result = adminservice.check_lowdept(low_dept_name);
+		model.addAttribute("result", result);
+	    return jsonview;
+	}
+	
+	
 	// 하위부서 > 등록하기
 	@RequestMapping("/add_lowDept.do")
 	public View add_lowDept(LowDeptJoin lowDeptJoin, Model model){

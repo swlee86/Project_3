@@ -45,6 +45,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select in_time, out_time from set_time where low_dept_no=#{low_dept_no}
 	</select>
 	
+	<!-- 하위 부서 등록전 유효성 검사 -->
+	<select id="check_lowdept" parameterType="String" resultType="String">
+	  select low_dept_name from low_dept where low_dept_name = #{low_dept_name} and his_check='1'
+	</select>
 	
 	<!-- 하위 부서 등록하기 1)-->
 	<insert id="insertLow_dept" parameterType="kr.or.epm.VO.LowDeptJoin">
