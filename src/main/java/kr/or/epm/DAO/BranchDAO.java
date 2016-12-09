@@ -14,7 +14,7 @@ public interface BranchDAO {
 	Branch selectChooseBranch(String selectBranchName);
 	
 	//지점 이름 중복 체크 유효성 
-	List<String> checkBranch_Name();
+	String checkBranch_Name(String branch_name);
 	
 	//지점 추가
 	int addBranch(Branch dto);

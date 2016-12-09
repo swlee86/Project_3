@@ -58,20 +58,12 @@ public class AdminService {
 		String result = null; 
 		try{
 		
-			List<String> list = branchDAO.checkBranch_Name();
-		
-			if(list.size() > 0){
-				for(int i = 0; i < list.size(); i++){
-					if(list.get(i).equals(branch_name)){
-						System.out.println("리스트 내용 : " +list.get(i) + " / 내가 넘겨 받음 부서 이름 : "+branch_name);
-						result = "실패";
-					}else{
-						System.out.println("리스트 내용 : " +list.get(i) + " / 내가 넘겨 받음 부서 이름 : "+branch_name);
-						result = "성공";
-					}
-				}
+			String list = branchDAO.checkBranch_Name(branch_name);
+	    	if(list != null || list != ""){
+				System.out.println("리스트 내용 :  / 내가 넘겨 받음 부서 이름 : "+branch_name);
+				result = "실패";
 			}else{
-				System.out.println("서비스 사이즈 : "+list.size());
+				System.out.println("엘스탐!!!!!!!!!!!!!!!!!!!!");
 				result = "성공";
 			}
 			

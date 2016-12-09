@@ -128,7 +128,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 	
-	<script src="vendor/toastr/build/toastr.min.js"></script>
+<script src="vendor/toastr/build/toastr.min.js"></script>
 <script>
 
  toastr.options = {    
@@ -141,17 +141,15 @@
          "onclick": null,
          "showDuration": "300",
          "hideDuration": "300",
-         "timeOut": "2000",
+         "timeOut": "200000",
          "extendedTimeOut": "1000",
          "showEasing": "swing",
          "hideEasing": "linear",
          "showMethod": "fadeIn",
-         "hideMethod": "fadeOut"
+         "hideMethod": "fadeOut",
          };
  
- $(".toast-message").css("color", "black");
 
-	
 	//삭제 하기 버튼 클릭시 !!
 	function deleteli(obj){
 		var deleteli = $(obj);
@@ -172,9 +170,12 @@
 		deleteli.parent().remove();
 	}
 
-	$(function(){
-		
 	
+	
+	$(function(){
+		 
+		 
+		
 		//드래그 앤 드롭
 		$( "#sortable" ).sortable();
 	

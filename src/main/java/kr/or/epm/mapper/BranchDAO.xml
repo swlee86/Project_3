@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 지점 이름 중복체크 -->  
-	<select id="checkBranch_Name" resultType="String">
-		select BRANCH_NAME from branch
+	<select id="checkBranch_Name" parameterType="String" resultType="String">
+		select BRANCH_NAME from branch where branch_name = #{branch_name} and his_check='1'
 	</select>
 	
 	<!--지점 추가  -->	

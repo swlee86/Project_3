@@ -274,7 +274,9 @@ $(function() {
 			$('#sample6_address2').focus();
 			return false;
 		} else {
-
+			
+			alert("$('#addbranchName').val()"+$('#addbranchName').val());
+			
 			$.ajax({
 
 				url : "CheckBranch_Name.do",
@@ -284,10 +286,11 @@ $(function() {
 				success : function(data) {
 					//등록 가능
 					if (data.result == '성공') {
-						alert("등록가능한 지점 이름 입니다.");
+						alert("등록가능한 지점 이름입니다.");
 						addBranch_Check();
 					} else {
-						alert("동일한 지점이 존재합니다. 이름을 변경 해 주세요!");
+						alert("동일한 지점이 존재합니다. 이름을 변경해 주세요!");
+						return false;
 					}
 
 				}
@@ -298,67 +301,66 @@ $(function() {
 	});
 
 	//지점 셀렉트 박스 선택후 조회 버튼 클릭시 호출.
-	$('#seeBranchBtn')
-			.click(
-					function() {
+	$('#seeBranchBtn').click(function() {
 						var select = $(
 								"#departMentselectBranch option:selected")
 								.val();
+            if(select=="선택"){
+            	alert('조회하실 지점을 선택해주세요');
+            }else{
+            	$.ajax({
+					url : "selectBranchList.do",
+					data : {
+						selectBranchName : select
+					},
+					success : function(data) {
+						$.each(data, function(index) {
 
-						$.ajax({
-							url : "selectBranchList.do",
-							data : {
-								selectBranchName : select
-							},
-							success : function(data) {
-								$.each(data, function(index) {
+							$('#hidden').val(data[index].branch_no);
+							$('#hiddenBranchName').val(
+									data[index].branch_name);
 
-									alert("성공했을때 아작스 부분 : " + data.branch_name
-											+ " / index 는 ?? "
-											+ data[index].branch_name);
+							$('#branchName2').val(
+									data[index].branch_name);
+							$('#branchName2').attr("readonly", false);
 
-									$('#hidden').val(data[index].branch_no);
-									$('#hiddenBranchName').val(
-											data[index].branch_name);
+							$('#sample6_re_postcode').val(
+									data[index].postcode);
+							$('#sample6_re_postcode').attr("readonly",
+									false);
 
-									$('#branchName2').val(
-											data[index].branch_name);
-									$('#branchName2').attr("readonly", false);
+							$('#sample6_re_address').val(
+									data[index].addr);
+							$('#sample6_re_address').attr("readonly",
+									false);
 
-									$('#sample6_re_postcode').val(
-											data[index].postcode);
-									$('#sample6_re_postcode').attr("readonly",
-											false);
-
-									$('#sample6_re_address').val(
-											data[index].addr);
-									$('#sample6_re_address').attr("readonly",
-											false);
-
-									$('#sample6_re_address2').val(
-											data[index].addr_detail);
-									$('#sample6_re_address2').attr("readonly",
-											false);
-								});
-
-							},
-							error : function() {
-								alert("지점을 선택해주세요!");
-
-								$('#branchName').val('');
-								$('#branchName').attr("readonly", true);
-
-								$('#postcode').val('');
-								$('#postcode').attr("readonly", true);
-
-								$('#addr').val('');
-								$('#addr').attr("readonly", true);
-
-								$('#addr_detail').val('');
-								$('#addr_detail').attr("readonly", true);
-							}
+							$('#sample6_re_address2').val(
+									data[index].addr_detail);
+							$('#sample6_re_address2').attr("readonly",
+									false);
 						});
-					});
+
+					},
+					error : function() {
+						
+						alert("조회하신 결과가 존재하지 않습니다!");
+						
+						$('#branchName').val('');
+						$('#branchName').attr("readonly", true);
+
+						$('#postcode').val('');
+						$('#postcode').attr("readonly", true);
+
+						$('#addr').val('');
+						$('#addr').attr("readonly", true);
+
+						$('#addr_detail').val('');
+						$('#addr_detail').attr("readonly", true);
+					}
+				});
+              }
+						
+		});
 
 	//지점 정보 수정 버튼 클릭시
 	$('#modifyBranchsubmitBtn').click(function() {
