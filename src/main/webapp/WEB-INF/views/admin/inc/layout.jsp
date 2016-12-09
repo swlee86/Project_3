@@ -39,6 +39,7 @@
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
 
+  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 	<style>
 		.detailSpan{
 		
@@ -114,6 +115,7 @@
 
 <!-- alert -->
 <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+<script src="vendor/toastr/build/toastr.min.js"></script>
 
 <!--부서관리 메뉴 js  --> 
 <script src="js/admin/adminBranch/admin_branch.js"></script>
