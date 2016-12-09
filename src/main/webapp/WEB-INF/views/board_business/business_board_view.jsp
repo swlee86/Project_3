@@ -66,10 +66,8 @@
 							<hr>
 							<c:if test="${not empty list.file_name}">
 								<img src="${pageContext.request.contextPath}/img/upload/${list.file_name}"  style="max-width: 80%;height: auto;  border-radius: 0%; width: inherit;" alt="기사이미지" width="70%">
-								 <br><br>
+								<br><br>
 							</c:if>
-							
-							 
 							 	${list.content}
 							<!-- Comments -->
 							<div class="forum-comments">

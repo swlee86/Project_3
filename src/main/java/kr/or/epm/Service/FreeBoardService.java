@@ -91,4 +91,19 @@ public class FreeBoardService {
 			FreeBoardDAO freeboarddao = sqlSession.getMapper(FreeBoardDAO.class);
 			freeboarddao.updateStep(refer, step);
 		}
+		
+		//글 수정하는 함수
+		public int updateRow(FreeBoard freeBoard) {
+			FreeBoardDAO freeBoardDAO = sqlSession.getMapper(FreeBoardDAO.class);
+			int result = freeBoardDAO.updateRow(freeBoard);
+			System.out.println("=> 처리결과 result : "+result);
+			return result;
+		}
+		
+		//삭제하는 함수
+		public int deleteRow(int no){
+			FreeBoardDAO freeBoardDAO = sqlSession.getMapper(FreeBoardDAO.class);
+			int result = freeBoardDAO.deleteRow(no); 
+			return result;
+		}
 }

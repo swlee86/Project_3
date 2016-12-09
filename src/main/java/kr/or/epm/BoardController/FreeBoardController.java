@@ -7,7 +7,9 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.epm.Service.FreeBoardService;
+import kr.or.epm.VO.BusinessBoard;
 import kr.or.epm.VO.FreeBoard;
 import kr.or.epm.VO.Re_FreeBoard;
 
@@ -88,10 +91,12 @@ public class FreeBoardController {
 	
 	//자유게시판  > 자유게시판 상세 페이지 이동
 	@RequestMapping(value="/free_board_view.do", method=RequestMethod.GET)
-	public String free_board_view(Model mv, int no, int currentpage, int pagesize){
+	public String free_board_view(Model mv, int no, String currentpage, String pagesize,HttpSession session){
 		String link = null;
 		FreeBoard freeboard = null;
 		List<Re_FreeBoard> re_list = null;
+		String rec_emp_no = (String)session.getAttribute("emp_no");
+
 		try{
 			freeboard = freeboardservice.selectDetail(no);
 			re_list = freeboardservice.selectReList(no);
@@ -103,6 +108,8 @@ public class FreeBoardController {
 			mv.addAttribute("re_list", re_list);
 			mv.addAttribute("currentpage", currentpage);
 			mv.addAttribute("pagesize", pagesize);
+			mv.addAttribute("rec_emp_no",rec_emp_no);
+
 			link = "board_free.free_board_view";
 		}
 		
@@ -206,10 +213,12 @@ public class FreeBoardController {
 
 		//댓글 달고나서 다시 본문을 불러오는 함수(hit 증가 없음)
 		@RequestMapping(value="/free_board_view_reply.do", method=RequestMethod.GET)
-		public String free_board_view_after_reply(Model mv, int no, int currentpage, int pagesize){
+		public String free_board_view_after_reply(Model mv, int no, int currentpage, int pagesize, HttpSession session){
 			String link = null;
 			FreeBoard freeboard = null;
 			List<Re_FreeBoard> re_list = null;
+			String rec_emp_no = (String)session.getAttribute("emp_no");
+
 			try{
 				freeboard = freeboardservice.selectDetail(no);
 				re_list = freeboardservice.selectReList(no);
@@ -220,6 +229,8 @@ public class FreeBoardController {
 				mv.addAttribute("re_list", re_list);
 				mv.addAttribute("currentpage", currentpage);
 				mv.addAttribute("pagesize", pagesize);
+				mv.addAttribute("rec_emp_no",rec_emp_no);
+
 				link = "board_free.free_board_view";
 			}
 			
@@ -336,4 +347,61 @@ public class FreeBoardController {
 		}
 		
 
+		// 수정페이지 이동
+		@RequestMapping(value = "/free_board_update.do", method = RequestMethod.GET)
+		public String free_board_update(String no, Model model) {
+			System.out.println("free_board_update() 컨트롤러 탐");
+			
+			FreeBoard list = freeboardservice.selectDetail(Integer.parseInt(no));		
+			
+			model.addAttribute("list",list);
+			return "board_free.free_board_rewrite";
+		}
+		
+		//수정 처리
+		@RequestMapping(value = "/free_board_update.do", method = RequestMethod.POST)
+		public String free_board_update(@RequestParam("uploadfile") MultipartFile file, FreeBoard freeBoard, Model model, HttpServletRequest request) {
+			System.out.println("free_board_update()처리 컨트롤러 탐");
+			int result = 0;
+			
+			//File cFile = new File("C:/images/", file.getOriginalFilename());
+			 String path = request.getRealPath("/media/upload/");
+			 System.out.println("=====> path : "+path);
+			File cFile = new File(path, file.getOriginalFilename());
+			
+			try {
+				file.transferTo(cFile);
+				System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
+				System.out.println("getPath : " +cFile.getPath());
+			} catch (IllegalStateException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
+			freeBoard.setFile_name(file.getOriginalFilename());
+				
+			System.out.println("=>update 후 title :"+freeBoard.getTitle()+"/내용: "+freeBoard.getContent()+"/ 파일 제목 : "+freeBoard.getFile_name());
+				
+			result = freeboardservice.updateRow(freeBoard);
+
+			System.out.println("=> 글번호update result : "+freeBoard.getNo());	
+		
+			if(result > 0){
+				return "redirect:free_board_view.do?no="+freeBoard.getNo();
+			}else{
+				return "redirect:board_free.free_board_list.do";
+			}
+		}
+		
+		//삭제 처리
+		@RequestMapping(value = "/free_board_delete.do")
+		public String free_board_delete(String no) {
+			System.out.println("free_board_delete() 컨트롤러 탐");		
+			System.out.println("no : "+ no) ;
+				
+			freeboardservice.deleteRow(Integer.parseInt(no));				
+			return "redirect:free_board_list.do";
+		}
 }
