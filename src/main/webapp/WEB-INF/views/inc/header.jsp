@@ -183,6 +183,8 @@ $(function(){
                         <li>승인 확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>                    	
                     	</c:otherwise>
                     	</c:choose>
+                    	<li class="summary">전자 결재</li>
+                    	
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
