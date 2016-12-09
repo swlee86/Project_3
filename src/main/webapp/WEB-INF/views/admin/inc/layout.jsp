@@ -39,6 +39,7 @@
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
 
+  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 	<style>
 		.detailSpan{
 		
@@ -105,6 +106,7 @@
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+
 	<!--월별 캘린더.-->
 	<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
 
@@ -114,6 +116,7 @@
 
 <!-- alert -->
 <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+<script src="vendor/toastr/build/toastr.min.js"></script>
 
 <!--부서관리 메뉴 js  --> 
 <script src="js/admin/adminBranch/admin_branch.js"></script>
@@ -129,6 +132,10 @@
 
 <!--근태 관리 메뉴 js-->
 <script src="js/admin/adminCommute/adminCommute.js"></script>
+
+<!-- 사원 관리 메뉴 js-->
+<script src="js/admin/adminEmp/admin_emp.js"></script>
+
 <script>
 
 	
@@ -187,8 +194,6 @@
 		
     	var arr = new Array();
 
-	
-    // 백승아
     // 사원 권한 부여
 	$("input[name='checkbox']:checked").each(function(i) {
 		

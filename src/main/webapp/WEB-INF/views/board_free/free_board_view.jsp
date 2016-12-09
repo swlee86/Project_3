@@ -56,11 +56,19 @@
 						</div>
 						<div class="media-body">
 							<h5>${list.title}</h5>
-							<hr>
-							<c:if test ="">
+							<%--<hr>
+							 <c:if test ="">
 								<img src="${pageContext.request.contextPath}/img/upload/${list.file_name}"  style="max-width: 80%;height: auto;  border-radius: 0%; width: inherit;" alt="기사이미지" width="70%">
 								<br><br>
-							</c:if> 	
+							</c:if>  --%>
+							<c:if test="${not empty list.file_name}">
+								<span class="pull-right">첨부파일 >
+									<a href=freeBoard_fileDown.do?name=${list.file_name}">${list.file_name}</a>
+								</span>
+<%-- 									<img src="${pageContext.request.contextPath}/img/upload/${list.file_name}"  style="max-width: 80%;height: auto;  border-radius: 0%; width: inherit;" alt="기사이미지" width="70%">
+ --%>							<br>
+							</c:if>
+							<hr>
 							 	${list.content}
 							<!-- Comments -->
 							<div class="forum-comments">
@@ -105,7 +113,8 @@
 								<a href="answerfree.do?no=${list.no}&currentpage=${currentpage}&pagesize=${pagesize}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">답글 쓰기</a>							
 								<c:if test="${list.emp_no==rec_emp_no}">
 									<a href="free_board_update.do?no=${list.no}" class="btn btn-sm btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">수정하기</a>
-									<a href="free_board_delete.do?no=${list.no}" class="btn btn-sm btn-default deletechk" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>
+									<input type="text"  hidden="hidden" id = "listno" value="${list.no}">
+									<a class="btn btn-sm btn-default deletechk" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">삭제하기</a>
 								</c:if>								
 							</div>
 						</div>

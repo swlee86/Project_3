@@ -47,9 +47,7 @@ public class AdminAjaxController {
 	//지점 선택후 조회 클릭 했을시 지점 상세정보 출력
 	@RequestMapping("/selectBranchList.do")
 	public View branchList(String selectBranchName , Model model){	
-		System.out.println("넘어온 데이타 : "+selectBranchName);
 		Branch dto = adminservice.chooseBranch(selectBranchName);
-		System.out.println("어드민 아작스 : "+dto.toString());
 		model.addAttribute(dto);
 		return jsonview;
 	}
@@ -57,9 +55,7 @@ public class AdminAjaxController {
 	//지점 추가
 	@RequestMapping("/branchAdd.do")
 	public View branchAdd(Branch dto, Model model){
-		System.out.println("지점추가 controller : "+dto.toString());
 		int result = adminservice.addBranch(dto);
-		System.out.println("결과 : "+result);
 		model.addAttribute("result", result);
 		return jsonview;
 	}
@@ -67,15 +63,11 @@ public class AdminAjaxController {
 	//지점 추가시 중복된 지점이 있는지 체크하는 함수
 	@RequestMapping("/CheckBranch_Name.do")
 	public View CheckBranch(String branch_name, Model model){
-		System.out.println("지점 추가시 유효성 검사 함");
 		String list = adminservice.checkBranch_Name(branch_name);
 		
 		if(list == null || list == ""){
-			System.out.println("엘스 : "+list);
-			System.out.println("엘스탐!!!!!!!!!!!!!!!!!!!!");
 			list = "성공";
 		}else{
-			System.out.println("리스트 내용 :  " + list + "/ 내가 넘겨 받음 부서 이름 : "+branch_name);
 			list = "실패";
 		}
 		
@@ -86,9 +78,7 @@ public class AdminAjaxController {
 	//지점 정보 수정
 	@RequestMapping("/branchModify.do")
 	public View branchModify(Branch dto, Model model, String notChange_branch_Name){
-		System.out.println("정보 수정 dto: "+dto.toString());
 		int result = adminservice.branchModify(dto,notChange_branch_Name);
-		System.out.println("지점 정보 수정  결과:============================ "+result);
 		model.addAttribute("result", result);
 		return jsonview;
 	}
@@ -98,19 +88,14 @@ public class AdminAjaxController {
 	public View branch_delete(String branch_no, Model model){
 		int result=0;
 		List<Dept> list =adminservice.select_dept_beforeDelete(branch_no);
-		System.out.println(" 부서 사이증???????????????????????/"+list.size());
-		
 		
 		if(list.size()>0){
 			model.addAttribute("result", "소속 부서를 먼저 삭제해주세요");
-			System.out.println(" 부서가 존재해서 지점 삭제 불가 ********************");
 		}else{
 			result =adminservice.delete_branch(branch_no);
 				if(result >= 1){
-					System.out.println(" 지점 삭제 성공**********************");
 					model.addAttribute("result", "삭제 성공");
 				}else{
-					System.out.println(" 지점 삭제 실패************************* ");
 					model.addAttribute("result", "삭제 실패");
 				}
 		}
@@ -130,7 +115,6 @@ public class AdminAjaxController {
 	//부서관리 > 부서 등록시 부서명 유효성 검사
 	@RequestMapping("/dept_Name.do")
 	public View dept_Name(String dept_name, Model model){
-		System.out.println("부서 추가시 유효성 검사 함============" +dept_name);
 		
 		String result = adminservice.checkDept_Name(dept_name);
 		model.addAttribute("result", result);
@@ -145,10 +129,8 @@ public class AdminAjaxController {
 		int result = adminservice.addBranch(dto);
 		
 		if(result >= 2){
-			System.out.println("성공");
 			model.addAttribute("result", "성공");
 		}else{
-			System.out.println("실패 ");
 			model.addAttribute("result", "실패");
 		}
 		
@@ -158,7 +140,7 @@ public class AdminAjaxController {
 	//부서관리> 부서 조회하기
 	@RequestMapping("/selectDeptList.do")
 	public View selectDeptList(String dept_no, Model model){
-		System.out.println("새작업--------------------------------"+dept_no);
+		
 	    DeptJoinBonus dept = adminservice.selectChooseDept(dept_no);
 		model.addAttribute("dept", dept);
 		return jsonview;
@@ -184,22 +166,19 @@ public class AdminAjaxController {
 	//부서 삭제하기 
 	@RequestMapping("/dept_delete.do")
 	public View dept_delete(String dept_no, Model model){
-		System.out.println(" 부서삭제하기에 넘어온 부서번홓ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ"+dept_no);
+		
 		int result =0;
 		//하위부서가 존재하는지 먼저 확인
 		List<Low_dept> low_dept =adminservice.select_lowdept_name(dept_no);
-		System.out.println(" 부서 삭제 : 하위부서 리스트 사이즈 : "+low_dept.size());
+	
 		if(low_dept.size()>0){
 			model.addAttribute("result", "하위부서를 먼저 삭제해주세요");
-			System.out.println(" 하위부서가 존재해서 부서 삭제 불가 ********************");
 		}else{
 		
 			 result =adminservice.dept_delete(dept_no);
 				if(result >= 1){
-					System.out.println(" 부서 삭제 성공**********************");
 					model.addAttribute("result", "삭제 성공");
 				}else{
-					System.out.println(" 부서 삭제 실패************************* ");
 					model.addAttribute("result", "삭제 실패");
 				}
 		}
@@ -225,8 +204,6 @@ public class AdminAjaxController {
 	//하위부서 등록전 유효성 검사
 	@RequestMapping("/low_dept_Name.do")
 	public View check_lowdept(String low_dept_name, Model model){
-		System.out.println("하위부서 추가시 유효성 검사 함============" +low_dept_name);
-		
 		String result = adminservice.check_lowdept(low_dept_name);
 		model.addAttribute("result", result);
 	    return jsonview;
@@ -264,7 +241,7 @@ public class AdminAjaxController {
 	//하위부서 삭제하기 
 	@RequestMapping("/low_dept_delete.do")
 	public View low_dept_delete(String low_dept_no, Model model){
-		System.out.println(" 넘어온 하위부서번호 :  **************************   "+low_dept_no);
+		
 		int result =adminservice.low_dept_delete(low_dept_no); 
 		if(result >= 1){
 			System.out.println("성공");
@@ -314,10 +291,9 @@ public class AdminAjaxController {
 	//직위 삭제시 
 	@RequestMapping("/delete_position.do")
 	public View delete_position(String position_no, Model model){
-		System.out.println(" 넘어온 직위번호 ========="+position_no);
 		
 		List<String> list =adminservice.check_emp(position_no);
-		System.out.println(" 삭제전 사원 확인 list ========="+list.size());
+		
 		if(list.size()>0){
 			model.addAttribute("result", "사원있어요");
 		}else{
@@ -334,15 +310,15 @@ public class AdminAjaxController {
 	//급여지급일 저장
 	@RequestMapping("/payAddDate.do")
 	public View payAdd(Set_pay_date set_pay_date, String pay_date_num, Model model){
-		System.out.println(" 선택한 급여일 :  "+ set_pay_date.getPay_date() +"//////////////급여일 존재 여부  "+pay_date_num);
+		
 		int result =0;
 		if(pay_date_num.equals("0")){
 			result = adminservice.insertpay_date(set_pay_date);
-			System.out.println(" 급여일 insert result :::::::::::::::"+result);
+			
 			model.addAttribute("result", "급여일 지정 성공");
 		}else if(pay_date_num.equals("1")){
 			result = adminservice.updatepay_date(set_pay_date);
-			System.out.println(" 급여일 update result :::::::::::::::"+result);
+			
 			model.addAttribute("result", "급여일 변경 성공");
 		}
 		
@@ -358,7 +334,6 @@ public class AdminAjaxController {
 		String str = request.getParameter("param");
 		 str.trim();
 	     str.trim();
-		System.out.println("상여금 :     =============="+str);
 		
 		List<Map<String,String>> map = new ArrayList<Map<String,String>>();
         map = JSONArray.fromObject(str);
@@ -366,11 +341,9 @@ public class AdminAjaxController {
         
         int num = 0;
         for(Map<String, String> m : map) {
-        	System.out.println("몇번 호출이니 ? "+num);
+        	
         	num++;
-            System.out.println(m.get("dept_no") + " : " + m.get("bonus_check"));
-            
-            
+           
             try {
                 result = adminservice.update_bonusCheck(m.get("dept_no"), m.get("bonus_check"));
         

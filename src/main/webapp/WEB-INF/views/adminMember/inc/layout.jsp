@@ -20,13 +20,25 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-	    <!--텍스트 에디터 사용시 추가해야할 css -->
     <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
     <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />
+    <link rel="stylesheet" href="vendor/clockpicker/dist/bootstrap-clockpicker.min.css" />
+    <link rel="stylesheet"
+	href="vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
+    
     <!-- App styles -->
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/static_custom.css">
+    <!-- alert 창 -->
+	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+
+<!--jQuery UI CSS-->
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+	type="text/css" />
+
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
@@ -42,6 +54,7 @@
 
 <!-- Main Wrapper -->
 <div id="wrapper">
+
 <tiles:insertAttribute name="content" />
 
     <!-- Right sidebar -->
@@ -66,73 +79,66 @@
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
+<script src="vendor/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
 
-<script src="vendor/summernote/dist/summernote.min.js"></script>
+<!--월별 캘린더.-->
+<script src="<c:url value="/js/jquery.mtz.monthpicker.js"/>"></script>
+
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
-<!-- alert 창 -->
-<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
-   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+
+<!-- alert -->
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+
+<!--우편번호 API-->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<!-- 사원 관리 메뉴 js-->
+<script src="js/admin/adminEmp/admin_emp.js"></script>
+
 <script>
+	$('#giveBtn').click(function(){
+		
+    	var arr = new Array();
 
-    $(function () {
+    // 사원 권한 부여
+	$("input[name='checkbox']:checked").each(function(i) {
+		
+        var obj = new Object();
 
-        // Initialize summernote plugin
-        $('.summernote').summernote();
+		console.log("사번 : " + $(this).parent().parent().next().next().next().text());
+		
+		var id = $(this).attr('id');
+		console.log("권한 : " + $("#selectRole"+id+" option:selected").text());
+		
+		obj.emp_no = $(this).parent().parent().next().next().next().text();
+		obj.role_name = $("#selectRole"+id+" option:selected").text();
+		
+        arr.push(obj);
 
-        var sHTML = $('.summernote').code();
-
-        console.log(sHTML);
-
-        $('.summernote1').summernote({
-            toolbar: [
-                ['headline', ['style']],
-                ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
-                ['textsize', ['fontsize']],
-                ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
-            ]
-        });
-
-        $('.summernote2').summernote({
-            airMode: true,
-        });
-
-        $('.deletechk').click(function () {
-      		var listno =   $('#listno').val();
-      		
-      		 swal({
-                 title: "삭제하시겠습니까?",
-                 text: "확인을 클릭할시 글이 삭제 됩니다.",
-                 type: "warning",
-                 showCancelButton: true,
-                 confirmButtonColor: "#DD6B55",
-                 confirmButtonText: "확인",
-                 cancelButtonText: "취소",
-                 closeOnConfirm: false,
-                 closeOnCancel: false 
-                 },
-                 function (isConfirm){
-                     if(isConfirm){
-                     	 $.ajax({
-                     		url : "free_board_delete.do",
-                     		data : {
-                     			no : listno,
-                     		},
-                     		success : function(data){
-    								console.log(data);
-                     		}
-                     	}); 
-                     	swal("삭제되었습니다.", "", "success");
-                     	window.location.href='free_board_list.do';
-                     } else {
-                         swal("취소되었습니다.", "", "error");
-                     }
-        	});	
-        
-        });
- });
+	});
 	
+    var param = JSON.stringify(arr);
+    
+		$.ajax(
+				   {
+						url : "give_authority.do",
+						type: "post",
+						data : {
+									param : param
+						       },
+						success : function(data){
+                            swal({
+                                title: "권한부여",
+                                text: "권한부여에 성공하였습니다",
+                                type: "success"
+                            });	
+                            
+                            window.location.reload();
+						}
+		           }
+		      );
+	});
 </script>
-	
 </body>
 </html>

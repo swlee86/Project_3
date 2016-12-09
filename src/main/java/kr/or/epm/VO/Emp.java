@@ -26,8 +26,18 @@ public class Emp {
 	private String low_dept_name;
 	private String cg_name;
 	private String position_name;
+
+	// 관리자 > 사원관리 > 탈퇴 요청 리스트 출력 (입사일 출력)
+	private String regdate;
 	
-	
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+
 	public String getCg_name() {
 		return cg_name;
 	}

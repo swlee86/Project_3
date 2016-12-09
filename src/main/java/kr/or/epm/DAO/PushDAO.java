@@ -33,4 +33,9 @@ public interface PushDAO {
 	String selectavgcommute_my(String emp_no);
 	
 	Emp selectLogin_Emp(String emp_no);
+
+	
+	//전자 결재 >>  시작
+	String electronic_sanction(String emp_no);
+	
 }

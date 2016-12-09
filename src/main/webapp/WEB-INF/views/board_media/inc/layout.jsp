@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
      
         <!--텍스트 에디터 사용시 추가해야할 css -->
     <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
@@ -32,7 +31,10 @@
     <link rel="stylesheet" href="styles/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-	
+	    <!-- alert 창 -->
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+   
 	
 	<script>
 	$(function(){
@@ -42,11 +44,14 @@
 		});
 
 		$('#replysubmit').click(function(){
-			console.log('리플버튼클릭함');
+			//console.log('리플버튼클릭함');
 			
 			if($('#replytext').val() == ""){
+				//alert('리플내용입력해주세요');
+				toastr.warning("리플내용입력해주세요");
+				
 				$('#replytext').focus();
-				alert('리플내용입력해주세요');
+		
 				return false;
 			}
 				
@@ -59,8 +64,7 @@
 						"no" : $('#no').val()
 					},
 					success : function(data){
-						console.log(data);
-				 	
+						//console.log(data);
 					 	 if(data != null){
 					 		$('#replytext').val("");
 					 		$('#replybody').append('<div class="media"><a class="pull-left"> <img src="${pageContext.request.contextPath}/images/a1.jpg" alt="이미지"></a><div class="media-body"><span class="font-bold">'+data.emp_name+'</span><small class="text-muted">'+data.regdate+'</small><div class="social-content">'+data.content+'</div></div></div>');
@@ -112,13 +116,16 @@
 <script src="vendor/peity/jquery.peity.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
 <script src="vendor/summernote/dist/summernote.min.js"></script>
-<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 
 <script src="vendor/toastr/build/toastr.min.js"></script>
 <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 
+
+<!-- alert 창 -->
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 <script>
 
     $(function () {
@@ -146,7 +153,7 @@
 
         var sHTML = $('.summernote').code();
 
-        console.log(sHTML);
+        //console.log(sHTML);
 
         $('.summernote1').summernote({
             toolbar: [
@@ -162,23 +169,37 @@
         });
 		
         $('.deletechk').click(function () {
-            swal({
-                        title: "삭제하시겠습니까?",
-                        text: "확인을 클릭할시 글이 삭제 됩니다.",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "확인",
-                        cancelButtonText: "취소",
-                        closeOnConfirm: false,
-                        closeOnCancel: false },
-                    function (isConfirm) {
-                        if (isConfirm) {
-                            swal("삭제되었습니다.", "Your imaginary file has been deleted.", "success");
-                        } else {
-                            swal("취소되었습니다.", "Your imaginary file is safe :)", "error");
-                        }
-                    });
+      		var listno =   $('#listno').val();
+      		
+      		 swal({
+                 title: "삭제하시겠습니까?",
+                 text: "확인을 클릭할시 글이 삭제 됩니다.",
+                 type: "warning",
+                 showCancelButton: true,
+                 confirmButtonColor: "#DD6B55",
+                 confirmButtonText: "확인",
+                 cancelButtonText: "취소",
+                 closeOnConfirm: false,
+                 closeOnCancel: false 
+                 },
+                 function (isConfirm){
+                     if(isConfirm){
+                     	 $.ajax({
+                     		url : "media_board_delete.do",
+                     		data : {
+                     			no : listno,
+                     		},
+                     		success : function(data){
+   								console.log(data);
+                     		}
+                     	}); 
+                     	swal("삭제되었습니다.", "", "success");
+                     	window.location.href='media_board_list.do';
+                     } else {
+                         swal("취소되었습니다.", "", "error");
+                     }
+        	});	
+        
         });
     
         $('#writeForm').submit(function(){
