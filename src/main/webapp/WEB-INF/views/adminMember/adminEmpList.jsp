@@ -60,7 +60,7 @@
 							<div class="col-md-1">
 								<div class="form-group">
 									<select class="form-control input-sm">
-										<option>사번</option>
+										<option>사원번호</option>
 										<option>이름</option>
 										<option>부서</option>
 										<option>하위부서</option>
@@ -93,7 +93,7 @@
                 	   class="table table-hover table-bordered table-condensed" >
                     <thead>
                     <tr style="background-color:#f9fafc">
-                        <th style="text-align:center;">사 번</th>
+                        <th style="text-align:center;">사원번호</th>
                         <th style="text-align:center;">지 점</th>
                         <th style="text-align:center;">부 서</th>
                       	<th style="text-align:center;">하위부서</th>
