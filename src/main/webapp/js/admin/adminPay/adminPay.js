@@ -9,19 +9,13 @@ $(function(){
 	//급여 마감 조회
 	$('#salaryCloseForm').submit(function(){
 		
-		
 		var today = dateChek();
-		alert("알겠으니 오늘 날짜는 먼데 : "+today);
 		var dbdate = db_dateChek();
-		alert("디비 데이트 : "+ dbdate);
 		var result2 = calDateRange(today,dbdate);
 		
 		//기간이 3일 이하
 		if(result2 <= 3){
-		
-		
-		alert("테스트!!");
-		
+			
 		var pay_no2='';
 		$("input[name=checkbox]:checked").each(function() {
 			
@@ -33,7 +27,6 @@ $(function(){
 				$('#hiddenPay').val(pay_no2);
 				//급여일
 				$('#hidden_date').val(dbdate);
-				alert($('#hiddenPay').val() +"######################"+$('#hidden_date').val());
 				return true;
 			}else{
 				alert("급여 마감하실 사원을 선택하세요!");
@@ -65,12 +58,10 @@ $(function(){
 	
 	//급여 설정 하기 - 
 	$('#savepayDateBtn').click(function(){
-		alert("저장 클릭");
 		var set_date = dateChek();
 			
 		var hidden = $('#dayJudgement').val();
-		alert('급여일 있니? : '+hidden);
-		$.ajax
+	      $.ajax
 				(
 						{
 							url : "payAddDate.do",
@@ -96,21 +87,17 @@ $(function(){
 		var arr = new Array();
 		var dept_no='';
 		
-		
 		$("input[name=checkboxadd]:checked").each(function() {
 			
 			var obj = new Object();
 			
 			dept_no = $(this).attr('id');
 			var bonus_check = $("#selectbonus"+dept_no+" option:selected").text();
-			console.log(" 부서번호 : "+dept_no + "   ////     "+bonus_check);
-			
+		
 		    obj.dept_no=dept_no;
 			obj.bonus_check=bonus_check;
 			
 			arr.push(obj);
-			
-			
 		});
 		
 		
@@ -164,7 +151,6 @@ $(function(){
 function detailPay(obj){
 	
 	var id = $(obj).attr("id");
-	alert("버튼  아이디 값 : "+id);
 	location.href="adminSalaryListDetail.do?date="+id;
 }
 
@@ -180,7 +166,7 @@ function db_dateChek(){
     if (("" + day).length   == 1) { day   = "0" + day;   }
 	//오늘 날짜 전역변수에도 담음
     var today = year+"-"+month+"-"+day;
-	console.log("디비 날짜 : "+today);
+	
     return today;
 }
 
@@ -205,7 +191,7 @@ function calDateRange(val1, val2)
  var from_dt = new Date(start_dt[0], start_dt[1], start_dt[2]);
  var to_dt = new Date(end_dt[0], end_dt[1], end_dt[2]);
  var result = (to_dt.getTime() - from_dt.getTime());
-	 alert("날짜 차이좀 보자 씨발탱아hhh : "+ result/1000/60/60/24);
+	
 	 
  var result1 = result/1000/60/60/24;
  return result1;
@@ -214,7 +200,7 @@ function calDateRange(val1, val2)
 
 //날짜 포맷팅 함수 - 현재 날짜 구함 
 function dateChek(){
-  	alert("그냥 날짜");
+  
 	var date = new Date();
 	var year  = date.getFullYear();
     var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함

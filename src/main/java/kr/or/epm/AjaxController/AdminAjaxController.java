@@ -279,22 +279,19 @@ public class AdminAjaxController {
 	//직위 정보 조회 > selectBox 선택시
 	@RequestMapping(value="/adminGradeSelect.do", method=RequestMethod.GET)
 	public View adminSelect(String choose, Model model){
-		System.out.println("셀렉트 선택한 값 : "+choose);
 		PositionJoin position = adminservice.dtoPosition(choose);
 		model.addAttribute("position", position);
 		return jsonview;
 	}
 	
-	//직위 들록시 사용
+	//직위 등록시 사용
 	@RequestMapping("/insertPosition.do")
 	public View addNewPosition(PositionJoin position, Model model){
 		
 		int result = adminservice.positionInsert(position);
 		if(result > 0 ){
-			System.out.println("성공!!");
 			model.addAttribute("msg","성공!");
 		}else{
-			System.out.println("실패야....................");
 			model.addAttribute("msg","실패!");
 		}
 		return jsonview;
@@ -311,6 +308,26 @@ public class AdminAjaxController {
 		//여기서 업데이트 된 것 새로 받아줌
 		List<PositionJoin> list = adminservice.listPosition();
 		model.addAttribute("modifylist",list);
+		return jsonview;
+	}
+	
+	//직위 삭제시 
+	@RequestMapping("/delete_position.do")
+	public View delete_position(String position_no, Model model){
+		System.out.println(" 넘어온 직위번호 ========="+position_no);
+		
+		List<String> list =adminservice.check_emp(position_no);
+		System.out.println(" 삭제전 사원 확인 list ========="+list.size());
+		if(list.size()>0){
+			model.addAttribute("result", "사원있어요");
+		}else{
+			int result = adminservice.delete_position(position_no);
+			if(result>0){
+				model.addAttribute("result", "성공");
+			}else{
+				model.addAttribute("result", "실패");
+			}
+		}
 		return jsonview;
 	}
 	
