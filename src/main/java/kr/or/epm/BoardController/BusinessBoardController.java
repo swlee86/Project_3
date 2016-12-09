@@ -7,7 +7,9 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.epm.Service.BusinessBoardService;
 import kr.or.epm.VO.BusinessBoard;
+import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.Re_BusinessBoard;
 
 /*
@@ -96,10 +99,12 @@ public class BusinessBoardController {
 	
 	//업무정보게시판  > 업무정보게시판  글 내용보는 페이지 이동
 	@RequestMapping(value="/business_board_view.do", method=RequestMethod.GET)
-	public String business_board_view(Model mv, int no, int currentpage, int pagesize){
+	public String business_board_view(Model mv, int no, String currentpage, String pagesize,HttpSession session){
 		String link = null;
 		BusinessBoard businessboard = null;
 		List<Re_BusinessBoard> re_list = null;
+		String rec_emp_no = (String)session.getAttribute("emp_no");
+
 		try{
 			businessboard = businessboardservice.selectDetail(no);
 			re_list = businessboardservice.selectReList(no);
@@ -112,6 +117,8 @@ public class BusinessBoardController {
 			mv.addAttribute("re_list", re_list);
 			mv.addAttribute("currentpage", currentpage);
 			mv.addAttribute("pagesize", pagesize);
+			mv.addAttribute("rec_emp_no",rec_emp_no);
+		
 			link = "board_business.business_board_view";
 		}
 		
@@ -340,5 +347,64 @@ public class BusinessBoardController {
 		}
 		
 		return "board_business.business_redirect";
+	}
+	
+	
+	// 수정페이지 이동
+	@RequestMapping(value = "/business_board_update.do", method = RequestMethod.GET)
+	public String business_board_update(String no, Model model) {
+		System.out.println("business_board_update() 컨트롤러 탐");
+		
+		BusinessBoard list = businessboardservice.selectDetail(Integer.parseInt(no));		
+		
+		model.addAttribute("list",list);
+		return "board_business.business_board_rewrite";
+	}
+	
+	//수정 처리
+	@RequestMapping(value = "/business_board_update.do", method = RequestMethod.POST)
+	public String business_board_update(@RequestParam("uploadfile") MultipartFile file, BusinessBoard businessBoard, Model model, HttpServletRequest request) {
+		System.out.println("business_board_update()처리 컨트롤러 탐");
+		int result = 0;
+		
+		//File cFile = new File("C:/images/", file.getOriginalFilename());
+		 String path = request.getRealPath("/media/upload/");
+		 System.out.println("=====> path : "+path);
+		File cFile = new File(path, file.getOriginalFilename());
+		
+		try {
+			file.transferTo(cFile);
+			System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
+			System.out.println("getPath : " +cFile.getPath());
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
+		businessBoard.setFile_name(file.getOriginalFilename());
+			
+		System.out.println("=>update 후 title :"+businessBoard.getTitle()+"/내용: "+businessBoard.getContent()+"/ 파일 제목 : "+businessBoard.getFile_name());
+			
+		result = businessboardservice.updateRow(businessBoard);
+
+		System.out.println("=> 글번호update result : "+businessBoard.getNo());	
+	
+		if(result > 0){
+			return "redirect:business_board_view.do?no="+businessBoard.getNo();
+		}else{
+			return "redirect:board_business.business_board_list.do";
+		}
+	}
+	
+	//삭제 처리
+	@RequestMapping(value = "/business_board_delete.do")
+	public String business_board_delete(String no) {
+		System.out.println("business_board_delete() 컨트롤러 탐");		
+		System.out.println("no : "+ no) ;
+			
+		businessboardservice.deleteRow(Integer.parseInt(no));				
+		return "redirect:business_board_list.do";
 	}
 }
