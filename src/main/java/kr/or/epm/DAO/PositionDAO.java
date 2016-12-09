@@ -46,8 +46,17 @@ public interface PositionDAO {
 	// 직위 상세 조회하기
 	public Position selectPosition_detail();
 	
+	//직위 삭제전 사원 존재 여부 확인
+	public List<String> check_emp(String position_no);
+	
+	//직위 삭제전 기본연봉 삭제하기
+	public int delete_set_pay(String position_no);
+	
+	//직위 삭제전 추가급여 삭제하기
+     public int delete_set_add_pay(String position_no);
+		
 	// 직위 삭제하기
-	public int deletePosition();
+	public int deletePosition(String position_no);
 	
 	//셀렉트 박스 에서 정보 쭉 뽑아올때 - 조인용 DTO 만들어서 사용함.
 	public PositionJoin selectOptionJoin(String positionOption);

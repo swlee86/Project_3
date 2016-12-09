@@ -60,7 +60,7 @@ public class PayController {
 		    Pay list = payservice.selectPay_mine(emp.getEmp_no(), dTime);
 		    model.addAttribute("list", list);
 		    model.addAttribute("date", dTime);
-			
+		   
 			return "salary.salarySearch";
 		}
 		

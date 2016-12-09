@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -17,13 +18,14 @@
 			<form class="form-inline">
 
 				<div class="form-group">
-					<select id="salarysearch" class="form-control">
+				  
+				    <select id="salarysearch" class="form-control">
 						<option value="">선택</option>
 						<option value="금월 지급 예정 급여">금월 지급 예정 급여</option>
 						<option value="전체">전체</option>
 						<option value="연도별">연도별 조회</option>
 						<option value="월별">월별 조회</option>
-					</select>
+					</select> 
 				</div>
 				<div class="form-group">
 					<div id="selectedYear">
@@ -66,8 +68,11 @@
 						<table cellpadding="1" cellspacing="1"
 							class="table table-bordered table-condensed">
 						 
+				 <c:choose>
+					<c:when test="${!empty list}">
+					    <c:forEach var="list" items="${list}" varStatus="status">
 							<tr>
-								<th style="background-color:#f9fafc">총근무시간</th>
+							  <th style="background-color:#f9fafc">총근무시간</th>
 								<td>${list.acc_commute_time}</td>
 								<th style="background-color:#f9fafc">추가근무시간</th>
 								<td>${list.acc_add_time}</td>
@@ -81,6 +86,15 @@
 								<td>${list.total_pay}</td>
 							</tr>
 						 
+						 </c:forEach>
+					</c:when>
+					<c:otherwise>
+					<tr>
+						<td></td>
+						<td colspan="11" style="text-align: center;">급여 목록이 없습니다.</td>
+					</tr>
+					</c:otherwise>
+				</c:choose>
    						</table>
 					</div>
 				</div>
@@ -88,51 +102,6 @@
 		</div>
 	</div>
 </div>
-
-<!-- <div class="content animate-panel">
-	<div class="row">
-
-		<div class="col-sm-12">
-			<div class="hpanel">
-
-				<div class="panel-body">
-					<h4>
-						<i class="pe-7s-angle-right"></i><span class="font-icon-name"></span>&nbsp;&nbsp;&nbsp;급여 상세 정보
-					</h4>
-					 <hr style="border:1px solid gray; margin-bottom:0px">
-					<div class="table-responsive">
-						<table cellpadding="1" cellspacing="1"
-							class="table table-bordered table-condensed">
-							<tr style="background-color:#f9fafc">
-								<th colspan="1" style="text-align: center">No</th>
-								<th colspan="2" style="text-align: center">지급항목</th>
-								<th colspan="2" style="text-align: center">공제항목</th>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>기본급</td>
-								<td>100</td>
-								<td>소득세</td>
-								<td>10</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>휴일근무수당</td>
-								<td>100</td>
-								<td>주민세</td>
-								<td>10</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-	</div>
-</div> -->
-
 
 
 

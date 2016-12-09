@@ -16,9 +16,8 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.do">Dashboard</a></li>
-					<li><span>Tables</span></li>
-					<li class="active"><span>DataTables</span></li>
+					<li><a href="index.do">홈</a></li>
+				    <li class="active"><span>직위관리</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">직위 관리</h2>
@@ -28,7 +27,7 @@
 </div>
 
 <div class="content animate-panel">
-	<div class="row">
+    <div class="row">
 
 		<div class="col-lg-6">
 			<div class="hpanel">
@@ -171,7 +170,7 @@
 									<br/><br/>
 									<ul id="sortable">
 										<c:forEach var="list" items="${positionList}">
-										<li class='gradLi' value='${list.position_name}'>
+										<li class='gradLi' value='${list.position_no}'>
 											<i class="fa fa-thumbs-o-up"></i>${list.position_name}
 											<button class='btn btn-danger2' onclick="deleteli(this);">Delete</button>
 										</li>

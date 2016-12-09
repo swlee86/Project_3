@@ -43,6 +43,7 @@
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
 
+ <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
@@ -104,10 +105,32 @@
 
 	<!-- App scripts -->
 	<script src="scripts/homer.js"></script>
+	
+	<script src="vendor/toastr/build/toastr.min.js"></script>
+	
+    
+
 
 	<script>
+	
 
-		 
+	toastr.options = {    
+	        "closeButton": true,
+	         "debug": false,
+	         "newestOnTop": false,
+	         "progressBar": false,
+	         "positionClass": "toast-top-center",
+	         "preventDuplicates": false,
+	         "onclick": null,
+	         "showDuration": "300",
+	         "hideDuration": "1000",
+	         "timeOut": "2000",
+	         "extendedTimeOut": "1000",
+	         "showEasing": "swing",
+	         "hideEasing": "linear",
+	         "showMethod": "fadeIn",
+	         "hideMethod": "fadeOut"
+	         };
 		 
 		//select box에서 월별 조회 선택시 나타날 div(monthpicker)
 		$('#selectedMonth').css('display', 'none');
@@ -151,23 +174,19 @@
 			$('#salarysearch').change(function(){
 		        var selectOption = $('#salarysearch option:selected').val();
 		        if(selectOption == "연도별"){
-		        	alert("연도별");
 		        	$('#selectedYear').css('display', 'block');
 					$('#selectedMonth').css('display', 'none');	
 		        }else if(selectOption =="월별"){
-		        	alert('월별');
 		        	$('#selectedYear').css('display', 'none');
 					$('#selectedMonth').css('display', 'block');
 		        }else if(selectOption=="전체"){
-		        	alert('전체');
 		        	$('#selectedYear').css('display', 'none');
 					$('#selectedMonth').css('display', 'none');	
 		        	$.ajax(
 							{
 		    					url : "salary_allSearch.do",
 		    					success : function(data) {
-		    						alert('성공');
-		    						console.log(data.list.length);
+		    						toastr.warning('조회 성공');
 		    						$('#payResultDiv').empty();				
 		    						var table = "";
 		    						 	table+="<table cellpadding='1' cellspacing='1' class='table table-bordered table-condensed'>"
@@ -187,7 +206,7 @@
 		    					
 		    	  					$('#payResultDiv').html(table);
 		    					},error : function(){
-		    						alert("조회하신 데이터가 없습니다.");
+		    						toastr.warning('조회하신 데이터가 없습니다.');
 		    						$('#payResultDiv').empty();				
 		    						
 		    					}
@@ -202,8 +221,7 @@
 							{
 		    					url : "salary_Re_allSearch.do",
 		    					success : function(data) {
-		    						alert('성공');
-		    						console.log(data.list);
+		    						toastr.warning('조회 성공');
 		    						$('#payResultDiv').empty();				
 		    						var table = "";
 		    						 	table+="<table cellpadding='1' cellspacing='1' class='table table-bordered table-condensed'>"
@@ -223,7 +241,7 @@
 		    						
 		    	  					$('#payResultDiv').html(table);
 		    					},error : function(){
-		    						alert("조회하신 데이터가 없습니다.");
+		    						toastr.warning('조회하신 데이터가 없습니다.');
 		    						$('#payResultDiv').empty();				
 		    						
 		    					}
@@ -252,7 +270,6 @@
 				var date = $('#Monthly').val();
 				var option = $("#salarysearch option:selected").val();
 
-				alert("선택한 날짜 : " + date);
 				
 				$.ajax(
 
@@ -279,7 +296,7 @@
 					
 	  					$('#payResultDiv').html(table);
 					},error : function(){
-						alert("조회하신 데이터가 없습니다.");
+						toastr.warning('조회하신 데이터가 없습니다.');
 						$('#payResultDiv').empty();				
 						
 					}
@@ -290,7 +307,7 @@
 			});
 		//연도별 급여 조회
 			$('#YearlySal').click(function(){
-				alert("연도별 선택");
+				
 				var date =  $("#Yearly option:selected").val();
 				var option = $("#salarysearch option:selected").val();
 
@@ -303,7 +320,6 @@
 							success:function(data){
 								$('#payResultDiv').empty();
 								console.log(data.YearlyPay.length);
-								//alert("ajax Year success 선택한 날짜: "+data.YearlyPay[0].give_date);
 								
 								if(data.YearlyPay.length !=0){
 									
@@ -326,13 +342,13 @@
 								table +="</tr></table>";
 	    			 			$('#payResultDiv').html(table);
 	    			 			}else{
-	    			 				alert("조회하신 데이터가 없습니다.");
-									$('#payResultDiv').empty();	
+	    			 				toastr.warning('조회하신 데이터가 없습니다.');
+	    			 				$('#payResultDiv').empty();	
 	    			 			}
 								
 							},
 							error:function(){
-								alert("조회하신 데이터가 없습니다.");
+								toastr.warning('조회하신 데이터가 없습니다.');
 								$('#payResultDiv').empty();		
 							} 
 						}
