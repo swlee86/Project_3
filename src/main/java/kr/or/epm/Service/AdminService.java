@@ -49,6 +49,41 @@ public class AdminService {
 		return dto;
 	}
 
+	//지점 이름 중복 체크 하는 함수
+	public String checkBranch_Name(String branch_name){
+		
+		System.out.println("브런치 이름 : "+branch_name);
+		
+		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
+		String result = null; 
+		try{
+		
+			List<String> list = branchDAO.checkBranch_Name();
+		
+			if(list.size() > 0){
+				for(int i = 0; i < list.size(); i++){
+					if(list.get(i).equals(branch_name)){
+						System.out.println("리스트 내용 : " +list.get(i) + " / 내가 넘겨 받음 부서 이름 : "+branch_name);
+						result = "실패";
+					}else{
+						System.out.println("리스트 내용 : " +list.get(i) + " / 내가 넘겨 받음 부서 이름 : "+branch_name);
+						result = "성공";
+					}
+				}
+			}else{
+				System.out.println("서비스 사이즈 : "+list.size());
+				result = "성공";
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("디비 돌고 난 다음 중복체크 결과 : "+result);
+		
+		return result;
+	}
+	
 	// 지점 추가
 	public int addBranch(Branch dto) {
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);

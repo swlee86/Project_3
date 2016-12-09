@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="styles/static_custom.css">
     <!-- alert 창 -->
 	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+    <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+	
 
 <!--jQuery UI CSS-->
 <link rel="stylesheet"
@@ -62,7 +64,6 @@
 		}
 		
 	</style>
-
 
 
 </head>
@@ -126,8 +127,31 @@
 <!--우편번호 API-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+	
+	<script src="vendor/toastr/build/toastr.min.js"></script>
 <script>
 
+ toastr.options = {    
+        "closeButton": true,
+         "debug": false,
+         "newestOnTop": false,
+         "progressBar": false,
+         "positionClass": "toast-top-center",
+         "preventDuplicates": false,
+         "onclick": null,
+         "showDuration": "300",
+         "hideDuration": "300",
+         "timeOut": "2000",
+         "extendedTimeOut": "1000",
+         "showEasing": "swing",
+         "hideEasing": "linear",
+         "showMethod": "fadeIn",
+         "hideMethod": "fadeOut"
+         };
+ 
+ $(".toast-message").css("color", "black");
+
+	
 	//삭제 하기 버튼 클릭시 !!
 	function deleteli(obj){
 		var deleteli = $(obj);
@@ -150,6 +174,7 @@
 
 	$(function(){
 		
+	
 		//드래그 앤 드롭
 		$( "#sortable" ).sortable();
 	
