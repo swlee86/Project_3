@@ -186,6 +186,8 @@ $(function(){
                         <li>승인 확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>                    	
                     	</c:otherwise>
                     	</c:choose>
+                    	<li class="summary">전자 결재</li>
+                    	
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -258,7 +260,7 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://192.168.0.236:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.43.217:8090/epm/broadsocket.do");
 		
 		//호출 시점  :  send() 메세지 호출 > broadsocket > handleTextMessage > json 넘어와서 
         webSocket.onmessage = function (message){
