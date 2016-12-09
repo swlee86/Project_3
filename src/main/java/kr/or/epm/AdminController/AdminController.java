@@ -238,7 +238,7 @@ public class AdminController {
 		model.addAttribute("date", dTime);
 		model.addAttribute("Commutelist", Commutelist);
 		model.addAttribute("pay_date", pay_date);
-		return "commute.CommuteAdminView";
+		return "admin.CommuteAdminView";
 	}
 	
 	//관리자 - 근태마감 - 확정 하기
