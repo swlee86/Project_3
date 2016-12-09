@@ -201,7 +201,6 @@ function addBranch_Check() {
 			console.log(data.result);
 			if (data.result > 0) {
 				alert("등록 성공!");
-				
 				 window.location.reload();
 			} else {
 				alert("등록 실패!!");

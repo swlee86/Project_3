@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -492,12 +494,44 @@ public class AdminService {
 			String position_name = (String) map.get("position_name");
 			int step = (int) map.get("step");
 			result = positionDAO.updatePositionStep(position_name, step);
+			System.out.println("서비스쪽 : " + result);
 		}
 
-		System.out.println("서비스쪽 : " + result);
 		return result;
 	}
-
+   
+	//직위 삭제전 
+	public List<String> check_emp(String position_no){
+		PositionDAO dao = sqlsession.getMapper(PositionDAO.class);
+		List<String> list = dao.check_emp(position_no);
+		return list;
+	}
+	
+	
+	//직위 삭제하기
+	public int delete_position(String position_no){
+		int result=0;
+	    PositionDAO dao = sqlsession.getMapper(PositionDAO.class);
+	    
+	    //기본연봉 삭제
+	    result=dao.delete_set_pay(position_no);
+	    System.out.println(" 기본연봉 삭제 결과 ================"+result);
+	    
+	    //추가급여 삭제
+	    result+=dao.delete_set_add_pay(position_no);
+	    System.out.println(" 추가급여 삭제 결과 =============="+result);
+	    if(result>1){
+	    	result=0;
+	    	result=dao.deletePosition(position_no);
+	    	System.out.println(" 직위 삭제 최종 결과  :================="+result);
+	     }else{
+	    	 result=0;
+	     }
+	    
+		
+		return result;
+	}
+	
 	// 급여지급일 있는지 여부 판단
 	public String selectpay_date() {
 		String pay_date = null;

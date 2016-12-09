@@ -131,26 +131,7 @@
 <script src="js/admin/adminCommute/adminCommute.js"></script>
 <script>
 
-	//삭제 하기 버튼 클릭시 !!
-	function deleteli(obj){
-		var deleteli = $(obj);
-		var value = deleteli.parent().attr("value");
-		alert("값은 ? : "+value);
-		
-		$.ajax(
-				{
-					url:"",
-					data : {positionName : value},
-					success : function(data){
-						alert("성공하였습니다!!");
-					}
-		        }
-			   );
-		
-		//드래그앤 드롭 삭제하느 ㄴ것.
-		deleteli.parent().remove();
-	}
-
+	
 	$(function(){
 		
 		//드래그 앤 드롭
@@ -167,11 +148,7 @@
 			monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
 					'9월', '10월', '11월', '12월' ]
 		};
-		
-		//매출 등록시 월 선택
-		$('#selectSalesdate').monthpicker(options);
-		//매출 목록에서 날짜로 검색시 사용
-		$('#salesdate').monthpicker(options);
+	
 		//기지급 급여 목록페이지의 월별 조회시 사용
 		$('#totalSalListdate').monthpicker(options);	
 
@@ -187,10 +164,6 @@
 		}				
 	});
 	
-	
-	
-	// 시간정보 관리 페이지 - ClockPicker
-    $('.clockpicker').clockpicker({autoclose: true});
 	
 	//급여관리- 당월 지급 예정 급여 목록보기 페이지로 이동
 	$('#moveSalaryPlanList').click(function(){

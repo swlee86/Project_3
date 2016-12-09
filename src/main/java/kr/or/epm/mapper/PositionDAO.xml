@@ -36,9 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="updatePositionStep">
-		update position
-		set step = #{step}
-		where position_name = #{position_name}
+		 update position set step = #{step} where position_no = #{position_name}
 	</update>
 	
 	<!--기본 연봉설정 수정.-->
@@ -78,11 +76,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where position_name = #{position_name}
 	</select>
 	
-	<!-- 직위 삭제하기 -->
+	<!--직위 삭제전 사원 존재여부 확인  -->
+	<select id="check_emp" parameterType="String" resultType="String">
+	  select emp_no from emp where position_no=#{position_no}
+	</select>
+	
+	<!--직위 삭제하기 1)  기본연봉-->
+	<delete id="delete_set_pay">
+	  delete set_pay where position_no=#{position_no}
+	</delete>
+	
+	<!--직위 삭제하기 2)  추가급여-->
+	<delete id="delete_set_add_pay">
+	  delete set_add_pay where position_no=#{position_no}
+	</delete>
+	
+	<!-- 직위 삭제하기 3)-->
 	<delete id="deletePosition">
-		delete from position
+		delete position
 		where position_no = #{position_no}
 	</delete>
+	
+	
 	
 	<!--직위 선택시 기본급여 , 추가급여 조회-->
 	<select id="selectOptionJoin" parameterType="String" resultType="kr.or.epm.VO.PositionJoin">

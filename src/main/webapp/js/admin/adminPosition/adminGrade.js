@@ -48,7 +48,7 @@ $(function(){
 	         choosePosition = $(this).val();
 	      });
 		
-		 alert("번호 ? : "+choosePosition);
+		
 		 $('#position_no').val(choosePosition);
 		 $('#step').val(choosePosition);
 		 $('#set_date').val(mydate);
@@ -138,7 +138,6 @@ function checkPositionName(){
 		}
 	}
 	
-	alert("비교 결과avda : "+searchResult);
 	if(searchResult == '0'){
 		alert("이미 있는 아이디 입니다. 다른 이름을 입력해 주세요 !");
 		return;
@@ -169,7 +168,7 @@ function selectPosition(){
       });
 	 
 	 if(choosePosition != '' || choosePosition != null){
-		 alert("선택 : "+choosePosition);
+		
 		 $.ajax(
 			 {
 				 url:"adminGradeSelect.do",
@@ -213,4 +212,32 @@ function dateChek(){
     var today = year+"-"+month+"-"+day;
     return today;
 }
+
+//직위 삭제버튼 클릭시 
+function deleteli(obj){
+	var deleteli = $(obj);
+	var value = deleteli.parent().attr("value");
+	
+	$.ajax(
+			{
+				url:"delete_position.do",
+				data : {position_no : value},
+				success : function(data){
+					if(data.result =='성공'){
+						alert('삭제 성공');
+						deleteli.parent().remove();
+					}else if(data.result=='실패'){
+						alert('삭제 실패');
+					}else{
+						alert("해당 직위의 사원이 있습니다. 해당 직위의 사원 정보를 먼저 변경해주세요");
+					}
+					
+					
+				}
+	        }
+		   );
+	
+	
+}
+
 
