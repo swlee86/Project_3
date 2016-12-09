@@ -36,23 +36,23 @@
                        		<tr>
                        			<td class="flag">수신처</td>
                        			<td colspan="3">
-                       				<input type="text" name="rec_place" class="form-control">
+                       				<input type="text" name="rec_place" id="rec_place" class="form-control">
                        			</td>
                        		</tr>
                        		<tr>
                        			<td class="flag">수신자 명</td>
                        			<td colspan="3">
-                       				<input type="text" name="rec_person" class="form-control">                      			
+                       				<input type="text" name="rec_person" id="rec_person" class="form-control">                      			
                        			</td>
                        		</tr>
                        		<tr>
                        			<td class="flag">연락처</td>
                        			<td width="36%">
-                       				<input type="text" name="rec_tel" class="form-control">                      			
+                       				<input type="text" name="rec_tel" id="rec_tel" class="form-control">                      			
                        			</td>
                        			<td class="flag" style="text-align: center;">FAX</td>
                        			<td>
-                       				<input type="text" name="rec_fax" class="form-control">                      			
+                       				<input type="text" name="rec_fax" id="rec_fax" class="form-control">                      			
                        			</td>
                        		</tr>
                        		<tr>
@@ -80,7 +80,7 @@
                        		<tr>
                        			<td class="flag">제목</td>
                        			<td colspan="3">
-                       				<input type="text" name="draft_title" class="form-control">
+                       				<input type="text" name="draft_title" id="draft_title" class="form-control">
                        			</td>
                        		</tr>
                        </table>

@@ -48,12 +48,30 @@ var firstTree = 0;
 var secondTree = 0;
 
 $(function() {
+	toastr.options = {	 
+			 "closeButton": true,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "2000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+	       };
+
 	
-	
-	
-	
+
+		
 	 //주소록 추가시  검색해서 보여주는 script
     $('#con_ins_org_sea_btn').click(function(){  	
+    	pre_empInfoArray.splice(0,pre_empInfoArray.length);
     	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
     	testEmpSelectNumber = $('#org_sea_btn_sel').val();
     	console.log("testEmpSelectNumber : " + testEmpSelectNumber);
@@ -464,8 +482,7 @@ $(function() {
                tablemake2 += "<div class='pull-right'><input type='button' class='btn btn-sm btn-success ' style='font-weight: bold' value='선 &nbsp;&nbsp;&nbsp;택' onclick=check()></div>";
                
                $('#empList_list').empty();
-               $('#empList_list').append(tablemake2);
-               
+               $('#empList_list').append(tablemake2);       
       	 }
     }
     
@@ -617,7 +634,82 @@ $(function() {
 	$("#submitBtn").click(function() {
 		var choose = $("input[name='cg_no']:checked").val();
 		
-		draft.method = "post";
+		//draft.method = "post";
+		
+		
+		if($(':radio[name="cg_no"]:checked').length < 1){
+			toastr.warning('결재유형을 선택해 주세요');                
+			$('#radio1').focus();
+			return false;
+		}
+		
+		if ($('#draft_Ok_emp_no').val() == "") {
+			toastr.warning('결재라인을 입력해 주세요');
+			$('#draft_Ok_emp_no').focus();
+			return false;
+		}
+		
+		if ($('#draft_Ok_emp_name').val() == "") {
+			toastr.warning('결재라인을 입력해 주세요');
+			$('#draft_Ok_emp_name').focus();
+			return false;
+		}
+		
+		if ($('#draft_ref_emp_no').val() == "") {
+			toastr.warning('참조자를 입력해 주세요');
+			$('#draft_ref_emp_no').focus();
+			return false;
+		}
+		
+		if ($('#draft_ref_emp_name').val() == "") {
+			toastr.warning('참조자를 입력해 주세요');
+			$('#draft_ref_emp_name').focus();
+			return false;
+		}
+		
+		//대외공문1  office
+		if($(":input:radio[name=cg_no]:checked").val() == 1){
+			console.log('대외공문');
+			if ($('#rec_place').val() == "") {
+				toastr.warning('수신처를 입력해 주세요');
+				$('#rec_place').focus();
+				return false;
+			}
+			
+		}
+		//협조문2  cooperation
+		if($(":input:radio[name=cg_no]:checked").val() == 2){
+			console.log('협조문');				
+			if ($('#choosedept_name').val() == "") {
+				toastr.warning('협조문 수신 부서를 선택해 주세요');
+				$('#choosedept_name').focus();
+				return false;
+			}
+		} 
+		//휴가신청서3  break
+		if($(":input:radio[name=cg_no]:checked").val() == 3){
+			console.log('휴가신청서');  
+			if ($('#breakdatepicker1').val() == "") {
+				toastr.warning('휴가기간을 입력해 주세요');
+				$('#breakdatepicker1').focus();
+				return false;
+			}
+			
+			if ($('#breakdatepicker2').val() == "") {
+				toastr.warning('휴가기간을 입력해 주세요');
+				$('#breakdatepicker2').focus();
+				return false;
+			}
+		}
+		
+		if ($('#draft_title').val() == "") {
+			toastr.warning('제목을 입력해 주세요');
+			$('#draft_title').focus();
+			return false;
+		}
+		
+		
+		
 		
 		if(choose == '1') {
 			draft.action = "draftOffice.do";
@@ -630,6 +722,10 @@ $(function() {
 		draft.submit();
 	});
 	
+	
+
+	
+	
 	function draft_datepicker() {
 		$("#breakdatepicker1").datepicker({
 			changeMonth: true, 
@@ -638,7 +734,17 @@ $(function() {
 	        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 	        dateFormat: 'yy-mm-dd',
-	        changeYear: true
+	        changeYear: true,
+	        beforeShowDay: function(date){
+                var loadDt = new Date();
+                var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+                
+                if(date < dayday) return [false];
+                return [true];
+             }, 
+             onSelect: function(selected) {
+                $('.breakdatepicker2').datepicker("option","maxDate", selected)
+            }
 		});
 		$("#breakdatepicker2").datepicker({
 			changeMonth: true, 
@@ -647,7 +753,18 @@ $(function() {
 	        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 	        dateFormat: 'yy-mm-dd',
-	        changeYear: true
+	        changeYear: true,
+	        beforeShowDay: function(date){
+                var loadDt = new Date();
+                var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+                
+                if(date < dayday) return [false];
+                return [true];
+             }, 
+             onSelect: function(selected) {
+                $('.breakdatepicker1').datepicker("option","maxDate", selected)
+            }
+	        
 		});
 	}
 	

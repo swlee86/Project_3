@@ -28,7 +28,7 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<form name="draft" enctype="multipart/form-data">
+					<form action="#"  name="draft" enctype="multipart/form-data" method = "post">
 						<div class="table-responsive">
 							<div class="table-responsive">
 								<table cellpadding="1" cellspacing="1" class="table table-bordered">
