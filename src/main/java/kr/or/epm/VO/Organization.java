@@ -25,6 +25,19 @@ public class Organization {
 	private String fax;
 	private String tel;
 	
+	//12-8조직도에서 직위 뽑을 객체 추가
+	private String position_name;
+	
+	
+	
+	public String getPosition_name() {
+		return position_name;
+	}
+
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
+	}
+
 	public String getFax() {
 		return fax;
 	}
@@ -175,8 +188,11 @@ public class Organization {
 				+ low_dept_name + ", emp_name=" + emp_name + ", depth0=" + depth0 + ", depth1=" + depth1 + ", depth2="
 				+ depth2 + ", emp_no=" + emp_no + ", cell_phone=" + cell_phone + ", branch_no=" + branch_no
 				+ ", dept_no=" + dept_no + ", low_dept_no=" + low_dept_no + ", birth=" + birth + ", pic=" + pic
-				+ ", email=" + email + ", emp_tel=" + emp_tel + ", fax=" + fax + ", tel=" + tel + "]";
+				+ ", email=" + email + ", emp_tel=" + emp_tel + ", fax=" + fax + ", tel=" + tel + ", position_name="
+				+ position_name + "]";
 	}
+
+
 
 	
 
