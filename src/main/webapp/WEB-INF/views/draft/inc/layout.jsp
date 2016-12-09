@@ -147,7 +147,6 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
-   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 	
 	<!-- DataTables -->
 	<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
