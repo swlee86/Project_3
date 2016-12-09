@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>		
+
 <!--관리자 부서관리 페이지-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">

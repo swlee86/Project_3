@@ -79,6 +79,7 @@
 
 <!-- Main Wrapper -->
 <div id="wrapper">
+
 <tiles:insertAttribute name="content" />
 
     <!-- Right sidebar -->
@@ -126,6 +127,8 @@
 <!--우편번호 API-->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+<!--근태 관리 메뉴 js-->
+<script src="js/admin/adminCommute/adminCommute.js"></script>
 <script>
 
 	//삭제 하기 버튼 클릭시 !!

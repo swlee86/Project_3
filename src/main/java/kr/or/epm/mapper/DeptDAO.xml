@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 관리자 > 부서관리 > 부서 선택시  selectbox-->
 	<select id="deptList" resultType="kr.or.epm.VO.Dept">
-		select dept_name, dept_no from dept where branch_no = (select branch_no from branch where branch_name=#{branch_name}) and his_check=1
+		select dept_name, dept_no from dept where branch_name = #{branch_name} and his_check=1
 	</select>
 
     <!-- 지점번호로 부서 조회하기 > 지점 삭제시 사용-->
@@ -22,6 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where his_check='1' and d.dept_no=#{dept_no}
 	</select>
 	
+	<!--부서 등록  -->
+	<select id="checkDept_name" parameterType="String" resultType="String">
+	 select dept_name from dept where dept_name =#{value} and his_check='1'
+	</select>
+	
 	<!-- 부서 추가하기 1)-->
 	<insert id="insertDept" parameterType="kr.or.epm.VO.DeptJoinBonus">
 	  insert into dept(dept_no, branch_no, branch_name, 
@@ -33,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectBranchName_No" resultType="String">
 		select branch_no
 		from branch
-		where branch_name = #{param1}
+		where branch_name = #{param1} and his_check='1'
 	</select>
 	
 	<!--부서 추가하기 3) -->
@@ -70,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
    <!--부서 소속 하위부서 개수 구하기 5)-->
    <select id="count_lowDept" parameterType="kr.or.epm.VO.DeptJoinBonus" resultType="Integer">
-     select count(*) from low_dept where dept_no=#{pre_dept_no}
+     select count(*) from low_dept where dept_no=#{pre_dept_no} and his_check='1'
     </select>
    
    <!-- 하위부서의 부서번호, 부서 이름 update 6)-->

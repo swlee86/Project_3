@@ -170,7 +170,7 @@
 											<label>지점명</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" id="addbranchName" name="branch_name">
+											<input type="text" class="form-control" id="addbranchName" name="branch_name" required="required">
 										</div>
 									</div>
 									<div class="form-group">
@@ -179,7 +179,7 @@
 										</div>
 										<div class="col-md-8">
 										  <div class="input-group">
-											<input type="text" class="form-control" id="sample6_postcode" name="postcode">
+											<input type="text" class="form-control" id="sample6_postcode" name="postcode" required="required">
 											<span class="input-group-btn">
 											  <input type="button" onclick="sample6_execDaumPostcode()" class="btn btn-success "  value="우편번호 찾기">
 											</span> 
@@ -192,7 +192,7 @@
 											<label>기존주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control"id="sample6_address" name="addr">
+											<input type="text" class="form-control"id="sample6_address" name="addr" required="required">
 										</div>
 									</div>
 									<div class="form-group">
@@ -200,7 +200,7 @@
 											<label>상세주소</label>
 										</div>
 										<div class="col-md-8">
-											<input type="text" class="form-control" id="sample6_address2" name="addr_detail">
+											<input type="text" class="form-control" id="sample6_address2" name="addr_detail" required="required">
 										</div>
 									</div>
 									<div class="form-group">

@@ -13,7 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectChooseBranch" parameterType="String" resultType="kr.or.epm.VO.Branch">
 		select * from branch where his_check=1 and branch_name=#{selectBranchName}
 	</select>
-
+	
+	<!-- 지점 이름 중복체크 -->  
+	<select id="checkBranch_Name" parameterType="String" resultType="String">
+		select BRANCH_NAME from branch where branch_name = #{branch_name} and his_check='1'
+	</select>
+	
 	<!--지점 추가  -->	
 	<insert id="addBranch" parameterType="kr.or.epm.VO.Branch">
 		insert into branch values (branch_seq.nextval, #{branch_name}, #{postcode},#{addr},#{addr_detail},null,1,0)

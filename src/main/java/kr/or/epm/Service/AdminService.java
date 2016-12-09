@@ -49,6 +49,23 @@ public class AdminService {
 		return dto;
 	}
 
+	//지점 이름 중복 체크 하는 함수
+	public String checkBranch_Name(String branch_name){
+		
+		System.out.println("브런치 이름 : "+branch_name);
+		
+		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
+		String list=null;
+		try{
+		
+			list = branchDAO.checkBranch_Name(branch_name);
+	    	
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	  return list;
+	}
+	
 	// 지점 추가
 	public int addBranch(Branch dto) {
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
@@ -126,6 +143,7 @@ public class AdminService {
 			}
 			return update_dept;
 		} else {
+			update_dept =1;
 			return update_dept;
 		}
 		
@@ -150,6 +168,7 @@ public class AdminService {
 			}
 			return result;
 		}else{
+			result=1;
 			return result;
 		}
 		
@@ -247,27 +266,49 @@ public class AdminService {
 
 		return result;
 	}
-
+	
+	//부서 등록전 유효성 검사
+	public String checkDept_Name(String dept_name){
+		String result =null;
+		
+		DeptDAO deptdao =sqlsession.getMapper(DeptDAO.class);
+		result =deptdao.checkDept_name(dept_name);
+		System.out.println(" 부서 이름 잇니?????????"+result);
+		
+		if(result==null|| result==""){
+			result="성공";
+		}else{
+			result="실패";
+		}
+	   return result;
+	}
+	
+	
 	// 부서 등록하기
 	public int addBranch(DeptJoinBonus dto) {
 		// 우리가 입력한 지점 이름
 		String branch_Name = dto.getBranch_name();
+		System.out.println(" 지점이름 : "+branch_Name);
 		DeptDAO deptDAO = sqlsession.getMapper(DeptDAO.class);
 
 		// 지점 번호 뽑아옴
 		String branch_No = deptDAO.selectBranchName_No(branch_Name);
+		System.out.println(" 지점 번호 : "+branch_No);
 		// DB 에서 읽어온 지점 번호 셋팅
 		dto.setBranch_no(branch_No);
 		int result = 0;
 		// 부서 정보 인서트
 		result = deptDAO.insertDept(dto);
+		System.out.println(" 부서 인서트 결과  : "+result);
 
 		// 부서번호 (dept_no -> next.val 된 것 뽑아야 함)
 		String dept_No = deptDAO.selectDeptNo(dto.getBranch_name(), dto.getDept_name());
+		System.out.println(" 등록된 부서번호   : "+dept_No);
 		dto.setDept_no(dept_No);
 
 		// 상여금 설정 인서트
 		result += deptDAO.addDept_set_bonus(dto);
+		System.out.println(" 상여금 insert 결과  : "+result);
 
 		return result;
 	}

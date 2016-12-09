@@ -55,6 +55,8 @@ $(function() {
 		
     	$('#organization').empty();
         $('#empList').empty();
+        $('#empList2').empty();
+        $('#con_ins_org_sea_query').val('');
         
         $.ajax({
            url : "taskWriteModal.do",
@@ -70,7 +72,7 @@ $(function() {
  					litag += "<li style='padding:2px;' onclick='seeDepart(this,"
    					litag += empSelectNumber +","
    					litag += departMent[index].branch_no
-    				litag += ")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";	
+    				litag += ")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";	
     				litag += "<div id='dept_div"
     				litag += departMent[index].branch_no
     				litag += "'></div>";
@@ -88,7 +90,9 @@ $(function() {
 		var litag = "<ul style='list-style:none;margin-left:-40px;'>";   		
  		$('#organization').empty();
  		$('#empList').empty();
-              
+ 		$('#empList2').empty();
+		$('#con_ins_org_sea_query').val('');
+		
           	$.ajax({
     			url : "taskWriteModal.do",
     			success : function(data) {
@@ -104,7 +108,7 @@ $(function() {
        					litag += "<li  style='padding:2px;' onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
        						litag +=departMent[index].branch_no
-        				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
+        				    litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
         					litag+="<div id='dept_div"
         					litag+=departMent[index].branch_no
         					litag+="'></div>";
@@ -199,7 +203,7 @@ $(function() {
 		var div_id = "dept_div"+choose;
 		$("#"+div_id).empty();
 		
-		var litag = "<hr/><ul style='list-style:none; padding:5px;'>";
+		var litag = "<ul style='list-style:none; padding:5px;'>";
     	var name = $(obj).text();
 
     	$.ajax({
@@ -222,12 +226,12 @@ $(function() {
     				litag += "<li  onclick='seelow_Depart(this, "
   					litag +=empSelectNumber+","
   				    litag +=dept[index].dept_no
-  				    litag +=")'>"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
+  				    litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
   					litag+="<div id='low_dept_div"
   					litag+=dept[index].dept_no
   					litag+="'></div>";
     			});
-    			litag +="</ul><hr/>";
+    			litag +="</ul>";
     			$("#"+div_id).html(litag);
     			
 	    		}else{
@@ -270,7 +274,7 @@ $(function() {
   	      				dept_Name = low_dept[index].low_dept_name;
   	  				litag += "<li><i class='fa fa-long-arrow-right'></i>"+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"<input type='button' class='btn btn-success' style='margin-left: 8px; font-size: 9pt; height: 4pt;' value='선택' onclick='check2("+index+")'></li></ul>";
   	    			});
-  	    			litag +="</ul><hr/>";
+  	    			litag +="</ul>";
   	    			$("#"+div_id).html(litag);
   	    		
   		    		}else{
@@ -289,12 +293,11 @@ $(function() {
   	  				litag += "<li onclick='seeEmpMember(this, "
   	      				litag += empSelectNumber+","
   	      				litag +=low_dept[index].low_dept_no
-  	      				litag +=")'>"+'<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+
-  	      								"</li>";
+  	      				litag +=")'>"+'<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"("+low_dept[index].low_dept_no+")</span></li>";
   	      				litag +="</ul>";
   	      				dept_Name = low_dept[index].low_dept_name;
   	    			});
-  	    			litag +="</ul><hr/>";
+  	    			litag +="</ul>";
   	    			$("#"+div_id).html(litag);
   	    		
   		    		}else{
@@ -328,14 +331,14 @@ $(function() {
     	       
     	       var makeTable ="";
     	       if(empSelectNumber != 3){
-    	    	   makeTable = "<table class='table'><tr><th><input type='checkbox'></th><th>사번</th><th>이름</th>";
+    	    	   makeTable = "<table class='table table-condensed' ><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
     	       }else{
-    	    	    makeTable = "<table class='table'><tr><th>사번</th><th>이름</th><th/>";
+    	    	    makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th></tr>";
     	       }
     	     
     	       $.ajax(
     	             {
-    	                url: "taskEmpModal.do",
+    	                url: "taskEmpModal_exclude.do",
     	                data:{
     	              	  low_dept_no: empListNumber
     	                     },
@@ -345,18 +348,19 @@ $(function() {
     	                    
     	              	  var emp = "";
     	                    $.each(data, function(index){
+    	                    	console.log("@@@@@@ data:"+data[index]);
     	                       emp = data[index];
     	                   });
     	                   
     	                   $.each(emp, function(index){
     	                      if(empSelectNumber == 1){   
-    	                         makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";   
+    	                         makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";   
     	                      }
     	                      else if(empSelectNumber == 2){
-    	                         makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+    	                         makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";
     	                        //협조문 쓸때 사용하는 것.
     	                      }else if(empSelectNumber == 3){
-    	                    	  makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><input type='button' class='btn btn-default' onclick='recF(this)' value='선택'></td></tr>";   
+    	                    	  makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn btn-outline btn-success' onclick='recF(this)' ><i class='fa fa-check'></i></button></td></tr>";   
     	                      }
     	                   });
     	                   makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";

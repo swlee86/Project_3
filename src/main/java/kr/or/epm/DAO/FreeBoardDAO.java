@@ -20,4 +20,10 @@ public interface FreeBoardDAO {
 	int insertReply(Re_FreeBoard dto);
 	void updateHit(int no);
 	void updateStep(int refer, int step);
+	
+	//수정하는 함수
+	public int updateRow(FreeBoard freeBoard);
+	
+	//삭제하는 함수
+	public int deleteRow(int no);
 }
