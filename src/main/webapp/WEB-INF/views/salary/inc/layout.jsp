@@ -279,7 +279,8 @@
 						date : date,
 					},
 					success : function(data) {
-						$('#payResultDiv').empty();				
+						$('#payResultDiv').empty();	
+						toastr.warning('조회 성공');
 						var table = "";
 						table+="<table cellpadding='1' cellspacing='1' class='table table-bordered table-condensed'>"
 						table += "<tr><th style='background-color:#f9fafc'>지급일</th>";			
@@ -319,8 +320,7 @@
 							    },
 							success:function(data){
 								$('#payResultDiv').empty();
-								console.log(data.YearlyPay.length);
-								
+								toastr.warning('조회 성공');
 								if(data.YearlyPay.length !=0){
 									
 								var table = "";
