@@ -19,12 +19,14 @@ public class Emp {
 	private String email;
 	private String cell_phone;
 	private String emp_tel;
+	
+	// 관리자 > 사원관리 > 리스트 출력
 	private String branch_name;
 	private String dept_name;
 	private String low_dept_name;
-	
 	private String cg_name;
 	private String position_name;
+	
 	
 	public String getCg_name() {
 		return cg_name;
