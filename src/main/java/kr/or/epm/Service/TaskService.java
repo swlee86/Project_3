@@ -153,21 +153,21 @@ public class TaskService {
 	
 	// 업무 요청, 보고, 일지 > 상세
 	// 사용
-	public Task selectTask_detail(String task_no){
+	public Task selectTask_detail(String task_no, String emp_no){
 		
 		System.out.println("SERVICE] 업무 상세 데이터를 불러옵니다");
 		System.out.println("넘겨진 task_no  " + task_no);
 		
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		Task detail = dao.selectTask_detail(task_no);
-		int result = dao.updateTask_recDate(task_no);
-		
-		if(result > 0) {
-			System.out.println("수신일 삽입에 성공하였습니다");
-		} else {
-			System.out.println("수신일 삽입에 실패하였습니다");
+		if(detail.getRec_emp_no().equals(emp_no)){
+			int result = dao.updateTask_recDate(task_no);
+			if(result > 0) {
+				System.out.println("수신일 삽입에 성공하였습니다");
+			} else {
+				System.out.println("수신일 삽입에 실패하였습니다");
+			}
 		}
-		
 		return detail;
 	}
 	
