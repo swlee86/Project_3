@@ -390,7 +390,7 @@
 				
 				
 				if (option == '' || date == '') {
-					alert("조회할 조건을 선택하세요");
+					toastr.warning("조회할 조건을 선택하세요");
 				} else {
 					alert("option: "+option +" // 선택한 날짜 date : "+date  +" // result : "+result);
 					$.ajax({
@@ -412,7 +412,7 @@
 							$('#severance_pay').html(data.dayMoney +"만원");
 							
 							}else{
-								alert('근속연수가 1년이상일 경우만 조회가능합니다.');
+								toastr.warning('근속연수가 1년이상일 경우만 조회가능합니다.');
 							}
 							
 							
