@@ -16,12 +16,12 @@
                         <span>게시판</span>
                     </li>
                     <li class="active">
-                        <span>회사정보 게시판</span>
+                        <span>사내 공지사항</span>
                     </li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                	회사정보 게시판
+                	사내 공지사항
             </h2>
             <small>회사의 정보를 확인하는 게시판입니다.</small>
 		</div>

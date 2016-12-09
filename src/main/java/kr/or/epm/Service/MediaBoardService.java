@@ -148,5 +148,11 @@ public class MediaBoardService {
 		System.out.println("현재 최고 리플번호 : "+result);
 		return result;
 	}
-	
+
+	//리플 삭제
+	public int deleteReply(int no){
+		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
+		int result = mediaBoardDAO.deleteReply(no); 
+		return result;
+	}
 }

@@ -70,7 +70,9 @@
 <script src="vendor/summernote/dist/summernote.min.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
-
+<!-- alert 창 -->
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
 <script>
 
     $(function () {
@@ -95,8 +97,41 @@
             airMode: true,
         });
 
-    });
-
+        $('.deletechk').click(function () {
+      		var listno =   $('#listno').val();
+      		
+      		 swal({
+                 title: "삭제하시겠습니까?",
+                 text: "확인을 클릭할시 글이 삭제 됩니다.",
+                 type: "warning",
+                 showCancelButton: true,
+                 confirmButtonColor: "#DD6B55",
+                 confirmButtonText: "확인",
+                 cancelButtonText: "취소",
+                 closeOnConfirm: false,
+                 closeOnCancel: false 
+                 },
+                 function (isConfirm){
+                     if(isConfirm){
+                     	 $.ajax({
+                     		url : "free_board_delete.do",
+                     		data : {
+                     			no : listno,
+                     		},
+                     		success : function(data){
+    								console.log(data);
+                     		}
+                     	}); 
+                     	swal("삭제되었습니다.", "", "success");
+                     	window.location.href='free_board_list.do';
+                     } else {
+                         swal("취소되었습니다.", "", "error");
+                     }
+        	});	
+        
+        });
+ });
+	
 </script>
 	
 </body>

@@ -14,8 +14,17 @@ public class MediaBoard {
 	private String content;
 	private String regdate;
 	private String file_name;
-		
+	
+	private String pic;
+	
+	
 
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 	public String getNo() {
 		return no;
 	}
@@ -64,6 +73,13 @@ public class MediaBoard {
 	public void setFile_name(String file_name) {
 		this.file_name = file_name;
 	}
+	
+	@Override
+	public String toString() {
+		return "MediaBoard [no=" + no + ", emp_no=" + emp_no + ", emp_name=" + emp_name + ", hit=" + hit + ", title="
+				+ title + ", content=" + content + ", regdate=" + regdate + ", file_name=" + file_name + ", pic=" + pic
+				+ "]";
+	}
 
-
+	
 }

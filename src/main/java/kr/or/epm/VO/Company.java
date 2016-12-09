@@ -18,7 +18,7 @@ public class Company {
 	private MultipartFile uploadfile;
 	private String file_name;
 	private String del_check;
-	
+	private String pic;
 	
 	
 	public MultipartFile getUploadfile() {
@@ -101,11 +101,22 @@ public class Company {
 		this.del_check = del_check;
 	}
 
+	
+	
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+
 	@Override
 	public String toString() {
 		return "Company [no=" + no + ", emp_no=" + emp_no + ", emp_name=" + emp_name + ", hit=" + hit + ", title="
-				+ title + ", content=" + content + ", regdate=" + regdate + ", file_name=" + file_name + ", del_check="
-				+ del_check + "]";
+				+ title + ", content=" + content + ", regdate=" + regdate + ", uploadfile=" + uploadfile
+				+ ", file_name=" + file_name + ", del_check=" + del_check + ", pic=" + pic + "]";
 	}
 
+	
 }

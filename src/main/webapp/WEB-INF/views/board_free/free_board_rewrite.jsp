@@ -46,6 +46,15 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-1 control-label text-left">첨부파일 :
+								</label>
+								<div class="col-sm-11">
+									<div class="btn-group">
+										<input type="file" class="btn btn-default" name="uploadfile" value="${list.file_name}">
+									</div>
+								</div>
+							</div>
+							<%-- <div class="form-group">
 								<label class="col-sm-1 control-label text-left"> 첨부<br>파일 :
 								</label>
 								<div class="col-sm-11">
@@ -55,13 +64,13 @@
 										</button>
 										<input type="file" name="uploadfile" id="clipfile" value="${list.file_name}" style="display:none;float:left" class="form-control input-xs">
 										
-								<!-- 		<button class="btn btn-default" id="img" type="button">
+								//		<button class="btn btn-default" id="img" type="button">
 											<i class="fa fa-image"></i>
 										</button>
-										<input type="file" name="file_name[1]"  id="imgfile"style="display:none" class="form-control input-xs"> -->
+										<input type="file" name="file_name[1]"  id="imgfile"style="display:none" class="form-control input-xs"> //
 									</div>
 								</div>
-							</div>
+							</div> --%>
 						
 
 
@@ -80,7 +89,7 @@
 							<button class="btn btn-default" type="submit">
 								<i class="fa fa-edit"></i> 글 수정
 							</button>
-							<button class="btn btn-default" type="button" onclick="location.href='business_board_list.do'">
+							<button class="btn btn-default" type="button" onclick="location.href='free_board_list.do'">
 								<i class="fa fa-refresh"></i> 목록으로
 							</button>
 						</div>

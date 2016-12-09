@@ -127,4 +127,6 @@ public class CompanyBoardService {
 		int result = companyboarddao.deleteRow(no); 
 		return result;
 	}
+	
+	
 }

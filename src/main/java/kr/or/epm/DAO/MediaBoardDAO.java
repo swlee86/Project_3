@@ -47,4 +47,7 @@ public interface MediaBoardDAO {
 	
 	//조회수 증가하는 함수
 	public int updateHit(int no);
+	
+	//리플 삭제
+	public int deleteReply(int no);
 }
