@@ -199,7 +199,7 @@
 				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-arrow-right'></i></button>
 				               </div>  
 				                <div class=" col-md-4" style="border: 1px solid #ddd;"   >
-				                	<div class="row"><div style="background-color:#f6f6f6;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><b>선택</b></div></div>
+				                	<div class="row"><div style="background-color:#f6f6f6;font-size:15px;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><i class="fa fa-users"></i></div></div>
 				                	
 				                  	<div id="empList_list"></div> 	
 				               </div>       

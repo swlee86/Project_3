@@ -76,12 +76,12 @@ $(function() {
 		                   });
 		                    console.log("객체s : "+emp[0]);
 		                  
-		                   var makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
+		                   var makeTable = "<table class='table table-condensed table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
 		                   $.each(emp, function(index){
-		                	   makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";   
+		                	   makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";   
 		                  
 		                   });
-		                   makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+		                   makeTable += "</table><div class='pull-right'><input type='button' class='btn btn-success btn-sm' style='font-weight: bold ' value='선택' onclick=check()></div>";
 		                   $('#empList2').empty();
 		                   $('#empList2').append(makeTable); 
 					}
@@ -106,6 +106,7 @@ $(function() {
         $('#draft_Ok_emp_no').val('');
         $('#draft_Ok_emp_name').val('');
         $('#empList_list').empty();
+        pre_empInfoArray.splice(0,pre_empInfoArray.length);
         
         $.ajax({
            url : "taskWriteModal.do",
@@ -149,7 +150,8 @@ $(function() {
         $('#draft_ref_emp_name').val('');
         $('#draft_ref_emp_no').val('');
         $('#empList_list').empty();
-		
+        pre_empInfoArray.splice(0,pre_empInfoArray.length);
+        
           	$.ajax({
     			url : "taskWriteModal.do",
     			success : function(data) {
@@ -418,10 +420,10 @@ $(function() {
     	                   
     	                   $.each(emp, function(index){
     	                      if(empSelectNumber == 1){   
-    	                         makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";   
+    	                         makeTable += "<tr><td><input type='checkbox'  name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";   
     	                      }
     	                      else if(empSelectNumber == 2){
-    	                         makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";
+    	                         makeTable += "<tr><td><input type='checkbox'   name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";
     	                        //협조문 쓸때 사용하는 것.
     	                      }else if(empSelectNumber == 3){
     	                    	  makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn btn-outline btn-success' onclick='recF(this)' ><i class='fa fa-check'></i></button></td></tr>";   
@@ -456,13 +458,14 @@ $(function() {
       		   tablemake2 += "<table class='table table-condensed table-hover' >";
       		 	          
                for(var i = 0; i < pre_empInfoArray.length; i++){
-            	   tablemake2 += "<tr><td style='text-align:center'><input type='checkbox' name='chkbtn2' value='"+pre_empInfoArray[i].emp_name+"'></td><td style='text-align:center'>"+pre_empInfoArray[i].emp_no+" - "+pre_empInfoArray[i].emp_name+" ("+pre_empInfoArray[i].position_name+")</td></tr>";  
+            	   tablemake2 += "<tr><td style='text-align:center'><input type='checkbox' checked   name='chkbtn2' value='"+pre_empInfoArray[i].emp_name+"'></td><td style='text-align:center'>"+pre_empInfoArray[i].emp_no+"</td><td>"+pre_empInfoArray[i].emp_name+"</td></tr>";  
                }   
                tablemake2 += '</table></div>';
                tablemake2 += "<div class='pull-right'><input type='button' class='btn btn-sm btn-success ' style='font-weight: bold' value='선 &nbsp;&nbsp;&nbsp;택' onclick=check()></div>";
                
                $('#empList_list').empty();
                $('#empList_list').append(tablemake2);
+               
       	 }
     }
     
