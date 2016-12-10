@@ -192,7 +192,7 @@
  -->
 
 <div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
-   <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg" id="modal_size">
       <div class="modal-content">
          <div class="color-line"></div>
          <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
@@ -211,9 +211,10 @@
 				               <div class="groupdiv2 col-md-3" style="border: 1px solid #ddd;" id="organization">
 				                  
 				               </div>   
-				               <div class=" col-md-4" id="empList" >
+				               <div class="col-md-4" id="empList" >
 				                  	
 				               </div>
+				               <div id="modal_size_option">
 				               <div class=" col-md-1">
 				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-chevron-right'></i></button>
 				               		<br><Br>
@@ -224,6 +225,7 @@
 				                	
 				                  	<div id="empList_list">선택된 사원이 없습니다.</div> 	
 				               </div>
+				               </div>
 				            </div>
 	        			</div>
 	        		</div>
@@ -231,7 +233,7 @@
 	        			<div class="panel-body">
 	        				<div class="row">   
 				               <div class="row"> 
-									<div class="col-md-3">
+									<div class="col-md-3" id="modal_size_sea">
 										<div class="form-inline">
 											<select class="form-control input-sm" id="con_ins_org_sea_field">
 												<option value="emp_name">사원명</option>
