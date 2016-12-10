@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.PushDAO">
 
-	<!-- 내가 승인해야 하는 프로젝트 리스트 뽑기(index에서 사용) -->
+   <!-- 내가 승인해야 하는 프로젝트 리스트 뽑기(index에서 사용) -->
 <select id="selectPj_rec" resultType="kr.or.epm.VO.Pj">
       select pj_no, emp_no, emp_name, pj_title, pj_start, pj_end, step_no from(
            select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
@@ -22,9 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 select step_no ,task_no, task_name, DEADLINE, emp_no, emp_name, send_date,file_name from (select rownum rn, task_no, task_name, DEADLINE, emp_no, emp_name, send_date,step_no,file_name from task where rec_emp_no=#{param1} and rec_date is null and rec_del_check = '0') where rn between #{param2} and #{param3}
 </select>
 
-	<!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
-	<select id="selectmytasklist" resultType="kr.or.epm.VO.Task">
-		select t.task_no, t.cg_no, task_name, rec_name, emp_name, t.task_step_no, deadline, rec_emp_no , t.send_date, t.file_name, t.sign
+   <!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
+   <select id="selectmytasklist" resultType="kr.or.epm.VO.Task">
+      select t.task_no, t.cg_no, task_name, rec_name, emp_name, t.task_step_no, deadline, rec_emp_no , t.send_date, t.file_name, t.sign
 from task t join task_step s
 on t.task_step_no = s.task_step_no
 left outer join (select p.task_no, p.emp_no, t.cg_no
@@ -34,8 +34,8 @@ left outer join (select p.task_no, p.emp_no, t.cg_no
 on t.task_no = p.task_no
 where rec_emp_no = #{emp_no} and t.cg_no = '1' and t.step_no = '1' and t.task_step_no != '4'  and t.task_step_no != '5' or p.emp_no is not null
 order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
-	</select>
-	
+   </select>
+   
 
 
 <!-- 미확인 업무 리스트 갯수 추출(login에서 사용) -->
@@ -45,15 +45,15 @@ select count(*) cnt from task where rec_emp_no=#{emp_no} and rec_date is null an
 
 <!-- 진행중인 프로젝트 리스트 갯수 추출(login에서 사용) -->
 <select id="myprojectCount" resultType="String" parameterType="String">
-	select count(*) cnt
-     	from pj p 
-      	join pj_step s
+   select count(*) cnt
+        from pj p 
+         join pj_step s
             on p.pj_step_no = s.pj_step_no
-      	join emp e
+         join emp e
             on p.emp_no = e.emp_no
-      	join low_dept l
+         join low_dept l
             on e.low_dept_no = l.low_dept_no      
-      	where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=#{emp_no}))) or p.emp_no=#{emp_no})
+         where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=#{emp_no}))) or p.emp_no=#{emp_no})
                  and step_no = (select step_no from approval where step_name='승인')
 </select>
 
@@ -87,15 +87,8 @@ select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60 
            sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))
     from commute where emp_no=#{emp_no} and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm') and commute_time is not null
 </select>
-	
+   
 <select id="selectLogin_Emp" resultType="kr.or.epm.VO.Emp">
-	select * from emp where emp_no = #{emp_no}
-</select>	
-
-
-<!--전자 결재 -->
-<!-- <select id="electronic_sanction" resultType="String">
-
-</select> -->
-
+   select * from emp where emp_no = #{emp_no}
+</select>   
 </mapper>

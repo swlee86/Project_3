@@ -186,8 +186,16 @@ $(function(){
                         <li>승인 확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>                    	
                     	</c:otherwise>
                     	</c:choose>
-                    	<li class="summary">전자 결재</li>
                     	
+                    	<li class="summary">전자 결재</li>
+                    	<%-- <c:choose>
+	                    	<c:when test="${empty sessionSanctionApprovalcount}">
+	                    		<li>참조된 전자결재가 없습니다.</li>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<li>참조된 전자결재는 <span id="sanctionApprovalcount">${sessionSanctionApprovalcount}</span>건 입니다.</li>
+	                    	</c:otherwise>
+                    	</c:choose> --%>
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -260,7 +268,7 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://192.168.43.217:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.43.182:8090/epm/broadsocket.do");
 		
 		//호출 시점  :  send() 메세지 호출 > broadsocket > handleTextMessage > json 넘어와서 
         webSocket.onmessage = function (message){
@@ -303,10 +311,13 @@ $('#birthDay').click(function(){
 			var divtaskapprovalcount = document.getElementById("taskApprovalcount");
 			divtaskapprovalcount.innerHTML = taskApprovalCount;
 			
+			/*참조된 전자 결재*/
+			
 			//최종 보스 allData - > 위에 선언한 데이터들의 값들을 뽑아서 넘겨준다. pollingchk.do 로 감  (PushController 로 이동 )
 			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount, "taskApproval":taskApprovalCount, "projectApproval":projectApprovalCount};
 			$(function(){
-			/* alert("푸쉬 카운트 : " +allData.pushcount + " / projectcount : "+allData.projectcount + " taskcount : "+allData.taskcount + " /    projectApproval : "+allData.projectApproval); */
+				
+			alert("푸쉬 카운트 : " +allData.pushcount + " / projectcount : "+allData.projectcount + " taskcount : "+allData.taskcount + " /    projectApproval : "+allData.projectApproval); 
     		$.ajax({
     			url : "pollingchk.do",
     			data : allData,

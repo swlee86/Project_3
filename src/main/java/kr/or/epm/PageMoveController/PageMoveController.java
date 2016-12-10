@@ -203,8 +203,7 @@ public class PageMoveController {
  				approve_pjlist = pushService.selectPj_rec(emp_no, cpage, pgsize); 				
  			}catch(Exception e){
  				System.err.println(e.getMessage());
- 			}finally{
- 				System.out.println("approve_pjlist : "+approve_pjlist.toString());
+ 			}finally{ 				
  				System.out.println("approve_pjlist size : "+approve_pjlist.size());
  				model.addAttribute("approve_pjlist", approve_pjlist);
  			}
