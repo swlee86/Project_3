@@ -62,7 +62,7 @@
                     <li><a href="mailbox_trash.do">휴지통</a></li>
                 </ul>
             </li>
-            <li>
+        <!--     <li>
                 <a href="#"><span class="nav-label">회의</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li style="text-align: center;">
@@ -75,7 +75,7 @@
                     </li>
                     
                 </ul>
-            </li>
+            </li> -->
             <li>
                 <a href="#" ><span class="nav-label">전자 결재</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
