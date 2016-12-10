@@ -169,12 +169,36 @@ public class ProjectAjaxController {
 	
 	//상세 내용 수정(updatePjd)
 	@RequestMapping(value="/updatePjd.do")
-	public View updatePjd(String pjd_no, String pjd_title, String pjd_content, String pj_step_no, String pjd_start, String pjd_end){
+	public View updatePjd(String pjd_no, String pjd_title, String pjd_content, String pj_step_no, String pjd_start, String pjd_end, Model model){
 		int result = 0;
+		int result_pjdd = 1; // 0이 되면 상세의 상세가 완료되지 않는게 있기 때문에 완료로 없데이트 처리 해줄수없음
+
 		System.out.println("pjd_no"+pjd_no+"pjd_title"+pjd_title+"pjd_content"+pjd_content+"pj_step_no"+pj_step_no+"pjd_start"+pjd_start+"pjd_end"+pjd_end);
 		
-		result = projectdetailservice.updatePjd(pjd_no, pjd_title, pjd_content,pj_step_no,pjd_start,pjd_end);
+		if(pj_step_no.equals("4")){
+			System.out.println("완료들어옴");
+			//완료선택했을때 아래의 상세의 상세가 모두 체크되어있는지 확인
+			List<Pjdd> pjddlist = projectdetailservice.selectPjddList(pjd_no);
+			
+			if(pjddlist.size()==0){
+				result = 9999; // 완료를 누르고 상세의 상세 size가 0 일때 alert창을 띄우기위해
+				result_pjdd=0;
+			}
+			
+			for(int i = 0; i< pjddlist.size() ; i++){
+				if(pjddlist.get(i).getFin_check().equals("0")){ // 체크상태가 false(0)인게 있다면 완료상태로 설정할 수 없음
+					result_pjdd=0;
+					result = 8888;
+					break;
+				}
+			}
+			
+		}
 		
+		if(result_pjdd==1){
+			result = projectdetailservice.updatePjd(pjd_no, pjd_title, pjd_content,pj_step_no,pjd_start,pjd_end);
+		}
+		model.addAttribute("result", result);
 		return jsonview;
 	}
 	

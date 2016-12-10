@@ -149,6 +149,11 @@
 <script src="vendor/toastr/build/toastr.min.js"></script>
  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 <script src="vendor/jquery/dist/jquery.min.js"></script>
+
+<!-- sweetalert -->
+<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
+<script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+
 <script>
 $(function(){
 	var index = 0;	
@@ -457,7 +462,30 @@ function modify_pjd(){
 						"pjd_end" :pjd_end,
 					},
 					success : function(data){
-						alert("수정 완료되었습니다.");
+						
+						if(data.result==9999){
+							swal({
+		                         title: "",
+		                         text: "상세내역을입력하세요.",
+		                         type: "warning"
+		                     });					
+						}else if(data.result==8888){
+							swal({
+		                         title: "",
+		                         text: "상세내역이 완료되지않았습니다.",
+		                         type: "warning"
+		                     });					
+						}else if(data.result==1){
+							swal({
+		                         title: "",
+		                         text: "수정 완료되었습니다.",
+		                         type: "success"
+		                     });
+							
+							$('.table-input').attr('disabled',true);
+							$('#modify_pjd_btn').val("수정");
+							$('#modify_pjd_btn').attr('class','btn btn-md btn-primary2');
+						}
 						
 						//전체 프로젝트의 진행상황도 업데이트 시켜줘야함
 						$.ajax(
@@ -476,9 +504,7 @@ function modify_pjd(){
 				}
 		);		
 		
-		$('.table-input').attr('disabled',true);
-		$('#modify_pjd_btn').val("수정");
-		$('#modify_pjd_btn').attr('class','btn btn-md btn-primary2');
+		
 
 	}
 }
