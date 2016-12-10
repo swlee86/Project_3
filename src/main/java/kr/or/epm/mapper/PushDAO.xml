@@ -91,4 +91,19 @@ select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60 
 <select id="selectLogin_Emp" resultType="kr.or.epm.VO.Emp">
    select * from emp where emp_no = #{emp_no}
 </select>   
+
+
+
+<!-- 전자 결재 >> 참조 
+  --> 
+  <select id="selectDraftCount" resultType="String">
+  select count(d.draft_no) 
+  from draft_ref r join draft d 
+  on r.draft_no = d.draft_no 
+  where rec_date is null and r.emp_no = #{emp_no}
+  </select> 
+
+
+
+
 </mapper>

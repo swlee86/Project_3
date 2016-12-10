@@ -3,6 +3,7 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 import kr.or.epm.VO.Commute;
+import kr.or.epm.VO.Draft;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Pj;
@@ -33,4 +34,7 @@ public interface PushDAO {
    String selectavgcommute_my(String emp_no);
    
    Emp selectLogin_Emp(String emp_no);
+   
+   //전자결재 참조 숫자 구하는 것.
+   String selectDraftCount(String emp_no);
 }

@@ -133,9 +133,11 @@
 						</div>
 						<div class="pull-right" style="text-align: center;">
 							<input type="submit" class="btn btn-sm btn-success"
-								id="submitBtn" value="결재 요청"
+								id="submitBtn" value="결재 요청" onclick="send()"
 								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 						</div>
+						<input type="hidden" id="hiddenEmp_no">
+						<input type="hidden" id="hiddenMenuName" value="전자결재">
 					</form>
 				</div>
 			</div>

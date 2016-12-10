@@ -566,7 +566,9 @@ $(function() {
        var rec_name = $(obj).parent().parent().children().eq(1).html();
        $('#CooperationDepartInput').val(dept_Name);
        $('#CooperationNameInput').val(rec_name);
+       $('#hiddenMenuName').val(rec_emp_no);
        $('#CooperationModal').modal("hide");
+       
     }
     
   //협조문 - 부서 선택 버튼 클릭시 ////////

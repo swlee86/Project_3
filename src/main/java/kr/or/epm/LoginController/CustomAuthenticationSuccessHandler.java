@@ -97,6 +97,9 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       String approval = "0";
       String taskApprovalcount = "0";
       
+      //전자결재 다시 도전
+      String draft = "0";
+      
       int resultdata = 0;
       System.out.println("푸쉬 주소값? : " + sqlsession.toString());
       PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
@@ -114,8 +117,12 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
          System.out.println("미처리 taskcount : " + taskcount);
          System.out.println("내가 진행중인 프로젝트 count : " + projectcount);
 
-         //각 항목의 카운트의 총 합                   업무(미확인 업무)             진행중인 프로젝트                            승인해야하는 프로젝트                               승인해야하는 업무                                          
-         resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount) +Integer.parseInt(approval)+Integer.parseInt(taskApprovalcount);
+         System.out.println("전자 결재 ============================= >> "+draft);
+         //내가 참조당한 전자 결재 
+         draft = pushdao.selectDraftCount(emp_no);
+
+         //각 항목의 카운트의 총 합                   업무(미확인 업무)             진행중인 프로젝트                            승인해야하는 프로젝트                               승인해야하는 업무                                참조당한 전자결재          
+         resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount) +Integer.parseInt(approval)+Integer.parseInt(taskApprovalcount)+Integer.parseInt(draft);
          System.out.println("ResultData입니다 : " + resultdata);
          //////////////////////////////////////////////////////////////
                
@@ -140,6 +147,11 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       session.setAttribute("sessionprojectcount", projectcount);
       session.setAttribute("sessiontaskApprovalcount", taskApprovalcount);
       session.setAttribute("sessionApprovalcount", approval);//프로젝트 내가 승인 해야할 승인 여부 세션 생성 
+      
+      //--전자 결재
+      //----내가 참조당한 전자결재
+      session.setAttribute("sessionDraftcount", draft);
+      
       
       session.setAttribute("sessionpushcount", resultdata);
       
