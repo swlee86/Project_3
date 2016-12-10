@@ -198,7 +198,9 @@
 				                  	
 				               </div>  
 				               <div class=" col-md-1">
-				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-arrow-right'></i></button>
+				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-chevron-right'></i></button>
+				               		<br><Br>
+				               		<button class='btn btn-sm btn-default' onclick="precheck_cancel()"><i class='fa fa-chevron-left'></i></button>
 				               </div>  
 				                <div class=" col-md-4" style="border: 1px solid #ddd;"   >
 				                	<div class="row"><div style="background-color:#f6f6f6;font-size:15px;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><i class="fa fa-users"></i>선택된 사원</div></div>
@@ -213,7 +215,7 @@
 	        			<div class="panel-body">
 	        				<div class="row">   
 				               <div class="row"> 
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-inline">
 											<select class="form-control input-sm" id="con_ins_org_sea_field">
 												<option value="emp_name">사원명</option>

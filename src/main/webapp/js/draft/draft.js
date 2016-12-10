@@ -94,9 +94,9 @@ $(function() {
 		                   });
 		                    console.log("객체s : "+emp[0]);
 		                  
-		                   var makeTable = "<table class='table table-condensed table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
+		                   var makeTable = "<table class='table table-condensed table-hover table-bordered'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
 		                   $.each(emp, function(index){
-		                	   makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";   
+		                	   makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td></tr>";   
 		                  
 		                   });
 		                   makeTable += "</table><div class='pull-right'><input type='button' class='btn btn-success btn-sm' style='font-weight: bold ' value='선택' onclick=check()></div>";
@@ -168,6 +168,7 @@ $(function() {
 		$('#sanction_writename_td').empty();
         $('#draft_ref_emp_name').val('');
         $('#draft_ref_emp_no').val('');
+        $('#empList_list').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
         //$('#empList_list').empty();
         pre_empInfoArray.splice(0,pre_empInfoArray.length);
         
