@@ -39,6 +39,10 @@
    
    <!--텍스트 에디터 사용시 추가해야할 css -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    	<!-- sweet alert -->
+
+
+    
   <Style>
   .group-clicked2{
    background : #beebff;
@@ -51,7 +55,8 @@
    box-shadow : inset 0 0 1px #ccc;
 }
   </Style> 
-<script>
+  
+  <script>
    //조직도 트리 할때 사용하는 전역변수
    var firstTree = 0;
    var secondTree = 0;
@@ -606,6 +611,9 @@ $(function(){
 <!--풀캘린더 스크립트-->
 <script src="vendor/moment/min/moment.min.js"></script>
 <script src="vendor/fullcalendar/dist/fullcalendar.min.js"></script>
+
+
+
 <script>
 
    $(function(){
@@ -613,7 +621,7 @@ $(function(){
        $('#example1').footable();
        $('#example2').footable();
       // Initialize summernote plugin
-        $('.summernote').summernote();
+       $('.summernote').summernote();
 
        var sHTML = $('.summernote').code();
 
@@ -673,9 +681,9 @@ $(function(){
       });
  
       
-      $('#contact').submit(function(){
-      
-         $.ajax(
+     //프로젝트 상세 > 참여자 선택 > 주소록 추가 선택할때
+     $('#contact').submit(function(){
+			$.ajax(
                {
                   type : "post",
                   url  : "addContact_pjd.do",
@@ -690,51 +698,46 @@ $(function(){
                      "mail" : $('#h_emp_mail').val(),
                      
                   },
-                  success : function(data){
-                     alert("주소록 등록을 성공했습니다")
-                     console.log("last : " + data.last_result);         
+                  complete  : function(data){
+                 	 swal({
+                         title: "",
+                         text: "주소록에 추가 되었습니다.",
+                         type: "success"
+                     });
                   }
                });
-      });
+     });
       
-      
-      $('.selectpeople').click(function(){  
-         var emp_no = ($(this).attr('id')).substr(9);
-         alert(emp_no);
-         //console.log(emp_no);
-         //console.log("html: " +$('#m_name').html());
-         $.ajax(
-               {
-                  type : "post",
-                  url  : "pjd_people.do",
-                  data : {
-                     "emp_no" : emp_no,                  
-                  },
-                  success : function(data){
-                     console.log(data.data);
-                     
-                     $('#m_name').html(data.data.emp_name);
-                     $('#m_dept').html(data.data.branch_name + '\n' + data.data.dept_name+ '\n' +data.data.low_dept_name);
-                     $('#m_cell').html(data.data.cell_phone);
-                     $('#m_img').attr('src','${pageContext.request.contextPath}/img/upload/'+data.data.pic);
-                     
-                     
-                     $('#h_emp_no').val(data.data.emp_no);
-                     $('#h_emp_name').val(data.data.emp_name);
-                     $('#h_emp_attach').val(data.data.branch_name+'&nbsp;'+data.data.dept_name+ '&nbsp;' +data.data.low_dept_name);
-                     $('#h_emp_tel1').val(data.data.cell_phone);
-                     $('#h_emp_tel2').val(data.data.emp_tel);
-                     $('#h_emp_birth').val(data.data.birth);
-                     $('#h_emp_pic').val(data.data.pic);
-                     $('#h_emp_mail').val(data.data.email);
-                     
-                     console.log($('#h_emp_name').val());
-
-                  }
-               });
-         });
-            
-   });
+    //프로젝트 상세 > 참여자 선택할때 modal
+	$('.selectpeople').click(function(){  
+		var emp_no = ($(this).attr('id')).substr(9);
+	         //alert(emp_no);
+	         //console.log(emp_no);
+	         //console.log("html: " +$('#m_name').html());
+		$.ajax({
+				type : "post",
+				url  : "pjd_people.do",
+				data : {
+						"emp_no" : emp_no,                  
+	                  	},
+				success : function(data){
+				$('#m_name').html(data.data.emp_name);
+				$('#m_dept').html(data.data.branch_name + '\n' + data.data.dept_name+ '\n' +data.data.low_dept_name);
+				$('#m_cell').html(data.data.cell_phone);
+				$('#m_img').attr('src','${pageContext.request.contextPath}/img/upload/'+data.data.pic);
+	                     
+				$('#h_emp_no').val(data.data.emp_no);
+				$('#h_emp_name').val(data.data.emp_name);
+				$('#h_emp_attach').val(data.data.branch_name+'&nbsp;'+data.data.dept_name+ '&nbsp;' +data.data.low_dept_name);
+				$('#h_emp_tel1').val(data.data.cell_phone);
+				$('#h_emp_tel2').val(data.data.emp_tel);
+				$('#h_emp_birth').val(data.data.birth);
+				$('#h_emp_pic').val(data.data.pic);
+				$('#h_emp_mail').val(data.data.email);
+	            }
+	          });
+	    });
+	});
 
    //상세보기 클릭시 실행
    function detailProjectCheckList(mybtn){

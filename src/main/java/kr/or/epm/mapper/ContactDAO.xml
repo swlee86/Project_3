@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 on e.position_no = p.position_no  
 			 where  ${field} like '%${query}%'
 		</if>
-		and e.emp_no ! = ( select emp_no from emp_detail where id=#{id})
+		and e.emp_no ! = ( select emp_no from emp_detail where id=#{id}) and substr(e.emp_no,1,4) != 0000
 	</select>
 	
 	

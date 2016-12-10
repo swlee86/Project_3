@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Page title -->
-    <title>EPM | WebApp admin theme</title>
+    <title>2PM</title>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -171,7 +171,7 @@ function seeDepart(obj, choose) {
 
 //하위 부서 클릭시
 function seelow_Depart(obj,departcho) {
-	alert("부서 : "+choose);
+	//alert("부서 : "+choose);
 	deptNumber= departcho;
 	var div_id = "low_dept_div"+departcho;
 	$("#"+div_id).empty();
@@ -214,12 +214,12 @@ function seelow_Depart(obj,departcho) {
 function seeEmpMember(obj,low_dept_no){
    //체크
    var empListNumber = low_dept_no;
-   alert("사원뽑기 : "+empListNumber);
+   //alert("사원뽑기 : "+empListNumber);
    
    
    //클릭한 text 값 뽑아옴.
    var low_dept = $(obj).text();
-   alert("seeEmpMember : "+empListNumber);
+   //alert("seeEmpMember : "+empListNumber);
    var makeTable = "";
    
    $.ajax(
@@ -246,23 +246,38 @@ function seeEmpMember(obj,low_dept_no){
                	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp.branch_name+"</div>"   
                	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp.cell_phone+"<br>"+emp.branch_name+">"+emp.dept_name+" > "+emp.low_dept_name+"</p></div></div></div>"
 			   });
+         
                
-               //테스트
-               console.log("ㅗ : " + data.master.emp_name);
-               
-               //대표 이름 뿌리는 것 
-               $('#masterName').html(data.master.emp_name);
-               
-               //부서 전화번호
-               $('#phone').html(data.master.tel);
-               //부서 팩스번호
-               $('#fax').html(data.master.fax);
-               
-               //부서 이름
-               $('#deptName').html(data.master.low_dept_name);
-               
-               //총인원수
-               $('#total').html(data.count);
+               if(data.master != null){
+            	   //대표 이름 뿌리는 것 
+                   $('#masterName').html(data.master.emp_name);
+                   
+                   //부서 전화번호
+                   $('#phone').html(data.master.tel);
+                   //부서 팩스번호
+                   $('#fax').html(data.master.fax);
+                   
+                   //부서 이름
+                   $('#deptName').html(data.master.low_dept_name);
+                   
+                   //총인원수
+                   $('#total').html(data.count);
+               }else{
+            	 //대표 이름 뿌리는 것 
+                   $('#masterName').html('');
+                   
+                   //부서 전화번호
+                   $('#phone').html('');
+                   //부서 팩스번호
+                   $('#fax').html('');
+                   
+                   //부서 이름
+                   $('#deptName').html('');
+                   
+                   //총인원수
+                   $('#total').html('');
+               }
+              
               	
                $('#empList').empty();
                $('#empList').append(makeTable);

@@ -305,8 +305,17 @@ public class DraftController {
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
 		
-		// 상세 조회 처리 (rec_check, rec_date 변경)
-		service.rec_process(draft_no);
+		// 결재자가 읽으면 rec_check에 날짜 삽입
+		for(Draft_line data : linedetail) {
+			if(data.getEmp_no().equals(session_emp_no)) {
+				service.insertRec_check(draft_no);
+			}
+		}
+		for(Draft_ref data : refdetail) {
+			if(data.getEmp_no().equals(session_emp_no)) {
+				service.insertRec_date(draft_no);
+			}
+		}
 		
 		return "draft.office_detail";
 	}
@@ -350,9 +359,18 @@ public class DraftController {
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
 		
-		// 상세 조회 처리 (rec_check, rec_date 변경)
-		service.rec_process(draft_no);
-		
+		// 결재자가 읽으면 rec_check에 날짜 삽입
+		for(Draft_line data : linedetail) {
+			if(data.getEmp_no().equals(emp_no)) {
+				service.insertRec_check(draft_no);
+			}
+		}
+		for(Draft_ref data : refdetail) {
+			if(data.getEmp_no().equals(emp_no)) {
+				service.insertRec_date(draft_no);
+			}
+		}
+				
 		return "draft.cooperation_detail";
 	}
 	
@@ -389,9 +407,18 @@ public class DraftController {
 		int refcount = refdetail.size();
 		model.addAttribute("refcount", refcount);
 
-		// 상세 조회 처리 (rec_check, rec_date 변경)
-		service.rec_process(draft_no);
-		
+		// 결재자가 읽으면 rec_check에 날짜 삽입
+		for(Draft_line data : linedetail) {
+			if(data.getEmp_no().equals(emp_no)) {
+				service.insertRec_check(draft_no);
+			}
+		}
+		for(Draft_ref data : refdetail) {
+			if(data.getEmp_no().equals(emp_no)) {
+				service.insertRec_date(draft_no);
+			}
+		}
+				
 		return "draft.break_detail";
 	}
 	

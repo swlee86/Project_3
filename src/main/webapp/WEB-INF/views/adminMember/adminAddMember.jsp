@@ -115,7 +115,7 @@
 	                    	</table>
 	                    	<div class="pull-right" style="text-align:center">
 	                    		<input type="submit" id="submitBtn" class="btn btn-success btn-md" value="등록" style="margin-right:10px">
-	                    		<input type="button" class="btn btn-default btn-md" value="돌아가기">
+	                    		<input type="button" class="btn btn-default btn-md" value="돌아가기" id="backBtn">
 	                    	</div>
                     	</form>
                     </div>

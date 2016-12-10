@@ -64,14 +64,36 @@ public class AdminEmpAjaxController {
 		return jsonview;
 	}
 	
+	// 사원 이력 출력
+	@RequestMapping(value="/adminEmp_his.do", method=RequestMethod.POST)
+	public View adminEmp_his(String emp_no, Model model) {
+		System.out.println("CONTROLLER] 사원 이력 출력");
+		System.out.println("넘어오는 emp_no 확인하자 : " + emp_no);
+		
+		List<Emp> list = service.selectEmp_his(emp_no);
+		model.addAttribute("list", list);
+		
+		return jsonview;
+	}
+	
 	// 탈퇴를 요청한 사원의 상세를 출력
 	@RequestMapping(value="/adminEmp_withdrawal_detail.do", method=RequestMethod.POST)
 	public View adminEmp_withdrawal_detail(String emp_no, Model model) {
 		System.out.println("CONTROLLER] 탈퇴를 요청한 사원의 상세");
-		System.out.println("넘어오는 값 확인 : " + emp_no);
 		
 		Emp detail = service.selectEmp_withdrawal_detail(emp_no);
 		model.addAttribute("detail", detail);
+		
+		return jsonview;
+	}
+	
+	// 탈퇴 요청자의 삭제버튼을 눌렀을 때
+	@RequestMapping(value="/adminEmp_delete.do", method=RequestMethod.POST)
+	public View adminEmp_delete(String emp_no, Model model) {
+		System.out.println("CONTROLLER] 사원 삭제");
+		
+		int result = service.deleteEmp(emp_no);
+		model.addAttribute("result", result);
 		
 		return jsonview;
 	}

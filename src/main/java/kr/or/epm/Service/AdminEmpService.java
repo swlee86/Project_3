@@ -105,13 +105,40 @@ public class AdminEmpService {
 	
 	// AJAX 사원 등록
 	public int insertEmp(Emp emp) {
-		System.out.println("SERVICE] 사원 등록");
+		System.out.println("SERVICE] 사원을 등록합니다");
+		int result = 0;
 		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		int result = dao.insertEmp(emp);
+		int result1 = dao.insertEmp(emp);
+		
+		// 이력에 '입사' 추가하기
+		String emp_no = emp.getEmp_no();
+		int result2 = dao.insertEmp_his_in(emp_no);
+		
+		
+		// 'none' 권한 부여하기
+		// 회원가입이 완료되었을 때 적용하는 걸로 변경
+		// int result3 = dao.insertEmp_role_none(emp_no);
+		
+		if(result1 > 0 && result2 > 0) {
+			result = 1;
+		}
 		
 		return result;
 	}
+	
+	// AJAX 사원 이력 불러오기
+	public List<Emp> selectEmp_his(String emp_no) {
+		System.out.println("SERVICE] 사원 이력을 불러옵니다");
+		
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		List<Emp> list = dao.selectEmp_his(emp_no);
+		
+		System.out.println("dao 후의 결과를 확인하자 : " + list.toString());
+		
+		return list;
+	}
+	
 	
 	// 탈퇴를 요청한 사원 리스트 출력
 	public List<Emp> selectEmp_withdrawal() {
@@ -131,5 +158,26 @@ public class AdminEmpService {
 		Emp detail = dao.selectEmp_withdrawal_detail(emp_no);
 		
 		return detail;
+	}
+	
+	// AJAX 사원 삭제
+	public int deleteEmp(String emp_no) {
+		System.out.println("SERVICE] 사원을 삭제합니다");
+		int result = 0;
+		
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		
+		// 권한을 none으로 변경
+		int result2 = dao.updateEmp_role_none(emp_no);
+		// 이력을 퇴사로 변경
+		int result3 = dao.updateEmp_his_out(emp_no);
+		// 사번의 년도를 0000으로 변경
+		int result1 = dao.updateEmp_no(emp_no);
+		
+		if(result1 > 0 && result2 > 0 && result3 > 0) {
+			result = 1;
+		}
+		
+		return result;
 	}
 }

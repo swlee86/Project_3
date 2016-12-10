@@ -31,7 +31,6 @@ public class ProjectDetailService {
 	
 	// 선택한 프로젝트의 프로젝트 상세 보기
 	public List<Pjd> selectPjdlist(String pj_no){
-		System.out.println("들어는옴");
 		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
 		List<Pjd> list = null;	
 		list= dao.selectPjd(pj_no);
@@ -43,8 +42,6 @@ public class ProjectDetailService {
 				list.get(i).setPjd_content(content);
 			}
 		}
-		
-		
 		return list;
 	}
 	
