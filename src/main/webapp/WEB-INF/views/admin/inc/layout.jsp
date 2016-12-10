@@ -62,6 +62,10 @@
 			 	
 		}
 		
+		.toast-message{
+			color :black;
+		}
+		
 	</style>
 
 
@@ -138,13 +142,35 @@
 
 <script>
 
+
+toastr.options = {    
+        "closeButton": true,
+         "debug": false,
+         "newestOnTop": false,
+         "progressBar": false,
+         "positionClass": "toast-top-center",
+         "preventDuplicates": false,
+         "onclick": null,
+         "showDuration": "300",
+         "hideDuration": "1000",
+         "timeOut": "2000",
+         "extendedTimeOut": "1000",
+         "showEasing": "swing",
+         "hideEasing": "linear",
+         "showMethod": "fadeIn",
+         "hideMethod": "fadeOut"
+         };
 	
+
 	$(function(){
+		
 		
 		//드래그 앤 드롭
 		$( "#sortable" ).sortable();
-	
-		
+	 
+		//시계
+	    $('.clockpicker').clockpicker({autoclose: true});
+
 		
 		var currentYear = (new Date()).getFullYear();
 		var startYear = currentYear - 10;

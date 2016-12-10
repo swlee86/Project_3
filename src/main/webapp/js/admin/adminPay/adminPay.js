@@ -29,12 +29,12 @@ $(function(){
 				$('#hidden_date').val(dbdate);
 				return true;
 			}else{
-				alert("급여 마감하실 사원을 선택하세요!");
+				toastr.warning("급여 마감하실 사원을 선택하세요!");
 				return false;
 			}
 		
 		}else{
-			alert("마감 기간이 아닙니다.");
+			toastr.warning("마감 기간이 아닙니다.");
 			return false;
 		}
 		
@@ -71,11 +71,11 @@ $(function(){
 										pay_date_num: hidden
 							         },
 							success : function(data){
-								alert(data.result);
+								toastr.warning(data.result);
 								window.location.reload();
 							 },
 							error : function(){
-								alert('등록 실패');
+								toastr.warning('등록 실패');
 							}
 						}
 				);
@@ -114,9 +114,8 @@ $(function(){
 											param : param
 								       },
 								success : function(data){
-		                           
-		                           console.log("결과 : "+data.result);
-		                           swal({
+		                          
+									swal({
 		                                title: "상여금 지급 여부 확정",
 		                                text: "지급 확정에 성공하였습니다",
 		                                type: "success"
@@ -128,7 +127,7 @@ $(function(){
 				      );
 			
 		}else{
-			alert("지급 여부를 설정할 부서를 선택해주세요!");
+			toastr.warning("지급 여부를 설정할 부서를 선택해주세요!");
 			return false;
 		}
 		

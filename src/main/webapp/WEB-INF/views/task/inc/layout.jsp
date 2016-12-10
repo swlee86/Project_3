@@ -595,8 +595,8 @@ ul {
         				$.each(departMent, function(index) {
           					litag += "<li style='padding:6px;'onclick='seeDepart(this,"
           					litag +=empSelectNumber +","
-          					litag +=departMent[index].branch_no
-           				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
+          					litag +=departMent[index].branch_no90
+           				    litag +=")'><i class='fa fa-sitemap'></i> <span>"+departMent[index].branch_name+" ("+departMent[index].branch_no+")</span></li>";
            				    litag+="<div id='dept_div"
                				litag+=departMent[index].branch_no
                				litag+="'></div>";
@@ -638,12 +638,12 @@ ul {
      					litag += "<li style='padding:6px;' onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
        						litag +=departMent[index].branch_no
-        				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
+        				    litag +=")'><i class='fa fa-sitemap'></i><span>"+departMent[index].branch_name+" ("+departMent[index].branch_no+"</span></li>";
         					litag+="<div id='dept_div"
         					litag+=departMent[index].branch_no
         					litag+="'></div>";
                   });
-                  litag +="</ul><hr/>";
+                  litag +="</ul>";
                   $('#organization').html(litag);
 
                }

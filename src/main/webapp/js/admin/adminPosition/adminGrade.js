@@ -12,15 +12,15 @@ $(function(){
 	$('#addBtn').click(function(){
 		
 		if($('#positionName').val() == ''){
-			alert("직위 이름을 입력해 주세요 !");
+			toastr.warning("직위 이름을 입력해 주세요 !");
 			$('#positionName').focus();
 			return false;
 		}else if($('#basic_pay').val() == ''){
-			alert("기본급여를 입력해주세요 !");
+			toastr.warning("기본급여를 입력해주세요 !");
 			$('#basic_pay').focus();
 			return false;
 		}else if($('#add_pay').val() == ''){
-			alert("추가 급여를 입력해주세요 !");
+			toastr.warning("추가 급여를 입력해주세요 !");
 			$('#add_pay').focus();
 			return false;
 		}
@@ -76,7 +76,7 @@ $(function(){
 			//객체 삽입
 			//위에 배열에 객체 넣고
 			jsonArray.push(json);	
-			console.log("position_name : " + itemid[i] + " step : "+i);
+			
 		}
 		
 		
@@ -86,11 +86,10 @@ $(function(){
 					data :JSON.stringify(jsonArray),
 				    type : "json",
 					success : function(data){
-						alert("저장 성공 !");
+						toastr.warning("저장 성공 !");
 						var pdata = data.modifylist;
 						var select = '<select class="form-control" onchange="selectPosition();"><option>선택</option>';
 						for(var i = 0; i < pdata.length; i++){
-							console.log(pdata[i].position_name);
 							select += '<option value='+pdata[i].position_no+'>'+pdata[i].position_name+'</option>'
 						}
 						
@@ -99,7 +98,7 @@ $(function(){
 						$('#selectPosition').append(select);
 						
 					},error : function(){
-						alert("실패!!");
+						toastr.warning("실패!!");
 					}
 				}
 				
@@ -139,7 +138,7 @@ function checkPositionName(){
 	}
 	
 	if(searchResult == '0'){
-		alert("이미 있는 아이디 입니다. 다른 이름을 입력해 주세요 !");
+		toastr.warning("이미 있는 아이디 입니다. 다른 이름을 입력해 주세요 !");
 		return;
 	}else{
 		var today = dateChek();
@@ -192,7 +191,7 @@ function selectPosition(){
 		   );
 	
 	 }else{
-		 alert("선택해주세요 !");
+		 toastr.warning("선택해주세요 !");
 	 }
 	 
 }
@@ -224,12 +223,12 @@ function deleteli(obj){
 				data : {position_no : value},
 				success : function(data){
 					if(data.result =='성공'){
-						alert('삭제 성공');
+						toastr.warning('삭제 성공');
 						deleteli.parent().remove();
 					}else if(data.result=='실패'){
-						alert('삭제 실패');
+						toastr.warning('삭제 실패');
 					}else{
-						alert("해당 직위의 사원이 있습니다. 해당 직위의 사원 정보를 먼저 변경해주세요");
+						toastr.warning("해당 직위의 사원이 있습니다. 해당 직위의 사원 정보를 먼저 변경해주세요");
 					}
 					
 					

@@ -137,12 +137,11 @@ public class AdminService {
 
 		if (dept_count > 0) {
 			// 소속 부서 update
-			for (int i = 0; i < dept_count; i++) {
-				update_dept = 0;
+			update_dept = 0;
 				update_dept = branchDAO.update_new_dept(branch);
 				System.out.println(" 부서 update 결과 ============" + update_dept);
 
-			}
+			
 			return update_dept;
 		} else {
 			update_dept =1;
@@ -253,11 +252,10 @@ public class AdminService {
 			System.out.println(" 하위부서 개수=====================" + count);
 
 			if (count > 0) {
-				for (int i = 0; i < count; i++) {
 					result = 0;
 					result = deptDAO.update_lowDept(dto);
-					System.out.println("===================================하위부서 update 끝");
-				}
+					System.out.println("===================================하위부서 update 끝"+result);
+				return result;
 			} else {
 				return result;
 			}
@@ -266,7 +264,6 @@ public class AdminService {
 			return result;
 		}
 
-		return result;
 	}
 	
 	//부서 등록전 유효성 검사
