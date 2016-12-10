@@ -314,8 +314,9 @@ public class TaskController {
 		
 		String taskcount = pushservice.taskCount(empno);
 		String projectcount = pushservice.myprojectCount(empno);
+		String projectApproval = pushservice.projectApproval(empno);
 		String taskApproval = pushservice.taskApproval(empno);
-		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval);	
+		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);	
 		session.setAttribute("sessiontaskcount", taskcount);
 		session.setAttribute("sessionpushcount", resultdata);
 		
@@ -353,8 +354,10 @@ public class TaskController {
 				System.out.println("승인 처리에 성공하였습니다");
 				String taskApproval = pushservice.taskApproval(empno);
 				String taskcount = pushservice.taskCount(empno);
+				String projectApproval = pushservice.projectApproval(empno);
 				String projectcount = pushservice.myprojectCount(empno);
-				resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval);	
+				
+				resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);
 				
 				session.setAttribute("sessionpushcount", resultdata);
 				session.setAttribute("sessiontaskApprovalcount", taskApproval);	

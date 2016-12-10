@@ -129,5 +129,12 @@ public class PushService {
 		return result;
 	}
 	
+	///// >> 2016-12-10 프로젝트 >> 승인해야 할 프로젝트
+	public String projectApproval(String emp_no){
+		PushDAO dao = sqlsession.getMapper(PushDAO.class);
+		String result = dao.projectApproval(emp_no);
+		return result;
+	}
+	
 	
 }
