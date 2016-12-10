@@ -4,6 +4,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.PushDAO">
 
+<select id="projectApproval" resultType="String">
+	select count(pj_no)from(
+           select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
+                select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
+                from pj p join emp e on p.emp_no = e.emp_no
+                where p.rec_emp_no = #{param1} and p.step_no = '4' 
+                order by to_number(p.pj_no) DESC
+           ) n
+       )
+</select>
+
    <!-- 내가 승인해야 하는 프로젝트 리스트 뽑기(index에서 사용) -->
 <select id="selectPj_rec" resultType="kr.or.epm.VO.Pj">
       select pj_no, emp_no, emp_name, pj_title, pj_start, pj_end, step_no from(

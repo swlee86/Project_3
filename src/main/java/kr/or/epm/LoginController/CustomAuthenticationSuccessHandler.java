@@ -122,9 +122,9 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
          System.out.println("내가 진행중인 프로젝트 count : " + projectcount);
          
          //내가 승인해야 할 프로젝트
-         //approval = pushdao.projectApproval(emp_no);
+         approval = pushdao.projectApproval(emp_no);
          
-         System.out.println("내가 승인해야 할 프로젝트  : " + approval);
+         System.out.println("내가 승인해야 할 프로젝트  : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>)))))))))))))))))" + approval);
          
          
          taskApprovalcount = pushdao.taskApproval(emp_no);
