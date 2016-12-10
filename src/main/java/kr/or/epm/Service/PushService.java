@@ -23,7 +23,6 @@ public class PushService {
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		String result = pushdao.taskCount(emp_no);
 		System.out.println("서비스단 데이터 : " + emp_no);
-
 		return result;
 	}
 
@@ -42,10 +41,8 @@ public class PushService {
 	public List<Task> tasklist(String emp_no, int cpage, int pgsize) {
 		System.out.println("테스크 뽑으러 왔어요~");
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-
 		int start = 1 + (cpage * pgsize - 5);//(pgsize - 1);
 		int end = (cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
-
 		List<Task> tasklist = pushdao.selecttasklist(emp_no, start, end);
 		System.out.println("@@@@@@@@@@@@tasklist : " + tasklist.toString());
 		return tasklist;
@@ -55,7 +52,6 @@ public class PushService {
 	public List<Task> mytasklist(String emp_no, int cpage, int pgsize) {
 		System.out.println("my 테스크 뽑으러 왔어요~");
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-
 		int start = 1 + (cpage * pgsize - 5);//(pgsize - 1);
 		int end =(cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
 		List<Task> tasklist = pushdao.selectmytasklist(emp_no);
@@ -125,4 +121,13 @@ public class PushService {
 		String avgmy = dao.selectavgcommute_my(emp_no);
 		return avgmy;
 	}
+	
+	////// >> 2016-12-10 업무 >> 승인해야할 업무 개수 가져오는 것.
+	public String taskApproval(String emp_no){
+		PushDAO dao = sqlsession.getMapper(PushDAO.class);
+		String result = dao.taskApproval(emp_no);
+		return result;
+	}
+	
+	
 }

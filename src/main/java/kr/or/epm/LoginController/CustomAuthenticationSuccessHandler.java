@@ -90,12 +90,16 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       
       //알림에 각 항목의 카운트를 담기 위한 변수
       String emp_no =null;
-      String taskcount = null;
       String projectcount = null;
    
       //내가 추가한 부분 try 내부에 dao 이용해서 쿼리문 돌려줘야함.
+      //프로젝트 승인 관련 approval 
       String approval = "0";
-      String taskApprovalcount = "0";
+      
+      //업무 관련 알람용 변수
+      String taskcount = null;
+      //업무 승인 관련 변수
+      String taskApprovalcount = null;
       
       //전자결재 다시 도전
       String draft = "0";
@@ -116,11 +120,21 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
          projectcount = pushdao.myprojectCount(emp_no);
          System.out.println("미처리 taskcount : " + taskcount);
          System.out.println("내가 진행중인 프로젝트 count : " + projectcount);
-
-         System.out.println("전자 결재 ============================= >> "+draft);
+         
+         //내가 승인해야 할 프로젝트
+         approval = pushdao.projectApproval(emp_no);
+         
+         System.out.println("내가 승인해야 할 프로젝트  : " + approval);
+         
+         
+         taskApprovalcount = pushdao.taskApproval(emp_no);
+         System.out.println("업무 관련 작업 !!!!!!!!!!!!!!!!!!!!!!!!!! 승인해야할 업무 : "+taskApprovalcount);
+         
          //내가 참조당한 전자 결재 
          draft = pushdao.selectDraftCount(emp_no);
-
+         System.out.println("전자 결재 ============================= >> "+draft);
+         
+         
          //각 항목의 카운트의 총 합                   업무(미확인 업무)             진행중인 프로젝트                            승인해야하는 프로젝트                               승인해야하는 업무                                참조당한 전자결재          
          resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount) +Integer.parseInt(approval)+Integer.parseInt(taskApprovalcount)+Integer.parseInt(draft);
          System.out.println("ResultData입니다 : " + resultdata);
@@ -145,7 +159,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       ///////////같이 복붙.
       session.setAttribute("sessiontaskcount", taskcount);
       session.setAttribute("sessionprojectcount", projectcount);
-      session.setAttribute("sessiontaskApprovalcount", taskApprovalcount);
+      session.setAttribute("sessiontaskApprovalcount", taskApprovalcount); //승인 해야할 업무 담기는 세션
       session.setAttribute("sessionApprovalcount", approval);//프로젝트 내가 승인 해야할 승인 여부 세션 생성 
       
       //--전자 결재

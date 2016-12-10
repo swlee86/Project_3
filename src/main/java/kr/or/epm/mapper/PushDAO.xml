@@ -81,6 +81,13 @@ select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60)
     and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm'))
 </select>
 
+<!--업무 승인 /-->
+<select id="taskApproval" parameterType="String" resultType="String">
+   select count(task_no)
+   from task
+   where rec_emp_no =#{emp_no} and step_no='4'  
+</select>
+
 <!-- 평균 근무시간 - 내것 -->
 <select id="selectavgcommute_my" parameterType="String" resultType="String">
 select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60 ) +

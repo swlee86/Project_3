@@ -37,4 +37,8 @@ public interface PushDAO {
    
    //전자결재 참조 숫자 구하는 것.
    String selectDraftCount(String emp_no);
+   
+   //업무 - 내가 승인 해야 할 것 !!
+   String taskApproval(String emp_no);
+   
 }

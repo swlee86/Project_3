@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
+import com.google.api.client.http.HttpRequest;
+
 import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.LoginService;
@@ -312,7 +314,8 @@ public class TaskController {
 		
 		String taskcount = pushservice.taskCount(empno);
 		String projectcount = pushservice.myprojectCount(empno);
-		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);	
+		String taskApproval = pushservice.taskApproval(empno);
+		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval);	
 		session.setAttribute("sessiontaskcount", taskcount);
 		session.setAttribute("sessionpushcount", resultdata);
 		
@@ -325,8 +328,13 @@ public class TaskController {
 
 	// 업무 요청 > 수신 > 상세 > 승인 처리
 	@RequestMapping(value = "/request_approval.do", method = RequestMethod.POST)
-	public String request_approval(String task_no, String step_no, Model model) {
-
+	public String request_approval(String task_no, String step_no, Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int resultdata = 0;
+		
+		String empno = (String)session.getAttribute("emp_no");
+		
 		System.out.println("CONTROLLER] 업무 요청 수신 > 승인 처리");
 		System.out.println("선택한 업무 번호 : " + task_no);
 		System.out.println("선택한 승인 단계 : " + step_no);
@@ -343,6 +351,14 @@ public class TaskController {
 		} finally {
 			if (result > 0) {
 				System.out.println("승인 처리에 성공하였습니다");
+				String taskApproval = pushservice.taskApproval(empno);
+				String taskcount = pushservice.taskCount(empno);
+				String projectcount = pushservice.myprojectCount(empno);
+				resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval);	
+				
+				session.setAttribute("sessionpushcount", resultdata);
+				session.setAttribute("sessiontaskApprovalcount", taskApproval);	
+				
 			} else {
 				System.out.println("승인 처리에 실패하였습니다");
 			}
