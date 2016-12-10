@@ -123,7 +123,8 @@ $(function() {
         $('#con_ins_org_sea_query').val('');
         $('#draft_Ok_emp_no').val('');
         $('#draft_Ok_emp_name').val('');
-        $('#empList_list').empty();
+       
+        $('#empList_list').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
         pre_empInfoArray.splice(0,pre_empInfoArray.length);
         
         $.ajax({
@@ -167,7 +168,7 @@ $(function() {
 		$('#sanction_writename_td').empty();
         $('#draft_ref_emp_name').val('');
         $('#draft_ref_emp_no').val('');
-        $('#empList_list').empty();
+        //$('#empList_list').empty();
         pre_empInfoArray.splice(0,pre_empInfoArray.length);
         
           	$.ajax({
@@ -278,6 +279,7 @@ $(function() {
 
 
  function seeDepart(obj, empSelectNumber, choose) {
+	 
 	 console.log("seeDepart 클릭");
     	// 전역 부서 선택시
         departcho = choose;
@@ -458,6 +460,7 @@ $(function() {
     
     //체크박스 클릭후 보여주기
     function precheck(){
+    	 $('#empList_list').empty();
     	console.log('precheck 함수');
     	var tablemake2 ="";
         var checkarr = new Array();
@@ -469,6 +472,8 @@ $(function() {
           pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
           console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
           console.log("this:"+$(this));
+          //체크박스 속성 false
+          $(this).attr("checked", false);
        });
        
       	 if(pre_empInfoArray.length >= 1) { 
@@ -479,11 +484,46 @@ $(function() {
             	   tablemake2 += "<tr><td style='text-align:center'><input type='checkbox' checked   name='chkbtn2' value='"+pre_empInfoArray[i].emp_name+"'></td><td style='text-align:center'>"+pre_empInfoArray[i].emp_no+"</td><td>"+pre_empInfoArray[i].emp_name+"</td></tr>";  
                }   
                tablemake2 += '</table></div>';
-               tablemake2 += "<div class='pull-right'><input type='button' class='btn btn-sm btn-success ' style='font-weight: bold' value='선 &nbsp;&nbsp;&nbsp;택' onclick=check()></div>";
+               tablemake2 += "<div ><input type='button' class='btn btn-sm btn-success btn-block btn-outline' style='font-weight: bold' value='선 &nbsp;&nbsp;&nbsp;택' onclick=check()><br></div>";
                
                $('#empList_list').empty();
                $('#empList_list').append(tablemake2);       
       	 }
+    }
+    
+    //선택된 체크박스 취소
+    function precheck_cancel(){
+    	var pre_no = new Array();
+    	console.log('함수 탐');
+    	$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){
+         /*   // 이름 
+      	   checkarr[pi] = po.value;
+            // 사번
+            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+            console.log("this:"+$(this));
+            //체크박스 속성 false
+            $(this).attr("checked", false);*/
+           
+    		pre_no.push($(this).parent().next().html());  //서번넣기
+    		
+            var tr = $(this).parent().parent();
+       	 
+    	    //라인 삭제
+    	    tr.remove();
+         });
+    	
+    	//배열에서 사번 삭제
+    	for(var i = 0; i < pre_no.length; i++){
+    		
+    	}
+    	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
+    	pre_empInfoArray.splice(0,pre_empInfoArray.length);
+    	
+    	//사번 지우기
+    	pre_empInfoArray[i].emp_no
+    	
+    	console.log("pre_empInfoArray : " + pre_empInfoArray);
     }
     
     // 체크박스 선택후 버튼 클릭시 호출
@@ -557,7 +597,7 @@ $(function() {
           $("#myModal6").modal("hide");
        }
        empInfoArray.splice(0,empInfoArray.length);
-          
+       $('#empList_list').empty();
     }
     
     //수신자 선택시
@@ -567,6 +607,7 @@ $(function() {
        $('#CooperationDepartInput').val(dept_Name);
        $('#CooperationNameInput').val(rec_name);
        $('#CooperationModal').modal("hide");
+       $('#hiddenMenuName').val(rec_emp_no);
     }
     
   //협조문 - 부서 선택 버튼 클릭시 ////////

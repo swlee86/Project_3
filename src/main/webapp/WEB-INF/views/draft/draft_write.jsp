@@ -133,9 +133,11 @@
 						</div>
 						<div class="pull-right" style="text-align: center;">
 							<input type="submit" class="btn btn-sm btn-success"
-								id="submitBtn" value="결재 요청"
+								id="submitBtn" value="결재 요청" onclick="send()"
 								style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 						</div>
+						<input type="hidden" id="hiddenEmp_no">
+						<input type="hidden" id="hiddenMenuName" value="전자결재">
 					</form>
 				</div>
 			</div>
@@ -196,7 +198,8 @@
 				                  	
 				               </div>  
 				               <div class=" col-md-1">
-				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-arrow-right'></i></button>
+				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-chevron-right'></i></button><br><br>
+				               		<button class='btn btn-sm btn-default' onclick="precheck_cancel()"><i class='fa fa-chevron-left'></i></button>
 				               </div>  
 				                <div class=" col-md-4" style="border: 1px solid #ddd;"   >
 				                	<div class="row"><div style="background-color:#f6f6f6;font-size:15px;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><i class="fa fa-users"></i>선택된 사원</div></div>
