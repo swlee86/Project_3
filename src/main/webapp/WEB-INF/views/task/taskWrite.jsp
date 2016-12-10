@@ -65,7 +65,7 @@
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 수신자 사번
 										</th>
-										<td id="rec_no_td"><span class="input-group"> <input readonly
+										<td ><span class="input-group"> <input readonly
 												type="text" class="form-control input-sm" id="rec_emp_no"
 												name="rec_emp_no" /> <a type="button"
 												class="btn btn-default input-group-addon" id="recIcon">
@@ -73,34 +73,41 @@
 														class="fa fa-user-plus"></i>
 												</span>
 											</a>
-										</span></td>
+										</span>
+										<div id="rec_no_td"></div>
+										</td>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 수신자 명
 										</th>
-										<td style="width: 40%" id="rec_name_td"><input readonly
+										<td style="width: 40%" ><input readonly
 											type="text" class="form-control input-sm" id="rec_name" 
-											name="rec_name"></td>
+											name="rec_name">
+											<div id="rec_name_td"></div>
+											</td>
 									</tr>
 									<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 참조자 사번
 										</th>
-										<td id="task_no_td"><span class="input-group"> <input
+										<td ><span class="input-group"> <input
 												type="text" class="form-control input-sm" name="emp_no" id="chamjoInput"
 												readonly> <a type="button"
 												class="btn btn-default input-group-addon" id="deptA"> <span
 													style="color: #fd7d86"> <i class="fa fa-user-plus"></i>
 												</span>
 											</a>
-										</span></td>
+										</span>
+										<div id="task_no_td"></div>
+										</td>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 참조자 명
 										</th>
-										<td style="width: 40%" id="task_name_td"><input  readonly
+										<td style="width: 40%"><input  readonly
 											type="text" class="form-control input-sm" id="task_name">
+											<div  id="task_name_td"></div>
 										</td>
 									</tr>
 									<tr>
@@ -185,7 +192,7 @@
  -->
 
 <div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
-   <div class="modal-dialog modal-md">
+  <div class="modal-dialog modal-lg" id="modal_size">
       <div class="modal-content">
          <div class="color-line"></div>
          <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
@@ -201,11 +208,23 @@
 	        		<div id="tab-1" class="tab-pane active">
 	        			<div class="panel-body">
 	        				<div class="row">  
-				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="organization">
+				               <div class="groupdiv2 col-md-3" style="border: 1px solid #ddd;" id="organization">
 				                  
 				               </div>   
-				               <div class=" col-md-8" id="empList" >
+				               <div class="col-md-4" id="empList" >
 				                  	
+				               </div>
+				               <div id="modal_size_option">
+				               <div class=" col-md-1">
+				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-chevron-right'></i></button>
+				               		<br><Br>
+				               		<button class='btn btn-sm btn-default' onclick="precheck_cancel()"><i class='fa fa-chevron-left'></i></button>
+				               </div>  
+				                <div class=" col-md-4" style="border: 1px solid #ddd;"   >
+				                	<div class="row"><div style="background-color:#f6f6f6;font-size:15px;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><i class="fa fa-users"></i>선택된 사원</div></div>
+				                	
+				                  	<div id="empList_list">선택된 사원이 없습니다.</div> 	
+				               </div>
 				               </div>
 				            </div>
 	        			</div>
@@ -214,7 +233,7 @@
 	        			<div class="panel-body">
 	        				<div class="row">   
 				               <div class="row"> 
-									<div class="col-md-3">
+									<div class="col-md-3" id="modal_size_sea">
 										<div class="form-inline">
 											<select class="form-control input-sm" id="con_ins_org_sea_field">
 												<option value="emp_name">사원명</option>

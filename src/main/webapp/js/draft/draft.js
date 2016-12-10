@@ -94,9 +94,9 @@ $(function() {
 		                   });
 		                    console.log("객체s : "+emp[0]);
 		                  
-		                   var makeTable = "<table class='table table-condensed table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
+		                   var makeTable = "<table class='table table-condensed table-hover table-bordered'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
 		                   $.each(emp, function(index){
-		                	   makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";   
+		                	   makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td></tr>";   
 		                  
 		                   });
 		                   makeTable += "</table><div class='pull-right'><input type='button' class='btn btn-success btn-sm' style='font-weight: bold ' value='선택' onclick=check()></div>";
@@ -168,6 +168,7 @@ $(function() {
 		$('#sanction_writename_td').empty();
         $('#draft_ref_emp_name').val('');
         $('#draft_ref_emp_no').val('');
+        $('#empList_list').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
         //$('#empList_list').empty();
         pre_empInfoArray.splice(0,pre_empInfoArray.length);
         
@@ -466,14 +467,38 @@ $(function() {
         var checkarr = new Array();
 
        $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
-          // 이름 
-    	   checkarr[pi] = po.value;
-          // 사번
-          pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
-          console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
-          console.log("this:"+$(this));
-          //체크박스 속성 false
-          $(this).attr("checked", false);
+    	   console.log('------------------------------');
+    	   var result  = 0;
+    	  
+	       	if(pre_empInfoArray.length == 0){  //처음에
+	       		console.log('pre_empInfoArray.length == 0');
+	       		// 이름 
+	            checkarr[pi] = po.value;
+	            // 사번
+	            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+	            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+	            //console.log("this:"+$(this));
+	       	}else{	       		
+	       	 //중복값 검사
+		       	for(var i = 0; i < pre_empInfoArray.length; i++){
+		       		console.log("배열 사번 pre_empInfoArray["+ i +"].emp_no : " + pre_empInfoArray[i].emp_no);
+		       		console.log("선택된사번"+ i +" : " + $(this).parent().next().html());
+		       		if($(this).parent().next().html() == pre_empInfoArray[i].emp_no){
+		       			result = 1;  //같은 값이 있다.
+		       		}
+		       	}
+		       	
+		    	if(result == 0 ){ //중복된 값 없을때 추가
+		       		// 이름 
+		         	checkarr[pi] = po.value;
+		            // 사번
+		            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+		            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+		       	}	
+	       	}
+	       
+	       	//체크박스 속성 false
+	        $(this).attr("checked", false);
        });
        
       	 if(pre_empInfoArray.length >= 1) { 
@@ -495,34 +520,28 @@ $(function() {
     function precheck_cancel(){
     	var pre_no = new Array();
     	console.log('함수 탐');
-    	$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){
-         /*   // 이름 
-      	   checkarr[pi] = po.value;
-            // 사번
-            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
-            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
-            console.log("this:"+$(this));
-            //체크박스 속성 false
-            $(this).attr("checked", false);*/
-           
-    		pre_no.push($(this).parent().next().html());  //서번넣기
-    		
+    	$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){           
+    		pre_no.push($(this).parent().next().html());  //서번넣기   		
             var tr = $(this).parent().parent();
-       	 
     	    //라인 삭제
     	    tr.remove();
          });
     	
-    	//배열에서 사번 삭제
-    	for(var i = 0; i < pre_no.length; i++){
-    		
-    	}
     	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
-    	pre_empInfoArray.splice(0,pre_empInfoArray.length);
     	
-    	//사번 지우기
-    	pre_empInfoArray[i].emp_no
+    	//배열에서 사번 삭제
+    	for(var i = 0; i < pre_empInfoArray.length; i++){
+    		console.log("pre_empInfoArray["+ i +"].emp_no : " + pre_empInfoArray[i].emp_no);
+    		for(var j = 0; j < pre_no.length; j++){
+    			console.log("pre_no["+ j +"] : " + pre_no[j]);
+    			if(pre_no[j] == pre_empInfoArray[i].emp_no){
+    				//사번 지우기
+    	        	pre_empInfoArray.splice( i, 1);
+    			}
+    		}
+    	}
     	
+    	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
     	console.log("pre_empInfoArray : " + pre_empInfoArray);
     }
     

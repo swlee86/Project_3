@@ -41,4 +41,7 @@ public interface PushDAO {
    //업무 - 내가 승인 해야 할 것 !!
    String taskApproval(String emp_no);
    
+   //프로젝트 - 내가 승인 해야 할 프로젝트 
+   String projectApproval(String emp_no);
+   
 }

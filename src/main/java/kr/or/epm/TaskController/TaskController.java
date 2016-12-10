@@ -177,6 +177,18 @@ public class TaskController {
 			}
 		}
 
+		
+		
+		System.out.println("@@@@@@@@@@@@@@@@@업무 유형 : " +task.getCg_no() +"/ 요청:"+task.getCg_no().equals("1")+"/ 보고:"+task.getCg_no().equals("2")+"/ 일지: "+task.getCg_no().equals("3") );
+		if(task.getCg_no().equals("1")){  //업무요청
+			link = "taskRequest.do";
+		}else if(task.getCg_no().equals("2")){ //업무보고
+			link = "taskInform.do";
+		}else if(task.getCg_no().equals("3")){  //업무일지
+			link = "taskLog.do";
+		}
+		
+		
 		model.addAttribute("link", link);
 		model.addAttribute("msg", msg);
 
@@ -314,8 +326,9 @@ public class TaskController {
 		
 		String taskcount = pushservice.taskCount(empno);
 		String projectcount = pushservice.myprojectCount(empno);
+		String projectApproval = pushservice.projectApproval(empno);
 		String taskApproval = pushservice.taskApproval(empno);
-		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval);	
+		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);	
 		session.setAttribute("sessiontaskcount", taskcount);
 		session.setAttribute("sessionpushcount", resultdata);
 		
@@ -353,8 +366,10 @@ public class TaskController {
 				System.out.println("승인 처리에 성공하였습니다");
 				String taskApproval = pushservice.taskApproval(empno);
 				String taskcount = pushservice.taskCount(empno);
+				String projectApproval = pushservice.projectApproval(empno);
 				String projectcount = pushservice.myprojectCount(empno);
-				resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval);	
+				
+				resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);
 				
 				session.setAttribute("sessionpushcount", resultdata);
 				session.setAttribute("sessiontaskApprovalcount", taskApproval);	
@@ -536,6 +551,7 @@ public class TaskController {
 				System.out.println("승인 처리에 실패하였습니다");
 			}
 		}
+
 
 		model.addAttribute("link", link);
 		model.addAttribute("msg", msg);
