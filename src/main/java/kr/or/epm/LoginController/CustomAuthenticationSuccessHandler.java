@@ -126,8 +126,6 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 			System.out.println("내가 진행중인 프로젝트 count : " + projectcount);
 			
 			//pushdao.electronic_sanction(emp_no);
-			 
-			
 			//각 항목의 카운트의 총 합
 			resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount) +Integer.parseInt(approval)+Integer.parseInt(sanction);
 			System.out.println("ResultData입니다 : " + resultdata);
