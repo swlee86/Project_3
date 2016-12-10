@@ -260,7 +260,7 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://192.168.43.217:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.43.182:8090/epm/broadsocket.do");
 		
 		//호출 시점  :  send() 메세지 호출 > broadsocket > handleTextMessage > json 넘어와서 
         webSocket.onmessage = function (message){
