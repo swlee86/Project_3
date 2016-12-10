@@ -30,6 +30,26 @@ public class Emp {
 	// 관리자 > 사원관리 > 탈퇴 요청 리스트 출력 (입사일 출력)
 	private String regdate;
 	
+	// 관리자 > 사원관리 > 사원 이력보기
+	private String role_name;
+	private String his_cg_name;
+	
+	public String getRole_name() {
+		return role_name;
+	}
+
+	public void setRole_name(String role_name) {
+		this.role_name = role_name;
+	}
+
+	public String getHis_cg_name() {
+		return his_cg_name;
+	}
+
+	public void setHis_cg_name(String his_cg_name) {
+		this.his_cg_name = his_cg_name;
+	}
+
 	public String getRegdate() {
 		return regdate;
 	}
@@ -179,6 +199,9 @@ public class Emp {
 		return "Emp [emp_no=" + emp_no + ", cg_no=" + cg_no + ", position_no=" + position_no + ", low_dept_no="
 				+ low_dept_no + ", emp_break=" + emp_break + ", salary=" + salary + ", emp_name=" + emp_name
 				+ ", birth=" + birth + ", pic=" + pic + ", email=" + email + ", cell_phone=" + cell_phone + ", emp_tel="
-				+ emp_tel + ", position_name=" + position_name + "]";
+				+ emp_tel + ", branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name="
+				+ low_dept_name + ", cg_name=" + cg_name + ", position_name=" + position_name + ", regdate=" + regdate
+				+ ", role_name=" + role_name + ", his_cg_name=" + his_cg_name + "]";
 	}
+
 }

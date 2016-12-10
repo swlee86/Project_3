@@ -39,6 +39,19 @@
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
 
+<style type="text/css">
+	#tr {
+		vertical-align: middle;
+	}
+	
+	#dataTable th {
+		text-align:center;
+	}
+	
+	#dataTable td {
+		text-align:center;
+	}
+</style>
 
 </head>
 <body class="fixed-navbar fixed-sidebar">

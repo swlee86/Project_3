@@ -88,7 +88,7 @@
                 	${ office.draft_date } 
            	 	</div>
             	<div style="margin-left: 2%;">
-                	<a href="office_detail.do?draft_no=${ office.draft_no }"><h4> ${ office.draft_title } </h4></a>
+                	<a href="office_detail.do?draft_no=${ office.draft_no }&"><h4> ${ office.draft_title } </h4></a>
             	</div>
             </div>
             <div class="col-md-4 forum-info" style="margin-top: 7px;">

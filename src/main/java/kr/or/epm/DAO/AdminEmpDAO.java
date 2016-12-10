@@ -41,6 +41,16 @@ public interface AdminEmpDAO {
 	// 사원 등록하기
 	public int insertEmp(Emp emp);
 	
+	// 사원을 등록하면서 이력에 '입사' 추가하기
+	public int insertEmp_his_in(String emp_no);
+	
+	// 사원 이력 불러오기
+	public List<Emp> selectEmp_his(String emp_no);
+	
+	// 회원가입하면서 권한에 'none' 추가하기
+	// 아직 미사용
+	public int insertEmp_role_none(String emp_no);
+	
 	// 탈퇴를 요청한 사원 리스트 불러오기
 	public List<Emp> selectEmp_withdrawal();
 	

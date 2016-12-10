@@ -32,11 +32,11 @@
 	<div class="row">
     	<div class="col-lg-12">
         	<div class="hpanel">
-            	<div class="panel-heading">
+            	<div class="panel-heading" id="totalcount">
                 	전체 인원 수 : <font color="#ff757f">${totalcount}</font> 명
             	</div>
             <div class="panel-body">
-				<div class="row text-right">
+				<div class="row text-right" id="search_panel">
 					<div class="col-md-7">
 						<form name="list">
 							<select name="pagesize" onchange="submit()" 
@@ -84,50 +84,51 @@
 						</form>
 					</div>
 
-			<div class="row" style="margin-left: 2%;">
-            	<button type="button"  class="btn btn-md btn-success" onclick="location.href='adminAdd_member.do'">사원 등록</button>
+			<div class="row" style="margin-left: 2%;" id="addbtn_panel">
+            	<button type="button" class="btn btn-md btn-success" style="margin-right: 10px;"onclick="location.href='adminAdd_member.do'">사원 등록</button>
+            	<button type="button" class="btn btn-md btn-danger" onclick="location.href='adminWithdrawal.do'">탈퇴 요청</button>
             </div>  
                 <hr style="border:2px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
-                <table cellpadding="1" cellspacing="1"
+                <table cellpadding="1" cellspacing="1" id="dataTable"
                 	   class="table table-hover table-bordered table-condensed" >
                     <thead>
                     <tr style="background-color:#f9fafc">
-                        <th style="text-align:center;">사원번호</th>
-                        <th style="text-align:center;">지 점</th>
-                        <th style="text-align:center;">부 서</th>
-                      	<th style="text-align:center;">하위부서</th>
-                      	<th style="text-align:center;">직 위</th>                      
-                        <th style="text-align:center;">이 름</th>                     
-                        <th style="text-align:center;">사 진</th>
-                        <th style="text-align:center;">근무상태</th>
-                        <th style="text-align:center;">&nbsp;</th>
+                        <th>사원번호</th>
+                        <th>지 점</th>
+                        <th>부 서</th>
+                      	<th>하위부서</th>
+                      	<th>직 위</th>                      
+                        <th>이 름</th>                     
+                        <th>사 진</th>
+                        <th>근무상태</th>
+                        <th>&nbsp;</th>
                     </tr>
                     </thead>
                     
                     <tbody>
                   	<c:forEach var="list" items="${list}">
-                    <tr style="vertical-align: middle;">
-                        <td style="text-align:center;">${list.emp_no}</td>
-                        <td style="text-align:center;"><a href="">${list.branch_name}</a></td>
-                        <td style="text-align:center;">${list.dept_name}</td>
-                        <td style="text-align:center;">${list.low_dept_name}</td>
-                        <td style="text-align:center;">${list.position_name}</td>
-                        <td style="text-align:center;">${list.emp_name}</td>
-                        <td style="text-align:center;">
+                    <tr id="tr">
+                        <td>${list.emp_no}</td>
+                        <td>${list.branch_name}</td>
+                        <td>${list.dept_name}</td>
+                        <td>${list.low_dept_name}</td>
+                        <td>${list.position_name}</td>
+                        <td>${list.emp_name}</td>
+                        <td>
                         	<!-- <img alt="사진" src="images/a4.jpg" class="img-circle m-b"> -->
                         	<!-- <img alt="사진" src="images/${list.pic}" class="img-circle m-b"> -->
                         </td>
-                        <td style="text-align:center;">${list.cg_name}</td>
-                        <td style="text-align:center;">
-                        	<button type="button" class="btn btn-outline btn-primary">이력보기</button>
+                        <td>${list.cg_name}</td>
+                        <td>
+                        	<button type="button" class="btn btn-outline btn-primary emp_hisBtn">이력보기</button>
                         </td>
                     </tr>
                     </c:forEach>
                     </tbody>
                 </table>    
 			</div>
-			<div style="text-align: center;">
+			<div style="text-align: center;" id="page_panel">
 			 <div class="btn-group">
 					<c:if test="${cpage > 1}">
                     	<button type="button" class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${cpage-1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>

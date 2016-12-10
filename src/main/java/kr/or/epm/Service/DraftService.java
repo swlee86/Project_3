@@ -447,18 +447,24 @@ public class DraftService {
 		return reflist;
 	}
 	
-	// 상세 처리
-	public int rec_process(String draft_no) {
-		System.out.println("SERVICE] 상세 처리를 시작합니다");
+	// 참조자 수신일 삽입하기
+	public int insertRec_date(String draft_no) {
+		System.out.println("SERVICE] 참조자 수신일 삽입하기");
 		System.out.println("넘겨진 draft_no : " + draft_no);
 		
 		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
-		int result = 0;
+		int result = dao.updateDraft_line(draft_no);
 		
-		int result1 = dao.updateDraft(draft_no);
-		int result2 = dao.updateDraft_line(draft_no);
-				
-		if(result1 > 0 && result2 > 0) result = 1;
+		return result;
+	}
+	
+	// 결재라인 수신여부 삽입하기
+	public int insertRec_check(String draft_no) {
+		System.out.println("SERVICE] 결재라인 수신여부 삽입하기");
+		System.out.println("넘겨진 draft_no : " + draft_no);
+		
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		int result = dao.updateDraft(draft_no); 
 		
 		return result;
 	}
