@@ -64,6 +64,8 @@ public class ProjectController {
 		String taskApproval = pushservice.taskApproval(empno);
 		String projectApproval = pushservice.projectApproval(empno);
 		
+		System.out.println("***************************:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% projectcount : "+projectcount);
+		
 		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);	
 		session.setAttribute("sessionApprovalcount", projectApproval);
 		session.setAttribute("sessionpushcount", resultdata);

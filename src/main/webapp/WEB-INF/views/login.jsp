@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- Page title -->
-<title>EPM | WebApp admin theme</title>
+<title>2PM</title>
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -146,13 +146,14 @@ small {
 									<br />
 									<div style="text-align: center;">
 										<div class="row">
-											<div class="col-md-1"></div>
-											<div class="col-md-10">
-												<a class="btn btn-default" data-toggle="modal"
-													data-target="#findId">아이디 찾기</a> <a class="btn btn-default"
-													data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
+										<div class="col-md-12">
+											<div class="pull-right">
+												<a data-toggle="modal"
+													data-target="#findId">ID </a>&nbsp;/&nbsp;<a
+													data-toggle="modal" data-target="#findPw">PWD 찾기</a>
+											
 											</div>
-											<div class="col-md-1"></div>
+											</div>
 										</div>
 									</div>
 									<hr>
@@ -171,7 +172,7 @@ small {
 
 
 	<!--아이디 찾기-->
-	<div class="modal fade" id="findId" tabindex="-1" role="dialog"
+	<div class="modal fade hmodal-success" id="findId" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
@@ -215,8 +216,8 @@ small {
 					</div>
 					<div class="modal-footer">
 						<a class="btn btn-default" data-dismiss="modal"
-							id="cancleFindIdBtn">취소하기</a> <input type="button"
-							class="btn btn-success" id="findIdBtn" value="아이디찾기">
+							id="cancleFindIdBtn"><i class="fa fa-close"></i></a> <button type="button"
+							class="btn btn-success" id="findIdBtn" >아이디 <i class="fa fa-search"></i></button>
 					</div>
 				</form>
 			</div>
@@ -225,7 +226,7 @@ small {
 	</div>
 
 	<!--비밀번호 찾기-->
-	<div class="modal fade" id="findPw" tabindex="-1" role="dialog"
+	<div class="modal fade hmodal-success" id="findPw" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
@@ -270,8 +271,8 @@ small {
 
 					</div>
 					<div class="modal-footer">
-						<a class="btn btn-default" href="login.do" data-dismiss="modal">취소하기</a>
-						<input type="button" id="findPwBtn" class="btn btn-success" value="비밀번호찾기">
+						<a class="btn btn-default" href="login.do" data-dismiss="modal"><i class="fa fa-close"></i></a>
+						<button type="button" id="findPwBtn" class="btn btn-success" >비밀번호 <i class="fa fa-search"></i></button>
 					</div>
 				</form>
 			</div>
@@ -280,7 +281,7 @@ small {
 
 
 	<!--회원 가입-->
-	<div class="modal fade" id="AddMemberForm" tabindex="-1" role="dialog"
+	<div class="modal fade hmodal-success" id="AddMemberForm" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
