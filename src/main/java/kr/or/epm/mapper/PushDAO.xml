@@ -4,6 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.PushDAO">
 
+<select id="projectMyCount" resultType="String">
+	select count(pj_no) from pj where emp_no=#{emp_no} and step_no='1'
+</select>
+
 <select id="projectApproval" resultType="String">
 	select count(pj_no)from(
            select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
