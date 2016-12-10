@@ -48,12 +48,30 @@ var firstTree = 0;
 var secondTree = 0;
 
 $(function() {
+	toastr.options = {	 
+			 "closeButton": true,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "2000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+	       };
+
 	
-	
-	
-	
+
+		
 	 //주소록 추가시  검색해서 보여주는 script
     $('#con_ins_org_sea_btn').click(function(){  	
+    	pre_empInfoArray.splice(0,pre_empInfoArray.length);
     	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
     	testEmpSelectNumber = $('#org_sea_btn_sel').val();
     	console.log("testEmpSelectNumber : " + testEmpSelectNumber);
@@ -76,9 +94,9 @@ $(function() {
 		                   });
 		                    console.log("객체s : "+emp[0]);
 		                  
-		                   var makeTable = "<table class='table table-condensed table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
+		                   var makeTable = "<table class='table table-condensed table-hover table-bordered'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
 		                   $.each(emp, function(index){
-		                	   makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";   
+		                	   makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td></tr>";   
 		                  
 		                   });
 		                   makeTable += "</table><div class='pull-right'><input type='button' class='btn btn-success btn-sm' style='font-weight: bold ' value='선택' onclick=check()></div>";
@@ -105,7 +123,8 @@ $(function() {
         $('#con_ins_org_sea_query').val('');
         $('#draft_Ok_emp_no').val('');
         $('#draft_Ok_emp_name').val('');
-        $('#empList_list').empty();
+       
+        $('#empList_list').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
         pre_empInfoArray.splice(0,pre_empInfoArray.length);
         
         $.ajax({
@@ -149,7 +168,8 @@ $(function() {
 		$('#sanction_writename_td').empty();
         $('#draft_ref_emp_name').val('');
         $('#draft_ref_emp_no').val('');
-        $('#empList_list').empty();
+        $('#empList_list').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
+        //$('#empList_list').empty();
         pre_empInfoArray.splice(0,pre_empInfoArray.length);
         
           	$.ajax({
@@ -260,6 +280,7 @@ $(function() {
 
 
  function seeDepart(obj, empSelectNumber, choose) {
+	 
 	 console.log("seeDepart 클릭");
     	// 전역 부서 선택시
         departcho = choose;
@@ -440,17 +461,44 @@ $(function() {
     
     //체크박스 클릭후 보여주기
     function precheck(){
+    	 $('#empList_list').empty();
     	console.log('precheck 함수');
     	var tablemake2 ="";
         var checkarr = new Array();
 
        $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
-          // 이름 
-    	   checkarr[pi] = po.value;
-          // 사번
-          pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
-          console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
-          console.log("this:"+$(this));
+    	   console.log('------------------------------');
+    	   var result  = 0;
+    	  
+	       	if(pre_empInfoArray.length == 0){  //처음에
+	       		console.log('pre_empInfoArray.length == 0');
+	       		// 이름 
+	            checkarr[pi] = po.value;
+	            // 사번
+	            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+	            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+	            //console.log("this:"+$(this));
+	       	}else{	       		
+	       	 //중복값 검사
+		       	for(var i = 0; i < pre_empInfoArray.length; i++){
+		       		console.log("배열 사번 pre_empInfoArray["+ i +"].emp_no : " + pre_empInfoArray[i].emp_no);
+		       		console.log("선택된사번"+ i +" : " + $(this).parent().next().html());
+		       		if($(this).parent().next().html() == pre_empInfoArray[i].emp_no){
+		       			result = 1;  //같은 값이 있다.
+		       		}
+		       	}
+		       	
+		    	if(result == 0 ){ //중복된 값 없을때 추가
+		       		// 이름 
+		         	checkarr[pi] = po.value;
+		            // 사번
+		            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+		            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+		       	}	
+	       	}
+	       
+	       	//체크박스 속성 false
+	        $(this).attr("checked", false);
        });
        
       	 if(pre_empInfoArray.length >= 1) { 
@@ -461,12 +509,40 @@ $(function() {
             	   tablemake2 += "<tr><td style='text-align:center'><input type='checkbox' checked   name='chkbtn2' value='"+pre_empInfoArray[i].emp_name+"'></td><td style='text-align:center'>"+pre_empInfoArray[i].emp_no+"</td><td>"+pre_empInfoArray[i].emp_name+"</td></tr>";  
                }   
                tablemake2 += '</table></div>';
-               tablemake2 += "<div class='pull-right'><input type='button' class='btn btn-sm btn-success ' style='font-weight: bold' value='선 &nbsp;&nbsp;&nbsp;택' onclick=check()></div>";
+               tablemake2 += "<div ><input type='button' class='btn btn-sm btn-success btn-block btn-outline' style='font-weight: bold' value='선 &nbsp;&nbsp;&nbsp;택' onclick=check()><br></div>";
                
                $('#empList_list').empty();
-               $('#empList_list').append(tablemake2);
-               
+               $('#empList_list').append(tablemake2);       
       	 }
+    }
+    
+    //선택된 체크박스 취소
+    function precheck_cancel(){
+    	var pre_no = new Array();
+    	console.log('함수 탐');
+    	$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){           
+    		pre_no.push($(this).parent().next().html());  //서번넣기   		
+            var tr = $(this).parent().parent();
+    	    //라인 삭제
+    	    tr.remove();
+         });
+    	
+    	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
+    	
+    	//배열에서 사번 삭제
+    	for(var i = 0; i < pre_empInfoArray.length; i++){
+    		console.log("pre_empInfoArray["+ i +"].emp_no : " + pre_empInfoArray[i].emp_no);
+    		for(var j = 0; j < pre_no.length; j++){
+    			console.log("pre_no["+ j +"] : " + pre_no[j]);
+    			if(pre_no[j] == pre_empInfoArray[i].emp_no){
+    				//사번 지우기
+    	        	pre_empInfoArray.splice( i, 1);
+    			}
+    		}
+    	}
+    	
+    	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
+    	console.log("pre_empInfoArray : " + pre_empInfoArray);
     }
     
     // 체크박스 선택후 버튼 클릭시 호출
@@ -540,7 +616,7 @@ $(function() {
           $("#myModal6").modal("hide");
        }
        empInfoArray.splice(0,empInfoArray.length);
-          
+       $('#empList_list').empty();
     }
     
     //수신자 선택시
@@ -550,6 +626,7 @@ $(function() {
        $('#CooperationDepartInput').val(dept_Name);
        $('#CooperationNameInput').val(rec_name);
        $('#CooperationModal').modal("hide");
+       $('#hiddenMenuName').val(rec_emp_no);
     }
     
   //협조문 - 부서 선택 버튼 클릭시 ////////
@@ -617,7 +694,82 @@ $(function() {
 	$("#submitBtn").click(function() {
 		var choose = $("input[name='cg_no']:checked").val();
 		
-		draft.method = "post";
+		//draft.method = "post";
+		
+		
+		if($(':radio[name="cg_no"]:checked').length < 1){
+			toastr.warning('결재유형을 선택해 주세요');                
+			$('#radio1').focus();
+			return false;
+		}
+		
+		if ($('#draft_Ok_emp_no').val() == "") {
+			toastr.warning('결재라인을 입력해 주세요');
+			$('#draft_Ok_emp_no').focus();
+			return false;
+		}
+		
+		if ($('#draft_Ok_emp_name').val() == "") {
+			toastr.warning('결재라인을 입력해 주세요');
+			$('#draft_Ok_emp_name').focus();
+			return false;
+		}
+		
+		if ($('#draft_ref_emp_no').val() == "") {
+			toastr.warning('참조자를 입력해 주세요');
+			$('#draft_ref_emp_no').focus();
+			return false;
+		}
+		
+		if ($('#draft_ref_emp_name').val() == "") {
+			toastr.warning('참조자를 입력해 주세요');
+			$('#draft_ref_emp_name').focus();
+			return false;
+		}
+		
+		//대외공문1  office
+		if($(":input:radio[name=cg_no]:checked").val() == 1){
+			console.log('대외공문');
+			if ($('#rec_place').val() == "") {
+				toastr.warning('수신처를 입력해 주세요');
+				$('#rec_place').focus();
+				return false;
+			}
+			
+		}
+		//협조문2  cooperation
+		if($(":input:radio[name=cg_no]:checked").val() == 2){
+			console.log('협조문');				
+			if ($('#choosedept_name').val() == "") {
+				toastr.warning('협조문 수신 부서를 선택해 주세요');
+				$('#choosedept_name').focus();
+				return false;
+			}
+		} 
+		//휴가신청서3  break
+		if($(":input:radio[name=cg_no]:checked").val() == 3){
+			console.log('휴가신청서');  
+			if ($('#breakdatepicker1').val() == "") {
+				toastr.warning('휴가기간을 입력해 주세요');
+				$('#breakdatepicker1').focus();
+				return false;
+			}
+			
+			if ($('#breakdatepicker2').val() == "") {
+				toastr.warning('휴가기간을 입력해 주세요');
+				$('#breakdatepicker2').focus();
+				return false;
+			}
+		}
+		
+		if ($('#draft_title').val() == "") {
+			toastr.warning('제목을 입력해 주세요');
+			$('#draft_title').focus();
+			return false;
+		}
+		
+		
+		
 		
 		if(choose == '1') {
 			draft.action = "draftOffice.do";
@@ -630,6 +782,10 @@ $(function() {
 		draft.submit();
 	});
 	
+	
+
+	
+	
 	function draft_datepicker() {
 		$("#breakdatepicker1").datepicker({
 			changeMonth: true, 
@@ -638,7 +794,17 @@ $(function() {
 	        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 	        dateFormat: 'yy-mm-dd',
-	        changeYear: true
+	        changeYear: true,
+	        beforeShowDay: function(date){
+                var loadDt = new Date();
+                var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+                
+                if(date < dayday) return [false];
+                return [true];
+             }, 
+             onSelect: function(selected) {
+                $('.breakdatepicker2').datepicker("option","minDate", selected)
+            }
 		});
 		$("#breakdatepicker2").datepicker({
 			changeMonth: true, 
@@ -647,7 +813,18 @@ $(function() {
 	        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
 	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 	        dateFormat: 'yy-mm-dd',
-	        changeYear: true
+	        changeYear: true,
+	        beforeShowDay: function(date){
+                var loadDt = new Date();
+                var dayday =new Date(Date.parse(loadDt) - 1 * 1000 * 60 * 60 * 24);
+                
+                if(date < dayday) return [false];
+                return [true];
+             }, 
+             onSelect: function(selected) {
+                $('.breakdatepicker1').datepicker("option","maxDate", selected)
+            }
+	        
 		});
 	}
 	

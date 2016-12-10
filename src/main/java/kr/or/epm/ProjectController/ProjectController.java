@@ -3,6 +3,7 @@ package kr.or.epm.ProjectController;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.View;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.epm.Service.ProjectDetailService;
 import kr.or.epm.Service.ProjectService;
+import kr.or.epm.Service.PushService;
 import kr.or.epm.VO.Approval;
 import kr.or.epm.VO.Contact;
 import kr.or.epm.VO.Emp;
@@ -43,16 +45,29 @@ public class ProjectController {
 	private ProjectService projectservice;
 	@Autowired
 	private ProjectDetailService projectdetailservice;
-
+	@Autowired
+	private PushService pushservice;
 	
 	//프로젝트 승인대기함 승인 처리
 	@RequestMapping(value ="/project_approve_try.do", method=RequestMethod.POST)
-	public @ResponseBody Pj project_approve_try(String pj_no,String step_no){
+	public @ResponseBody Pj project_approve_try(String pj_no,String step_no, HttpServletRequest request){
 		System.out.println("project_approve_try() 컨트롤 탐");	
 		System.out.println("pj_no : "+pj_no +"/step_no:"+step_no);
 		projectservice.project_approve_try(pj_no,step_no);	
 
-
+		HttpSession session = request.getSession();
+		int resultdata = 0;
+		String empno = (String)session.getAttribute("emp_no");
+		
+		String taskcount = pushservice.taskCount(empno);
+		String projectcount = pushservice.myprojectCount(empno);
+		String taskApproval = pushservice.taskApproval(empno);
+		String projectApproval = pushservice.projectApproval(empno);
+		
+		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);	
+		session.setAttribute("sessionApprovalcount", projectApproval);
+		session.setAttribute("sessionpushcount", resultdata);
+		
 		
 		System.out.println("pj_no : "+pj_no);
 		Pj pj = projectservice.selectPj_detail(pj_no);
@@ -187,10 +202,9 @@ public class ProjectController {
 	
 	//프로젝트 생성하기
 	@RequestMapping(value="/projectMake.do", method=RequestMethod.POST)
-	public String projectMake(Principal principal, Pj pj, Model model){
+	public String projectMake(Principal principal, Pj pj, Model model, String hiddenEmp_no){
 		System.out.println("projectMake 작성 컨트롤러 탐");
 		System.out.println("@pj tostirng: "+pj.toString());
-		
 		String id= principal.getName();
 		System.out.println("id : "+id);
 		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
@@ -200,6 +214,7 @@ public class ProjectController {
 		//model.addAttribute("pj", pj);
 		model.addAttribute("pj_start", pj.getPj_start());
 		model.addAttribute("pj_end", pj.getPj_end());
+		model.addAttribute("hiddenEmp_no", hiddenEmp_no);
 		this.pj2 = pj;
 		return "project.projectDetailMakeForm";
 	}

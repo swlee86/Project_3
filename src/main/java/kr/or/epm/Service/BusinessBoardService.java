@@ -104,5 +104,12 @@ public class BusinessBoardService {
 		int result = businessBoardDAO.deleteRow(no); 
 		return result;
 	}
+	
+	//리플 삭제
+	public int deleteReply(int no){
+		BusinessBoardDAO businessBoardDAO = sqlSession.getMapper(BusinessBoardDAO.class);
+		int result = businessBoardDAO.deleteReply(no); 
+		return result;
+	}
 
 }

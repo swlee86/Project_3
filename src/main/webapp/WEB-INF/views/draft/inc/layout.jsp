@@ -20,6 +20,8 @@
 <link rel="stylesheet" href="vendor/metisMenu/dist/metisMenu.css" />
 <link rel="stylesheet" href="vendor/animate.css/animate.css" />
 <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" />
+
+<link rel="stylesheet" href="vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
 <link rel="stylesheet" href="vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
 
 <!-- 드래그앤드롭? -->
@@ -29,7 +31,7 @@
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
-
+  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
 
 <!--jQuery UI CSS-->
 <link rel="stylesheet"
@@ -109,6 +111,7 @@
 
 	
 </style>
+
 </head>
 
 <body class="fixed-navbar fixed-sidebar">
@@ -158,7 +161,10 @@
 	<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 	<script src="vendor/iCheck/icheck.min.js"></script>
 	<script src="vendor/sparkline/index.js"></script>
-	
+
+   <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+	<script src="vendor/toastr/build/toastr.min.js"></script>
+
 	<!-- DataTables -->
 	<script src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
 	<script src="vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

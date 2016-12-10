@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 변경된 dept_no 조회하기 3) --> 
     <select id="search_new_dept_no" parameterType="kr.or.epm.VO.DeptJoinBonus" resultType="String">
-    	select dept_no from dept where pre_dept_no=#{dept_no}
+    	select dept_no from dept where pre_dept_no=#{dept_no} and his_check='1'
     </select>
     
     <!-- 부서 수정하기 > 보너스  4)-->
@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select d.dept_no, d.pre_dept_no, b.set_date, b.bonus_percent
 		from dept d join set_bonus b
 		on d.dept_no= b.dept_no
-		where d.pre_dept_no=#{param1}
+		where d.pre_dept_no=#{param1} and his_check='1'
     </select>
     
    <!--부서 번호 뽑아오기-->

@@ -100,10 +100,11 @@
                         <c:forEach begin="0" end="${list.depth}" step="1">
                         	&nbsp;&nbsp;&nbsp;
                         </c:forEach>
-                        	<a href="free_board_view.do?no=${list.no}&currentpage=${cpage}&pagesize=${pgsize}">${list.title}</a>&nbsp;&nbsp;&nbsp;<img alt="file"  src="images/fileimg.PNG">
-                        <c:if test="${list.file_name != null}">
-                        		<img alt="file"  src="images/fileimg.PNG">
-                        </c:if>
+                        	<a href="free_board_view.do?no=${list.no}&currentpage=${cpage}&pagesize=${pgsize}">${list.title}</a>
+                        	&nbsp;&nbsp;&nbsp;
+	                        <c:if test="${list.file_name != null}">
+	                        		<img alt="file"  src="images/fileimg.PNG">
+	                        </c:if>
                         </td>
                         <td>${list.emp_name}(${list.low_dept_name})</td>
                         <td>${list.regdate}</td>

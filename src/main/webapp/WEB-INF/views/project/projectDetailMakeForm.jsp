@@ -184,7 +184,9 @@
 			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-chevron-down"></i></a>
 		<!-- 	<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a> -->
 			
-			<button type="submit" id="submit_btn" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
+			<button type="submit" id="submit_btn" onclick="send()" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
+			<input type="hidden" id="hiddenEmp_no" value=${hiddenEmp_no}>
+			<input type="hidden" id="hiddenMenuName" value="프로젝트승인">		
 		</div>
 		<br><br>
 	<div class="pjd_table row" id="pjd_table" >

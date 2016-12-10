@@ -26,4 +26,8 @@ public interface FreeBoardDAO {
 	
 	//삭제하는 함수
 	public int deleteRow(int no);
+
+	//리플 삭제
+	public int deleteReply(int no);
+
 }

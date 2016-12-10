@@ -152,7 +152,7 @@ $(function(){
                         <div class="title">
                             You have <span id="pushcount2">${sessionpushcount}</span> new works
                         </div>
-                        <li class="summary" style="width: 340px;">프로젝트 관련</li>
+                        <li class="summary" style="width: 340px;">프로젝트</li>
                         <c:choose>
                         <c:when test="${empty sessionprojectcount }">
                         <li>진행 중인 프로젝트가 없습니다.</li>
@@ -169,7 +169,7 @@ $(function(){
                     	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">${sessionApprovalcount}</span>건입니다.</li>                    	
                     	</c:otherwise>
                     	</c:choose>
-                    	<li class="summary">업무 관련</li>
+                    	<li class="summary">업무</li>
                     	<c:choose>
                     	<c:when test="${empty sessiontaskcount}">
                     	<li>확인이 필요한 업무가 없습니다.</li>
@@ -186,8 +186,16 @@ $(function(){
                         <li>승인 확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>                    	
                     	</c:otherwise>
                     	</c:choose>
-                    	<li class="summary">전자 결재</li>
                     	
+                    	<li class="summary">전자 결재</li>
+                    	 <c:choose>
+	                    	<c:when test="${empty sessionDraftcount}">
+	                    		<li>참조된 전자결재가 없습니다.</li>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<li>참조된 전자결재는 <span id="sanctionApprovalcount">${sessionDraftcount}</span>건 입니다.</li>
+	                    	</c:otherwise>
+                    	</c:choose> 
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
@@ -303,10 +311,13 @@ $('#birthDay').click(function(){
 			var divtaskapprovalcount = document.getElementById("taskApprovalcount");
 			divtaskapprovalcount.innerHTML = taskApprovalCount;
 			
+			/*참조된 전자 결재*/
+			
 			//최종 보스 allData - > 위에 선언한 데이터들의 값들을 뽑아서 넘겨준다. pollingchk.do 로 감  (PushController 로 이동 )
 			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount, "taskApproval":taskApprovalCount, "projectApproval":projectApprovalCount};
 			$(function(){
-			/* alert("푸쉬 카운트 : " +allData.pushcount + " / projectcount : "+allData.projectcount + " taskcount : "+allData.taskcount + " /    projectApproval : "+allData.projectApproval); */
+				
+			alert("푸쉬 카운트 : " +allData.pushcount + " / projectcount : "+allData.projectcount + " taskcount : "+allData.taskcount + " /    projectApproval : "+allData.projectApproval); 
     		$.ajax({
     			url : "pollingchk.do",
     			data : allData,
@@ -326,7 +337,7 @@ $('#birthDay').click(function(){
 					 emp_no : document.getElementById("hiddenEmp_no").value,
 	   				 menuname : document.getElementById("hiddenMenuName").value
 	   			  	}
-			//alert("대체 왜 씨파 "+msg.emp_no + " / menuname : "+msg.menuname);	 	
+			alert("대체 왜 씨파 "+msg.emp_no + " / menuname : "+msg.menuname);	 	
 			console.log("메세지를 봅시다 : " +msg);
 			webSocket.send(JSON.stringify(msg));
 		}

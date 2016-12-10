@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
+import com.google.api.client.http.HttpRequest;
+
 import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.LoginService;
@@ -300,18 +302,21 @@ public class TaskController {
 		System.out.println("CONTROLLER] 업무 요청 수신 상세 페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
 
-		// 업무 상세 가져오기
-		Task detail = service.selectTask_detail(task_no);
-		model.addAttribute("detail", detail);
-		
 		//Push알림을 위한 Taskcount session 재생성
 		HttpSession session = request.getSession();
 		int resultdata = 0;
-		
 		String empno = (String)session.getAttribute("emp_no");
+		
+		// 업무 상세 가져오기
+		Task detail = service.selectTask_detail(task_no,empno);
+		model.addAttribute("detail", detail);
+		
+		
 		String taskcount = pushservice.taskCount(empno);
 		String projectcount = pushservice.myprojectCount(empno);
-		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount);	
+		String projectApproval = pushservice.projectApproval(empno);
+		String taskApproval = pushservice.taskApproval(empno);
+		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);	
 		session.setAttribute("sessiontaskcount", taskcount);
 		session.setAttribute("sessionpushcount", resultdata);
 		
@@ -324,8 +329,13 @@ public class TaskController {
 
 	// 업무 요청 > 수신 > 상세 > 승인 처리
 	@RequestMapping(value = "/request_approval.do", method = RequestMethod.POST)
-	public String request_approval(String task_no, String step_no, Model model) {
-
+	public String request_approval(String task_no, String step_no, Model model, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int resultdata = 0;
+		
+		String empno = (String)session.getAttribute("emp_no");
+		
 		System.out.println("CONTROLLER] 업무 요청 수신 > 승인 처리");
 		System.out.println("선택한 업무 번호 : " + task_no);
 		System.out.println("선택한 승인 단계 : " + step_no);
@@ -342,6 +352,16 @@ public class TaskController {
 		} finally {
 			if (result > 0) {
 				System.out.println("승인 처리에 성공하였습니다");
+				String taskApproval = pushservice.taskApproval(empno);
+				String taskcount = pushservice.taskCount(empno);
+				String projectApproval = pushservice.projectApproval(empno);
+				String projectcount = pushservice.myprojectCount(empno);
+				
+				resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);
+				
+				session.setAttribute("sessionpushcount", resultdata);
+				session.setAttribute("sessiontaskApprovalcount", taskApproval);	
+				
 			} else {
 				System.out.println("승인 처리에 실패하였습니다");
 			}
@@ -355,13 +375,19 @@ public class TaskController {
 
 	// 업무 요청 > 송신 > 상세
 	@RequestMapping("/taskRequest_detail.do")
-	public String taskRequest_detail(String task_no, Model model) {
+	public String taskRequest_detail(Principal principal, String task_no, Model model) {
 
 		System.out.println("CONTROLLER] 업무 요청 송신 상세 페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
+		
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
 
 		// 상세 가져오기
-		Task detail = service.selectTask_detail(task_no);
+		Task detail = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", detail);
 
 		// 업무 참여자 상세 가져오기
@@ -373,13 +399,19 @@ public class TaskController {
 
 	// 업무 요청 > 참여 > 상세
 	@RequestMapping(value = "/taskRequest_participation_detail.do", method = RequestMethod.GET)
-	public String taskRequest_participation_detail(String task_no, Model model) {
+	public String taskRequest_participation_detail(Principal principal, String task_no, Model model) {
 
 		System.out.println("CONTROLLER] 업무 요청 참여 상세 페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
+		
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
 
 		// 상세 가져오기
-		Task detail = service.selectTask_detail(task_no);
+		Task detail = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", detail);
 		
 
@@ -461,13 +493,19 @@ public class TaskController {
 
 	// 업무 보고 > 수신 > 상세
 	@RequestMapping("/taskInform_rec_detail.do")
-	public String taskInform_rec_detail(String task_no, Model model) {
+	public String taskInform_rec_detail(Principal principal, String task_no, Model model) {
 
 		System.out.println("Controller] 업무 보고 수신 상세페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
 
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+
 		// 상세 가져오기
-		Task task = service.selectTask_detail(task_no);
+		Task task = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", task);
 
 		// 업무 참여자 상세 가져오기
@@ -510,13 +548,19 @@ public class TaskController {
 
 	// 업무 보고 > 송신 > 상세
 	@RequestMapping("/taskInform_Detail.do")
-	public String taskInform_Transmit_Detail(String task_no, Model model) {
+	public String taskInform_Transmit_Detail(Principal principal, String task_no, Model model) {
 
 		System.out.println("Controller] 업무 보고 송신 상세페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
 
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+
 		// 상세 가져오기
-		Task task = service.selectTask_detail(task_no);
+		Task task = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", task);
 
 		// 업무 참여자 상세 가져오기
@@ -566,13 +610,19 @@ public class TaskController {
 
 	// 업무 일지 > 수신 > 상세
 	@RequestMapping("/taskLog_rec_detail.do")
-	public String taskLog_rec_detail(String task_no, Model model) {
+	public String taskLog_rec_detail(Principal principal, String task_no, Model model) {
 
 		System.out.println("CONTROLLER] 업무 일지 수신 상세페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
 
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+
 		// 상세 가져오기
-		Task task = service.selectTask_detail(task_no);
+		Task task = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", task);
 
 		// 업무 참여자 상세 가져오기
@@ -584,13 +634,19 @@ public class TaskController {
 
 	// 업무 일지 > 송신 > 상세
 	@RequestMapping("/taskLog_detail.do")
-	public String taskLog_detail(String task_no, Model model) {
+	public String taskLog_detail(Principal principal, String task_no, Model model) {
 
 		System.out.println("Controller] 업무 일지 송신 상세페이지");
 		System.out.println("선택한 업무 번호 : " + task_no);
 
+		// 로그인 id
+		String id = principal.getName();
+		System.out.println("id : " + id);
+		String emp_no = commonservice.selectEmp_no(id);
+		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+
 		// 상세 가져오기
-		Task task = service.selectTask_detail(task_no);
+		Task task = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", task);
 
 		// 업무 참여자 상세 가져오기
