@@ -94,7 +94,7 @@
                                     	<td>${ wlist.low_dept_name }</td>
                                     	<td>${ wlist.position_name }</td>
                                     	<td>${ wlist.emp_name }</td>
-                                    	<td><button class="btn btn-outline btn-danger2">삭제</button></td>
+                                    	<td><button class="btn btn-outline deleteBtn btn-danger2">삭제</button></td>
                                 	</tr>
                                 </c:forEach>
                                 </tbody>

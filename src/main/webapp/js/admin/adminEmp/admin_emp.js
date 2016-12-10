@@ -3,6 +3,8 @@
  * 작성일 : 2016-12-09
  * 목  적 : 사원관리 전용 js 
  */
+
+// 시간 딜레이 함수
 function wait(msecs) {
 	var start = new Date().getTime();
 	var cur = start;
@@ -16,12 +18,13 @@ function wait(msecs) {
 $("#backBtn").click(function() {
 	history.back();
 });
-
+// 뒤로가기 함수
 function back() {
 	history.back();
 }
 
 $(function() {
+	// 지점이 변경되었을 때
 	$("#branchlist").change(function() {
 		var branch_no = $(this).val();
 		var addHtml = "";
@@ -58,6 +61,7 @@ $(function() {
 		};
 	});
 	
+	// 부서가 변경되었을 때
 	$("#deptlist").change(function() {
 		var dept_no = $(this).val();
 		var addHtml = "";
@@ -89,6 +93,7 @@ $(function() {
 		}
 	});
 	
+	// 사원 등록버튼을 눌렀을 때
 	$("#submitBtn").click(function() {
 		var form = $("#addmember").serialize();
 		
@@ -110,6 +115,7 @@ $(function() {
 		})
 	});
 
+	// 탈퇴 요청자에서 tr을 눌렀을 때
 	$(".trClick").click(function() {
 		var emp_no = $(this).contents(":eq(0)").text();
 		
@@ -146,7 +152,7 @@ $(function() {
 		});
 	});
 	
-	
+	// 사원 이력보기 버튼을 눌렀을 떄
 	$(".emp_hisBtn").click(function() {
 		var emp_no = $(this).parent().parent().contents(":eq(0)").text();
 		var table = "";
@@ -175,6 +181,7 @@ $(function() {
 				table += "<th>근무상태</th>";
 				table += "<th>이력</th>";
 				table += "<th>권한</th>";
+				table += "<th>이력변경일</th>";
 				table += "</tr> </thead>";
 				
 				table += "<tbody>";
@@ -189,6 +196,13 @@ $(function() {
 					table += "<td>" + data.list[index].cg_name + "</td>";
 					table += "<td>" + data.list[index].his_cg_name + "</td>";
 					table += "<td>" + data.list[index].role_name + "</td>";
+					if(index == 0) {
+						table += "<td>" + data.list[index].regdate + "</td>";
+					} else if(data.list[index].his_no == data.list[index-1].his_no) {
+						table += "<td></td>";
+					} else {
+						table += "<td>" + data.list[index].regdate + "</td>";
+					}
 					table += "</tr>";
 				});
 				table += "</tbody>";
@@ -201,4 +215,38 @@ $(function() {
 		});
 	});
 	
+	// 탈퇴 요청자에서 삭제버튼을 눌렀을 때
+	$(".deleteBtn").click(function() {
+		// var emp_no = $(this).contents(":eq(0)").text();
+		var emp_no = $(this).parent().parent().contents(":eq(0)").text();
+		console.log(emp_no);
+		alert("찍히긴해?  : " + emp_no);
+		
+		swal({
+            title: emp_no,
+            text: "정말 삭제하시겠습니까?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "삭제",
+            cancelButtonText: "취소",
+            closeOnConfirm: false,
+            closeOnCancel: false },
+        function (isConfirm) {
+            if (isConfirm) {
+            	$.ajax({
+        			url		: "adminEmp_delete.do",
+        			type	: "post",
+        			data	: {
+        						emp_no : emp_no
+        					  },
+        			success	: function() {
+                        swal("삭제", "삭제되었습니다", "success");
+        			}
+        		})
+            } else {
+                swal("취소", "취소되었습니다", "error");
+            }
+        });
+	});
 });

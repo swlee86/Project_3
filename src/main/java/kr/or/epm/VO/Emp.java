@@ -33,7 +33,16 @@ public class Emp {
 	// 관리자 > 사원관리 > 사원 이력보기
 	private String role_name;
 	private String his_cg_name;
+	private String his_no;
 	
+	public String getHis_no() {
+		return his_no;
+	}
+
+	public void setHis_no(String his_no) {
+		this.his_no = his_no;
+	}
+
 	public String getRole_name() {
 		return role_name;
 	}

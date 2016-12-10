@@ -159,4 +159,25 @@ public class AdminEmpService {
 		
 		return detail;
 	}
+	
+	// AJAX 사원 삭제
+	public int deleteEmp(String emp_no) {
+		System.out.println("SERVICE] 사원을 삭제합니다");
+		int result = 0;
+		
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		
+		// 권한을 none으로 변경
+		int result2 = dao.updateEmp_role_none(emp_no);
+		// 이력을 퇴사로 변경
+		int result3 = dao.updateEmp_his_out(emp_no);
+		// 사번의 년도를 0000으로 변경
+		int result1 = dao.updateEmp_no(emp_no);
+		
+		if(result1 > 0 && result2 > 0 && result3 > 0) {
+			result = 1;
+		}
+		
+		return result;
+	}
 }

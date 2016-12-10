@@ -86,4 +86,15 @@ public class AdminEmpAjaxController {
 		
 		return jsonview;
 	}
+	
+	// 탈퇴 요청자의 삭제버튼을 눌렀을 때
+	@RequestMapping(value="/adminEmp_delete.do", method=RequestMethod.POST)
+	public View adminEmp_delete(String emp_no, Model model) {
+		System.out.println("CONTROLLER] 사원 삭제");
+		
+		int result = service.deleteEmp(emp_no);
+		model.addAttribute("result", result);
+		
+		return jsonview;
+	}
 }

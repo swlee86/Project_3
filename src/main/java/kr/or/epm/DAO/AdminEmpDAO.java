@@ -56,4 +56,13 @@ public interface AdminEmpDAO {
 	
 	// 탈퇴를 요청한 사원의 상세 불러오기
 	public Emp selectEmp_withdrawal_detail(String emp_no);
+	
+	// 탈퇴시키기 위해 사번의 년도를 0000으로 변경하기
+	public int updateEmp_no(String emp_no);
+	
+	// 탈퇴시키기 위해 사원의 권한을 none으로 변경하기
+	public int updateEmp_role_none(String emp_no);
+	
+	// 탈퇴시키기 위해 사원의 이력을 '퇴사'로 변경하기
+	public int updateEmp_his_out(String emp_no);
 }
