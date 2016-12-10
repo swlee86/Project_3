@@ -743,7 +743,7 @@ $(function() {
                 return [true];
              }, 
              onSelect: function(selected) {
-                $('.breakdatepicker2').datepicker("option","maxDate", selected)
+                $('.breakdatepicker2').datepicker("option","minDate", selected)
             }
 		});
 		$("#breakdatepicker2").datepicker({
