@@ -254,8 +254,13 @@ public class PageMoveController {
 		return "home.index";
 	}
 
-	
-	
+	// spring security 권한 잡기
+	@RequestMapping("/authority.do")
+	public String authority() {
+		System.out.println("우와 여기를 탑니다");
+		
+		return "errors.lock";
+	}
 	
 	// SideBar(aside.jsp) 일정관리 > 일정등록 클릭시 구동
 	@RequestMapping("/registration_schedule.do")
