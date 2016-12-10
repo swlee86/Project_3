@@ -297,6 +297,9 @@ ul {
    //사원정보 뽑아서 담을 배열
    var empInfoArray = new Array();
 	
+   // 사원정보 뽑아서 담을 배열의 선택전 배역
+   var pre_empInfoArray = new Array();
+   
    //트리구조 출력시 접히기 하려고. 만듬//////////////////
    var firstTree = 0;
    var secondTree = 0;
@@ -401,7 +404,7 @@ ul {
       
       $(function() {
     	  
-    	  
+    	  //검색
           $('#con_ins_org_sea_btn').click(function(){
         	  console.log("@@@@con_sear 머나오닝ㅇㅇㅇㅇ???? : "+con_sear);
         	  console.log("@@@@con_sear 머나오닝ㅇㅇㅇㅇ???? : "+(con_sear==2));
@@ -428,28 +431,26 @@ ul {
       		                  
       		                    
       		                  if(con_sear == 1){  
-                                  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>선택</th></tr>";
+                                  makeTable = "<table class='table table-condensed table-bordered'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th><th style='text-align:center'>선택</th></tr>";
                                }else if(con_sear ==2){
-                                  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
+                                  makeTable = "<table class='table table-condensed table-bordered'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
                                }
                                
                                $.each(emp, function(index){
                                   if(con_sear == 1){   
-                                     makeTable += "<tr style='text-align:center'><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
+                                     makeTable += "<tr style='text-align:center'><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td><td><button class='btn btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
                                   }
                                   else if(con_sear == 2){  //여러명
-                                     makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+                                     makeTable += "<tr style='text-align:center'><td><input type='checkbox'  name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td></tr>";
                                   }
                                });
                                
                                 if(con_sear == 1){  
                                   makeTable += "</table>";
                                }else if(con_sear ==2){
-                                  makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+                                  makeTable += "</table><div class='pull-right'><input type='button' class='btn btn-success' value='선택' onclick=check()></div>";
                                }
       		                    
-
-      		               
       		                   $('#empList2').empty();
       		                   $('#empList2').append(makeTable); 
       		                 	con_sear = 0;
@@ -459,12 +460,7 @@ ul {
           	
           });
           
-          
-          
-          
-          
-    	  
-    	 
+
     	   toastr.options = {	 
 			 "closeButton": true,
 			  "debug": false,
@@ -572,14 +568,20 @@ ul {
         	 con_sear = 2;
         	 console.log("@@@@con_sear : "+con_sear);
         	var empSelectNumber = 2;
- 			var litag = "<ul style='list-style:none;margin-left:0px;'>"; 
+ 			var litag = "<ul style='list-style:none;margin-left:-40px;'>"; 
  			
      		$('#organization').empty();
      		$('#empList').empty();
      		$('#empList2').empty();
      		$('#con_ins_org_sea_query').val('');
+     		
      		$('#chamjoInput').val('');
-     		$('#task_name').val('');
+     		$('#task_name').val('');   
+     		$('#task_no_td').empty();
+     		$('#task_name_td').empty();
+     		
+     		$('#empList_list').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
+     		pre_empInfoArray.splice(0,pre_empInfoArray.length);
      		
               	$.ajax({
         			url : "taskWriteModal.do",
@@ -593,10 +595,10 @@ ul {
         				});
 							
         				$.each(departMent, function(index) {
-          					litag += "<li style='padding:6px;'onclick='seeDepart(this,"
+          					litag += "<li style='padding:2px;'onclick='seeDepart(this,"
           					litag +=empSelectNumber +","
-          					litag +=departMent[index].branch_no90
-           				    litag +=")'><i class='fa fa-sitemap'></i> <span>"+departMent[index].branch_name+" ("+departMent[index].branch_no+")</span></li>";
+          					litag +=departMent[index].branch_no
+           				    litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
            				    litag+="<div id='dept_div"
                				litag+=departMent[index].branch_no
                				litag+="'></div>";
@@ -614,11 +616,19 @@ ul {
         	 con_sear = 1;
         	 console.log("@@@@con_sear : "+con_sear);
         	var empSelectNumber = 1;
- 			var litag = "<ul style='list-style:none;margin-left:0px;'>";   		
+ 			var litag = "<ul style='list-style:none;margin-left:-40px;'>";   		
         	$('#organization').empty();
             $('#empList').empty();
         	$('#empList2').empty();
      		$('#con_ins_org_sea_query').val('');
+     		
+     		$('#rec_emp_no').val('');
+     	    $('#rec_name').val('');
+     	   	$('#rec_no_td').empty();
+   			$('#rec_name_td').empty();
+     		
+     		$('#empList_list').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
+     		pre_empInfoArray.splice(0,pre_empInfoArray.length);
      		
             $.ajax({
                url : "taskWriteModal.do",
@@ -635,10 +645,10 @@ ul {
                   console.log("departMent : " + departMent);
 
                   $.each(departMent, function(index) {
-     					litag += "<li style='padding:6px;' onclick='seeDepart(this,"
+     					litag += "<li style='padding:2px;' onclick='seeDepart(this,"
        						litag +=empSelectNumber +","
        						litag +=departMent[index].branch_no
-        				    litag +=")'><i class='fa fa-sitemap'></i><span>"+departMent[index].branch_name+" ("+departMent[index].branch_no+"</span></li>";
+        				    litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+"</span></li>";
         					litag+="<div id='dept_div"
         					litag+=departMent[index].branch_no
         					litag+="'></div>";
@@ -658,7 +668,7 @@ ul {
         departcho = choose;
   		var div_id = "dept_div"+choose;
 		$("#"+div_id).empty();
-		var litag = "<hr/><ul style='list-style:none; padding:10px;'>";
+		var litag = "<ul style='list-style:none; padding:5px;'>";
 	
       	var name = $(obj).text();
 
@@ -680,15 +690,15 @@ ul {
       			
       			$.each(dept, function(index) {
       				
-      				litag += "<li style='padding:1px;' onclick='seelow_Depart(this, "
+      				litag += "<li onclick='seelow_Depart(this, "
     					litag +=empSelectNumber+","
     				    litag +=dept[index].dept_no
-    				    litag +=")'>&nbsp;&nbsp;"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+"/"+dept[index].dept_no+"</li></i>";
+    				    litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+dept[index].dept_name+" ("+dept[index].dept_no+")</span></li>";
     					litag+="<div id='low_dept_div"
     					litag+=dept[index].dept_no
     					litag+="'></div>";
       			});
-      			litag +="</ul><hr/>";
+      			litag +="</ul>";
       			$("#"+div_id).html(litag);
       			}else{
       				firstTree = 0;
@@ -720,12 +730,12 @@ ul {
       			if(secondTree == 0){
       				secondTree = 1;
       			$.each(low_dept, function(index) {
-    				litag += "<li style='padding:4px;' onclick='seeEmpMember(this, "
+    				litag += "<li onclick='seeEmpMember(this, "
         				litag += empSelectNumber+","
         				litag +=low_dept[index].low_dept_no
-        				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+        				litag +=")'>"+'<i class="fa fa-long-arrow-right"></i><span>'+low_dept[index].low_dept_name+"("+low_dept[index].low_dept_no+")</span></li>";
       			});
-      			litag +="</ul><hr/>";
+      			litag +="</ul>";
     			$("#"+div_id).html(litag);
       			}else{
       				secondTree = 0;
@@ -773,13 +783,13 @@ ul {
                       
                      $.each(emp, function(index){
                         if(empSelectNumber == 1){   
-                           makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
+                           makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td><td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
                         }
                         else if(empSelectNumber == 2){
-                           makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+                           makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";
                         }
                      });
-                     makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check()>";
+                     makeTable += "</table>";  //<br><input type='button' class='btn btn-success' value='선택' onclick=check()>
                      $('#empList').empty();
                      $('#empList').append(makeTable);
                    }    
@@ -787,13 +797,117 @@ ul {
                }
                );
       }
+      
+      
+      
+      
+      
+      
+      //체크박스 클릭후 보여주기
+      function precheck(){
+      	 $('#empList_list').empty();
+      	console.log('precheck 함수');
+      	var tablemake2 ="";
+          var checkarr = new Array();
+
+         $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
+      	   console.log('------------------------------');
+      	   var result  = 0;
+      	  
+  	       	if(pre_empInfoArray.length == 0){  //처음에
+  	       		console.log('pre_empInfoArray.length == 0');
+  	       		// 이름 
+  	            checkarr[pi] = po.value;
+  	            // 사번
+  	            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+  	            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+  	            //console.log("this:"+$(this));
+  	       	}else{	       		
+  	       	 //중복값 검사
+  		       	for(var i = 0; i < pre_empInfoArray.length; i++){
+  		       		console.log("배열 사번 pre_empInfoArray["+ i +"].emp_no : " + pre_empInfoArray[i].emp_no);
+  		       		console.log("선택된사번"+ i +" : " + $(this).parent().next().html());
+  		       		if($(this).parent().next().html() == pre_empInfoArray[i].emp_no){
+  		       			result = 1;  //같은 값이 있다.
+  		       		}
+  		       	}
+  		       	
+  		    	if(result == 0 ){ //중복된 값 없을때 추가
+  		       		// 이름 
+  		         	checkarr[pi] = po.value;
+  		            // 사번
+  		            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+  		            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+  		       	}	
+  	       	}
+  	       
+  	       	//체크박스 속성 false
+  	        $(this).attr("checked", false);
+         });
+         
+        	 if(pre_empInfoArray.length >= 1) { 
+        		   tablemake2 = '<div class="row">';
+        		   tablemake2 += "<table class='table table-condensed table-hover' >";
+        		 	          
+                 for(var i = 0; i < pre_empInfoArray.length; i++){
+              	   tablemake2 += "<tr><td style='text-align:center'><input type='checkbox' checked   name='chkbtn2' value='"+pre_empInfoArray[i].emp_name+"'></td><td style='text-align:center'>"+pre_empInfoArray[i].emp_no+"</td><td>"+pre_empInfoArray[i].emp_name+"</td></tr>";  
+                 }   
+                 tablemake2 += '</table></div>';
+                 tablemake2 += "<div ><input type='button' class='btn btn-sm btn-success btn-block btn-outline' style='font-weight: bold' value='선 &nbsp;&nbsp;&nbsp;택' onclick=check()><br></div>";
+                 
+                 $('#empList_list').empty();
+                 $('#empList_list').append(tablemake2);       
+        	 }
+      }
+      
+      //선택된 체크박스 취소
+      function precheck_cancel(){
+      	var pre_no = new Array();
+      	console.log('함수 탐');
+      	$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){           
+      		pre_no.push($(this).parent().next().html());  //서번넣기   		
+              var tr = $(this).parent().parent();
+      	    //라인 삭제
+      	    tr.remove();
+           });
+      	
+      	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
+      	
+      	//배열에서 사번 삭제
+      	for(var i = 0; i < pre_empInfoArray.length; i++){
+      		console.log("pre_empInfoArray["+ i +"].emp_no : " + pre_empInfoArray[i].emp_no);
+      		for(var j = 0; j < pre_no.length; j++){
+      			console.log("pre_no["+ j +"] : " + pre_no[j]);
+      			if(pre_no[j] == pre_empInfoArray[i].emp_no){
+      				//사번 지우기
+      	        	pre_empInfoArray.splice( i, 1);
+      			}
+      		}
+      	}
+      	
+      	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
+      	console.log("pre_empInfoArray : " + pre_empInfoArray);
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
    
       
       //체크박스 선택후 버튼 클릭시 호출
       function check(low_deptNumber){
          //체크박스 크기만큼 배열 생성
          var checkResult = new Array();
-         $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
+         $(":checkbox[name='chkbtn2']:checked").each(function(pi,po){
             //이름 
             checkResult[pi] = po.value;
             //사번
