@@ -32,7 +32,7 @@
 					<div id="pro-1" class="tab-pane active">
 						<div class="panel-body list">
 							<div class="table-responsive project-list">
-								<table class="table table-striped table-condensed">
+								<table class="table table-striped ">
 									<thead>
 										<tr>
 											<th colspan="2">프로젝트명</th>
