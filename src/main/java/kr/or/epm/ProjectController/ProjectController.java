@@ -190,7 +190,7 @@ public class ProjectController {
 				System.out.println("선택된 참여자 인원 : " + rec_people.length);
 			}	
 			
-			System.out.println("pj : "+pj2.toString());
+			//System.out.println("pj : "+pj2.toString());
 			try{
 				url = projectservice.insertPj(pj2,pjd_Command); 
 			}catch (Exception e) {
@@ -279,7 +279,7 @@ public class ProjectController {
 
 	//승인대기중인 프로젝트 제목 클릭시 
 	@RequestMapping(value ="/project_approve_detailview.do", method=RequestMethod.GET)
-	public String project_approve_detailview(String pj_no, Model model){
+	public String project_approve_detailview(String pj_no, Model model, String pj_emp_no){
 		System.out.println("pj_no : "+pj_no);
 		Pj pj = projectservice.selectPj_detail(pj_no);
 		List<Pjd> list = projectservice.selectPjd_detail(pj_no);
@@ -289,6 +289,7 @@ public class ProjectController {
 		model.addAttribute("listsize", listsize);
 		model.addAttribute("list", list);
 		model.addAttribute("pj", pj);
+		model.addAttribute("pj_write", pj_emp_no);
 		return "project.projectApproveDetailView";
 	}
 	

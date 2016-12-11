@@ -120,9 +120,8 @@ $(function(){
 										<c:forEach items="${list}" var="p">
 											<tr>
 												<td>${p.emp_name}</td>
-												<td>테스트 제발 : ${p.emp_no}</td>
 												<td><a
-													href="project_approve_detailview.do?pj_no=${p.pj_no}">${p.pj_title}</a></td>
+													href="project_approve_detailview.do?pj_no=${p.pj_no}&pj_emp_no=${p.emp_no}">${p.pj_title}</a></td>
 												<td>${p.pj_start}&nbsp;&nbsp;~&nbsp; &nbsp;${p.pj_end}</td>
 												<td><c:choose>
 														<c:when test="${p.step_no == '2'}">
