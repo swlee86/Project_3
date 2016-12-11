@@ -117,7 +117,11 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
          //ex) 승인 처리 후 확인 버튼 눌르는 경우 controller 부분에 추가 해준다. 쿼리문 씀 ////
          System.out.println("사번? : " + emp_no);
          taskcount = pushdao.taskCount(emp_no);
-         projectcount = pushdao.projectMyCount(emp_no);
+         
+         
+        // projectcount = pushdao.projectMyCount(emp_no);
+         projectcount=pushdao.myprojectCount(emp_no);
+         
          System.out.println("미처리 taskcount : " + taskcount);
          System.out.println("내가 진행중인 프로젝트 count============================= : " + projectcount);
          
