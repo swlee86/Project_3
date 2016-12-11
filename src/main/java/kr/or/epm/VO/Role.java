@@ -10,6 +10,15 @@ public class Role {
 	private String role_no;
 	private String emp_no;
 	private String role_name;
+	private String role_exp;
+	
+	public String getRole_exp() {
+		return role_exp;
+	}
+
+	public void setRole_exp(String role_exp) {
+		this.role_exp = role_exp;
+	}
 
 	public String getRole_no() {
 		return role_no;
@@ -37,6 +46,7 @@ public class Role {
 
 	@Override
 	public String toString() {
-		return "role [role_no=" + role_no + ", emp_no=" + emp_no + ", role=" + role_name + "]";
+		return "Role [role_no=" + role_no + ", emp_no=" + emp_no + ", role_name=" + role_name + ", role_exp=" + role_exp
+				+ "]";
 	}
 }

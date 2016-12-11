@@ -249,4 +249,12 @@ $(function() {
             }
         });
 	});
+	
+	// 권한 부여에서 직위의 적용 버튼을 눌렀을 때
+	$("#applyBtn").click(function() {
+		var position_no = $(this).parent().prev();
+		console.log(position_no);
+		var checklist = $(this).parent();
+		//console.log(checklist);
+	});
 });
