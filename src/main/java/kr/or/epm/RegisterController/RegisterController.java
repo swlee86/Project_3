@@ -57,7 +57,7 @@ public class RegisterController {
 		 String iddata = service.selectGoogleLoginData(google);
 		 boolean test = Util.isEmpty(iddata);
 		System.out.println("boolean 형태의 test 뭐나옴 : "+test);
-		 if(test!=true){
+		 if(test==false){
 			 model.addAttribute("choose","1");
 			 data="아이디가 존재합니다. 다른 아이디로 가입하시려면 구글 로그아웃 후 이용하세요";
 			 answer = "login.do";

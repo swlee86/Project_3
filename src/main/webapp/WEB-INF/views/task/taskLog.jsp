@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<Script>
+$(function(){
+	$('#susin').click(function(){
+			$('#url').attr('href','taskLog.do?tab_char=1');
+	});
+	$('#songin').click(function(){
+		$('#url').attr('href','taskLog.do?tab_char=2');
+});
+});
+
+</Script>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -17,7 +28,7 @@
 					<li class="active"><span>업무 일지</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">업무 일지</h2>
+			<h2 class="font-light m-b-xs">업무 일지 <span><a id="url" href="taskLog.do?tab_char=1"><i class="fa fa-repeat"></i></a></span></h2>
 			<small>&nbsp;&nbsp;&nbsp;금일의 업무를 작성하거나 받을 수 있습니다^^</small>
 		</div>
 	</div>
@@ -29,8 +40,8 @@
 			<div class="hpanel">
 				<!-- 탭 -->
 				<ul class="nav nav-tabs">
-					<li class="<c:if test="${tab_char==1}">active</c:if>"><a data-toggle="tab" href="#tab-1">수신</a></li>
-					<li class="<c:if test="${tab_char==2}">active</c:if>"><a data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class="<c:if test="${tab_char==1}">active</c:if>" id="susin"><a data-toggle="tab" href="#tab-1">수신</a></li>
+					<li class="<c:if test="${tab_char==2}">active</c:if>" id="songin"><a data-toggle="tab" href="#tab-2">송신</a></li>
 				</ul>
 				
 				<div class="tab-content">
@@ -190,12 +201,13 @@
 							<!-- 검색 기준-->
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="" class="form-inline">
+								<input type="hidden" name="tab_char" value="2">
 									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
 										<tr>
 											<th style="text-align: right; padding-right: 20px;">
 											<select class="form-control input-sm" 
 													name="f_song"
-													id="selectSearch2" onchange="search()">
+													id="selectSearch2" onchange="search2()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>

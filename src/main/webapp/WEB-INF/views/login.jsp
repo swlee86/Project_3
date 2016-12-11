@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String test = (String)session.getAttribute("googlemail");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -429,6 +432,9 @@ small {
 		
 		//회원 가입 버튼 클릭시 처음 실행되는 아작스 함수.
 		$('#addMemberAjaxAtag').click(function(){
+			
+			if($('#username').val() != ''){
+			
 			$.ajax({
 				url : "addMember.do",
 				type : "GET",
@@ -445,6 +451,10 @@ small {
 					}
 				}
 			});
+			
+			}else{
+				alert("구글 아이디로 로그인 해주세요!");
+			}
 		});
 		
 		//비밀번호 찾기 모달 실행시 
@@ -549,13 +559,17 @@ small {
 	
 	 function signOut() {
 		  	alert("로그아웃 버튼 클릭 !");
-		    var auth2 = gapi.auth2.getAuthInstance();
+			$.ajax({
+				url : "sessionOut.do",
+				success : function(data){
+					alert(data.result);
+				}
+			});
+		  	var auth2 = gapi.auth2.getAuthInstance();
 		    auth2.signOut().then(function () {
 		      console.log('User signed out.');
-		      console.log("마지막");
-		      <%-- <%session.invalidate();%> --%>
 		    });
-		  } 
+		} 
 
 		//주소 api 사용	 
 	    function sample6_execDaumPostcode() {

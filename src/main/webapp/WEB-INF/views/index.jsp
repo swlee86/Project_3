@@ -9,7 +9,7 @@
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
-			<h2>Welcome to 2PM</h2>
+			<h2>Welcome to <b>2PM</b></h2>
 			<p>
 				스타트업 및 중소기업의 <strong>프로젝트 관리, 인사, 일정 관리</strong>를 위한 그 모든 프로그램
 				
@@ -17,9 +17,8 @@
 		</div>
 	</div>
 	
-	<div class="row">
-	&nbsp;
-	</div>
+	<div class="row">&nbsp;</div>
+	
 	<hr style="border: 1px solid #ddd;">
 	<div class="row">
 	 <div class="col-lg-6">
@@ -242,7 +241,6 @@
 												<th>업무명</th>
 												<th style="text-align:center">마감일</th>
 												<th style="text-align:center">요청자명</th>
-											<!-- 	<th style="text-align:center">승인단계</th> -->
 												<th style="text-align:center">첨부파일</th>
 											</tr>
 										</thead>
@@ -271,20 +269,6 @@
 													</c:choose>
 													<td style="text-align:center">${tasklist.deadline}</td>
 													<td style="text-align:center">${tasklist.emp_name}</td>
-												<%-- 	<td style="text-align:center">
-														<c:choose>
-															<c:when test="${ tasklist.step_no == '2' }">
-																<button class="btn btn-xs btn-danger" disabled>승인거부</button>
-															</c:when>
-															<c:when test="${ tasklist.step_no == '3' }">
-																<button class="btn btn-xs btn-primary2" disabled>보류</button>
-															</c:when>
-															<c:when test="${ tasklist.step_no == '4' }">
-																<button class="btn btn-xs btn-warning2" disabled>미승인</button>
-															</c:when>
-														</c:choose>
-
-													</td> --%>
 													<td style="text-align:center">
 														<c:if test="${not empty tasklist.file_name}">
 															<b><i class="fa fa-paperclip text-success"></i></b>
@@ -295,7 +279,6 @@
 										</tbody>
 									</table>
 								</div>
-							<!-- </div> -->
 							<div class="pull-right">
 								<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
 							</div>
@@ -316,24 +299,7 @@
 
 
 	<!-- chart 최근 근무현황 -->
-	<div class="row" style="height: 350px;">
-		<!-- <div class="col-lg-6" style="height: 400px;">
-			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					현재까지의 추가 근무 현황(기준: 분)
-				</div>
-				<div class="panel-body" style="height: 350px;">
-					<div>
-						<div id="ct-chart4" class="ct-perfect-fourth"
-							style="height: 300px; width: 98%;"></div>
-					</div>
-				</div>
-			</div>
-		</div> -->
+	<div class="row" > <!-- style="height: 350px;" -->
 		<div class="col-lg-6" style="height: 400px;">
 			<div class="hpanel">
 				<div class="panel-heading">
@@ -351,7 +317,205 @@
 				</div>
 			</div>
 		</div>
-					<div class="col-lg-6">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<div class="col-lg-6">
+			<div class="hpanel">
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#draft-1"><b>미승인 대외발신공문</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-2"><b>미승인 협조문</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-3"><b>미승인 휴가신청서</b></a></li>
+				</ul>
+				<div class="tab-content">
+				
+					<!-- 대외발신공문 -->
+					<div id="draft-1" class="tab-pane active">	
+						<div class="panel-body list">
+							<div class=" project-list">
+								<table class="table table-striped table-condensed">
+									<thead>
+										<tr>
+											<th>기안 제목</th>
+											<th style="text-align:center">수신처</th>
+											<th style="text-align:center">기안자</th>
+											<th style="text-align:center">승인결과</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="office" items="${officelist}" > 
+											<tr>
+
+												<td><a href="office_detail.do?draft_no=${ office.draft_no }">${ office.draft_title }</a><br />
+													<small><i class="fa fa-clock-o"></i>.&nbsp;
+													${office.draft_date}</small>
+												</td>
+
+
+
+												<td style="text-align:center"><small>${ office.rec_addr}</small></td>
+												<td style="text-align:center">
+												 ${ office.emp_name }  <small>${ office.emp_no }</small>
+												</td>
+												<td style="text-align:center">
+													<c:choose>
+														<c:when test="${ office.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose>
+
+
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+							<div class="pull-right">
+								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+							</div>	
+						</div>				
+					</div>
+				
+					<!-- 협조문 -->
+					<div id="draft-2" class="tab-pane "> 
+						<div class="panel-body list">	
+							
+							<!-- <div class="panel-body"> -->
+								<div class=" project-list">
+									<table class="table table-striped table-condensed">
+										<thead>
+											<tr>
+												<th>기안 제목</th>
+												<th style="text-align:center">수신 부서</th>
+												<th style="text-align:center">기안자</th>
+												<th style="text-align:center">승인 결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="cooper" items="${cooperationlist}">
+												<tr>
+													
+												<td><a href="cooperation_detail.do?draft_no=${cooper.draft_no}">${cooper.draft_title }</a><br />
+													<small><i class="fa fa-clock-o"></i>.&nbsp;
+														${cooper.draft_date}</small>
+													</td>
+													
+													<td style="text-align:center">${cooper.low_dept_name} <small>${ cooper.branch_name } ${ cooper.dept_name }</small></td>
+													<td style="text-align:center">${cooper.emp_name}<br><small>${ cooper.emp_no }</small></td>
+													<td style="text-align:center"><c:choose>
+														<c:when test="${ cooper.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							<div class="pull-right">
+								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					<div id="draft-3" class="tab-pane "> 
+						<div class="panel-body list">	
+							
+							<!-- <div class="panel-body"> -->
+								<div class=" project-list">
+									<table class="table table-striped table-condensed">
+										<thead>
+											<tr>
+												<th >기안 제목</th>
+												<th style="text-align:center">휴가기간</th>
+												<th style="text-align:center">기안자</th>
+												<th style="text-align:center">승인 결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="br" items="${breaklist}">
+												<tr>
+													
+													<td  ><a href="break_detail.do?draft_no=${ br.draft_no }">${ br.draft_title }</a><br />
+														<small><i class="fa fa-clock-o"></i>.&nbsp;
+															${br.draft_date }</small>
+													</td>
+														
+													<td style="text-align:center">${ br.break_cg_name } <small>${ br.break_term } 일</small></td>
+													<td style="text-align:center"> ${ br.emp_name }<br><small>${ br.emp_no }</small></td>
+													<td style="text-align:center">
+														<c:choose>
+														<c:when test="${ br.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose></td>
+														
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							<div class="pull-right">
+								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<%-- <div class="col-lg-6">
 			<div class="hpanel">
 				<div class="panel-heading">
 					<div class="panel-tools">
@@ -401,41 +565,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
 	</div>
 	<br/><br/>
-	<%-- 	<div class="col-md-6">
-			사내 공지사항
-			<div class="hpanel">
-				<div
-					class="v-timeline vertical-container animate-panel table-responsive"
-					data-child="vertical-timeline-block" data-delay="1">
-
-					<c:forEach var="cplist" items="${companyList}">
-						<div class="vertical-timeline-block">
-							<div class="vertical-timeline-icon navy-bg">
-								<i class="fa fa-calendar"></i>
-							</div>
-							<div class="vertical-timeline-content">
-								<div class="p-sm">
-									<span class="vertical-date pull-right">등록일 :
-										${cplist.regdate}<br />
-									<small>조회수 : ${cplist.hit}</small>
-									</span>
-									<h5>
-										<a
-											href="detailinfo_board_list.do?no=${cplist.no}&currentpage=1&pagesize=10">${cplist.title }</a>
-									</h5>
-								</div>
-								<div class="panel-footer">작성자 : ${cplist.emp_name}</div>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-			</div>
-		</div>
- --%>
-	
 	
 	<c:forEach var="commutelist" items="${commutelist}">
 		<input type="hidden" id="regdate" name="regdate[]"
@@ -445,224 +577,7 @@
 	</c:forEach>
 
 </div>
-<!-- 	<div class="row">
-		<div class="col-lg-3">
-			<div class="hpanel" >
-				<div class="panel-body text-center h-200">
-					<i class="pe-7s-graph1 fa-4x"></i>
 
-					<h1 class="m-xs">$1 206,90</h1>
-
-					<h3 class="font-extra-bold no-margins text-success">All Income
-					</h3>
-					<small>Lorem ipsum dolor sit amet, consectetur adipiscing
-						elit vestibulum.</small>
-				</div>
-				<div class="panel-footer">This is standard panel footer</div>
-			</div>
-		</div>
-		<div class="col-lg-3">
-			<div class="hpanel stats">
-				<div class="panel-body h-200">
-					<div class="stats-title pull-left">
-						<h4>Users Activity</h4>
-					</div>
-					<div class="stats-icon pull-right">
-						<i class="pe-7s-share fa-4x"></i>
-					</div>
-					<div class="m-t-xl">
-						<h3 class="m-b-xs">210</h3>
-						<span class="font-bold no-margins"> Social users </span>
-
-						<div class="progress m-t-xs full progress-small">
-							<div style="width: 55%" aria-valuemax="100" aria-valuemin="0"
-								aria-valuenow="55" role="progressbar"
-								class=" progress-bar progress-bar-success">
-								<span class="sr-only">35% Complete (success)</span>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-xs-6">
-								<small class="stats-label">Pages / Visit</small>
-								<h4>7.80</h4>
-							</div>
-
-							<div class="col-xs-6">
-								<small class="stats-label">% New Visits</small>
-								<h4>76.43%</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="panel-footer">This is standard panel footer</div>
-			</div>
-		</div>
-		<div class="col-lg-3">
-			<div class="hpanel stats">
-				<div class="panel-body h-200">
-					<div class="stats-title pull-left">
-						<h4>Page Views</h4>
-					</div>
-					<div class="stats-icon pull-right">
-						<i class="pe-7s-monitor fa-4x"></i>
-					</div>
-					<div class="m-t-xl">
-						<h1 class="text-success">860k+</h1>
-						<span class="font-bold no-margins"> Social users </span> <br /> <small>
-							Lorem Ipsum is simply dummy text of the printing and <strong>typesetting
-								industry</strong>. Lorem Ipsum has been.
-						</small>
-					</div>
-				</div>
-				<div class="panel-footer">This is standard panel footer</div>
-			</div>
-		</div>
-		<div class="col-lg-3">
-			<div class="hpanel stats">
-				<div class="panel-body h-200">
-					<div class="stats-title pull-left">
-						<h4>Today income</h4>
-					</div>
-					<div class="stats-icon pull-right">
-						<i class="pe-7s-cash fa-4x"></i>
-					</div>
-					<div class="clearfix"></div>
-					<div class="flot-chart">
-						<div class="flot-chart-content" id="flot-income-chart"></div>
-					</div>
-					<div class="m-t-xs">
-						<div class="row">
-							<div class="col-xs-5">
-								<small class="stat-label">Today</small>
-								<h4>$230,00</h4>
-							</div>
-							<div class="col-xs-7">
-								<small class="stat-label">Last week</small>
-								<h4>
-									$7 980,60 <i class="fa fa-level-up text-success"></i>
-								</h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="panel-footer">This is standard panel footer</div>
-			</div>
-		</div>
-	</div> -->
-<div class="row">
-	<!-- 		<div class="col-lg-3">
-			<div class="hpanel stats">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					Last active
-				</div>
-				<div class="panel-body list">
-					<div class="stats-title pull-left">
-						<h4>Activity</h4>
-					</div>
-					<div class="stats-icon pull-right">
-						<i class="pe-7s-science fa-4x"></i>
-					</div>
-					<div class="m-t-xl">
-						<span class="font-bold no-margins"> Social users </span> <br /> <small>
-							Lorem Ipsum is simply dummy text of the printing simply all dummy
-							text. Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry. Lorem Ipsum has been. </small>
-					</div>
-					<div class="row m-t-md">
-						<div class="col-lg-6">
-							<h3 class="no-margins font-extra-bold text-success">300,102</h3>
-
-							<div class="font-bold">
-								98% <i class="fa fa-level-up text-success"></i>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<h3 class="no-margins font-extra-bold text-success">280,200</h3>
-
-							<div class="font-bold">
-								98% <i class="fa fa-level-up text-success"></i>
-							</div>
-						</div>
-					</div>
-					<div class="row m-t-md">
-						<div class="col-lg-6">
-							<h3 class="no-margins font-extra-bold ">120,108</h3>
-
-							<div class="font-bold">
-								38% <i class="fa fa-level-down"></i>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<h3 class="no-margins font-extra-bold ">450,600</h3>
-
-							<div class="font-bold">
-								28% <i class="fa fa-level-down"></i>
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<div class="panel-footer">This is standard panel footer</div>
-			</div>
-		</div> -->
-
-	<!-- 		<div class="col-lg-3">
-			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					Activity
-				</div>
-				<div class="panel-body list">
-
-					<div class="pull-right">
-						<a href="#" class="btn btn-xs btn-default">Today</a> <a href="#"
-							class="btn btn-xs btn-default">Month</a>
-					</div>
-					<div class="panel-title">Last Activity</div>
-					<small class="fo">This is simple example</small>
-					<div class="list-item-container">
-						<div class="list-item">
-							<h3 class="no-margins font-extra-bold text-success">2,773</h3>
-							<small>Tota Messages Sent</small>
-							<div class="pull-right font-bold">
-								98% <i class="fa fa-level-up text-success"></i>
-							</div>
-						</div>
-						<div class="list-item">
-							<h3 class="no-margins font-extra-bold text-color3">4,422</h3>
-							<small>Last activity</small>
-							<div class="pull-right font-bold">
-								13% <i class="fa fa-level-down text-color3"></i>
-							</div>
-						</div>
-						<div class="list-item">
-							<h3 class="no-margins font-extra-bold text-color3">9,180</h3>
-							<small>Monthly income</small>
-							<div class="pull-right font-bold">
-								22% <i class="fa fa-bolt text-color3"></i>
-							</div>
-						</div>
-						<div class="list-item">
-							<h3 class="no-margins font-extra-bold text-success">1,450</h3>
-							<small>Tota Messages Sent</small>
-							<div class="pull-right font-bold">
-								44% <i class="fa fa-level-up text-success"></i>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div> -->
-</div>
 
 
 <link rel="stylesheet" href="vendor/c3/c3.min.css" />

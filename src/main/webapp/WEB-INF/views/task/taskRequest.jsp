@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<Script>
+$(function(){
+	$('#susin').click(function(){
+			$('#url').attr('href','taskRequest.do?tab_char=1');
+	});
+	$('#songin').click(function(){
+		$('#url').attr('href','taskRequest.do?tab_char=2');
+});
+	$('#cham').click(function(){
+		$('#url').attr('href','taskRequest.do?tab_char=3');
+});
+	
+});
 
+</Script>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -18,7 +32,7 @@
 					<li class="active"><span>업무 요청</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">업무 요청</h2>
+			<h2 class="font-light m-b-xs">업무 요청  <span><a id="url" href="taskRequest.do?tab_char=1"><i class="fa fa-repeat"></i></a></span> </h2>
 			<small>&nbsp;&nbsp;&nbsp;참여 업무를 조회하고 업무를 요청하거나 요청받을 수 있습니다^^</small>
 		</div>
 	</div>
@@ -30,9 +44,9 @@
 			<div class="hpanel">
 				<!-- 탭 -->
 				<ul class="nav nav-tabs">
-					<li class="<c:if test="${tab_char==1}">active</c:if>" ><a data-toggle="tab" href="#tab-1">수신</a></li>
-					<li class="<c:if test="${tab_char==2}">active</c:if>" ><a data-toggle="tab" href="#tab-2">송신</a></li>
-					<li class="<c:if test="${tab_char==3}">active</c:if>" ><a data-toggle="tab" href="#tab-3">참여</a></li>
+					<li class="<c:if test="${tab_char==1}">active</c:if>"  id="susin"><a data-toggle="tab" href="#tab-1">수신</a></li>
+					<li class="<c:if test="${tab_char==2}">active</c:if>" id="songin"><a data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class="<c:if test="${tab_char==3}">active</c:if>" id="cham"><a data-toggle="tab" href="#tab-3">참여</a></li>
 				</ul>
 				<div class="tab-content">
 				

@@ -15,7 +15,6 @@ import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
 import kr.or.epm.VO.Emp_his_cg;
-import kr.or.epm.VO.Emp_role;
 import kr.or.epm.VO.EmployeeManage;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
@@ -33,14 +32,19 @@ public class AdminEmpService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	public int selectCount(String field, String query) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	// 사원 정보 리스트 출력
-	public List<Emp> selectEmpList(int cpage, int pgsize) {
+	public List<Emp> selectEmpList(int cpage, int pgsize, String field, String query) {
 		System.out.println("SERVICE] 사원 정보 리스트 출력합니다");
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
 		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<Emp> list = dao.selectEmp_list(start, end);
+		List<Emp> list = dao.selectEmp_list(start, end,field,query);
 		
 		return list;
 	}
@@ -203,54 +207,6 @@ public class AdminEmpService {
 		
 		return list;
 	}
-	
-	// AJAX 사원에게 권한 부여
-	public int insertEmp_role(String emp_no, String role_no) {
-		System.out.println("SERVICE] 사원에게 권한을 부여합니다");
-		
-		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		int result = dao.insertEmp_role(emp_no, role_no);
-		
-		return result;
-	}
-	
-	// AJAX 사원에게 권한 부여를 위해 position_no에 해당하는 emp_no 뽑기
-	public List<String> selectEmp_no(String position_no) {
-		System.out.println("SERVICE] 권한 부여를 위해 emp_no를 불러옵니다");
-		
-		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<String> list = dao.selectEmp_no(position_no);
-		
-		return list;
-	}
-	
-	// 직위에 권한을 부여할 때 해당 사원이 가지고 있는 권한 전부 날리기
-	public int deleteEmp_role(String emp_no) {
-		System.out.println("SERVICE] 직위 권한 부여를 위해 전체 권한 삭제하기");
-		
-		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		int result = dao.deleteEmp_role(emp_no);
-		
-		return result;
-	}
-	
-	// 사원에 권한을 부여하기 위해 사원 리스트 불러오기
-	public List<Emp> selectEmp_authority(String position_no) {
-		System.out.println("SERVICE] 사원 권한 부여를 위해 리스트 불러오기");
-		
-		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<Emp> list = dao.selectEmp_authority(position_no);
-		
-		return list;
-	}
-	
-	// 권한 부여 상세 페이지를 위해 해당 사원의 권한 불러오기
-	public List<Emp_role> selecEmp_role(String emp_no) {
-		System.out.println("SERVICE] 사원 권한 부여를 위해 권한 불러오기");
-		
-		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<Emp_role> list = dao.selectEmp_role(emp_no);
-		
-		return list;
-	}
+
+
 }

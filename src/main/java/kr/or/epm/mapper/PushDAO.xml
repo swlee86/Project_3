@@ -39,7 +39,7 @@ select step_no ,task_no, task_name, DEADLINE, emp_no, emp_name, send_date,file_n
 
    <!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
    <select id="selectmytasklist" resultType="kr.or.epm.VO.Task">
-   select task_no, cg_no, task_name, rec_name, emp_name, task_step_no, deadline, rec_emp_no , send_date, file_name, sign from(  
+	select task_no, cg_no, task_name, rec_name, emp_name, task_step_no, deadline, rec_emp_no , send_date, file_name, sign from(  
       select rownum r,t.task_no, t.cg_no, task_name, rec_name, emp_name, t.task_step_no, deadline, rec_emp_no , t.send_date, t.file_name, t.sign
 from task t join task_step s
 on t.task_step_no = s.task_step_no
@@ -51,7 +51,7 @@ on t.task_no = p.task_no
 where rec_emp_no = #{emp_no} and t.cg_no = '1' and t.step_no = '1' and t.task_step_no != '4'  and t.task_step_no != '5' or p.emp_no is not null
 order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
 ) where r between 1 and 5
-   </select>
+</select>
    
 
 

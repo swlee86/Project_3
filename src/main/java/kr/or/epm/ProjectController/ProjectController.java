@@ -182,6 +182,7 @@ public class ProjectController {
 		
 		
 		String url = "redirect:project_list.do"; 
+
 		List<Pjd> list = pjd_Command.getPjd();
 			for(Pjd pjd : list){
 				pjd.setEmp_no(emp.getEmp_no());
@@ -199,6 +200,7 @@ public class ProjectController {
 				pj2 = null;
 			}
 			
+			System.out.println("url :  s"+url);
 		return url;
 	}	
 		
@@ -206,14 +208,17 @@ public class ProjectController {
 	
 	//프로젝트 생성하기
 	@RequestMapping(value="/projectMake.do", method=RequestMethod.POST)
-	public String projectMake(Principal principal, Pj pj, Model model, String hiddenEmp_no){
+	public String projectMake( HttpServletRequest request, Pj pj, Model model, String hiddenEmp_no){
 		System.out.println("projectMake 작성 컨트롤러 탐");
 		System.out.println("@pj tostirng: "+pj.toString());
-		String id= principal.getName();
-		System.out.println("id : "+id);
-		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
-		
-		pj.setEmp_no(emp.getEmp_no());
+		//String id= principal.getName();
+		//System.out.println("id : "+id);
+		//Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
+		HttpSession session = request.getSession();
+		String emp_no = (String)session.getAttribute("emp_no");
+		System.out.println("emp_no : "+ emp_no);
+		//pj.setEmp_no(emp.getEmp_no());
+		pj.setEmp_no(emp_no);
 		
 		//model.addAttribute("pj", pj);
 		model.addAttribute("pj_start", pj.getPj_start());

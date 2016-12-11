@@ -83,15 +83,15 @@ $(function(){
 		</div>
 	</div>
 </div>
-<div class="content animate-panel">
+<div class="content animate-panel ">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
 					<div class="table-responsive">
 						<form class="form-inline" method="post" action="projectMake.do">
-						<div class="table-responsive">
-							<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
+							<div class="table-responsive">
+								<table cellpadding="1" cellspacing="1" class="table table-bordered "  >
 									<tr>
 										<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 기간</th>
 										<td>
@@ -151,23 +151,31 @@ $(function(){
 							<input type="hidden" id="hiddenEmp_no" name="hiddenEmp_no">
 						</div>
 						</form>	
+						
+						
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 </div>    
 
-<div class="modal fade hmodal-success" id="myModal7" tabindex="-1" role="dialog" aria-hidden="true">
+
+
+
+
+
+
+
+
+<div class="modal fade hmodal-success  " id="myModal7" tabindex="-1" role="dialog" aria-hidden="true" >
    <div class="modal-dialog modal-md">
-      <div class="modal-content">
+      <div class="modal-content ">
          <div class="color-line"></div>
-         <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
+         <div class="modal-header " style="height:50px;padding-top:10px;padding-bottom:0px">
             <h3 class="modal-title"><font color="#6a6c6f" size="4em"><i class="fa fa-table"></i> <b>사원 선택</b></font></h3>
          </div>
-         <div class="modal-body">
+         <div class="modal-body ">
          	<!-- <div class="hpanel"> -->
 	         	<ul class="nav nav-tabs">
 	                <li class="active"><a data-toggle="tab" href="#tab-1"><span style="font-weight: 600;font-size:13px">조직도</span></a></li>
@@ -230,7 +238,7 @@ $(function(){
          <div class="modal-footer">
             <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>
          </div>
-      
    </div>
 </div>
 </div>
+ 

@@ -444,9 +444,9 @@ ul {
       		                  
       		                    
       		                  if(con_sear == 1){  
-                                  makeTable = "<table class='table table-condensed table-bordered'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th><th style='text-align:center'>선택</th></tr>";
+                                  makeTable = "<table class='table table-condensed table-bordered  table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th><th style='text-align:center'>선택</th></tr>";
                                }else if(con_sear ==2){
-                                  makeTable = "<table class='table table-condensed table-bordered'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
+                                  makeTable = "<table class='table table-condensed table-bordered  table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
                                }
                                
                                $.each(emp, function(index){
@@ -805,9 +805,9 @@ ul {
         // alert("selectNo : " + empSelectNumber);
          var makeTable = "";
          if(empSelectNumber == 1){
-          makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th>직위</th><th>선택</th></tr>";
+          makeTable = "<table class='table table-condensed table-hover'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th>직위</th><th>선택</th></tr>";
          }else{
-          makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
+          makeTable = "<table class='table table-condensed table-hover'><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
          }
          
          $.ajax(

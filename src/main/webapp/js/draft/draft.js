@@ -418,9 +418,9 @@ $(function() {
     	       
     	       var makeTable ="";
     	       if(empSelectNumber != 3){
-    	    	   makeTable = "<table class='table table-condensed' ><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
+    	    	   makeTable = "<table class='table table-condensed table-hover' ><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
     	       }else{
-    	    	    makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th></tr>";
+    	    	    makeTable = "<table class='table table-condensed table-hover'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th></tr>";
     	       }
     	     
     	       $.ajax(

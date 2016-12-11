@@ -1,6 +1,7 @@
 package kr.or.epm.PageMoveController;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,14 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.epm.MailController.ReceiveMailImap;
 import kr.or.epm.Service.CompanyBoardService;
+import kr.or.epm.Service.DraftService;
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.ProjectService;
 import kr.or.epm.Service.PushService;
 import kr.or.epm.Util.Util;
+import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Company;
+import kr.or.epm.VO.Cooperation;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Mail;
+import kr.or.epm.VO.Office;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Task;
 
@@ -38,6 +43,9 @@ public class PageMoveController {
 	
 	@Autowired
 	private CompanyBoardService companyBoardService;
+	
+	@Autowired
+	private DraftService service2;
 	
 	@Autowired
 	private ProjectService projectservice;
@@ -79,7 +87,6 @@ public class PageMoveController {
 		//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
 		if(emp_no_chk==false){
 			id = principal.getName();			
-			System.out.println("아이디+++++++++++++++++++++++++  : "+id);
 			String empinfo = service.selectUserName(id);
 			session.setAttribute("userName", empinfo);
 		}
@@ -99,8 +106,6 @@ public class PageMoveController {
  				System.err.println(e.getMessage());
  			}finally{
  				model.addAttribute("tasklist", tasklist);
- 				System.out.println("미확인 업무 tasklist tostring : "+tasklist.toString());
- 				System.out.println("미확인 업무 tasklist size : "+tasklist.size());
  				//model.addAttribute("tasklistsize", tasklist.size());
  			}
  			
@@ -118,8 +123,6 @@ public class PageMoveController {
  				System.err.println(e.getMessage());
  			}finally{
  				model.addAttribute("mytasklist", mytasklist);
- 				System.out.println("mytasklist.size() : "+mytasklist.size());
- 				System.out.println("~~~~~~~~~~~~~~~~~~~mytasklist tostirng : "+mytasklist.toString());
  				//model.addAttribute("mytasklistsize", mytasklist.size());
  			}
  			
@@ -156,12 +159,12 @@ public class PageMoveController {
 		}else{
 			try{
 				deptavg = pushService.avgcommute_dept(emp_no);
-				System.out.println("@!@!@!@!@!부서의 평균 근무시간 : "+deptavg);
+				//System.out.println("@!@!@!@!@!부서의 평균 근무시간 : "+deptavg);
 				if(deptavg==null){
 					deptavg="0";
 				}
 				myavg = pushService.avgcommute_my(emp_no);
-				System.out.println("@!@!@!@!@!나의 평균 근무시간 : " + myavg);
+				//System.out.println("@!@!@!@!@!나의 평균 근무시간 : " + myavg);
 				if(myavg==null){
 					myavg="0";
 				}
@@ -185,7 +188,7 @@ public class PageMoveController {
  		}else{
  			try{
  				pjlist = projectservice.selectPj_callendar(emp_no); 				
- 				System.out.println("@@@@@@@프로젝트 리스트 사이즈 : " +pjlist.size());
+ 				//System.out.println("@@@@@@@프로젝트 리스트 사이즈 : " +pjlist.size());
  			}catch(Exception e){
  				System.err.println(e.getMessage());
  			}finally{
@@ -204,19 +207,99 @@ public class PageMoveController {
  			}catch(Exception e){
  				System.err.println(e.getMessage());
  			}finally{ 				
- 				System.out.println("approve_pjlist size : "+approve_pjlist.size());
+ 				//System.out.println("approve_pjlist size : "+approve_pjlist.size());
  				model.addAttribute("approve_pjlist", approve_pjlist);
  			}
  		}
 		
+		 /////////////////////////인덱스에 띄워 줄 전자결재 내용 구하기 시작////////////////////////////////////////////////////
+		// 대외발신공문
+		// 목록 가져오기
+		List<Office> officelist_ex = service2.selectOffice_rec(emp_no);
+		List<Office> officelist = new ArrayList<Office>();
+		System.out.println("officelist_ex : "+officelist_ex.toString());
+		System.out.println("officelist_ex : "+officelist_ex.size());
+		
+		if(officelist_ex.size() >= 5){
+			for(int i=0; i< 5; i++){
+				officelist.add(officelist_ex.get(i));
+			}
+			
+		}else if(officelist_ex.size() == 0){
+			officelist.add(null);
+		}else{
+			for(int i=0; i< officelist_ex.size(); i++){
+				officelist.add(officelist_ex.get(i));
+			}
+		}
+		System.out.println("##############################");
+		System.out.println("officelist.: " +officelist.toString());
+		System.out.println("officelist 사이즈: " +officelist.size());
+		model.addAttribute("officelist", officelist);
 		
 		
+		
+		// 협조문
+		// 목록 가져오기
+		List<Cooperation> cooperationlist_ex = service2.selectCooperation_rec(emp_no);
+		List<Cooperation> cooperationlist = new ArrayList<Cooperation>();
+		
+		System.out.println("cooperationlist_ex : "+cooperationlist_ex.toString());
+		System.out.println("cooperationlist_ex : "+cooperationlist_ex.size());
+		
+		if(cooperationlist_ex.size() >= 5){
+			for(int i=0; i< 5; i++){
+				cooperationlist.add(cooperationlist_ex.get(i));
+			}
+			
+		}else if(cooperationlist_ex.size() == 0){
+			cooperationlist.add(null);
+		}else{
+			for(int i=0; i< cooperationlist_ex.size(); i++){
+				cooperationlist.add(cooperationlist_ex.get(i));
+			}
+		}
+		System.out.println("##############################");
+		System.out.println("cooperationlist.: " +cooperationlist.toString());
+		System.out.println("cooperationlist 사이즈: " +cooperationlist.size());
+		model.addAttribute("cooperationlist", cooperationlist);
+		
+
+		// 휴가신청서
+		// 목록 가져오기
+		List<Break> breaklist_ex = service2.selectBreak_rec(emp_no);
+		List<Break> breaklist = new ArrayList<Break>();
+		
+		System.out.println("breaklist_ex : "+breaklist_ex.toString());
+		System.out.println("breaklist_ex : "+breaklist_ex.size());
+		if(breaklist_ex.size() >= 5){
+			for(int i=0; i< 5; i++){
+				breaklist.add(breaklist_ex.get(i));
+			}
+			
+		}else if(breaklist_ex.size() == 0){
+			breaklist.add(null);
+		}else{
+			for(int i=0; i< breaklist_ex.size(); i++){
+				breaklist.add(breaklist_ex.get(i));
+			}
+		}
+		System.out.println("##############################");
+		System.out.println("breaklist.: " +breaklist.toString());
+		System.out.println("breaklist 사이즈: " +breaklist.size());
+		
+		
+		model.addAttribute("breaklist", breaklist);
+		
+		
+		
+
 
         
         /////////////////////////인덱스에 띄워 줄 메일 내용 구하기 시작////////////////////////////////////////////////////
 
     	//메인에 띄워 줄 메일 토탈 카운트 구하기
-        List<Mail> mail =  null;
+/*        List<Mail> mail =  null;
 		String mailid = (String)session.getAttribute("googlemail");
         String sessionchk=(String)session.getAttribute("mailusedata");
         boolean test = Util.isEmpty(sessionchk);
@@ -248,7 +331,7 @@ public class PageMoveController {
 			
 			model.addAttribute("cpage", cpage);
 			model.addAttribute("psize", pgsize);
-		}
+		}*/
 
 		
 		return "home.index";

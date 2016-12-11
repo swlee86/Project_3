@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--근태 관리 메인 페이지-->
-<div class="normalheader transition animated fadeIn">
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
 			<a class="small-header-action" href="">
@@ -12,19 +12,20 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Calendar</span></li>
+					<li><a href="index.html">홈</a></li>
+					<li><span>근태 관리</span></li>
+					<li class="active"><span>일일 근태 관리</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">일일근태등록</h2>
+			<small>출근 퇴근을 할때 꼭 입력해주세요!</small>
 		</div>
 	</div>
 </div>
 	
+<div class="content animate-panel ">
 <div class="row">
 	<div class="col-lg-12">
-		<div class="normalheader transition animated fadeIn">
 			<div class="hpanel">
 				<div class="panel-heading hbuilt">
 					<form action="" class="form-inline">

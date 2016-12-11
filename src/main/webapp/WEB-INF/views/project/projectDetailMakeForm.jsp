@@ -4,6 +4,48 @@
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" /> 
 <script src="vendor/toastr/build/toastr.min.js"></script>
  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+ <style>
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  max-width: 600px;
+  margin: 10px;
+}
+.modal-sm {
+  max-width: 300px;
+}
+.modal-lg {
+  max-width: 900px;
+}
+@media (min-width: 768px) {
+  .modal-dialog {
+    margin: 30px auto;
+  }
+}
+@media (min-width: 320px) {
+  .modal-sm {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 620px) {
+  .modal-dialog {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .modal-lg {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+@media (min-width: 920px) {
+  .modal-lg {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+ </style>
 <script>
  $(function(){
 	 var totalpj_start = new Date($('#pj_start').val());
@@ -267,7 +309,7 @@
 
 
 <div class="modal fade hmodal-success" id="myModal7" tabindex="-1" role="dialog" aria-hidden="true">
-   <div class="modal-dialog modal-md">
+   <div class="modal-dialog modal-lg">
       <div class="modal-content">
          <div class="color-line"></div>
          <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
@@ -283,11 +325,21 @@
 	        		<div id="tabp-1" class="tab-pane active">
 	        			<div class="panel-body">
 	        				<div class="row">  
-				               <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="porganization">
+				               <div class="groupdiv2 col-md-3" style="border: 1px solid #ddd;" id="porganization">
 				                  
 				               </div>   
-				               <div class=" col-md-8" id="emppList" >
+				               <div class=" col-md-4" id="emppList" >
 				                  	
+				               </div>
+				               <div class=" col-md-1">
+				               		<button class='btn  btn-success' type="button" onclick="precheck()"><i class='fa fa-chevron-right'></i></button>
+				               		<br><Br>
+				               		<button class='btn  btn-default' type="button" style="color:#62cb31" onclick="precheck_cancel()"><i class='fa fa-chevron-left'></i></button>
+				               </div>  
+				                <div class=" col-md-4" style="border: 1px solid #ddd;"   >
+				                	<div class="row"><div style="background-color:#f6f6f6;font-size:15px;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><i class="fa fa-users"></i>선택된 사원</div></div>
+				                	
+				                  	<div id="empList_list">선택된 사원이 없습니다.</div> 	
 				               </div>
 				            </div>
 	        			</div>
