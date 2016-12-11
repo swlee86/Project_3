@@ -95,7 +95,8 @@ public class AdminEmpController {
 	}
 	
 	// 사원 권한 부여 페이지
-	public String adminAuthority(Model model) {
+	@RequestMapping(value="adminEmp_authority.do", method=RequestMethod.GET)
+	public String adminAuthority() {
 		System.out.println("CONTROLLER] 사원 권한 부여 페이지");
 		
 		return "adminMember.adminAuthority";

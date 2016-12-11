@@ -60,16 +60,18 @@ public class ProjectController {
 		String empno = (String)session.getAttribute("emp_no");
 		
 		String taskcount = pushservice.taskCount(empno);
-		String projectcount = pushservice.myprojectCount(empno);
+		//String projectcount = pushservice.myprojectCount(empno);
+		String projectcount= pushservice.myprojectCount(empno);
 		String taskApproval = pushservice.taskApproval(empno);
 		String projectApproval = pushservice.projectApproval(empno);
 		
-		System.out.println("***************************:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% projectcount : "+projectcount);
+		System.out.println("***************************:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% projectcount : "+projectcount +"///////////"+projectApproval);
 		
 		resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount)+Integer.parseInt(taskApproval)+Integer.parseInt(projectApproval);	
 		session.setAttribute("sessionApprovalcount", projectApproval);
 		session.setAttribute("sessionpushcount", resultdata);
 		
+		session.setAttribute("sessionprojectcount", projectcount);
 		
 		System.out.println("pj_no : "+pj_no);
 		Pj pj = projectservice.selectPj_detail(pj_no);

@@ -18,7 +18,8 @@ public interface PushDAO {
    String taskCount(String emp_no);
    
    //내가 작성한 프로젝트 개수 구하기
-   String projectMyCount(String emp_no);
+   //String projectMyCount(String emp_no);
+   String myprojectCount(String emp_no);
    
    List<Task> selecttasklist(String emp_no, int start, int end);
    
@@ -26,8 +27,7 @@ public interface PushDAO {
    
    List<Pj> selectPj_rec(String emp_no, int start, int end);
    
-   String myprojectCount(String emp_no);
-   
+  
    List<Commute> commutelist(String emp_no, String startData, String endData);
    
    //평균 근무시간 - 부서
