@@ -29,7 +29,7 @@ public class AdminEmpController {
 
 	// 사원 정보 리스트 출력 페이지
 	@RequestMapping(value="/adminEmp_list.do", method=RequestMethod.GET)
-	public String adminEmp_list(Model model, String pagesize, String currentpage) {
+	public String adminEmp_list(Model model, String pagesize, String currentpage, String f , String q ) {
 		System.out.println("CONTROLLER] 사원 정보 리스트 출력 페이지");
 		int pagecount = 0;
 		
@@ -43,17 +43,36 @@ public class AdminEmpController {
 			currentpage = "1";
 		}
 		
+		
+		String field = "emp_no";
+		String query ="%%";
+		
+		if(f != null && !f.equals("")){
+			field = f;
+		}
+		if(q != null && !q.equals("")){
+			query = q;
+		}
+		
+		
 		int pgsize = Integer.parseInt(pagesize);
 		int cpage = Integer.parseInt(currentpage);
 		
-		List<Emp> list = service.selectEmpList(cpage, pgsize);
-		int totalcount = list.size();
+		int totalcount = service.selectCount(field, query);  //전체 갯수 구하는 함수
+		
+		//List<Emp> list = service.selectEmpList(cpage, pgsize);
+		//int totalcount = list.size();
 				
 		if (totalcount % pgsize == 0) {
 			pagecount = totalcount / pgsize;
 		} else {
 			pagecount = (totalcount / pgsize) + 1;
 		}
+		
+		List<Emp> list = service.selectEmpList(cpage, pgsize,field, query);
+		
+		
+		
 		
 		model.addAttribute("list", list);
 		model.addAttribute("cpage", cpage);

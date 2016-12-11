@@ -7,6 +7,11 @@
 	목 적  	: 사원 관리 리스트 view
 -->
  
+ <script>
+ $(function(){
+	 
+ });
+ </script>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -38,9 +43,9 @@
             <div class="panel-body">
 				<div class="row text-right" id="search_panel">
 					<div class="col-md-7">
-						<form name="list">
+						<form name="list" action="adminEmp_list.do">
 							<select name="pagesize" onchange="submit()" 
-								    class="form-control" style="width: 20%; margin-left: 80%">
+								    class="form-control input-sm" style="width: 20%; margin-left: 80%">
 								<c:forEach var="i" begin="10" end="100" step="10">
 								<c:choose>
 									<c:when test="${pagesize == i}">
@@ -56,15 +61,15 @@
 					</div>
 					
 					<!-- 검색 -->
-						<form action="" class="form-inline">
+						<form action="adminEmp_list.do" class="form-inline"  action="adminEmp_list.do">
 							<div class="col-md-1">
 								<div class="form-group">
-									<select class="form-control input-sm">
-										<option>사원번호</option>
-										<option>이름</option>
-										<option>부서</option>
-										<option>하위부서</option>
-										<option>직위</option>
+									<select class="form-control input-sm" name="f">
+										<option value="emp_no">사원번호</option>
+										<option value="emp_name">이름</option>
+										<!-- <option value="dept_no">부서</option>
+										<option value="low_dept_no">하위부서</option>
+										<option value="position_no">직위</option> -->
 									</select>
 								</div>
 							</div>
@@ -72,7 +77,7 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control input-sm" name="s" />
+										<input type="text" class="form-control input-sm" name="q" />
 										<span class="input-group-btn">
 											<button class="btn btn-default input-sm" type="submit">
 												<span class="fa fa-search"></span>

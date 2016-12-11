@@ -318,75 +318,74 @@
 			</div>
 		</div>
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		<div class="col-lg-6">
 			<div class="hpanel">
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#task-1"><b>진행중 업무</b></a></li>
-					<li class=""><a data-toggle="tab" href="#task-2"><b>미확인 업무</b></a></li>
+					<li class="active"><a data-toggle="tab" href="#draft-1"><b>미승인 대외발신공문</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-2"><b>미승인 협조문</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-3"><b>미승인 휴가신청서</b></a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="task-1" class="tab-pane active">	
+				
+					<!-- 대외발신공문 -->
+					<div id="draft-1" class="tab-pane active">	
 						<div class="panel-body list">
-							<div class="table-responsive project-list">
+							<div class=" project-list">
 								<table class="table table-striped table-condensed">
 									<thead>
 										<tr>
-											<th>업무명</th>
-											<th style="text-align:center">마감일</th>
-											<th style="text-align:center">진행단계</th>
-											<th style="text-align:center">요청자명</th>
-											<th style="text-align:center">중 &nbsp;&nbsp; 요</th>
+											<th>기안 제목</th>
+											<th style="text-align:center">수신처</th>
+											<th style="text-align:center">기안자</th>
+											<th style="text-align:center">승인결과</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="mytasklist" items="${mytasklist}" > 
+										<c:forEach var="office" items="${officelist}" > 
 											<tr>
-												<c:choose>
-													<c:when test="${mytasklist.deadline < systemdate}">
-														<td><a style="color: red"
-															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																${mytasklist.send_date}</small></td>
-													</c:when>
-													<c:when test="${mytasklist.deadline == systemdate}">
-														<td><a style="color: blue"
-															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																${mytasklist.send_date}</small></td>
-													</c:when>
-													<c:otherwise>
-														<td><a
-															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																${mytasklist.send_date}</small></td>
-													</c:otherwise>
-												</c:choose>
-												<td style="text-align:center">${mytasklist.deadline}</td>
-												<td style="text-align:center">
-												 <c:choose>
-												<c:when test="${mytasklist.task_step_no == '1'}">
-														<button class="btn btn-xs btn-warning" disabled><small>&nbsp;&nbsp;진&nbsp;행&nbsp;&nbsp;</small></button>
-													</c:when>
-													<c:when test="${mytasklist.task_step_no == '2'}">
-														<button class="btn btn-xs btn-warning2" disabled><small>&nbsp;미진행&nbsp;</small></button>
-													</c:when>
-													<c:when test="${mytasklist.task_step_no == '3' }">
-														<button class="btn btn-xs btn-primary2" disabled><small>&nbsp;&nbsp;보&nbsp;류&nbsp;&nbsp;</small></button>
-													</c:when>
-													<c:when test="${mytasklist.task_step_no== '4'}">
-														<button class="btn btn-xs btn-info" disabled><small>&nbsp;&nbsp;완&nbsp;료&nbsp;&nbsp;</small></button>
-													</c:when>
-													<c:when test="${mytasklist.task_step_no== '5'}">
-														<button class="btn btn-xs btn-danger" disabled><small>&nbsp;&nbsp;중&nbsp;단&nbsp;&nbsp;</small></button>
-													</c:when>
-												</c:choose> 
-												
+
+												<td><a href="office_detail.do?draft_no=${ office.draft_no }">${ office.draft_title }</a><br />
+													<small><i class="fa fa-clock-o"></i>.&nbsp;
+													${office.draft_date}</small>
 												</td>
-												<td style="text-align:center">${mytasklist.emp_name}</td>
+
+
+
+												<td style="text-align:center"><small>${ office.rec_addr}</small></td>
 												<td style="text-align:center">
-													<c:if test="${mytasklist.sign == 1}">
-														<i class="fa fa-check text-success"></i>
-													</c:if>
+												 ${ office.emp_name }  <small>${ office.emp_no }</small>
+												</td>
+												<td style="text-align:center">
+													<c:choose>
+														<c:when test="${ office.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose>
+
+
 												</td>
 											</tr>
 										</c:forEach>
@@ -394,63 +393,121 @@
 								</table>
 							</div>
 							<div class="pull-right">
-								<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
 							</div>	
-						</div>	
-									
+						</div>				
 					</div>
 				
-					<div id="task-2" class="tab-pane "> <!-- 미확인 -->
+					<!-- 협조문 -->
+					<div id="draft-2" class="tab-pane "> 
 						<div class="panel-body list">	
 							
 							<!-- <div class="panel-body"> -->
-								<div class="table-responsive project-list">
+								<div class=" project-list">
 									<table class="table table-striped table-condensed">
 										<thead>
 											<tr>
-												<th>업무명</th>
-												<th style="text-align:center">마감일</th>
-												<th style="text-align:center">요청자명</th>
-												<th style="text-align:center">첨부파일</th>
+												<th>기안 제목</th>
+												<th style="text-align:center">수신 부서</th>
+												<th style="text-align:center">기안자</th>
+												<th style="text-align:center">승인 결과</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="tasklist" items="${tasklist}">
+											<c:forEach var="cooper" items="${cooperationlist}">
 												<tr>
-													<c:choose>
-														<c:when test="${tasklist.send_date < systemdate}">
-															<td><a style="color: red"
-																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																	${tasklist.send_date }</small></td>
-														</c:when>
-														<c:when test="${tasklist.send_date == systemdate}">
-															<td><a style="color: blue"
-																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																	${tasklist.send_date }</small></td>
-														</c:when>
-														<c:otherwise>
-															<td><a
-																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																	${tasklist.send_date }</small></td>
-														</c:otherwise>
-													</c:choose>
-													<td style="text-align:center">${tasklist.deadline}</td>
-													<td style="text-align:center">${tasklist.emp_name}</td>
-													<td style="text-align:center">
-														<c:if test="${not empty tasklist.file_name}">
-															<b><i class="fa fa-paperclip text-success"></i></b>
-														</c:if>
+													
+												<td><a href="cooperation_detail.do?draft_no=${cooper.draft_no}">${cooper.draft_title }</a><br />
+													<small><i class="fa fa-clock-o"></i>.&nbsp;
+														${cooper.draft_date}</small>
 													</td>
+													
+													<td style="text-align:center">${cooper.low_dept_name} <small>${ cooper.branch_name } ${ cooper.dept_name }</small></td>
+													<td style="text-align:center">${cooper.emp_name}<br><small>${ cooper.emp_no }</small></td>
+													<td style="text-align:center"><c:choose>
+														<c:when test="${ cooper.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose></td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 								</div>
 							<div class="pull-right">
-								<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					<div id="draft-3" class="tab-pane "> 
+						<div class="panel-body list">	
+							
+							<!-- <div class="panel-body"> -->
+								<div class=" project-list">
+									<table class="table table-striped table-condensed">
+										<thead>
+											<tr>
+												<th >기안 제목</th>
+												<th style="text-align:center">휴가기간</th>
+												<th style="text-align:center">기안자</th>
+												<th style="text-align:center">승인 결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="br" items="${breaklist}">
+												<tr>
+													
+													<td  ><a href="break_detail.do?draft_no=${ br.draft_no }">${ br.draft_title }</a><br />
+														<small><i class="fa fa-clock-o"></i>.&nbsp;
+															${br.draft_date }</small>
+													</td>
+														
+													<td style="text-align:center">${ br.break_cg_name } <small>${ br.break_term } 일</small></td>
+													<td style="text-align:center"> ${ br.emp_name }<br><small>${ br.emp_no }</small></td>
+													<td style="text-align:center">
+														<c:choose>
+														<c:when test="${ br.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose></td>
+														
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							<div class="pull-right">
+								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
 							</div>
 						</div>
 					</div>

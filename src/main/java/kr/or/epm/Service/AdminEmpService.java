@@ -32,14 +32,19 @@ public class AdminEmpService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	public int selectCount(String field, String query) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	// 사원 정보 리스트 출력
-	public List<Emp> selectEmpList(int cpage, int pgsize) {
+	public List<Emp> selectEmpList(int cpage, int pgsize, String field, String query) {
 		System.out.println("SERVICE] 사원 정보 리스트 출력합니다");
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
 		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<Emp> list = dao.selectEmp_list(start, end);
+		List<Emp> list = dao.selectEmp_list(start, end,field,query);
 		
 		return list;
 	}
@@ -202,4 +207,6 @@ public class AdminEmpService {
 		
 		return list;
 	}
+
+
 }
