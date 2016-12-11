@@ -35,14 +35,14 @@ public class AdminEmpService {
 	
 	// 사원 정보 리스트 출력
 	// public List<Emp> selectEmpList(int cpage, int pgsize) {
-	 public List<Emp> selectEmpList() {
-			System.out.println("SERVICE] 사원 정보 리스트 출력합니다");
+	 public List<Emp> selectEmpList(int cpage, int pgsize, String field, String query) {
+		System.out.println("SselectEmpList() 서비스");
 		//int start = cpage * pgsize - (pgsize - 1);
 		//int end = cpage * pgsize;
 		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		// List<Emp> list = dao.selectEmp_list(start, end);
-		List<Emp> list = dao.selectEmp_list();
+		List<Emp> list = dao.selectEmp_list(cpage, pgsize,field,query);
+		//List<Emp> list = dao.selectEmp_list();
 		
 		return list;
 	}
@@ -254,5 +254,15 @@ public class AdminEmpService {
 		List<Emp_role> list = dao.selectEmp_role(emp_no);
 		
 		return list;
+	}
+
+	//전체갯수
+	public int selectCount(String field, String query) {
+		System.out.println("selectCount() 서비스");
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		int totalcount = 0;
+		totalcount = dao.selectCount( field, query);
+		
+		return totalcount;
 	}
 }

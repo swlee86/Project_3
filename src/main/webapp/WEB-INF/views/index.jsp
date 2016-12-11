@@ -393,7 +393,7 @@
 								</table>
 							</div>
 							<div class="pull-right">
-								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
 							</div>	
 						</div>				
 					</div>
@@ -448,7 +448,7 @@
 									</table>
 								</div>
 							<div class="pull-right">
-								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
 							</div>
 						</div>
 					</div>
@@ -507,7 +507,7 @@
 									</table>
 								</div>
 							<div class="pull-right">
-								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
 							</div>
 						</div>
 					</div>

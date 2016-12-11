@@ -7,7 +7,7 @@
         <div class="profile-picture">
             
             <a href="${pageContext.request.contextPath}/index.do">
-                <img src="${pageContext.request.contextPath}/images/ss.jpg" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
+                <img src="${pageContext.request.contextPath}/img/upload/${Emp.pic}" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
             </a>
 			<div class="stats-label text-color">
                 <span class="font-extra-bold font-uppercase">${Emp.emp_name} 님 환영합니다.</span>
