@@ -116,7 +116,7 @@
                         <td>${list.position_name}</td>
                         <td>${list.emp_name}</td>
                         <td>
-                        	<!-- <img alt="사진" src="images/a4.jpg" class="img-circle m-b"> -->
+                        	<img alt="사진" src="images/a4.jpg" class="img-circle m-b">
                         	<!-- <img alt="사진" src="images/${list.pic}" class="img-circle m-b"> -->
                         </td>
                         <td>${list.cg_name}</td>

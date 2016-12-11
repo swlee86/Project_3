@@ -1,6 +1,9 @@
 package kr.or.epm.AjaxController;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import kr.or.epm.Service.AdminEmpService;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Low_dept;
+import net.sf.json.JSONArray;
 
 /*
  * 작성자 : 백승아
@@ -94,6 +98,36 @@ public class AdminEmpAjaxController {
 		
 		int result = service.deleteEmp(emp_no);
 		model.addAttribute("result", result);
+		
+		return jsonview;
+	}
+	
+	// 직위를 기준으로 사원에서 권한을 부여
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/adminEmp_authority.do", method=RequestMethod.POST)
+	public View adminEmp_authority(HttpServletRequest request, Model model) {
+		System.out.println("CONTROLLER] 권한 부여");
+		
+		String param = request.getParameter("param");
+		List<String> rolelist = new ArrayList<String>();
+		rolelist = JSONArray.fromObject(param);
+		
+		String position_no = request.getParameter("position_no");
+		
+		// 선택된 position_no를 가진 emp_no들을 뽑는다
+		List<String> emplist = service.selectEmp_no(position_no);
+		
+		// 뽑은 emp_no에 선택된 role_no들을 넣는다
+		for(String emp_no : emplist) {
+			service.deleteEmp_role(emp_no);
+			for(String role_no : rolelist) {
+				System.out.println("emp_no : " + emp_no);
+				System.out.println("role_no : " + role_no);
+				service.insertEmp_role(emp_no, role_no);
+			}
+		}
+
+		model.addAttribute("result", "성공");
 		
 		return jsonview;
 	}

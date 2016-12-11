@@ -34,6 +34,9 @@
     <!-- alert 창 -->
 	<link rel="stylesheet" href="vendor/sweetalert/lib/sweet-alert.css" />
 
+<!-- 드래그앤드롭? -->
+<link rel="stylesheet" href="vendor/jquery-ui/themes/base/all.css">
+
 <!--jQuery UI CSS-->
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"

@@ -180,4 +180,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		having count(role_no) &gt;= 1
 	</select>
 	
+	<!-- 권한 부여 -->
+	<insert id="insertEmp_role">
+		insert into emp_role(role_no, emp_no)
+		values(#{param2}, #{param1})
+	</insert>
+	
+	<!-- 권한 부여를 위해 position_no에 해당하는 사원 리스트 불러오기 -->
+	<select id="selectEmp_no" resultType="String">
+		select emp_no
+		from emp
+		where position_no = #{position_no}
+	</select>
+	
+	<!-- 권한 부여를 위해 해당 사원의 권한 전부 삭제하기 -->
+	<delete id="deleteEmp_role">
+		delete from emp_role
+		where emp_no = #{emp_no}
+	</delete>
+	
+	<!-- 권한 부여 상세 페이지를 위해 사원의 리스트 불러오기 -->
+	<select id="selectEmp_authority" resultType="kr.or.epm.VO.Emp">
+		select e.emp_no, emp_name, branch_name, 
+       		   dept_name, low_dept_name, position_name, 
+       		   pic, birth, cell_phone, cg_name
+		from emp e join emp_cg c
+		on e.cg_no = c.cg_no
+		join low_dept l
+		on e.low_dept_no = l.low_dept_no
+		join position p
+		on e.position_no = p.position_no
+		where e.position_no = #{position_no}
+		order by branch_name asc, dept_name asc, low_dept_name asc
+	</select>
+	
+	<!-- 권한 부여 상세 페이지를 위해 해당 사원의 권한 불러오기 -->
+	<select id="selectEmp_role" resultType="kr.or.epm.VO.Emp_role">
+		select er.role_no, emp_no, role_name, role_exp
+		from emp_role er join role r
+		on er.role_no = r.role_no
+		where emp_no = #{emp_no}
+		order by to_number(emp_no)
+	</select>
 </mapper>

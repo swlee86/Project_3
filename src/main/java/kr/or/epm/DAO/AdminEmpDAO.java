@@ -6,6 +6,7 @@ import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
+import kr.or.epm.VO.Emp_role;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.Role;
@@ -73,4 +74,19 @@ public interface AdminEmpDAO {
 	
 	// 권한 부여 페이지를 위해 부여되어 있는 권한 리스트 불러오기
 	public List<String> selectRole_selected(String position_no);
+	
+	// 권한 부여
+	public int insertEmp_role(String emp_no, String role_no);
+	
+	// 권한 부여를 위해 직위에 해당하는 사원 리스트 불러오기
+	public List<String> selectEmp_no(String position_no);
+	
+	// 권한 부여를 위해 해당 사원의 권한 전부 삭제하기
+	public int deleteEmp_role(String emp_no);
+	
+	// 권한 부여 상세 페이지를 위해 사원의 리스트 불러오기
+	public List<Emp> selectEmp_authority(String position_no);
+	
+	// 권한 부여 상세 페이지를 위해 해당 사원의 권한 불러오기
+	public List<Emp_role> selectEmp_role(String emp_no);
 }
