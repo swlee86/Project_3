@@ -72,7 +72,7 @@ $(function(){
         </div>
         <div class="navbar-right">
             <ul class="nav navbar-nav no-borders">
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                         <i class="pe-7s-speaker"></i>
                     </a>
@@ -94,7 +94,7 @@ $(function(){
                         </li>
                         <li class="summary"><a href="#">See all notifications</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                         <i class="pe-7s-keypad"></i>
@@ -107,39 +107,42 @@ $(function(){
                                 <td>
                                     <a href="project_list.do">
                                         <i class="pe pe-7s-portfolio text-info"></i>
-                                        <h5>Projects</h5>
+                                        <h5>전체 프로젝트</h5>
                                     </a>
                                 </td>
                                 <td>
                                     <a href="mailbox.do">
                                         <i class="pe pe-7s-mail text-warning"></i>
-                                        <h5>Email</h5>
+                                        <h5>E-mail</h5>
                                     </a>
                                 </td>
                                 <td>
                                     <a href="contacts.do">
                                         <i class="pe pe-7s-users text-success"></i>
-                                        <h5>Contacts</h5>
+                                        <h5>주소록</h5>
                                     </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="free_board_list.do">
-                                        <i class="pe pe-7s-comment text-info"></i>
-                                        <h5>Forum</h5>
+                                    <a href="taskRequest.do">
+                                    	<i class="pe-7s-note2 text-warning2"></i>
+                                      <!--   <i class="pe pe-7s-comment "></i> -->
+                                        <h5>업무 요청</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="analytics.do">
-                                        <i class="pe pe-7s-graph1 text-danger"></i>
-                                        <h5>Refund</h5>
+                                    <a href="team_member.do">
+                                    	<i class="pe-7s-network text-danger"></i>
+                                        <!-- <i class="pe pe-7s-graph1 "></i> -->
+                                        <h5>조직도</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="file_manager.html">
-                                        <i class="pe pe-7s-box1 text-success"></i>
-                                        <h5>Files</h5>
+                                    <a href="draft_rec.do">
+                                     	<i class="pe-7s-pen text-primary"></i>
+                                       <!--  <i class="pe pe-7s-box1 "></i> -->
+                                        <h5>전자결재 수신함</h5>
                                     </a>
                                 </td>
                             </tr>
@@ -203,11 +206,11 @@ $(function(){
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#" id="sidebar" class="right-sidebar-toggle">
                         <i class="pe-7s-upload pe-7s-news-paper"></i>
                     </a>
-                </li>
+                </li> -->
                 
                 <c:if test="${empty pageContext.request.userPrincipal}">
 					<li>

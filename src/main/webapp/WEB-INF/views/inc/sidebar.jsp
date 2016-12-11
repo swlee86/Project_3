@@ -10,7 +10,7 @@
                 <img src="${pageContext.request.contextPath}/img/upload/${Emp.pic}" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
             </a>
 			<div class="stats-label text-color">
-                <span class="font-extra-bold font-uppercase">${Emp.emp_name} 님 환영합니다.</span>
+                <span class="font-extra-bold font-uppercase"><i class="fa fa-user"></i> ${Emp.emp_name}님 환영합니다</span>
 					
 			</div>
         </div>
@@ -33,9 +33,9 @@
                 <ul class="nav nav-second-level">
                     <li><a href="mailbox.do">메일 읽기</a></li>
                     <li><a href="mailbox_compose.do">메일 쓰기</a></li>
-                    <li><a href="mailbox_send.do">보낸메일함 (수신 확인)</a></li>
-                    <li><a href="#">스팸 메일 관리</a></li>
-                    <li><a href="mailbox_trash.do">휴지통</a></li>
+                    <li><a href="mailbox_send.do">보낸 메일함 </a></li>
+                   <!--  <li><a href="#">스팸 메일 관리</a></li>
+                    <li><a href="mailbox_trash.do">휴지통</a></li> -->
                 </ul>
             </li>
         <!--     <li>
