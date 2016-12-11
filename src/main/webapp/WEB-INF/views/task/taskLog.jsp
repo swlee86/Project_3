@@ -190,12 +190,13 @@
 							<!-- 검색 기준-->
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="" class="form-inline">
+								<input type="hidden" name="tab_char" value="2">
 									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
 										<tr>
 											<th style="text-align: right; padding-right: 20px;">
 											<select class="form-control input-sm" 
 													name="f_song"
-													id="selectSearch2" onchange="search()">
+													id="selectSearch2" onchange="search2()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>
