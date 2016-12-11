@@ -49,7 +49,7 @@ left outer join (select p.task_no, p.emp_no, t.cg_no
                  where p.emp_no = #{emp_no} and cg_no = '1') p
 on t.task_no = p.task_no
 where rec_emp_no = #{emp_no} and t.cg_no = '1' and t.step_no = '1' and t.task_step_no != '4'  and t.task_step_no != '5' or p.emp_no is not null
-order by to_date('1111-11-'||abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))), 'yyyy-mm-dd') asc
+order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
 ) where r between 1 and 5
 </select>
    
