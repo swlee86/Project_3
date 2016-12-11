@@ -608,7 +608,7 @@ public class TaskController {
 
 	// 업무보고 > 수신, 송신
 	@RequestMapping("/taskInform.do")
-	public String taskInform(HttpServletRequest request,String tab_char, String pg_rec , String f_rec , String pg_song , String f_song ,String pg_parti ,String q_rec,String q_song,  Model model) {
+	public String taskInform(HttpServletRequest request,String tab_char, String pg_rec , String f_rec , String pg_song , String f_song ,String q_rec, String q_song,  Model model) {
 
 		System.out.println("CONTROLLER] 업무 보고 수신 페이지");
 
@@ -653,6 +653,9 @@ public class TaskController {
 		if(f_rec != null && !f_rec.equals("")){
 			field_rec = f_rec;
 		}
+		
+		System.out.println("(((((((((((((q_rec : " + q_rec);
+		System.out.println(q_rec != null && !q_rec.equals(""));
 		if(q_rec != null && !q_rec.equals("")){
 			query_rec = q_rec;
 		}
@@ -677,6 +680,7 @@ public class TaskController {
 		
 		/////////////////////////////////////////////////////////////////
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println("field_rec : " + field_rec +"/ query_rec: "+query_rec);
 		// 수신
 		totalcount_rec = service.selectCount_rec(emp_no, cg_no , field_rec, query_rec);
 		if(totalcount_rec % pagesize == 0){       

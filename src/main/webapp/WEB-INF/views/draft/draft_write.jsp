@@ -198,9 +198,9 @@
 				                  	
 				               </div>  
 				               <div class=" col-md-1">
-				               		<button class='btn btn-sm btn-success' onclick="precheck()"><i class='fa fa-chevron-right'></i></button>
+				               		<button class='btn  btn-success' onclick="precheck()"><i class='fa fa-chevron-right'></i></button>
 				               		<br><Br>
-				               		<button class='btn btn-sm btn-default' onclick="precheck_cancel()"><i class='fa fa-chevron-left'></i></button>
+				               		<button class='btn  btn-default' style="color:#62cb31" onclick="precheck_cancel()"><i class='fa fa-chevron-left'></i></button>
 				               </div>  
 				                <div class=" col-md-4" style="border: 1px solid #ddd;"   >
 				                	<div class="row"><div style="background-color:#f6f6f6;font-size:15px;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><i class="fa fa-users"></i>선택된 사원</div></div>
