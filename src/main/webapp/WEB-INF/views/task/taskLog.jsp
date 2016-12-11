@@ -29,14 +29,14 @@
 			<div class="hpanel">
 				<!-- 탭 -->
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#tab-1">수신</a></li>
-					<li class=""><a data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class="<c:if test="${tab_char==1}">active</c:if>"><a data-toggle="tab" href="#tab-1">수신</a></li>
+					<li class="<c:if test="${tab_char==2}">active</c:if>"><a data-toggle="tab" href="#tab-2">송신</a></li>
 				</ul>
 				
 				<div class="tab-content">
 				
 				<!-- 수신 -->
-					<div id="tab-1" class="tab-pane active">
+					<div id="tab-1" class="tab-pane <c:if test="${tab_char==1}">active</c:if>">
 						<div class="panel-body">
 						<div class="panel-heading">
 							전체 : <font color="coral"> ${count1}</font> 개
@@ -45,12 +45,13 @@
 							
 						<!-- 검색 기준-->
 							<div class="row" style="background-color: #f3f3f3;">
-								<form action="" class="form-inline">
+								<form action="taskLog.do" class="form-inline">
+								<input type="hidden" name="tab_char" value="1">
 									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
 										<tr>
 											<th style="text-align: right; padding-right: 20px;">
 											<select class="form-control input-sm" 
-													name="selectSearch"
+													name="f_rec"
 													id="selectSearch" onchange="search()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
@@ -64,7 +65,7 @@
 												<div id="searchInput">
 													<input type="text" class="form-control input-sm"
 														   width="90%" style="height: 27px;" 
-														   name="input" id="input">
+														   name="q_rec" id="input">
 												</div>
 											</td>
 
@@ -75,11 +76,11 @@
 												<span class="fa fa-search"></span>&nbsp; 검색 &nbsp;
 												</button>
 
-												<button class="btn btn-sm"
+												<!-- <button class="btn btn-sm"
 														style="background-color: #f07070; color: white"
 														onclick="window.location.href='taskLog.do'">
 												<span class="fa fa-search"></span>&nbsp; 전체보기&nbsp;
-												</button>
+												</button> -->
 											</td>
 										</tr>
 									</table>
@@ -145,25 +146,41 @@
 						</div>
 						
 						<!-- 페이징 처리 -->
-						<div class="panel-footer" style="text-align: center; background-color: #f5f5f5">
+						<div class="panel-footer" style="text-align: center">
 							<div class="btn-group">
-								<button type="button" class="btn btn-default"> &nbsp;
-									<i class="fa fa-chevron-left"></i>
-								</button>
-								<button class="btn btn-default active">1</button>
-								<button class="btn btn-default">2</button>
-								<button class="btn btn-default">3</button>
-								<button class="btn btn-default">4</button>
-								<button type="button" class="btn btn-default "> &nbsp;
-									<i class="fa fa-chevron-right"></i>
-								</button>
+								<c:if test="${pg_rec>1}">
+									<a  class="btn btn-default" href="taskLog.do?pg_rec=${pg_rec-1}&f_rec=${field_rec}&q_rec=${query_rec}&tab_char=1">
+										&nbsp;<i class="fa fa-chevron-left"></i>
+									</a>
+								</c:if>
+
+								<c:forEach var="i" begin="1" end="${pagecount_rec}">
+									<c:choose>
+										<c:when test="${pg_rec==i}">
+											<button class="btn btn-default active" style="background-color: #DAD9FF">
+												<b>${i}</b>
+											</button>
+										</c:when>
+										<c:otherwise>
+											<a class="btn btn-default" href="taskLog.do?pg_rec=${i}&f_rec=${field_rec}&q_rec=${query_rec}&tab_char=1">
+												${i}
+											</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
+								<c:if test="${pg_rec < pagecount_rec}">
+									<a class="btn btn-default" href="ttaskLog.do?pg_rec=${pg_rec+1}&f_rec=${field_rec}&q_rec=${query_rec}&tab_char=1">
+										&nbsp;<i class="fa fa-chevron-right"></i>
+									</a>
+								</c:if>
 							</div>
 						</div>
 					</div>
 					
 					
 					<!-- 송신 -->
-					<div id="tab-2" class="tab-pane">
+					<div id="tab-2" class="tab-pane <c:if test="${tab_char==2}">active</c:if>">
 						<div class="panel-body">
 							<div class="panel-heading">
 								전체 : <font color="coral"> ${count2}</font> 개
@@ -177,8 +194,8 @@
 										<tr>
 											<th style="text-align: right; padding-right: 20px;">
 											<select class="form-control input-sm" 
-													name="selectSearch"
-													id="selectSearch" onchange="search()">
+													name="f_song"
+													id="selectSearch2" onchange="search()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>
@@ -188,10 +205,10 @@
 											</th>
 											<!-- 검색 input 창 -->
 											<td>
-												<div id="searchInput">
+												<div id="searchInput2">
 													<input type="text" class="form-control input-sm"
 														   width="90%" style="height: 27px;" 
-														   name="input" id="input">
+														   name="q_song" id="input">
 												</div>
 											</td>
 
@@ -202,11 +219,11 @@
 												<span class="fa fa-search"></span>&nbsp; 검색 &nbsp;
 												</button>
 
-												<button class="btn btn-sm"
+												<!-- <button class="btn btn-sm"
 														style="background-color: #f07070; color: white"
 														onclick="window.location.href='taskLog.do'">
 												<span class="fa fa-search"></span>&nbsp; 전체보기&nbsp;
-												</button>
+												</button> -->
 											</td>
 										</tr>
 									</table>
@@ -271,19 +288,34 @@
 						</div>
 						
 						<!-- 페이징 처리 -->
-						<div class="panel-footer"
-							style="text-align: center; background-color: #f5f5f5">
+						<div class="panel-footer" style="text-align: center">
 							<div class="btn-group">
-								<button type="button" class="btn btn-default">
-									&nbsp;<i class="fa fa-chevron-left"></i>
-								</button>
-								<button class="btn btn-default active">1</button>
-								<button class="btn btn-default  ">2</button>
-								<button class="btn btn-default">3</button>
-								<button class="btn btn-default">4</button>
-								<button type="button" class="btn btn-default ">
-									&nbsp;<i class="fa fa-chevron-right"></i>
-								</button>
+								<c:if test="${pg_song>1}">
+									<a  class="btn btn-default" href="taskLog.do?pg_song=${pg_song-1}&f_song=${field_song}&q_song=${query_song}&tab_char=2">
+										&nbsp;<i class="fa fa-chevron-left"></i>
+									</a>
+								</c:if>
+
+								<c:forEach var="i" begin="1" end="${pagecount_song}">
+									<c:choose>
+										<c:when test="${pg_song==i}">
+											<button class="btn btn-default active" style="background-color: #DAD9FF">
+												<b>${i}</b>
+											</button>
+										</c:when>
+										<c:otherwise>
+											<a class="btn btn-default" href="taskLog.do?pg_song=${i}&f_song=${field_song}&q_song=${query_song}&tab_char=2">
+												${i}
+											</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
+								<c:if test="${pg_song < pagecount_song}">
+									<a class="btn btn-default" href="taskLog.do?pg_song=${pg_song+1}&f_song=${field_song}&q_song=${query_song}&tab_char=2">
+										&nbsp;<i class="fa fa-chevron-right"></i>
+									</a>
+								</c:if>
 							</div>
 						</div>
 					</div>

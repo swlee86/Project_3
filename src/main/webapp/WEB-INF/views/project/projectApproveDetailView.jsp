@@ -7,6 +7,7 @@ $(function(){
 		console.log(padv_alert_val);
 		var step_no = 0;
 		if(padv_alert_val == '승인'){
+			
 			step_no = 1;
 		}else if(padv_alert_val == '승인거부'){
 			step_no = 2;
@@ -35,11 +36,12 @@ $(function(){
           							data : {
           									pj_no : pj_no,
           									step_no : step_no
-          							       },
+          							        },
           							success : function(data){
           								console.log(data);
           								console.log(data.step_no);
           								if(data.step_no == 1){ //승인처리시
+          									send();
           									$('#pj_step_no_mark').html('<button class="btn btn-xs btn-info" disabled>승인</button>');
           									$('#pj_step_no_btn_div').hide();
           								}else if(data.step_no == 2){ 
@@ -87,8 +89,8 @@ $(function(){
 		</div>
 	</div>
 </div>
-
-
+<input type="hidden" id="hiddenEmp_no" value=${pj_write}>
+<input type="hidden" id="hiddenMenuName" value="프로젝트"> 
 <div class="content animate-panel">
 <div class="row">
     <div class="col-lg-5">
