@@ -3,7 +3,7 @@
 
     <footer class="footer">
         <span class="pull-right">
-           Footer Test
+          KOSTA
         </span>
-        Company 2015-2020
+       2PM Company 2016.12.12
     </footer>

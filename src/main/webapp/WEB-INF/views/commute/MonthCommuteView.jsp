@@ -9,7 +9,7 @@
 </style>
 
 <!--월별 근태 보기-->
-<div class="normalheader transition animated fadeIn">
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="row">
 		<div class="hpanel">
 			<div class="panel-body">
@@ -21,12 +21,13 @@
 
 				<div id="hbreadcrumb" class="pull-right m-t-lg">
 					<ol class="hbreadcrumb breadcrumb">
-						<li><a href="index.html">Dashboard</a></li>
-						<li><span>App views</span></li>
+						<li><a href="index.html">홈</a></li>
+						<li><span>근태 관리</span></li>
 						<li class="active"><span>월별 근태 현황</span></li>
 					</ol>
 				</div>
 				<h2 class="font-light m-b-xs">월별 근태 현황</h2>
+				<small>월별 근태를 확인하세요</small>
 			</div>
 		</div>
 	</div>

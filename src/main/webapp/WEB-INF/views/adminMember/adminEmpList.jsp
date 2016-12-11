@@ -20,7 +20,7 @@
 				<ol class="hbreadcrumb breadcrumb">
 					<li><a href="index.html">홈</a></li>
 					<li><span>관리자</span></li>
-					<li class="active"><span>Calendar</span></li>
+					<li class="active"><span>사원관리</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">사원관리</h2>
