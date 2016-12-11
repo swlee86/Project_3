@@ -120,6 +120,9 @@ $(function(){
 										<c:forEach items="${list}" var="p">
 											<tr>
 												<td>${p.emp_name}</td>
+
+												<%-- <td>${p.emp_no}</td> --%>
+
 												<td><a
 													href="project_approve_detailview.do?pj_no=${p.pj_no}&pj_emp_no=${p.emp_no}">${p.pj_title}</a></td>
 												<td>${p.pj_start}&nbsp;&nbsp;~&nbsp; &nbsp;${p.pj_end}</td>
@@ -154,7 +157,7 @@ $(function(){
 						<div class="panel-footer" style="text-align: center; background-color:#f7f9fa" >
 							<div class="btn-group">
 								<c:if test="${pg>1}">
-									<a class="btn btn-default" href="projectApprove.do?tapno=${tapno}&pg=${pg-1}&f=${field}&q=${query}&group=${group}">
+									<a class="btn btn-default" href="projectApprove.do?pg=${pg-1}&f=${field}&q=${query}&app_char=2">
 										&nbsp;<i class="fa fa-chevron-left"></i>
 									</a>
 								</c:if>
@@ -167,14 +170,14 @@ $(function(){
 											</button>
 										</c:when>
 										<c:otherwise>
-											<a class="btn btn-default" href="projectApprove.do?pg=${i}&f=${field}&q=${query}">
+											<a class="btn btn-default" href="projectApprove.do?pg=${i}&f=${field}&q=${query}&app_char=2">
 												${i} </a>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
 
 								<c:if test="${pg < pagecount}">
-									<a class="btn btn-default" href="projectApprove.do?pg=${pg+1}&f=${field}&q=${query}">
+									<a class="btn btn-default" href="projectApprove.do?pg=${pg+1}&f=${field}&q=${query}&app_char=2">
 										&nbsp;<i class="fa fa-chevron-right"></i>
 									</a>
 								</c:if>

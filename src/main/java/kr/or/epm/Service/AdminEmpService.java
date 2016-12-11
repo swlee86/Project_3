@@ -18,6 +18,7 @@ import kr.or.epm.VO.Emp_his_cg;
 import kr.or.epm.VO.EmployeeManage;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
+import kr.or.epm.VO.Role;
 
 /*
  * 작성자 : 백승아
@@ -64,6 +65,7 @@ public class AdminEmpService {
 	}
 	
 	// 사원 등록을 위한 직위 리스트 출력
+	// 권한 부여 페이지를 위한 직위 리스트 출력
 	public List<Position> selectPostion_list() {
 		System.out.println("SERVICE] 직위 리스트를 불러옵니다");
 		
@@ -179,5 +181,25 @@ public class AdminEmpService {
 		}
 		
 		return result;
+	}
+	
+	// 권한 부여 페이지를 위해 권한 리스트 불러오기
+	public List<Role> selectRole() {
+		System.out.println("SERVICE] 권한 리스트를 불러옵니다");
+		
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		List<Role> list = dao.selectRole();
+				
+		return list;
+	}
+	
+	// 권한 부여 페이지를 위해 부여되어 있는 권한 리스트 불러오기
+	public List<String> selectRole_selected(String position_no) {
+		System.out.println("SERVICE] 부여되어 있는 권한 리스트를 불러옵니다");
+		
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		List<String> list = dao.selectRole_selected(position_no);
+		
+		return list;
 	}
 }

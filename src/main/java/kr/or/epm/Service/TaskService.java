@@ -34,6 +34,7 @@ public class TaskService {
 	//수신 갯수구하는 함수
 	public int selectCount_rec(String emp_no, String cg_no ,String field, String query) {
 		System.out.println("selectCount_rec() 서비스");
+		System.out.println("cg_no:"+cg_no+"/field:"+field+"/query:"+ query);
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		int totalcount = 0;
 		totalcount = dao.selectCount_rec(emp_no, cg_no, field, query);
