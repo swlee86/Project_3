@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
     
 <aside id="menu">
      
@@ -13,32 +13,8 @@
                 <span class="font-extra-bold font-uppercase">${Emp.emp_name} 님 환영합니다.</span>
 					
 			</div>
-			<!--  
-	        <div class="stats-label text-color">
-                <span class="font-extra-bold font-uppercase">Project_3</span>
-				
-				
-                <div class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                        <small class="text-muted">Founder of App <b class="caret"></b></small>
-                    </a>
-                    <ul class="dropdown-menu animated flipInX m-t-xs">
-                        <li><a href="contacts.html">Contacts</a></li>
-                        <li><a href="profile.html">Profile</a></li>
-                        <li><a href="analytics.jsp">Analytics</a></li>
-                        <li class="divider"></li>
-                        <li><a href="login.html">Logout</a></li>
-                    </ul>
-                </div>
-                <div id="sparkline1" class="small-chart m-t-sm"></div>
-                <div>
-                    <h4 class="font-extra-bold m-b-xs">
-                        $260 104,200
-                    </h4>
-                    <small class="text-muted">Your income from the last year in sales product X.</small>
-                </div>--> 
-            </div>
         </div>
+    </div>
         
 		<!-- <span class="label label-success pull-right">버튼달고 싶으면 여기에 메세지 입력</span> -->
         <ul class="nav" id="side-menu">
@@ -98,7 +74,7 @@
                 <ul class="nav nav-second-level">
                     <li><a href="project_list.do">전체 프로젝트</a></li>
                     <li><a href="projectApprove.do">프로젝트 대기함</a></li>
-                    <li><a href="projectMake.do">프로젝트 작성</a></li>  
+                    <li><a href="projectMake.do">프로젝트 작성</a></li>
                 </ul>
             </li>
             <li>
@@ -142,18 +118,19 @@
                     <li><a href="password_recovery.html">Passwor recovery</a></li>
                 </ul>
             </li>
+              <se:authorize access="hasRole('ROLE_ADMIN')">
               <li>
                 <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="adminEmp_list.do">사원관리</a></li>
-                    <!-- 나중에 합칠거 -->
-                    <li><a href="adminEmployeeRoleManage.do">사원권한관리</a></li>
+                    <li><a href="adminEmp_authority.do">사원권한관리</a></li>
                     <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminSalaryView.do">급여관리</a></li>
                     <li><a href="CommuteAdmin.do">근태관리</a></li>
                 </ul>
             </li>
+            </se:authorize>
             <li>
             	<a href="#" onClick="javascript:window.open('http://192.168.0.116:3000/?id=${Emp.emp_name}', 'popup','scrollbars=no, width=500px,height=600px,resizable=no')">Node 채팅</a>
             </li>

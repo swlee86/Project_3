@@ -21,6 +21,101 @@ public class TaskService {
 	@Autowired
 	private SqlSession sqlsession;
 
+	
+	public int selectCount_parti(String emp_no,  String field_parti, String query_parti) {
+		System.out.println("selectCount_parti() 서비스");
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		int totalcount = 0;
+		totalcount = dao.selectCount_parti(emp_no,field_parti, query_parti);
+		System.out.println("탭별 totalcount : "+ totalcount);			
+		return totalcount;
+	}
+
+	//수신 갯수구하는 함수
+	public int selectCount_rec(String emp_no, String cg_no ,String field, String query) {
+		System.out.println("selectCount_rec() 서비스");
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		int totalcount = 0;
+		totalcount = dao.selectCount_rec(emp_no, cg_no, field, query);
+		System.out.println("탭별 totalcount : "+ totalcount);			
+		return totalcount;
+	}
+
+	//송신 갯수 구하는 함수
+	public int selectCount_song(String emp_no, String cg_no, String field, String query) {
+		System.out.println("selectCount_song() 서비스");
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		int totalcount = 0;
+		totalcount = dao.selectCount_song(emp_no, cg_no, field, query);
+		System.out.println("totalcount : "+ totalcount);		
+		return totalcount;
+	}
+	
+	
+	
+	// 업무 요청, 보고, 일지 > 수신 리스트 불러오기
+		// 사용
+		public List<Task> selectTask_rec(String emp_no, String cg_no, String field_rec, String query_rec, int cpage_rec, int pagesize){
+			
+			System.out.println("SERVICE] 업무 > 수신 리스트를 불러옵니다");
+			System.out.println("넘겨진 emp_no : " + emp_no);
+			
+			String cg_name = "";
+			if(cg_no.equals("1")) { cg_name = "업무 요청"; }
+			else if(cg_no.equals("2")) { cg_name = "업무 보고"; }
+			else if(cg_no.equals("3")) { cg_name = "업무 일지"; }
+			else { cg_name = "'cg_no'에 잘못된 값이 넘어온 것같습니다"; };
+			System.out.println("넘겨진 업무 유형 : " + cg_name);
+			
+			TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+			
+			List<Task> list = dao.selectTask_rec(emp_no, cg_no,field_rec,query_rec,cpage_rec,pagesize);
+			System.out.println("list1 : "+ list.toString());
+			System.out.println("list1 size : " + list.size());
+			return list; 
+		}
+	
+		
+		// 업무 요청, 보고, 일지 > 송신 리스트 불러오기
+		// 사용
+		public List<Task> selectTask(String emp_no, String cg_no, String field_song, String query_song, int cpage_song, int pagesize){
+			
+			System.out.println("SERVICE] 업무 > 송신 리스트를 불러옵니다");
+			System.out.println("넘겨진 emp_no : " + emp_no);
+			
+			String cg_name = "";
+			if(cg_no.equals("1")) { cg_name = "업무 요청"; }
+			else if(cg_no.equals("2")) { cg_name = "업무 보고"; }
+			else if(cg_no.equals("3")) { cg_name = "업무 일지"; }
+			else { cg_name = "'cg_no'에 잘못된 값이 넘어온 것같습니다"; };
+			System.out.println("넘겨진 업무 유형 : " + cg_name);
+			
+			TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+			
+			List<Task> list = dao.selectTask_song(emp_no, cg_no,field_song,query_song,cpage_song,pagesize);
+			System.out.println("list2 : "+ list.toString());
+			System.out.println("list2 size : " + list.size());
+			return list;
+		}		
+		
+		
+		// 업무 요청 > 참여 리스트 불러오기
+		public List<Task> selectTask_people(String emp_no, String field_parti, String query_parti, int cpage_parti, int pagesize) {
+			
+			System.out.println("SERVICE] 업무 요청 > 참여 리스트를 불러옵니다");
+			System.out.println("넘겨진 emp_no : " + emp_no);
+			
+			TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+			List<Task> list = dao.selectTask_people(emp_no,field_parti,query_parti,cpage_parti,pagesize);
+			System.out.println("list3 : "+ list.toString());
+			System.out.println("list3 size : " + list.size());
+			return list;
+		}
+		
+		
+		
+		
+		
 	// 업무 등록시 / 모달->지점 이름 트리 구조
 	// 사용
 	public List<Organization> selectDept() {
@@ -130,26 +225,7 @@ public class TaskService {
 		return result;
 	}
 	
-	// 업무 요청, 보고, 일지 > 수신 리스트 불러오기
-	// 사용
-	public List<Task> selectTask_rec(String emp_no, String cg_no){
-		
-		System.out.println("SERVICE] 업무 > 수신 리스트를 불러옵니다");
-		System.out.println("넘겨진 emp_no : " + emp_no);
-		
-		String cg_name = "";
-		if(cg_no.equals("1")) { cg_name = "업무 요청"; }
-		else if(cg_no.equals("2")) { cg_name = "업무 보고"; }
-		else if(cg_no.equals("3")) { cg_name = "업무 일지"; }
-		else { cg_name = "'cg_no'에 잘못된 값이 넘어온 것같습니다"; };
-		System.out.println("넘겨진 업무 유형 : " + cg_name);
-		
-		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
-		
-		List<Task> list = dao.selectTask_rec(emp_no, cg_no);
-		
-		return list;
-	}
+	
 	
 	// 업무 요청, 보고, 일지 > 상세
 	// 사용
@@ -170,18 +246,7 @@ public class TaskService {
 		}
 		return detail;
 	}
-	
-	// 업무 요청 > 참여 리스트 불러오기
-	public List<Task> selectTask_people(String emp_no) {
-		
-		System.out.println("SERVICE] 업무 요청 > 참여 리스트를 불러옵니다");
-		System.out.println("넘겨진 emp_no : " + emp_no);
-		
-		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
-		List<Task> list = dao.selectTask_people(emp_no);
-		
-		return list;
-	}
+
 	
 	
 	// 업무 중요설정하기
@@ -218,26 +283,7 @@ public class TaskService {
 		return result;
 	}
 	
-	// 업무 요청, 보고, 일지 > 송신 리스트 불러오기
-	// 사용
-	public List<Task> selectTask(String emp_no, String cg_no){
-		
-		System.out.println("SERVICE] 업무 > 송신 리스트를 불러옵니다");
-		System.out.println("넘겨진 emp_no : " + emp_no);
-		
-		String cg_name = "";
-		if(cg_no.equals("1")) { cg_name = "업무 요청"; }
-		else if(cg_no.equals("2")) { cg_name = "업무 보고"; }
-		else if(cg_no.equals("3")) { cg_name = "업무 일지"; }
-		else { cg_name = "'cg_no'에 잘못된 값이 넘어온 것같습니다"; };
-		System.out.println("넘겨진 업무 유형 : " + cg_name);
-		
-		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
-		
-		List<Task> list = dao.selectTask(emp_no, cg_no);
-		
-		return list;
-	}
+
 	
 	// 검색하기
 	// 사용
@@ -297,6 +343,9 @@ public class TaskService {
 		
 		return result;
 	}
+
+
+
 }
 
 

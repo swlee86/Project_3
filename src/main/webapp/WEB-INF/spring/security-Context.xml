@@ -1,37 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:security="http://www.springframework.org/schema/security"
- xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
-  <security:http>
+ 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	   xmlns:security="http://www.springframework.org/schema/security"
+ 	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
+  						   http://www.springframework.org/schema/security 
+  						   http://www.springframework.org/schema/security/spring-security.xsd">
+ 
+  <security:http auto-config="true">
   <security:csrf disabled="true"/>
   <security:form-login login-page="/login.do"
-  								authentication-failure-url="/login.do?error" 
-  								authentication-success-handler-ref="customAuthenticationSuccessHandler"
-/>
+  					   authentication-failure-url="/errors/lock.jsp" 
+  					   authentication-success-handler-ref="customAuthenticationSuccessHandler"/>
   <security:logout logout-success-url="/index.html" />
-<!--   <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')" />
-  <security:intercept-url pattern="/*board.do" access="hasRole('ROLE_MASTER')" /> -->
+  <security:access-denied-handler error-page="/authority.do" />
+  
+  <!--    
+  <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')"/>
+  <security:intercept-url pattern="/*board.do" access="hasRole('ROLE_MASTER')"/>
+  <security:intercept-url pattern="/customer/noticeReg.htm" access="ROLE_ADMIN"/>
+  <security:intercept-url pattern="/customer/**" access="ROLE_USER" />
+  -->
+  
+  
+  <security:intercept-url pattern="/draft_rec.do" access="hasRole('ROLE_DRAFT')" />
+  <security:intercept-url pattern="/adminMember/adminAddMember.jsp" access="ROLE_EMP" />
+  <security:intercept-url pattern="/adminMember/adminAuthority.jsp" access="ROLE_EMP" />
+  <security:intercept-url pattern="/adminMember/adminEmpList.jsp" access="ROLE_EMP_LIST" />
+  <security:intercept-url pattern="/adminMember/adminWithdrawal.jsp" access="ROLE_EMP" />
+  
+  
 </security:http>
 <security:authentication-manager>
      <security:authentication-provider>
 		<security:jdbc-user-service data-source-ref="driverManagerDataSource"
-			users-by-username-query="select id as USERID, pwd as PASSWORD, 1 enable from emp_detail where id=?"
-			authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
+			users-by-username-query="select id as USERID, pwd as PASSWORD, 1 enable 
+									 from emp_detail 
+									 where id=?"
+				authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
+		 
 		/>
+		<!-- 
+			authorities-by-username-query="select id as USERID, ROLE_NAME
+										   from emp_detail e join emp_role er
+										   on e.emp_no = er.emp_no
+										   join role r
+							   			   on er.role_no = r.role_no
+										   where e.id = ?"
+		-->
+		
+		<!-- 	
+			authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
+		 -->
+		 
 		<security:password-encoder ref="bCryptPasswordEncoder"/>
      </security:authentication-provider>
  </security:authentication-manager>
 <!-- <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/> -->
 
-<bean id="customAuthenticationSuccessHandler" class="kr.or.epm.LoginController.CustomAuthenticationSuccessHandler">
-	<property name="sqlsession">
+<bean id="customAuthenticationSuccessHandler" 
+	  class="kr.or.epm.LoginController.CustomAuthenticationSuccessHandler">
+	<property name = "sqlsession">
 		<ref bean = "sqlSession"/>
 	</property>
 </bean>
-
-
-
 
 </beans>

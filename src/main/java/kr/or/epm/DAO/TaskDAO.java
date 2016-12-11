@@ -23,7 +23,7 @@ public interface TaskDAO {
 	
 	// 수신함 확인하기
 	// 사용
-	public List<Task> selectTask_rec(String emp_no, String cg_no);
+	public List<Task> selectTask_rec(String emp_no, String cg_no, String field_rec, String query_rec, int cpage_rec, int pagesize);
 	
 	// 업무 상세보기
 	// 사용
@@ -43,7 +43,7 @@ public interface TaskDAO {
 	
 	// 송신함 확인하기
 	// 사용
-	public List<Task> selectTask(String emp_no, String cg_no);
+	public List<Task> selectTask_song(String emp_no, String cg_no, String field_song, String query_song, int cpage_song, int pagesize);
 	
 	// 탭 메뉴 > 참여 리스트 보고
 	public List<Task_people> selectTask_people_ForMe(String emp_no);
@@ -54,7 +54,7 @@ public interface TaskDAO {
 	
 	// 참여 업무 조회하기
 	// 사용
-	public List<Task> selectTask_people(String emp_no);
+	public List<Task> selectTask_people(String emp_no, String field_parti, String query_parti, int cpage_parti, int pagesize);
 	
 	// 참여 업무 진행 처리하기
 	// 사용
@@ -66,5 +66,14 @@ public interface TaskDAO {
 	
 	// 수신함에서 검색한 글의 개수 구하기 (따로)
 	public int countTask_search();
+
+	//갯수구하기
+	public int selectCount_rec(String emp_no, String cg_no,String field, String query);
+
+	public int selectCount_song(String emp_no, String cg_no, String field, String query);
+
+	public List<Task> selectTask(String emp_no, String cg_no);
+
+	public int selectCount_parti(String emp_no, String field_parti, String query_parti);
 	
 }
