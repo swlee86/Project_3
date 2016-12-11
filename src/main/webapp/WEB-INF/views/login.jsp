@@ -106,7 +106,7 @@ small {
 										<label class="control-label" for="username"
 											style="color: black;">아이디</label> <input type="text"
 											title="Please enter you username" required="required"
-											placeholder="구글 로그인 후 이용하세요" readonly="readonly"
+											placeholder="구글 로그인 후 이용하세요"
 											name="username" id="username" value="" class="form-control">
 										<span class="help-block small">
 										</span>
@@ -353,7 +353,7 @@ small {
 							<div class="row">
 								<div class="col-lg-12">
 									<input type="text" id="email" 
-										class="form-control" name="email">
+										class="form-control" name="email" readonly="readonly">
 								</div>
 							</div>
 						</div>
