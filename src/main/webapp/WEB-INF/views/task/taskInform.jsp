@@ -46,12 +46,11 @@
 						<!-- 검색 기준-->
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="taskInform.do" class="form-inline">
+								<input type="hidden" name="tab_char" value="1">
 									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
 										<tr>
 											<th style="text-align: right; padding-right: 20px;">
-											<select class="form-control input-sm" 
-													name="f_rec"
-													id="selectSearch" onchange="search()">
+											<select class="form-control input-sm"  name="f_rec" id="selectSearch" onchange="search()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>
@@ -62,16 +61,12 @@
 											<!-- 검색 input 창 -->
 											<td>
 												<div id="searchInput">
-													<input type="text" class="form-control input-sm"
-														   width="90%" style="height: 27px;" 
-														   name="q_rec" id="input">
+													<input type="text" class="form-control input-sm"  width="90%" style="height: 27px;"   name="q_rec" id="input">
 												</div>
 											</td>
 
 											<td>
-												<button class="btn btn-sm"
-														style="background-color: #f07070; color: white"
-														type="submit">
+												<button class="btn btn-sm" style="background-color: #f07070; color: white" type="submit">
 												<span class="fa fa-search"></span>&nbsp; 검색 &nbsp;
 												</button>
 
@@ -208,12 +203,13 @@
 							<!-- 검색 기준-->
 							<div class="row" style="background-color: #f3f3f3;">
 								<form action="taskInform.do" class="form-inline">
+									<input type="hidden" name="tab_char" value="2">
 									<table style="margin-top: 10px; margin-bottom: 10px;" width="100%">
 										<tr>
 											<th style="text-align: right; padding-right: 20px;">
 											<select class="form-control input-sm" 
 													name="f_song"
-													id="selectSearch" onchange="search()">
+													id="selectSearch2" onchange="search2()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>
@@ -223,7 +219,7 @@
 											</th>
 											<!-- 검색 input 창 -->
 											<td>
-												<div id="searchInput">
+												<div id="searchInput2">
 													<input type="text" class="form-control input-sm"
 														   width="90%" style="height: 27px;" 
 														   name="q_song" id="input">

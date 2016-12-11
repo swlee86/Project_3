@@ -608,7 +608,7 @@ public class TaskController {
 
 	// 업무보고 > 수신, 송신
 	@RequestMapping("/taskInform.do")
-	public String taskInform(HttpServletRequest request,String tab_char, String pg_rec , String f_rec , String pg_song , String f_song ,String pg_parti ,String q_rec,String q_song,  Model model) {
+	public String taskInform(HttpServletRequest request,String tab_char, String pg_rec , String f_rec , String pg_song , String f_song ,String q_rec, String q_song,  Model model) {
 
 		System.out.println("CONTROLLER] 업무 보고 수신 페이지");
 
@@ -653,6 +653,9 @@ public class TaskController {
 		if(f_rec != null && !f_rec.equals("")){
 			field_rec = f_rec;
 		}
+		
+		System.out.println("(((((((((((((q_rec : " + q_rec);
+		System.out.println(q_rec != null && !q_rec.equals(""));
 		if(q_rec != null && !q_rec.equals("")){
 			query_rec = q_rec;
 		}
@@ -677,6 +680,7 @@ public class TaskController {
 		
 		/////////////////////////////////////////////////////////////////
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println("field_rec : " + field_rec +"/ query_rec: "+query_rec);
 		// 수신
 		totalcount_rec = service.selectCount_rec(emp_no, cg_no , field_rec, query_rec);
 		if(totalcount_rec % pagesize == 0){       
@@ -830,22 +834,96 @@ public class TaskController {
 	}
 
 	// 업무일지 > 수신, 송신
-/*	@RequestMapping("/taskLog.do")
-	public String taskLog(Principal principal, Model model) {
+	@RequestMapping("/taskLog.do")
+	public String taskLog(HttpServletRequest request,String tab_char,String pg_rec , String f_rec , String pg_song , String f_song ,String q_rec, String q_song,  Model model) {		
 
 		System.out.println("CONTROLLER] 업무 일지 수신 페이지");
 
 		// 로그인 id
-		String id = principal.getName();
+		/*String id = principal.getName();
 		System.out.println("id : " + id);
 		String emp_no = commonservice.selectEmp_no(id);
+		*/
+		HttpSession session = request.getSession();
+		String emp_no = (String)session.getAttribute("emp_no");
 		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+
+		int totalcount_rec = 0;
+		int totalcount_song = 0;
+		
+		int cpage_rec = 1;
+		int cpage_song = 1;
+		
+		int pagecount_rec = 0;
+		int pagecount_song = 0;
+		
+		int pagesize = 4;
+		
+		String field_rec = "task_no";
+		String query_rec ="%%";
+		
+		String field_song = "task_no";
+		String query_song ="%%";
+		
+		int tab_char_result = 1;
+		
+		System.out.println("tab_char != null && !tab_char.equals('') : "+ (tab_char != null && !tab_char.equals("")));
+		if(tab_char != null && !tab_char.equals("")){
+			System.out.println("*********tab_char : " + Integer.parseInt(tab_char));
+			tab_char_result = Integer.parseInt(tab_char);
+		}
+		model.addAttribute("tab_char", tab_char_result);
+		
+		if(pg_rec != null && !pg_rec.equals("")){
+			cpage_rec = Integer.parseInt(pg_rec);
+		}
+		if(f_rec != null && !f_rec.equals("")){
+			field_rec = f_rec;
+		}
+		
+		System.out.println("(((((((((((((q_rec : " + q_rec);
+		System.out.println(q_rec != null && !q_rec.equals(""));
+		if(q_rec != null && !q_rec.equals("")){
+			query_rec = q_rec;
+		}
+		
+		
+		if(pg_song != null && !pg_song.equals("")){
+			cpage_song = Integer.parseInt(pg_song);
+		}
+		if(f_song != null && !f_song.equals("")){
+			field_song = f_song;
+		}
+		if(q_song != null && !q_song.equals("")){
+			query_song = q_song;
+		}
+		
+		
 
 		// 업무 요청 구분
 		String cg_no = "3";
 
+		/////////////////////////////////////////////////////////////////
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		// 수신
-		// 목록 가져오기
+		totalcount_rec = service.selectCount_rec(emp_no, cg_no , field_rec, query_rec);
+		if(totalcount_rec % pagesize == 0){       
+	    	pagecount_rec = totalcount_rec/pagesize;
+        }else{
+        	pagecount_rec = (totalcount_rec/pagesize) + 1;
+        }
+		System.out.println("=>totalcount_rec : " + totalcount_rec +"/pagecount_rec : " + pagecount_rec);
+		
+		//2. 수신함 목록
+		List<Task> list_rec = service.selectTask_rec(emp_no, cg_no, field_rec, query_rec,cpage_rec ,pagesize);  
+		model.addAttribute("list1", list_rec);
+		model.addAttribute("count1", totalcount_rec);
+		model.addAttribute("field_rec", field_rec);
+		model.addAttribute("query_rec", query_rec);
+		model.addAttribute("pagecount_rec", pagecount_rec);
+		model.addAttribute("pg_rec", cpage_rec);
+		
+		/*// 목록 가져오기
 		List<Task> list = service.selectTask_rec(emp_no, cg_no);
 		model.addAttribute("list1", list);
 
@@ -853,9 +931,31 @@ public class TaskController {
 		int count = list.size();
 		System.out.println("수신함 글 개수 : " + count);
 		model.addAttribute("count1", count);
+		*/
 		
+		
+		/////////////////////////////////////////////////////////////////
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		// 송신
-		// 목록 가져오기
+		//1. 송신함갯수
+		totalcount_song = service.selectCount_song(emp_no, cg_no , field_song, query_song);  
+				
+		if(totalcount_song % pagesize == 0){       
+			pagecount_song = totalcount_song/pagesize;
+		}else{
+		    pagecount_song = (totalcount_song/pagesize) + 1;
+		}
+		System.out.println("=>totalcount_song : " + totalcount_song +"/pagecount_song : " + pagecount_song);
+				
+		//2. 송신함 목록
+		List<Task> list_song = service.selectTask(emp_no, cg_no, field_song, query_song,cpage_song ,pagesize);  
+		model.addAttribute("list2", list_song);		
+		model.addAttribute("field_song", field_song);
+		model.addAttribute("query_song", query_song);
+		model.addAttribute("pagecount_song", pagecount_song);
+		model.addAttribute("pg_song", cpage_song);
+		model.addAttribute("count2", totalcount_song);
+		/*// 목록 가져오기
 		List<Task> list2 = service.selectTask(emp_no, cg_no);
 		model.addAttribute("list2", list2);
 
@@ -863,9 +963,17 @@ public class TaskController {
 		int count2 = list2.size();
 		System.out.println("수신함 글 개수 : " + count2);
 		model.addAttribute("count2", count2);
-
+		 */
+		
+		
+		
+		
+		
+		
+		
+		
 		return "task.taskLog";
-	}*/
+	}
 
 	// 업무 일지 > 수신 > 상세
 	@RequestMapping("/taskLog_rec_detail.do")
