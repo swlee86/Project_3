@@ -353,7 +353,7 @@ small {
 							<div class="row">
 								<div class="col-lg-12">
 									<input type="text" id="email" 
-										class="form-control" name="email" readonly="readonly">
+										class="form-control" name="email">
 								</div>
 							</div>
 						</div>
