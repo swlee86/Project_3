@@ -31,8 +31,8 @@
 				<div class="tab-content">
 					<div id="pro-1" class="tab-pane active">
 						<div class="panel-body list">
-							<div class="table-responsive project-list">
-								<table class="table table-striped ">
+							<div class="table-responsive project-list ">
+								<table class="table table-striped table-condensed">
 									<thead>
 										<tr>
 											<th colspan="2">프로젝트명</th>
@@ -79,6 +79,9 @@
 										</c:forEach>
 									</tbody>
 								</table>
+							</div>
+							<div class="pull-right">
+								<span><small><a href="project_list.do">[프로젝트 리스트 바로가기]</a></small></span>
 							</div>
 						</div>
 					</div>
@@ -135,6 +138,9 @@
 										</c:forEach>
 									</tbody>
 								</table>
+							</div>
+							<div class="pull-right">
+								<span><small><a href="projectApprove.do?app_char=2">[프로젝트 승인 대기함 바로가기]</a></small></span>
 							</div>
 						</div>
 					</div>

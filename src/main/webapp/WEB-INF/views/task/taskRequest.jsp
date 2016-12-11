@@ -228,7 +228,7 @@
 											<th style="text-align: right; padding-right: 20px;">
 											<select class="form-control input-sm" 
 													name="f_song"
-													id="selectSearch" onchange="search()">
+													id="selectSearch2" onchange="search2()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>
@@ -238,7 +238,7 @@
 											</th>
 											<!-- 검색 input 창 -->
 											<td>
-												<div id="searchInput">
+												<div id="searchInput2">
 													<input type="text" class="form-control input-sm"
 														   width="90%" style="height: 27px;" 
 														   name="q_song" id="input">
@@ -406,7 +406,7 @@
 											<th style="text-align: right; padding-right: 20px;">
 											<select class="form-control input-sm" 
 													name="f_parti"
-													id="selectSearch" onchange="search()">
+													id="selectSearch3" onchange="search3()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>
@@ -415,7 +415,7 @@
 											</th>
 											<!-- 검색 input 창 -->
 											<td>
-												<div id="searchInput">
+												<div id="searchInput3">
 													<input type="text" class="form-control input-sm"
 														   width="90%" style="height: 27px;" 
 														   name="q_parti" id="input">
