@@ -1,7 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" /> 
+ <style>
 
+.modal-dialog {
+  position: relative;
+  width: auto;
+  max-width: 600px;
+  margin: 10px;
+}
+.modal-sm {
+  max-width: 300px;
+}
+.modal-lg {
+  max-width: 900px;
+}
+@media (min-width: 768px) {
+  .modal-dialog {
+    margin: 30px auto;
+  }
+}
+@media (min-width: 320px) {
+  .modal-sm {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 620px) {
+  .modal-dialog {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .modal-lg {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+@media (min-width: 920px) {
+  .modal-lg {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+ </style>
 <script>
  $(function(){
  
@@ -12,6 +53,7 @@
    });
    $('.showup2').click(function(){
       console.log('showup2 : '+ $(this).attr('id'));
+      //console.log("pdplus : " + pdplus)
       var pdplus = $(this).attr('id');
       $('.'+pdplus).slideDown();
    });
@@ -91,7 +133,7 @@
       
 
 <div class="modal fade hmodal-success" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
-   <div class="modal-dialog modal-md">
+   <div class="modal-dialog modal-lg">
       <div class="modal-content">
          <div class="color-line"></div>
          <div class="modal-header" style="height:50px;padding-top:10px;padding-bottom:0px">
@@ -107,12 +149,22 @@
                  <div id="tab-1" class="tab-pane active">
                     <div class="panel-body">
                        <div class="row">  
-                           <div class="groupdiv2 col-md-4" style="border: 1px solid #ddd;" id="organization">
+                           <div class="groupdiv2 col-md-3" style="border: 1px solid #ddd;" id="organization">
                               
                            </div>   
-                           <div class=" col-md-8" id="empList" >
+                           <div class=" col-md-4" id="empList" >
                                  
                            </div>
+                           <div class=" col-md-1">
+				           		<button type="button" class='btn  btn-success' onclick="precheck_plus()"><i class='fa fa-chevron-right'></i></button>
+				               	<br><Br>
+				               	<button type="button" class='btn  btn-default' style="color:#62cb31" onclick="precheck_plus_cancel()"><i class='fa fa-chevron-left'></i></button>
+				           </div>  
+				           <div class=" col-md-4" style="border: 1px solid #ddd;"   >
+				            	<div class="row"><div style="background-color:#f6f6f6;font-size:15px;padding:10px 0 10px 12px;margin-bottom:5px;margin-left:0px"><i class="fa fa-users"></i>선택된 사원</div></div>
+				                	
+				                 <div id="empList_list_plus">선택된 사원이 없습니다.</div> 	
+				            </div>
                         </div>
                     </div>
                  </div>
@@ -176,6 +228,10 @@
    
    //사원정보 뽑아서 담을 배열
    var empInfoArray = new Array();   
+   
+   // 사원정보 뽑아서 담을 배열의 선택전 배역
+   var pre_empInfoArray = new Array();
+   
    //부서 선택시
    var departcho2;
    //하위 부서 선택시
@@ -189,6 +245,7 @@
    var firstTree2 = 0;
    var secondTree2 = 0;
 
+  // var pjd_count_result = 0;
    
    
 function calendar(){
@@ -220,12 +277,16 @@ function calendar(){
           
 		sip = $(this).attr('value');
 		pjd_count = $(this).attr('value');
+		//pjd_count_result = pjd_count;
 		console.log("pjd_count : "+pjd_count);
 		$('.multiDiv_'+pjd_count).empty();
 		$('#organization').empty();
 		$('#empList').empty();
 		$('#empList2').empty();
 		$('#con_ins_org_sea_query').val('');
+		
+		 $('#empList_list_plus').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
+         pre_empInfoArray.splice(0,pre_empInfoArray.length);
 		         
 		var  empSelectNumber = 2;
 		var litag = "<ul style='list-style:none; margin-left:-40px;''>";         
@@ -270,7 +331,7 @@ function calendar(){
  /////////////////////////////////////////////////////////////////////////////////////////////////////
  //조직도
        
-        //주소록 추가시  검색해서 보여주는 script
+        // 검색해서 보여주는 script
          $('.con_ins_org_sea_btn_plus').click(function(){ 
             console.log("sipsipsipsipsip sipsipsipsipsip: "+sip);
       
@@ -298,14 +359,14 @@ function calendar(){
                                    });
                                    
                                    
-                                   makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>번호</th><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th></tr>";
+                                   makeTable = "<table class='table table-condensed table-bordered  table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>NO</th><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
                                    
                                    $.each(emp, function(index){
                                       //여러명
-                                       makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td><input type='checkbox'  name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";                               
+                                       makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td><input type='checkbox'  name='chkbtn_end' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td></tr>";                               
                                    });
                                    
-                                   makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check("+pjd_count+")>";
+                                   makeTable += "</table><div class='pull-right'><input type='button' class='btn btn-success' value='선택' onclick=check("+pjd_count+")></div>";
                                    
                                   
                                   $('#empList2').empty();
@@ -372,7 +433,7 @@ function calendar(){
       
       //하위 부서 클릭시
       function seelow_Depart2(pjd_count, obj,empSelectNumber,departcho2) {
-         alert("부서 : "+choose2);
+        // alert("부서 : "+choose2);
          deptNumber= departcho2;
          var litag = "<ul style='list-style:none;'>";
          var div_id = "low_dept_div"+departcho2;
@@ -426,7 +487,7 @@ function calendar(){
          //alert("selectNo : " + empSelectNumber);
          var makeTable = "";
    
-         makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
+         makeTable = "<table class='table table-condensed table-hover'><tr style='background-color:#f8f8f8'><th>선택</th><th>사번</th><th>이름</th></tr>";
 
          $.ajax(
                {
@@ -443,11 +504,11 @@ function calendar(){
                      
                      $.each(emp, function(index){                   
                         if(empSelectNumber == 2){
-                           makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td></tr>";
+                           makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";
                         }                 
                      });
                      
-                     makeTable += "</table><br><input type='button' class='btn btn-success' value='선택' onclick=check("+pjd_count+")>";
+                     makeTable += "</table>";//"<br><input type='button' class='btn btn-success' value='선택' onclick=check("+pjd_count+")>";
                      $('#empList').empty();
                      $('#empList').append(makeTable);
                    }    
@@ -478,13 +539,117 @@ function calendar(){
       }
       
       
+      
+      
+      
+      function precheck_plus(){
+        	 $('#empList_list_plus').empty();
+        	console.log('precheck 함수');
+        	var tablemake2 ="";
+            var checkarr = new Array();
+           // console.log("pjd_count_result: "+pjd_count_result);
+     	   console.log("pjd_count=: "+pjd_count);
+     	   
+           $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
+        	   console.log('------------------------------');
+        	   var result  = 0;
+        	 
+    	       	if(pre_empInfoArray.length == 0){  //처음에
+    	       		console.log('처음에 pre_empInfoArray.length == 0');
+    	       		// 이름 
+    	            checkarr[pi] = po.value;
+    	            // 사번
+    	            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+    	            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+    	            //console.log("this:"+$(this));
+    	       	}else{	       		
+    	       	 //중복값 검사
+    		       	for(var i = 0; i < pre_empInfoArray.length; i++){
+    		       		console.log("배열 사번 pre_empInfoArray["+ i +"].emp_no : " + pre_empInfoArray[i].emp_no);
+    		       		console.log("선택된사번"+ i +" : " + $(this).parent().next().html());
+    		       		if($(this).parent().next().html() == pre_empInfoArray[i].emp_no){
+    		       			result = 1;  //같은 값이 있다.
+    		       		}
+    		       	}
+    		       	
+    		    	if(result == 0 ){ //중복된 값 없을때 추가
+    		       		// 이름 
+    		         	checkarr[pi] = po.value;
+    		            // 사번
+    		            pre_empInfoArray.push(new empInfo($(this).parent().next().html(), checkarr[pi]));
+    		            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
+    		       	}	
+    	       	}
+    	       
+    	       	//체크박스 속성 false
+    	        $(this).attr("checked", false);
+           });
+           
+          	 if(pre_empInfoArray.length >= 1) { 
+          		   tablemake2 = '<div class="row">';
+          		   tablemake2 += "<table class='table table-condensed table-hover' >";
+          		 	          
+                   for(var i = 0; i < pre_empInfoArray.length; i++){
+                	   tablemake2 += "<tr><td style='text-align:center'><input type='checkbox' checked   name='chkbtn_end' value='"+pre_empInfoArray[i].emp_name+"'></td><td style='text-align:center'>"+pre_empInfoArray[i].emp_no+"</td><td>"+pre_empInfoArray[i].emp_name+"</td></tr>";  
+                   }   
+                   tablemake2 += '</table></div>';
+                   tablemake2 += "<div ><input type='button' class='btn btn-sm btn-success btn-block btn-outline' style='font-weight: bold' value='선 &nbsp;&nbsp;&nbsp;택' onclick=check("+pjd_count+")><br></div>";
+                   
+                   $('#empList_list_plus').empty();
+                   $('#empList_list_plus').append(tablemake2);       
+          	 }
+        }
+        
+        //선택된 체크박스 취소
+        function precheck_plus_cancel(){
+        	var pre_no = new Array();
+        	console.log('함수 탐');
+        	$(":checkbox[name='chkbtn_end']:checked").each(function(pi,po){           
+        		pre_no.push($(this).parent().next().html());  //서번넣기   		
+                var tr = $(this).parent().parent();
+        	    //라인 삭제
+        	    tr.remove();
+             });
+        	
+        	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
+        	
+        	//배열에서 사번 삭제
+        	for(var i = 0; i < pre_empInfoArray.length; i++){
+        		console.log("pre_empInfoArray["+ i +"].emp_no : " + pre_empInfoArray[i].emp_no);
+        		for(var j = 0; j < pre_no.length; j++){
+        			console.log("pre_no["+ j +"] : " + pre_no[j]);
+        			if(pre_no[j] == pre_empInfoArray[i].emp_no){
+        				//사번 지우기
+        	        	pre_empInfoArray.splice( i, 1);
+        			}
+        		}
+        	}
+        	
+        	console.log("pre_empInfoArray.length : " + pre_empInfoArray.length);
+        	console.log("pre_empInfoArray : " + pre_empInfoArray);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
    
          //체크박스 선택후 버튼 클릭시 호출
          function check(pjd_count){
             console.log("조직도 check 폼 함수 : " + pjd_count);
             //체크박스 크기만큼 배열 생성
             var checkResult = new Array();
-            $(":checkbox[name='chkbtn']:checked").each(function(pi,po){
+            $(":checkbox[name='chkbtn_end']:checked").each(function(pi,po){
                //이름 
                checkResult[pi] = po.value;
                //사번

@@ -118,7 +118,7 @@ public class ProjectService {
 			insertPjd_people(rowlist,pjd_Command);
 		}
 			
-		return "redirect:project_list.do";
+		return "redirect:projectApprove.do";
 	}
 		
 	private List<String> selectMaxPjd_no(int numrow) {
