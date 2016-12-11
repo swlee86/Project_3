@@ -290,8 +290,9 @@ $(function() {
 		$(location).attr("href", url);
 	});
 	
+
 	// 드래그앤드롭 적용
-	$(".sortable").sortable({
+	$(".drag").sortable({
         forcePlaceholderSize: true,
         opacity: 0.8
 	});
@@ -299,7 +300,35 @@ $(function() {
 	// 드롭하는 영역
 	$(".dragarea").droppable({
 		drop: function(event, ui) {
-			
+			alert("떨어짐");
         }
-	})
+	});
+
+	
+	/*
+	
+	$("#btndiv button").draggable({
+		start: function(event,ui) {
+			$(this).draggable( "option", "revert", true );
+			$("#images div img").css("zIndex",10);
+			$(this).css("zIndex",100);
+		}
+	});
+	*/
 });
+
+function dragStart(event) {
+    event.dataTransfer.setData("Text", event.target.id);
+    document.getElementById("demo").innerHTML = "Started to drag the p element";
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+    document.getElementById("demo").innerHTML = "The p element was dropped";
+}

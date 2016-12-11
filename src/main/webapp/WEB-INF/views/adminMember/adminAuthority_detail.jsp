@@ -32,10 +32,16 @@
 
 <div class="content animate-panel row" style="margin-bottom: 10px;">
 
-<div class="col-lg-4 pull-right ui-sortable" style="margin-right: 40px; padding-bottom: 5px;">
+<div class="col-lg-4 pull-right" id="btndiv" style="margin-right: 40px; padding-bottom: 5px;">
 	<c:forEach var="role" items="${ role }">
 		<c:if test="${ role.role_no != '0' }">
-			<button class="btn btn-primary sortable ui-sortable-handle" draggable="true">${ role.role_exp }</button>
+			 <div class="row ui-sortable">
+					<div class="col-md-4 border-right drag"> 
+                    	<div class="contact-stat gradLi ui-sortable-handle color" id="${ role.role_no }">
+                    		 ${ role.role_exp }
+                    	</div> 
+                    </div>
+			 </div>
 			<br>
 		</c:if>
 	</c:forEach>

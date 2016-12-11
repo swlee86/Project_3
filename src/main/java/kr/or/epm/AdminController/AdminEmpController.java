@@ -60,18 +60,19 @@ public class AdminEmpController {
 		int pgsize = Integer.parseInt(pagesize);
 		int cpage = Integer.parseInt(currentpage);
 		
-		int totalcount = service.selectCount(field, query);  //전체 갯수 구하는 함수
+		// int totalcount = service.selectCount(field, query);  //전체 갯수 구하는 함수
 		
 		//List<Emp> list = service.selectEmpList(cpage, pgsize);
 		//int totalcount = list.size();
 				
-		if (totalcount % pgsize == 0) {
-			pagecount = totalcount / pgsize;
-		} else {
-			pagecount = (totalcount / pgsize) + 1;
-		}
+		//if (totalcount % pgsize == 0) {
+		//	pagecount = totalcount / pgsize;
+		//} else {
+		//	pagecount = (totalcount / pgsize) + 1;
+		//}
 		
-		List<Emp> list = service.selectEmpList(cpage, pgsize,field, query);
+		//List<Emp> list = service.selectEmpList(cpage, pgsize,field, query);
+		List<Emp> list = service.selectEmpList();
 		
 		
 		
@@ -80,7 +81,7 @@ public class AdminEmpController {
 		model.addAttribute("cpage", cpage);
 		model.addAttribute("pagesize", pgsize);
 		model.addAttribute("pagecount", pagecount);
-		model.addAttribute("totalcount", totalcount);
+		// model.addAttribute("totalcount", totalcount);
 		
 		return "adminMember.adminEmpList";
 	}
