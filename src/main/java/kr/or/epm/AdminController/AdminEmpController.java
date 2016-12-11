@@ -13,6 +13,7 @@ import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
 import kr.or.epm.VO.Position;
+import kr.or.epm.VO.Role;
 
 /*
  * 작성자 : 백승아
@@ -96,8 +97,22 @@ public class AdminEmpController {
 	
 	// 사원 권한 부여 페이지
 	@RequestMapping(value="adminEmp_authority.do", method=RequestMethod.GET)
-	public String adminAuthority() {
+	public String adminAuthority(Model model) {
 		System.out.println("CONTROLLER] 사원 권한 부여 페이지");
+		
+		// 직위 리스트 불러오기
+		List<Position> plist = service.selectPostion_list();
+		
+		for(int i=0; i<plist.size(); i++) {
+			// 이미 부여된 권한 리스트 불러오기
+			List<String> rlisted = service.selectRole_selected(plist.get(i).getPosition_no());
+			plist.get(i).setRolelist(rlisted);
+		}
+		model.addAttribute("plist", plist);
+		
+		// 권한 리스트 불러오기
+		List<Role> rlist = service.selectRole();
+		model.addAttribute("rlist", rlist);
 		
 		return "adminMember.adminAuthority";
 	}

@@ -8,6 +8,7 @@ import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
+import kr.or.epm.VO.Role;
 
 /*
  * 작성자 : 백승아
@@ -27,6 +28,7 @@ public interface AdminEmpDAO {
 	public List<Emp_cg> selectEmp_cg_list();
 	
 	// 사원 등록을 위한 직위 리스트 불러오기
+	// 권한 부여 페이지를 위한 직위 리스트 불러오기
 	public List<Position> selectPosition_list();
 	
 	// 사원 등록을 위한 지점 리스트 불러오기
@@ -65,4 +67,10 @@ public interface AdminEmpDAO {
 	
 	// 탈퇴시키기 위해 사원의 이력을 '퇴사'로 변경하기
 	public int updateEmp_his_out(String emp_no);
+	
+	// 권한 부여 페이지를 위해 권한 리스트 불러오기
+	public List<Role> selectRole();
+	
+	// 권한 부여 페이지를 위해 부여되어 있는 권한 리스트 불러오기
+	public List<String> selectRole_selected(String position_no);
 }

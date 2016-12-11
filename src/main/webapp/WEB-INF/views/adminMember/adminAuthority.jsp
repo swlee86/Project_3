@@ -36,306 +36,52 @@
             <div class="text-center m-b-xl">
             <div class="row">
             
+            	<c:forEach var="plist" items="${ plist }" varStatus="status">
                 <div class="col-sm-3">
-                    <div class="hpanel plan-box hyellow active">
+                    <div 
+                    	<c:if test="${ status.index % 4 == 0 }"> class="hpanel plan-box hyellow active" </c:if>
+                    	<c:if test="${ status.index % 4 == 1 }"> class="hpanel plan-box hgreen active" </c:if>
+                    	<c:if test="${ status.index % 4 == 2 }"> class="hpanel plan-box hblue active" </c:if>
+                    	<c:if test="${ status.index % 4 == 3 }"> class="hpanel plan-box hred active" </c:if>
+                    >
                         <div class="panel-heading hbuilt text-center">
-                            <h4 class="font-bold">대표</h4>
+                            <h4 class="font-bold">${ plist.position_name }</h4>
                         </div>
                         <div class="panel-body">
                             <table class="table">
                                 <thead>
-                                <tr>
-                                    <td> 공통 권한</td>
+                                <tr> 
+                                	<td style="font-weight: bold;">공통 권한</td>
                                 </tr>
                                 </thead>
                                 
                                 <tbody>
+                                <c:forEach var="rlist" items="${ rlist }">
+                                <c:if test="${ rlist.role_no != 0 }">
                                 <tr>
                                     <td>
-                                        <input type="checkbox"> 관리자
+                                    	<input type="checkbox" 
+                                    	<c:forEach var="list" items="${ plist.rolelist }" varStatus="status">
+                                    		<c:if test="${ status.index+1 == rlist.role_no }">
+                                    			checked
+                                    		</c:if>
+                                    	</c:forEach>
+                                    	> ${ rlist.role_exp }
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                    	<input type="checkbox"> 사원 조회 및 이력 조회
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 사원 등록
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 사원 탈퇴 승인
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 사원 권한 부여
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 지점 관리
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 부서 관리
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 하위 부서 관리
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 직위 관리
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 전자 결재 승인
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 프로젝트 승인
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 프로젝트 작성
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 회사 정보 공유 게시판 관리
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 언론 게시판 관리
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 자유 게시판 관리
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> 업무 정보 공유 게시판 관리
-                                    </td>
-                                </tr>
+                                </c:if>
+                                </c:forEach>
                                 </tbody>
                             </table>
-                            <a href="#" class="btn btn-warning btn-sm m-t-xs">적용</a>
+                            <button id="applyBtn"
+                            	<c:if test="${ status.index % 4 == 0 }"> class="btn btn-warning btn-sm m-t-xs" </c:if>
+                    			<c:if test="${ status.index % 4 == 1 }"> class="btn btn-success btn-sm m-t-xs" </c:if>
+                    			<c:if test="${ status.index % 4 == 2 }"> class="btn btn-info btn-sm m-t-xs" </c:if>
+                    			<c:if test="${ status.index % 4 == 3 }"> class="btn btn-danger btn-sm m-t-xs" </c:if>>적용</button>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-3">
-                    <div class="hpanel plan-box hgreen">
-                        <div class="panel-heading hbuilt text-center">
-                            <h4 class="font-bold">Standard plan</h4>
-                        </div>
-                        <div class="panel-body">
-                            <p class="text-muted">
-                                Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                            </p>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <td>
-                                        Features
-                                    </td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Dashboard
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Project view
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Contacts
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Calendar
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> AngularJS version
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-square-o"></i> Meteor version
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-square-o"></i> Support
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <p class="text-muted">
-                                Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                            </p>
-
-                            <h3 class="font-bold">
-                                $20/month
-                            </h3>
-                            <a href="#" class="btn btn-success btn-sm m-t-xs">Select plan</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="hpanel plan-box hblue">
-                        <div class="panel-heading hbuilt text-center">
-                            <h4 class="font-bold">Premium plan</h4>
-                        </div>
-                        <div class="panel-body">
-                            <p class="text-muted">
-                                Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                            </p>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <td>
-                                        Features
-                                    </td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Dashboard
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Project view
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Contacts
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Calendar
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> AngularJS version
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Meteor version
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-square-o"></i> Support
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <p class="text-muted">
-                                Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                            </p>
-
-                            <h3 class="font-bold">
-                                $30/month
-                            </h3>
-                            <a href="#" class="btn btn-info btn-sm m-t-xs">Select plan</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-sm-3">
-                    <div class="hpanel plan-box hred">
-                        <div class="panel-heading hbuilt text-center">
-                            <h4 class="font-bold">Prestige plan</h4>
-                        </div>
-                        <div class="panel-body">
-                            <p class="text-muted">
-                                Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                            </p>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <td>
-                                        Features
-                                    </td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Dashboard
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Project view
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Contacts
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Calendar
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> AngularJS version
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Meteor version
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <i class="fa fa-check-square-o"></i> Support
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <p class="text-muted">
-                                Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                            </p>
-
-                            <h3 class="font-bold">
-                                $40/month
-                            </h3>
-                            <a href="#" class="btn btn-danger btn-sm m-t-xs">Select plan</a>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
