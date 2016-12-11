@@ -79,7 +79,6 @@ public class PageMoveController {
 		//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
 		if(emp_no_chk==false){
 			id = principal.getName();			
-			System.out.println("아이디+++++++++++++++++++++++++  : "+id);
 			String empinfo = service.selectUserName(id);
 			session.setAttribute("userName", empinfo);
 		}
@@ -99,8 +98,6 @@ public class PageMoveController {
  				System.err.println(e.getMessage());
  			}finally{
  				model.addAttribute("tasklist", tasklist);
- 				System.out.println("미확인 업무 tasklist tostring : "+tasklist.toString());
- 				System.out.println("미확인 업무 tasklist size : "+tasklist.size());
  				//model.addAttribute("tasklistsize", tasklist.size());
  			}
  			
@@ -118,8 +115,6 @@ public class PageMoveController {
  				System.err.println(e.getMessage());
  			}finally{
  				model.addAttribute("mytasklist", mytasklist);
- 				System.out.println("mytasklist.size() : "+mytasklist.size());
- 				System.out.println("~~~~~~~~~~~~~~~~~~~mytasklist tostirng : "+mytasklist.toString());
  				//model.addAttribute("mytasklistsize", mytasklist.size());
  			}
  			
@@ -156,12 +151,12 @@ public class PageMoveController {
 		}else{
 			try{
 				deptavg = pushService.avgcommute_dept(emp_no);
-				System.out.println("@!@!@!@!@!부서의 평균 근무시간 : "+deptavg);
+				//System.out.println("@!@!@!@!@!부서의 평균 근무시간 : "+deptavg);
 				if(deptavg==null){
 					deptavg="0";
 				}
 				myavg = pushService.avgcommute_my(emp_no);
-				System.out.println("@!@!@!@!@!나의 평균 근무시간 : " + myavg);
+				//System.out.println("@!@!@!@!@!나의 평균 근무시간 : " + myavg);
 				if(myavg==null){
 					myavg="0";
 				}
@@ -185,7 +180,7 @@ public class PageMoveController {
  		}else{
  			try{
  				pjlist = projectservice.selectPj_callendar(emp_no); 				
- 				System.out.println("@@@@@@@프로젝트 리스트 사이즈 : " +pjlist.size());
+ 				//System.out.println("@@@@@@@프로젝트 리스트 사이즈 : " +pjlist.size());
  			}catch(Exception e){
  				System.err.println(e.getMessage());
  			}finally{
@@ -204,7 +199,7 @@ public class PageMoveController {
  			}catch(Exception e){
  				System.err.println(e.getMessage());
  			}finally{ 				
- 				System.out.println("approve_pjlist size : "+approve_pjlist.size());
+ 				//System.out.println("approve_pjlist size : "+approve_pjlist.size());
  				model.addAttribute("approve_pjlist", approve_pjlist);
  			}
  		}

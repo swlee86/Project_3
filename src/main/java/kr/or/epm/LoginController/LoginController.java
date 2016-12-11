@@ -39,7 +39,14 @@ public class LoginController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	
+	//로그아웃 버튼 클릭시 세션 삭제 
+	@RequestMapping(value="/sessionOut.do", method = RequestMethod.GET)
+	public View sessionOut(HttpServletRequest request, Model model){
+		HttpSession session = request.getSession();
+		session.invalidate();
+		model.addAttribute("result", "성공");
+		return jsonview;
+	}
 	
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
