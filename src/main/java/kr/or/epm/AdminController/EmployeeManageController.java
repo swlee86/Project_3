@@ -16,7 +16,7 @@ import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
 
 @Controller
-public class EmployeeManageController지울거 {
+public class EmployeeManageController {
 
 	@Autowired
 	private EmployeeManageService employeeManage;
