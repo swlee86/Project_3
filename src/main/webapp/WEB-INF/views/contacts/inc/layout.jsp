@@ -632,9 +632,11 @@
 					},
 					success : function(data){
 						console.log("data : " + data);
+						console.log(" 이름 :::::::::::::::::"+name);
 						console.log("조직도 data.pic : " + data.pic);
 						if(data != null){
-							$('#name').val(name);
+							//$('#name').val(name);
+							$('#enrol_name').val(name);
 							$('#addenrollDate').val(data.birth);
 							$('#attach').val(data.branch_name+' '+data.dept_name+' '+data.low_dept_name);
 							$('#mail').val(data.email);
@@ -670,7 +672,7 @@
 						console.log("data : " + data);
 						console.log("조직도 data.pic : " + data.pic);
 						if(data != null){
-							$('#name').val(name);
+							$('#enrol_name').val(name);
 							$('#addenrollDate').val(data.birth);
 							$('#attach').val(data.branch_name+' '+data.dept_name+' '+data.low_dept_name);
 							$('#mail').val(data.email);
