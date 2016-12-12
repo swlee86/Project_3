@@ -68,7 +68,7 @@ public class Dept {
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Dept [dept_no=" + dept_no + ", branch_no=" + branch_no + ", branch_name=" + branch_name + ", dept_name="

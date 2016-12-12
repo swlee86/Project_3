@@ -21,8 +21,6 @@ public class Pjd {
 	private String rec_emp_no;
 	private String pjd_progress;
 	
-	
-	
 	public String getRec_emp_no() {
 		return rec_emp_no;
 	}
@@ -136,6 +134,4 @@ public class Pjd {
 				+ ", rownum=" + rownum + ", emp_name=" + emp_name + ", emp_no=" + emp_no + ", pj_step_name="
 				+ pj_step_name + ", rec_emp_no=" + rec_emp_no + ", pjd_progress=" + pjd_progress + "]";
 	}
-
-	
 }

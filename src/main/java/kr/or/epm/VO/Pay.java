@@ -116,7 +116,4 @@ public class Pay {
 				+ ", give_date=" + give_date + ", salary=" + salary + ", acc_commute_time=" + acc_commute_time
 				+ ", acc_add_time=" + acc_add_time + "]";
 	}
-
-
-	
 }

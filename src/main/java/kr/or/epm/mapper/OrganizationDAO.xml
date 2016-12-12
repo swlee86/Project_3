@@ -14,7 +14,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into emp_contact(emp_no,contact_no,groups) values(#{emp_no},#{contact_no},(select nvl((SELECT (select distinct groups from emp_contact where emp_no=#{emp_no}) AS empgroup FROM DUAL),'1,') from dual))
 	</insert>
 	
-	
 	<!-- 최근 글  번호-->
 	<select id="selectMaxContact_No" resultType="int">
 		select max(to_number(contact_no)) from contact where name = #{name}
@@ -27,7 +26,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on d. emp_no = e.emp_no
 		where d.id=#{id}
 	</select>
-	
 	
 	<!-- 주소록테이블 등록 -->
 	<insert id="insertContact" parameterType="kr.or.epm.VO.Contact">
@@ -94,7 +92,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       where d.low_dept_no = #{param1} and e.emp_no ! = ( select emp_no from emp_detail where id=#{param2})  and substr(e.emp_no,1,4) != 0000
    </select>
    
-   
    <!-- 부서를 출력하기 위해 부서번호 가져오기 -->
    <select id="selectOrganization_dept_no">
    		select dept_no, dept_name, d.depth
@@ -135,6 +132,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  on e.position_no = p.position_no
 	  where l.low_dept_no = #{low_dept_no} and p.step = '2'  
    </select>
-   
-
+ 
 </mapper>

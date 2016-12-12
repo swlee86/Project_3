@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 사원 구분에 대한 mapper
 -->
 
+<!-- 구분 명 가져오기 -->
 	<select id="selectCg_no">
 		select cg_no
 		from emp_cg

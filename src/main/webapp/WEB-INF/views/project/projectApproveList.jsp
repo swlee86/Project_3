@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  
+<!--  
+	작성자	: 박지은
+	작성일	: 2016-12-01
+	목 적  	: 프로젝트 승인 대기함 리스트 view, script
+--> 
 <script>
 $(function(){
 
@@ -14,8 +18,6 @@ $(function(){
 													);
 	}
 	$('#pj_approval_search').change(function(){
-		console.log('select 체인지');
-		console.log($('#pj_approval_search').val());
 		if($('#pj_approval_search').val() == 'step_no'){
 			$('#pj_approval_search_keyword').empty();
 			$('#pj_approval_search_keyword').append('<select class="form-control input-sm" name="q">'+
@@ -29,13 +31,9 @@ $(function(){
 			$('#pj_approval_search_keyword').append('<input type="text" class="form-control input-sm" name="q" />');
 		}
 	});
-	
-
-
 });
 
 </script>
-<!--프로젝트 승인처리 페이지-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -59,16 +57,12 @@ $(function(){
 
 <div class="content animate-panel">
 	<div class="row">
-
-		<div class="col-lg-12">
-		
+		<div class="col-lg-12">	
 			<div class="hpanel">
 				<ul class="nav nav-tabs tabstyle">
 					<li class="<c:if test="${app_char == '1'}">active</c:if>"><a data-toggle="tab" href="#tab-1" id="songsin">송신</a></li>
-					<li class="<c:if test="${app_char == '2'}">active</c:if>"><a data-toggle="tab" href="#tab-2" id="susin">수신</a></li>
-					
+					<li class="<c:if test="${app_char == '2'}">active</c:if>"><a data-toggle="tab" href="#tab-2" id="susin">수신</a></li>		
 				</ul>  
-
 
 				<div class="tab-content">
 					<div id="tab-2" class="tab-pane <c:if test="${app_char == '2'}">active</c:if>">
@@ -120,9 +114,6 @@ $(function(){
 										<c:forEach items="${list}" var="p">
 											<tr>
 												<td>${p.emp_name}</td>
-
-												<%-- <td>${p.emp_no}</td> --%>
-
 												<td><a
 													href="project_approve_detailview.do?pj_no=${p.pj_no}&pj_emp_no=${p.emp_no}">${p.pj_title}</a></td>
 												<td>${p.pj_start}&nbsp;&nbsp;~&nbsp; &nbsp;${p.pj_end}</td>
@@ -185,12 +176,7 @@ $(function(){
 						</div>
 					</div>
 
-					
-					
-					
-					
-					
-					<!-- 송신 -->
+
 					<div id="tab-1" class="tab-pane <c:if test="${app_char == '1'}">active</c:if>">
 						<div class="panel-body">
 					<div class="row text-right">
@@ -265,64 +251,6 @@ $(function(){
 									</c:forEach>
 								</tbody>
 							</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<%-- 								<table id="example1" class="footable table-stripped toggle-arrow-tiny table table-hover" data-page-size="8" data-filter=#filter>
-									<thead>
-										<tr>
-											<th data-toggle="true">수신자</th>
-											<th>프로젝트명</th>
-											<th>기 &nbsp; 간</th>
-											<th>승인단계</th>
-											<th data-hide="all">제 목</th>
-                            				<th data-hide="all">내 용</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${sendlist}" var="p">
-											<tr>
-												<td>${p.rec_emp_name}</td>
-												<td>${p.pj_title}</td>
-												<td>${p.pj_start}&nbsp;&nbsp;~&nbsp; &nbsp;${p.pj_end}</td>
-												<td><c:choose>
-														<c:when test="${p.step_no == '2'}">
-															<button class="btn btn-xs btn-danger" disabled>
-																<b>승인거부</b>
-															</button>
-														</c:when>
-														<c:when test="${p.step_no == '3'}">
-															<button class="btn btn-xs btn-primary2" disabled>
-																&nbsp;&nbsp;&nbsp;<b>보&nbsp;&nbsp;류</b>&nbsp;&nbsp;&nbsp;
-															</button>
-														</c:when>
-														<c:when test="${p.step_no == '4'}">
-															<button class="btn btn-xs btn-warning2" disabled>
-																&nbsp;&nbsp;<b>미승인</b>&nbsp;&nbsp;
-															</button>
-														</c:when>
-													</c:choose>
-												</td>
-												<td><span class="pie">6,9</span></td>
-                            					<td>40%</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table> --%>
-						
-
 						</div>
 
 						<div class="panel-footer" style="text-align: center; background-color:#f7f9fa" >

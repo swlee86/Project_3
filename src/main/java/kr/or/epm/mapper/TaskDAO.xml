@@ -108,12 +108,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)where num  between 1 + (${param5} - 1) * ${param6} and  ${param6} + (${param5} - 1) * ${param6}
 	</select>
 	
-	
-	
-
-	
-	
-	
 	<!-- 업무 상세 조회하기 -->
 	<select id="selectTask_detail" resultType="kr.or.epm.VO.Task">
 		select t.task_no, cg_name, sign, 
@@ -179,7 +173,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     )where  num   between 1 + (${param4} - 1) * ${param5} and  ${param5} + (${param4} - 1) * ${param5}
 	</select>
 	
-	<!-- 참여 업무 갯수 -->
+	<!-- 참여 업무 개수 -->
 	<select id="selectCount_parti" resultType="int">
 	select nvl(count(*),0)
     from(

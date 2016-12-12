@@ -25,7 +25,6 @@ public class Pj {
 	private String rec_emp_no;
 	private String rec_emp_name;
 	
-	
 	public String getRec_emp_no() {
 		return rec_emp_no;
 	}
@@ -148,7 +147,4 @@ public class Pj {
 				+ pj_step_no + ", step_no=" + step_no + ", emp_name=" + emp_name + ", pj_step_name=" + pj_step_name
 				+ ", dept_name=" + dept_name + ", rec_emp_no=" + rec_emp_no + ", rec_emp_name=" + rec_emp_name + "]";
 	}
-
-
-	
 }

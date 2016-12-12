@@ -97,8 +97,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where position_no = #{position_no}
 	</delete>
 	
-	
-	
 	<!--직위 선택시 기본급여 , 추가급여 조회-->
 	<select id="selectOptionJoin" parameterType="String" resultType="kr.or.epm.VO.PositionJoin">
 	select p.position_no, p.position_name, p.step, s.basic_pay,s.set_date, a.add_pay
@@ -108,6 +106,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	on p.position_no=a.position_no
 	where p.position_no = #{param1}
 	</select>
-	
-	
 </mapper>

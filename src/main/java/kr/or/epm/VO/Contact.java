@@ -19,8 +19,6 @@ public class Contact {
 	private String memo;
 	private String empimg;
 	
-
-
 	public String getEmpimg() {
 		return empimg;
 	}
@@ -124,8 +122,6 @@ public class Contact {
 	public String toString() {
 		return "Contact [contact_no=" + contact_no + ", group_no=" + group_no + ", name=" + name + ", attach=" + attach
 				+ ", birth=" + birth + ", mail=" + mail + ", pic=" + pic + ", tel1=" + tel1 + ", tel2=" + tel2
-				+ ", memo=" + memo + ", group_name=" + group_name + "]";
+				+ ", memo=" + memo + ", empimg=" + empimg + ", group_name=" + group_name + "]";
 	}
-
-	
 }
