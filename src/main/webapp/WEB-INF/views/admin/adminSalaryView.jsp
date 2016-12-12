@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+
 <!--관리자 급여 관리 첫 페이지-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -24,6 +26,9 @@
 
 <div class="content animate-panel">
         <div class="row">
+        
+        
+              <se:authorize access="hasRole('ROLE_PAYLIST')">
             <div class="col-md-4">
                 <div class="hpanel">
                     <div class="panel-body">
@@ -40,8 +45,10 @@
                     </div>
                 </div>
             </div>
+            </se:authorize>
          
 
+              <se:authorize access="hasRole('ROLE_PAYCHECK')">
       <div class="col-md-4">
                 <div class="hpanel">
                     <div class="panel-body">
@@ -58,7 +65,10 @@
                     </div>
                 </div>
             </div>
+            </se:authorize>
 
+
+              <se:authorize access="hasRole('ROLE_SALARY')">
      <div class="col-md-4">
                 <div class="hpanel">
                     <div class="panel-body">
@@ -75,6 +85,9 @@
                     </div>
                 </div>
         </div>
+        </se:authorize>
+        
+              <se:authorize access="hasRole('ROLE_BONUS')">
          <div class="col-md-4">
                 <div class="hpanel">
                     <div class="panel-body">
@@ -91,5 +104,6 @@
                     </div>
                 </div>
         </div>
+        </se:authorize>
     </div>
   </div>

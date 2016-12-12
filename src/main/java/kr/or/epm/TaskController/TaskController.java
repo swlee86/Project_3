@@ -327,6 +327,11 @@ public class TaskController {
 		Task detail = service.selectTask_detail(task_no,empno);
 		model.addAttribute("detail", detail);
 		
+		// 권한 확인을 위해
+		// session emp_no랑 db의 수신자랑 동일한지 확인
+		model.addAttribute("session_emp_no", empno);
+		model.addAttribute("db_rec_emp_no", detail.getRec_emp_no());
+		
 		String taskcount = pushservice.taskCount(empno);
 		String projectcount = pushservice.myprojectCount(empno);
 		String projectApproval = pushservice.projectApproval(empno);
@@ -386,7 +391,7 @@ public class TaskController {
 		// 상세 가져오기
 		Task detail = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", detail);
-
+		
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);
@@ -403,6 +408,11 @@ public class TaskController {
 		// 상세 가져오기
 		Task detail = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", detail);
+
+		// 권한 확인을 위해
+		// session emp_no랑 db의 수신자랑 동일한지 확인
+		model.addAttribute("session_emp_no", emp_no);
+		model.addAttribute("db_rec_emp_no", detail.getRec_emp_no());
 
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
@@ -528,6 +538,11 @@ public class TaskController {
 		// 상세 가져오기
 		Task task = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", task);
+
+		// 권한 확인을 위해
+		// session emp_no랑 db의 수신자랑 동일한지 확인
+		model.addAttribute("session_emp_no", emp_no);
+		model.addAttribute("db_rec_emp_no", task.getRec_emp_no());
 
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
@@ -671,6 +686,12 @@ public class TaskController {
 		Task task = service.selectTask_detail(task_no,emp_no);
 		model.addAttribute("detail", task);
 
+		// 권한 확인을 위해
+		// session emp_no랑 db의 수신자랑 동일한지 확인
+		model.addAttribute("session_emp_no", emp_no);
+		model.addAttribute("db_rec_emp_no", task.getRec_emp_no());
+
+				
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.EmployeeRoleManageDAO;
+import kr.or.epm.VO.EmployeeRoleManage;
 import kr.or.epm.VO.EmployeeRoleManageeeeee;
 import kr.or.epm.VO.Role;
 
@@ -41,12 +42,12 @@ public class EmployeeRoleManageService {
 	}
 
 	// 관리자 > 사원 권한 관리 접근시 해당 테이블에 필요한 데이터를 뽑는 서비스 함수
-	public List<EmployeeRoleManageeeeee> selectEmpRoleManage(int cpage, int pgsize) {
+	public List<EmployeeRoleManage> selectEmpRoleManage(int cpage, int pgsize) {
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
 		System.out.println(start + " / " + end);
 		EmployeeRoleManageDAO employeerolemanage = sqlSession.getMapper(EmployeeRoleManageDAO.class);
-		List<EmployeeRoleManageeeeee> list = employeerolemanage.selectEmpRoleManage(start, end);
+		List<EmployeeRoleManage> list = employeerolemanage.selectEmpRoleManage(start, end);
 		return list;
 	}
 }
