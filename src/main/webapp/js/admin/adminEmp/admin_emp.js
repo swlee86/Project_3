@@ -373,7 +373,7 @@ $(function() {
 	})
 	
 	$(".empclick").click(function() {
-		var emp_no = $(this).contents(":eq(0)").text();
+		var emp_no = $(this).parents().contents(":eq(0)").text();
 		
 		location.href="adminEmp_detail.do?emp_no="+emp_no;
 	});
