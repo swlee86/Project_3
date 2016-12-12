@@ -574,13 +574,13 @@ small {
 	}
 	
 	 function signOut() {
-		  	alert("로그아웃 버튼 클릭 !");
+		  	/* alert("로그아웃 버튼 클릭 !");
 			$.ajax({
 				url : "sessionOut.do",
 				success : function(data){
 					alert(data.result);
 				}
-			});
+			}); */
 		  	var auth2 = gapi.auth2.getAuthInstance();
 		    auth2.signOut().then(function () {
 		      console.log('User signed out.');
@@ -637,7 +637,7 @@ small {
 		  });
 		  
 		  $('#numchk').click(function() {
-			  alert("아이디 검사 !!  :  "+$('#emp_no').val());
+			  
 				$.ajax({
 					type : "post",
 					url : "numchk.do",
