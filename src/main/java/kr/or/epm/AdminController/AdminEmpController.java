@@ -178,6 +178,7 @@ System.out.println("cpage:"+cpage+"/pagesize:"+pagesize+"/pagecount:"+pagecount+
 		Emp detail = service.selectEmp_detail(emp_no);
 		model.addAttribute("detail", detail);
 		
+		System.out.println("###################detail : " + detail.toString());
 		return "adminMember.adminEdit";
 	}
 }
