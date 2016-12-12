@@ -72,7 +72,8 @@
             </div>
             <div class="panel-body" style="display: none;">
             	<div class="pull-left">
-                <img alt="사진" src="images/a4.jpg" class="img-square m-b">
+                <img alt="사진" class="img-square m-b" style="width:140px; height:140px;" src="${pageContext.request.contextPath}/img/upload/${list.pic}" >
+               <!--  <img alt="사진" src="images/a4.jpg" class="img-square m-b"> -->
             <!-- <img alt="사진" src="images/${list.pic}" class="img-circle m-b"> -->
             	</div>
             <div>
