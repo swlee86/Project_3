@@ -106,10 +106,10 @@ $(function(){
 									<thead>
 										<tr>
 											<th>
-											<input type="checkbox" style="margin-left: 20px">
+											 <input type="checkbox" style="margin-left: 20px"> 
 											</th>
 											<th>NO</th>
-											<th>중요</th>
+											<!-- <th>중요</th> -->
 											<th width="30%">업무 명</th>
 											<th>업무 기한</th>
 											<th>요청자</th>
@@ -120,18 +120,18 @@ $(function(){
 									<tbody id="firstTable">
 										<c:forEach var="list1" items="${list1}">
 											<tr>
-												<td style="padding-top: 12px;">
+											 	<td style="padding-top: 12px;">
 													<input type="checkbox" style="margin-left: 20px">
-												</td>
+												</td> 
 												<td style="padding-top: 12px;">${list1.task_no}</td>
-												<td style="padding-top: 12px;">
+												<%-- <td style="padding-top: 12px;">
 													<div class="checkbox checkbox-danger" 
 														 style="padding-top: 0px; margin-top: 0px;">
 														<input id="checkbox1" type="checkbox" 
 																<c:if test="${ list1.sign == '1' }"> checked </c:if> >
 														<label></label>
 													</div>
-												</td>
+												</td> --%>
 												<td style="padding-top: 12px; text-weight: bold;">
 													<a href="taskRequest_rec_detail.do?task_no=${list1.task_no}"
 													<c:if test="${ list1.rec_date == null }"> style="text-decoration:underline; color:blue;" </c:if>>
@@ -168,9 +168,9 @@ $(function(){
 											font-weight: bold; font-size: 13px;"
 											onclick="window.location.href='taskWrite.do'">업무 등록</button>
 									&nbsp;&nbsp;
-									<button type="button" class="btn btn-sm btn-default demo4"
+								<!-- 	<button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">업무 삭제</button>
+											font-weight: bold; font-size: 13px;">업무 삭제</button> -->
 								</div>
 							</div>
 						</div>
@@ -283,7 +283,7 @@ $(function(){
 								<table cellpadding="1" cellspacing="1" class="table table-hover">
 									<thead>
 										<tr>
-											<th><input type="checkbox" style="margin-left: 20px"></th>
+										 <th><input type="checkbox" style="margin-left: 20px"></th> 
 											<th>NO</th>
 											<th width="30%">업무 명</th>
 											<th>업무 기한</th>
@@ -296,9 +296,9 @@ $(function(){
 									<tbody id="secondTable">
 										<c:forEach var="list2" items="${list2}">
 											<tr>
-												<td style="padding-top: 12px;">
+												 <td style="padding-top: 12px;">
 													<input type="checkbox" style="margin-left: 20px">
-												</td>
+												</td> 
 												<td style="padding-top: 12px;">${list2.task_no}</td>
 												<td style="padding-top: 12px;">
 													<a href="taskRequest_detail.do?task_no=${list2.task_no}">
@@ -345,9 +345,9 @@ $(function(){
 											font-weight: bold; font-size: 13px;"
 											onclick="window.location.href='taskWrite.do'">업무 등록</button>
 									&nbsp;&nbsp;
-									<button type="button" class="btn btn-sm btn-default demo4"
+								<!-- 	<button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">업무 삭제</button>
+											font-weight: bold; font-size: 13px;">업무 삭제</button> -->
 								</div>
 							</div>
 						</div>
@@ -460,7 +460,7 @@ $(function(){
 								<table cellpadding="1" cellspacing="1" class="table table-hover">
 									<thead>
 										<tr>
-											<th><input type="checkbox" style="margin-left: 20px"></th>
+											 <th><input type="checkbox" style="margin-left: 20px"></th> 
 											<th>NO</th>
 											<th width="30%">업무 명</th>
 											<th>업무 기한</th>
@@ -474,7 +474,7 @@ $(function(){
 											<tr>
 												<td style="padding-top: 12px;">
 													<input type="checkbox" style="margin-left: 20px">
-												</td>
+												</td> 
 												<td style="padding-top: 12px;">${list3.task_no}</td>
 												<td style="padding-top: 12px;">
 													<a href="taskRequest_participation_detail.do?task_no=${list3.task_no}">
@@ -513,9 +513,9 @@ $(function(){
 											font-weight: bold; font-size: 13px;"
 											onclick="window.location.href='taskWrite.do'">업무 등록</button>
 									&nbsp;&nbsp;
-									<button type="button" class="btn btn-sm btn-default demo4"
+							<!-- 		<button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">업무 삭제</button>
+											font-weight: bold; font-size: 13px;">업무 삭제</button> -->
 								</div>
 							</div>
 						</div>
