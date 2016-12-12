@@ -109,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 사원 이력 불러오기 -->
 	<select id="selectEmp_his" resultType="kr.or.epm.VO.Emp">
-		select e.emp_no, branch_name, dept_name, his_no,
+		select e.emp_no, branch_name, dept_name, his_no, role_exp, 
 			   low_dept_name, position_name, emp_name, regdate,
 			   ec.cg_name, hc.cg_name as "his_cg_name", role_name
 		from emp e join emp_role er

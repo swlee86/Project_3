@@ -57,7 +57,7 @@ function pagePrint(obj){
                 <div class="hpanel blog-article-box" id="print">
                     <div class="panel-heading" style="padding-bottom: 15px;">
                         <h4>
-                        <img alt="로고" src="img/logo1.png" class="light-version"  style="background: url('img/Logo.png');background-size: 60%;background-repeat: no-repeat;background-position: center center;">
+                        <img alt="로고" src="${pageContext.request.contextPath}/img/Logo.png" class="light-version" style="margin-bottom: 20px;">
                         </h4>
                         <small>경기도 성남시 분당구 삼평동 대왕판교로 670길(구 682번지) 유스페이스2 B동 8층 / 070.5039.5803,5807 / FAX 070.7614.3450</small>
                     </div>

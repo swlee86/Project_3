@@ -15,10 +15,10 @@
 					<li><a href="index.do">홈</a></li>
 					<li><a href="project_list.do">전체 프로젝트</a></li>
 					<li><a href="projectDetail.do?pj_no=${pjd.pj_no}">상세 프로젝트</a></li>
-					<li><a href="#">상세프로젝트의 상세보기 </a></li>
+					<li><a href="#">상세프로젝트의 상세보기 </a> </li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">상세프로젝트의  상세보기</h2>
+			<h2 class="font-light m-b-xs">상세프로젝트의  상세보기 &nbsp;<a href="javascript:history.back()" ><i class="pe-7s-back text-info"></i></a></h2>
 			<small>진행 중인 상세 프로젝트 내용을 확인하실 수 있습니다</small>
 		</div>
 	</div>
@@ -140,6 +140,7 @@
 									<input type="button" id="add_btn" class="btn btn-success" value="추가" >
 								</c:if>
 							</div>
+							
 					</div>
 				</div>
 			</div>

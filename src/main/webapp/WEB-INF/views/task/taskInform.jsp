@@ -28,7 +28,7 @@ $(function(){
 					<li class="active"><span>업무 보고</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">업무 보고  <span><a id="url" href="taskInform.do?tab_char=1"><i class="fa fa-repeat"></i></a></span></h2>
+			<h2 class="font-light m-b-xs">업무 보고  <span><a id="url" href="taskInform.do?tab_char=1"><i class="fa fa-repeat text-info" ></i></a></span></h2>
 			<small>&nbsp;&nbsp;&nbsp;진행하고 있는 업무를 보고하거나 받을 수 있습니다^^</small>
 		</div>
 	</div>

@@ -17,7 +17,7 @@
 					<li class="active"><span>일일 근태 관리</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">일일근태등록</h2>
+			<h2 class="font-light m-b-xs">일일근태등록 <span><a id="url" href="javascript:location.reload()"><i class="fa fa-repeat text-info"></i></a></span></h2>
 			<small>출근 퇴근을 할때 꼭 입력해주세요!</small>
 		</div>
 	</div>
