@@ -38,8 +38,10 @@ public interface FreeBoardDAO {
 	//리플 추가하는 함수
 	int insertReply(Re_FreeBoard dto);
 
+	//조회수 수정하는 함수
 	void updateHit(int no);
 
+	//답글시 step update 하는 함수
 	void updateStep(int refer, int step);
 
 	// 수정하는 함수
