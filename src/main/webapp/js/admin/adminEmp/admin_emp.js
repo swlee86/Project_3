@@ -248,6 +248,9 @@ $(function() {
                 swal("취소", "취소되었습니다", "error");
             }
         });
+		
+		wait(5000);
+		window.location.reload();
 	});
 	
 	// 권한 부여에서 직위의 적용 버튼을 눌렀을 때

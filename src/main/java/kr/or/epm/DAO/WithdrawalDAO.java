@@ -12,6 +12,8 @@ import kr.or.epm.VO.Task_step;
 
 public interface WithdrawalDAO {
 
+	//비밀번호 가져오기
+	public String selectPwd(String emp_no);
 	// 회원 탈퇴 요청하기
 	public int updateWithdrawal(String emp_no);
 	

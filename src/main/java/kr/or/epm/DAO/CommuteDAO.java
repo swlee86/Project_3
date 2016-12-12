@@ -39,7 +39,6 @@ public interface CommuteDAO {
 	// 퇴근하기 : 근무 시간, 추가근무시간 저장
 	public int updateCommute_out2(HashMap map);
 	
-	
 	//추가 2016-11-21 김주희
 	// 오늘 출근 내역 있는지 확인
 	public String selectMyCommute_no(String emp_no);
@@ -77,11 +76,9 @@ public interface CommuteDAO {
 	//관리자 > 근태 마감 페이지 리스트
 	public List<PayList> selectCommute_all_Close(String dTime);
 	
-       //관리자 > 근태 마감 확정
+    //관리자 > 근태 마감 확정
 	public int updateCommute_Close(String commute_no);
 	
 	//차트에 사용할 근무시간, 추가근무시간 가져오기 ( 최근 7일 )
 	public List<Commute> selectChartCommute(String emp_no);
-	
-	
 }
