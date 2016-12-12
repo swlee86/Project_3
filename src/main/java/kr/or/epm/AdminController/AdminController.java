@@ -217,7 +217,6 @@ public class AdminController {
 		
 		return "admin.adminSalaryModify";
 	}
-	
 	//관리자 - 근태 마감 - 리스트 보기
 	@RequestMapping("/CommuteAdmin.do")
 	public String CommuteAdmin(Model model){
