@@ -30,7 +30,7 @@ import net.sf.json.JSONArray;
  */
 
 @Controller
-public class EmployeeRoleManageAjaxController {
+public class EmployeeRoleManageAjaxController지울거야 {
 
 	@Autowired
 	private View jsonview;
