@@ -127,7 +127,7 @@
                         <td>${list.position_name}</td>
                         <td>${list.emp_name}</td>
                         <td>
-                        	<img alt="사진" style="width: 50px; height: 50px;" src="${pageContext.request.contextPath}/img/upload/${list.pic}" class="img-circle m-b">
+                        	<<img alt="사진" src="${pageContext.request.contextPath}/img/onload/${list.pic}" class="img-circle m-b">
                         </td>
                         <td>${list.cg_name}</td>
                         <td>
@@ -139,7 +139,7 @@
                 </table>    
 			</div>
 			<div style="text-align: center;" id="page_panel">
-			 <div class="btn-group">
+			<%--  <div class="btn-group">
 					<c:if test="${cpage > 1}">
                     	<button type="button" class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${cpage-1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
                     </c:if>
@@ -156,7 +156,35 @@
 					<c:if test="${cpage < pagecount}">
                     	<button type="button" class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${cpage+1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 	</c:if>
-                </div>
+                </div> --%>
+                 <div class="btn-group">
+								<c:if test="${cpage>1}">
+									<a  class="btn btn-default" href="adminEmp_list.do?currentpage=${cpage-1}&f=${field}&q=${query}">
+										&nbsp;<i class="fa fa-chevron-left"></i>
+									</a>
+								</c:if>
+
+								<c:forEach var="i" begin="1" end="${pagecount}">
+									<c:choose>
+										<c:when test="${cpage==i}">
+											<button class="btn btn-default active" style="background-color: #DAD9FF">
+												<b>${i}</b>
+											</button>
+										</c:when>
+										<c:otherwise>
+											<a class="btn btn-default" href="adminEmp_list.do?currentpage=${i}&f=${field}&q=${query}">
+												${i}
+											</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
+								<c:if test="${cpage < pagecount}">
+									<a class="btn btn-default" href="adminEmp_list.do?&currentpage=${cpage+1}&f=${field}&q=${query}">
+										&nbsp;<i class="fa fa-chevron-right"></i>
+									</a>
+								</c:if>
+							</div>
               </div>
             </div>
         </div> 
