@@ -1,3 +1,4 @@
+
 package kr.or.epm.Service;
 
 import java.util.List;
@@ -12,9 +13,7 @@ import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
-import kr.or.epm.VO.Emp_his_cg;
 import kr.or.epm.VO.Emp_role;
-import kr.or.epm.VO.EmployeeManage;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.Role;
@@ -32,9 +31,7 @@ public class AdminEmpService {
 	private SqlSession sqlsession;
 	
 	// 사원 정보 리스트 출력
-	 public List<Emp> selectEmpList(int cpage, int pgsize, String field, String query) {
-		System.out.println("SselectEmpList() 서비스");
-		
+	public List<Emp> selectEmpList(int cpage, int pgsize, String field, String query) {
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		List<Emp> list = dao.selectEmp_list(cpage, pgsize,field,query);
 		
@@ -43,8 +40,6 @@ public class AdminEmpService {
 	
 	// 사원 등록을 위한 새로운 사번 가져오기
 	public String selectNew_emp_no() {
-		System.out.println("SERVICE] 새로운 사번을 불러옵니다");
-		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		String new_emp_no = dao.selectNew_emp_no();
 		
@@ -53,8 +48,6 @@ public class AdminEmpService {
 	
 	// 사원 등록을 위한 근무상태 리스트 출력
 	public List<Emp_cg> selectEmp_cg_list() {
-		System.out.println("SERVICE] 근무 상태 리스트를 불러옵니다");
-		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		List<Emp_cg> list = dao.selectEmp_cg_list();
 		
@@ -64,8 +57,6 @@ public class AdminEmpService {
 	// 사원 등록을 위한 직위 리스트 출력
 	// 권한 부여 페이지를 위한 직위 리스트 출력
 	public List<Position> selectPostion_list() {
-		System.out.println("SERVICE] 직위 리스트를 불러옵니다");
-		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		List<Position> list = dao.selectPosition_list();
 		
@@ -74,8 +65,6 @@ public class AdminEmpService {
 	
 	// 사원 등록을 위한 지점 리스트 출력
 	public List<Branch> selectBranch_list() {
-		System.out.println("SERVICE] 지점 리스트를 불러옵니다");
-		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		List<Branch> list = dao.selectBranch_list();
 		
@@ -84,8 +73,6 @@ public class AdminEmpService {
 	
 	// AJAX 사원 등록에서 지점을 선택했을 때
 	public List<Dept> selectDept_list(String branch_no) {
-		System.out.println("SERVICE] 부서 리스트를 불러옵니다");
-		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		List<Dept> list = dao.selectDept_list(branch_no);
 		
@@ -94,8 +81,6 @@ public class AdminEmpService {
 	
 	// AJAX 사원 등록에서 부서를 선택했을 때
 	public List<Low_dept> selectLow_dept_list(String dept_no) {
-		System.out.println("SERVICE] 하위 부서 리스트를 불러옵니다");
-
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		List<Low_dept> list = dao.selectLow_dept_list(dept_no);
 		
@@ -105,17 +90,14 @@ public class AdminEmpService {
 	// AJAX 사원 등록
 	@Transactional
 	public int insertEmp(Emp emp) {
-		System.out.println("SERVICE] 사원을 등록합니다");
 		int result = 0;
 		int result1 = 0;
 		int result2 = 0;
 		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		
-		
 		// 이력에 '입사' 추가하기
 		String emp_no = emp.getEmp_no();
-		
 		
 		try {
 			result1 = dao.insertEmp(emp);

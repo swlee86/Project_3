@@ -22,9 +22,6 @@ public class Mail {
 	private String rec_del_check;
 	private String send_mail;
 	
-	
-	
-
 	public String getSend_mail() {
 		return send_mail;
 	}

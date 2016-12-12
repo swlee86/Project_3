@@ -17,8 +17,6 @@ public class Emp_detail {
 	private String postcode;
 	private String googleapiid;
 
-	
-	
 	public String getGoogleapiid() {
 		return googleapiid;
 	}
@@ -96,8 +94,5 @@ public class Emp_detail {
 		return "Emp_detail [emp_no=" + emp_no + ", id=" + id + ", pwd=" + pwd + ", bank=" + bank + ", addr=" + addr
 				+ ", addr_detail=" + addr_detail + ", account=" + account + ", postcode=" + postcode + ", googleapiid="
 				+ googleapiid + "]";
-	}
-
-	
-	
+	}	
 }
