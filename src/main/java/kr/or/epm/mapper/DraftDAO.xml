@@ -237,7 +237,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 협조문 상세 -->
 	<select id="selectCooperation_detail" resultType="kr.or.epm.VO.Cooperation">
-		select d.draft_no, d.cg_no, draft_title, draft_content, d.emp_no, draft_date, file_name, step_no,
+		select distinct(d.draft_no), d.cg_no, draft_title, draft_content, d.emp_no, draft_date, file_name, step_no,
        		   c.low_dept_no, app_check,
        		   e.emp_name, l.branch_name, l.dept_name, l.low_dept_name
 		from draft d join cooperation c
