@@ -1,6 +1,11 @@
 package kr.or.epm.VO;
 
 import org.springframework.web.multipart.MultipartFile;
+/*
+ * 작성자 : 이상원
+ * 작성일 : 2016-11-18
+ * 목  적 : BusinessBoard vo 
+ */
 
 public class BusinessBoard {
 	private String no;

@@ -39,12 +39,11 @@ public class CompanyBoardController {
 	@RequestMapping("/info_board_fileDown.do")
 	public void download(String name, HttpServletResponse response, HttpServletRequest request)
 			throws Exception {
-		//File f = new File("C:/images/" + name);
+
 		//파일 업로드 
 		String path = request.getRealPath("/board/company_upload/");
 		File f = new File(path + "/"+name);
 		String fname = new String(name.getBytes("utf-8"), "8859_1");
-		System.out.println(fname);
 
 		response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
 		FileInputStream fin = new FileInputStream(f);
@@ -69,8 +68,7 @@ public class CompanyBoardController {
 
 		int totalcount = companyBoardService.selectBoardCount();
 		int pagecount = 0;
-
-		
+	
         if(pagesize == null || pagesize.trim().equals("")){
             pagesize = "10"; 			// default 10건씩 
         }
@@ -79,8 +77,7 @@ public class CompanyBoardController {
             currentpage = "1";        //default 1 page
         }
         
-        
-      
+     
         int pgsize = Integer.parseInt(pagesize);  		// 10
         int cpage = Integer.parseInt(currentpage);     //1
                                
@@ -91,7 +88,6 @@ public class CompanyBoardController {
             pagecount = (totalcount/pgsize) + 1;
         }
   
-        
         
         List<Company> list = null;
         try{
@@ -113,7 +109,6 @@ public class CompanyBoardController {
 	//상세보기		  
 	@RequestMapping("/detailinfo_board_list.do")
 	public String detailView(String no, String currentpage, String pagesize, HttpSession session, Model model){
-		System.out.println("no : "+ no + "pagesize : "+pagesize);
 		String rec_emp_no = (String)session.getAttribute("emp_no");
 
 		Company company = null;
@@ -121,7 +116,6 @@ public class CompanyBoardController {
 		int no2 = Integer.parseInt(no);
 		try{
 			 company = companyBoardService.selectDetailBoard(no2);
-			 //companyBoardService.updateHit(no2);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -141,14 +135,10 @@ public class CompanyBoardController {
 		
 		//File cFile = new File("C:/images/", file.getOriginalFilename());
 		String path = request.getRealPath("/board/company_upload/");
-		 System.out.println("=====> path : "+path);
 		File cFile = new File(path, file.getOriginalFilename());
 	
-		
 		try {
 			file.transferTo(cFile);
-			System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
-			System.out.println("겟 패스 : " +cFile.getPath());
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -156,17 +146,15 @@ public class CompanyBoardController {
 		}
 		
 		String id = principal.getName();
-		System.out.println("아이디  : "+id);
+
 		//시큐리티 이용 사번 정보 뽑기
 		Emp_detail emp=companyBoardService.WriterStatus(id);
-		System.out.println("유저 : " +emp.toString());
+
 		Company company = new Company();
 		company.setContent(content);
 		company.setEmp_no(emp.getEmp_no());
 		company.setTitle(title);
 		company.setFile_name(file.getOriginalFilename());
-		
-		System.out.println("회사 파일 업로드 한것 : "+company.getFile_name());
 		
 		String link = "";
 		String msg = "";
@@ -195,8 +183,6 @@ public class CompanyBoardController {
 	//제목 검색
 	@RequestMapping(value ="/info_board_list.do", method=RequestMethod.POST)
 	public String searchInfo_board(String q, String pagesize, String currentpage, String f, Model model){
-		System.out.println("검색하신 단어 : "+q);
-		System.out.println("q: " + q + " pagesize : " + pagesize + "currentpage : " + currentpage + "f : "+ f);
 		int pagecount = 0;
 		
 		String field = "title";
@@ -251,10 +237,7 @@ public class CompanyBoardController {
 	//수정페이지로 이동
 	@RequestMapping(value = "/info_board_update.do", method = RequestMethod.GET)
 	public String info_board_update(String no, Model model) {
-		System.out.println("info_board_update() 컨트롤러 탐");
-		
 		Company company = companyBoardService.selectDetailBoard(Integer.parseInt(no));		
-		
 		
 		model.addAttribute("company",company);
 		System.out.println("리턴 ㄱㄱ");
@@ -264,32 +247,23 @@ public class CompanyBoardController {
 	//수정 처리
 	@RequestMapping(value = "/info_board_update.do", method = RequestMethod.POST)
 	public String info_board_update(@RequestParam("uploadfile") MultipartFile file, Company company, Model model, HttpServletRequest request) {
-		System.out.println("info_board_update()처리 컨트롤러 탐");
 		int result = 0;
 			
 		//File cFile = new File("C:/images/", file.getOriginalFilename());
 		 String path = request.getRealPath("/board/company_upload/");
-			 System.out.println("=====> path : "+path);
 			File cFile = new File(path, file.getOriginalFilename());
 			
 			try {
 				file.transferTo(cFile);
-				System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
-				System.out.println("getPath : " +cFile.getPath());
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			
-			System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
 			company.setFile_name(file.getOriginalFilename());
 			
-			System.out.println("=>update 후 title :"+company.getTitle()+"/내용: "+company.getContent()+"/ 파일 제목 : "+company.getFile_name());
-			
 			result = companyBoardService.updateRow(company);
-
-			System.out.println("=> 글번호update result : "+company.getNo());	
 		
 			if(result > 0){
 				return "redirect:detailinfo_board_list.do?no="+company.getNo();
@@ -301,9 +275,6 @@ public class CompanyBoardController {
 	//삭제하기
 	@RequestMapping(value = "/info_board_delete.do")
 		public String info_board_delete(String no) {
-			System.out.println("info_board_delete() 컨트롤러 탐");		
-			System.out.println("no : "+ no) ;
-			
 			companyBoardService.deleteRow(Integer.parseInt(no));				
 			return "redirect:info_board_list.do";
 		}

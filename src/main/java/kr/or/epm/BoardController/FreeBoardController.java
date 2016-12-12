@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.epm.Service.FreeBoardService;
-import kr.or.epm.VO.BusinessBoard;
 import kr.or.epm.VO.FreeBoard;
 import kr.or.epm.VO.Re_FreeBoard;
 
@@ -39,8 +38,6 @@ public class FreeBoardController {
 		String field = "title";
 		String query ="%%";
 		
-		System.out.println("처음 들어온 currentpage : " + currentpage);
-		
         if(pagesize == null || pagesize.trim().equals("")){
             pagesize = "10"; 			// default 10건씩 
         }
@@ -56,10 +53,7 @@ public class FreeBoardController {
 		}
         
 		totalcount = freeboardservice.selectBoardCount(field, query);
-		
-        System.out.println("최종 currentpage : " + currentpage);
-        
-      
+
         int pgsize = Integer.parseInt(pagesize);  		// 10
         int cpage = Integer.parseInt(currentpage);     //1
                                
@@ -71,18 +65,15 @@ public class FreeBoardController {
         }
 		
 		List<FreeBoard> list = null;
-		
-		
+
 		try{
 			 list = freeboardservice.selectBoard(cpage, pgsize, field, query); 
-			 System.out.println("list size chk : " +  list.size());
 		}catch(Exception e){
 			e.getMessage();
 		}finally{
 			mv.addAttribute("list", list);
 			mv.addAttribute("cpage", cpage);
 			mv.addAttribute("pgsize", pgsize);
-			System.out.println("확인용1");
 			mv.addAttribute("pagecount", pagecount);
 			mv.addAttribute("totalcount", totalcount);
 		}
@@ -135,8 +126,6 @@ public class FreeBoardController {
 			File cFile = new File(path, file.getOriginalFilename());
 			try {
 				file.transferTo(cFile);
-				System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
-				System.out.println("겟 패스 : " +cFile.getPath());
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
@@ -145,7 +134,6 @@ public class FreeBoardController {
 			
 		
 		String id= principal.getName();
-		System.out.println(id);
 		Re_FreeBoard free = freeboardservice.selectWrite(id);
 		int maxrefer = freeboardservice.selectRefer();
 		
@@ -155,8 +143,7 @@ public class FreeBoardController {
 		board.setLow_dept_name(free.getLow_dept_name());
 		board.setRefer(maxrefer+1);
 		board.setFile_name(file.getOriginalFilename());
-		
-		System.out.println(board.toString());
+
 		int result = 0;
 		String link = null;
 		String msg = null;
@@ -188,9 +175,6 @@ public class FreeBoardController {
 			dto.setContent(dto.getContent());
 			dto.setNo(no);
 			dto.setContent(content);
-			
-			
-			System.out.println(dto.toString());
 			
 			int result = 0;
 			String link = null;
@@ -264,25 +248,18 @@ public class FreeBoardController {
 		@RequestMapping(value="/answerfree.do", method=RequestMethod.POST)
 		public String answerOk(@RequestParam("uploadfile") MultipartFile file, Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth,HttpServletRequest request){
 			//파일 업로드 
-			System.out.println("파일 업로드 :" + file.getOriginalFilename());
-	 
 			String path = request.getRealPath("/board/free_upload/");
 			
 			File cFile = new File(path, file.getOriginalFilename());
 			try {
 				file.transferTo(cFile);
-				System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
-				System.out.println("겟 패스 : " +cFile.getPath());
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			
-			
-			System.out.println("답번쓰기 시작");
+
 			Re_FreeBoard dto = freeboardservice.selectWrite(principal.getName());
-			System.out.println("title : " + title + " / " + "content : " + content + "no : " + no + "refer : " + refer + "step : " + step);
 			FreeBoard free = new FreeBoard();
 			String link = null;
 			String msg = null;
@@ -338,11 +315,10 @@ public class FreeBoardController {
 			String path = request.getRealPath("/board/free_upload/");
 			File f = new File(path + "/"+name);
 			String fname = new String(name.getBytes("utf-8"), "8859_1");
-			
-			System.out.println(fname);
 
 			response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
 			FileInputStream fin = new FileInputStream(f);
+			
 			// 출력 도구 얻기 :response.getOutputStream()
 			ServletOutputStream sout = response.getOutputStream();
 			byte[] buf = new byte[1024]; // 전체를 다읽지 않고 1204byte씩 읽어서
@@ -360,10 +336,7 @@ public class FreeBoardController {
 		// 수정페이지 이동
 		@RequestMapping(value = "/free_board_update.do", method = RequestMethod.GET)
 		public String free_board_update(String no, Model model) {
-			System.out.println("free_board_update() 컨트롤러 탐");
-			
-			FreeBoard list = freeboardservice.selectDetail(Integer.parseInt(no));		
-			
+			FreeBoard list = freeboardservice.selectDetail(Integer.parseInt(no));				
 			model.addAttribute("list",list);
 			return "board_free.free_board_rewrite";
 		}
@@ -371,33 +344,24 @@ public class FreeBoardController {
 		//수정 처리
 		@RequestMapping(value = "/free_board_update.do", method = RequestMethod.POST)
 		public String free_board_update(@RequestParam("uploadfile") MultipartFile file, FreeBoard freeBoard, Model model, HttpServletRequest request) {
-			System.out.println("free_board_update()처리 컨트롤러 탐");
 			int result = 0;
 			
 			//File cFile = new File("C:/images/", file.getOriginalFilename());
-			 String path = request.getRealPath("/board/free_upload/");
-			 System.out.println("=====> path : "+path);
+			String path = request.getRealPath("/board/free_upload/");
 			File cFile = new File(path, file.getOriginalFilename());
 			
 			try {
 				file.transferTo(cFile);
-				System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
-				System.out.println("getPath : " +cFile.getPath());
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			
-			System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
 			freeBoard.setFile_name(file.getOriginalFilename());
-				
-			System.out.println("=>update 후 title :"+freeBoard.getTitle()+"/내용: "+freeBoard.getContent()+"/ 파일 제목 : "+freeBoard.getFile_name());
-				
+
 			result = freeboardservice.updateRow(freeBoard);
 
-			System.out.println("=> 글번호update result : "+freeBoard.getNo());	
-		
 			if(result > 0){
 				return "redirect:free_board_view.do?no="+freeBoard.getNo();
 			}else{
@@ -408,9 +372,6 @@ public class FreeBoardController {
 		//삭제 처리
 		@RequestMapping(value = "/free_board_delete.do")
 		public String free_board_delete(String no) {
-			System.out.println("free_board_delete() 컨트롤러 탐");		
-			System.out.println("no : "+ no) ;
-			
 			freeboardservice.deleteReply(Integer.parseInt(no));
 			freeboardservice.deleteRow(Integer.parseInt(no));				
 			return "redirect:free_board_list.do";
