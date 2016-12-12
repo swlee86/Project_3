@@ -7,6 +7,11 @@
 	목 적  	: 사원 관리 리스트 view
 -->
  
+ <script>
+ $(function(){
+	 
+ });
+ </script>
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -38,9 +43,9 @@
             <div class="panel-body">
 				<div class="row text-right" id="search_panel">
 					<div class="col-md-7">
-						<form name="list">
+						<form name="list" action="adminEmp_list.do">
 							<select name="pagesize" onchange="submit()" 
-								    class="form-control" style="width: 20%; margin-left: 80%">
+								    class="form-control input-sm" style="width: 20%; margin-left: 80%">
 								<c:forEach var="i" begin="10" end="100" step="10">
 								<c:choose>
 									<c:when test="${pagesize == i}">
@@ -56,15 +61,15 @@
 					</div>
 					
 					<!-- 검색 -->
-						<form action="" class="form-inline">
+						<form action="adminEmp_list.do" class="form-inline"  action="adminEmp_list.do">
 							<div class="col-md-1">
 								<div class="form-group">
-									<select class="form-control input-sm">
-										<option>사원번호</option>
-										<option>이름</option>
-										<option>부서</option>
-										<option>하위부서</option>
-										<option>직위</option>
+									<select class="form-control input-sm" name="f">
+										<option value="emp_no">사원번호</option>
+										<option value="emp_name">이름</option>
+										<!-- <option value="dept_no">부서</option>
+										<option value="low_dept_no">하위부서</option>
+										<option value="position_no">직위</option> -->
 									</select>
 								</div>
 							</div>
@@ -72,7 +77,7 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control input-sm" name="s" />
+										<input type="text" class="form-control input-sm" name="q" />
 										<span class="input-group-btn">
 											<button class="btn btn-default input-sm" type="submit">
 												<span class="fa fa-search"></span>
@@ -117,6 +122,7 @@
                         <td>${list.emp_name}</td>
                         <td>
                         	<!-- <img alt="사진" src="images/a4.jpg" class="img-circle m-b"> -->
+                        	<img alt="사진" class="img-square m-b" style="width:80px;height: 80px;" src="${pageContext.request.contextPath}/img/upload/${list.pic}">
                         	<!-- <img alt="사진" src="images/${list.pic}" class="img-circle m-b"> -->
                         </td>
                         <td>${list.cg_name}</td>
@@ -128,25 +134,56 @@
                     </tbody>
                 </table>    
 			</div>
+			
+			
 			<div style="text-align: center;" id="page_panel">
-			 <div class="btn-group">
+			<%--  <div class="btn-group">
 					<c:if test="${cpage > 1}">
-                    	<button type="button" class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${cpage-1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
+                    	<button type="button" class="btn btn-default" onclick="location.href='adminEmp_list.do?currentpage=${cpage-1}&pagesize=${pagesize}&f=${field}&q=${query}'">&nbsp;<i class="fa fa-chevron-left"></i></button>
                     </c:if>
+                    
                     <c:forEach var="i" begin="1" end="${pagecount}" step="1">	
-                    <c:choose>
-                    	<c:when test="${cpage == i}">
-                    		<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
-                    	</c:when>
-                    	<c:otherwise>
-							<button class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${i}&pagesize=${psize}'">${i}</button>                	
-                    	</c:otherwise>
-                    </c:choose>
+	                    <c:choose>
+	                    	<c:when test="${cpage == i}">
+	                    		<button class="btn btn-default active" style="background-color:#DAD9FF"><b>${i}</b></button>
+	                    	</c:when>
+	                    	<c:otherwise>
+								<button class="btn btn-default" onclick="location.href='adminEmp_list.do?currentpage=${i}&pagesize=${pagesize}&f=${field}&q=${query}'">${i}</button>                	
+	                    	</c:otherwise>
+	                    </c:choose>
 					</c:forEach>
 					<c:if test="${cpage < pagecount}">
-                    	<button type="button" class="btn btn-default" onclick="location.href='adminEmployeeManage.do?currentpage=${cpage+1}&pagesize=${psize}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
+                    	<button type="button" class="btn btn-default" onclick="location.href='adminEmp_list.do?currentpage=${cpage+1}&pagesize=${pagesize}&f=${field}&q=${query}'">&nbsp;<i class="fa fa-chevron-right"></i></button>
                 	</c:if>
-                </div>
+                </div> --%>
+                <div class="btn-group">
+								<c:if test="${cpage>1}">
+									<a  class="btn btn-default" href="adminEmp_list.do?currentpage=${cpage-1}&f=${field}&q=${query}">
+										&nbsp;<i class="fa fa-chevron-left"></i>
+									</a>
+								</c:if>
+
+								<c:forEach var="i" begin="1" end="${pagecount}">
+									<c:choose>
+										<c:when test="${cpage==i}">
+											<button class="btn btn-default active" style="background-color: #DAD9FF">
+												<b>${i}</b>
+											</button>
+										</c:when>
+										<c:otherwise>
+											<a class="btn btn-default" href="adminEmp_list.do?currentpage=${i}&f=${field}&q=${query}">
+												${i}
+											</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
+								<c:if test="${cpage < pagecount}">
+									<a class="btn btn-default" href="adminEmp_list.do?&currentpage=${cpage+1}&f=${field}&q=${query}">
+										&nbsp;<i class="fa fa-chevron-right"></i>
+									</a>
+								</c:if>
+							</div>
               </div>
             </div>
         </div> 

@@ -1,5 +1,7 @@
 package kr.or.epm.VO;
 
+import java.util.List;
+
 /*
  * 작성일 : 2016-11-16
  * 작성자 : 백승아
@@ -35,6 +37,17 @@ public class Emp {
 	private String his_cg_name;
 	private String his_no;
 	
+	// 관리자 > 사원관리 > 권한부여 > 상세
+	private List<Emp_role> rolelist;
+	
+	public List<Emp_role> getRolelist() {
+		return rolelist;
+	}
+
+	public void setRolelist(List<Emp_role> rolelist) {
+		this.rolelist = rolelist;
+	}
+
 	public String getHis_no() {
 		return his_no;
 	}

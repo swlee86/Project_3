@@ -84,7 +84,7 @@
                        		</tr>
                        		<tr style="text-align:center; font-weight: bold;">
                        			<td colspan="6" height="80px">
-                       				상기 내용을 정확하게 기입하십시오. 정확하게 미기입 시 추후에 불이익을 당할 수 있습니다.
+                       				상기 내용을 정확하게 기입하십시오. 미기입 시 추후에 불이익을 당할 수 있습니다.
                        			</td>
                        		</tr>
                        </table>
