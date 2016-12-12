@@ -119,7 +119,7 @@
                     
                     <tbody>
                   	<c:forEach var="list" items="${list}">
-                    <tr id="tr">
+                    <tr id="tr" class="empclick">
                         <td>${list.emp_no}</td>
                         <td>${list.branch_name}</td>
                         <td>${list.dept_name}</td>

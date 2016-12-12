@@ -92,4 +92,7 @@ public interface AdminEmpDAO {
 	public List<Emp_role> selectEmp_role(String emp_no);
 
 	public int selectCount(String field, String query);
+	
+	// 사원 정보 수정을 위해 정보 불러오기
+	public Emp selectEmp_detail(String emp_no);
 }

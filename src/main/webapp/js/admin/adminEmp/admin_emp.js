@@ -335,6 +335,7 @@ $(function() {
         }
 	});
 	
+	// 권한 부여 상세에서 적용 버튼을 눌렀을 때
 	$("#applyBtn_emp_no").click(function() {
 		var mine = new Array();
 		mine = $(".mine");
@@ -370,4 +371,12 @@ $(function() {
 			}
 		});
 	})
+	
+	$(".empclick").click(function() {
+		var emp_no = $(this).contents(":eq(0)").text();
+		
+		location.href="adminEmp_detail.do?emp_no="+emp_no;
+	});
 });
+
+

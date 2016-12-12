@@ -168,4 +168,16 @@ System.out.println("cpage:"+cpage+"/pagesize:"+pagesize+"/pagecount:"+pagecount+
 		
 		return "adminMember.adminAuthority_detail";
 	}
+	
+	// 사원 정보 수정 페이지
+	@RequestMapping(value="/adminEmp_detail.do", method=RequestMethod.GET)
+	public String adminEmp_detail(String emp_no, Model model) {
+		System.out.println("CONTROLLER] 사원 정보 수정 페이지");
+		System.out.println("넘어온 emp_no : " + emp_no);
+		
+		Emp detail = service.selectEmp_detail(emp_no);
+		model.addAttribute("detail", detail);
+		
+		return "adminMember.adminEdit";
+	}
 }

@@ -265,4 +265,14 @@ public class AdminEmpService {
 		
 		return totalcount;
 	}
+	
+	// 사원 정보 수정
+	public Emp selectEmp_detail(String emp_no) {
+		System.out.println("SERVICE] 사원 정보 수정을 위해 정보를 불러옵니다");
+		
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		Emp detail = dao.selectEmp_detail(emp_no);
+				
+		return detail;
+	}
 }
