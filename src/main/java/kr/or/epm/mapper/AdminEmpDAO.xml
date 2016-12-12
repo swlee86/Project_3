@@ -139,7 +139,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on e.low_dept_no = l.low_dept_no
 		join emp_cg c
 		on e.cg_no = c.cg_no
-		where e.cg_no = '23'
+		where e.cg_no = '23' and substr(emp_no, 1,4) != '0000'
     	order by to_number(emp_no) asc
 	</select>
 	

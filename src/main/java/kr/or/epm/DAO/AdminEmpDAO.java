@@ -14,13 +14,12 @@ import kr.or.epm.VO.Role;
 /*
  * 작성자 : 백승아
  * 작성일 : 2016-12-08
- * 목  적 : 사원관리 전용 dao
+ * 목  적 : 사원관리 전용 DAO interface
  */
 
 public interface AdminEmpDAO {
 	
 	// 사원 정보 리스트 출력
-	// public List<Emp> selectEmp_list(int start, int end, String field, String query);
 	public List<Emp> selectEmp_list(int cpage, int pgsize, String field, String query);
 	
 	// 사원 등록을 위한 새로운 사번 가져오기
@@ -91,6 +90,7 @@ public interface AdminEmpDAO {
 	// 권한 부여 상세 페이지를 위해 해당 사원의 권한 불러오기
 	public List<Emp_role> selectEmp_role(String emp_no);
 
+	// 리스트 개수
 	public int selectCount(String field, String query);
 	
 	// 사원 정보 수정을 위해 정보 불러오기
@@ -98,4 +98,7 @@ public interface AdminEmpDAO {
 	
 	// 사원 정보 수정
 	public int updateEmp_detail(Emp emp);
+	
+	// 회원 탈퇴 요청하기
+	public int updateWithdrawal(String emp_no);
 }

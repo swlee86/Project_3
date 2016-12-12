@@ -1,7 +1,4 @@
 package kr.or.epm.DAO;
-import java.util.List;
-
-import kr.or.epm.VO.Approval;
 
 /*
  * 작성일 : 2016-11-25

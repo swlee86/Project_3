@@ -29,7 +29,6 @@ public class Contact {
 		this.empimg = empimg;
 	}
 
-	//추가 DTO 2016-11-18 
 	private String group_name;
 		
 		
