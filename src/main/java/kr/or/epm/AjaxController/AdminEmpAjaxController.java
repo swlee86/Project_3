@@ -131,4 +131,29 @@ public class AdminEmpAjaxController {
 		
 		return jsonview;
 	}
+	
+	// 사번을 기준으로 사원에게 권한 부여
+	@RequestMapping(value="adminEmp_authority_emp_no.do", method=RequestMethod.POST)
+	public View adminEmp_authority_emp_no(HttpServletRequest request, Model model) {
+		System.out.println("CONTROLLER] 사원에게 권한을 부여합니다");
+		
+		String emp_no = request.getParameter("emp_no");
+		String role = request.getParameter("role");
+		System.out.println("emp_no : " + emp_no);
+		System.out.println("role : " + role);
+		
+		List<String> rolelist = new ArrayList<String>();
+		rolelist = JSONArray.fromObject(role);
+		
+		// 권한 날리기
+		service.deleteEmp_role(emp_no);
+		
+		for(String role_no : rolelist) {
+			service.insertEmp_role(emp_no, role_no);
+		}
+
+		model.addAttribute("result", "성공");
+		
+		return jsonview;
+	}
 }
