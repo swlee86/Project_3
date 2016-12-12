@@ -90,8 +90,9 @@
 					</div>
 
 			<div class="row" style="margin-left: 2%;" id="addbtn_panel">
-            	<button type="button" class="btn btn-md btn-success" style="margin-right: 10px;"onclick="location.href='adminAdd_member.do'">사원 등록</button>
-            	<button type="button" class="btn btn-md btn-danger" onclick="location.href='adminWithdrawal.do'">탈퇴 요청</button>
+            	<button type="button" class="btn btn-md btn-success" style="margin-right: 10px;" onclick="location.href='adminAdd_member.do'">사원 등록</button>
+            	<button type="button" class="btn btn-md btn-danger" style="margin-right: 10px;" onclick="location.href='adminWithdrawal.do'">탈퇴 요청</button>
+            	<button type="button" class="btn w-xs btn-info" onclick="location.href='adminEmp_authority.do'">권한 부여</button>
             </div>  
                 <hr style="border:2px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
@@ -121,7 +122,7 @@
                         <td>${list.position_name}</td>
                         <td>${list.emp_name}</td>
                         <td>
-                        	<<img alt="사진" src="${pageContext.request.contextPath}/images/${list.pic}" class="img-circle m-b">
+                        	<<img alt="사진" src="${pageContext.request.contextPath}/img/onload/${list.pic}" class="img-circle m-b">
                         </td>
                         <td>${list.cg_name}</td>
                         <td>
