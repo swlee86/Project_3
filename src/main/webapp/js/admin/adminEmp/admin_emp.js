@@ -272,7 +272,7 @@ $(function() {
 			success	: function(data) {
 				swal({
                     title: "권한부여",
-                    text: "권한부여에 성공하였습니다",
+                    text: "해당 사원이 로그아웃한 뒤 적용됩니다",
                     type: "success"
                 });	
 				
@@ -322,9 +322,15 @@ $(function() {
 				$(this).append("<input class='mine' id='" + role_no + "' value='" + role_exp + "' style='border: none;'>");
 				$(this).append("<br>");
 			} else if(result == "false") {
-				alert("중복된 권한입니다");
+				swal({
+                    title: "중복된 권한입니다",
+                    text: "다시 선택해주세요"
+                });	
 			} else if(result == "none") {
-				alert("주어진 권한이 없습니다");
+				swal({
+                    title: "권한이 없는 사원입니다",
+                    text: "관리자에게 문의해주세요"
+                });	
 			}
         }
 	});
@@ -355,7 +361,7 @@ $(function() {
 			success	: function(data) {
 				swal({
                     title: "권한부여",
-                    text: "권한부여에 성공하였습니다",
+                    text: "해당 사원이 로그아웃한 뒤 적용됩니다",
                     type: "success"
                 });	
 				

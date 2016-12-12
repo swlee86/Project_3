@@ -46,7 +46,7 @@
 <div class="hpanel">
     <div class="panel-body">
         <span class="form-inline" style="width: 10%;">
-        	<font size="4" style="vertical-align: middle;">검색 기준</font> 
+        	<font size="4" style="vertical-align: middle;">기안자</font> 
         	<span id="inputSpan" style="width: 50%; margin-left: 3%">
         		<input class="form-control" type="text">
         		<span class="form-control" style="margin-left: -10px;">

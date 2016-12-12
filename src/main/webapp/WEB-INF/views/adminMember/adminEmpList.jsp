@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <!--  
 	작성자	: 백승아
@@ -89,11 +90,15 @@
 						</form>
 					</div>
 
+            <se:authorize access="hasRole('ROLE_EMP')">
 			<div class="row" style="margin-left: 2%;" id="addbtn_panel">
             	<button type="button" class="btn btn-md btn-success" style="margin-right: 10px;" onclick="location.href='adminAdd_member.do'">사원 등록</button>
             	<button type="button" class="btn btn-md btn-danger" style="margin-right: 10px;" onclick="location.href='adminWithdrawal.do'">탈퇴 요청</button>
             	<button type="button" class="btn w-xs btn-info" onclick="location.href='adminEmp_authority.do'">권한 부여</button>
             </div>  
+            </se:authorize>
+            
+            
                 <hr style="border:2px solid gray; margin-bottom:0px">
                 <div class="table-responsive">
                 <table cellpadding="1" cellspacing="1" id="dataTable"

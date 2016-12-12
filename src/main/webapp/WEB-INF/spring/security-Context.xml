@@ -22,13 +22,19 @@
   <security:intercept-url pattern="/customer/**" access="ROLE_USER" />
   -->
   
-  
+ 
   <security:intercept-url pattern="/draft_rec.do" access="hasRole('ROLE_DRAFT')" />
-  <security:intercept-url pattern="/adminMember/adminAddMember.jsp" access="ROLE_EMP" />
-  <security:intercept-url pattern="/adminMember/adminAuthority.jsp" access="ROLE_EMP" />
-  <security:intercept-url pattern="/adminMember/adminEmpList.jsp" access="ROLE_EMP_LIST" />
-  <security:intercept-url pattern="/adminMember/adminWithdrawal.jsp" access="ROLE_EMP" />
-  
+  <security:intercept-url pattern="projectApprove.do" access="hasRole('ROLE_PJ')" />
+  <security:intercept-url pattern="projectMake.do" access="hasRole('ROLE_PJ')" />
+  <security:intercept-url pattern="adminEmp_list.do" access="hasRole('ROLE_EMPLIST')" />
+  <security:intercept-url pattern="adminDepartWidget.do" access="hasRole('ROLE_ATTACH')" />
+  <security:intercept-url pattern="adminGrade.do" access="hasRole('ROLE_POSITION')" />
+  <security:intercept-url pattern="adminSalaryView.do" access="hasRole('ROLE_ADMIN')" />
+  <security:intercept-url pattern="adminSalaryList.do" access="hasRole('ROLE_PAYLIST')" />
+  <security:intercept-url pattern="adminSalary.do" access="hasRole('ROLE_PAYCHECK')" />
+  <security:intercept-url pattern="adminSalaryManage.do" access="hasRole('ROLE_SALARY')" />
+  <security:intercept-url pattern="adminSalarySetting.do" access="hasRole('ROLE_BONUS')" />
+  <security:intercept-url pattern="CommuteAdmin.do" access="hasRole('ROLE_ADMIN')" />
   
 </security:http>
 <security:authentication-manager>
