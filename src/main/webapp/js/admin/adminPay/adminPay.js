@@ -12,10 +12,10 @@ $(function(){
 		var today = dateChek();
 		var dbdate = db_dateChek();
 		var result2 = calDateRange(today,dbdate);
-		
+		//alert(" 날짜 차이============today :"+ today+"dbdate : "+dbdate +" 날짜차이   "+result2);
 		//기간이 3일 이하
 		if(result2 <= 3){
-			
+		//if(result2 == 0){
 		var pay_no2='';
 		$("input[name=checkbox]:checked").each(function() {
 			
@@ -159,13 +159,14 @@ function db_dateChek(){
 	var date = new Date();
 	var year  = date.getFullYear();
     var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
-    var day   = $('#give_date').val();
+    var day   = $('#give_dateC').val();
    
     if (("" + month).length == 1) { month = "0" + month; }
     if (("" + day).length   == 1) { day   = "0" + day;   }
 	//오늘 날짜 전역변수에도 담음
     var today = year+"-"+month+"-"+day;
 	
+    
     return today;
 }
 
@@ -193,6 +194,7 @@ function calDateRange(val1, val2)
 	
 	 
  var result1 = result/1000/60/60/24;
+ 
  return result1;
 }
 
@@ -209,5 +211,6 @@ function dateChek(){
     if (("" + day).length   == 1) { day   = "0" + day;   }
 	//오늘 날짜 전역변수에도 담음
     var today = year+"-"+month+"-"+day;
+    
     return today;
 }

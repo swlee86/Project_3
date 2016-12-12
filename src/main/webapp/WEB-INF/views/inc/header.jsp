@@ -351,6 +351,11 @@ $('#birthDay').click(function(){
 			console.log("연결 닫힘: " + e.reason);
 		}
 		
+		
+		
+		
+		
+		
 	/* 	
 		//기본 폴링방식
         $(function () {

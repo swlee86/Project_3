@@ -95,4 +95,7 @@ public interface AdminEmpDAO {
 	
 	// 사원 정보 수정을 위해 정보 불러오기
 	public Emp selectEmp_detail(String emp_no);
+	
+	// 사원 정보 수정
+	public int updateEmp_detail(Emp emp);
 }
