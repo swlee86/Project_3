@@ -113,36 +113,21 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       Emp emp = null;
       
       try{
-          emp = pushdao.selectLogin_Emp(emp_no);
-         //ex) 승인 처리 후 확인 버튼 눌르는 경우 controller 부분에 추가 해준다. 쿼리문 씀 ////
-         System.out.println("사번? : " + emp_no);
-         taskcount = pushdao.taskCount(emp_no);
-         
-         
-        // projectcount = pushdao.projectMyCount(emp_no);
+    
+    	  
+    	  emp = pushdao.selectLogin_Emp(emp_no);
+    	 //미 확인 업무
+    	  taskcount = pushdao.taskCount(emp_no);
+         //진행중인 프로젝트
          projectcount=pushdao.myprojectCount(emp_no);
-         
-         System.out.println("미처리 taskcount : " + taskcount);
-         System.out.println("내가 진행중인 프로젝트 count============================= : " + projectcount);
-         
          //내가 승인해야 할 프로젝트
          approval = pushdao.projectApproval(emp_no);
-         
-         System.out.println("내가 승인해야 할 프로젝트  : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>)))))))))))))))))" + approval);
-         
-         
+         //승인 해야 할 업무
          taskApprovalcount = pushdao.taskApproval(emp_no);
-         System.out.println("업무 관련 작업 !!!!!!!!!!!!!!!!!!!!!!!!!! 승인해야할 업무 : "+taskApprovalcount);
-         
          //내가 참조당한 전자 결재 
          draft = pushdao.selectDraftCount(emp_no);
-         System.out.println("전자 결재 ============================= >> "+draft);
-         
-         
          //각 항목의 카운트의 총 합                   업무(미확인 업무)             진행중인 프로젝트                            승인해야하는 프로젝트                               승인해야하는 업무                                참조당한 전자결재          
          resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount) +Integer.parseInt(approval)+Integer.parseInt(taskApprovalcount)+Integer.parseInt(draft);
-         System.out.println("ResultData입니다 : " + resultdata);
-         //////////////////////////////////////////////////////////////
                
       }catch(Exception e){
          System.err.println(e.getMessage());
