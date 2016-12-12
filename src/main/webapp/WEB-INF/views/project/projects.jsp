@@ -18,7 +18,7 @@
 					<li class="active"><span>상세 프로젝트</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">상세 프로젝트</h2>
+			<h2 class="font-light m-b-xs">상세 프로젝트 &nbsp;<a href="javascript:history.back()" ><i class="pe-7s-back text-info"></i></a></h2>
 			<small>진행 중인 프로젝트의 상세 내용을 확인하실 수 있습니다</small>
 		</div>
 	</div>

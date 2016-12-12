@@ -19,7 +19,7 @@
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">개인 주소록 </h2>
-			<small>회원 마다 가질수 있는 주소록입니댜.</small>
+			<small>회원 마다 가질수 있는 주소록입니다.</small>
 		</div>
 	</div>
 </div>

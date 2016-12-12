@@ -36,10 +36,20 @@ public class Emp {
 	private String role_name;
 	private String his_cg_name;
 	private String his_no;
+	private String role_exp;
 	
 	// 관리자 > 사원관리 > 권한부여 > 상세
 	private List<Emp_role> rolelist;
 	
+	
+	public String getRole_exp() {
+		return role_exp;
+	}
+
+	public void setRole_exp(String role_exp) {
+		this.role_exp = role_exp;
+	}
+
 	public List<Emp_role> getRolelist() {
 		return rolelist;
 	}

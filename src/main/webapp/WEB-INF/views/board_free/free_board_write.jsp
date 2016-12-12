@@ -11,13 +11,13 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Mailbox</span></li>
+					<li><a href="index.html">홈</a></li>
+					<li><span>게시판</span></li>
+					<li class="active"><span>자유 게시판</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">사원 정보 공유 게시판</h2>
-			<small>Show users list in nice and color panels</small>
+			<h2 class="font-light m-b-xs">자유 게시판</h2>
+			<small>회사내 자유 게시판입니다</small>
 		</div>
 	</div>
 </div>
