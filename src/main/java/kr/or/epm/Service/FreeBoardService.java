@@ -6,13 +6,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.or.epm.DAO.BusinessBoardDAO;
 import kr.or.epm.DAO.FreeBoardDAO;
-import kr.or.epm.VO.BusinessBoard;
 import kr.or.epm.VO.FreeBoard;
-import kr.or.epm.VO.Re_BusinessBoard;
 import kr.or.epm.VO.Re_FreeBoard;
-
+/*
+ * 작성자 : 이상원
+ * 작성일 : 2016-11-21
+ * 목  적 : 자유게시판 기능 구현을 위한 서비스 
+ */
 @Service
 public class FreeBoardService {
 
@@ -31,7 +32,6 @@ public class FreeBoardService {
 		public List<FreeBoard> selectBoard(int cpage, int pgsize, String field, String query){
 			int start = cpage * pgsize - (pgsize - 1);
 			int end = cpage * pgsize;
-			System.out.println(start + " / " + end);
 			FreeBoardDAO freeboarddao = sqlSession.getMapper(FreeBoardDAO.class);
 			List<FreeBoard> list = freeboarddao.selectList(start, end, field, query);
 			return list;
