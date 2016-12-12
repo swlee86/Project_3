@@ -292,4 +292,14 @@ public class AdminEmpService {
 				
 		return detail;
 	}
+	
+	// AJAX 사원 정보 수정
+	public int updateEmp_detail(Emp emp) {
+		System.out.println("SERVICE] 사원 정보를 수정합니다");
+		
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		int result = dao.updateEmp_detail(emp);
+				
+		return result;
+	}
 }
