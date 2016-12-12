@@ -37,7 +37,7 @@
 		<c:if test="${ role.role_no != '0' }">
 			 <div class="row ui-sortable">
 					<div class="col-md-4 border-right drag"> 
-                    	<div class="contact-stat gradLi ui-sortable-handle color" id="${ role.role_no }">
+                    	<div class="ui-sortable-handle btn btn-primary" id="${ role.role_no }" value="${ role.role_exp }">
                     		 ${ role.role_exp }
                     	</div> 
                     </div>
@@ -78,7 +78,7 @@
             <div>
             	<div class="row" style="display: inline-block; margin-left: 100px;">
             		<h4>사번</h4>
-            		<span>${ list.emp_no }</span>
+            		<span id="emp_no">${ list.emp_no }</span>
             		<br>
             		<br>
             		<h4>연락처</h4>
@@ -89,16 +89,19 @@
             		<span>${ list.cg_name }</span>
             		<br>
             		<br>
-            		<h4>생년월일</h4>
+            		<h4>생년월일2</h4>
             		<span style="display: inline-block;">${ list.birth }</span>
             	</div>
            	</div>
             </div>
-            <div class="panel-footer dragarea" style="display: none; height: 200px;">
+            <div class="panel-footer dragarea" style="display: none; height: 100%;">
+            	<button class="btn btn-outline btn-primary pull-right" id="applyBtn_emp_no" style="margin-top: 5px;">적용하기</button>
                 <h3>권한</h3>
                 <c:forEach var="authority" items="${ list.rolelist }">
-            		${ authority.role_exp } <br>
+            		<input class="mine" id="${ authority.role_no }" value="${ authority.role_exp }"
+            			   style="border: none; background-color: rgb(247,249,250);"><br>
             	</c:forEach>
+            	
             </div>
         </div>
     </div>

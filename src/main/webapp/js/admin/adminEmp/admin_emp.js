@@ -276,7 +276,7 @@ $(function() {
                     type: "success"
                 });	
 				
-				wait(2000);
+				wait(5000);
 				window.location.reload();
 			}
 		})
@@ -300,35 +300,68 @@ $(function() {
 	// 드롭하는 영역
 	$(".dragarea").droppable({
 		drop: function(event, ui) {
-			alert("떨어짐");
+			var role_no = ui.helper["0"].id;
+			var role_exp = ui.helper["0"].innerText;
+			
+			var mine = new Array();
+			mine = $(".mine");
+			
+			var result = "none";
+			
+			for(var i=0; i<$(".mine").length; i++) {
+				if(mine[i].id != role_no) {
+					result = "true";
+				}
+				else {
+					result = "false";
+					break;
+				}
+			}
+			
+			if(result == "true") {
+				$(this).append("<input class='mine' id='" + role_no + "' value='" + role_exp + "' style='border: none;'>");
+				$(this).append("<br>");
+			} else if(result == "false") {
+				alert("중복된 권한입니다");
+			} else if(result == "none") {
+				alert("주어진 권한이 없습니다");
+			}
         }
 	});
-
 	
-	/*
-	
-	$("#btndiv button").draggable({
-		start: function(event,ui) {
-			$(this).draggable( "option", "revert", true );
-			$("#images div img").css("zIndex",10);
-			$(this).css("zIndex",100);
+	$("#applyBtn_emp_no").click(function() {
+		var mine = new Array();
+		mine = $(".mine");
+		
+		var rolelist = new Array();
+		
+		for(var i=0; i<$(".mine").length; i++) {
+			rolelist.push(mine[i].id);
 		}
-	});
-	*/
+
+	    var param = JSON.stringify(rolelist);
+		var emp_no = $("#emp_no")["0"].innerText;
+		
+		console.log(emp_no);
+		console.log(rolelist);
+		
+		$.ajax({
+			url		: "adminEmp_authority_emp_no.do",
+			type	: "post",
+			data	: {
+						role : param,
+						emp_no : emp_no
+					  },
+			success	: function(data) {
+				swal({
+                    title: "권한부여",
+                    text: "권한부여에 성공하였습니다",
+                    type: "success"
+                });	
+				
+				wait(5000);
+				window.location.reload();
+			}
+		});
+	})
 });
-
-function dragStart(event) {
-    event.dataTransfer.setData("Text", event.target.id);
-    document.getElementById("demo").innerHTML = "Started to drag the p element";
-}
-
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function drop(event) {
-    event.preventDefault();
-    var data = event.dataTransfer.getData("Text");
-    event.target.appendChild(document.getElementById(data));
-    document.getElementById("demo").innerHTML = "The p element was dropped";
-}

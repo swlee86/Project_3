@@ -40,18 +40,6 @@
 				authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
 		 
 		/>
-		<!-- 
-			authorities-by-username-query="select id as USERID, ROLE_NAME
-										   from emp_detail e join emp_role er
-										   on e.emp_no = er.emp_no
-										   join role r
-							   			   on er.role_no = r.role_no
-										   where e.id = ?"
-		-->
-		
-		<!-- 	
-			authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
-		 -->
 		 
 		<security:password-encoder ref="bCryptPasswordEncoder"/>
      </security:authentication-provider>

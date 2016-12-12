@@ -91,7 +91,6 @@
                 <a href="#"><span class="nav-label">급여 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="salarySearch.do">급여 조회</a></li>
-                    <li><a href="severancepay.do">퇴직금 계산</a></li>
                 </ul>
             </li>
             <li>
@@ -106,16 +105,9 @@
             <li>
                 <a href="#"><span class="nav-label">회원 정보 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="login.do">로그인</a></li>
-                    <li><a href="addMember.do">회원가입</a></li>
+                    
                     <li><a href="editMyinfo.do">내정보수정</a></li>
                     <li><a href="withdrawal.do">회원탈퇴</a></li>
-                    <li><a href="findId.do">아이디찾기</a></li>
-                    <li><a href="findPw.do">비밀번호찾기</a></li>
-                    <li><a href="error_one.html">Error 404</a></li>
-                    <li><a href="error_two.html">Error 505</a></li>
-                    <li><a href="lock.html">Lock screen</a></li>
-                    <li><a href="password_recovery.html">Passwor recovery</a></li>
                 </ul>
             </li>
               <se:authorize access="hasRole('ROLE_ADMIN')">
@@ -123,7 +115,6 @@
                 <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="adminEmp_list.do">사원관리</a></li>
-                    <li><a href="adminEmp_authority.do">사원권한관리</a></li>
                     <li><a href="adminDepartWidget.do">부서관리</a></li>
                     <li><a href="adminGrade.do">직위관리</a></li>
                     <li><a href="adminSalaryView.do">급여관리</a></li>
