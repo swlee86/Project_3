@@ -167,7 +167,7 @@
 					<div id="draft-1" class="tab-pane active">	
 						<div class="panel-body list">
 							<div class=" project-list">
-								<table class="table table-striped table-condensed">
+								<table class="table table-striped table-condensed ">
 									<thead>
 										<tr>
 											<th>기안 제목</th>
@@ -187,9 +187,9 @@
 
 
 
-												<td style="text-align:center"><small>${ office.rec_addr}</small></td>
+												<td style="text-align:center"><small><c:if test="${fn:length(office.rec_addr) > 15}"></c:if>${fn:substring(office.rec_addr,0,15)} ...</small></td>
 												<td style="text-align:center">
-												 ${ office.emp_name }  <small>${ office.emp_no }</small>
+												 ${ office.emp_name }  <br><small>${ office.emp_no }</small>
 												</td>
 												<td style="text-align:center">
 													<c:choose>

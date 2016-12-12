@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!--  
+	작성자	: 박성준
+	작성일	: 2016-12-05
+	목 적  	: 로그인 화면 layout, css
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,34 +132,12 @@ small {
 										</div>	
 									</div>
 									<br>
-							<%-- 		<div style="text-align:center">
-										<div class="row">	
-												<div class="col-md-offset-4 col-md-4" id="logOutDiv">
-													<input type="hidden" name="loginRedirect"
-														value="${loginRedirect}" /> <a class="btn btn-default"
-														href="#" id="googlelogout"
-														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-														로그아웃</a>
-														<input type="hidden" name="loginRedirect"
-														value="${loginRedirect}" /> <a class="btn btn-default"
-														href="#" id="googlelogout"
-														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-														로그아웃</a>
-												</div>
-											
-										</div>
-									</div> --%>
-									
-									
-									<!-- <div style="text-align: center;"> -->
+
+
 										<div class="row">
 										<div class="col-md-12">
 											<div class="col-md-4" id="logOutDiv">
-													<%-- <input type="hidden" name="loginRedirect"
-														value="${loginRedirect}" /> <a class="btn btn-default"
-														href="#" id="googlelogout"
-														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-														로그아웃</a> --%>
+												
 														<input type="hidden" name="loginRedirect"
 														value="${loginRedirect}" /> <a 
 														href="#" id="googlelogout"
@@ -170,7 +153,7 @@ small {
 											</div>
 											</div>
 										</div>
-							<!-- 		</div> -->
+
 									<hr>
 
 									<input type="submit" class="btn btn-success btn-block"
@@ -430,44 +413,12 @@ small {
 
 
 	<script>
-	
-	
-		/* var auth2 = gapi.auth2.getAuthInstance(); */
-	
+
 	$(function(){
-		
-		/* if($('#username').val() == ''){
-			$('#logOutDiv').hide();
-		}else{
-			$('#logOutDiv').show();
-		} */
-		
+
 		//회원 가입 버튼 클릭시 처음 실행되는 아작스 함수.
 		$('#addMemberAjaxAtag').click(function(){
 			alert("아이디 : >"+$('#username').val()+"<");
-			
-			/* if($('#username').val() != '' || $('#username').val() != null || $('#username').val() !=""){
-				alert('빈값 아니에요');
-				$.ajax({
-					url : "addMember.do",
-					type : "GET",
-					success : function(data){
-						console.log("성공시 : "+data.choose);
-						if(data.choose == '1'){
-							alert(data.data);
-						}else{
-							console.log("엘스탐 : "+data.success);
-							alert(data.success);
-							$('#AddMemberForm').modal();
-							$('#googleId').val(data.registerGoogleId);
-							$('#email').val(data.registerGoogleMail);
-						}
-					}
-				});
-			
-			}else{
-				alert("구글 아이디로 로그인 해주세요!");
-			} */
 			
 			 if($('#username').val()==null || $('#username').val()=='' ||$('#username').val()==""){
 				 alert("구글 아이디로 로그인 해주세요!");
@@ -476,11 +427,9 @@ small {
 						url : "addMember.do",
 						type : "GET",
 						success : function(data){
-							console.log("성공시 : "+data.choose);
 							if(data.choose == '1'){
 								alert(data.data);
 							}else{
-								console.log("엘스탐 : "+data.success);
 								alert(data.success);
 								$('#AddMemberForm').modal();
 								$('#googleId').val(data.registerGoogleId);
