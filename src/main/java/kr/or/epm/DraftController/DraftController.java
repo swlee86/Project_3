@@ -1,6 +1,5 @@
 package kr.or.epm.DraftController;
 
-import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -33,17 +32,12 @@ public class DraftController {
 	// 전자 결재 등록 페이지 요청
 	@RequestMapping(value="/draftWrite.do", method=RequestMethod.GET)
 	public String draftWrite() {
-		System.out.println("CONTROLLER] 전자 결재 페이지를 불러옵니다");
-		
 		return "draft.draft_write";
 	}
 	
 	// 전자 결재 양식 반환
 	@RequestMapping("/draftForm.do")
-	public String draftForm(String cg_no, Principal principal, Model model) {
-		System.out.println("CONTROLLER] 전자 결재 양식을 불러옵니다");
-		System.out.println("받아온 cg_no : " + cg_no);
-		
+	public String draftForm(String cg_no, HttpSession session, Model model) {
 		String returnForm = "";
 		
 		if(cg_no.equals("1")) {
@@ -55,11 +49,7 @@ public class DraftController {
 		}
 		
 		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
-		model.addAttribute("emp_no", emp_no);
+		String emp_no = (String) session.getAttribute("emp_no");
 		
 		// 전자결재 번호
 		String draft_no = service.selectDraft_no();
@@ -74,119 +64,82 @@ public class DraftController {
 	
 	// 대외발신공문 등록
 	@RequestMapping(value="/draftOffice.do", method=RequestMethod.POST)
-	public String draftWriteOffice(Principal principal, Model model, Office office, String draft_line_emp_no, String draft_ref_emp_no) {
-		System.out.println("CONTROLLER] 대외발신공문 등록");
+	public String draftWriteOffice(HttpSession session, Model model, Office office, String draft_line_emp_no, String draft_ref_emp_no) {
 		String cg_no = "1";
 		
 		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		String emp_no = (String) session.getAttribute("emp_no");
 		model.addAttribute("emp_no", emp_no);
 				
-		System.out.println("office : " + office.toString());
-		System.out.println("draft_line_emp_no : " + draft_line_emp_no.toString());
-		System.out.println("draft_ref_emp_no : " + draft_ref_emp_no.toString());
 		office.setEmp_no(emp_no);
 		office.setCg_no(cg_no);
 		
 		service.insertOffice(office);
-		System.out.println("전자결재 문서 등록 성공");
 		
 		String draft_no = office.getDraft_no();
 		String[] linelist = draft_line_emp_no.split(",");
 		String[] reflist = draft_ref_emp_no.split(",");
 		
 		service.insertDraft_line(draft_no, linelist);
-		System.out.println("결재라인 등록 성공");
 		service.insertDraft_ref(draft_no, reflist);
-		System.out.println("참조자 등록 성공");
 		
 		return "draft.draft_write";
 	}
 	
 	// 협조문 등록
 	@RequestMapping(value="/draftCooperation.do", method=RequestMethod.POST)
-	public String draftWriteCooperation(Principal principal, Model model, Cooperation cooperation, String draft_line_emp_no, String draft_ref_emp_no) {
-		System.out.println("CONTROLLER] 협조문 등록");
+	public String draftWriteCooperation(HttpSession session, Model model, Cooperation cooperation, String draft_line_emp_no, String draft_ref_emp_no) {
 		String cg_no = "2";
 		
 		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		String emp_no = (String) session.getAttribute("emp_no");
 		model.addAttribute("emp_no", emp_no);
 				
-		System.out.println("cooperation : " + cooperation.toString());
-		System.out.println("draft_line_emp_no : " + draft_line_emp_no.toString());
-		System.out.println("draft_ref_emp_no : " + draft_ref_emp_no.toString());
 		cooperation.setEmp_no(emp_no);
 		cooperation.setCg_no(cg_no);
 		
 		service.insertCooperation(cooperation);
-		System.out.println("협조문 문서 등록 성공");
-		
+	
 		String draft_no = cooperation.getDraft_no();
 		String[] linelist = draft_line_emp_no.split(",");
 		String[] reflist = draft_ref_emp_no.split(",");
 		
 		service.insertDraft_line(draft_no, linelist);
-		System.out.println("결재라인 등록 성공");
 		service.insertDraft_ref(draft_no, reflist);
-		System.out.println("참조자 등록 성공");
 		
 		return "draft.draft_write";
 	}
 	
 	// 휴가신청서 등록
 	@RequestMapping(value="/draftBreak.do", method=RequestMethod.POST)
-	public String draftWriteBreak(Principal principal, Model model, Break break2, String draft_line_emp_no, String draft_ref_emp_no) {
-		System.out.println("CONTROLLER] 휴가신청서 등록");
+	public String draftWriteBreak(HttpSession session, Model model, Break break2, String draft_line_emp_no, String draft_ref_emp_no) {
 		String cg_no = "3";
 		
-		System.out.println("hgjksfd : " + break2.toString());
-		
 		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
+		String emp_no = (String) session.getAttribute("emp_no");
 		model.addAttribute("emp_no", emp_no);
 				
-		System.out.println("cooperation : " + break2.toString());
-		System.out.println("draft_line_emp_no : " + draft_line_emp_no.toString());
-		System.out.println("draft_ref_emp_no : " + draft_ref_emp_no.toString());
 		break2.setEmp_no(emp_no);
 		break2.setCg_no(cg_no);
 		
 		service.insertBreak(break2);
-		System.out.println("휴가신청서 문서 등록 성공");
 		
 		String draft_no = break2.getDraft_no();
 		String[] linelist = draft_line_emp_no.split(",");
 		String[] reflist = draft_ref_emp_no.split(",");
 		
 		service.insertDraft_line(draft_no, linelist);
-		System.out.println("결재라인 등록 성공");
 		service.insertDraft_ref(draft_no, reflist);
-		System.out.println("참조자 등록 성공");
 		
 		return "draft.draft_write";
 	}
 	
 	// 결재 수신함 페이지 요청
 	@RequestMapping(value="/draft_rec.do", method=RequestMethod.GET)
-	public String draft_rec(Principal principal, Model model) {
-		System.out.println("CONTROLLER] 결재 대기함 페이지");
-		
+	public String draft_rec(HttpSession session, Model model) {
 		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
-
+		String emp_no = (String) session.getAttribute("emp_no");
+		
 		// 대외발신공문
 		// 목록 가져오기
 		List<Office> officelist = service.selectOffice_rec(emp_no);
@@ -194,7 +147,6 @@ public class DraftController {
 
 		// 글 개수 구하기
 		int officecount = officelist.size();
-		System.out.println("대외발신공문 수신함 글 개수 : " + officecount);
 		model.addAttribute("officecount", officecount);
 		
 		// 협조문
@@ -204,7 +156,6 @@ public class DraftController {
 		
 		// 글 개수 구하기
 		int cooperationcount = cooperationlist.size();
-		System.out.println("협조문 수신함 글 개수 : " + cooperationcount);
 		model.addAttribute("cooperationcount", cooperationcount);
 		
 		// 휴가신청서
@@ -214,7 +165,6 @@ public class DraftController {
 		
 		// 글 개수 구하기
 		int breakcount = breaklist.size();
-		System.out.println("휴가신청서 수신함 글 개수 : " + breakcount);
 		model.addAttribute("breakcount", breakcount);
 		 
 		return "draft.draft_rec";
@@ -222,15 +172,10 @@ public class DraftController {
 	
 	// 결재 송신함 페이지 요청
 	@RequestMapping(value="/draft.do", method=RequestMethod.GET)
-	public String draft(Principal principal, Model model) {
-		System.out.println("CONTROLLER] 결재 송신함 페이지");
-		
+	public String draft(HttpSession session, Model model) {
 		// 로그인 id
-		String id = principal.getName();
-		System.out.println("id : " + id);
-		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("로그인한 사원의 emp_no : " + emp_no);
-
+		String emp_no = (String) session.getAttribute("emp_no");
+		
 		// 대외발신공문
 		// 목록 가져오기
 		List<Office> officelist = service.selectOffice(emp_no);
@@ -238,7 +183,6 @@ public class DraftController {
 
 		// 글 개수 구하기
 		int officecount = officelist.size();
-		System.out.println("대외발신공문 송신함 글 개수 : " + officecount);
 		model.addAttribute("officecount", officecount);
 					
 		// 협조문
@@ -248,7 +192,6 @@ public class DraftController {
 				
 		// 글 개수 구하기
 		int cooperationcount = cooperationlist.size();
-		System.out.println("협조문 송신함 글 개수 : " + cooperationcount);
 		model.addAttribute("cooperationcount", cooperationcount);
 				
 		// 휴가신청서
@@ -258,7 +201,6 @@ public class DraftController {
 				
 		// 글 개수 구하기
 		int breakcount = breaklist.size();
-		System.out.println("휴가신청서 송신함 글 개수 : " + breakcount);
 		model.addAttribute("breakcount", breakcount);
 		
 		return "draft.draft";
@@ -267,10 +209,7 @@ public class DraftController {
 	// 대외발신공문 상세
 	@RequestMapping(value="/office_detail.do", method=RequestMethod.GET)
 	public String office_detail(HttpSession session, String draft_no, Model model) {
-		
-		System.out.println("CONTROLLER] 대외발신공문 상세 페이지");
-		System.out.println("선택한 전자결재 번호 : " + draft_no);
-	
+		// 로그인 id
 		String emp_no = (String) session.getAttribute("emp_no");
 		
 		// 승인 권한 (hidden 속성 부여)
@@ -290,12 +229,10 @@ public class DraftController {
 		// 결재라인 가져오기
 		List<Draft_line> linedetail = service.selectDraft_line(draft_no);
 		model.addAttribute("linedetail", linedetail);
-		System.out.println("결재라인 가져오자 : " + linedetail.toString());
 		
 		// 결재라인 인원수
 		int linecount = linedetail.size();
 		model.addAttribute("linecount", linecount);
-		System.out.println("결재라인 인원 수를 뽑아보자 : " + linecount);
 		
 		// 전자결재 참조자 가져오기
 		List<Draft_ref> refdetail = service.selectDraft_ref(draft_no);
@@ -323,10 +260,7 @@ public class DraftController {
 	// 협조문 상세
 	@RequestMapping(value="/cooperation_detail.do", method=RequestMethod.GET)
 	public String cooperation_detail(HttpSession session, String draft_no, Model model) {
-		
-		System.out.println("CONTROLLER] 협조문 상세 페이지");
-		System.out.println("선택한 전자결재 번호 : " + draft_no);
-		
+		// 로그인 id
 		String emp_no = (String) session.getAttribute("emp_no");
 		
 		// 승인 권한 (hidden 속성 부여)
@@ -381,12 +315,9 @@ public class DraftController {
 	}
 	
 	// 휴가신청서 상세
-	@RequestMapping(value="break_detail.do", method=RequestMethod.GET)
+	@RequestMapping(value="/break_detail.do", method=RequestMethod.GET)
 	public String break_detail(HttpSession session, String draft_no, Model model) {
-		
-		System.out.println("CONTROLLE] 휴가 신청서 상세 페이지");
-		System.out.println("선택한 draft_no : " + draft_no);
-		
+		// 로그인 id
 		String emp_no = (String) session.getAttribute("emp_no");
 		
 		// 승인 권한 (hidden 속성 부여)
@@ -435,11 +366,8 @@ public class DraftController {
 	}
 	
 	// 수신함에서 삭제하기
-	@RequestMapping(value="draft_rec_delete.do", method=RequestMethod.GET)
+	@RequestMapping(value="/draft_rec_delete.do", method=RequestMethod.GET)
 	public String draft_rec_delete(String draft_no, Model model) {
-		System.out.println("CONTROLLER] 수신함에서 삭제합니다");
-		System.out.println("넘겨진 draft_no : " + draft_no);
-		
 		service.draft_rec_delete(draft_no);
 		
 		String link = "draft.draft_rec";
@@ -449,11 +377,8 @@ public class DraftController {
 	}
 	
 	// 송신함에서 삭제하기
-	@RequestMapping(value="draft_delete.do", method=RequestMethod.GET)
+	@RequestMapping(value="/draft_delete.do", method=RequestMethod.GET)
 	public String draft_delete(String draft_no, Model model) {
-		System.out.println("CONTROLLER] 송신함에서 삭제합니다");
-		System.out.println("넘겨진 draft_no : " + draft_no);
-		
 		service.draft_delete(draft_no);
 		
 		String link = "draft.draft";
