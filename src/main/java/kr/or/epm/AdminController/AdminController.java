@@ -230,11 +230,12 @@ public class AdminController {
 		int darrayS = Integer.parseInt(dTimearray[1])-1;
 		String dTime =dTimearray[0]+"-"+darrayS;
 		System.out.println(" 한달전 ????????????????"+dTime);
-		
-		
+	
 		List<PayList> Commutelist = commuteservice.selectCommute_all_Close(dTime);
 		
 		String pay_date= adminservice.selectpay_date();
+		System.out.println(" pay_date:======================="+pay_date);
+		
 		model.addAttribute("date", dTime);
 		model.addAttribute("Commutelist", Commutelist);
 		model.addAttribute("pay_date", pay_date);
@@ -243,10 +244,11 @@ public class AdminController {
 	
 	//관리자 - 근태마감 - 확정 하기
 	@RequestMapping(value="/commuteAdminEnd.do", method=RequestMethod.POST)
-	public String CommuteEnd(String hiddenCommute, String emp_no, Model model){
+	public String CommuteEnd(String hiddenCommute, String emp_no, Model model, String payDate){
 		//commute_no 뽑아서 배열에 담아둠
 		String[] commute_no = hiddenCommute.split(",");
 		String[] emp_noArray = emp_no.split(",");
+		System.out.println(" 지급일 paydate===================="+payDate+"////////////hiddenCommute: "+hiddenCommute);
 		for(int i = 0; i < commute_no.length; i++){
 			System.out.println("근태 마감 확정 컨트롤러 입니다.  : :::: "+commute_no[i]);
 		}
