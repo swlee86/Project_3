@@ -272,7 +272,7 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://192.168.234.1:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.43.217/epm/broadsocket.do");
 		
 		//호출 시점  :  send() 메세지 호출 > broadsocket > handleTextMessage > json 넘어와서 
         webSocket.onmessage = function (message){
@@ -341,7 +341,6 @@ $('#birthDay').click(function(){
 					 emp_no : document.getElementById("hiddenEmp_no").value,
 	   				 menuname : document.getElementById("hiddenMenuName").value
 	   			  	}
-			alert("대체 왜 씨파 "+msg.emp_no + " / menuname : "+msg.menuname);	 	
 			console.log("메세지를 봅시다 : " +msg);
 			webSocket.send(JSON.stringify(msg));
 		}
