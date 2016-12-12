@@ -148,7 +148,6 @@ public class MailController {
 	public String mailbox_composeview(HttpSession session) {
 		
 		String sessionchk = (String) session.getAttribute("mailusedata");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$메일 ????  : "+sessionchk);
 		boolean test = Util.isEmpty(sessionchk);
 
 		if (test == true) {
@@ -185,9 +184,7 @@ public class MailController {
 				}finally{
 					mv.addAttribute("maillist", sendlist);
 				}
-			
 			}
-		
 		return "mail.mailbox_send";
 	}
 	
