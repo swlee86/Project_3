@@ -141,7 +141,7 @@
 					
 						<input type="hidden" name="pay_no2" id="hiddenPay">
 						<input type="hidden" id="hidden_date" name="hidden_date">
-						<input type="hidden" id="give_date" name="give_date" value="${pay_date}">
+						<input type="hidden" id="give_dateC" name="give_date" value=${pay_date}>
 						<div class="row" style="text-align: right; margin-right: 5px;">
 							<input type="submit" class="btn btn-sm btn-success" value="마감 확정">
 						</div>
