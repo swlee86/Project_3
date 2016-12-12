@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!--  
-	작성자	: 박지은
+	작성자	: 박지은, 박성준
 	작성일	: 2016-11-21
 	목 적  	: 주소록  layout, css, script 기능
 -->
