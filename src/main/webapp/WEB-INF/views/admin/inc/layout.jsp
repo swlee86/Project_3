@@ -216,6 +216,16 @@ toastr.options = {
 	});
 	
 	
+	// 시간 딜레이 함수
+	function wait(msecs) {
+		var start = new Date().getTime();
+		var cur = start;
+		
+		while(cur - start < msecs) {
+			cur = new Date().getTime();
+		}
+	};
+	
 	$('#giveBtn').click(function(){
 		
     	var arr = new Array();
@@ -239,8 +249,7 @@ toastr.options = {
 	
     var param = JSON.stringify(arr);
     
-		$.ajax(
-				   {
+		$.ajax({
 						url : "give_authority.do",
 						type: "post",
 						data : {
@@ -253,10 +262,10 @@ toastr.options = {
                                 type: "success"
                             });	
                             
+                            wait(3000);
                             window.location.reload();
 						}
-		           }
-		      );
+		           });
 	});
 </script>
 </body>

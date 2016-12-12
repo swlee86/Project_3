@@ -251,10 +251,84 @@ $(function() {
 	});
 	
 	// 권한 부여에서 직위의 적용 버튼을 눌렀을 때
-	$("#applyBtn").click(function() {
-		var position_no = $(this).parent().prev();
-		console.log(position_no);
-		var checklist = $(this).parent();
-		//console.log(checklist);
+	$(".applyBtn").click(function() {
+		var position_no = $(this).parent().prev().contents(":eq(1)").val();
+		var checklist = new Array();
+		
+		$(this).parent().find("input[name=checklist]:checked").each(function(i) {
+			var check = $(this).parent().find("input[name=checklist]:checked").val();
+			checklist.push(check);
+		});
+		
+		var param = JSON.stringify(checklist);
+		
+		$.ajax({
+			url		: "adminEmp_authority.do",
+			type	: "post",
+			data	: {
+						position_no : position_no,
+						param : param
+					  },
+			success	: function(data) {
+				swal({
+                    title: "권한부여",
+                    text: "권한부여에 성공하였습니다",
+                    type: "success"
+                });	
+				
+				wait(2000);
+				window.location.reload();
+			}
+		})
 	});
+	
+	// 상세보기 버튼을 눌렀을 때
+	$(".detailBtn ").click(function() {
+		var position_no = $(this).parent().prev().contents(":eq(1)").val();
+		var url = "adminAuthority_detail.do?position_no="+position_no;
+		
+		$(location).attr("href", url);
+	});
+	
+
+	// 드래그앤드롭 적용
+	$(".drag").sortable({
+        forcePlaceholderSize: true,
+        opacity: 0.8
+	});
+	
+	// 드롭하는 영역
+	$(".dragarea").droppable({
+		drop: function(event, ui) {
+			alert("떨어짐");
+        }
+	});
+
+	
+	/*
+	
+	$("#btndiv button").draggable({
+		start: function(event,ui) {
+			$(this).draggable( "option", "revert", true );
+			$("#images div img").css("zIndex",10);
+			$(this).css("zIndex",100);
+		}
+	});
+	*/
 });
+
+function dragStart(event) {
+    event.dataTransfer.setData("Text", event.target.id);
+    document.getElementById("demo").innerHTML = "Started to drag the p element";
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+    document.getElementById("demo").innerHTML = "The p element was dropped";
+}
