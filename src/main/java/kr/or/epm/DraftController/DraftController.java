@@ -329,6 +329,12 @@ public class DraftController {
 		
 		String emp_no = (String) session.getAttribute("emp_no");
 		
+		// 승인 권한 (hidden 속성 부여)
+		List<String> db_emp_no_list = service.selectDraft_line_emp_no(draft_no);
+		String session_emp_no = emp_no;
+		model.addAttribute("db_emp_no_list", db_emp_no_list);
+		model.addAttribute("session_emp_no", session_emp_no);
+				
 		// 기존 승인 정보 가져오기
 		String app_check = service.selectApp_check(draft_no, emp_no);
 		model.addAttribute("app_check", app_check);
@@ -383,6 +389,12 @@ public class DraftController {
 		
 		String emp_no = (String) session.getAttribute("emp_no");
 		
+		// 승인 권한 (hidden 속성 부여)
+		List<String> db_emp_no_list = service.selectDraft_line_emp_no(draft_no);
+		String session_emp_no = emp_no;
+		model.addAttribute("db_emp_no_list", db_emp_no_list);
+		model.addAttribute("session_emp_no", session_emp_no);
+				
 		// 기존 승인 정보 가져오기
 		String app_check = service.selectApp_check(draft_no, emp_no);
 		model.addAttribute("app_check", app_check);

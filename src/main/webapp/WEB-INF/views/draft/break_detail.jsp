@@ -24,11 +24,17 @@ function pagePrint(obj){
 			<i class="pe-7s-print"></i>&nbsp;
 		</a>
 	</span>
+	
+	<c:forEach var="list" items="${ db_emp_no_list }">
+	<c:if test="${ list == session_emp_no }">
 	<span class="up-btn pull-right">
 		<button class="btn btn-outline btn-primary btn-m bgcolor" data-toggle="modal" data-target="#draft_process_Modal">
 			승인 처리
 		</button>
 	</span>
+	</c:if>
+	</c:forEach>
+	
 </div>
 
         <div class="row" id="print_page">
