@@ -119,7 +119,7 @@
                     
                     <tbody>
                   	<c:forEach var="list" items="${list}">
-                    <tr id="tr">
+                    <tr id="tr" class="empclick">
                         <td>${list.emp_no}</td>
                         <td>${list.branch_name}</td>
                         <td>${list.dept_name}</td>
@@ -127,7 +127,7 @@
                         <td>${list.position_name}</td>
                         <td>${list.emp_name}</td>
                         <td>
-                        	<<img alt="사진" src="${pageContext.request.contextPath}/img/onload/${list.pic}" class="img-circle m-b">
+                        	<img alt="사진" style="width: 50px; height: 50px;"src="${pageContext.request.contextPath}/img/upload/${list.pic}" class="img-circle m-b">
                         </td>
                         <td>${list.cg_name}</td>
                         <td>

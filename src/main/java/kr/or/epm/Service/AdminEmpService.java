@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.epm.DAO.AdminEmpDAO;
 import kr.or.epm.DAO.EmpDAO;
@@ -34,15 +35,11 @@ public class AdminEmpService {
 	private SqlSession sqlsession;
 	
 	// 사원 정보 리스트 출력
-	// public List<Emp> selectEmpList(int cpage, int pgsize) {
 	 public List<Emp> selectEmpList(int cpage, int pgsize, String field, String query) {
 		System.out.println("SselectEmpList() 서비스");
-		//int start = cpage * pgsize - (pgsize - 1);
-		//int end = cpage * pgsize;
 		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		List<Emp> list = dao.selectEmp_list(cpage, pgsize,field,query);
-		//List<Emp> list = dao.selectEmp_list();
 		
 		return list;
 	}
@@ -109,16 +106,27 @@ public class AdminEmpService {
 	}
 	
 	// AJAX 사원 등록
+	@Transactional
 	public int insertEmp(Emp emp) {
 		System.out.println("SERVICE] 사원을 등록합니다");
 		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
 		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		int result1 = dao.insertEmp(emp);
+		
 		
 		// 이력에 '입사' 추가하기
 		String emp_no = emp.getEmp_no();
-		int result2 = dao.insertEmp_his_in(emp_no);
+		
+		
+		try {
+			result1 = dao.insertEmp(emp);
+			result2 = dao.insertEmp_his_in(emp_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 		
 		// 'none' 권한 부여하기
@@ -166,18 +174,27 @@ public class AdminEmpService {
 	}
 	
 	// AJAX 사원 삭제
+	@Transactional
 	public int deleteEmp(String emp_no) {
 		System.out.println("SERVICE] 사원을 삭제합니다");
 		int result = 0;
 		
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		
-		// 권한을 none으로 변경
-		int result2 = dao.updateEmp_role_none(emp_no);
-		// 이력을 퇴사로 변경
-		int result3 = dao.updateEmp_his_out(emp_no);
-		// 사번의 년도를 0000으로 변경
-		int result1 = dao.updateEmp_no(emp_no);
+		int result2 = 0;
+		int result3 = 0;
+		int result1 = 0;
+				
+		try {
+			// 권한을 none으로 변경
+			result2 = dao.updateEmp_role_none(emp_no);
+			// 이력을 퇴사로 변경
+			result3 = dao.updateEmp_his_out(emp_no);
+			// 사번의 년도를 0000으로 변경
+			result1 = dao.updateEmp_no(emp_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 		if(result1 > 0 && result2 > 0 && result3 > 0) {
 			result = 1;
@@ -264,5 +281,15 @@ public class AdminEmpService {
 		totalcount = dao.selectCount( field, query);
 		
 		return totalcount;
+	}
+	
+	// 사원 정보 수정
+	public Emp selectEmp_detail(String emp_no) {
+		System.out.println("SERVICE] 사원 정보 수정을 위해 정보를 불러옵니다");
+		
+		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
+		Emp detail = dao.selectEmp_detail(emp_no);
+				
+		return detail;
 	}
 }

@@ -41,7 +41,81 @@ public class Emp {
 	// 관리자 > 사원관리 > 권한부여 > 상세
 	private List<Emp_role> rolelist;
 	
+	// 사원 정보 수정
+	private String id;
+	private String pwd;
+	private String bank;
+	private String addr;
+	private String addr_detail;
+	private String account;
+	private String postcode;
+	private String googleapiid;
 	
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public String getAddr_detail() {
+		return addr_detail;
+	}
+
+	public void setAddr_detail(String addr_detail) {
+		this.addr_detail = addr_detail;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public String getGoogleapiid() {
+		return googleapiid;
+	}
+
+	public void setGoogleapiid(String googleapiid) {
+		this.googleapiid = googleapiid;
+	}
+
 	public String getRole_exp() {
 		return role_exp;
 	}

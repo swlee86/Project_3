@@ -239,4 +239,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where emp_no = #{emp_no}
 		order by to_number(emp_no)
 	</select>
+	
+	<!-- 정보 수정을 위해 사원의 정보 불러오기 -->
+	<select id="selectEmp_detail" resultType="kr.or.epm.VO.Emp">
+		select e.emp_no, cg_name, position_name, 
+       low_dept_name, dept_name, branch_name, 
+       emp_break, salary, emp_name, 
+       birth, pic, email, 
+       cell_phone, emp_tel, id, 
+       pwd, bank, addr, 
+       addr_detail, account, postcode, 
+       googleapiid
+		from emp e join emp_detail d
+		on e.emp_no = d.emp_no
+		join emp_cg c
+		on e.cg_no = c.cg_no
+		join low_dept l
+		on e.low_dept_no = l.low_dept_no
+		join position p
+		on e.position_no = p.position_no
+		where e.emp_no = #{emp_no}
+	</select>
 </mapper>

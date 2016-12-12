@@ -47,7 +47,7 @@
 						<div align="right">
 							<p>
 								<i class="pe-7s-pen"></i>
-								진행상태수정/내용수정은 책임자에게 문의하세요
+								진행단계수정/내용수정은 책임자에게 문의하세요
 							</p>
 						</div>
 						<table  id="pjd_detail_table" cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
@@ -56,7 +56,7 @@
                               	<td id="pjd_name" width="35%">
                               		<input type="text" class="form-control table-input input-sm" id="pjd_title" value="${pjd.pjd_title}" disabled="disabled" style="border: 0px; background-color: white;">
                               	</td>
-                              	<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">진행 상태</th>
+                              	<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">진행 단계</th>
                               	<td id="pjd_step" width="35%">
 		                        	<div class="form-group">
 				    	            	<select class="form-control input-sm table-input input-sm" id="step_no" disabled="disabled">	

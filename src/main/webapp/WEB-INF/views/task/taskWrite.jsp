@@ -139,14 +139,14 @@
 										<td><textarea cols="10" rows="10" class="form-control" id="content"
 												name="content"></textarea></td>
 									</tr>
-									<tr>
+								<!-- 	<tr>
 										<th
 											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<i class="pe-7s-paperclip"></i> 첨부 파일
 										</th>
 										<td><input type="file" name="uploadfile"
 											class="form-control input-sm"></td>
-									</tr>
+									</tr> -->
 									</tbody>
 								</table>
 								<div class="row" style="text-align: right; margin-right: 10px;">

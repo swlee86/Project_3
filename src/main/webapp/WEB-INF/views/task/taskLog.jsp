@@ -149,9 +149,9 @@ $(function(){
 											font-weight: bold; font-size: 13px;"
 											onclick="window.location.href='taskWrite.do'">일지 등록</button>
 									&nbsp;&nbsp;
-									<button type="button" class="btn btn-sm btn-default demo4"
+									<!-- <button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">일지 삭제</button>
+											font-weight: bold; font-size: 13px;">일지 삭제</button> -->
 								</div>
 							</div>
 						</div>
@@ -292,9 +292,9 @@ $(function(){
 											font-weight: bold; font-size: 13px;"
 											onclick="window.location.href='taskWrite.do'">일지 등록</button>
 									&nbsp;&nbsp;
-									<button type="button" class="btn btn-sm btn-default demo4"
+									<!-- <button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">일지 삭제</button>
+											font-weight: bold; font-size: 13px;">일지 삭제</button> -->
 								</div>
 							</div>
 						</div>
