@@ -98,8 +98,8 @@
             	<button class="btn btn-outline btn-primary pull-right" id="applyBtn_emp_no" style="margin-top: 5px;">적용하기</button>
                 <h3>권한</h3>
                 <c:forEach var="authority" items="${ list.rolelist }">
-            		<input class="mine" id="${ authority.role_no }" value="${ authority.role_exp }"
-            			   style="border: none; background-color: rgb(247,249,250);"><br>
+            		<input readonly class="mine" id="${ authority.role_no }" value="${ authority.role_exp }"
+            			   style="border: none; font-weight: bold; background-color: rgb(247,249,250);"><br>
             	</c:forEach>
             	
             </div>
