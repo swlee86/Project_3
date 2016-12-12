@@ -18,7 +18,7 @@
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">자유 게시판</h2>
-			<small>회사내 자유 게시판입니다.</small>
+			<small>회사내 자유 게시판입니다</small>
 		</div>
 	</div>
 </div>
