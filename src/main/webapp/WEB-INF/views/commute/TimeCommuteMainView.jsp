@@ -30,17 +30,10 @@
 				<div class="panel-heading hbuilt">
 					<form action="" class="form-inline">
 						<label class="form-control">일일근태</label>  
-						<!-- <input type="text" class="form-control" id="mydate">
-						<button type="button" class="btn btn-sm btn-default" id="addCommute">
-							<span class="fa fa-search"></span>
-						</button> --> 
-
 					</form>
-
 				</div>
 				<div class="panel-body">
 					<br />
-
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="col-md-9">

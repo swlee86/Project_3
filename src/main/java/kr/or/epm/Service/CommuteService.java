@@ -2,7 +2,6 @@ package kr.or.epm.Service;
 
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -49,8 +48,6 @@ public class CommuteService {
 	
 	//insert 출근시간
 	public int insertCommute_in(String in_time,String emp_no){
-		
-		System.out.println("commute service들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		//근태테이블에 이미 출근했는지 조회
@@ -62,14 +59,10 @@ public class CommuteService {
 			
 			//출근시간을 퇴근전에 했는지 검사
 			Set_time set_time = dao.selectSetTime(emp_no);
-			System.out.println("@@Set_time : "+set_time.toString());
-			
 			String out_time_dept = set_time.getOut_time();
 			
 			int out_time_dept_h = Integer.parseInt(out_time_dept.substring(0,2));
 			int out_time_dept_m = Integer.parseInt(out_time_dept.substring(3,5));
-			
-			
 			
 			int in_time_emp_h = Integer.parseInt(in_time.substring(0,2));
 			int in_time_emp_m = Integer.parseInt(in_time.substring(3,5));
@@ -82,8 +75,6 @@ public class CommuteService {
 			date_emp.setHours(in_time_emp_h);
 			date_emp.setMinutes(in_time_emp_m);
 			
-			System.out.println("date_emp : " + date_emp.getTime());
-			System.out.println("date_dept");
 			long date_add = date_dept.getTime()-date_emp.getTime();
 	
 			if(date_add < 0 ){
@@ -124,7 +115,6 @@ public class CommuteService {
 	
 	//오늘 근무시간 업데이트
 	public int updateCommute_time(String commute_time,String emp_no){
-		System.out.println("updateCommute_time들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		//근태테이블에서 출근했는지 조회
@@ -145,7 +135,6 @@ public class CommuteService {
 	
 	//관리자용 - 근태 마감  확인 - 
 	public int updateCommute_mgr_check(String commute_no, String emp_no) {
-		System.out.println("근태 마감 확정");
 		int result=0;
 		int payinsert_result=0;
 		
@@ -154,7 +143,6 @@ public class CommuteService {
 	   
 	    //업데이트 성공시 pay insert 실행합니다.
 	    if(result>0){
-	    	System.out.println("서비스 내부 result > 0 인설트 하기 직전 !! "+emp_no);
 	    	EmpDAO empdao = sqlsession.getMapper(EmpDAO.class);
 	    	//1. 기본급여
 	    	Emp emp=empdao.selectEmp(emp_no);

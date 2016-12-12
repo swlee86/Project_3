@@ -52,7 +52,6 @@ public class WithdrawalController {
 		HttpSession session = request.getSession();
 	    String emp_no = (String)session.getAttribute("emp_no");
 	      
-		System.out.println("받아온 emp_no : " + emp_no);
 		
 		String bPwd = this.bCryptPasswordEncoder.encode(pwd);
 
