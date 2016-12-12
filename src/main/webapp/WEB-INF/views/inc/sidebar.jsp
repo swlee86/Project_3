@@ -123,7 +123,7 @@
             </li>
             </se:authorize>
             <li>
-            	<a href="#" onClick="javascript:window.open('http://192.168.43.52:3000/?id=${Emp.emp_name}', 'popup','scrollbars=no, width=500px,height=600px,resizable=no')">Node 채팅</a>
+            	<a href="#" onClick="javascript:window.open('http://192.168.0.116:3000/?id=${Emp.emp_name}', 'popup','scrollbars=no, width=500px,height=600px,resizable=no')">Node 채팅</a>
             </li>
             <li>
             	&nbsp;
