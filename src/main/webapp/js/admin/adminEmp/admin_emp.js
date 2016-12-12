@@ -195,7 +195,7 @@ $(function() {
 					table += "<td>" + data.list[index].emp_name + "</td>";
 					table += "<td>" + data.list[index].cg_name + "</td>";
 					table += "<td>" + data.list[index].his_cg_name + "</td>";
-					table += "<td>" + data.list[index].role_name + "</td>";
+					table += "<td>" + data.list[index].role_exp + "</td>";
 					if(index == 0) {
 						table += "<td>" + data.list[index].regdate + "</td>";
 					} else if(data.list[index].his_no == data.list[index-1].his_no) {
