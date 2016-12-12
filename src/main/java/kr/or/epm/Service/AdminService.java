@@ -9,6 +9,7 @@ import javax.mail.Session;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import kr.or.epm.DAO.BranchDAO;
@@ -76,6 +77,8 @@ public class AdminService {
 	}
 
 	// 지점 정보 수정
+	// TTTT
+	@Transactional
 	public int branchModify(Branch dto, String notChange_branch_Name) {
 		String branchModify_notChange_branch_Name = notChange_branch_Name;
 		System.out.println("1. 정보 수정 : "+branchModify_notChange_branch_Name);
@@ -127,6 +130,8 @@ public class AdminService {
 	}
 
 	// 부서 update
+	// TTTT
+	@Transactional
 	public int update_new_dept(Branch branch) {
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
 		int update_dept = 0;
@@ -152,6 +157,8 @@ public class AdminService {
 	}
 	
 	//하위부서 update
+	// TTTT
+	@Transactional
 	public int update_new_low_dept(Branch branch, String notChange_branch_Name){
 		int result = 0;
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
@@ -207,6 +214,8 @@ public class AdminService {
 	}
 
 	// 부서관리 > 부서 정보 수정
+	// TTTT
+	@Transactional
 	public int insert_re_Dept(DeptJoinBonus dto) {
 
 		DeptDAO deptDAO = sqlsession.getMapper(DeptDAO.class);
@@ -284,18 +293,21 @@ public class AdminService {
 	
 	
 	// 부서 등록하기
+	@Transactional
 	public int addBranch(DeptJoinBonus dto) {
 		// 우리가 입력한 지점 이름
 		String branch_Name = dto.getBranch_name();
 		System.out.println(" 지점이름 : "+branch_Name);
 		DeptDAO deptDAO = sqlsession.getMapper(DeptDAO.class);
 
+		int result = 0;
+		
+		try {
 		// 지점 번호 뽑아옴
 		String branch_No = deptDAO.selectBranchName_No(branch_Name);
 		System.out.println(" 지점 번호 : "+branch_No);
 		// DB 에서 읽어온 지점 번호 셋팅
 		dto.setBranch_no(branch_No);
-		int result = 0;
 		// 부서 정보 인서트
 		result = deptDAO.insertDept(dto);
 		System.out.println(" 부서 인서트 결과  : "+result);
@@ -308,7 +320,12 @@ public class AdminService {
 		// 상여금 설정 인서트
 		result += deptDAO.addDept_set_bonus(dto);
 		System.out.println(" 상여금 insert 결과  : "+result);
-
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
 		return result;
 	}
 
@@ -331,14 +348,16 @@ public class AdminService {
 	// 하위 부서 > 조회하기
 	public LowDeptJoin selectLow_dept_detail(String low_dept_no) {
 		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
+		
 		LowDeptJoin low_dept = lowdao.selectLow_dept_detail(low_dept_no);
 		Set_homepage home = lowdao.selectHomePage(low_dept_no);
 		Set_time time = lowdao.selectTime(low_dept_no);
-
+		
 		low_dept.setOpen(home.getOpen());
 		low_dept.setClose(home.getClose());
 		low_dept.setIn_time(time.getIn_time());
 		low_dept.setOut_time(time.getOut_time());
+		
 		return low_dept;
 	}
 	
@@ -359,49 +378,60 @@ public class AdminService {
 	}
 
 	// 하위 부서 > 등록하기
+	@Transactional
 	public int insertLow_dept(LowDeptJoin lowDeptJoin) {
 		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
 		int result = 0;
-		// 부서등록
-		result = lowdao.insertLow_dept(lowDeptJoin);
-		// 부서번호 조회
-		String low_dept_no = lowdao.select_add_no(lowDeptJoin);
-		lowDeptJoin.setLow_dept_no(low_dept_no);
-		// 홈페이지 접근시간 등록
-		result += lowdao.insert_homepage(lowDeptJoin);
-		// 출퇴근시간 등록
-		result += lowdao.insert_time(lowDeptJoin);
+		
+		try {
+			// 부서등록
+			result = lowdao.insertLow_dept(lowDeptJoin);
+			// 부서번호 조회
+			String low_dept_no = lowdao.select_add_no(lowDeptJoin);
+			lowDeptJoin.setLow_dept_no(low_dept_no);
+			// 홈페이지 접근시간 등록
+			result += lowdao.insert_homepage(lowDeptJoin);
+			// 출퇴근시간 등록
+			result += lowdao.insert_time(lowDeptJoin);
+		} catch (Exception e) {
+			System.out.println("error");
+			e.printStackTrace();
+			throw e;
+		}
+		
 		return result;
 	}
 
 	// 하위부서 > 정보 수정하기
+	@Transactional
 	public int updateLow_dept(LowDeptJoin LowDeptJoin) {
 		int result = 0;
 		System.out.println(" 수정전 dto :===============" + LowDeptJoin.toString());
 		String pre_low_dept_no = LowDeptJoin.getLow_dept_no();
 		// 하위부서 insert 1)
 		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
-		result = lowdao.updateLow_dept(LowDeptJoin);
-		System.out.println(" 부서 수정 결과 1((((((((" + result);
-
-		// 2) 수정전 하위부서 기록 변경 2)
-		result += lowdao.updateLow_dept_his(LowDeptJoin);
-		System.out.println("부서 수정 결과2))))))))))))))))" + result);
-
-		// 3)변경된 하위부서번호 조회
-		LowDeptJoin low = lowdao.select_low_dept_no(LowDeptJoin.getLow_dept_name());
-		LowDeptJoin.setLow_dept_no(low.getLow_dept_no());
-		LowDeptJoin.setPre_low_dept_no(pre_low_dept_no);
-		System.out.println(
-				" 받아온 pre   : " + pre_low_dept_no + "  /  새로 세팅한 pre    : " + LowDeptJoin.getPre_low_dept_no());
-
-		// 4)홈페이지 설정 시간 변경
-		result += lowdao.update_homepage(LowDeptJoin);
-		System.out.println("부서 수정 결과3 ))))))))))))))))" + result);
-		// 5)출퇴근 시간 변경
-		result += lowdao.update_time(LowDeptJoin);
-		System.out.println("부서 수정 결과4 최종*******************************8)" + result);
-
+		
+		try {
+			result = lowdao.updateLow_dept(LowDeptJoin);
+			
+			// 2) 수정전 하위부서 기록 변경 2)
+			result += lowdao.updateLow_dept_his(LowDeptJoin);
+			
+			// 3)변경된 하위부서번호 조회
+			LowDeptJoin low = lowdao.select_low_dept_no(LowDeptJoin.getLow_dept_name());
+			LowDeptJoin.setLow_dept_no(low.getLow_dept_no());
+			LowDeptJoin.setPre_low_dept_no(pre_low_dept_no);
+			
+			// 4)홈페이지 설정 시간 변경
+			result += lowdao.update_homepage(LowDeptJoin);
+			
+			// 5)출퇴근 시간 변경
+			result += lowdao.update_time(LowDeptJoin);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		
 		return result;
 	}
 
@@ -428,11 +458,12 @@ public class AdminService {
 	}
 
 	// 직위 추가 insert 부분
+	// TTTT
+	@Transactional
 	public int positionInsert(PositionJoin position) {
 		int result = 0;
 		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
-		
-		
+	
 		result = positionDAO.insertPosition(position);
 			
 		String p_no = positionDAO.selectPosition_no(position);
@@ -458,6 +489,8 @@ public class AdminService {
 	}
 
 	// 직위 정보 수정 관련 > selectbox 사용시
+	// TTTT
+	@Transactional
 	public int positionUpdate(PositionJoin position) {
 
 		int result = 0;
@@ -504,8 +537,9 @@ public class AdminService {
 		return list;
 	}
 	
-	
 	//직위 삭제하기
+	// TTTT
+	@Transactional
 	public int delete_position(String position_no){
 		int result=0;
 	    PositionDAO dao = sqlsession.getMapper(PositionDAO.class);
@@ -525,7 +559,6 @@ public class AdminService {
 	    	 result=0;
 	     }
 	    
-		
 		return result;
 	}
 	

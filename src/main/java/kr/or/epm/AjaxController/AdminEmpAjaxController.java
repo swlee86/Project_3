@@ -156,4 +156,15 @@ public class AdminEmpAjaxController {
 		
 		return jsonview;
 	}
+	
+	// 사원 정보를 수정
+	public View adminEmp_update(Emp emp, Model model) {
+		System.out.println("CONTROLLER] 사원 정보 수정");
+		System.out.println("넘어오는 값 확인 : " + emp.toString());
+			
+		service.updateEmp_detail(emp);
+		model.addAttribute("result", "성공");
+		
+		return jsonview;
+	}
 }

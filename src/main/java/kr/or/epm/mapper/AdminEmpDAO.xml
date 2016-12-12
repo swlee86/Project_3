@@ -258,6 +258,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on e.low_dept_no = l.low_dept_no
 		join position p
 		on e.position_no = p.position_no
-		where emp_no = #{emp_no}
+		where e.emp_no = #{emp_no}
 	</select>
+	
+	<!-- 사원 정보 수정하기 -->
+	<update id="updateEmp_detail">
+	
+	</update>
 </mapper>
