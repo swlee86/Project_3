@@ -72,7 +72,7 @@ $(function(){
         </div>
         <div class="navbar-right">
             <ul class="nav navbar-nav no-borders">
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                         <i class="pe-7s-speaker"></i>
                     </a>
@@ -94,7 +94,7 @@ $(function(){
                         </li>
                         <li class="summary"><a href="#">See all notifications</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                         <i class="pe-7s-keypad"></i>
@@ -107,39 +107,42 @@ $(function(){
                                 <td>
                                     <a href="project_list.do">
                                         <i class="pe pe-7s-portfolio text-info"></i>
-                                        <h5>Projects</h5>
+                                        <h5>전체 프로젝트</h5>
                                     </a>
                                 </td>
                                 <td>
                                     <a href="mailbox.do">
                                         <i class="pe pe-7s-mail text-warning"></i>
-                                        <h5>Email</h5>
+                                        <h5>E-mail</h5>
                                     </a>
                                 </td>
                                 <td>
                                     <a href="contacts.do">
                                         <i class="pe pe-7s-users text-success"></i>
-                                        <h5>Contacts</h5>
+                                        <h5>주소록</h5>
                                     </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="free_board_list.do">
-                                        <i class="pe pe-7s-comment text-info"></i>
-                                        <h5>Forum</h5>
+                                    <a href="taskRequest.do">
+                                    	<i class="pe-7s-note2 text-warning2"></i>
+                                      <!--   <i class="pe pe-7s-comment "></i> -->
+                                        <h5>업무 요청</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="analytics.do">
-                                        <i class="pe pe-7s-graph1 text-danger"></i>
-                                        <h5>Refund</h5>
+                                    <a href="team_member.do">
+                                    	<i class="pe-7s-network text-danger"></i>
+                                        <!-- <i class="pe pe-7s-graph1 "></i> -->
+                                        <h5>조직도</h5>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="file_manager.html">
-                                        <i class="pe pe-7s-box1 text-success"></i>
-                                        <h5>Files</h5>
+                                    <a href="draft_rec.do">
+                                     	<i class="pe-7s-pen text-primary"></i>
+                                       <!--  <i class="pe pe-7s-box1 "></i> -->
+                                        <h5>전자결재 수신함</h5>
                                     </a>
                                 </td>
                             </tr>
@@ -162,7 +165,7 @@ $(function(){
                         <li>진행 중인 프로젝트가 없습니다.</li>
                     	</c:when>
                     	<c:otherwise>
-                    	<li  style="width: 340px;">진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</li>
+                    	<li  style="width: 340px;">진행 중인 프로젝트는<span id="projectcount"><a href="project_list.do">${sessionprojectcount}</a></span>건입니다.</li>
                     	</c:otherwise>
                     	</c:choose>
                     	<c:choose>
@@ -170,7 +173,7 @@ $(function(){
                     	<li>승인 확인이 필요한 프로젝트가 없습니다.</li>
                     	</c:when>
                     	<c:otherwise>
-                    	<li>승인 확인을 하셔야 하는 프로젝트는<span id="approveprojectcount">${sessionApprovalcount}</span>건입니다.</li>                    	
+                    	<li>승인 처리 하실 프로젝트는<span id="approveprojectcount"><a href="projectApprove.do">${sessionApprovalcount}</a></span>건입니다.</li>                    	
                     	</c:otherwise>
                     	</c:choose>
                     	<li class="summary">업무</li>
@@ -187,7 +190,7 @@ $(function(){
                     	<li>승인 확인이 필요한 업무가 없습니다.</li>
                     	</c:when>
                     	<c:otherwise>
-                        <li>승인 확인 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>                    	
+                        <li>승인 처리 하실 업무는 <span id="taskApprovalcount">${sessiontaskApprovalcount}</span>건입니다.</li>                    	
                     	</c:otherwise>
                     	</c:choose>
                     	
@@ -203,11 +206,11 @@ $(function(){
                         <li class="summary"><a href="#">See All Messages</a></li>
                     </ul>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#" id="sidebar" class="right-sidebar-toggle">
                         <i class="pe-7s-upload pe-7s-news-paper"></i>
                     </a>
-                </li>
+                </li> -->
                 
                 <c:if test="${empty pageContext.request.userPrincipal}">
 					<li>
@@ -272,7 +275,7 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://192.168.234.1:8090/epm/broadsocket.do");
+		webSocket = new WebSocket("ws://192.168.0.236:8090/epm/broadsocket.do");
 		
 		//호출 시점  :  send() 메세지 호출 > broadsocket > handleTextMessage > json 넘어와서 
         webSocket.onmessage = function (message){
@@ -321,8 +324,7 @@ $('#birthDay').click(function(){
 			var allData = { "pushcount" : resultpushCount, "projectcount" : resultprojectCount, "taskcount" : resulttaskCount, "taskApproval":taskApprovalCount, "projectApproval":projectApprovalCount};
 			$(function(){
 				
-			alert("푸쉬 카운트 : " +allData.pushcount + " / projectcount : "+allData.projectcount + " taskcount : "+allData.taskcount + " /    projectApproval : "+allData.projectApproval); 
-    		$.ajax({
+			$.ajax({
     			url : "pollingchk.do",
     			data : allData,
     			success : function(data) {
@@ -341,7 +343,6 @@ $('#birthDay').click(function(){
 					 emp_no : document.getElementById("hiddenEmp_no").value,
 	   				 menuname : document.getElementById("hiddenMenuName").value
 	   			  	}
-			alert("대체 왜 씨파 "+msg.emp_no + " / menuname : "+msg.menuname);	 	
 			console.log("메세지를 봅시다 : " +msg);
 			webSocket.send(JSON.stringify(msg));
 		}

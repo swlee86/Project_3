@@ -82,7 +82,7 @@ public class RegisterController {
 		Emp emp = new Emp();
 		emp.setEmail(email);
 		emp.setEmp_no(emp_detail.getEmp_no());
-		System.out.println("Emp 데이터 : " + emp);
+	
 		int resultempdetail = 0;
 		int resultemp = 0;
 		int resultrole = 0;

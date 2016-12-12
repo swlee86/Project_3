@@ -38,7 +38,7 @@ public class AdminEmpController {
 		// default값 설정
 		if(pagesize == null || pagesize.trim().equals("")) {
 			// default로 10건씩 확인
-			pagesize = "10";
+			pagesize = "5";
 		}
 		if(currentpage == null || currentpage.trim().equals("")) {
 			// default로 1번 페이지 설정
@@ -60,28 +60,30 @@ public class AdminEmpController {
 		int pgsize = Integer.parseInt(pagesize);
 		int cpage = Integer.parseInt(currentpage);
 		
-		// int totalcount = service.selectCount(field, query);  //전체 갯수 구하는 함수
+		int totalcount = service.selectCount(field, query);  //전체 갯수 구하는 함수
 		
 		//List<Emp> list = service.selectEmpList(cpage, pgsize);
 		//int totalcount = list.size();
 				
-		//if (totalcount % pgsize == 0) {
-		//	pagecount = totalcount / pgsize;
-		//} else {
-		//	pagecount = (totalcount / pgsize) + 1;
-		//}
+		if (totalcount % pgsize == 0) {
+			pagecount = totalcount / pgsize;
+		} else {
+			pagecount = (totalcount / pgsize) + 1;
+		}
 		
-		//List<Emp> list = service.selectEmpList(cpage, pgsize,field, query);
-		List<Emp> list = service.selectEmpList();
+		List<Emp> list = service.selectEmpList(cpage, pgsize,field, query);
+System.out.println("cpage:"+cpage+"/pagesize:"+pagesize+"/pagecount:"+pagecount+"/totalcount:"+totalcount);
 		
 		
 		
+		model.addAttribute("field", field);
+		model.addAttribute("query", query);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("cpage", cpage);
 		model.addAttribute("pagesize", pgsize);
 		model.addAttribute("pagecount", pagecount);
-		// model.addAttribute("totalcount", totalcount);
+		model.addAttribute("totalcount", totalcount);
 		
 		return "adminMember.adminEmpList";
 	}

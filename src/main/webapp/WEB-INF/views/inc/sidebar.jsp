@@ -7,10 +7,10 @@
         <div class="profile-picture">
             
             <a href="${pageContext.request.contextPath}/index.do">
-                <img src="${pageContext.request.contextPath}/images/ss.jpg" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
+                <img src="${pageContext.request.contextPath}/img/upload/${Emp.pic}" style="width:128px;height: 128px;" class="img-circle m-b" alt="logo">
             </a>
 			<div class="stats-label text-color">
-                <span class="font-extra-bold font-uppercase">${Emp.emp_name} 님 환영합니다.</span>
+                <span class="font-extra-bold font-uppercase"><i class="fa fa-user"></i> ${Emp.emp_name}님 환영합니다</span>
 					
 			</div>
         </div>
@@ -33,9 +33,9 @@
                 <ul class="nav nav-second-level">
                     <li><a href="mailbox.do">메일 읽기</a></li>
                     <li><a href="mailbox_compose.do">메일 쓰기</a></li>
-                    <li><a href="mailbox_send.do">보낸메일함 (수신 확인)</a></li>
-                    <li><a href="#">스팸 메일 관리</a></li>
-                    <li><a href="mailbox_trash.do">휴지통</a></li>
+                    <li><a href="mailbox_send.do">보낸 메일함 </a></li>
+                   <!--  <li><a href="#">스팸 메일 관리</a></li>
+                    <li><a href="mailbox_trash.do">휴지통</a></li> -->
                 </ul>
             </li>
         <!--     <li>
@@ -91,7 +91,6 @@
                 <a href="#"><span class="nav-label">급여 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="salarySearch.do">급여 조회</a></li>
-                    <li><a href="severancepay.do">퇴직금 계산</a></li>
                 </ul>
             </li>
             <li>
@@ -106,16 +105,9 @@
             <li>
                 <a href="#"><span class="nav-label">회원 정보 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="login.do">로그인</a></li>
-                    <li><a href="addMember.do">회원가입</a></li>
+                    
                     <li><a href="editMyinfo.do">내정보수정</a></li>
                     <li><a href="withdrawal.do">회원탈퇴</a></li>
-                    <li><a href="findId.do">아이디찾기</a></li>
-                    <li><a href="findPw.do">비밀번호찾기</a></li>
-                    <li><a href="error_one.html">Error 404</a></li>
-                    <li><a href="error_two.html">Error 505</a></li>
-                    <li><a href="lock.html">Lock screen</a></li>
-                    <li><a href="password_recovery.html">Passwor recovery</a></li>
                 </ul>
             </li>
               <se:authorize access="hasRole('ROLE_ADMIN')">

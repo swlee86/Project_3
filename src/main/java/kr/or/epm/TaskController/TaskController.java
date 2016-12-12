@@ -786,7 +786,8 @@ public class TaskController {
 		System.out.println("선택한 승인 단계 : " + step_no);
 
 		// redirect
-		String link = "taskInform_rec.do";
+		//String link = "taskInform_rec.do";
+		String link = "taskInform.do";
 		String msg = null;
 
 		int result = 0;

@@ -10,16 +10,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 <mapper namespace="kr.or.epm.DAO.AdminEmpDAO">
 
-	<!-- 사원 정보 리스트 출력 -->
-	<select id="selectEmp_list" resultType="kr.or.epm.VO.Emp">
-		select emp_no, emp_name, branch_name, dept_name, low_dept_name, pic, cg_name, position_name
+	<!-- 갯수 -->
+	<select id="selectCount" resultType="int">
+		select  nvl(count(*),0)
 		from emp e join low_dept l
 		on e.low_dept_no = l.low_dept_no
 		join emp_cg c
 		on e.cg_no = c.cg_no
 		join position p
 		on e.position_no = p.position_no
+		where ${param1} like '%${param2}%'  
 		order by branch_name asc, dept_name asc, low_dept_name asc
+	</select>
+	
+	
+	<!-- 사원 정보 리스트 출력 -->
+	<select id="selectEmp_list" resultType="kr.or.epm.VO.Emp">
+	 select emp_no, emp_name, branch_name, dept_name, low_dept_name, pic, cg_name, position_name from(
+		select rownum num, emp_no, emp_name, branch_name, dept_name, low_dept_name, pic, cg_name, position_name
+		from emp e join low_dept l
+		on e.low_dept_no = l.low_dept_no
+		join emp_cg c
+		on e.cg_no = c.cg_no
+		join position p
+		on e.position_no = p.position_no
+		where ${param3} like '%${param4}%'  
+		order by branch_name asc, dept_name asc, low_dept_name asc
+	) where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}
 	</select>
 	
 	<!-- 사원 등록을 위한 새로운 사번 가져오기 -->

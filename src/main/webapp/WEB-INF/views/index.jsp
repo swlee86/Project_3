@@ -9,7 +9,7 @@
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
-			<h2>Welcome to <b>2PM</b></h2>
+			<h3><span style="font-family:Arial ">Welcome to <b>2PM</b></span></h3>
 			<p>
 				스타트업 및 중소기업의 <strong>프로젝트 관리, 인사, 일정 관리</strong>를 위한 그 모든 프로그램
 				
@@ -393,7 +393,7 @@
 								</table>
 							</div>
 							<div class="pull-right">
-								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
 							</div>	
 						</div>				
 					</div>
@@ -448,7 +448,7 @@
 									</table>
 								</div>
 							<div class="pull-right">
-								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
 							</div>
 						</div>
 					</div>
@@ -507,7 +507,7 @@
 									</table>
 								</div>
 							<div class="pull-right">
-								<span><small><a href="#">[전자결재 리스트 바로가기]</a></small></span>
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
 							</div>
 						</div>
 					</div>
