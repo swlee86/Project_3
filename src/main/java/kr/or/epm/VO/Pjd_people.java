@@ -22,6 +22,7 @@ public class Pjd_people {
 	private String tel2;
 	private String birth;
 	private String email;
+	
 	public String getPj_no() {
 		return pj_no;
 	}
@@ -133,7 +134,4 @@ public class Pjd_people {
 				+ ", cell_phone=" + cell_phone + ", pic=" + pic + ", emp_tel=" + emp_tel + ", tel2=" + tel2 + ", birth="
 				+ birth + ", email=" + email + "]";
 	}
-	
-	
-	
 }

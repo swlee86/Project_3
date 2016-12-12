@@ -8,9 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	작성일 : 2016-12-08
  	목  적 : 사원관리 전용 mapper
 -->
+
 <mapper namespace="kr.or.epm.DAO.AdminEmpDAO">
 
-	<!-- 갯수 -->
+	<!-- 개수 -->
 	<select id="selectCount" resultType="int">
 		select  nvl(count(*),0)
 		from emp e join low_dept l

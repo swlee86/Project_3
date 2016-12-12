@@ -307,7 +307,9 @@ public class Emp {
 				+ ", birth=" + birth + ", pic=" + pic + ", email=" + email + ", cell_phone=" + cell_phone + ", emp_tel="
 				+ emp_tel + ", branch_name=" + branch_name + ", dept_name=" + dept_name + ", low_dept_name="
 				+ low_dept_name + ", cg_name=" + cg_name + ", position_name=" + position_name + ", regdate=" + regdate
-				+ ", role_name=" + role_name + ", his_cg_name=" + his_cg_name + "]";
+				+ ", role_name=" + role_name + ", his_cg_name=" + his_cg_name + ", his_no=" + his_no + ", role_exp="
+				+ role_exp + ", rolelist=" + rolelist + ", id=" + id + ", pwd=" + pwd + ", bank=" + bank + ", addr="
+				+ addr + ", addr_detail=" + addr_detail + ", account=" + account + ", postcode=" + postcode
+				+ ", googleapiid=" + googleapiid + "]";
 	}
-
 }

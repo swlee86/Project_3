@@ -5,6 +5,7 @@ package kr.or.epm.VO;
 작성자 :	김주희
 사용 목적 :	휴가구분에 대한 VO
 **/
+
 public class Break_cg {
 	private String break_cg_no;
 	private String break_cg_name;
