@@ -27,7 +27,6 @@ public class MemoService {
 	
 	//메모 화면에서 리스트를 불러오는 서비스 함수
 	public List<Memo> selectMemo(int cpage, int pagesize, String emp_no, String query){
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+cpage +" /"+pagesize +"/"+emp_no+"/"+query);
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
 		List<Memo> list = memodao.selectMemo(cpage, pagesize, emp_no,query); 
 		return list;
@@ -35,7 +34,6 @@ public class MemoService {
 	
 	//사원 아이디를 토대로 사번 정보를 불러오는 서비스 함수
 	public String selectMemoEmpno(String id){
-		System.out.println("메모에서 번호를 가져 옵니다");
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
 		String memo = memodao.selectMemoEmpno(id);
 		return memo;
@@ -66,7 +64,6 @@ public class MemoService {
 	public List<Memocolor> selectMemocolorList(){
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
 		List<Memocolor> color = memodao.selectMemocolorList();
-		System.out.println(color.toString());
 		return color;
 	}
 	
@@ -84,12 +81,10 @@ public class MemoService {
 		return result;
 	}
 
-	
 	//총 글수
 	public int selectCount(String emp_no, String query) {
 		MemoDAO memodao = sqlSession.getMapper(MemoDAO.class);
 		int total =  memodao.selectCount(emp_no,query);	
-		System.out.println("total : "+total);
 		return total;
 	}
 }

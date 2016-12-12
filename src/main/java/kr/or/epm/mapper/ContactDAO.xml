@@ -151,8 +151,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	where emp_no=#{emp_no}
 	</update>
 	
-	
-		
 	<!--주소록에서 삭제 그룹번호를 가진 그룹번호를 1(선택없음)으로 바꿈 -->
 	<update id="updateGroups_delete_change">
 	update (
@@ -164,10 +162,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       set group_no = '1' 
       where group_no = #{param2}
 	</update>
-	
-	
-	
-	
+
 	<!-- 주소록 상세조회 삭제  / 트랜잭션 필요-->
 	<delete id="deleteEmpContact" >
 		delete emp_contact where contact_no=#{param1} and emp_no=#{param2}		
@@ -175,22 +170,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteContact" parameterType="String">
 		delete contact where contact_no=#{contact_no}
 	</delete>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	<!-- 그룹삭제/그룹 수정 될때 그 그룹에 포함된 사람들 목록 필요 -->
 	<!-- 포함된 사람들 뽑기 -->
 	<select id="selectInGroup_emp" parameterType="String" resultType="String">
@@ -210,27 +190,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateEmp_ingroup" parameterType="String">
 		update contact set group_no = #{group_no} where contact_no=#{ingroup_emp}
 	</update>
-	
-	
 
-	
-	
-	
 	<select id="selectContact_count" parameterType="String" resultType="int">
 		select nvl(count(*),0) 
 		from emp_contact 
 		where emp_no=#{emp_no}
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	<!-- 그룹별 조회 -->
 	<select id="selectContact_group" resultType="kr.or.epm.VO.Contact">
 		select contact_no, c.group_no, group_name, name, attach, 
@@ -243,11 +209,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and c.group_no=(select group_no from c_group where group_name=#{group_name})
 	</select>
 
-
-
-	
-	
-
 	<!-- 주소록 상세조회 수정 -->
 	<update id="updateContact_detail" parameterType="kr.or.epm.VO.Contact">
 		update contact 
@@ -256,22 +217,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    tel1=#{tel1}, tel2=#{tel2}, memo=#{memo} 
 		where contact_no=#{contact_no}
 	</update>
-	
-
-
-
-
-
-
 
 		<!-- groups 관리 -->	
-
-
-	
-	
-	
-
-	
 	<!-- 그룹삭제될때 그 그룹에 포함된 사람들 삭제 -->
 	<!-- deleteEmpContact_ingroup와 deleteContact_ingroup 트랜잭션 필요  -->
 	<!-- selectInGroup_emp에 있는 사람들 emp_contact 에서 삭제 / 트랜잭션 필요 /list로 delete 여러번 들어와야함-->
@@ -282,12 +229,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteContact_ingroup" parameterType="String">
 		delete contact where contact_no = #{ingroup_emp}
 	</delete>
-	
-	
-
-	
-
-	
-
 	
 </mapper>
