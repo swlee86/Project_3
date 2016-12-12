@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
+<!--  
+	작성자	: 박지은
+	작성일	: 2016-11-18
+	목 적  	: 언론게시판 layout, css, script 기능
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,9 +16,6 @@
 
     <!-- Page title -->
     <title>2PM</title>
-
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
 
     <!-- Vendor styles -->
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.css" />
@@ -39,19 +41,14 @@
 	<script>
 	$(function(){
 		$('#clip').click(function(){
-			console.log('클릭');
 			$('#clipfile').css('display','block');
 		});
 
 		$('#replysubmit').click(function(){
-			//console.log('리플버튼클릭함');
-			
+
 			if($('#replytext').val() == ""){
-				//alert('리플내용입력해주세요');
-				toastr.warning("리플내용입력해주세요");
-				
-				$('#replytext').focus();
-		
+				toastr.warning("리플내용입력해주세요");		
+				$('#replytext').focus();	
 				return false;
 			}
 				
@@ -64,7 +61,6 @@
 						"no" : $('#no').val()
 					},
 					success : function(data){
-						//console.log(data);
 					 	 if(data != null){
 					 		$('#replytext').val("");
 					 		$('#replybody').append('<div class="media"><a class="pull-left"> <img src="${pageContext.request.contextPath}/images/a1.jpg" alt="이미지"></a><div class="media-body"><span class="font-bold">'+data.emp_name+'</span><small class="text-muted">'+data.regdate+'</small><div class="social-content">'+data.content+'</div></div></div>');
@@ -153,8 +149,6 @@
 
         var sHTML = $('.summernote').code();
 
-        //console.log(sHTML);
-
         $('.summernote1').summernote({
             toolbar: [
                 ['headline', ['style']],
@@ -190,7 +184,7 @@
                      			no : listno,
                      		},
                      		success : function(data){
-   								console.log(data);
+   							
                      		}
                      	}); 
                      	swal("삭제되었습니다.", "", "success");

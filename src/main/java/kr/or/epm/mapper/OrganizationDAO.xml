@@ -4,7 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.OrganizationDAO">
 
-   <!-- 작성일 : 2016-11-20 작성자 : 백승아 사용 목적 : 조직도에 대한 mapper -->
+   <!-- 작성일 : 2016-11-20 
+   		작성자 : 백승아 
+   		사용 목적 : 조직도에 대한 mapper
+	-->
 
 	<!--개인 주소록테이블  등록 -->
 	<insert id="insertEmpContact">
