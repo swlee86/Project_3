@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!--  
+	작성자	: 박성준
+	작성일	: 2016-12-04
+	목 적  	: 프로젝트 캘린더 view,css
+-->
 <style>
 	a{
 		border: 0px none;

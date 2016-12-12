@@ -91,6 +91,4 @@ public class Memo {
 				+ ", memo_date=" + memo_date + ", color_no=" + color_no + ", color=" + color + ", color_name="
 				+ color_name + "]";
 	}
-
-	
 }

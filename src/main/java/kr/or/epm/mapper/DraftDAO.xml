@@ -3,6 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.DraftDAO">
+
+<!--
+ 	작성자 : 백승아
+ 	작성일 : 2016-12-08
+ 	목  적 : 전자결재 mapper
+-->
+
 	<!-- 등록을 위해 전자결재 번호 가져오기 -->
 	<select id="selectDraft_no" resultType="String">
 		select nvl(max(to_number(draft_no))+1, '1')

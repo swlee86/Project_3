@@ -30,6 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from pay
 		where emp_no = #{param1} and give_date like '%${param2}%'
 	</select>
+	
 	<!--연도별 급여 조회  -->
 	<select id="selectPay_mine_Yearly" resultType="kr.or.epm.VO.Pay">
 		select pay_no, emp_no, basic_pay, bonus, add_pay, total_pay, give_date
@@ -37,6 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where emp_no = #{param1} and give_date like '%${param2}%'
 		order by give_date asc
 	</select>
+	
 	<!--급여 지급일 조회  -->
 	<select id="selectGive_date" resultType="String">
 		select give_date from pay where emp_no=#{param1} and give_date like '%${param2}%'
@@ -96,7 +98,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	on e.emp_no = d.emp_no
 	where f.mgr_check='1' and give_date is null
 	order by TO_NUMBER(pay_no) desc
-
 	</select>
 		
 	<!-- 월별 급여 상세 보기 - 카드에서 버튼 클릭시 해당 월 급여 지급 리스트 뜸. -  관리자 > 급여 > 급여내역 조회  -->

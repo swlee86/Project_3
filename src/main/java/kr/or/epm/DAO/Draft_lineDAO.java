@@ -3,9 +3,9 @@ package kr.or.epm.DAO;
 import java.util.List;
 
 /*
- * 작성일 :	2016 - 11 - 29
+ * 작성일 :	2016-11-29
  * 작성자 :	백승아
- * 사용 목적 :	전자결재라인 DAO
+ * 사용 목적 :	전자결재라인 DAO interface
 */
 
 public interface Draft_lineDAO {

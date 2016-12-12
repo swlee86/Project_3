@@ -1,5 +1,11 @@
 package kr.or.epm.VO;
 
+/*
+ * 작성일 : 2016-11-16
+ * 작성자 : 백승아
+ * 사용 목적 : 사원 권한에 대한 VO
+ */
+
 public class Emp_role {
 
 	private String role_no;

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!--  
+	작성자	: 이상원
+	작성일	: 2016-11-22
+	목 적  	: 조직도  list view
+--> 
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">

@@ -5,6 +5,7 @@ package kr.or.epm.VO;
  * 작성자 : 백승아
  * 사용 목적 : 지점 단계에 대한 VO
  */
+
 public class Branch {
 	private String branch_no;
 	private String branch_name;

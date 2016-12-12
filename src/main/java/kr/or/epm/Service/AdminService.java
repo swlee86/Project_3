@@ -1,16 +1,12 @@
 package kr.or.epm.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.mail.Session;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 
 import kr.or.epm.DAO.BranchDAO;
 import kr.or.epm.DAO.DeptDAO;
@@ -40,7 +36,7 @@ public class AdminService {
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
 		List<Branch> list = null;
 		list = branchDAO.selectBranch();
-		System.out.println("지점 싸이즈 : " + list.size());
+
 		return list;
 	}
 
@@ -48,24 +44,17 @@ public class AdminService {
 	public Branch chooseBranch(String selectBranchName) {
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
 		Branch dto = branchDAO.selectChooseBranch(selectBranchName);
-		System.out.println("조회 결과 : " + dto.toString());
+		
 		return dto;
 	}
 
-	//지점 이름 중복 체크 하는 함수
+	// 지점 이름 중복 체크 하는 함수
 	public String checkBranch_Name(String branch_name){
-		
-		System.out.println("브런치 이름 : "+branch_name);
-		
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
-		String list=null;
-		try{
+		String list = null;
 		
-			list = branchDAO.checkBranch_Name(branch_name);
-	    	
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		list = branchDAO.checkBranch_Name(branch_name);
+	    
 	  return list;
 	}
 	
@@ -73,6 +62,7 @@ public class AdminService {
 	public int addBranch(Branch dto) {
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
 		int result = branchDAO.addBranch(dto);
+		
 		return result;
 	}
 
@@ -81,7 +71,6 @@ public class AdminService {
 	@Transactional
 	public int branchModify(Branch dto, String notChange_branch_Name) {
 		String branchModify_notChange_branch_Name = notChange_branch_Name;
-		System.out.println("1. 정보 수정 : "+branchModify_notChange_branch_Name);
 		
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
 		int result = 0;
@@ -92,7 +81,6 @@ public class AdminService {
 
 		// 지점 정보 수정된 경우
 		if (result > 0) {
-
 			// 수정한 지점 정보 가져오기
 			branch = branchDAO.select_newBranch(dto.getBranch_no());
 			System.out.println(" 수정한 지점 정보 ================" + branch.toString());
