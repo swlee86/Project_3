@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
+<!--  
+	작성자	: 박지은
+	작성일	: 2016-12-01
+	목 적  	: 프로젝트 작성  view, script
+-->
+<link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" />  
 <script src="vendor/toastr/build/toastr.min.js"></script>
  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
@@ -25,11 +30,8 @@ $(function(){
 			  "hideMethod": "fadeOut"
 	        };
 	 
-		//날짜 필수. 제목필수, 내용 필수, 책임자 필수
-		$('#submit_btn').click(function(){
-			
-			console.log("ss : "+$('.note-editable').text());
-			
+		//유효성검사
+		$('#submit_btn').click(function(){		
 			if($('#pj_start').val() ==""){
 				toastr.warning('시작일을 선택해 주세요');
 				$('#pj_start').focus();
@@ -55,7 +57,6 @@ $(function(){
 				$('.note-editable').focus();
 				return false;
 			}
-			
 		});
 });
 	

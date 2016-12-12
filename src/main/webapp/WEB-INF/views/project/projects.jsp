@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!--  
+	작성자	: 김주희
+	작성일	: 2016-12-01
+	목 적  	: 프로젝트 상세 리스트 view
+-->
 <!--프로젝트 상세 카드형식-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -117,7 +122,7 @@
 	</div>
 </div>
 
-<!-- modal창 -->
+
 <div class="modal fade hmodal-success" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog  modal-sm">
 		<div class="modal-content">
