@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
-import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.TaskService;
 import kr.or.epm.VO.Task;
 
@@ -32,9 +31,6 @@ public class TaskAjaxController {
 	@Autowired
 	private TaskService service;
 	
-	@Autowired
-	private CommonService commonservice;
-
 	// 업무 > 수신 > 중요 설정하기
 	@RequestMapping("/taskSign")
 	public View taskSign(String task_no, String sign, Model model) {
@@ -62,11 +58,7 @@ public class TaskAjaxController {
 		String key = request.getParameter("selectSearch");
 		String value = request.getParameter("input");
 		String cg_no = request.getParameter("cg_no");
-
-		System.out.println("cg_no : " + cg_no);
-
-		System.out.println("검색  기준 : " + key + " // 검색 값 : " + value);
-
+		
 		// 목록 가져오기
 		List<Task> list = service.searchTask(emp_no, cg_no, key, value);
 
