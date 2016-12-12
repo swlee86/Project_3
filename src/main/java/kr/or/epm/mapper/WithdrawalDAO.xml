@@ -10,8 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 회원 탈퇴에 대한 mapper
 -->
 
+	<!-- 비밀번호 가져오기 -->
+	<select id="selectPwd" parameterType="String" resultType="String">
+		select pwd from emp_detail where emp_no=#{emp_no}
+	</select>
+	
 	<!-- 회원 탈퇴 요청하기 -->
-	<update id="updateWithdrawal">
-		
+	<update id="updateWithdrawal" parameterType="String">
+		update emp set cg_no = 23 where emp_no=#{emp_no}
 	</update>
 </mapper>

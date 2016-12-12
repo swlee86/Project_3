@@ -2,7 +2,11 @@ package kr.or.epm.WithdrawalController;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +24,9 @@ public class WithdrawalController {
 	@Autowired
 	private WithdrawalService service;
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	// 탈퇴 페이지
 	@RequestMapping(value="/withdrawal.do", method=RequestMethod.GET)
 	public String withdrawal(Principal principal, Model model) {
@@ -39,13 +46,42 @@ public class WithdrawalController {
 	
 	// 탈퇴
 	@RequestMapping(value="/withdrawal.do", method=RequestMethod.POST)
-	public String withdrawalOk(String emp_no, Model model) {
+	public String withdrawalOk(HttpServletRequest request,  String pwd, Model model) {
 		System.out.println("CONTROLLER] 회원 탈퇴 요청 처리");
-		System.out.println("받아온 emp_no : " + emp_no);
-		String link = "index.do";
 		
+		HttpSession session = request.getSession();
+	    String emp_no = (String)session.getAttribute("emp_no");
+	      
+		System.out.println("받아온 emp_no : " + emp_no);
+		
+		String bPwd = this.bCryptPasswordEncoder.encode(pwd);
+
+		String link = "index.do";
+		String msg = "";
 		int result = 0;
-		result = service.updateWithdrawal(emp_no);
+		
+		String pw = service.getPw(emp_no);
+		
+		boolean bresult = bCryptPasswordEncoder.matches(pwd, pw);
+		
+		System.out.println("bresult : "+ bresult);
+				
+		
+		
+		if(bresult == true ){
+			System.out.println("탈퇴요청들어옴");
+			result = service.updateWithdrawal(emp_no);
+			System.out.println("결과는? " + result);
+			link = "index.html";
+			msg ="탈퇴요청되었습니다";
+		}else{
+			System.out.println("탈퇴요청실패");
+			link = "withdrawal.do";
+			msg ="탈퇴요청 실패하였습니다";
+		}
+		model.addAttribute("link", link);
+		model.addAttribute("msg",msg);
+		
 		
 		return "withdrawal.withdrawal_redirect";
 	}
