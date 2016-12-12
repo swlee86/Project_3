@@ -573,8 +573,8 @@
        
        //클릭한 text 값 뽑아옴.
        var low_dept = $(obj).text();
-       alert("taskEmpModal : "+low_dept);
-       alert("selectNo : " + empSelectNumber);
+       //alert("taskEmpModal : "+low_dept);
+      // alert("selectNo : " + empSelectNumber);
        var makeTable = "";
        if(empSelectNumber == 1){
         makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th>선택</th></tr>";

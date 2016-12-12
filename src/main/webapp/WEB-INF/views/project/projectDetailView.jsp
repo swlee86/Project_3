@@ -15,10 +15,10 @@
 					<li><a href="index.do">홈</a></li>
 					<li><a href="project_list.do">전체 프로젝트</a></li>
 					<li><a href="projectDetail.do?pj_no=${pjd.pj_no}">상세 프로젝트</a></li>
-					<li><a href="#">상세프로젝트의 상세보기 </a></li>
+					<li><a href="#">상세프로젝트의 상세보기 </a> </li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">상세프로젝트의  상세보기</h2>
+			<h2 class="font-light m-b-xs">상세프로젝트의  상세보기 &nbsp;<a href="javascript:history.back()" ><i class="pe-7s-back text-info"></i></a></h2>
 			<small>진행 중인 상세 프로젝트 내용을 확인하실 수 있습니다</small>
 		</div>
 	</div>
@@ -47,7 +47,7 @@
 						<div align="right">
 							<p>
 								<i class="pe-7s-pen"></i>
-								진행상태수정/내용수정은 책임자에게 문의하세요
+								진행단계수정/내용수정은 책임자에게 문의하세요
 							</p>
 						</div>
 						<table  id="pjd_detail_table" cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
@@ -56,7 +56,7 @@
                               	<td id="pjd_name" width="35%">
                               		<input type="text" class="form-control table-input input-sm" id="pjd_title" value="${pjd.pjd_title}" disabled="disabled" style="border: 0px; background-color: white;">
                               	</td>
-                              	<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">진행 상태</th>
+                              	<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">진행 단계</th>
                               	<td id="pjd_step" width="35%">
 		                        	<div class="form-group">
 				    	            	<select class="form-control input-sm table-input input-sm" id="step_no" disabled="disabled">	
@@ -140,6 +140,7 @@
 									<input type="button" id="add_btn" class="btn btn-success" value="추가" >
 								</c:if>
 							</div>
+							
 					</div>
 				</div>
 			</div>

@@ -197,6 +197,8 @@ public class CommuteService {
 	        System.out.println(" 총급여 ----------------------------------4)"+total_pay);
 	        pay.setTotal_pay(total_pay);
 	        pay.setEmp_no(emp_no);
+	       
+	        
 	        
 	        //bonus 없는경우
 	        }else{

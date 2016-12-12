@@ -22,13 +22,19 @@
   <security:intercept-url pattern="/customer/**" access="ROLE_USER" />
   -->
   
-  
+ 
   <security:intercept-url pattern="/draft_rec.do" access="hasRole('ROLE_DRAFT')" />
-  <security:intercept-url pattern="/adminMember/adminAddMember.jsp" access="ROLE_EMP" />
-  <security:intercept-url pattern="/adminMember/adminAuthority.jsp" access="ROLE_EMP" />
-  <security:intercept-url pattern="/adminMember/adminEmpList.jsp" access="ROLE_EMP_LIST" />
-  <security:intercept-url pattern="/adminMember/adminWithdrawal.jsp" access="ROLE_EMP" />
-  
+  <security:intercept-url pattern="projectApprove.do" access="hasRole('ROLE_PJ')" />
+  <security:intercept-url pattern="projectMake.do" access="hasRole('ROLE_PJ')" />
+  <security:intercept-url pattern="adminEmp_list.do" access="hasRole('ROLE_EMPLIST')" />
+  <security:intercept-url pattern="adminDepartWidget.do" access="hasRole('ROLE_ATTACH')" />
+  <security:intercept-url pattern="adminGrade.do" access="hasRole('ROLE_POSITION')" />
+  <security:intercept-url pattern="adminSalaryView.do" access="hasRole('ROLE_ADMIN')" />
+  <security:intercept-url pattern="adminSalaryList.do" access="hasRole('ROLE_PAYLIST')" />
+  <security:intercept-url pattern="adminSalary.do" access="hasRole('ROLE_PAYCHECK')" />
+  <security:intercept-url pattern="adminSalaryManage.do" access="hasRole('ROLE_SALARY')" />
+  <security:intercept-url pattern="adminSalarySetting.do" access="hasRole('ROLE_BONUS')" />
+  <security:intercept-url pattern="CommuteAdmin.do" access="hasRole('ROLE_ADMIN')" />
   
 </security:http>
 <security:authentication-manager>
@@ -40,18 +46,6 @@
 				authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
 		 
 		/>
-		<!-- 
-			authorities-by-username-query="select id as USERID, ROLE_NAME
-										   from emp_detail e join emp_role er
-										   on e.emp_no = er.emp_no
-										   join role r
-							   			   on er.role_no = r.role_no
-										   where e.id = ?"
-		-->
-		
-		<!-- 	
-			authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
-		 -->
 		 
 		<security:password-encoder ref="bCryptPasswordEncoder"/>
      </security:authentication-provider>

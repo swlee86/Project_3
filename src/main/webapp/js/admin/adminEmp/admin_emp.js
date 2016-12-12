@@ -195,7 +195,7 @@ $(function() {
 					table += "<td>" + data.list[index].emp_name + "</td>";
 					table += "<td>" + data.list[index].cg_name + "</td>";
 					table += "<td>" + data.list[index].his_cg_name + "</td>";
-					table += "<td>" + data.list[index].role_name + "</td>";
+					table += "<td>" + data.list[index].role_exp + "</td>";
 					if(index == 0) {
 						table += "<td>" + data.list[index].regdate + "</td>";
 					} else if(data.list[index].his_no == data.list[index-1].his_no) {
@@ -272,11 +272,11 @@ $(function() {
 			success	: function(data) {
 				swal({
                     title: "권한부여",
-                    text: "권한부여에 성공하였습니다",
+                    text: "해당 사원이 로그아웃한 뒤 적용됩니다",
                     type: "success"
                 });	
 				
-				wait(2000);
+				wait(5000);
 				window.location.reload();
 			}
 		})
@@ -300,35 +300,83 @@ $(function() {
 	// 드롭하는 영역
 	$(".dragarea").droppable({
 		drop: function(event, ui) {
-			alert("떨어짐");
+			var role_no = ui.helper["0"].id;
+			var role_exp = ui.helper["0"].innerText;
+			
+			var mine = new Array();
+			mine = $(".mine");
+			
+			var result = "none";
+			
+			for(var i=0; i<$(".mine").length; i++) {
+				if(mine[i].id != role_no) {
+					result = "true";
+				}
+				else {
+					result = "false";
+					break;
+				}
+			}
+			
+			if(result == "true") {
+				$(this).append("<input class='mine' id='" + role_no + "' value='" + role_exp + "' style='border: none;'>");
+				$(this).append("<br>");
+			} else if(result == "false") {
+				swal({
+                    title: "중복된 권한입니다",
+                    text: "다시 선택해주세요"
+                });	
+			} else if(result == "none") {
+				swal({
+                    title: "권한이 없는 사원입니다",
+                    text: "관리자에게 문의해주세요"
+                });	
+			}
         }
 	});
-
 	
-	/*
-	
-	$("#btndiv button").draggable({
-		start: function(event,ui) {
-			$(this).draggable( "option", "revert", true );
-			$("#images div img").css("zIndex",10);
-			$(this).css("zIndex",100);
+	// 권한 부여 상세에서 적용 버튼을 눌렀을 때
+	$("#applyBtn_emp_no").click(function() {
+		var mine = new Array();
+		mine = $(".mine");
+		
+		var rolelist = new Array();
+		
+		for(var i=0; i<$(".mine").length; i++) {
+			rolelist.push(mine[i].id);
 		}
+
+	    var param = JSON.stringify(rolelist);
+		var emp_no = $("#emp_no")["0"].innerText;
+		
+		console.log(emp_no);
+		console.log(rolelist);
+		
+		$.ajax({
+			url		: "adminEmp_authority_emp_no.do",
+			type	: "post",
+			data	: {
+						role : param,
+						emp_no : emp_no
+					  },
+			success	: function(data) {
+				swal({
+                    title: "권한부여",
+                    text: "해당 사원이 로그아웃한 뒤 적용됩니다",
+                    type: "success"
+                });	
+				
+				wait(5000);
+				window.location.reload();
+			}
+		});
+	})
+	
+	$(".empclick").click(function() {
+		var emp_no = $(this).contents(":eq(0)").text();
+		
+		location.href="adminEmp_detail.do?emp_no="+emp_no;
 	});
-	*/
 });
 
-function dragStart(event) {
-    event.dataTransfer.setData("Text", event.target.id);
-    document.getElementById("demo").innerHTML = "Started to drag the p element";
-}
 
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function drop(event) {
-    event.preventDefault();
-    var data = event.dataTransfer.getData("Text");
-    event.target.appendChild(document.getElementById(data));
-    document.getElementById("demo").innerHTML = "The p element was dropped";
-}

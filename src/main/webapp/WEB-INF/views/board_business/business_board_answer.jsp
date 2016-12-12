@@ -11,9 +11,9 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Mailbox</span></li>
+					<li><a href="index.html">홈</a></li>
+					<li><span>게시판</span></li>
+					<li class="active"><span>업무정보공유게시판</span></li>
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">업무 정보 공유 게시판</h2>
