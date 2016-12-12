@@ -20,6 +20,12 @@ import kr.or.epm.VO.Draft_line;
 import kr.or.epm.VO.Draft_ref;
 import kr.or.epm.VO.Office;
 
+/*
+ * 작성자 : 백승아
+ * 작성일 : 2016-12-12
+ * 목  적 : 전자결재 전용 controller 
+ */
+
 @Controller
 public class DraftController {
 	
