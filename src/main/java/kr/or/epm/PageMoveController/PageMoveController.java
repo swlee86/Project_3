@@ -214,8 +214,6 @@ public class PageMoveController {
 		// 목록 가져오기
 		List<Office> officelist_ex = service2.selectOffice_rec(emp_no);
 		List<Office> officelist = new ArrayList<Office>();
-		System.out.println("officelist_ex : "+officelist_ex.toString());
-		System.out.println("officelist_ex : "+officelist_ex.size());
 		
 		if(officelist_ex.size() >= 5){
 			for(int i=0; i< 5; i++){
@@ -322,7 +320,6 @@ public class PageMoveController {
 	// spring security 권한 잡기
 	@RequestMapping("/authority.do")
 	public String authority() {
-		System.out.println("우와 여기를 탑니다");
 		
 		return "errors.lock";
 	}

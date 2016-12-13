@@ -1,7 +1,5 @@
 package kr.or.epm.Service;
 
-
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -28,14 +26,12 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
-
 @Service
 public class CommuteService {
 
 	@Autowired
 	private SqlSession sqlsession;
 	
-
 	//현재 로그인한 계정의 근태 내역을 뿌려줌
 	public List<Commute> selectCommute(String id){
 		
@@ -93,7 +89,6 @@ public class CommuteService {
 	
 	//update 퇴근시간
 	public int updateCommute_out(String out_time,String emp_no){
-		System.out.println("updateCommute_out들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		//근태테이블에서 출근했는지 조회
@@ -125,8 +120,7 @@ public class CommuteService {
 			HashMap map = new HashMap();
 			map.put("commute_time", commute_time);
 			map.put("commute_no", commute_no);
-			result = dao.updateCommute_time(map);
-			
+			result = dao.updateCommute_time(map);		
 		}
 		//없으면 작업 X
 	
@@ -153,27 +147,23 @@ public class CommuteService {
 	    	Pay pay =new Pay();
 	    	//emp > basic_pay(기본급여) 세팅하기---------------------1)
 	    	pay.setBasic_pay(salary);
-	    	System.out.println(" 기본 급여 : =======================1)"+pay.getBasic_pay());
 	    	
 	    	//2.상여금
 	        Low_deptDAO low_deptdao =sqlsession.getMapper(Low_deptDAO.class);
 	        //emp의 low_dept_no로 dept_no 가져오기
 	        LowDeptJoin lowDeptjoin =low_deptdao.selectLow_dept_detail(emp.getLow_dept_no());
 	        String dept_no =lowDeptjoin.getDept_no();
-	        System.out.println("================================조회한 부서 번호"+dept_no);
 	        DeptDAO deptdao = sqlsession.getMapper(DeptDAO.class);
 	        //dept_no로 상여금 지급하는 부서 가져오기
 	        Set_bonus set_bonus =deptdao.select_bonus_check(dept_no);
 	        
 	        //상여금 있을 경우
 	        if(set_bonus != null){
-	        System.out.println("if 내부 탑니다!!!!!!!!!!!!!!!!!!!!!!!!");
 	        
 	        //상여금 비율
 	        double bonus_percent = set_bonus.getBonus_percent()/(double)100;
 	        //상여금 구해서 setting----------------------------------2)
 	        int bonus =	(int)(bonus_percent*pay.getBasic_pay());
-	        System.out.println("==========================================뽀너스2) : "+bonus);
 	        pay.setBonus(bonus);
 	        
 	        //3.추가급여
@@ -182,7 +172,6 @@ public class CommuteService {
 	        
 	        //4.총급여 더하기
 	        int total_pay = pay.getBasic_pay()+pay.getAdd_pay()+pay.getBonus();
-	        System.out.println(" 총급여 ----------------------------------4)"+total_pay);
 	        pay.setTotal_pay(total_pay);
 	        pay.setEmp_no(emp_no);
 	       
@@ -191,16 +180,13 @@ public class CommuteService {
 	        //bonus 없는경우
 	        }else{
 	        	pay.setBonus(0);
-	        	System.out.println(" ===========================보너스 : "+pay.getBonus());
 	        	//3. 추가급여
 	        	
-	        	System.out.println("엘스부분탑니다요!!@$@$!@$@!");
 	        	int add_pay=add_Pay(emp, commute_no);
 	        	pay.setAdd_pay(add_pay);
 	        	
 	        	//4. 총급여
 	        	int total_pay = pay.getBasic_pay()+pay.getAdd_pay()+pay.getBonus();
-	        	System.out.println(" 총급여 ----------------------------------4)"+total_pay);
 	        	pay.setTotal_pay(total_pay);
 	        	pay.setEmp_no(emp_no);
 		      	
@@ -210,7 +196,7 @@ public class CommuteService {
 	    	
 	    	//급여 insert 결과
 	    	payinsert_result = paydao.insertPay(pay);
-	    	System.out.println(" 최종 %%%%%%%%%%%%%%%%%%%%%%%%% 급여 insert: "+payinsert_result);
+	    	
 	    }
 	    
 		return payinsert_result;
@@ -226,51 +212,44 @@ public class CommuteService {
         PositionJoin positionjoin= positiondao.selectOptionJoin(emp.getPosition_no());
         //추가급여
         int add_pay_cost = positionjoin.getAdd_pay();
-        System.out.println("추가급여 : ********************************"+add_pay_cost);
         
         //2. commute_no로 최대 누적 초과근무시간 구하기
         CommuteDAO commutedao = sqlsession.getMapper(CommuteDAO.class);
         Commute commute = commutedao.selectCommute_commuteno(commute_no);
         String acc_add_time = commute.getAcc_add_time();
-        System.out.println(" 월 누적 추가근무시간 ========================"+acc_add_time);
         
         if(acc_add_time.equals("0")){
         	result=0;
         }else{	
         //시간 환산하기
         String[] time=acc_add_time.split(":");
-        System.out.println(" 시간 배열 ::::::::::::::::::::::::"+time[0]+ " //////"+time[1]);
         if(time[0].startsWith("0")){
-        	System.out.println("앞에 붙은 0을 잘라요 [0] ============="+time[0].substring(0));
         		if(time[1].startsWith("0")){
-        			System.out.println("앞에 붙은 0을 잘라요 [1]============="+time[1].substring(0));
         			int hour =Integer.parseInt(time[0].substring(0));
         			double minute = Integer.parseInt(time[1].substring(0))/(double)60;
         			double add_time =hour+minute;
             		result = (int)(add_time * add_pay_cost);
-            		System.out.println(" 최종 추가급여 : ===============3)"+result);
+            		
         		}else{
         			int hour =Integer.parseInt(time[0].substring(0));
         			double minute = Integer.parseInt(time[1])/(double)60;
             		double add_time =Integer.parseInt(time[0])+minute;
             		result = (int)(add_time * add_pay_cost);
-            		System.out.println(" 최종 추가급여 : ===============3)"+result);
-        			
+            		
         		}
         }else{
         	if(time[1].startsWith("0")){
-        		System.out.println("앞에 붙은 0을 잘라요 [1]============="+time[1].substring(0));
         		int hour = Integer.parseInt(time[0]);
         		double minute = Integer.parseInt(time[1].substring(0))/(double)60;
         		double add_time =hour+minute;
         		result = (int)(add_time * add_pay_cost);
-        		System.out.println(" 최종 추가급여 : ===============3)"+result);
+        		
         	}else{
         		//분을 시간으로 환산하기
         		double minute = Integer.parseInt(time[1])/(double)60;
         		double add_time =Integer.parseInt(time[0])+minute;
         		result = (int)(add_time * add_pay_cost);
-        		System.out.println(" 최종 추가급여 : ===============3)"+result);
+        		
         	}
          }
         }
@@ -281,7 +260,6 @@ public class CommuteService {
 	
 	//오늘의 근태정보 조회
 	public Commute selectCommute_today(String emp_no){
-		System.out.println("selectCommute_today들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		//근태테이블에서 출근했는지 조회
@@ -298,17 +276,13 @@ public class CommuteService {
 	
 	//추가시간 업데이트
 	public int updateCommute_add(String emp_no){
-		System.out.println("updateCommute_add서비스 들어옴");
-		System.out.println("------------------------------\nupdateCommute_add emp_no : "+emp_no);
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		String commute_no = dao.selectMyCommute_no(emp_no);
-		System.out.println("@@commute_no : "+commute_no);
 		Commute commute =null;
 		int result = 0;
 		if(commute_no!=null){
 			Set_time set_time = dao.selectSetTime(emp_no);
-			System.out.println("@@Set_time : "+set_time.toString());
 			
 			String out_time_dept = set_time.getOut_time();
 			
@@ -317,7 +291,6 @@ public class CommuteService {
 			
 			
 			commute = dao.selectCommute_commuteno(commute_no);
-			System.out.println("commute : "+ commute.toString());
 			
 			String out_time_emp = commute.getOut_time();
 			
@@ -360,7 +333,6 @@ public class CommuteService {
 			map.put("commute_no", commute_no);
 			
 			result = dao.updateCommute_addtime(map);
-			System.out.println("result : "+result);
 		}
 		return result;
 	}
@@ -368,7 +340,6 @@ public class CommuteService {
 	
 	//누적시간 업데이트
 	public int updateCommute_acc(String emp_no){
-		System.out.println("updateCommute_acc들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		String commute_no = dao.selectMyCommute_no(emp_no);
@@ -468,9 +439,6 @@ public class CommuteService {
 				add_time_str = add_time_h_str+":"+add_time_m_str;			
 			}
 			
-			System.out.println("commute_time_str : "+commute_time_str);
-			System.out.println("add_time_str : "+add_time_str);
-
 			HashMap map = new HashMap();
 			map.put("acc_commute_time", commute_time_str);
 			map.put("acc_add_time", add_time_str);
@@ -485,7 +453,6 @@ public class CommuteService {
 	//월별 근태 내역조회
 	
 	public List<Commute> selectCommute_month(String emp_no, String select_month, String select_year){
-		System.out.println("selectCommute_month들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		List<Commute> list = null;
@@ -505,7 +472,6 @@ public class CommuteService {
 	
 	//회원정보
 	public Commute selectempinfo(String emp_no){
-		System.out.println("selectempinfo들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		
 		Commute commute = null;
@@ -516,10 +482,8 @@ public class CommuteService {
 	
 	//아이디로 회원정보가져오기
 	public Emp selectInfoSearch(String id) {
-		System.out.println("selectInfoSearch서비스 들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		Emp emp =  dao.selectInfoSearch(id);
-		System.out.println("@@@@emp tostirng : "+emp.toString());
 		return emp;
 	}
 	
@@ -534,11 +498,9 @@ public class CommuteService {
 
 	//차트에 이용하는 근무시간, 추가근무시간
 	public JSONObject selectChartCommute(String emp_no){
-		System.out.println("selectChartCommute서비스 들어옴");
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
 		List<Commute> chartcommutelist = null;
 		chartcommutelist = dao.selectChartCommute(emp_no);
-		System.out.println("차트 : " + chartcommutelist.size());
 		
 		JSONObject jsonObject = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -551,12 +513,10 @@ public class CommuteService {
 				String c_time_h = c_time.substring(0,2);
 				String c_time_m = c_time.substring(3,5);
 				int c_time_parse_min = (Integer.parseInt(c_time_h)*60) + Integer.parseInt(c_time_m);
-				System.out.println("c_time : " + c_time_parse_min);
 				
 				String a_time_h = a_time.substring(0,2);
 				String a_time_m = a_time.substring(3,5);
 				int a_time_parse_min = (Integer.parseInt(a_time_h)*60) + Integer.parseInt(a_time_m);
-				System.out.println("a_time : " + a_time_parse_min);
 				
 				int c_time_result = c_time_parse_min-a_time_parse_min;
 				

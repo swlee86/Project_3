@@ -38,7 +38,6 @@ public class EmployeeManageController {
 			mv.addAttribute("result", result);
 		}
 */
-		System.out.println("선택한 emp_no : " + emp_no);
 		
 		Emp emp = employeeManage.selectDetail2(emp_no);
 		model.addAttribute("result", emp);
@@ -75,7 +74,6 @@ public class EmployeeManageController {
 	@RequestMapping(value = "/adminMemberUpdate.do", method = RequestMethod.POST)
 	public String adminMemberUpdateOk(Emp emp, Model model) {
 		
-		System.out.println("CONTROLLER] 사원 정보 수정");
 		
 		String emp_no = emp.getEmp_no();
 		String[] emp_no1 = emp_no.split(",");

@@ -35,7 +35,6 @@ public class CompanyBoardService {
 		List<Company> list = companyboarddao.selectSeacrchCompanyList(cpage, pgsize,field,query);	
 		
 		for(int i = 0; i < list.size(); i++){
-			System.out.println("서비스 : "+list.get(i).toString());
 		}
 		
 		return list;

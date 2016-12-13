@@ -219,7 +219,6 @@ public class ProjectService {
 		map.put("pjd_no", pjd_no);
 		map.put("pj_step_no", pj_step_no);
 		result = dao.updatePjstepno(map);
-		System.out.println("PJ의 pj_step_no 업데이트  : " + result);
 		return result;
 	}
 	
@@ -242,7 +241,6 @@ public class ProjectService {
 	public List<Pj> select_Send_Pj_rec(String field, String query, String emp_no) {
 		PjDAO dao = sqlsession.getMapper(PjDAO.class);
 		List<Pj> list = dao.select_Send_Pj_rec(emp_no,field,query);
-		System.out.println("list2 : "+list.toString());
 		return list;
 	}
 

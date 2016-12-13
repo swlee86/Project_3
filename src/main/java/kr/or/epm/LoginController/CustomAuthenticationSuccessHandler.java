@@ -157,7 +157,6 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       int intRedirectStrategy = decideRedirectStrategy(request, response);
       switch(intRedirectStrategy){
       case 1:
-         System.out.println("정상 로그인?");     
          useTargetUrl(request, response);
       case 2:
          useSessionUrl(request, response);

@@ -49,12 +49,9 @@ public class ProjectAjaxController {
 	//리스트에서 선택한 옵션으로 view 동기화시키기
 	@RequestMapping("/select_pjlist.do")
 	public View select_pjlist(String select_ctg, Principal principal,  Model model){	
-		System.out.println("select_pjlist Start");
 		
 		String id= principal.getName();
-		System.out.println("id : "+id);
 		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("select_ctg : " + select_ctg);
 		List<Pj> result = projectservice.selectPjlist_ctg(select_ctg, emp_no);
 		model.addAttribute("project", result);
 		
@@ -64,7 +61,6 @@ public class ProjectAjaxController {
 	//참여자 자세히 보기(modal)
 	@RequestMapping("/pjd_people.do")
 	public View pjd_people(String emp_no, Model model){
-		System.out.println("pjd_people");
 			
 		Pjd_people result = projectdetailservice.pjd_people(emp_no);
 
@@ -76,10 +72,8 @@ public class ProjectAjaxController {
 	//주소록 추가  > 외부인 등록 처리 
 		@RequestMapping(value = "/addContact_pjd.do",method = RequestMethod.POST)
 		public View addContact(Principal principal, Contact contact, Model model) {
-			System.out.println("addContact()처리 컨트롤 탐");
 				
 			String id= principal.getName();
-			System.out.println("id : "+id);
 			Emp emp = projectdetailservice.selectInfoSearchEmp(id);  //사번,이름 가져가기
 			
 			String emp_no = emp.getEmp_no();//사번
@@ -88,7 +82,6 @@ public class ProjectAjaxController {
 			contact.setGroup_no("1");
 			/*contact.setGroup_name("회사");*/
 			
-			System.out.println("contact.tostring() : "+contact.toString());
 			int result = projectdetailservice.insertContactFromPjd(contact); //주소록 테이블에 삽입 => 현재 글번호리턴
 			
 			int last_result=0;
@@ -173,10 +166,8 @@ public class ProjectAjaxController {
 		int result = 0;
 		int result_pjdd = 1; // 0이 되면 상세의 상세가 완료되지 않는게 있기 때문에 완료로 없데이트 처리 해줄수없음
 
-		System.out.println("pjd_no"+pjd_no+"pjd_title"+pjd_title+"pjd_content"+pjd_content+"pj_step_no"+pj_step_no+"pjd_start"+pjd_start+"pjd_end"+pjd_end);
 		
 		if(pj_step_no.equals("4")){
-			System.out.println("완료들어옴");
 			//완료선택했을때 아래의 상세의 상세가 모두 체크되어있는지 확인
 			List<Pjdd> pjddlist = projectdetailservice.selectPjddList(pjd_no);
 			
@@ -206,14 +197,11 @@ public class ProjectAjaxController {
 	@RequestMapping(value = "/project_search_list.do")
 	public View project_list_search(HttpServletRequest request,  Model model) {
 
-		System.out.println("project 검색을 시작합니다");
-
 
 		String key = request.getParameter("selectSearch");
 		String value = request.getParameter("input");
 
 
-		System.out.println("검색  기준 : " + key + " // 검색 값 : " + value);
 
 		// 목록 가져오기
 		List<Pj> list = projectservice.searchPj(key,value);
@@ -227,11 +215,8 @@ public class ProjectAjaxController {
 	@RequestMapping(value="/updatePj_step_state.do")
 	public View updatePj_step_state(HttpServletRequest request, Model model){
 		
-		System.out.println("updatepj_step_state 들어옴");
 		
 		String pjd_no = request.getParameter("pjd_no");
-		
-		System.out.println("들어온 pjd_no :" + pjd_no);
 		
 		//pjd_no가 들어간 pj_no가져와서 pj_no에 포함된 모든 pjd의 진행상황 가져오기
 		List<String> pjstepno = projectservice.selectPjstepno_Of_includePjdno(pjd_no);
@@ -243,42 +228,32 @@ public class ProjectAjaxController {
 		for(int i = 0; i < pjstepno.size(); i++){
 			int index =  Integer.parseInt(pjstepno.get(i));
 			pjstepno_count[index-1]++;
-			//System.out.println("pjstepno값 : " + pjstepno.get(i));
-		}
 		
-		/*for(int i=0; i < pjstepno_count.length; i++){
-			System.out.println(i+1 + "번째 : " +pjstepno_count[i]);
-		}*/
+		}
 		
 		//if 가져온 진행상황들 중 중단이 있는지 확인 - 중단(5)이 있으면 pj의 진행상황을 중단으로
 		if(pjstepno_count[4]!=0){
-			System.out.println("중단있음");
 			pj_step_no="5";
 		}
 		
 		//else if 가져온 진행상황들 중 보류가 있는지 확인 - 보류(3)가 있으면 pj의 진행상황을 보류로
 		else if(pjstepno_count[2]!=0){
-			System.out.println("보류있음");
 			pj_step_no="3";
 		}
 		//else if 가져온 진행상황들 모두가 완료 상태이면 - pj의 진행상황을 완료로
 		else if(pjstepno_count[0]==0 && pjstepno_count[1]==0 && pjstepno_count[2]==0 && pjstepno_count[4]==0 && pjstepno_count[3]!=0){
-			System.out.println("완료상태");
 			pj_step_no="4";
 		}
 		//else if 가져온 진행상황들 중 진행이 있는지 확인 - 진행이 있으면 pj의 진행상황을 진행으로
 		else if(pjstepno_count[0]!=0){
-			System.out.println("진행상태");
 			pj_step_no="1";
 		}
 			
 		//else if  else는 보류도 없고, 중단도 없고, 완료도 없고, 진행도 없을 때  - pj의 진행상황을 미진행으로
 		else{
-			System.out.println("미진행상태");
 			pj_step_no="2";
 		}
 		
-		System.out.println("상태 : " + pj_step_no);
 		//pj의 상태를 업데이트
 		int result = projectservice.updatePjstepno(pjd_no, pj_step_no);
 		

@@ -261,7 +261,6 @@ public class BusinessBoardController {
 	public String answer(Model mv, int no, int currentpage, int pagesize){
 		String link = null;
 		BusinessBoard businessboard = null;
-		System.out.println("answer no : "+ no);
 		try{
 			businessboard = businessboardservice.selectDetail(no);
 		}catch(Exception e){
@@ -292,7 +291,6 @@ public class BusinessBoardController {
 		}
 
 		Re_BusinessBoard dto = businessboardservice.selectWrite(principal.getName());
-		System.out.println("title : " + title + " / " + "content : " + content + "no : " + no + "refer : " + refer + "step : " + step);
 		BusinessBoard business = new BusinessBoard();
 		String link = null;
 		String msg = null;
@@ -350,8 +348,7 @@ public class BusinessBoardController {
 		
 		int result = 0;
 		
-		//File cFile = new File("C:/images/", file.getOriginalFilename());
-		 String path = request.getRealPath("/board/business_upload/");
+		String path = request.getRealPath("/board/business_upload/");
 	
 		File cFile = new File(path, file.getOriginalFilename());
 		

@@ -50,7 +50,6 @@ public class AdminController {
 	@RequestMapping(value="/adminDepart_depart.do",method=RequestMethod.GET)
 	@ResponseBody
 	public List<TestAdminDTO> departMent(String depart){
-		System.out.println("넘어온 부서이름 : "+depart);
 		List<TestAdminDTO> list = new ArrayList<TestAdminDTO>();
 		list.add(new TestAdminDTO(depart, "20"));
 		list.add(new TestAdminDTO("박성준", "28"));
@@ -95,7 +94,6 @@ public class AdminController {
 	@RequestMapping(value="/adminGrade.do", method=RequestMethod.GET)
 	public String adminGrade(Model model){
 		List<PositionJoin> list = adminservice.listPosition();
-		System.out.println("리스트 : " +list.toString());
 		model.addAttribute("positionList", list);
 		return "admin.adminGradeView";
 	}
@@ -103,9 +101,7 @@ public class AdminController {
 	//직위 정보 수정 시 사용
 	@RequestMapping("/positionModify.do")
 	public String modifyPosition(PositionJoin position, Model model){
-		System.out.println("컨트롤러 : "+position.toString());
 		int result = adminservice.positionUpdate(position);
-		System.out.println("결과 : "+result);
 		
 		String msg = "";
 		String link = "";
@@ -148,15 +144,12 @@ public class AdminController {
 		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
 		Date currentTime = new Date( );
 		String dTime2 = formatter.format ( currentTime );
-		System.out.println ("연월 : "+dTime2 );
 		String[] dTimearray = dTime2.split("-");
 		int darrayS = Integer.parseInt(dTimearray[1])-1;
 		String dTime =dTimearray[0]+"-"+darrayS;
-		System.out.println(" 한달전 ????????????????"+dTime);
 		
 		List<PayList> list = payservice.selectPay_all_Close(dTime);
 		String pay_date= adminservice.selectpay_date();
-		System.out.println(" 급여일 ------------------------"+pay_date);
 		
 		model.addAttribute("date", dTime);
 		model.addAttribute("list", list);
@@ -184,7 +177,6 @@ public class AdminController {
 		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy", Locale.KOREA );
 		Date currentTime = new Date( );
 		String dTime = formatter.format ( currentTime );
-		System.out.println ("현재 년도  : "+dTime ); 
 		
 		List<Pay> list = adminservice.total_paylist(dTime);
 		model.addAttribute("list", list);
@@ -196,12 +188,10 @@ public class AdminController {
 	@RequestMapping("/adminSalaryListDetail.do")
 	public String totalSalaryListDetail(String date, Model model){
 		
-		System.out.println("넘어온 데이트 : "+date);
 		List<PayList> list = payservice.select_payMoth_Detail(date);
 		for(int i = 0; i < list.size(); i++){
 			System.out.println(list.get(i).toString());
 		}
-		System.out.println(" 리스트 사이즈 ,,,,,,,,,,,,,,,,,,"+list.size());
 		model.addAttribute("count", list.size());
 		model.addAttribute("paylist", list);
 		return "admin.admintotalSalaryListDetail";
@@ -224,16 +214,13 @@ public class AdminController {
 		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
 		Date currentTime = new Date( );
 		String dTime2 = formatter.format ( currentTime );
-		System.out.println ("연월 : "+dTime2 );
 		String[] dTimearray = dTime2.split("-");
 		int darrayS = Integer.parseInt(dTimearray[1])-1;
 		String dTime =dTimearray[0]+"-"+darrayS;
-		System.out.println(" 한달전 ????????????????"+dTime);
-	
+		
 		List<PayList> Commutelist = commuteservice.selectCommute_all_Close(dTime);
 		
 		String pay_date= adminservice.selectpay_date();
-		System.out.println(" pay_date:======================="+pay_date);
 		
 		model.addAttribute("date", dTime);
 		model.addAttribute("Commutelist", Commutelist);
@@ -247,13 +234,10 @@ public class AdminController {
 		//commute_no 뽑아서 배열에 담아둠
 		String[] commute_no = hiddenCommute.split(",");
 		String[] emp_noArray = emp_no.split(",");
-		System.out.println(" 지급일 paydate===================="+payDate+"////////////hiddenCommute: "+hiddenCommute);
 		for(int i = 0; i < commute_no.length; i++){
-			System.out.println("근태 마감 확정 컨트롤러 입니다.  : :::: "+commute_no[i]);
 		}
 		
 		for(int i = 0; i < emp_noArray.length; i++){
-			System.out.println("이엠피 엔오 번호좀 : "+emp_noArray[i]);
 		}
 		
 		int result=0;
@@ -263,7 +247,6 @@ public class AdminController {
 		try{
 			for(int i=0; i<commute_no.length; i++){
 				result = commuteservice.updateCommute_mgr_check(commute_no[i], emp_noArray[i]);
-				System.out.println("result 부분 컨트롤러  업뎃 치고서 : "+result);
 			}
 			
 		}catch (Exception e) {
@@ -287,10 +270,8 @@ public class AdminController {
 	//관리자 > 급여관리 > 급여 기본 정보 수정
 	@RequestMapping("/adminSalary_Modify.do")
 	public String adminSalary_Modify(PayList list, Model model){
-		System.out.println(" 급여 정보 수정" +list.toString());
 		
 		int result =payservice.update_pay_Info_emp(list);
-		System.out.println("급여 정보 수정 결과 :------------------"+result);
 		
 		String msg = "";
 		String link = "";
@@ -315,7 +296,6 @@ public class AdminController {
 		
 		//급여일 설정
 		  String pay_date= adminservice.selectpay_date();
-		  System.out.println("급여일: "+pay_date);	
 		  
 		  if(pay_date !=null){
 			  model.addAttribute("result", "1");

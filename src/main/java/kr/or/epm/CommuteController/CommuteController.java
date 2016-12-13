@@ -50,7 +50,6 @@ public class CommuteController {
 		//근태 chart : 최근 7일의 정상근무시간, 추가근무시간
 		JSONObject chartcommute = null;
 		chartcommute = commuteservice.selectChartCommute(emp_no);
-		System.out.println(chartcommute.toString());
 		
 		model.addAttribute("chartcommute",chartcommute);
 		model.addAttribute("commute",commute);

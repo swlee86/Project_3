@@ -71,7 +71,6 @@ public class PayController {
 			SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
 			Date currentTime = new Date( );
 			String dTime = formatter.format ( currentTime );
-			System.out.println ("연월 : "+dTime ); 
 			
 			List<PayList> list = payservice.selectPay_all_Close(dTime);
 			model.addAttribute("date", dTime);

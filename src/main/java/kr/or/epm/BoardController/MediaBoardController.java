@@ -119,7 +119,6 @@ public class MediaBoardController {
 		System.out.println("id : "+id);
 		
 		 String path = request.getRealPath("/board/media_upload/");
-		 System.out.println("=====> path : "+path);
 		File cFile = new File(path, file.getOriginalFilename());
 		
 		try {
@@ -132,7 +131,6 @@ public class MediaBoardController {
 			e1.printStackTrace();
 		}
 		
-		System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
 		
 		Emp info = mediaboardservice.selectInfoSearch(id);  //사번,이름 가져가기
 		

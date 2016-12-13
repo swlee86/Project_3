@@ -82,13 +82,11 @@ public class AdminService {
 		if (result > 0) {
 			// 수정한 지점 정보 가져오기
 			branch = branchDAO.select_newBranch(dto.getBranch_no());
-			System.out.println(" 수정한 지점 정보 ================" + branch.toString());
-
+			
 			// 수정 전 지점 his_check 0으로 update 2)
 			result = 0;
 			result = branchDAO.update_pre_dept(dto.getBranch_no());
-			System.out.println("his update 2)=============" + result);
-
+			
 		} else {
 			return result;
 		}
@@ -97,7 +95,7 @@ public class AdminService {
 		if(result > 0){
 			result = 0;
 			result = update_new_dept(branch);
-			System.out.println(" 부서 update 결과  3)======================="+result);
+			
 		}else{
 			return result;
 		}
@@ -105,10 +103,9 @@ public class AdminService {
 		
 		//하위부서 update 4)
 		if(result >0){
-			System.out.println("4번째 : "+branchModify_notChange_branch_Name+"/////////////////////////////////");
 			result =0; 
 			result = update_new_low_dept(branch, branchModify_notChange_branch_Name);
-			System.out.println("  하위부서 update 결과 :------------------------- "+result);
+			
 		}else{
 			return result;
 		}
@@ -125,15 +122,12 @@ public class AdminService {
 
 		// 소속 부서 개수
 		int dept_count = branchDAO.countDept(branch);
-		System.out.println(" 소속 부서 개수=====================" + dept_count);
-
+	
 		if (dept_count > 0) {
 			// 소속 부서 update
 			update_dept = 0;
 				update_dept = branchDAO.update_new_dept(branch);
-				System.out.println(" 부서 update 결과 ============" + update_dept);
-
-			
+				
 			return update_dept;
 		} else {
 			update_dept =1;
@@ -150,16 +144,13 @@ public class AdminService {
 		int result = 0;
 		BranchDAO branchDAO = sqlsession.getMapper(BranchDAO.class);
 		
-		System.out.println(" 변경후 :============"+branch.getBranch_name() +"///////변경 전 : "+notChange_branch_Name);
 		//하위부서 개수
 		int low_count = branchDAO.countlow_dept(notChange_branch_Name);
-		System.out.println(" 하위부서 개수:::::::::::::::::::::::::"+low_count);
 		
 		//하위부서 update
 		if(low_count>0){
 			for(int i=0; i<low_count; i++){
 				result = branchDAO.update_pre_lowDept(branch.getBranch_name(), notChange_branch_Name);
-				System.out.println(" 하위부서 update 결과================="+result);
 			}
 			return result;
 		}else{
@@ -218,9 +209,7 @@ public class AdminService {
 			// 이전 부서 update 2)
 			result = deptDAO.update_pre_dept(dto);
 
-			System.out.println(" 부서 정보 수정 첫번째 result ========================" + result);
 		} else {
-			System.out.println("부서 정보 수정 첫번째  else =========");
 			return result;
 		}
 
@@ -230,27 +219,21 @@ public class AdminService {
 		// 상여금 update 4)
 		dto.setDept_no(dept_no);
 		dto.setPre_dept_no(pre_dept_no);
-		System.out.println(" 상여금 후 dto=========================== " + dto.toString());
 		if (result > 0) {
 
-			System.out.println("=======================================상여금 업데이트 이프");
 			result = 0;
 			result = deptDAO.modifyset_bonus(dto);
-			System.out.println("=======================================상여금 업데이트 이프 끝");
 		} else {
-			System.out.println("상여금 업데이트 첫번째  else =========");
 			return result;
 		}
 
 		if (result > 0) {
 			// 부서 소속 하위부서 조회하기
 			int count = deptDAO.count_lowDept(dto);
-			System.out.println(" 하위부서 개수=====================" + count);
-
+	
 			if (count > 0) {
 					result = 0;
 					result = deptDAO.update_lowDept(dto);
-					System.out.println("===================================하위부서 update 끝"+result);
 				return result;
 			} else {
 				return result;
@@ -268,7 +251,6 @@ public class AdminService {
 		
 		DeptDAO deptdao =sqlsession.getMapper(DeptDAO.class);
 		result =deptdao.checkDept_name(dept_name);
-		System.out.println(" 부서 이름 잇니?????????"+result);
 		
 		if(result==null|| result==""){
 			result="성공";
@@ -284,7 +266,6 @@ public class AdminService {
 	public int addBranch(DeptJoinBonus dto) {
 		// 우리가 입력한 지점 이름
 		String branch_Name = dto.getBranch_name();
-		System.out.println(" 지점이름 : "+branch_Name);
 		DeptDAO deptDAO = sqlsession.getMapper(DeptDAO.class);
 
 		int result = 0;
@@ -292,21 +273,17 @@ public class AdminService {
 		try {
 		// 지점 번호 뽑아옴
 		String branch_No = deptDAO.selectBranchName_No(branch_Name);
-		System.out.println(" 지점 번호 : "+branch_No);
 		// DB 에서 읽어온 지점 번호 셋팅
 		dto.setBranch_no(branch_No);
 		// 부서 정보 인서트
 		result = deptDAO.insertDept(dto);
-		System.out.println(" 부서 인서트 결과  : "+result);
-
+	
 		// 부서번호 (dept_no -> next.val 된 것 뽑아야 함)
 		String dept_No = deptDAO.selectDeptNo(dto.getBranch_name(), dto.getDept_name());
-		System.out.println(" 등록된 부서번호   : "+dept_No);
 		dto.setDept_no(dept_No);
 
 		// 상여금 설정 인서트
 		result += deptDAO.addDept_set_bonus(dto);
-		System.out.println(" 상여금 insert 결과  : "+result);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -321,7 +298,6 @@ public class AdminService {
 
 		DeptDAO deptDAO = sqlsession.getMapper(DeptDAO.class);
 		int result = deptDAO.dept_delete(dept_no);
-		System.out.println(" 부서 삭제한 결과 =======================" + result);
 		return result;
 	}
 
@@ -354,7 +330,6 @@ public class AdminService {
 		
 		Low_deptDAO dao = sqlsession.getMapper(Low_deptDAO.class);
 		result =dao.check_lowdept(low_dept_name);
-		System.out.println(" 하위 부서 이름 잇니?????????"+result);
 		
 		if(result==null|| result==""){
 			result="성공";
@@ -393,7 +368,6 @@ public class AdminService {
 	@Transactional
 	public int updateLow_dept(LowDeptJoin LowDeptJoin) {
 		int result = 0;
-		System.out.println(" 수정전 dto :===============" + LowDeptJoin.toString());
 		String pre_low_dept_no = LowDeptJoin.getLow_dept_no();
 		// 하위부서 insert 1)
 		Low_deptDAO lowdao = sqlsession.getMapper(Low_deptDAO.class);
@@ -438,7 +412,6 @@ public class AdminService {
 
 	// 직위 관리 페이지 - select 박스 선택시 한 직위 관련 정보 읽어 오기
 	public PositionJoin dtoPosition(String option) {
-		System.out.println("서비스 옵션 : " + option);
 		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
 		PositionJoin position = positionDAO.selectOptionJoin(option);
 		return position;
@@ -506,12 +479,10 @@ public class AdminService {
 		PositionDAO positionDAO = sqlsession.getMapper(PositionDAO.class);
 
 		for (Map<String, Object> map : resultMap) {
-			System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% : " + map.get("position_name") + " / "
-					+ map.get("step"));
 			String position_name = (String) map.get("position_name");
 			int step = (int) map.get("step");
 			result = positionDAO.updatePositionStep(position_name, step);
-			System.out.println("서비스쪽 : " + result);
+			
 		}
 
 		return result;
@@ -533,15 +504,12 @@ public class AdminService {
 	    
 	    //기본연봉 삭제
 	    result=dao.delete_set_pay(position_no);
-	    System.out.println(" 기본연봉 삭제 결과 ================"+result);
 	    
 	    //추가급여 삭제
 	    result+=dao.delete_set_add_pay(position_no);
-	    System.out.println(" 추가급여 삭제 결과 =============="+result);
 	    if(result>1){
 	    	result=0;
 	    	result=dao.deletePosition(position_no);
-	    	System.out.println(" 직위 삭제 최종 결과  :================="+result);
 	     }else{
 	    	 result=0;
 	     }
@@ -580,8 +548,7 @@ public class AdminService {
 		List<Pay> paylist = paydao.selectPay_all();
 		for (int i = 0; i < paylist.size(); i++) {
 			paylist.get(i).setGive_date(paylist.get(i).getGive_date().substring(0, 7));
-			System.out.println(
-					"연도ㅡ 월별 : " + paylist.get(i).getTotal_pay() + "  /  날짜 : " + paylist.get(i).getGive_date());
+			
 		}
 
 		return paylist;
@@ -591,7 +558,6 @@ public class AdminService {
 	public List<Dept> select_allDept() {
 		DeptDAO dao = sqlsession.getMapper(DeptDAO.class);
 		List<Dept> dept = dao.select_allDept();
-		System.out.println(" 전체 부서 사이즈 --------------" + dept.size());
 		return dept;
 	}
 
@@ -599,15 +565,11 @@ public class AdminService {
 	public int update_bonusCheck(String dept_no, String bonus_check) {
 		DeptDAO dao = sqlsession.getMapper(DeptDAO.class);
 		if (bonus_check.equals("지급")) {
-			System.out.println("if 탐");
 			bonus_check = "1";
 		} else {
-			System.out.println("엘스탐");
 			bonus_check = "0";
 		}
-		System.out.println(" dept_no: " + dept_no + "/////////// bonus_check:    " + bonus_check);
 		int result = dao.update_bonusCheck(dept_no, bonus_check);
-		System.out.println(" 서비스ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 바뀐값 : " + bonus_check + " result :" + result);
 		return result;
 
 	}

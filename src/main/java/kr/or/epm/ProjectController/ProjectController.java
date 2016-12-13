@@ -68,7 +68,6 @@ public class ProjectController {
 		
 		session.setAttribute("sessionprojectcount", projectcount);
 		
-		System.out.println("pj_no : "+pj_no);
 		Pj pj = projectservice.selectPj_detail(pj_no);
 		return pj;
 	}

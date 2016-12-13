@@ -21,11 +21,8 @@ public class RegisterAjaxController {
 	//회원 가입에서 번호 체크시 작동
 	@RequestMapping("/numchk.do")
 	public View numchk(String emp_no , Model model){	
-		System.out.println("numchk Ajax Start");
-		System.out.println("넘체크 : emp_no : " +emp_no);
 		String result = regiseterservice.selectEmpId(emp_no);
 		String answer= null;
-		System.out.println("사원번호 : " + result);
 		if(!emp_no.equals(result)){
 			answer="존재하지 않는 사번입니다.";
 		}else{
@@ -46,11 +43,8 @@ public class RegisterAjaxController {
 	//회원 가입에서 아이디 체크 버튼시 작동
 	@RequestMapping("/idchk.do")
 	public View idchk(String id , Model model){	
-		System.out.println("idchk Ajax Start");
-		System.out.println(id);
 		String idcheck = regiseterservice.selectUsedId(id);
 		String answer= null;
-		System.out.println("idchkdata : " + idcheck);
 		if(idcheck!=null){
 			answer="존재하는 아이디입니다. 다른 아이디를 선택해 주세요.";
 		}else{

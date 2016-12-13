@@ -283,7 +283,6 @@ public class FreeBoardController {
 			free.setDepth(depth+1);//부모글의 depth +1
 			free.setStep(step+1);	//부모글의 스텝번호+1
 			free.setFile_name(file.getOriginalFilename());
-			System.out.println(free.toString());
 			try{
 				
 				result = freeboardservice.insertArticle(free);

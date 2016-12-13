@@ -47,8 +47,6 @@ public class EmployeeManageService {
 	// 상세 정보
 	public Emp selectDetail2(String emp_no){
 		
-		System.out.println("SERVICE] 사원 상세 정보를 불러옵니다");
-		System.out.println("넘겨진 emp_no : " + emp_no);
 		
 		EmpDAO dao = sqlSession.getMapper(EmpDAO.class);
 		Emp emp = dao.selectEmp(emp_no);
@@ -59,12 +57,10 @@ public class EmployeeManageService {
 	// 사원 정보 수정
 	public int updateEmp(Emp emp) {
 		
-		System.out.println("SERVICE] 사원 정보를 수정합니다");
 		
 		// 사번이 중복으로 넘어오잖아
 		String emp_no = emp.getEmp_no();
 		String[] emp_no1 = emp_no.split(",");
-		System.out.println("넘겨진 emp_no : " + emp_no1[0]);
 		emp.setEmp_no(emp_no1[0]);
 		
 		EmpDAO dao = sqlSession.getMapper(EmpDAO.class);

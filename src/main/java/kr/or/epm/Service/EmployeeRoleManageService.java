@@ -45,7 +45,6 @@ public class EmployeeRoleManageService {
 	public List<EmployeeRoleManage> selectEmpRoleManage(int cpage, int pgsize) {
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
-		System.out.println(start + " / " + end);
 		EmployeeRoleManageDAO employeerolemanage = sqlSession.getMapper(EmployeeRoleManageDAO.class);
 		List<EmployeeRoleManage> list = employeerolemanage.selectEmpRoleManage(start, end);
 		return list;
