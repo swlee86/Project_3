@@ -50,11 +50,9 @@ public class PayController {
 			SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
 			Date currentTime = new Date( );
 			String dTime = formatter.format ( currentTime );
-			System.out.println ("연월 : "+dTime ); 
 			
 			String id = principal.getName();
-			System.out.println("아이디  : "+id);
-		     
+			 
 			//아이디 통해 사번 얻어옴
 		    EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
 		    Pay list = payservice.selectPay_mine(emp.getEmp_no(), dTime);
