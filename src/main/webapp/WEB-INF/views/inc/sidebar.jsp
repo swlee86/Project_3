@@ -28,17 +28,17 @@
                 <a href="contacts.do"> <span class="nav-label">주소록</span><span class="label label-warning pull-right"></span> </a>
             </li>
        
-            <li>
+            <!-- <li>
                 <a href="#"><span class="nav-label">메일 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li><a href="http://localhost:8090/epm/index.html">메일 서비스 시작</a>
                     <li><a href="mailbox.do">메일 읽기</a></li>
                     <li><a href="mailbox_compose.do">메일 쓰기</a></li>
                     <li><a href="mailbox_send.do">보낸 메일함 </a></li>
-                   <!--  <li><a href="#">스팸 메일 관리</a></li>
-                    <li><a href="mailbox_trash.do">휴지통</a></li> -->
+                    <li><a href="#">스팸 메일 관리</a></li>
+                    <li><a href="mailbox_trash.do">휴지통</a></li>
                 </ul>
-            </li>
+            </li> -->
         <!--     <li>
                 <a href="#"><span class="nav-label">회의</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">

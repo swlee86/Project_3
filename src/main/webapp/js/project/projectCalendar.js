@@ -40,6 +40,8 @@ $(function() {
 							 start: data2[i].pj_start,
 							 end: data2[i].pj_end,
 							 id : data2[i].pj_no, 
+							 dept : data2[i].dept_name,
+							 name : data2[i].emp_name,
 							 backgroundColor : "#9b59b6",
 							 color:"#9b59b6"
 				 			}
@@ -110,6 +112,8 @@ function calendar(){
 				
 				var endDate = new Date(event.end);
 				endDate=dateToYYYYMMDD(endDate);
+				
+				console.log(event);
 				
 				$('#CalendarModal').modal();
 				$('#charge').html(event.name);
