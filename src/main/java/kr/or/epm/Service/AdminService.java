@@ -67,7 +67,6 @@ public class AdminService {
 	}
 
 	// 지점 정보 수정
-	// TTTT
 	@Transactional
 	public int branchModify(Branch dto, String notChange_branch_Name) {
 		String branchModify_notChange_branch_Name = notChange_branch_Name;
