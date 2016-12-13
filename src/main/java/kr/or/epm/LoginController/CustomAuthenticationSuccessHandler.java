@@ -47,8 +47,6 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
    
    
    public CustomAuthenticationSuccessHandler() {
-      System.out.println("###################Login###################");
-      
       // TODO Auto-generated constructor stub
       targetUrlParameter = "";
       defaultUrl = "/index.do";
@@ -83,11 +81,6 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
       //1.로그인 성공 할때 시작됨 
       request.getSession().removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-      System.out.println("########################로그인 성공시 스타트##################");
-      System.out.println("아이디 : " + authentication.getName());
-      
-      
-      
       //알림에 각 항목의 카운트를 담기 위한 변수
       String emp_no =null;
       String projectcount = null;
@@ -105,7 +98,6 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       String draft = "0";
       
       int resultdata = 0;
-      System.out.println("푸쉬 주소값? : " + sqlsession.toString());
       PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
       emp_no = pushdao.selectEmp_no(authentication.getName());
       

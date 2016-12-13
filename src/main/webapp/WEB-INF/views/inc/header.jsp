@@ -264,7 +264,6 @@ $(function(){
 	$('#logout').click(function(){
 		var auth2 = gapi.auth2.getAuthInstance();
 	    auth2.signOut().then(function () {
-	      console.log('User signed out.');
 	    });
 	});
 });
@@ -279,12 +278,9 @@ $('#birthDay').click(function(){
 		
 		//호출 시점  :  send() 메세지 호출 > broadsocket > handleTextMessage > json 넘어와서 
         webSocket.onmessage = function (message){
-			console.log("#########message : " + message.data);
 			
 			var text = "";
 	    	var msg = JSON.parse(message.data);
-	    	console.log("parsemsg______________ : " +msg);
-			
 	    	//pushcount - > 총 알람 개수
 	    	//pushcount2 - > 총 알람 수인데  메세지 모양 클릭했을때 뜨는 작은 모달?의 제일 상단.
 			var resultpushCount = Number(msg.alarm)+Number(document.getElementById("pushcount").innerText);
@@ -294,12 +290,9 @@ $('#birthDay').click(function(){
 			divpushcount.innerHTML = resultpushCount;
 			divpushcount2.innerHTML = resultpushCount;
 			
-			console.log("###########################msg.work : " + msg.work);
-			
 			
 			//span 태그 id 값들 뽑아서 그곳에 값 넣어준다. 숫자를 
 			var resulttaskCount = Number(msg.work)+Number(document.getElementById("taskcount").innerText);			
-			console.log('#################"업무 결과값 "###########' + resulttaskCount);
 			var divtaskcount = document.getElementById("taskcount");
 			divtaskcount.innerHTML = resulttaskCount;
 			/////////////////////////////////////////////
@@ -343,7 +336,6 @@ $('#birthDay').click(function(){
 					 emp_no : document.getElementById("hiddenEmp_no").value,
 	   				 menuname : document.getElementById("hiddenMenuName").value
 	   			  	}
-			console.log("메세지를 봅시다 : " +msg);
 			webSocket.send(JSON.stringify(msg));
 		}
 	

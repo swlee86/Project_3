@@ -56,9 +56,6 @@ public class PageMoveController {
 		HttpSession session = request.getSession();
 		
 		String emp_no = (String)session.getAttribute("emp_no");
-		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
-			
-		
 		session.setAttribute("emp_no", emp_no);
 		
 		
@@ -232,9 +229,6 @@ public class PageMoveController {
 				officelist.add(officelist_ex.get(i));
 			}
 		}
-		System.out.println("##############################");
-		System.out.println("officelist.: " +officelist.toString());
-		System.out.println("officelist 사이즈: " +officelist.size());
 		model.addAttribute("officelist", officelist);
 		
 		
@@ -243,9 +237,6 @@ public class PageMoveController {
 		// 목록 가져오기
 		List<Cooperation> cooperationlist_ex = service2.selectCooperation_rec(emp_no);
 		List<Cooperation> cooperationlist = new ArrayList<Cooperation>();
-		
-		System.out.println("cooperationlist_ex : "+cooperationlist_ex.toString());
-		System.out.println("cooperationlist_ex : "+cooperationlist_ex.size());
 		
 		if(cooperationlist_ex.size() >= 5){
 			for(int i=0; i< 5; i++){
@@ -259,9 +250,6 @@ public class PageMoveController {
 				cooperationlist.add(cooperationlist_ex.get(i));
 			}
 		}
-		System.out.println("##############################");
-		System.out.println("cooperationlist.: " +cooperationlist.toString());
-		System.out.println("cooperationlist 사이즈: " +cooperationlist.size());
 		model.addAttribute("cooperationlist", cooperationlist);
 		
 
@@ -270,8 +258,6 @@ public class PageMoveController {
 		List<Break> breaklist_ex = service2.selectBreak_rec(emp_no);
 		List<Break> breaklist = new ArrayList<Break>();
 		
-		System.out.println("breaklist_ex : "+breaklist_ex.toString());
-		System.out.println("breaklist_ex : "+breaklist_ex.size());
 		if(breaklist_ex.size() >= 5){
 			for(int i=0; i< 5; i++){
 				breaklist.add(breaklist_ex.get(i));
@@ -284,10 +270,6 @@ public class PageMoveController {
 				breaklist.add(breaklist_ex.get(i));
 			}
 		}
-		System.out.println("##############################");
-		System.out.println("breaklist.: " +breaklist.toString());
-		System.out.println("breaklist 사이즈: " +breaklist.size());
-		
 		
 		model.addAttribute("breaklist", breaklist);
 		

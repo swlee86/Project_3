@@ -20,14 +20,7 @@ public class PushController {
 
   @RequestMapping(value = "/pollingchk.do")
   public void pollingstart(HttpServletRequest request, HttpServletResponse response, Push push, String pushcount, String taskcount, String projectcount,String projectApproval, String taskApproval) {
-	  System.out.println("Polling Data Start");
 	  HttpSession session = request.getSession();
-	  System.out.println("PushController > Pushcount : " + pushcount);
-	  System.out.println("PushController > Taskcount : " + taskcount);
-	  System.out.println("PushController > Projectcount : " + projectcount);
-	  System.out.println("PushController > projectApproval : " + projectApproval);
-	  System.out.println("PushController > taskApproval : " + taskApproval);
-	  
 	  String id = (String)session.getAttribute("customerId");
 	  String emp_no = pushservice.selectEmp_no(id);
 	  
