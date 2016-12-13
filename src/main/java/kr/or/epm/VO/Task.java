@@ -94,7 +94,7 @@ public class Task {
 	}
 
 	public String getContent() {
-		return content;
+		return content.replace("\r\n","<br>");
 	}
 
 	public void setContent(String content) {
