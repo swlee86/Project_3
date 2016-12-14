@@ -44,18 +44,6 @@ public class AdminController {
 	@Autowired
 	private CommuteService commuteservice;
 	
-	//관리자 개발
-	@RequestMapping(value="/adminDepart_depart.do",method=RequestMethod.GET)
-	@ResponseBody
-	public List<TestAdminDTO> departMent(String depart){
-		List<TestAdminDTO> list = new ArrayList<TestAdminDTO>();
-		list.add(new TestAdminDTO(depart, "20"));
-		list.add(new TestAdminDTO("박성준", "28"));
-		list.add(new TestAdminDTO("테스트", "25"));
-		return list;
-	}
-	
-	
 	//관리자 > 지점보기 페이지
 	@RequestMapping("/adminBranch.do")
 	public String adminBranch(Model model){
