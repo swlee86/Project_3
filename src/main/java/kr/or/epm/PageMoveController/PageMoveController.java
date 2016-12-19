@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.or.epm.MailController.ReceiveMailImap;
 import kr.or.epm.Service.CompanyBoardService;
 import kr.or.epm.Service.DraftService;
 import kr.or.epm.Service.LoginService;
@@ -21,11 +20,8 @@ import kr.or.epm.Service.ProjectService;
 import kr.or.epm.Service.PushService;
 import kr.or.epm.Util.Util;
 import kr.or.epm.VO.Break;
-import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Company;
 import kr.or.epm.VO.Cooperation;
-import kr.or.epm.VO.EmpJoinEmp_Detail;
-import kr.or.epm.VO.Mail;
 import kr.or.epm.VO.Office;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Task;
@@ -40,9 +36,6 @@ public class PageMoveController {
 	
 	@Autowired
 	private LoginService service;
-	
-	@Autowired
-	private CompanyBoardService companyBoardService;
 	
 	@Autowired
 	private DraftService service2;
@@ -323,7 +316,7 @@ public class PageMoveController {
 		
 		return "errors.lock";
 	}
-	
+	/*
 	// SideBar(aside.jsp) 일정관리 > 일정등록 클릭시 구동
 	@RequestMapping("/registration_schedule.do")
 	public String registration_scheduleview() {
@@ -335,6 +328,8 @@ public class PageMoveController {
 	public String calendar_scheduleview() {
 		return "schedule.calendar_schedule";
 	}
+	
+	*/
 	
 	// SideBar(aside.jsp) 인사관리 > 사원정보(관리자) 클릭시 구동
 	@RequestMapping("/member_datatables.do")
@@ -404,7 +399,6 @@ public class PageMoveController {
 	public String findIdPw(){
 		return "find.findMainView";
 	}
-	
 	
 	
 }
