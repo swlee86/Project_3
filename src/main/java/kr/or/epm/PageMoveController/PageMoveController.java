@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import kr.or.epm.Service.CompanyBoardService;
+import kr.or.epm.Service.CreateLogService;
 import kr.or.epm.Service.DraftService;
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.ProjectService;
@@ -22,6 +24,7 @@ import kr.or.epm.Util.Util;
 import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Company;
 import kr.or.epm.VO.Cooperation;
+import kr.or.epm.VO.CreateLog;
 import kr.or.epm.VO.Office;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Task;
@@ -31,6 +34,10 @@ import kr.or.epm.VO.Task;
 @Controller
 public class PageMoveController {
 
+	@Autowired
+	private CreateLogService logservice;
+	
+	
 	@Autowired
 	private PushService pushService;
 	
@@ -47,12 +54,28 @@ public class PageMoveController {
 	@RequestMapping("/index.do")
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, Principal principal) {
 		HttpSession session = request.getSession();
-		
 		String emp_no = (String)session.getAttribute("emp_no");
-		session.setAttribute("emp_no", emp_no);
 		
 		
 		
+		//접속자의 ip를 가져와서 clientIP에 저장한다.
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+        String ip = req.getHeader("X-FORWARDED-FOR");
+        if (ip == null)
+            ip = req.getRemoteAddr();
+         
+        session.setAttribute("clientIP", ip);
+		
+		CreateLog log = new CreateLog();
+		log.setIp(ip);
+		log.setPage(request.getRequestURI());
+		log.setId((String)session.getAttribute("customerId"));
+		log.setEmp_no((String)session.getAttribute("emp_no"));
+		
+		/*session.setAttribute("emp_no", emp_no);*/
+		
+		
+
 		///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
         List<Company> list = null;
         
@@ -94,6 +117,8 @@ public class PageMoveController {
  				tasklist = pushService.tasklist(emp_no, cpage, pgsize);
  			}catch(Exception e){
  				System.err.println(e.getMessage());
+ 				log.setResult("미확인업무_추출에러");
+ 				logservice.BasicLog(log);
  			}finally{
  				model.addAttribute("tasklist", tasklist);
  				//model.addAttribute("tasklistsize", tasklist.size());
@@ -111,6 +136,8 @@ public class PageMoveController {
  				mytasklist = pushService.mytasklist(emp_no, cpage, pgsize);
  			}catch(Exception e){
  				System.err.println(e.getMessage());
+ 				log.setResult("진행중업무내역_추출에러");
+ 				logservice.BasicLog(log);
  			}finally{
  				model.addAttribute("mytasklist", mytasklist);
  				//model.addAttribute("mytasklistsize", mytasklist.size());
@@ -160,7 +187,8 @@ public class PageMoveController {
 				}
  			}catch(Exception e){
  				System.err.println(e.getMessage());
-
+ 				log.setResult("근태내역_추출에러");
+ 				logservice.BasicLog(log);
  			}finally{
  				model.addAttribute("deptavg", deptavg);
  				model.addAttribute("myavg",myavg);
@@ -181,6 +209,8 @@ public class PageMoveController {
  				//System.out.println("@@@@@@@프로젝트 리스트 사이즈 : " +pjlist.size());
  			}catch(Exception e){
  				System.err.println(e.getMessage());
+ 				log.setResult("프로젝트내역_추출에러");
+ 				logservice.BasicLog(log);
  			}finally{
  				model.addAttribute("pjlist", pjlist);
  			}
@@ -196,6 +226,8 @@ public class PageMoveController {
  				approve_pjlist = pushService.selectPj_rec(emp_no, cpage, pgsize); 				
  			}catch(Exception e){
  				System.err.println(e.getMessage());
+ 				log.setResult("미승인프로젝트내역_추출에러");
+ 				logservice.BasicLog(log);
  			}finally{ 				
  				//System.out.println("approve_pjlist size : "+approve_pjlist.size());
  				model.addAttribute("approve_pjlist", approve_pjlist);
@@ -305,6 +337,12 @@ public class PageMoveController {
 			model.addAttribute("cpage", cpage);
 			model.addAttribute("psize", pgsize);
 		}*/
+		
+		
+		//로그 데이터에 담을 VO 생성
+
+		log.setResult("정상_로그인");
+		logservice.BasicLog(log);
 
 		
 		return "home.index";
