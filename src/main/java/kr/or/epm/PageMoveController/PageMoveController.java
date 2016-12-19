@@ -1,6 +1,7 @@
 package kr.or.epm.PageMoveController;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,14 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.epm.MailController.ReceiveMailImap;
 import kr.or.epm.Service.CompanyBoardService;
+import kr.or.epm.Service.DraftService;
 import kr.or.epm.Service.LoginService;
 import kr.or.epm.Service.ProjectService;
 import kr.or.epm.Service.PushService;
 import kr.or.epm.Util.Util;
+import kr.or.epm.VO.Break;
 import kr.or.epm.VO.Commute;
 import kr.or.epm.VO.Company;
+import kr.or.epm.VO.Cooperation;
 import kr.or.epm.VO.EmpJoinEmp_Detail;
 import kr.or.epm.VO.Mail;
+import kr.or.epm.VO.Office;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Task;
 
@@ -40,6 +45,9 @@ public class PageMoveController {
 	private CompanyBoardService companyBoardService;
 	
 	@Autowired
+	private DraftService service2;
+	
+	@Autowired
 	private ProjectService projectservice;
 	
 	// 최초 접속(index.html)시 views/index.jsp 구동
@@ -48,9 +56,6 @@ public class PageMoveController {
 		HttpSession session = request.getSession();
 		
 		String emp_no = (String)session.getAttribute("emp_no");
-		System.out.println("index.do에서 정보를 뽑기 위한 emp_no 데이터 : " + emp_no);
-			
-		
 		session.setAttribute("emp_no", emp_no);
 		
 		
@@ -204,14 +209,77 @@ public class PageMoveController {
  			}
  		}
 		
+		 /////////////////////////인덱스에 띄워 줄 전자결재 내용 구하기 시작////////////////////////////////////////////////////
+		// 대외발신공문
+		// 목록 가져오기
+		List<Office> officelist_ex = service2.selectOffice_rec(emp_no);
+		List<Office> officelist = new ArrayList<Office>();
+		
+		if(officelist_ex.size() >= 5){
+			for(int i=0; i< 5; i++){
+				officelist.add(officelist_ex.get(i));
+			}
+			
+		}else if(officelist_ex.size() == 0){
+			officelist.add(null);
+		}else{
+			for(int i=0; i< officelist_ex.size(); i++){
+				officelist.add(officelist_ex.get(i));
+			}
+		}
+		model.addAttribute("officelist", officelist);
 		
 		
+		
+		// 협조문
+		// 목록 가져오기
+		List<Cooperation> cooperationlist_ex = service2.selectCooperation_rec(emp_no);
+		List<Cooperation> cooperationlist = new ArrayList<Cooperation>();
+		
+		if(cooperationlist_ex.size() >= 5){
+			for(int i=0; i< 5; i++){
+				cooperationlist.add(cooperationlist_ex.get(i));
+			}
+			
+		}else if(cooperationlist_ex.size() == 0){
+			cooperationlist.add(null);
+		}else{
+			for(int i=0; i< cooperationlist_ex.size(); i++){
+				cooperationlist.add(cooperationlist_ex.get(i));
+			}
+		}
+		model.addAttribute("cooperationlist", cooperationlist);
+		
+
+		// 휴가신청서
+		// 목록 가져오기
+		List<Break> breaklist_ex = service2.selectBreak_rec(emp_no);
+		List<Break> breaklist = new ArrayList<Break>();
+		
+		if(breaklist_ex.size() >= 5){
+			for(int i=0; i< 5; i++){
+				breaklist.add(breaklist_ex.get(i));
+			}
+			
+		}else if(breaklist_ex.size() == 0){
+			breaklist.add(null);
+		}else{
+			for(int i=0; i< breaklist_ex.size(); i++){
+				breaklist.add(breaklist_ex.get(i));
+			}
+		}
+		
+		model.addAttribute("breaklist", breaklist);
+		
+		
+		
+
 
         
         /////////////////////////인덱스에 띄워 줄 메일 내용 구하기 시작////////////////////////////////////////////////////
 
     	//메인에 띄워 줄 메일 토탈 카운트 구하기
-        List<Mail> mail =  null;
+/*        List<Mail> mail =  null;
 		String mailid = (String)session.getAttribute("googlemail");
         String sessionchk=(String)session.getAttribute("mailusedata");
         boolean test = Util.isEmpty(sessionchk);
@@ -243,7 +311,7 @@ public class PageMoveController {
 			
 			model.addAttribute("cpage", cpage);
 			model.addAttribute("psize", pgsize);
-		}
+		}*/
 
 		
 		return "home.index";
@@ -252,7 +320,6 @@ public class PageMoveController {
 	// spring security 권한 잡기
 	@RequestMapping("/authority.do")
 	public String authority() {
-		System.out.println("우와 여기를 탑니다");
 		
 		return "errors.lock";
 	}

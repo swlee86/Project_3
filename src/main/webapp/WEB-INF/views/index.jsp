@@ -5,11 +5,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="systemdate" />
-<!-- 채팅 테스트용 아이디 세션 -->
+<!--  
+	작성자	: 박지은
+	작성일	: 2016-12-05
+	목 적  	: 메인 화면 프로젝트,전자결재, 업무 탭별 리스트
+	
+	작성자         : 김주희
+	작성일         : 2016-12-04
+	목 적           : 근태 차트  시각화
+-->
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
-			<h2>Welcome to <b>2PM</b></h2>
+			<h3><span style="font-family:Arial ">Welcome to <b>2PM</b></span></h3>
 			<p>
 				스타트업 및 중소기업의 <strong>프로젝트 관리, 인사, 일정 관리</strong>를 위한 그 모든 프로그램
 				
@@ -104,7 +112,7 @@
 														<c:choose>
 															<c:when test="${fn:length(approve_pjlist.pj_title) > 10}">${fn:substring(approve_pjlist.pj_title,0,10)} ...</c:when>
 															<c:otherwise>${fn:substring(approve_pjlist.pj_title,0,10)}</c:otherwise>
-														</c:choose><%-- ${approve_pjlist.pj_title} --%>
+														</c:choose>
 													</a>
 												</td>
 												<td></td>
@@ -112,7 +120,6 @@
 												<td style="text-align:center">
 													<small><i class="fa fa-clock-o"></i> </small>  
 													${fn:substring(approve_pjlist.pj_start,5, fn:length(approve_pjlist.pj_start))} ~ ${fn:substring(approve_pjlist.pj_end,5, fn:length(approve_pjlist.pj_end))} 
-													<%-- ${approve_pjlist.pj_start} ~ ${approve_pjlist.pj_end} --%>
 												</td>
 												<td style="text-align:center">
 													<c:choose>
@@ -148,75 +155,63 @@
 		</div>
 	
 	
-	    <div class="col-lg-6">
+		<div class="col-lg-6">
 			<div class="hpanel">
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#task-1"><b>진행중 업무</b></a></li>
-					<li class=""><a data-toggle="tab" href="#task-2"><b>미확인 업무</b></a></li>
+					<li class="active"><a data-toggle="tab" href="#draft-1"><b>미승인 대외발신공문</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-2"><b>미승인 협조문</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-3"><b>미승인 휴가신청서</b></a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="task-1" class="tab-pane active">	
+
+					<div id="draft-1" class="tab-pane active">	
 						<div class="panel-body list">
-							<div class="table-responsive project-list">
-								<table class="table table-striped table-condensed">
+							<div class=" project-list">
+								<table class="table table-striped table-condensed ">
 									<thead>
 										<tr>
-											<th>업무명</th>
-											<th style="text-align:center">마감일</th>
-											<th style="text-align:center">진행단계</th>
-											<th style="text-align:center">요청자명</th>
-											<th style="text-align:center">중 &nbsp;&nbsp; 요</th>
+											<th>기안 제목</th>
+											<th style="text-align:center">수신처</th>
+											<th style="text-align:center">기안자</th>
+											<th style="text-align:center">승인결과</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="mytasklist" items="${mytasklist}" > 
+										<c:forEach var="office" items="${officelist}" > 
 											<tr>
-												<c:choose>
-													<c:when test="${mytasklist.deadline < systemdate}">
-														<td><a style="color: red"
-															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																${mytasklist.send_date}</small></td>
-													</c:when>
-													<c:when test="${mytasklist.deadline == systemdate}">
-														<td><a style="color: blue"
-															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																${mytasklist.send_date}</small></td>
-													</c:when>
-													<c:otherwise>
-														<td><a
-															href="taskRequest_participation_detail.do?task_no=${mytasklist.task_no}">${mytasklist.task_name}</a><br />
-															<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																${mytasklist.send_date}</small></td>
-													</c:otherwise>
-												</c:choose>
-												<td style="text-align:center">${mytasklist.deadline}</td>
-												<td style="text-align:center">
-												 <c:choose>
-												<c:when test="${mytasklist.task_step_no == '1'}">
-														<button class="btn btn-xs btn-warning" disabled><small>&nbsp;&nbsp;진&nbsp;행&nbsp;&nbsp;</small></button>
-													</c:when>
-													<c:when test="${mytasklist.task_step_no == '2'}">
-														<button class="btn btn-xs btn-warning2" disabled><small>&nbsp;미진행&nbsp;</small></button>
-													</c:when>
-													<c:when test="${mytasklist.task_step_no == '3' }">
-														<button class="btn btn-xs btn-primary2" disabled><small>&nbsp;&nbsp;보&nbsp;류&nbsp;&nbsp;</small></button>
-													</c:when>
-													<c:when test="${mytasklist.task_step_no== '4'}">
-														<button class="btn btn-xs btn-info" disabled><small>&nbsp;&nbsp;완&nbsp;료&nbsp;&nbsp;</small></button>
-													</c:when>
-													<c:when test="${mytasklist.task_step_no== '5'}">
-														<button class="btn btn-xs btn-danger" disabled><small>&nbsp;&nbsp;중&nbsp;단&nbsp;&nbsp;</small></button>
-													</c:when>
-												</c:choose> 
-												
+
+												<td><a href="office_detail.do?draft_no=${ office.draft_no }">${ office.draft_title }</a><br />
+													<small><i class="fa fa-clock-o"></i>.&nbsp;
+													${office.draft_date}</small>
 												</td>
-												<td style="text-align:center">${mytasklist.emp_name}</td>
+
+
+
+												<td style="text-align:center"><small><c:if test="${fn:length(office.rec_addr) > 15}"></c:if>${fn:substring(office.rec_addr,0,15)} ...</small></td>
 												<td style="text-align:center">
-													<c:if test="${mytasklist.sign == 1}">
-														<i class="fa fa-check text-success"></i>
-													</c:if>
+												 ${ office.emp_name }  <br><small>${ office.emp_no }</small>
+												</td>
+												<td style="text-align:center">
+													<c:choose>
+														<c:when test="${ office.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose>
+
+
 												</td>
 											</tr>
 										</c:forEach>
@@ -224,63 +219,116 @@
 								</table>
 							</div>
 							<div class="pull-right">
-								<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
 							</div>	
-						</div>	
-									
+						</div>				
 					</div>
 				
-					<div id="task-2" class="tab-pane "> <!-- 미확인 -->
+					<div id="draft-2" class="tab-pane "> 
 						<div class="panel-body list">	
-							
-							<!-- <div class="panel-body"> -->
-								<div class="table-responsive project-list">
+								<div class=" project-list">
 									<table class="table table-striped table-condensed">
 										<thead>
 											<tr>
-												<th>업무명</th>
-												<th style="text-align:center">마감일</th>
-												<th style="text-align:center">요청자명</th>
-												<th style="text-align:center">첨부파일</th>
+												<th>기안 제목</th>
+												<th style="text-align:center">수신 부서</th>
+												<th style="text-align:center">기안자</th>
+												<th style="text-align:center">승인 결과</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="tasklist" items="${tasklist}">
+											<c:forEach var="cooper" items="${cooperationlist}">
 												<tr>
-													<c:choose>
-														<c:when test="${tasklist.send_date < systemdate}">
-															<td><a style="color: red"
-																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																	${tasklist.send_date }</small></td>
-														</c:when>
-														<c:when test="${tasklist.send_date == systemdate}">
-															<td><a style="color: blue"
-																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																	${tasklist.send_date }</small></td>
-														</c:when>
-														<c:otherwise>
-															<td><a
-																href="taskRequest_rec_detail.do?task_no=${tasklist.task_no}">${tasklist.task_name}</a><br />
-																<small><i class="fa fa-clock-o"></i> 요청날.&nbsp;
-																	${tasklist.send_date }</small></td>
-														</c:otherwise>
-													</c:choose>
-													<td style="text-align:center">${tasklist.deadline}</td>
-													<td style="text-align:center">${tasklist.emp_name}</td>
-													<td style="text-align:center">
-														<c:if test="${not empty tasklist.file_name}">
-															<b><i class="fa fa-paperclip text-success"></i></b>
-														</c:if>
+													
+												<td><a href="cooperation_detail.do?draft_no=${cooper.draft_no}">${cooper.draft_title }</a><br />
+													<small><i class="fa fa-clock-o"></i>.&nbsp;
+														${cooper.draft_date}</small>
 													</td>
+													
+													<td style="text-align:center">${cooper.low_dept_name} <small>${ cooper.branch_name } ${ cooper.dept_name }</small></td>
+													<td style="text-align:center">${cooper.emp_name}<br><small>${ cooper.emp_no }</small></td>
+													<td style="text-align:center"><c:choose>
+														<c:when test="${ cooper.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ cooper.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose></td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 								</div>
 							<div class="pull-right">
-								<span><small><a href="taskRequest.do">[업무 요청 리스트 바로가기]</a></small></span>
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					<div id="draft-3" class="tab-pane "> 
+						<div class="panel-body list">	
+								<div class=" project-list">
+									<table class="table table-striped table-condensed">
+										<thead>
+											<tr>
+												<th >기안 제목</th>
+												<th style="text-align:center">휴가기간</th>
+												<th style="text-align:center">기안자</th>
+												<th style="text-align:center">승인 결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="br" items="${breaklist}">
+												<tr>
+													
+													<td  ><a href="break_detail.do?draft_no=${ br.draft_no }">${ br.draft_title }</a><br />
+														<small><i class="fa fa-clock-o"></i>.&nbsp;
+															${br.draft_date }</small>
+													</td>
+														
+													<td style="text-align:center">${ br.break_cg_name } <small>${ br.break_term } 일</small></td>
+													<td style="text-align:center"> ${ br.emp_name }<br><small>${ br.emp_no }</small></td>
+													<td style="text-align:center">
+														<c:choose>
+														<c:when test="${ br.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose></td>
+														
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							<div class="pull-right">
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
 							</div>
 						</div>
 					</div>
@@ -291,15 +339,7 @@
 
 
 
-
-
-
-
-
-
-
-	<!-- chart 최근 근무현황 -->
-	<div class="row" > <!-- style="height: 350px;" -->
+	<div class="row" > 
 		<div class="col-lg-6" style="height: 400px;">
 			<div class="hpanel">
 				<div class="panel-heading">
@@ -317,7 +357,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col-lg-6">
 			<div class="hpanel">
 				<ul class="nav nav-tabs">
@@ -335,7 +375,6 @@
 											<th style="text-align:center">마감일</th>
 											<th style="text-align:center">진행단계</th>
 											<th style="text-align:center">요청자명</th>
-											<th style="text-align:center">중 &nbsp;&nbsp; 요</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -383,11 +422,6 @@
 												
 												</td>
 												<td style="text-align:center">${mytasklist.emp_name}</td>
-												<td style="text-align:center">
-													<c:if test="${mytasklist.sign == 1}">
-														<i class="fa fa-check text-success"></i>
-													</c:if>
-												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -400,10 +434,8 @@
 									
 					</div>
 				
-					<div id="task-2" class="tab-pane "> <!-- 미확인 -->
+					<div id="task-2" class="tab-pane ">
 						<div class="panel-body list">	
-							
-							<!-- <div class="panel-body"> -->
 								<div class="table-responsive project-list">
 									<table class="table table-striped table-condensed">
 										<thead>
@@ -411,7 +443,6 @@
 												<th>업무명</th>
 												<th style="text-align:center">마감일</th>
 												<th style="text-align:center">요청자명</th>
-												<th style="text-align:center">첨부파일</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -439,11 +470,6 @@
 													</c:choose>
 													<td style="text-align:center">${tasklist.deadline}</td>
 													<td style="text-align:center">${tasklist.emp_name}</td>
-													<td style="text-align:center">
-														<c:if test="${not empty tasklist.file_name}">
-															<b><i class="fa fa-paperclip text-success"></i></b>
-														</c:if>
-													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -458,57 +484,6 @@
 			</div>
 		</div>
 		
-		<%-- <div class="col-lg-6">
-			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					전자 우편
-				</div>
-				<div class="panel-body list">
-					<div class="table-responsive project-list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>보낸 메일</th>
-									<th>제목</th>
-									<th>도착일시</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:choose>
-									<c:when test="${null eq maillist }">
-										<div>
-											<h6>메일의 경우 보안 관계상 메일 읽기에서 한 번 더 로그인 후 조회 가능합니다</h6>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<c:forEach var="maillist" items="${maillist}">
-											<tr>
-												<c:choose>
-													<c:when
-														test="${maillist.emp_no eq '=?UTF-8?Q?Google_=EC=BB=A4=EB=AE=A4=EB=8B=88=ED=8B=B0=ED=8C=80?= <googlecommunityteam-noreply@google.com>'}">
-														<td><a href="#">googlecommunityteam-noreply@google.com</a></td>
-													</c:when>
-													<c:otherwise>
-														<td><a href="#">${maillist.emp_no}</a></td>
-													</c:otherwise>
-												</c:choose>
-												<td><a href="#"
-													onClick="javascript:window.open('${pageContext.request.contextPath}/mail/data/${maillist.mail_content}.html','popup','scrollbars=no, resizable=no, width=500px,height=800px')">${maillist.title}</a></td>
-												<td class="text-right mail-date">${maillist.rec_check}</td>
-											</tr>
-										</c:forEach>
-									</c:otherwise>
-								</c:choose>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div> --%>
 	</div>
 	<br/><br/>
 	
@@ -528,52 +503,10 @@
 <script src="vendor/c3/c3.min.js"></script>
 
 <script>
-	$(function() {
-		/*
-		var datereg = [];
-		var add_time = [];
-		var check_obj = document.getElementsByName('regdate[]');
-		var check_add_time = document.getElementsByName('add_time[]');
-
-		for (var i = 0; i <= check_obj.length - 1; i++) {
-			datereg.push(check_obj.item(i).value);
-
-		}
-
-		for (var i = 0; i <= check_add_time.length - 1; i++) {
-			console.log("for문 1차 통과");
-			var data = check_add_time.item(i).value
-			var hour = data.substring(0, 2);
-			var minute = data.substring(3, 6);
-			var hourtominute = hour * 60;
-			var resultdata = Number(minute) + Number(hourtominute);
-			console.log(hourtominute);
-			console.log(minute);
-			console.log(resultdata);
-			add_time.push(resultdata);
-
-		}
-
-		console.log(datereg);
-		console.log(add_time);
-
-		 new Chartist.Bar('#ct-chart4', {
-			labels : datereg,
-			series : [ add_time ]
-		}, {
-			seriesBarDistance : 10,
-			reverseData : true,
-			horizontalBars : true,
-			axisY : {
-				offset : 70
-			}
-		}); */
-		
+	$(function() {	
 		var deptavg = ${deptavg};
 		var myavg = ${myavg};
-
-		//console.log("dept : "+deptavg +"/ myavg : "+ myavg);
-		
+	
  		c3.generate({
 			 bindto: '#avgCommuteChart',
 			 

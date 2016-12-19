@@ -25,8 +25,10 @@ public class Task {
 	private String task_step_no;
 	private String step_no;
 	private MultipartFile uploadfile;
-	
-	
+
+	private String cg_name;
+	private String step_name;
+
 	public MultipartFile getUploadfile() {
 		return uploadfile;
 	}
@@ -34,10 +36,6 @@ public class Task {
 	public void setUploadfile(MultipartFile uploadfile) {
 		this.uploadfile = uploadfile;
 	}
-
-	// 추가 변수
-	private String cg_name;
-	private String step_name;
 	
 	public String getCg_name() {
 		return cg_name;
@@ -54,8 +52,6 @@ public class Task {
 	public void setStep_name(String step_name) {
 		this.step_name = step_name;
 	}
-	
-	//////////////////////////////////////////////////////
 
 	public String getTask_no() {
 		return task_no;
@@ -98,7 +94,7 @@ public class Task {
 	}
 
 	public String getContent() {
-		return content;
+		return content.replace("\r\n","<br>");
 	}
 
 	public void setContent(String content) {
@@ -185,6 +181,4 @@ public class Task {
 				+ send_date + ", file_name=" + file_name + ", task_step_no=" + task_step_no + ", step_no=" + step_no
 				+ ", uploadfile=" + uploadfile + ", cg_name=" + cg_name + ", step_name=" + step_name + "]";
 	}
-
-	
 }

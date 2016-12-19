@@ -1,7 +1,7 @@
-package kr.or.epm.DAO;
-import java.util.List;
 
-import kr.or.epm.VO.Approval;
+
+package kr.or.epm.DAO;
+
 import kr.or.epm.VO.Emp;
 
 /*

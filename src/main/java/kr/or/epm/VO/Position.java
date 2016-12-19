@@ -15,7 +15,6 @@ public class Position {
 	// 관리자 > 권한 부여(부여되어 있는 권한 목록)
 	private List<String> rolelist;
 	
-	
 	public List<String> getRolelist() {
 		return rolelist;
 	}
@@ -42,6 +41,7 @@ public class Position {
 
 	@Override
 	public String toString() {
-		return "Position [position_no=" + position_no + ", position_name=" + position_name + "]";
+		return "Position [position_no=" + position_no + ", position_name=" + position_name + ", rolelist=" + rolelist
+				+ "]";
 	}
 }

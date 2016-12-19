@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
+<!--  
+	작성자	: 김주희
+	작성일	: 2016-12-01
+	목 적  	: 프로젝트 전체 리스트 view, script
+-->	
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -169,7 +173,6 @@
 						success : function(data){
 							
 							$('#projectList').empty();
-		                    //var project ="";
 								
 							$.each(data.project, function(index){ //목록에 띄울 데이터들
 			                           makeTable += "<tr><td>"+data.project[index].emp_name+"</td><td>"+data.project[index].dept_name +
@@ -234,7 +237,6 @@
 					 "<tr><th>책임자</th><th>부   서</th><th>제   목</th><th>내   용</th><th>시작일</th><th>종료일</th><th>진행률</th><th>진행단계</th></tr>"+
 					 "</thead><tbody>";
 					 
-	            // var project ="";
 					$.each(data.project, function(index){ //목록에 띄울 데이터들
 	                       makeTable += "<tr><td>"+data.project[index].emp_name+"</td><td>"+data.project[index].dept_name +
 	                       "</td><td><a href='projectDetail.do?pj_no="+data.project[index].pj_no+"'>"+data.project[index].pj_title+"</a></td><td>"+data.project[index].pj_content+
@@ -271,7 +273,6 @@
  
  
 	$('#search_select').change(function(){ //select 변경될때
-		//console.log('select 체인지');
 		if($('#search_select').val() == 's.pj_step_no'){
 			$('#search-input').empty();
 			$('#search-input').append('<select class="form-control input-sm" name="step_name" id="input_text">'+

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!--  
+	작성자	: 이상원
+	작성일	: 2016-11-22
+	목 적  	: 조직도  list view
+--> 
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -87,7 +92,7 @@
 			<div class="color-line"></div>
 			<div class="modal-header text-center">
 				<h4 class="modal-title">
-					<img alt="logo" class="img-circle m-b" src="images/a3.jpg" style="width: 82px; height: 82px;">
+					<img alt="logo" class="img-circle m-b" src="${pageContext.request.contextPath}/img/upload/${elist.pic}" style="width: 82px; height: 82px;">
 				</h4>
 				<br> <font class="font-bold" size="2em"> <font style="color: gray;">${elist.emp_name}&nbsp;${elist.emp_no}</font><br> 
 				<font style="color: #9d9fa2">${elist.branch_name} > <br>${elist.dept_name} > ${elist.low_dept_name}</font> 

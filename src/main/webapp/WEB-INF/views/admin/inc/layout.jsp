@@ -151,9 +151,9 @@ toastr.options = {
          "positionClass": "toast-top-center",
          "preventDuplicates": false,
          "onclick": null,
-         "showDuration": "300",
+         "showDuration": "1000",
          "hideDuration": "1000",
-         "timeOut": "2000",
+         "timeOut": "5000",
          "extendedTimeOut": "1000",
          "showEasing": "swing",
          "hideEasing": "linear",
@@ -216,6 +216,16 @@ toastr.options = {
 	});
 	
 	
+	// 시간 딜레이 함수
+	function wait(msecs) {
+		var start = new Date().getTime();
+		var cur = start;
+		
+		while(cur - start < msecs) {
+			cur = new Date().getTime();
+		}
+	};
+	
 	$('#giveBtn').click(function(){
 		
     	var arr = new Array();
@@ -239,8 +249,7 @@ toastr.options = {
 	
     var param = JSON.stringify(arr);
     
-		$.ajax(
-				   {
+		$.ajax({
 						url : "give_authority.do",
 						type: "post",
 						data : {
@@ -253,10 +262,10 @@ toastr.options = {
                                 type: "success"
                             });	
                             
+                            wait(3000);
                             window.location.reload();
 						}
-		           }
-		      );
+		           });
 	});
 </script>
 </body>

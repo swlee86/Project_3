@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="normalheader transition animated fadeIn">
+<!--  
+	작성자	: 박지은
+	작성일	: 2016-11-21
+	목 적  	: 주소록 그룹 관리 view
+-->
+<div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
 			<a class="small-header-action" href="">
@@ -18,7 +23,7 @@
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">개인 주소록</h2>
-			<small>회원 마다 가질수 있는 주소록입니댜.</small>
+			<small>회원 마다 가질수 있는 주소록입니다.</small>
 		</div>
 	</div>
 </div>
@@ -26,32 +31,6 @@
 
 <div class="content animate-panel">
 	<div class="row">
-		<!-- <div class="col-md-3">
-			<div class="hpanel panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-				<div class="panel-body">
-					<a class="btn w-xs btn-success btn-block" href="enroll.do">주소록 등록</a>
-				</div>
-				<div class="panel-body">
-					<h4 class="m-t-none m-b-none" style="font-size:1em">
-						<a href="contacts.do">전체 주소록</a>
-					</h4>
-				</div>
-				<div class="panel-body">
-					<a data-toggle="collapse" data-parent="#accordion" href="#q1" aria-expanded="true"> <i class="fa fa-chevron-down pull-right text-muted"></i>  <b>개인 주소록 그룹</b>
-					</a>
-					<div id="q1" class="panel-collapse collapse">
-						<hr>
-						그룹
-					</div>
-				</div>
-				<div class="panel-body" style="text-align: center">
-					<a class="btn w-xs btn-outline btn-success btn-block" href="contacts_group.do">
-						주소록 그룹 관리
-					</a>
-				</div>
-			</div>
-		</div> -->
-		
 		<div class="col-md-3">
 			<div class="hpanel panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel-body">
@@ -74,11 +53,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/line.PNG" class="grouplineimg"><img src="${pageContext.request.contextPath}/img/fileimg.png" style="width:14px;height:14px;">&nbsp;&nbsp;<a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a><br>	
 									</c:otherwise>
 								</c:choose>
-		
-								<%-- <li><a href="" class="contact_list_group_class" id="${g.group_no}">${g.group_name}</a></li>	 --%>
 							</c:forEach>
-						
-						
 					</div>
 				</div>
 				<div class="panel-body" style="text-align: center">

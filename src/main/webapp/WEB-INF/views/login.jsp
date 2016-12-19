@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String test = (String)session.getAttribute("googlemail");
-%>
+<!--  
+	작성자	: 박성준
+	작성일	: 2016-12-05
+	목 적  	: 로그인 화면 layout, css
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,7 +86,7 @@ small {
 						<div class="text-center m-b-md">
 							<div id="page-top">
 								<div class="heading">
-									<h3 style="color: white">로그인</h3>
+									<h3 style="color: white"><B>Login</B></h3>
 									<small>WelCome 2pm! 
 										<c:if test="${param.error != null}">
 											<div>
@@ -103,62 +105,55 @@ small {
 								<form action="${pageContext.request.contextPath}/login"
 									id="loginForm" method="POST" name="f">
 									<div class="form-group">
+									
 										<label class="control-label" for="username"
 											style="color: black;">아이디</label> <input type="text"
 											title="Please enter you username" required="required"
-											placeholder="구글 로그인 후 이용하세요" readonly="readonly"
-											name="username" id="username" value="" class="form-control">
+											name="username" id="username" class="form-control">
 										<span class="help-block small">
 										</span>
 									</div>
+									
 									<div class="form-group">
 										<label class="control-label" for="password"
 											style="color: black;">비밀번호</label> <input type="password"
 											title="Please enter your password" placeholder="******"
 											required="required" value="" name="password" id="password"
-											class="form-control"> <span class="help-block small">비밀번호를 입력하세요
+											class="form-control"> <span class="help-block small"><!-- 비밀번호를 입력하세요 -->
 											</span>
 									</div>
+									<br>
 									<div style="text-align: center;">
-										<div class="row">
-												<div class="col-md-offset-4 col-md-4">
+										<div class="row ">
+												<div class=" col-md-12">
 														<div class="g-signin2" data-onsuccess="onSignIn"
 														style="display: block;"></div>
 												</div>
 										</div>	
 									</div>
-									<div style="text-align:center">
-										<div class="row">	
-												<div class="col-md-offset-4 col-md-4" id="logOutDiv">
-													<%-- <input type="hidden" name="loginRedirect"
-														value="${loginRedirect}" /> <a class="btn btn-default"
-														href="#" id="googlelogout"
-														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-														로그아웃</a> --%>
-														<input type="hidden" name="loginRedirect"
-														value="${loginRedirect}" /> <a class="btn btn-default"
-														href="#" id="googlelogout"
-														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글
-														로그아웃</a>
-												</div>
-											
-										</div>
-									</div>
-									
-									<br />
-									<br />
-									<div style="text-align: center;">
+									<br>
+
+
 										<div class="row">
 										<div class="col-md-12">
-											<div class="pull-right">
-												<a data-toggle="modal"
+											<div class="col-md-4" id="logOutDiv">
+												
+														<input type="hidden" name="loginRedirect"
+														value="${loginRedirect}" /> <a 
+														href="#" id="googlelogout"
+														onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">
+														<B style="color:gb(54, 109, 133);"><i class="fa fa-google-plus"></i>&nbsp; logout</b></a>
+											</div>
+												
+											<div class="col-md-4 pull-right">
+												<a data-toggle="modal" 
 													data-target="#findId">ID </a>&nbsp;/&nbsp;<a
 													data-toggle="modal" data-target="#findPw">PWD 찾기</a>
 											
 											</div>
 											</div>
 										</div>
-									</div>
+
 									<hr>
 
 									<input type="submit" class="btn btn-success btn-block"
@@ -353,7 +348,7 @@ small {
 							<div class="row">
 								<div class="col-lg-12">
 									<input type="text" id="email" 
-										class="form-control" name="email">
+										class="form-control" name="email" readonly="readonly">
 								</div>
 							</div>
 						</div>
@@ -418,43 +413,31 @@ small {
 
 
 	<script>
-	
-	
-		/* var auth2 = gapi.auth2.getAuthInstance(); */
-	
+
 	$(function(){
-		
-		/* if($('#username').val() == ''){
-			$('#logOutDiv').hide();
-		}else{
-			$('#logOutDiv').show();
-		} */
-		
+
 		//회원 가입 버튼 클릭시 처음 실행되는 아작스 함수.
 		$('#addMemberAjaxAtag').click(function(){
+			alert("아이디 : >"+$('#username').val()+"<");
 			
-			if($('#username').val() != ''){
-			
-			$.ajax({
-				url : "addMember.do",
-				type : "GET",
-				success : function(data){
-					console.log("성공시 : "+data.choose);
-					if(data.choose == '1'){
-						alert(data.data);
-					}else{
-						console.log("엘스탐 : "+data.success);
-						alert(data.success);
-						$('#AddMemberForm').modal();
-						$('#googleId').val(data.registerGoogleId);
-						$('#email').val(data.registerGoogleMail);
-					}
-				}
-			});
-			
-			}else{
-				alert("구글 아이디로 로그인 해주세요!");
-			}
+			 if($('#username').val()==null || $('#username').val()=='' ||$('#username').val()==""){
+				 alert("구글 아이디로 로그인 해주세요!");
+			 }else{
+				   $.ajax({
+						url : "addMember.do",
+						type : "GET",
+						success : function(data){
+							if(data.choose == '1'){
+								alert(data.data);
+							}else{
+								alert(data.success);
+								$('#AddMemberForm').modal();
+								$('#googleId').val(data.registerGoogleId);
+								$('#email').val(data.registerGoogleMail);
+							}
+						}
+					});
+			 }
 		});
 		
 		//비밀번호 찾기 모달 실행시 
@@ -558,13 +541,13 @@ small {
 	}
 	
 	 function signOut() {
-		  	alert("로그아웃 버튼 클릭 !");
+		
 			$.ajax({
 				url : "sessionOut.do",
 				success : function(data){
 					alert(data.result);
 				}
-			});
+			}); 
 		  	var auth2 = gapi.auth2.getAuthInstance();
 		    auth2.signOut().then(function () {
 		      console.log('User signed out.');
@@ -617,11 +600,14 @@ small {
 	  
 	  $(function(){
 		  $('#googlelogout').click(function(){
-			  $('#username').val("구글 로그인 후 이용하세요");
+			 // $('#username').val("구글 로그인 후 이용하세요");
+			 $('#username').val('');
+			 var test = $('#username').val();
+	
 		  });
 		  
 		  $('#numchk').click(function() {
-			  alert("아이디 검사 !!  :  "+$('#emp_no').val());
+			  
 				$.ajax({
 					type : "post",
 					url : "numchk.do",

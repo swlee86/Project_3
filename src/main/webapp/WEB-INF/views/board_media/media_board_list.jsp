@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+<!--  
+	작성자	: 박지은, 김주희
+	작성일	: 2016-11-18
+	목 적  	: 언론게시판 리스트 view
+-->
     <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
@@ -115,8 +121,10 @@
 							</tbody>
 						</table>
 						<div class="row" style="text-align: right; margin-right: 5px;">
+              			<se:authorize access="hasRole('ROLE_MEDIA')">
 							<button type="button" class="btn w-xs btn-success" onclick="location.href='media_board_write.do'" style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">글
 								등록</button>
+						</se:authorize>
 						</div>
 					</div>
 

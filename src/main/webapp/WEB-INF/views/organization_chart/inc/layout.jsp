@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>   
+<!--  
+	작성자	: 이상원, 박성준
+	작성일	: 2016-11-22
+	목 적  	: 조직도  layout, css, script 기능
+--> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,9 +16,6 @@
 
     <!-- Page title -->
     <title>2PM</title>
-
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
 
     <!-- Vendor styles -->
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.css" />
@@ -32,9 +34,6 @@
 
 <!-- Simple splash screen-->
 <div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
-<!--[if lt IE 7]>
-<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
 
 <!-- Header -->
 <tiles:insertAttribute name="header" />
@@ -83,9 +82,7 @@
         
         
     	//조직도 아이콘 클릭시
-    	$('#organicSelect').click(function(){
-    	
-    		
+    	$('#organicSelect').click(function(){	
     		$('#organization').empty();
     		$('#empList').empty();
     		
@@ -113,8 +110,6 @@
 						litag +="</ul>";
     					
     					$('#organization').html(litag);
-    					
-
     			}
     		})
     	});
@@ -123,15 +118,12 @@
 
 //부서 출력 하는 아작스
 function seeDepart(obj, choose) {
-	
-	console.log("부서 출력 함수는 ????? "+obj  + "  /  choose ???? : "+choose);
 	//전역 부서 선택시
     departcho = choose;
 	var div_id = "dept_div"+choose;
 	$("#"+div_id).empty();
 	var litag = "<ul style='list-style:none; padding:10px;'>";
-	
-	console.log(div_id);
+
 	var name = $(obj).text();
 
 	$.ajax({
@@ -142,7 +134,6 @@ function seeDepart(obj, choose) {
 		},
 		success : function(data) {
 			var dept;
-			console.log(data);
 			$.each(data, function(index) {
 				dept = data[index];
 			});
@@ -171,7 +162,6 @@ function seeDepart(obj, choose) {
 
 //하위 부서 클릭시
 function seelow_Depart(obj,departcho) {
-	//alert("부서 : "+choose);
 	deptNumber= departcho;
 	var div_id = "low_dept_div"+departcho;
 	$("#"+div_id).empty();
@@ -214,8 +204,6 @@ function seelow_Depart(obj,departcho) {
 function seeEmpMember(obj,low_dept_no){
    //체크
    var empListNumber = low_dept_no;
-   //alert("사원뽑기 : "+empListNumber);
-   
    
    //클릭한 text 값 뽑아옴.
    var low_dept = $(obj).text();
@@ -269,16 +257,13 @@ function seeEmpMember(obj,low_dept_no){
                    //부서 전화번호
                    $('#phone').html('');
                    //부서 팩스번호
-                   $('#fax').html('');
-                   
+                   $('#fax').html('');         
                    //부서 이름
-                   $('#deptName').html('');
-                   
+                   $('#deptName').html('');                   
                    //총인원수
                    $('#total').html('');
                }
-              
-              	
+                      	
                $('#empList').empty();
                $('#empList').append(makeTable);
              }    

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<!--  
+	작성자	: 이상원, 김주희
+	작성일	: 2016-11-18
+	목 적  	: 업무정보게시판 답글쓰는 view
+-->
+
     <div class="normalheader transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
@@ -11,12 +17,12 @@
 
             <div id="hbreadcrumb" class="pull-right m-t-lg">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="index.html">홈</a></li>
                     <li>
-                        <span>App views</span>
+                        <span>게시판</span>
                     </li>
                     <li class="active">
-                        <span>Contacts</span>
+                        <span>업무 정보 공유 게시판</span>
                     </li>
                 </ol>
             </div>

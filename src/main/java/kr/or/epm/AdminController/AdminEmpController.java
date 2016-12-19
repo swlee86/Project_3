@@ -1,5 +1,6 @@
 package kr.or.epm.AdminController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import kr.or.epm.Service.AdminEmpService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
+import kr.or.epm.VO.Emp_role;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.Role;
 
@@ -29,31 +31,44 @@ public class AdminEmpController {
 
 	// 사원 정보 리스트 출력 페이지
 	@RequestMapping(value="/adminEmp_list.do", method=RequestMethod.GET)
-	public String adminEmp_list(Model model, String pagesize, String currentpage) {
-		System.out.println("CONTROLLER] 사원 정보 리스트 출력 페이지");
+	public String adminEmp_list(Model model, String pagesize, String currentpage, String f, String q ) {
 		int pagecount = 0;
 		
 		// default값 설정
 		if(pagesize == null || pagesize.trim().equals("")) {
-			// default로 10건씩 확인
-			pagesize = "10";
+			pagesize = "5";
 		}
 		if(currentpage == null || currentpage.trim().equals("")) {
-			// default로 1번 페이지 설정
 			currentpage = "1";
+		}
+		
+		// 검색
+		String field = "emp_no";
+		String query ="%%";
+		
+		if(f != null && !f.equals("")){
+			field = f;
+		}
+		if(q != null && !q.equals("")){
+			query = q;
 		}
 		
 		int pgsize = Integer.parseInt(pagesize);
 		int cpage = Integer.parseInt(currentpage);
 		
-		List<Emp> list = service.selectEmpList(cpage, pgsize);
-		int totalcount = list.size();
-				
+		//전체 갯수 구하는 함수
+		int totalcount = service.selectCount(field, query); 
+		
 		if (totalcount % pgsize == 0) {
 			pagecount = totalcount / pgsize;
 		} else {
 			pagecount = (totalcount / pgsize) + 1;
 		}
+		
+		List<Emp> list = service.selectEmpList(cpage, pgsize,field, query);
+		
+		model.addAttribute("field", field);
+		model.addAttribute("query", query);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("cpage", cpage);
@@ -67,17 +82,19 @@ public class AdminEmpController {
 	// 사원 등록 페이지
 	@RequestMapping(value="/adminAdd_member.do", method=RequestMethod.GET)
 	public String adminAdd_member(Model model) {
-		System.out.println("CONTROLLER] 사원 등록 페이지");
-		
+		// 새로운 사원 번호 채번
 		String newEmp_no = service.selectNew_emp_no();
 		model.addAttribute("emp_no", newEmp_no);
 		
+		// 근무 상태 리스트
 		List<Emp_cg> emp_cg_list = service.selectEmp_cg_list();
 		model.addAttribute("emp_cg", emp_cg_list);
 		
+		// 직위 리스트
 		List<Position> position_list = service.selectPostion_list();
 		model.addAttribute("position", position_list);
 		
+		// 지점 리스트
 		List<Branch> branch_list = service.selectBranch_list();
 		model.addAttribute("branch", branch_list);
 		
@@ -87,8 +104,7 @@ public class AdminEmpController {
 	// 사원 탈퇴 페이지
 	@RequestMapping(value="/adminWithdrawal.do", method=RequestMethod.GET)
 	public String adminWithdrawal(Model model) {
-		System.out.println("CONTROLLER] 사원 탈퇴 요청 페이지");
-		
+		// 탈퇴 요청자 출력
 		List<Emp> list = service.selectEmp_withdrawal();
 		model.addAttribute("withdrawal", list);
 		
@@ -96,10 +112,8 @@ public class AdminEmpController {
 	}
 	
 	// 사원 권한 부여 페이지
-	@RequestMapping(value="adminEmp_authority.do", method=RequestMethod.GET)
+	@RequestMapping(value="/adminEmp_authority.do", method=RequestMethod.GET)
 	public String adminAuthority(Model model) {
-		System.out.println("CONTROLLER] 사원 권한 부여 페이지");
-		
 		// 직위 리스트 불러오기
 		List<Position> plist = service.selectPostion_list();
 		
@@ -115,5 +129,40 @@ public class AdminEmpController {
 		model.addAttribute("rlist", rlist);
 		
 		return "adminMember.adminAuthority";
+	}          
+	
+	// 사원 권한 상세 부여 페이지
+	@RequestMapping(value="/adminAuthority_detail.do", method=RequestMethod.GET)
+	public String adminAuthority_detail(String position_no, Model model) {
+		// 해당 직위의 사원 리스트 불러오기
+		List<Emp> elist = service.selectEmp_authority(position_no);
+		
+		String emp_no = "";
+		List<Emp_role> rlist = new ArrayList<Emp_role>();
+		
+		for(int i=0; i<elist.size(); i++) {
+			emp_no = elist.get(i).getEmp_no();
+			
+			// 해당 사원의 권한 리스트 불러오기
+			rlist = service.selecEmp_role(emp_no);
+			elist.get(i).setRolelist(rlist);
+		}
+		model.addAttribute("elist", elist);
+		
+		// 전제 권한 리스트 불러오기
+		List<Role> role = service.selectRole();
+		model.addAttribute("role", role);
+		
+		return "adminMember.adminAuthority_detail";
+	}
+	
+	// 사원 정보 수정 페이지
+	@RequestMapping(value="/adminEmp_detail.do", method=RequestMethod.GET)
+	public String adminEmp_detail(String emp_no, Model model) {
+		// 사원 상세 정보 불러오기
+		Emp detail = service.selectEmp_detail(emp_no);
+		model.addAttribute("detail", detail);
+		
+		return "adminMember.adminEdit";
 	}
 }

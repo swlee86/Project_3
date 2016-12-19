@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<!--  
+	작성자	: 이상원, 김주희
+	작성일	: 2016-11-18
+	목 적  	: 업무정보게시판 글 수정 view
+-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -62,26 +67,6 @@
 									</div>
 								</div>
 							</div>
-							<%-- <div class="form-group">
-								<label class="col-sm-1 control-label text-left"> 첨부<br>파일 :
-								</label>
-								<div class="col-sm-11">
-									<div class="btn-group">
-										<button class="btn btn-default" id="clip" type="button">
-											<i class="fa fa-paperclip"></i>
-										</button>
-										<input type="file" name="uploadfile" id="clipfile" value="${list.file_name}" style="display:none;float:left" class="form-control input-xs">
-										
-								// 		<button class="btn btn-default" id="img" type="button">
-											<i class="fa fa-image"></i>
-										</button>
-										<input type="file" name="file_name[1]"  id="imgfile"style="display:none" class="form-control input-xs"> //
-									</div>
-								</div>
-							</div> --%>
-						
-
-
 					</div>
 				</div>
 				<div class="panel-body no-padding">

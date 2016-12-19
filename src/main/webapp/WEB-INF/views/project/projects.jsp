@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!--  
+	작성자	: 김주희
+	작성일	: 2016-12-01
+	목 적  	: 프로젝트 상세 리스트 view
+-->
 <!--프로젝트 상세 카드형식-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
@@ -18,7 +23,7 @@
 					<li class="active"><span>상세 프로젝트</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">상세 프로젝트</h2>
+			<h2 class="font-light m-b-xs">상세 프로젝트 &nbsp;<a href="javascript:history.back()" ><i class="pe-7s-back text-info"></i></a></h2>
 			<small>진행 중인 프로젝트의 상세 내용을 확인하실 수 있습니다</small>
 		</div>
 	</div>
@@ -117,7 +122,7 @@
 	</div>
 </div>
 
-<!-- modal창 -->
+
 <div class="modal fade hmodal-success" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog  modal-sm">
 		<div class="modal-content">

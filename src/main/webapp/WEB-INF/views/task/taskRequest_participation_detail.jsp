@@ -155,7 +155,7 @@
 								
 								<br><br>
 								
-								<!-- 권한이 없으면 hidden -->
+								<c:if test="${ session_emp_no == db_rec_emp_no }">
 								<table class="table table-bordered" style="margin-top: 0px; border: 6px solid #e9ecef;">
 									<tr>
 										<th colspan="2" 
@@ -201,8 +201,8 @@
 										</td>
 									</tr>
 								</table>
-								<!-- ------------------------- -->
-
+								</c:if>
+								
 								<div class="pull-right" style="text-align: center;">
 									<input type="submit" class="btn btn-sm btn-success" value="처리하기"
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">

@@ -26,7 +26,6 @@ public class MailController {
 	@RequestMapping(value="maillogin.do", method=RequestMethod.GET)
 	public String maillogin(HttpSession session, Model model){
 		String email = (String)session.getAttribute("googlemail");
-		System.out.println("email데이터 확인 : " + email);
 		
 		model.addAttribute("email", email);
 		return "mail.maillogin";
@@ -45,7 +44,6 @@ public class MailController {
 	@RequestMapping(value="mailsendlogin.do", method=RequestMethod.GET)
 	public String mailsend(HttpSession session, Model model){
 		String email = (String)session.getAttribute("googlemail");
-		System.out.println("email데이터 확인 : " + email);
 		
 		model.addAttribute("email", email);
 		return "mail.maillogin";
@@ -64,7 +62,6 @@ public class MailController {
 	@RequestMapping(value="sendlistlogin.do", method=RequestMethod.GET)
 	public String mailsendlist(HttpSession session, Model model){
 		String email = (String)session.getAttribute("googlemail");
-		System.out.println("email데이터 확인 : " + email);
 		model.addAttribute("email", email);
 		return "mail.maillogin";
 	}
@@ -119,8 +116,6 @@ public class MailController {
              
     	   String saveFolder="/mail/data";
     	   String filePath = request.getRealPath(saveFolder); 
-    	   System.out.println("경로 : " + filePath);
-    	   System.out.println("메일함 메일 정보 : " + mailid);
     	   List<Mail> mail =  null;
     	   try{
 
@@ -148,7 +143,6 @@ public class MailController {
 	public String mailbox_composeview(HttpSession session) {
 		
 		String sessionchk = (String) session.getAttribute("mailusedata");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$메일 ????  : "+sessionchk);
 		boolean test = Util.isEmpty(sessionchk);
 
 		if (test == true) {
@@ -169,7 +163,6 @@ public class MailController {
 	@RequestMapping("/mailbox_send.do")
 	public String mailbox_send(Model mv, HttpSession session) {
 	       String mailid = (String)session.getAttribute("googlemail");
-	       System.out.println("보낸 메일함 페이지 이동때 사용됨 ~~!!!!!!!!!!!!!!!!!!!!"+mailid);
 		   String sessionchk=(String)session.getAttribute("mailusedata");
 	       boolean test = Util.isEmpty(sessionchk);
 	       List<Mail> sendlist = null;
@@ -179,15 +172,12 @@ public class MailController {
 			}else{
 				try{
 					sendlist = mailservice.mailsendlist(mailid);	
-					System.out.println(sendlist.toString());
 				}catch(Exception e){
 					e.printStackTrace();
 				}finally{
 					mv.addAttribute("maillist", sendlist);
 				}
-			
 			}
-		
 		return "mail.mailbox_send";
 	}
 	

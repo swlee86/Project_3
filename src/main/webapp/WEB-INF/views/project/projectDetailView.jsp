@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
+<!--  
+	작성자	: 김주희
+	작성일	: 2016-11-18
+	목 적  	: 프로젝트 상세의 상세 보기 view
+-->	
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -15,10 +19,10 @@
 					<li><a href="index.do">홈</a></li>
 					<li><a href="project_list.do">전체 프로젝트</a></li>
 					<li><a href="projectDetail.do?pj_no=${pjd.pj_no}">상세 프로젝트</a></li>
-					<li><a href="#">상세프로젝트의 상세보기 </a></li>
+					<li><a href="#">상세프로젝트의 상세보기 </a> </li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">상세프로젝트의  상세보기</h2>
+			<h2 class="font-light m-b-xs">상세프로젝트의  상세보기 &nbsp;<a href="javascript:history.back()" ><i class="pe-7s-back text-info"></i></a></h2>
 			<small>진행 중인 상세 프로젝트 내용을 확인하실 수 있습니다</small>
 		</div>
 	</div>
@@ -47,7 +51,7 @@
 						<div align="right">
 							<p>
 								<i class="pe-7s-pen"></i>
-								진행상태수정/내용수정은 책임자에게 문의하세요
+								진행단계수정/내용수정은 책임자에게 문의하세요
 							</p>
 						</div>
 						<table  id="pjd_detail_table" cellpadding="1" cellspacing="1" class="table table-bordered "  style="margin-bottom:0px;">
@@ -56,7 +60,7 @@
                               	<td id="pjd_name" width="35%">
                               		<input type="text" class="form-control table-input input-sm" id="pjd_title" value="${pjd.pjd_title}" disabled="disabled" style="border: 0px; background-color: white;">
                               	</td>
-                              	<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">진행 상태</th>
+                              	<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:15%">진행 단계</th>
                               	<td id="pjd_step" width="35%">
 		                        	<div class="form-group">
 				    	            	<select class="form-control input-sm table-input input-sm" id="step_no" disabled="disabled">	
@@ -140,6 +144,7 @@
 									<input type="button" id="add_btn" class="btn btn-success" value="추가" >
 								</c:if>
 							</div>
+							
 					</div>
 				</div>
 			</div>
@@ -160,8 +165,6 @@ $(function(){
 	
 	//추가버튼누를때
 	$('#add_btn').click(function(){
-		
-		//alert(index);
 		
 		var appendTable="<tr class='add_table' id='add_btn_tr_"+index+"'><td align='center'><input type='checkbox' class='icheckbox_square-green'></td>"+
 						"<td><input type='text' class='form-control input-sm' id='add_txt_"+index+"'></td>"+
@@ -194,18 +197,7 @@ $(function(){
 			  "hideMethod": "fadeOut"
 	        };
 	 
-		//날짜 필수. 제목필수, 내용 필수, 책임자 필수
-		$('#modify_pjd_btn').click(function(){
-			if($('#modify_pjd_btn').val()=="수정완료"){
 
-				
-			}
-			
-			
-			
-		});
-	
-	
 })
 //추가완료 버튼 눌렀을때
 function addclick(id){
@@ -224,9 +216,7 @@ function addclick(id){
 						"pjdd_content" : add_content,
 					},
 					success : function(data){
-						console.log(data);
 					
-							
 						$.ajax(
 								{
 									url : "updatepjddtable.do",
@@ -234,12 +224,11 @@ function addclick(id){
 										"pjd_no" : pjd_no,	
 									},
 									success : function(data){
-										console.log(data.data);
 										var appendTable ="";
 										var pjdd = "";
 							            $.each(data, function(index){
 							            	pjdd = data[index];
-							                console.log(pjdd);
+							          
 							            });
 							               
 							            $.each(pjdd, function(index){
@@ -279,7 +268,6 @@ function addclick(id){
 				
 		}
 		progress = Math.floor(progress);	
-		console.log("pjd_no:>"+pjd_no+"<  pjd_progress:>"+progress+"<");
 		
 		var pjd_no = ${pjd_no};
 	 	$.ajax(
@@ -290,7 +278,7 @@ function addclick(id){
 						"pjd_progress" : progress,
 					},
 					success : function(data){
-						console.log(data);
+					
 					}
 				}
 		); 
@@ -310,7 +298,6 @@ function modify_pjdd(id){
 	val = $.trim(val);
 	
 	var checked = $('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("checked");
-	console.log("체크여부 : " + checked);
 	
 	if(checked=="undefined"){
 		checked="false";
@@ -324,15 +311,13 @@ function modify_pjdd(id){
 			$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",false);
 		}
 		var content = $('#modify_td_'+modify_i).html();
-		console.log("content : " + content);
 		
 		$('#modify_td_'+modify_i).empty();
 		
 		var appnedtd ="";
 		appnedtd = "<input type='text' class='form-control input-sm' value='"+content+"'>";
 		$('#modify_td_'+modify_i).append(appnedtd);
-
-		
+	
 	}
 	if(val=="수정완료"){
 		$('#modify_btn_'+modify_i).val("수정");
@@ -340,8 +325,7 @@ function modify_pjdd(id){
 		$('#modify_tr_check_'+modify_i).children(".icheckbox_square-green").prop("disabled",true);
 		
 		var content = $('#modify_td_'+modify_i).children().val();
-		console.log("content : " + content);
-		
+
 		$('#modify_td_'+modify_i).empty();
 		
 		var appnedtd ="";
@@ -362,8 +346,7 @@ function modify_pjdd(id){
 				
 		}
 		progress = Math.floor(progress);
-		
-		console.log("pjd_no:>"+pjd_no+"<  pjd_progress:>"+progress+"<");
+
 		//alert(progress);
 		var pjd_no = ${pjd_no};
 	 	$.ajax(
@@ -374,7 +357,7 @@ function modify_pjdd(id){
 						"pjd_progress" : progress,
 					},
 					success : function(data){
-						console.log(data);
+						
 					}
 				}
 		); 
@@ -447,9 +430,7 @@ function modify_pjd(){
 			return false;
 		}
 		
-		
-		//alert("pjd_no" + pjd_no + "/ pjd_title" + pjd_title + "/ pjd_content "+pjd_content + "/ pj_step_no"+ pj_step_no + "/ pjd_start" + pjd_start + "/ pjd_end" + pjd_end);
-		
+
 	 	$.ajax(
 				{
 					url  : "updatePjd.do",

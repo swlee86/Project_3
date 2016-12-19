@@ -34,7 +34,7 @@
 		<div class="col-lg-12">
 			<div class="hpanel">
 				<div class="panel-body">
-					<form class="form-horizontal">
+					<form class="form-horizontal" method="post">
  						<div class="row">
 							
 							<div class="form-group col-lg-12">
@@ -60,8 +60,11 @@
 						</div>
 						
 						<div class="text-center">
- 								<button class="btn btn-success" data-toggle="modal" data-target="#myModal" id="withdrawal">탈퇴하기</button>
- 
+<!--  								<button class="btn btn-success" data-toggle="modal" data-target="#myModal" id="withdrawal">탈퇴하기</button>
+ --> 
+<!--  								<a href="" data-toggle="modal" data-target="#myModal" id="withdrawal" class="btn btn-success">탈퇴하기</a>
+ --> 
+ 	 								<button  id="withdrawal" class="btn btn-success" type="submit">탈퇴하기</button>
  								<button class="btn btn-default" style="margin-left: 10px;">취소하기</button>
 						</div>
 					</form>

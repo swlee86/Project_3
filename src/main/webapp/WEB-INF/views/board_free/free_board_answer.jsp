@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!--  
+	작성자	: 이상원, 김주희
+	작성일	: 2016-11-21
+	목 적  	: 자유게시판 답변 view
+-->	
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -11,13 +16,13 @@
 
 			<div id="hbreadcrumb" class="pull-right m-t-lg">
 				<ol class="hbreadcrumb breadcrumb">
-					<li><a href="index.html">Dashboard</a></li>
-					<li><span>App views</span></li>
-					<li class="active"><span>Mailbox</span></li>
+					<li><a href="index.html">홈</a></li>
+					<li><span>게시판</span></li>
+					<li class="active"><span>자유게시판</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">사원 정보 공유 게시판</h2>
-			<small>답글 쓰기</small>
+			<h2 class="font-light m-b-xs">자유게시판</h2>
+			<small>회사내 자유 게시판입니다</small>
 		</div>
 	</div>
 </div>

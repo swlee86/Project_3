@@ -15,9 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       from low_dept 
       where dept_no=#{dept_no} and his_check='1'
     </select>
-
     
-
 	<!-- 하위 부서 조회하기-->
 	<select id="selectLow_dept" resultType="kr.or.epm.VO.Low_dept">
 		select branch_name, dept_name, low_dept_name
@@ -33,7 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from low_dept
 		where low_dept_no = #{low_dept_no} and his_check = '1'
 	</select>
-	
 	
 	<!--하위부서 조회하기 2)홈페이지  -->
 	<select id="selectHomePage" resultType="kr.or.epm.VO.Set_homepage">
@@ -62,12 +59,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   '2')
 	</insert>
 	
-		
 	<!--등록된 하위부서 번호 조회하기 2)-->
 	<select id="select_add_no" resultType="String">
 		select low_dept_no from low_dept where dept_no=#{dept_no} and low_dept_name=#{low_dept_name} and his_check='1'
 	</select>
-	
 	
 	<!--하위 부서 등록하기 3)  -->
 	<insert id="insert_homepage" parameterType="kr.or.epm.VO.LowDeptJoin">

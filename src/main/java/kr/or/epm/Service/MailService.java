@@ -34,10 +34,6 @@ public class MailService {
 		String recipient = recipients; // 수신자 메일 주소
 		String subject = subjects; // 제목
 		String body = bodys; // 본문
-		System.out.println("수신자 : " + recipient);
-		System.out.println("제목 : " + subject);
-		System.out.println("본문 : " + body);
-		System.out.println("발송자 : " + mailid);
 		
 		
 		

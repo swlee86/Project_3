@@ -163,7 +163,7 @@ public class Break {
 	}
 
 	public String getDraft_content() {
-		return draft_content;
+		return draft_content.replace("\r\n","<br>");
 	}
 
 	public void setDraft_content(String draft_content) {

@@ -1,22 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+        <script>
+function pagePrint(obj){
+	var w = obj.offsetWidth;
+	var h = obj.offsetHeight;
+	
+	var features = "menubar=no,toolbar=no,location=no,directories=no,scrollbars=yes,resizable=yes,width="+w+",height="+h+",left=0,top=0";
+	var PrintPage = window.open("about:blank",obj.id.features);
+	
+	PrintPage.document.open();
+	PrintPage.document.write("<html><head> <h4><img alt='로고' src='img/logo1.png'></h4><title>d</title><style type='text/css'>body,tr,td,input,textarea{font-family:Tahoma;font-size:11pt;}</style>\n</head>\n<body>"+obj.innerHTML+"\n</body></html>");
+	PrintPage.document.close();
+	
+	PrintPage.document.title = document.domain;
+	PrintPage.print(PrintPage.location.reload());
+}
+</script>
 <div class="normalheader transition animated fadeIn media-body">
 <div class="content animate-panel content-boxed">
 <div style="margin: 10px;">
 	<span class="up_btn">
-		<a class="btn btn-outline btn-primary btn-m bgcolor" aria-controls="print">
-			<span>Print</span>
+		<a class="btn btn-outline btn-primary btn-m bgcolor" aria-controls="print" onclick="pagePrint(document.getElementById('print_page'))">
+			<i class="pe-7s-print"></i>&nbsp;
 		</a>
 	</span>
+	
+	<c:forEach var="list" items="${ db_emp_no_list }">
+	<c:if test="${ list == session_emp_no }">
 	<span class="up-btn pull-right">
 		<button class="btn btn-outline btn-primary btn-m bgcolor" data-toggle="modal" data-target="#draft_process_Modal">
 			승인 처리
 		</button>
 	</span>
+	</c:if>
+	</c:forEach>
+	
 </div>
 
-        <div class="row">
+        <div class="row" id="print_page">
             <div class="col-lg-12">
                 <div class="hpanel blog-article-box" id="print">
                     <div class="panel-heading" style="padding-bottom: 15px;">

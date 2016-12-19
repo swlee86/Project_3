@@ -4,6 +4,8 @@ package kr.or.epm.VO;
  * 작성일 : 2016-11-16
  * 작성자 : 백승아
  * 사용 목적 : 메모에 대한 VO
+ *
+ * DTO 추가 2016-11-17 김주희
  */
 
 public class Memo {
@@ -14,7 +16,7 @@ public class Memo {
 	private String memo_date;
 	private String color_no;
 	
-	//DTO 추가 2016-11-17 김주희
+	
 	private String color;
 	private String color_name;
 	
@@ -89,6 +91,4 @@ public class Memo {
 				+ ", memo_date=" + memo_date + ", color_no=" + color_no + ", color=" + color + ", color_name="
 				+ color_name + "]";
 	}
-
-	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.EmployeeRoleManageDAO;
 import kr.or.epm.VO.EmployeeRoleManage;
+import kr.or.epm.VO.EmployeeRoleManageeeeee;
 import kr.or.epm.VO.Role;
 
 @Service
@@ -44,7 +45,6 @@ public class EmployeeRoleManageService {
 	public List<EmployeeRoleManage> selectEmpRoleManage(int cpage, int pgsize) {
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
-		System.out.println(start + " / " + end);
 		EmployeeRoleManageDAO employeerolemanage = sqlSession.getMapper(EmployeeRoleManageDAO.class);
 		List<EmployeeRoleManage> list = employeerolemanage.selectEmpRoleManage(start, end);
 		return list;

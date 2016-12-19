@@ -1,9 +1,11 @@
+
 package kr.or.epm.VO;
 
-
-import java.util.List;
-
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+/*
+ * 작성자 : 박지은
+ * 작성일 : 2016-11-18
+ * 목  적 : MediaBoard vo 
+ */
 
 public class MediaBoard {
 	private String no;

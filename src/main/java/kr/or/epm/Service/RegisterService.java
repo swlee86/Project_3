@@ -8,8 +8,6 @@ import java.util.Locale;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import kr.or.epm.DAO.EmployeeManageDAO;
 import kr.or.epm.DAO.RegisterDAO;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
@@ -29,15 +27,11 @@ public class RegisterService {
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
 		List<Low_dept> list = null;
 		list= registerDao.selectLowDeptNo();
-		System.out.println(list.size());
-		System.out.println(list.get(0).getLow_dept_no());
-		System.out.println(list.get(0).getLow_dept_name());
 		return list;
 	}
 	
 	//관리자 > 사원 등록시 등록을 처리하는 함수(Emp에 insert)
 	public int insertEmp(Emp emp){
-		System.out.println("이엠피가 왜 ??? "+emp.toString());
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
 		int result = registerDao.insertEmp(emp);
 		
@@ -45,7 +39,6 @@ public class RegisterService {
 		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 		Date currentTime = new Date ( );
 		String dTime = formatter.format ( currentTime );
-		System.out.println ( "현재 날짜 :     "+dTime );
 		
 		result += registerDao.insertEmp_his(emp.getEmp_no(), dTime);
 		

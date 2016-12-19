@@ -25,7 +25,7 @@
             <h2 class="font-light m-b-xs">
                 	권한 관리
             </h2>
-            <small>&nbsp;&nbsp;각각의 사원의 권한을 관리할 수 있습니다^^</small>
+            <small>&nbsp;&nbsp;직위의 권한을 관리할 수 있습니다^^</small>
         </div>
     </div>
 </div>
@@ -46,6 +46,7 @@
                     >
                         <div class="panel-heading hbuilt text-center">
                             <h4 class="font-bold">${ plist.position_name }</h4>
+                            <input type="hidden" value="${ plist.position_no }">
                         </div>
                         <div class="panel-body">
                             <table class="table">
@@ -60,9 +61,9 @@
                                 <c:if test="${ rlist.role_no != 0 }">
                                 <tr>
                                     <td>
-                                    	<input type="checkbox" 
-                                    	<c:forEach var="list" items="${ plist.rolelist }" varStatus="status">
-                                    		<c:if test="${ status.index+1 == rlist.role_no }">
+                                    	<input type="checkbox" name="checklist" value="${ rlist.role_no }"
+                                    	<c:forEach var="list" items="${ plist.rolelist }">
+                                    		<c:if test="${ list == rlist.role_no }">
                                     			checked
                                     		</c:if>
                                     	</c:forEach>
@@ -73,11 +74,18 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <button id="applyBtn"
-                            	<c:if test="${ status.index % 4 == 0 }"> class="btn btn-warning btn-sm m-t-xs" </c:if>
-                    			<c:if test="${ status.index % 4 == 1 }"> class="btn btn-success btn-sm m-t-xs" </c:if>
-                    			<c:if test="${ status.index % 4 == 2 }"> class="btn btn-info btn-sm m-t-xs" </c:if>
-                    			<c:if test="${ status.index % 4 == 3 }"> class="btn btn-danger btn-sm m-t-xs" </c:if>>적용</button>
+                            <button
+                            	<c:if test="${ status.index % 4 == 0 }"> class="btn btn-warning applyBtn btn-sm m-t-xs" </c:if>
+                    			<c:if test="${ status.index % 4 == 1 }"> class="btn btn-success applyBtn btn-sm m-t-xs" </c:if>
+                    			<c:if test="${ status.index % 4 == 2 }"> class="btn btn-info applyBtn btn-sm m-t-xs" </c:if>
+                    			<c:if test="${ status.index % 4 == 3 }"> class="btn btn-danger applyBtn  btn-sm m-t-xs" </c:if>
+                    		>적용</button>
+                    		<button
+                            	<c:if test="${ status.index % 4 == 0 }"> class="btn btn-outline detailBtn btn-sm m-t-xs btn-warning" </c:if>
+                    			<c:if test="${ status.index % 4 == 1 }"> class="btn btn-outline detailBtn btn-sm m-t-xs btn-success" </c:if>
+                    			<c:if test="${ status.index % 4 == 2 }"> class="btn btn-outline detailBtn btn-sm m-t-xs btn-info" </c:if>
+                    			<c:if test="${ status.index % 4 == 3 }"> class="btn btn-outline detailBtn btn-sm m-t-xs btn-danger" </c:if>
+                    		>상세보기</button>
                         </div>
                     </div>
                 </div>

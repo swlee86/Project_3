@@ -1,5 +1,6 @@
 package kr.or.epm.Service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -7,8 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.epm.DAO.DraftDAO;
 import kr.or.epm.DAO.PushDAO;
 import kr.or.epm.VO.Commute;
+import kr.or.epm.VO.Office;
 import kr.or.epm.VO.Pj;
 import kr.or.epm.VO.Task;
 
@@ -22,35 +25,27 @@ public class PushService {
 	public String taskCount(String emp_no) {
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		String result = pushdao.taskCount(emp_no);
-		System.out.println("서비스단 데이터 : " + emp_no);
 		return result;
 	}
 
 	// EmpNo 데이터 호출
 	public String selectEmp_no(String username) {
-		System.out.println("유저 사원번호를 뽑아볼까?");
-		System.out.println("EmpSelectro : " + username);
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-		System.out.println("Push DAO 세팅 완료");
 		String result = pushdao.selectEmp_no(username);
-		System.out.println("뽑은 데이터는? " + result);
 		return result;
 	}
 
 	// index에서 사용될 Task 미확인 데이터를 끌고 옴
 	public List<Task> tasklist(String emp_no, int cpage, int pgsize) {
-		System.out.println("테스크 뽑으러 왔어요~");
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		int start = 1 ;//+ (cpage * pgsize - 5);//(pgsize - 1);
 		int end = 5;//(cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
 		List<Task> tasklist = pushdao.selecttasklist(emp_no, start, end);
-		System.out.println("@@@@@@@@@@@@tasklist : " + tasklist.toString());
 		return tasklist;
 	}
 
 	// index에서 사용될 진행중인 Task 데이터를 끌고 옴
 	public List<Task> mytasklist(String emp_no, int cpage, int pgsize) {
-		System.out.println("my 테스크 뽑으러 왔어요~");
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		int start = 1 ; //+ (cpage * pgsize - 5);//(pgsize - 1);
 		int end = 5 ; //(cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
@@ -92,17 +87,13 @@ public class PushService {
 		String fromYMD = years + months + "01";
 		String toYMD = years + months + endDays;
 
-		System.out.println("시작날짜 : " + fromYMD);
-		System.out.println("종료날짜 : " + toYMD);
 		List<Commute> commutelist = null;
 		try {
 
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		} finally {
-			System.out.println("정말 왜 안탐?");
 			commutelist = pushdao.commutelist(emp_no, fromYMD, toYMD);
-			System.out.println("근태 싸이즈 : " + commutelist.size());
 		}
 
 		return commutelist;

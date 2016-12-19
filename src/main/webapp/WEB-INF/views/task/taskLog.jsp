@@ -28,7 +28,7 @@ $(function(){
 					<li class="active"><span>업무 일지</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">업무 일지 <span><a id="url" href="taskLog.do?tab_char=1"><i class="fa fa-repeat"></i></a></span></h2>
+			<h2 class="font-light m-b-xs">업무 일지 <span><a id="url" href="taskLog.do?tab_char=1"><i class="fa fa-repeat text-info"></i></a></span></h2>
 			<small>&nbsp;&nbsp;&nbsp;금일의 업무를 작성하거나 받을 수 있습니다^^</small>
 		</div>
 	</div>
@@ -149,9 +149,9 @@ $(function(){
 											font-weight: bold; font-size: 13px;"
 											onclick="window.location.href='taskWrite.do'">일지 등록</button>
 									&nbsp;&nbsp;
-									<button type="button" class="btn btn-sm btn-default demo4"
+									<!-- <button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">일지 삭제</button>
+											font-weight: bold; font-size: 13px;">일지 삭제</button> -->
 								</div>
 							</div>
 						</div>
@@ -292,9 +292,9 @@ $(function(){
 											font-weight: bold; font-size: 13px;"
 											onclick="window.location.href='taskWrite.do'">일지 등록</button>
 									&nbsp;&nbsp;
-									<button type="button" class="btn btn-sm btn-default demo4"
+									<!-- <button type="button" class="btn btn-sm btn-default demo4"
 											style="padding-right: 15px; padding-left: 15px; 
-											font-weight: bold; font-size: 13px;">일지 삭제</button>
+											font-weight: bold; font-size: 13px;">일지 삭제</button> -->
 								</div>
 							</div>
 						</div>

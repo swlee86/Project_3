@@ -29,9 +29,6 @@ public class broadsocket extends TextWebSocketHandler {
 		String parammsg = (String) session.getAttributes().get("emp_no");
 		//접속한 session을 users 맵에 저장
 		users.put(parammsg, session);
-		
-		System.out.println("여기는 핸들러 : " + parammsg);
-		
 		 for (String mapkey : users.keySet()){
 			 System.out.println("핸들러 접속시 키 확인 ; " +mapkey);			 
 		 }
@@ -51,39 +48,27 @@ public class broadsocket extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(
 			WebSocketSession session, TextMessage message) throws Exception {
-			System.out.println("@@@@@@@@@@@@@@@@@@메세지 도착!!@@@@@@@@@@@@@@@");
 			log((String) session.getAttributes().get("emp_no")+ "로부터 메시지 수신: " + message.getPayload());
-		    System.out.println("handleTextMessage()");
 		    String emp_no = null;
 		    String menuname = null;
 		    log(session.getAttributes().get("emp_no")+" / " + message.getPayload());
 		    
 		    String jsoninfo = message.getPayload();
-		    System.out.println("JSONINFO로 받는 것부터_____________________________ : " + jsoninfo);
 		    try{
-		    	System.out.println("(((((((((((((((((((((((((((JSON PARSER 시작))))))))))))))))))))))))))))");
 		    	JSONParser jsonParser = new JSONParser();
 		    	JSONObject jsonObj = (JSONObject)jsonParser.parse(jsoninfo);
 		    	emp_no = jsonObj.get("emp_no").toString();
 		    	menuname = jsonObj.get("menuname").toString();	
-		    	System.out.println("--------------------------emp_no : " + emp_no +"////////////////////////////////   menuname "+ menuname);
 		    }catch(Exception e){
 		    	
 		    }
-		    System.out.println("======================== users"+users.keySet());
-	     		//특정 사람 뽑는 부분
+		 		//특정 사람 뽑는 부분
 			    for (String mapkey : users.keySet()){
-			    	System.out.println("mapkey 는 뭔데 : " +mapkey);
 			    	if(mapkey.equals(emp_no)){
 			    		//map에 저장된 session들에게 메세지를 보냄
-			    		System.out.println("Map에서 아이디 뽑음 : " + mapkey + " / " + users.get(mapkey));
 			    		Map<String, WebSocketSession> messageSend = new HashMap<String, WebSocketSession>();
 			    		messageSend.put(mapkey, users.get(mapkey));
 			    		for (WebSocketSession s : messageSend.values()) {
-			    			System.out.println("입력한 Map value 데이터 : " + messageSend.values());
-			    					System.out.println("이건 최종 유저 벨류 : " + users.values());
-			    					System.out.println("############################여기 들어오긴 하냐?");
-			    					System.out.println("일치해서 들어온 맵키 : " + mapkey);
 			    			    
 			    			        JSONObject dataInfo = new JSONObject();
 			    			        
@@ -115,9 +100,7 @@ public class broadsocket extends TextWebSocketHandler {
 			    			       
 			    			        //알람 숫자 증가 후 다시 돌려주면 - > header.jsp  > onmessage 로 돌아감 json 들고 
 			    			        String jsonInfo = dataInfo.toJSONString();
-			    			        System.out.println("JsonInfo 만들어진 값 확인 :  ========================" + jsonInfo);
 			    			        s.sendMessage(new TextMessage(jsonInfo));
-			    					log("들어온 최종 값 : "+ message.getPayload());
 			    			}
 			    		}
 			    	}

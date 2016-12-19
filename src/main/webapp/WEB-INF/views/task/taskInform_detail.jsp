@@ -49,7 +49,7 @@
 												<button class="btn btn-xs btn-info" disabled>승인</button>
 											</c:when>
 											<c:when test="${ detail.step_no == '2' }">
-												<button class="btn btn-xs btn-danger" disabled>승인거부</button>
+												<button class="btn btn-xs btn-danger" disabled>반려</button>
 											</c:when>
 											<c:when test="${ detail.step_no == '3' }">
 												<button class="btn btn-xs btn-primary2" disabled>보류</button>

@@ -52,10 +52,8 @@ public class SalaryAjaxController {
 		SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
 		Date currentTime = new Date( );
 		String dTime = formatter.format ( currentTime );
-		System.out.println ("연월 : "+dTime ); 
 		
 		String id = principal.getName();
-		System.out.println("아이디  : "+id);
 	     
 		//아이디 통해 사번 얻어옴
 	    EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
@@ -71,7 +69,6 @@ public class SalaryAjaxController {
 	@RequestMapping("/salary_allSearch.do")
 	public View salary_allSearch(Principal principal, Model model){
 		String id = principal.getName();
-		System.out.println("아이디  : "+id);
 	     
 		//아이디 통해 사번 얻어옴
 	    EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
@@ -86,10 +83,8 @@ public class SalaryAjaxController {
 	public View MonthlySalary(Principal principal, Model model, String date) {
 
 		String id = principal.getName();
-		System.out.println(" ajax controller 아이디  : " + id);
 
 		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
-		System.out.println("서비스 전 : " + emp.getEmp_no());
 		Pay monthly_pay = null;
 
 		try {
@@ -100,7 +95,6 @@ public class SalaryAjaxController {
 			model.addAttribute("payDTO", monthly_pay);
 		}
 
-		System.out.println("결과 ajax controller: " + monthly_pay.toString());
 
 		return jsonview;
 	}
@@ -108,7 +102,6 @@ public class SalaryAjaxController {
 	// 연도별 급여 조회
 	@RequestMapping("/YearlysalSearch.do")
 	public View YearlysalarySearch(Principal principal, String date, Model model) {
-		System.out.println("연도별 date :" + date);
 		
 		String id = principal.getName();
 		EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
@@ -117,7 +110,6 @@ public class SalaryAjaxController {
 		
 		try {
 			Yearly_pay = payservice.selectPay_mine_Yearly(emp.getEmp_no(), date);
-			System.out.println("연도별 급여 조회 list: "+Yearly_pay.size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -131,10 +123,13 @@ public class SalaryAjaxController {
 			@RequestMapping(value="/SalaryCloseCheck.do", method=RequestMethod.POST)
 			public String salaryCloseCheck(Model model, String pay_no2, String give_date){
 				 
-				System.out.println("급여 마감 ajaxcontoller: "+pay_no2 + "////급여일 : "+give_date);
+				SimpleDateFormat formatter = new SimpleDateFormat ("yyyy-MM", Locale.KOREA );
+				Date currentTime = new Date( );
+				String dTime2 = formatter.format ( currentTime );
+				
+				String resultdate = dTime2+"-"+give_date;
 				 String[] pay_no= pay_no2.split(",");
 				 for(int i=0; i<pay_no.length; i++){
-					 System.out.println("split: "+pay_no[i]);
 				 }
 				
 				int result=0;
@@ -142,7 +137,8 @@ public class SalaryAjaxController {
 				String msg = null;
 				try{
 					for(int i=0; i<pay_no.length; i++){
-					result = payservice.updatePay(pay_no[i], give_date);
+					result = payservice.updatePay(pay_no[i], resultdate);
+			
 					}
 					
 				}catch (Exception e) {
@@ -183,7 +179,6 @@ public class SalaryAjaxController {
 		String[] selectdate =date.split("-");
 		
 		   month = Integer.parseInt(selectdate[1]);
-		   System.out.println("선택한 월 : "+month);
 		   String zeroDate = "";
 					
 		   if(month-3>0){
@@ -193,24 +188,19 @@ public class SalaryAjaxController {
 			   	
 			  		if(currentdate < 10){
 			   		 zeroDate = String.format("%02d", currentdate);
-			   		 System.out.println("0붙었나??"+zeroDate);
 			   		}else{
 			   			zeroDate = String.valueOf(currentdate);
-			   			System.out.println(" 0 안붙을 때  : "+zeroDate);
 			   		}
 			   		
 			   		String give_date=selectdate[0]+"-"+zeroDate;
-			   		System.out.println("give_date: "+give_date);
 			   		//최근 3개월 월별 급여 조회
 			   		Pay pay = payservice.selectPay_mine_Monthly(emp.getEmp_no(), give_date);
 			   		list.add(pay);
-			   		System.out.println(" paylist size: "+list.size());
 			   		
 			   }
 		    }
 		   //재직일수
 		   String regdate = payservice.selectRegdate(emp.getEmp_no());
-		   System.out.println("regdate 입사일  : "+regdate +"선택한 날짜: "+date);
 		  
 		   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		   
@@ -219,30 +209,21 @@ public class SalaryAjaxController {
 		 
 		    long diff = endDate.getTime() - beginDate.getTime();
 		    diffDays = diff / (24 * 60 * 60 * 1000);
-		 
-		    System.out.println("날짜 차이: "+diffDays);
 	
 		    //
 		    int total_pay = 0;
 			 for(int j=0; j<list.size(); j++){
 				 total_pay +=list.get(j).getTotal_pay();
-		    	 System.out.println("list size: "+list.size());
-		    	 System.out.println("3개월 총급여: "+total_pay);
 		     }
 			 String minus = "";
 			 minus = minusDate;
 			 //3개월 뺀 것
 			 int pyung = Integer.parseInt(minusDate);
-			 System.out.println("finally$#@ : "+pyung);
 			 //1일 평균 급여
 			 int pyungMoney = (total_pay / pyung);
-			 System.out.println("하루 평균 급여 "+pyungMoney+" 만원");
 			 
 			 //퇴직금
 			 sev = (int) (pyungMoney*30*diffDays/365);
-			 System.out.println("퇴직금: "+sev);
-		     
-		
 		
 		}catch (Exception e) {
 			e.getMessage();

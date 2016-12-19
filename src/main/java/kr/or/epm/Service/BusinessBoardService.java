@@ -11,7 +11,11 @@ import kr.or.epm.DAO.MediaBoardDAO;
 import kr.or.epm.VO.BusinessBoard;
 import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.Re_BusinessBoard;
-
+/*
+ * 작성자 : 이상원
+ * 작성일 : 2016-11-18
+ * 목  적 : BusinessBoard 서비스
+ */
 @Service
 public class BusinessBoardService {
 
@@ -22,7 +26,7 @@ public class BusinessBoardService {
 	public List<BusinessBoard> selectBoard(int cpage, int pgsize, String field, String query){
 		int start = cpage * pgsize - (pgsize - 1);
 		int end = cpage * pgsize;
-		System.out.println(start + " / " + end);
+		
 		BusinessBoardDAO businessboarddao = sqlSession.getMapper(BusinessBoardDAO.class);		
 		List<BusinessBoard> list = businessboarddao.selectList(start, end, field, query);
 		return list;
@@ -94,7 +98,6 @@ public class BusinessBoardService {
 	public int updateRow(BusinessBoard businessBoard) {
 		BusinessBoardDAO businessBoardDAO = sqlSession.getMapper(BusinessBoardDAO.class);
 		int result = businessBoardDAO.updateRow(businessBoard);
-		System.out.println("=> 처리결과 result : "+result);
 		return result;
 	}
 	
