@@ -67,7 +67,7 @@ public class PageMoveController {
         session.setAttribute("clientIP", ip);
 		
 		CreateLog log = new CreateLog();
-		log.setIp(ip);
+		log.setIp((String)session.getAttribute("clientIP"));
 		log.setPage(request.getRequestURI());
 		log.setId((String)session.getAttribute("customerId"));
 		log.setEmp_no((String)session.getAttribute("emp_no"));
@@ -341,7 +341,7 @@ public class PageMoveController {
 		
 		//로그 데이터에 담을 VO 생성
 
-		log.setResult("정상_로그인");
+		log.setResult("인덱스_정상진입");
 		logservice.BasicLog(log);
 
 		
