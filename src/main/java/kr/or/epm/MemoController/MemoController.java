@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.epm.Service.CreateLogService;
 import kr.or.epm.Service.MemoService;
+import kr.or.epm.VO.CreateLog;
 import kr.or.epm.VO.Memo;
 import kr.or.epm.VO.Memocolor;
 /*
@@ -29,6 +31,9 @@ public class MemoController {
 
 	@Autowired
 	private MemoService memoservice;
+	
+	@Autowired
+	private CreateLogService logservice;
 
 	//개인 메모 클릭시 구동
 	@RequestMapping(value="/private_memo.do", method=RequestMethod.GET)
@@ -77,6 +82,15 @@ public class MemoController {
 		mv.addAttribute("q", query);
 		mv.addAttribute("ps", pagesize);
 		
+		CreateLog log = new CreateLog();
+		log.setIp((String)session.getAttribute("clientIP"));
+		log.setPage(request.getRequestURI());
+		log.setId((String)session.getAttribute("customerId"));
+		log.setEmp_no((String)session.getAttribute("emp_no"));
+		log.setResult("메모페이지_진입");
+		
+		logservice.BasicLog(log);
+		
 		return "memo.private_memo";
 	}
 		
@@ -88,9 +102,20 @@ public class MemoController {
 	
 	// 메모 추가(+) 눌렀을 때 뜨는 페이지 비동기로
 	@RequestMapping(value = "/memo_write.do", method = RequestMethod.GET)
-	public String memowrite(Model mv) {
+	public String memowrite(Model mv, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		List<Memocolor> color = memoservice.selectMemocolorList();	
 		mv.addAttribute("color", color);
+		
+		CreateLog log = new CreateLog();
+		log.setIp((String)session.getAttribute("clientIP"));
+		log.setPage(request.getRequestURI());
+		log.setId((String)session.getAttribute("customerId"));
+		log.setEmp_no((String)session.getAttribute("emp_no"));
+		log.setResult("메모작성_진입");
+		
+		logservice.BasicLog(log);
+		
 		return "memo/memo_write";
 	}
 	
@@ -108,8 +133,26 @@ public class MemoController {
 		HttpSession session = request.getSession();
 		String emp_no = (String)session.getAttribute("emp_no");
 		memo.setEmp_no(emp_no);
+
+		CreateLog log = new CreateLog();
+		log.setIp((String)session.getAttribute("clientIP"));
+		log.setPage(request.getRequestURI());
+		log.setId((String)session.getAttribute("customerId"));
+		log.setEmp_no((String)session.getAttribute("emp_no"));
+
 		
-		memoservice.insertMemo(memo);
+		try{
+			memoservice.insertMemo(memo);
+		}catch(Exception e){
+			System.err.println(e.getMessage());
+			log.setResult("메모작성_실패");
+			logservice.BasicLog(log);
+		}
+		
+		
+		log.setResult("메모작성_성공");
+		logservice.BasicLog(log);
+		
 		return "redirect:private_memo.do";
 	}
 	

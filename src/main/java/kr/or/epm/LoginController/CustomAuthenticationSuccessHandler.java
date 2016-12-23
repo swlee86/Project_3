@@ -108,6 +108,8 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
     
     	  
     	  emp = pushdao.selectLogin_Emp(emp_no);
+    	  
+    	  
     	 //미 확인 업무
     	  taskcount = pushdao.taskCount(emp_no);
          //진행중인 프로젝트

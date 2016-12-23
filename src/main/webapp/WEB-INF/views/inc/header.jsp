@@ -161,24 +161,24 @@ $(function(){
                         </div>
                         <li class="summary" style="width: 340px;">프로젝트</li>
                         <c:choose>
-                        <c:when test="${empty sessionprojectcount }">
+                        <c:when test="${sessionprojectcount eq 0}">
                         <li>진행 중인 프로젝트가 없습니다.</li>
                     	</c:when>
                     	<c:otherwise>
-                    	<li  style="width: 340px;">진행 중인 프로젝트는<span id="projectcount"><a href="project_list.do">${sessionprojectcount}</a></span>건입니다.</li>
+                    	<li  style="width: 340px;"><a style="padding-left: 0px;" href="project_list.do">진행 중인 프로젝트는<span id="projectcount">${sessionprojectcount}</span>건입니다.</a></li>
                     	</c:otherwise>
                     	</c:choose>
                     	<c:choose>
-                    	<c:when test="${empty sessionApprovalcount}">
+                    	<c:when test="${sessionApprovalcount eq 0}">
                     	<li>승인 확인이 필요한 프로젝트가 없습니다.</li>
                     	</c:when>
                     	<c:otherwise>
-                    	<li>승인 처리 하실 프로젝트는<span id="approveprojectcount"><a href="projectApprove.do">${sessionApprovalcount}</a></span>건입니다.</li>                    	
+                    	<li><a href="projectApprove.do">승인 처리 하실 프로젝트는<span id="approveprojectcount">${sessionApprovalcount}</span>건입니다.</a></li>                    	
                     	</c:otherwise>
                     	</c:choose>
                     	<li class="summary">업무</li>
                     	<c:choose>
-                    	<c:when test="${empty sessiontaskcount}">
+                    	<c:when test="${sessiontaskcount eq 0}">
                     	<li>확인이 필요한 업무가 없습니다.</li>
                     	</c:when>
                     	<c:otherwise>
@@ -186,7 +186,7 @@ $(function(){
                     	</c:otherwise>
                     	</c:choose>
                     	<c:choose>
-                    	<c:when test="${empty sessiontaskApprovalcount}">
+                    	<c:when test="${sessiontaskApprovalcount eq 0}">
                     	<li>승인 확인이 필요한 업무가 없습니다.</li>
                     	</c:when>
                     	<c:otherwise>
