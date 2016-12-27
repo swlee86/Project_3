@@ -66,9 +66,16 @@
 .centered {
   position: relative;
   display: inline-block;
-  width: 50%;
+  width: 55%;
+  bottom:-250px;
   padding: 1em;
   color: white;
+}
+
+.inner_center {
+  position:absolute; 
+  bottom:0px; 
+  width: 90%;
 }
 
 #startBtn{
@@ -121,11 +128,9 @@
 		<div class="outer">
 			<div class="inner">
 				<div class="centered">
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<div class="inner_center">
 					<input type="button" id="startBtn" value="시작하기"> 
-					<!-- <a href="login.do" class="btn"
-					style="width: 130px; height: 40px; font-size: 15px; opacity:0.3;">시작하기</a> -->
+					</div>
 				</div>
 			</div>
 		</div>
