@@ -101,4 +101,6 @@ public interface AdminEmpDAO {
 	
 	// 회원 탈퇴 요청하기
 	public int updateWithdrawal(String emp_no);
+	
+	
 }

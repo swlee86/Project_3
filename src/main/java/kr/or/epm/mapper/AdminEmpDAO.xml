@@ -263,7 +263,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 사원 정보 수정하기 -->
-	<update id="updateEmp_detail">
-	
+	<update id="updateEmp_detail" parameterType="kr.or.epm.VO.Emp">
+		update Emp set emp_name=#{emp_name}, salary=#{salary}, emp_break=#{emp_break}, birth=#{birth}, cell_phone=#{cell_phone} where emp_no=#{emp_no}
 	</update>
 </mapper>

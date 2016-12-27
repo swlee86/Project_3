@@ -13,6 +13,7 @@ import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Dept;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
+import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Emp_role;
 import kr.or.epm.VO.Low_dept;
 import kr.or.epm.VO.Position;
@@ -247,6 +248,7 @@ public class AdminEmpService {
 	
 	// AJAX 사원 정보 수정
 	public int updateEmp_detail(Emp emp) {
+		System.out.println(emp.toString());
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		int result = dao.updateEmp_detail(emp);
 				

@@ -13,6 +13,7 @@ import kr.or.epm.Service.AdminEmpService;
 import kr.or.epm.VO.Branch;
 import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_cg;
+import kr.or.epm.VO.Emp_detail;
 import kr.or.epm.VO.Emp_role;
 import kr.or.epm.VO.Position;
 import kr.or.epm.VO.Role;
@@ -165,4 +166,17 @@ public class AdminEmpController {
 		
 		return "adminMember.adminEdit";
 	}
+	
+	// 사원 정보 수정 Ok
+	@RequestMapping(value="/adminEmp_detail.do", method=RequestMethod.POST)
+	public String adminEmp_detail_Ok(Emp emp, Model model) {
+		// 사원 정보 수정하기
+		int result = service.updateEmp_detail(emp);
+
+		Emp detail = service.selectEmp_detail(emp.getEmp_no());
+		model.addAttribute("detail", detail);
+
+		return "adminMember.adminEdit";
+	}
+	
 }

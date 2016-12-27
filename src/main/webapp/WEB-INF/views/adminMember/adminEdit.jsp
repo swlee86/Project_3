@@ -49,7 +49,7 @@
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">사 원 번 호 </Td>
 									<td>${detail.emp_no}</td>
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">이 름 </Td>
-									<td>${detail.emp_name}</td>
+									<td><input type="text" name="emp_name" value="${detail.emp_name}"></td>
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">직 위 명 </Td>
 									<td>${detail.position_name}</td>
 								</Tr>
@@ -67,9 +67,9 @@
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">근무 상태 </Td>
 									<td>${detail.cg_name}</td>
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">휴 일 수</Td>
-									<td>${detail.emp_break}</td>
+									<td><input style="text-align: center;" type="text" name="emp_break" value="${detail.emp_break}">일</td>
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">연 봉 </Td>
-									<td>${detail.salary}</td>
+									<td><input style="text-align: center;" type="text" name="salary" value="${detail.salary}">만원</td>
 								</tr>
 								
 								<Tr>
@@ -79,9 +79,9 @@
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">아 이 디 </Td>
 									<td>${detail.id}</td>
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">생년월일 </Td>
-									<td>${detail.birth}</td>
+									<td><input style="text-align: center;" type="text" name="birth" value="${detail.birth}"></td>
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">연락처 </Td>
-									<td>${detail.cell_phone}</td>
+									<td><input style="text-align: center;" type="text" name="cell_phone" value="${detail.cell_phone}"></td>
 								</Tr>
 								
 								<Tr>
@@ -107,7 +107,7 @@
 										 ${detail.bank}
 									</td>
 									<Td style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">계좌번호 </Td>
-									<td>${detail.account}</td>
+									<td><input style="text-align: center;" type="text" name="account" value="${detail.account}"></td>
 								</tr>	
 							
 							<c:if test="${not empty detail.emp_tel}">
@@ -125,7 +125,7 @@
 							<div class="row">
 								<div class="text-center">
 										<button class="btn btn-success">수정 하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
-										<button class="btn btn-default">취소 하기</button>
+										<button type="button" class="btn btn-default">취소 하기</button>
 								</div>
 							</div>
 						</form>
