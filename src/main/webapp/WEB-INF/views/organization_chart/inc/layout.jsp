@@ -99,7 +99,7 @@
     				});
 
     				$.each(departMent, function(index) {
-    					litag += "<li style='padding:2px;' onclick='seeDepart(this, "
+    					litag += "<li style='padding:2px; cursor:pointer;' onclick='seeDepart(this, "
     				    litag +=departMent[index].branch_no
     				    litag +=")'><i class='fa fa-sitemap'>"+departMent[index].branch_name+"/"+departMent[index].branch_no+"</li></i>";
     					litag+="<div id='dept_div"
@@ -122,7 +122,7 @@ function seeDepart(obj, choose) {
     departcho = choose;
 	var div_id = "dept_div"+choose;
 	$("#"+div_id).empty();
-	var litag = "<ul style='list-style:none; padding:10px;'>";
+	var litag = "<ul style='list-style:none; padding:5px;'>";
 
 	var name = $(obj).text();
 
@@ -141,9 +141,9 @@ function seeDepart(obj, choose) {
 			if(firstTree == 0){
 			firstTree = 1;	
 			$.each(dept, function(index) {
-					litag += "<li style='padding:2px;' onclick='seelow_Depart(this, "
+					litag += "<li style='padding:2px; cursor:pointer;' onclick='seelow_Depart(this, "
 				    litag +=dept[index].dept_no
-				    litag +=")'>&nbsp;&nbsp;&nbsp;&nbsp;"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
+				    litag +=")'>&nbsp;&nbsp;&nbsp;"+'<i class="fa fa-long-arrow-right"></i>'+dept[index].dept_name+"/"+dept[index].dept_no+"</li>";
 					litag+="<div id='low_dept_div"
 					litag+=dept[index].dept_no
 					litag+="'></div>";
@@ -182,9 +182,9 @@ function seelow_Depart(obj,departcho) {
 			if(secondTree == 0){
 			secondTree = 1;	
 			$.each(low_dept, function(index) {
-				litag += "<li style='padding:2px;' onclick='seeEmpMember(this, "
+				litag += "<li style='padding:2px; cursor:pointer' onclick='seeEmpMember(this, "
 				litag +=low_dept[index].low_dept_no
-				litag +=")'>"+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
+				litag +=")'>"+'<i class="fa fa-long-arrow-right"></i>'+low_dept[index].low_dept_name+"/"+low_dept[index].low_dept_no+"</li>";
 			});
 			litag +="</ul>";
 			$("#"+div_id).html(litag);
@@ -217,10 +217,12 @@ function seeEmpMember(obj,low_dept_no){
                    low_dept_no: empListNumber
                  },
             success:function(data){
-            	
+            	console.log("데이터 : " + data.msg);
                var emp = "";
+               
+               if(data.msg==null){
                $.each(data.emp, function(index){
-                  emp = data.emp[index];
+               	   emp = data.emp[index];
                    makeTable+="<div class='col-md-4'>"
                	   makeTable+="<div class='hpanel hgreen contact-panel'>"
                	   makeTable+="<div class='panel-body'>"
@@ -232,8 +234,17 @@ function seeEmpMember(obj,low_dept_no){
                	   makeTable+="<span style='font-size: 15px'>"+emp.emp_no+"</span>"		
                	   makeTable+="</a></h3>"            		
                	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp.branch_name+"</div>"   
-               	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp.cell_phone+"<br>"+emp.branch_name+">"+emp.dept_name+" > "+emp.low_dept_name+"</p></div></div></div>"
-			   });
+               	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp.cell_phone+"<br>"+emp.branch_name+">"+emp.dept_name+" > "+emp.low_dept_name+"</p></div></div></div>"   
+               });
+               
+               }else{
+            	   makeTable+="<div style='text-align: center;'><span style='font-size: 15px;'>"+data.msg+"</span></div>"	;
+            	   console.log(makeTable);            	   
+            	   
+               }            
+               
+            	   
+			 
          
                
                if(data.master != null){

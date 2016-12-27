@@ -81,13 +81,18 @@ public class OrganizationChartController {
 	   public View downEmpTree(String low_dept_no, Model model){
 	      List<Organization> list = null;
 	      list = organizationchart.selectEmpInfo(low_dept_no);
-	      
+	      String msg=null;
+	      if(list.size()==0){
+	    	  msg="해당 부서에서 조회된 사원 데이터가 없습니다.";
+	    
+	      }
 	      //하위부서 대표 뽑기
 	      Organization master = organizationchart.selectEmpMaster(low_dept_no);
 	      
 	      model.addAttribute("master", master);
 	      model.addAttribute("emp", list);
 	      model.addAttribute("count", list.size());
+	      model.addAttribute("msg", msg);
 	      return jsonview;
 	   }
 
