@@ -77,9 +77,6 @@ public class MailController {
 		session.setAttribute("mailusedata", pwd);
 		return "redirect:mailbox_send.do";
 	}
-	
-	
-	
 
 	// SideBar(aside.jsp) 메일 서비스 > 메일함 클릭시 구동
 	@RequestMapping("/mailbox.do")
