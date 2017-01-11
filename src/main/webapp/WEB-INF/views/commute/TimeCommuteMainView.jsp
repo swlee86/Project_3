@@ -30,17 +30,10 @@
 				<div class="panel-heading hbuilt">
 					<form action="" class="form-inline">
 						<label class="form-control">일일근태</label>  
-						<!-- <input type="text" class="form-control" id="mydate">
-						<button type="button" class="btn btn-sm btn-default" id="addCommute">
-							<span class="fa fa-search"></span>
-						</button> --> 
-
 					</form>
-
 				</div>
 				<div class="panel-body">
 					<br />
-
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="col-md-9">
@@ -215,28 +208,6 @@ jQuery(function($){
 				)
 			}
 		});
-		
-		//조퇴 버튼 클릭시 - ajax 로 현재 시간 디비에 넣어줘야 함.
-		/* $('#stopWorkBtn').click(function() {
-			var date = new Date();
-			var h = date.getHours();
-			h = checkTime(h);
-			var m = date.getMinutes();
-			m = checkTime(m);
-			$('#stop').html(h + ":" + m);
-
-			endWorkStatus.setHours(h, m, 0, 0);
-
-			//시작 시간
-			stTime = $('#start').html();
-			//종료 시간
-			endTime = $('#end').html();
-			workingTime(stTime, endTime);
-		}); */
-
-		
-		
-				
 	});
 
 	//근무시간 구하는 함수.
@@ -252,17 +223,7 @@ jQuery(function($){
 		var et = endTime;
 
 		if (st != '' && et != '') {	
-			/* 	var sthour = st.substr(0,2);
-				//분
-				var stMin = st.substr(3,5);
-					
-				//퇴근 시간 자른 부분
-				var enhour = et.substr(0,2);
-				var enMin = et.substr(3,5);
-				
-			 */
-			//alert("전역 : " + endWorkStatus + "/" + startWorkStatus);
-
+		
 			//시간
 			var resultHour = (endWorkStatus - startWorkStatus) / 60000 / 60;
 			var resultHour2 = Math.floor(resultHour);

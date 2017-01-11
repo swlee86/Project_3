@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<!--  
+	작성자	: 박성준
+	작성일	: 2016-11-18
+	목 적  	: 사내공지게시판 layout, css, script 기능
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,9 +56,7 @@
 			</div>
 		</div>
 	</div>
-	<!--[if lt IE 7]>
-<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+
 
 	<!-- Header -->
 	<tiles:insertAttribute name="header" />
@@ -97,7 +100,6 @@
 
     $(function () {
     	$('#clip').click(function(){
-			console.log('클릭');
 			$('#clipfile').css('display','block');
 		});
     	//alert창
@@ -124,8 +126,6 @@
         $('.summernote').summernote();
 
         var sHTML = $('.summernote').code();
-
-        console.log(sHTML);
 
         $('.summernote1').summernote({
             toolbar: [

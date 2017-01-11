@@ -3,6 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.DraftDAO">
+
+<!--
+ 	작성자 : 백승아
+ 	작성일 : 2016-12-08
+ 	목  적 : 전자결재 mapper
+-->
+
 	<!-- 등록을 위해 전자결재 번호 가져오기 -->
 	<select id="selectDraft_no" resultType="String">
 		select nvl(max(to_number(draft_no))+1, '1')
@@ -109,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from draft_ref r join draft d
 		on r.draft_no = d.draft_no
 		join emp e
-		on r.emp_no = e.emp_no
+		on d.emp_no = e.emp_no
 		join office o
 		on d.draft_no = o.draft_no
 		where r.emp_no = #{emp_no} and step_no != '1'
@@ -122,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from draft_ref r join draft d
 		on r.draft_no = d.draft_no
 		join emp e
-		on r.emp_no = e.emp_no
+		on d.emp_no = e.emp_no
 		join low_dept l
 		on e.low_dept_no = l.low_dept_no
     	join cooperation c
@@ -141,7 +148,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join break_cg g
 		on b.break_cg_no = g.break_cg_no
 		join emp e
-		on r.emp_no = e.emp_no
+		on d.emp_no = e.emp_no
 		where r.emp_no = #{emp_no} and step_no != '1'
 	</select>
 	

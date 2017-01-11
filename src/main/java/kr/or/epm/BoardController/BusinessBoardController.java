@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.epm.Service.BusinessBoardService;
 import kr.or.epm.VO.BusinessBoard;
-import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.Re_BusinessBoard;
 
 /*
@@ -36,8 +34,6 @@ public class BusinessBoardController {
 	
 	@Autowired
 	private BusinessBoardService businessboardservice;
-	
-	
 
 	//업무정보게시판  > 업무정보게시판  리스트 페이지 이동
 	@RequestMapping("/business_board_list.do")
@@ -47,8 +43,6 @@ public class BusinessBoardController {
 		
 		String field = "title";
 		String query ="%%";
-		
-		System.out.println("처음 들어온 currentpage : " + currentpage);
 		
         if(pagesize == null || pagesize.trim().equals("")){
             pagesize = "10"; 			// default 10건씩 
@@ -63,11 +57,7 @@ public class BusinessBoardController {
 		if(s != null && !s.equals("")){
 			query = s;
 		}
-		
-        System.out.println("최종 currentpage : " + currentpage);
 
-		
-		
         int pgsize = Integer.parseInt(pagesize);  		// 10
         int cpage = Integer.parseInt(currentpage);     //1
                                
@@ -80,11 +70,9 @@ public class BusinessBoardController {
         }
        
 		List<BusinessBoard> list = null;
-		
-		
+			
 		try{
 			 list = businessboardservice.selectBoard(cpage, pgsize,field, query); 
-			 System.out.println("list size chk : " +  list.size());
 		}catch(Exception e){
 			e.getMessage();
 		}finally{
@@ -112,7 +100,6 @@ public class BusinessBoardController {
 		}catch(Exception e){
 			
 		}finally{
-			System.out.println("리스트 볼때 : "+businessboard.toString());
 			mv.addAttribute("list", businessboard);
 			mv.addAttribute("re_list", re_list);
 			mv.addAttribute("currentpage", currentpage);
@@ -158,7 +145,6 @@ public class BusinessBoardController {
 		dto.setNo(no);
 		dto.setContent(content);
 		
-		System.out.println(dto.toString());
 		
 		int result = 0;
 		String link = null;
@@ -195,15 +181,13 @@ public class BusinessBoardController {
 	//글쓰기 누르면 인서트 시키는 서비스 함수
 	@RequestMapping(value="/business_board_write.do", method=RequestMethod.POST)
 	public String business_board_write_Ok(@RequestParam("uploadfile") MultipartFile file, Principal principal, BusinessBoard board, Model mv,HttpServletRequest request){
-		System.out.println("파일 업로드 :" + file.getOriginalFilename());
-
+		
 		//파일 업로드 
 		 String path = request.getRealPath("/board/business_upload/");
 		File cFile = new File(path, file.getOriginalFilename());
 		try {
 			file.transferTo(cFile);
-			System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
-			System.out.println("겟 패스 : " +cFile.getPath());
+		
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -212,7 +196,6 @@ public class BusinessBoardController {
 		
 		
 		String id= principal.getName();
-		System.out.println(id);
 		Re_BusinessBoard business = businessboardservice.selectWrite(id);
 		int maxrefer = businessboardservice.selectRefer();
 		
@@ -278,7 +261,6 @@ public class BusinessBoardController {
 	public String answer(Model mv, int no, int currentpage, int pagesize){
 		String link = null;
 		BusinessBoard businessboard = null;
-		System.out.println("answer no : "+ no);
 		try{
 			businessboard = businessboardservice.selectDetail(no);
 		}catch(Exception e){
@@ -296,25 +278,19 @@ public class BusinessBoardController {
 	//답변 인서트 컨트롤러  + 파일 업로드
 	@RequestMapping(value="/answer.do", method=RequestMethod.POST)
 	public String answerOk(@RequestParam("uploadfile") MultipartFile file, Model mv, String title, String content, String no, Principal principal, int refer, int step, int depth,HttpServletRequest request){
-		//파일 업로드 
-		System.out.println("파일 업로드 :" + file.getOriginalFilename());
- 
+
 		String path = request.getRealPath("/board/business_upload/");
 		File cFile = new File(path, file.getOriginalFilename());
 		try {
 			file.transferTo(cFile);
-			System.out.println("겟 앱솔루트 : " +cFile.getAbsolutePath());
-			System.out.println("겟 패스 : " +cFile.getPath());
+	
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
-		
-		System.out.println("답번쓰기 시작");
+
 		Re_BusinessBoard dto = businessboardservice.selectWrite(principal.getName());
-		System.out.println("title : " + title + " / " + "content : " + content + "no : " + no + "refer : " + refer + "step : " + step);
 		BusinessBoard business = new BusinessBoard();
 		String link = null;
 		String msg = null;
@@ -359,8 +335,7 @@ public class BusinessBoardController {
 	// 수정페이지 이동
 	@RequestMapping(value = "/business_board_update.do", method = RequestMethod.GET)
 	public String business_board_update(String no, Model model) {
-		System.out.println("business_board_update() 컨트롤러 탐");
-		
+
 		BusinessBoard list = businessboardservice.selectDetail(Integer.parseInt(no));		
 		
 		model.addAttribute("list",list);
@@ -370,33 +345,27 @@ public class BusinessBoardController {
 	//수정 처리
 	@RequestMapping(value = "/business_board_update.do", method = RequestMethod.POST)
 	public String business_board_update(@RequestParam("uploadfile") MultipartFile file, BusinessBoard businessBoard, Model model, HttpServletRequest request) {
-		System.out.println("business_board_update()처리 컨트롤러 탐");
+		
 		int result = 0;
 		
-		//File cFile = new File("C:/images/", file.getOriginalFilename());
-		 String path = request.getRealPath("/board/business_upload/");
-		 System.out.println("=====> path : "+path);
+		String path = request.getRealPath("/board/business_upload/");
+	
 		File cFile = new File(path, file.getOriginalFilename());
 		
 		try {
 			file.transferTo(cFile);
-			System.out.println("getAbsolutePath : " +cFile.getAbsolutePath());
-			System.out.println("getPath : " +cFile.getPath());
+	
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		
-		System.out.println("file.getOriginalFilename() : "+ file.getOriginalFilename());
+
 		businessBoard.setFile_name(file.getOriginalFilename());
-			
-		System.out.println("=>update 후 title :"+businessBoard.getTitle()+"/내용: "+businessBoard.getContent()+"/ 파일 제목 : "+businessBoard.getFile_name());
-			
+	
 		result = businessboardservice.updateRow(businessBoard);
 
-		System.out.println("=> 글번호update result : "+businessBoard.getNo());	
-	
 		if(result > 0){
 			return "redirect:business_board_view.do?no="+businessBoard.getNo();
 		}else{
@@ -407,9 +376,6 @@ public class BusinessBoardController {
 	//삭제 처리
 	@RequestMapping(value = "/business_board_delete.do")
 	public String business_board_delete(String no) {
-		System.out.println("business_board_delete() 컨트롤러 탐");		
-		System.out.println("no : "+ no) ;
-			
 		businessboardservice.deleteReply(Integer.parseInt(no));
 		businessboardservice.deleteRow(Integer.parseInt(no));				
 		return "redirect:business_board_list.do";

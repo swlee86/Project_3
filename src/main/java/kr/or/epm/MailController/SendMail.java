@@ -20,10 +20,8 @@ public class SendMail {
 	@RequestMapping("mailsend.do")
 	public String sendmail(HttpSession session, String recipients, String subjects, String bodys)
 			throws MessagingException {
-		System.out.println("메일 발송 시작");
 		String mailid = (String) session.getAttribute("googlemail");
 		String sessionchk = (String) session.getAttribute("mailusedata");
-		System.out.println("%%%%%%%%%%%%%%%%%%%%메일 아이디 : "+mailid + " / 세션 chk : "+sessionchk);
 			// 메일 관련 정보
 			String host = "smtp.gmail.com";
 			String username = "publicepm@gmail.com";

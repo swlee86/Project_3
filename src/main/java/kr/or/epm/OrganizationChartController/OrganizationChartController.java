@@ -1,11 +1,9 @@
 package kr.or.epm.OrganizationChartController;
 
-import java.io.File;
-import java.io.IOException;
-import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
-import kr.or.epm.Service.ContactService;
 import kr.or.epm.Service.OrganizationChartService;
 import kr.or.epm.VO.Contact;
-import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Emp_contact;
 import kr.or.epm.VO.Organization;
 
@@ -32,9 +28,6 @@ public class OrganizationChartController {
 	
 	   @Autowired
 	   private OrganizationChartService organizationchart;
-	   
-	   @Autowired
-	   private ContactService contactService;
 	   
 	   @Autowired
 	   private View jsonview;
@@ -68,12 +61,9 @@ public class OrganizationChartController {
 	   //2.업무 등록시 조직도 지점 클릭시 부서 띄워줘야함
 	   @RequestMapping(value="/deptOrganicChart.do", method=RequestMethod.GET)
 	   public View downDeptTree(String branch_no, Model model){
-		  System.out.println("지점 클릭 시작함");
-	      System.out.println("컨트롤러 ");
 	      List<Organization> list = null;
 	      list=organizationchart.selectChartdeptname(branch_no);
 	      model.addAttribute("deptname", list);
-	      System.out.println(list.get(0).getDept_no());
 	      return jsonview;
 	   }
 	
@@ -82,9 +72,6 @@ public class OrganizationChartController {
 	   public View downlowDeptTree(String dept_no, Model model){
 	      List<Organization> list = null;
 	      list = organizationchart.selectChartlowDept(dept_no);
-	      for(int i =0; i < list.size(); i++){
-	         System.out.println("하위 부서 : " +list.get(i).getLow_dept_name());
-	      }
 	      model.addAttribute("low_dept", list);
 	      return jsonview;
 	   }
@@ -92,52 +79,41 @@ public class OrganizationChartController {
 	   //4.업무 등록시 조직도 하위 부서 클릭시 사원 정보 출력
 	   @RequestMapping("/empChartMember.do")
 	   public View downEmpTree(String low_dept_no, Model model){
-	      System.out.println("이엠피 정보 컨트롤러");
-			
 	      List<Organization> list = null;
 	      list = organizationchart.selectEmpInfo(low_dept_no);
-	      
+	      String msg=null;
+	      if(list.size()==0){
+	    	  msg="해당 부서에서 조회된 사원 데이터가 없습니다.";
+	    
+	      }
 	      //하위부서 대표 뽑기
 	      Organization master = organizationchart.selectEmpMaster(low_dept_no);
 	      
-	      for(int i =0; i < list.size(); i++){
-	         System.out.println("사원정보: " +list.get(i).getEmp_name()+"/ 사번: "+list.get(i).getEmp_no());
-	      }
 	      model.addAttribute("master", master);
 	      model.addAttribute("emp", list);
 	      model.addAttribute("count", list.size());
+	      model.addAttribute("msg", msg);
 	      return jsonview;
 	   }
 
 	   
 		//주소록 추가  > 외부인 등록 처리 
 		@RequestMapping(value = "/addContact.do",method = RequestMethod.POST)
-		public String addContact(Principal principal, Contact contact, Model model) {
-			System.out.println("addContact()처리 컨트롤 탐");
-				
-			String id= principal.getName();
-			System.out.println("id : "+id);
-			Emp emp = organizationchart.selectInfoSearchEmp(id);  //사번,이름 가져가기
-			
-			String emp_no = emp.getEmp_no();//사번
-			System.out.println("emp_no:"+emp_no);
+		public String addContact(Contact contact, Model model,HttpServletRequest request) {
+
+			HttpSession session = request.getSession();
+			String emp_no = (String) session.getAttribute("emp_no");
 			
 			contact.setGroup_no("1");
-			/*contact.setGroup_name("회사");*/
-			
-			System.out.println("contact.tostring() : "+contact.toString());
+
 			int result = organizationchart.insertContactFromOrganization(contact); //주소록 테이블에 삽입 => 현재 글번호리턴
-			
 
 			if(result > 0){  //개인주소록 추가될때 
-				
 				Emp_contact emp_contact = new Emp_contact();
 				emp_contact.setEmp_no(emp_no);
-				emp_contact.setContact_no(String.valueOf(result));
-				
+				emp_contact.setContact_no(String.valueOf(result));				
 				organizationchart.insertPrivateContact(emp_contact); //개인주소록 테이블 삽입
-			}
-			
+			}		
 			return "organization_chart.team_member";
 		}
 

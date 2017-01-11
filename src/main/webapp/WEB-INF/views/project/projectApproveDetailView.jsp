@@ -1,22 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!--  
+	작성자	: 박지은
+	작성일	: 2016-12-01
+	목 적  	: 프로젝트 승인  상세보기  view, script
+-->
 <script>
 $(function(){
 	 $('.padv_alert').click(function () {
 		var padv_alert_val = $(this).attr('value');
-		console.log(padv_alert_val);
+
 		var step_no = 0;
 		if(padv_alert_val == '승인'){
-			
 			step_no = 1;
 		}else if(padv_alert_val == '승인거부'){
 			step_no = 2;
 		}else{
 			step_no = 3;
 		}
-		console.log("step_no : " + step_no);
+
 		var pj_no = "${pj.pj_no}";
-		console.log(pj_no);
+
          swal({
                      title: " '"+padv_alert_val+"' 처리하시겠습니까?",
                      text: "확인을 누르시면 정상적으로  "+ padv_alert_val +" 처리 됩니다",
@@ -38,8 +42,6 @@ $(function(){
           									step_no : step_no
           							        },
           							success : function(data){
-          								console.log(data);
-          								console.log(data.step_no);
           								if(data.step_no == 1){ //승인처리시
           									send();
           									$('#pj_step_no_mark').html('<button class="btn btn-xs btn-info" disabled>승인</button>');
@@ -67,7 +69,6 @@ $(function(){
 });
 
 </script>
-<!--프로젝트 승인클릭 시 뜨는 상세 페이지-->
 <div class="normalheader transition animated fadeIn media-body">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -183,20 +184,9 @@ $(function(){
 	                </div>
 	                <c:set var="tabcount" value="${tabcount+1}"/>
                 </c:forEach>
-
-            </div>
-
-
+            	</div>
             </div>
         </div>
     </div>
 </div>
-
 </div>
-
-
-
-
-
-
-

@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<!--  
+	작성자	: 박지은, 박성준
+	작성일	: 2016-11-21
+	목 적  	: 주소록  layout, css, script 기능
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -94,17 +99,13 @@
  	//조직도 트리 할때 사용하는 전역변수
  	var firstTree = 0;
 	var secondTree = 0;
-	/////////////////////////
- 
+	
+	//조직도에서 그룹 클릭시 이벤트
 	function orgclick(){
-		//조직도에서 그룹 클릭시 이벤트
 		$('span .org_list_class').click(function(){
-			console.log('.org_list_class 클릭');
-			console.log($(this));
 			$(this).addClass("group-clicked2");
 			$('.org_list_class').removeClass("group-clicked2");
-			$(this).addClass("group-clicked2");
-			
+			$(this).addClass("group-clicked2");	
 		});
 	}
 		
@@ -117,8 +118,6 @@
 						"contact_no" : $('#contact_no_'+index).val()
 					},
 					success : function(data){
-						console.log(data);
-						console.log("ㄴcontact_no : "+data.contact_no);
 						$('#m_name').html(data.name);
 						$('#m_attach').html(data.attach);
 						$('#m_birth').html(data.birth);
@@ -134,20 +133,17 @@
 			)
  	}
  		
- 	//상세보기
-	$(function(){		
-		
+ 
+	$(function(){			
 		//주소록 그룹 등록 - 이름 필수
 		$('#contact_group_from_submit').click(function() {
-			console.log("이거탐?");
 			if ($('#group_name').val() == "") {
 				toastr.warning('그룹이름을 입력해 주세요');
 				$('#group_name').focus();
 				return false;
 			}
 		});
-		
-		
+
 		 toastr.options = {	 
 				 "closeButton": true,
 				  "debug": false,
@@ -168,45 +164,30 @@
 		
 		 //주소록 등록시 - 제목 필수
 		$('#submit_btn').click(function() {
-			console.log("이거탐?");
 			if ($('#enrol_name').val() == "") {
 				toastr.warning('이름을 입력해 주세요');
 				$('#enrol_name').focus();
 				return false;
 			}
 		});
-		
-		
-		
-/* 		if($('#contactmsg').val() == -1){
-			 swal({
-	                title: "주소록 그룹 관리를 할 수 없습니다.",
-	                text: "주소록에 한명 이상의 사람을 넣어주세요."
-	            });
-		} */		
+			
 		var listsize = $('#listsize').val();
-		console.log("listsize  : "+listsize);
 		
 		if(listsize > 0){
 			$('#conmodal_0').click(function(){  //0 일떄
-				console.log("conmodal_0 : 클릭함 / "+ "주소록 번호 : "+$('#contact_no_0').val());
 				ajaxjieun(0);
 			});	
 			
 			$('#conmodal_1').click(function(){  //1 일떄
-				console.log("conmodal_1 : 클릭함 / "+ "주소록 번호 : "+$('#contact_no_1').val());
 				ajaxjieun(1);
 			});	
 			
 			
 			$('#conmodal_2').click(function(){  //2 일떄
-				console.log("conmodal_2 : 클릭함 / "+ "주소록 번호 : "+$('#contact_no_2').val());
 				ajaxjieun(2);
 			});	
-			
-			
+	
 			$('#conmodal_3').click(function(){  //3 일떄
-				console.log("conmodal_3 : 클릭함 / "+ "주소록 번호 : "+$('#contact_no_3').val());
 				ajaxjieun(3);
 			});			
 		}
@@ -215,9 +196,8 @@
 		/*주소록 그룹관리*/
 		//그룹추가
 		$('#contact_group_enroll_btn').click(function(){
-			console.log('contact_group_enroll_btn 클릭');
 			$('#group_name').val('');
-			$('#contact_group_from_action').attr('action','contacts_group_insert.do');//???
+			$('#contact_group_from_action').attr('action','contacts_group_insert.do');
 			$('#contact_group_from_submit').val('저장');
 			$('#contact_group_delete_btn').hide();
 			$('#contact_group_from').show();
@@ -225,17 +205,12 @@
 		});
 		
 		$('#contact_group_from').hide();		
-		console.log("grouplistsize : "+$('#grouplistsize').val());
 		
 		var id;
 		//그룹수정
 		$('.contact_group_class').click(function(){
-			console.log('.contact_group_class 클릭');
-			console.log('@그룹번호 a:' + $(this).attr('id') );
-			console.log('@그룹번호replace:>' + $(this).attr('id').replace("a","")+"<");
 			id = $(this).attr('id');
 			var no = $(this).attr('id').replace("a","");
-			console.log('그룹명 : ' + $('#'+id).html());
 			
 			$('.contact_group_class').removeClass("group-clicked");
 			$('#'+id).addClass("group-clicked");
@@ -251,131 +226,104 @@
 				
 		//목록 -> 주소록 그룹
 		$('.contact_list_group_class').click(function(){
-			console.log('.contact_list_group_class 클릭');
-			console.log('그룹번호: ' + $(this).attr('id') );
 			id = $(this).attr('id');
-			console.log('그룹명 : ' + $('#'+id).html());
 			$('.contact_list_group_class').removeClass("group-clicked");
 			$('#'+id).addClass("group-clicked");
 			$('#'+id).attr('href','contacts.do?group='+id);  
 		});
 					
 		//수정 사진 유지 확인
-		//contact_img_update
 		$('#contact_img_update').change(function(){
 			 if($("#contact_img_update").is(":checked")){
-		            console.log("사진유지 : "+$('#empimgload').val());
 		            $('#empimg').val($('#empimgload').val());   
 					$('#uploadfile').hide();
 		        }else{
-		        	 console.log("사진유지안함");
 		        	 $('#uploadfile').show(); 
 		        	 $('#empimg').val(''); 
 		 			 $('#empimg').hide();
 		        }
-		});
-		
+		});		
 				
 		//그룹이름 
 		var groupnumber = $('#groupnumber').val();
-		console.log("groupnumber : "+groupnumber);
-		$('#'+groupnumber).addClass("group-clicked");
-		
+		$('#'+groupnumber).addClass("group-clicked");		
 		
 		/* 초성별 */
 		$('#all').click(function(){
-			console.log('all 탭 클릭함');
 			location.replace('contacts.do?group='+groupnumber);
 		});
 		
 		$('#ga').click(function(){
-			console.log('가 탭 클릭함');
 			location.replace('contacts.do?tapno=2&group='+groupnumber);
 		});
 		
 		$('#na').click(function(){
-			console.log('나 탭 클릭함');
 			location.replace('contacts.do?tapno=3&group='+groupnumber);
 		});
 		
 		$('#da').click(function(){
-			console.log('다 탭 클릭함');
 			location.replace('contacts.do?tapno=4&group='+groupnumber);
 		});
 		
 		$('#la').click(function(){
-			console.log('라 탭 클릭함');
 			location.replace('contacts.do?tapno=5&group='+groupnumber);
 		});
 		
 		$('#ma').click(function(){
-			console.log('마 탭 클릭함');
 			location.replace('contacts.do?tapno=6&group='+groupnumber);
 		});
 		
 		$('#ba').click(function(){
-			console.log('바 탭 클릭함');
 			location.replace('contacts.do?tapno=7&group='+groupnumber);
 		});
 		
 		$('#sa').click(function(){
-			console.log('사 탭 클릭함');
 			location.replace('contacts.do?tapno=8&group='+groupnumber);
 		});
 		
 		$('#aa').click(function(){
-			console.log('아 탭 클릭함');
 			location.replace('contacts.do?tapno=9&group='+groupnumber);
 		});
 		
 		$('#ja').click(function(){
-			console.log('자 탭 클릭함');
 			location.replace('contacts.do?tapno=10&group='+groupnumber);
 		});
 		
 		$('#cha').click(function(){
-			console.log('차 탭 클릭함');
 			location.replace('contacts.do?tapno=11&group='+groupnumber);
 		});
 		
 		$('#ca').click(function(){
-			console.log('카 탭 클릭함');
 			location.replace('contacts.do?tapno=12&group='+groupnumber);
 		});
 		
 		$('#ta').click(function(){
-			console.log('타 탭 클릭함');
 			location.replace('contacts.do?tapno=13&group='+groupnumber);
 		});
 		
 		$('#pa').click(function(){
-			console.log('파 탭 클릭함');
 			location.replace('contacts.do?tapno=14&group='+groupnumber);
 		});
 		
 		$('#ha').click(function(){
-			console.log('하 탭 클릭함');
 			location.replace('contacts.do?tapno=15&group='+groupnumber);
 		});
 		
 		$('#alp').click(function(){
-			console.log('알파벳 탭 클릭함');
 			location.replace('contacts.do?tapno=16&group='+groupnumber);
 		});
 		
 		$('#num').click(function(){
-			console.log('숫자 탭 클릭함');
 			location.replace('contacts.do?tapno=17&group='+groupnumber);
 		});
 		
-		$('#conmodal').click(function(){
+/* 		$('#conmodal').click(function(){
 			console.log('모달클릭함');  //비동기로 정보가져옴
 			console.log('클릭한 번호 :'+$('#contact_no').val());
-		});
+		}); */
 
 	    //참조자 아이콘 클릭시
         $('#organization_add').click(function() {
-        	
         	orgclick();
        		var  empSelectNumber = 1;
 			var litag = "<ul style='margin-left:-40px; list-style:none;'>";   		
@@ -415,18 +363,13 @@
 	    
     	//조직도에서 그룹 클릭시 이벤트
 		$('span .org_list_class').click(function(){
-			console.log('.org_list_class 클릭');
-			console.log($(this));
 			$(this).addClass("group-clicked2");
 			$('.org_list_class').removeClass("group-clicked2");
 			$(this).addClass("group-clicked2");
-			
 		});
 		
 	    //주소록 추가시  검색해서 보여주는 script
         $('#con_ins_org_sea_btn').click(function(){
-        	
-        	console.log('field : '+ $('#con_ins_org_sea_field').val()+"/word:"+$('#con_ins_org_sea_query').val());
         	$.ajax(
     				{
     					type : "post",
@@ -437,19 +380,14 @@
     						
     					},
     					success : function(data){
-    						console.log(data);
     						 var emp = "";
     		                    $.each(data, function(index){
-    		                       emp = data[index];
-    		                       console.log("객체 : "+emp);
-									console.log("emp:"+ data[index]);    		                       	
+    		                       emp = data[index];	                       	
     		                   });
-    		                    console.log("객체s : "+emp[0]);
     		                  
     		                   var  makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>번호</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>선택</th></tr>";
     		                   $.each(emp, function(index){
     		                         makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td><button class='btn  btn-outline btn-success' onclick='recF2(this)'><i class='fa fa-check'></i></button></td></tr>";   
-    		                  
     		                   });
     		                   makeTable += "</table>";
     		                   $('#empList2').empty();
@@ -462,19 +400,7 @@
 		
 		
 	});
-	
-/*  	//조직도 클릭시 클릭이벤트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- 	function orgclick(){
-		//조직도에서 그룹 클릭시 이벤트
-		$('span .org_list_class').click(function(){
-			console.log('.org_list_class 클릭');
-			console.log($(this));
-			$(this).addClass("group-clicked2");
-			$('.org_list_class').removeClass("group-clicked2");
-			$(this).addClass("group-clicked2");
-			
-		});
- 	} */
+
 	
 	 //부서 출력 하는 아작스
     function seeDepart(obj, empSelectNumber, choose) {
@@ -493,9 +419,7 @@
     			branch_no : departcho
     		},
     		success : function(data) {
-    			
     			var dept;
-    			console.log(data);
     			$.each(data, function(index) {
     				dept = data[index];
     			});
@@ -523,7 +447,6 @@
 
     //하위 부서 클릭시
     function seelow_Depart(obj,empSelectNumber,departcho) {
-    	console.log("부서 : "+choose);
     	deptNumber= departcho;
     	var litag = "<ul style='list-style:none;'>";
     	var div_id = "low_dept_div"+departcho;
@@ -536,7 +459,6 @@
     		},
 
     		success : function(data) {
-
     			var low_dept = "";
     			$.each(data, function(index) {
     				low_dept = data[index];
@@ -567,14 +489,9 @@
     function seeEmpMember(obj,empSelectNumber,low_dept_no){
        //체크
        var empListNumber = low_dept_no;
- 	console.log("사원뽑기 : "+empListNumber);
-       
-       console.log(obj);
        
        //클릭한 text 값 뽑아옴.
        var low_dept = $(obj).text();
-       //alert("taskEmpModal : "+low_dept);
-      // alert("selectNo : " + empSelectNumber);
        var makeTable = "";
        if(empSelectNumber == 1){
         makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8'><th>사번</th><th>이름</th><th>선택</th></tr>";
@@ -592,7 +509,6 @@
               	  var emp = "";
                     $.each(data, function(index){
                        emp = data[index];
-                       console.log("emp 머나오징:"+emp);
                    });
                    
                    $.each(emp, function(index){
@@ -618,11 +534,7 @@
        //수신자 사번
        var name = $(obj).parent().parent().children().eq(1).html();
        var emp_no = $(obj).parent().parent().children().eq(0).html();
-       
-       console.log("name : "+name);
-       console.log("emp_no : "+ emp_no);
- 
-       
+             
        $.ajax(
 				{
 					type : "post",
@@ -631,11 +543,7 @@
 						"emp_no" : emp_no
 					},
 					success : function(data){
-						console.log("data : " + data);
-						console.log(" 이름 :::::::::::::::::"+name);
-						console.log("조직도 data.pic : " + data.pic);
 						if(data != null){
-							//$('#name').val(name);
 							$('#enrol_name').val(name);
 							$('#addenrollDate').val(data.birth);
 							$('#attach').val(data.branch_name+' '+data.dept_name+' '+data.low_dept_name);
@@ -656,11 +564,7 @@
        //수신자 사번
        var name = $(obj).parent().parent().children().eq(2).html();
        var emp_no = $(obj).parent().parent().children().eq(1).html();
-       
-       console.log("name : "+name);
-       console.log("emp_no : "+ emp_no);
- 
-       
+  
        $.ajax(
 				{
 					type : "post",
@@ -669,8 +573,6 @@
 						"emp_no" : emp_no
 					},
 					success : function(data){
-						console.log("data : " + data);
-						console.log("조직도 data.pic : " + data.pic);
 						if(data != null){
 							$('#enrol_name').val(name);
 							$('#addenrollDate').val(data.birth);
@@ -742,11 +644,7 @@
 	<script src="scripts/homer.js"></script>
 
 	<script>
-/* 	function modifyGroup(){	
-		location.href = "contacts_update.do";
-	} */
 	$(function(){
-		
 	$('#addenrollDate').datepicker({
 	     changeMonth: true, 
 	        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],

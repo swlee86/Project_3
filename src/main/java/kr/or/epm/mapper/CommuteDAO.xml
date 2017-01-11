@@ -196,6 +196,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          join branch b
          on b.branch_no = d.branch_no) d
    on e.emp_no = d.emp_no
+   where mgr_check='0'
 	</select>
 	
 	

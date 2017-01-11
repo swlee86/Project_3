@@ -1,25 +1,19 @@
 package kr.or.epm.Service;
 
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.epm.DAO.EmpDAO;
-import kr.or.epm.DAO.Emp_cgDAO;
-import kr.or.epm.DAO.EmployeeManageDAO;
 import kr.or.epm.VO.Emp;
-import kr.or.epm.VO.Emp_his_cg;
-import kr.or.epm.VO.EmployeeManage;
-import kr.or.epm.VO.Position;
 
 @Service
 public class EmployeeManageService {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	
+/*	
 	//관리자 > 사원 관리 접근시 해당 테이블에 필요한 데이터를 뽑는 서비스 함수
 	public List<EmployeeManage> selectEmpManage(int cpage, int pgsize){
 		int start = cpage * pgsize - (pgsize - 1);
@@ -42,13 +36,11 @@ public class EmployeeManageService {
 		EmployeeManageDAO employeemanage = sqlSession.getMapper(EmployeeManageDAO.class);
 		EmployeeManage result = employeemanage.selectDetail(emp_no);
 		return result;
-	}
+	}*/
 	
 	// 상세 정보
 	public Emp selectDetail2(String emp_no){
 		
-		System.out.println("SERVICE] 사원 상세 정보를 불러옵니다");
-		System.out.println("넘겨진 emp_no : " + emp_no);
 		
 		EmpDAO dao = sqlSession.getMapper(EmpDAO.class);
 		Emp emp = dao.selectEmp(emp_no);
@@ -59,12 +51,10 @@ public class EmployeeManageService {
 	// 사원 정보 수정
 	public int updateEmp(Emp emp) {
 		
-		System.out.println("SERVICE] 사원 정보를 수정합니다");
 		
 		// 사번이 중복으로 넘어오잖아
 		String emp_no = emp.getEmp_no();
 		String[] emp_no1 = emp_no.split(",");
-		System.out.println("넘겨진 emp_no : " + emp_no1[0]);
 		emp.setEmp_no(emp_no1[0]);
 		
 		EmpDAO dao = sqlSession.getMapper(EmpDAO.class);

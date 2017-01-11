@@ -8,9 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	작성일 : 2016-12-08
  	목  적 : 사원관리 전용 mapper
 -->
+
 <mapper namespace="kr.or.epm.DAO.AdminEmpDAO">
 
-	<!-- 갯수 -->
+	<!-- 개수 -->
 	<select id="selectCount" resultType="int">
 		select  nvl(count(*),0)
 		from emp e join low_dept l
@@ -139,7 +140,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on e.low_dept_no = l.low_dept_no
 		join emp_cg c
 		on e.cg_no = c.cg_no
-		where e.cg_no = '23'
+		where e.cg_no = '23' and substr(emp_no, 1,4) != '0000'
     	order by to_number(emp_no) asc
 	</select>
 	
@@ -262,7 +263,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 사원 정보 수정하기 -->
-	<update id="updateEmp_detail">
-	
+	<update id="updateEmp_detail" parameterType="kr.or.epm.VO.Emp">
+		update Emp set emp_name=#{emp_name}, salary=#{salary}, emp_break=#{emp_break}, birth=#{birth}, cell_phone=#{cell_phone} where emp_no=#{emp_no}
 	</update>
 </mapper>

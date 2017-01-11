@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!--  
+	작성자	: 박성준
+	작성일	: 2016-12-04
+	목 적  	: 프로젝트 캘린더 view,css
+-->
 <style>
 	a{
 		border: 0px none;
@@ -12,12 +17,12 @@
 				<div class="panel-heading">
 					<form class="form-inline">
 						<div class="form-group">
-								<span>내가 참여한 프로젝트 : </span>
+								<span>내가 작성한 프로젝트 : </span>
 								<p class="form-control" style="background-color: #9b59b6; margin-top:5px; width:50px;height:10px;color:#9b59b6;"></p>
 						</div>
 						<br/>
 						<div class="form-group">				
-							<span>내가 작성한 프로젝트 : </span>
+							<span>내가 참여한 프로젝트 : </span>
 							<p class="form-control" style="background-color: #F0AD4E;  margin-top:5px; width:50px;height:10px;color:#F0AD4E;"></p>
 						</div>
 					</form>

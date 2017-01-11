@@ -61,7 +61,6 @@
 								<tbody>
 									<c:choose>
 										<c:when test="${!empty Commutelist}">
-										<%-- <c:when test="${Commutelist != null || Commutelist != ''}"> --%>
 											<c:forEach var="list" items="${Commutelist}" varStatus="status">
 												<tr>
 													<td style="text-align: center;"><input type="checkbox" 
@@ -92,8 +91,7 @@
 										<c:otherwise>
 										<tr>
 											<td></td>
-											<td colspan="10" style="text-align: center;">근태 목록이
-												없습니다.</td>
+											<td colspan="10" style="text-align: center;">근태 목록이 없습니다.</td>
 										</tr>
 										</c:otherwise>
 									</c:choose>

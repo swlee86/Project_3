@@ -22,12 +22,10 @@ public class PayService {
 		
 		PayDAO payDao = sqlsession.getMapper(PayDAO.class);
 		List<Pay> list= payDao.selectPay_mine_all(emp_no);
-		System.out.println("service :"+list.size());
 		return list;
 	}
 	//본인 예상 급여 조회
 	public Pay selectPay_mine(String emp_no, String dTime){
-		System.out.println("예상 급여 :"+emp_no+" / "+dTime);
 		PayDAO payDao = sqlsession.getMapper(PayDAO.class);
 		Pay list = payDao.selectPay_mine(emp_no, dTime);
 		return list;
@@ -38,7 +36,6 @@ public class PayService {
 	public Pay selectPay_mine_Monthly(String emp_no, String give_date){
 		PayDAO payDao = sqlsession.getMapper(PayDAO.class);
 		Pay pay=payDao.selectPay_mine_Monthly(emp_no, give_date);
-		System.out.println("월별 급여 : "+pay.toString());
 		
 		return pay;
 	}
@@ -52,25 +49,20 @@ public class PayService {
 	
 	//입사일 조회
 	public String selectRegdate(String emp_no){
-		System.out.println("입사일 조회 !");
 		PayDAO paydao = sqlsession.getMapper(PayDAO.class);
 		String regdate = paydao.selectRegdate(emp_no);
-		System.out.println("입사일 : "+regdate);
 		return regdate;
 		
 	}
 	//급여 마감 관리
 	public List<PayList> selectPay_all_Close(String dTime){
-		System.out.println("급여 마감 관리");
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 	    List<PayList> list = dao.selectPay_all_Close(dTime);
-	    System.out.println("급여 list size: "+list.size());
 	    return list;
 	}
 	
 	//급여 마감 확정
 	public int updatePay(String pay_no, String give_date){
-		System.out.println("급여 마감 확정");
 		int result=0;
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 	    result = dao.updatePay(pay_no, give_date);
@@ -84,10 +76,8 @@ public class PayService {
 	    int month = Integer.parseInt(datearray[1])-1;
 		String com_date =datearray[0]+"-"+String.valueOf(month);
 		
-		System.out.println("기지급 급여 관리  급여 date : "+date +" 근태 date : "+ com_date);
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 	    List<PayList> list = dao.select_payMoth_Detail(date);
-	    System.out.println("급여 list size: "+list.size());
 	    return list;
 	}
 	
@@ -95,7 +85,6 @@ public class PayService {
 	public List<PayList> selectPayList_Manage(){
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 		List<PayList> list = dao.selectPayList_Manage();
-		System.out.println(" 서비스  sizeeeeeeeeeeeeeeee: "+list.size());
 		return list;
 		
 	}
@@ -104,7 +93,6 @@ public class PayService {
 	public PayList selectPayList_Modify(String emp_no){
 		PayDAO dao = sqlsession.getMapper(PayDAO.class);
 		PayList pay =dao.selectPayList_Modify(emp_no);
-		System.out.println(" 서비스 pay : ::::::::::::::"+pay.toString());
 		return pay;
 	}
 	
@@ -116,8 +104,4 @@ public class PayService {
 		return result;
 	}
 	
-	
-	//급여 기본 정보 수정 > 은행, 계좌번호 수정
-	
-
 }

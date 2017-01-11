@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!--  
+	작성자	: 박지은, 김주희
+	작성일	: 2016-11-18
+	목 적  	: 언론게시판 상세보기 view
+-->
 <div class="normalheader transition animated fadeIn">
 	<div class="hpanel">
 		<div class="panel-body">
@@ -59,10 +64,6 @@
 							<h5>${list.title}</h5>
 							<hr>
 							<c:if test="${not empty list.file_name}">
-								<!-- <img src="C:\images\${list.file_name}" alt="이미지" width="500px"> -->
-<%-- 								<img src="${pageContext.request.contextPath}/img/upload/${list.file_name}"  style="max-width: 80%;height: auto;  border-radius: 0%; width: inherit;" alt="기사이미지" width="70%">
- --%>								
-
 								<span class="pull-right">첨부파일 >
 									<a href="media_board_fileDown.do?name=${list.file_name}">${list.file_name}</a>
 								</span>

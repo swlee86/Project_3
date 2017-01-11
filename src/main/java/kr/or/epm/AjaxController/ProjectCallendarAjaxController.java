@@ -35,9 +35,7 @@ public class ProjectCallendarAjaxController {
 	@RequestMapping("/projectcalendarData.do")
 	public View CalendarData(Principal principal, Model model){
 		String id= principal.getName();
-		System.out.println("id : "+id);
 		String emp_no = commonservice.selectEmp_no(id);
-		System.out.println("emp No : "+emp_no);
 		//내가 쓴것들만 뽑아냄
 		List<Pj> result = projectservice.selectPj_callendar(emp_no);
 		

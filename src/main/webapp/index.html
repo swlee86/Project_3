@@ -1,3 +1,8 @@
+<!--  
+	작성자	: 박성준
+	작성일	: 2016-12-05
+	목 적  	: 메인화면 layout, 이미지 CSS, 페이지이동script 
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +45,6 @@
 		 background-size: cover;
 	}
 
-
 .Mcontainer {	
   width: 70%;
   height: 70%;
@@ -52,6 +56,7 @@
   width: 100%;
   height: 100%;
 }
+
 .inner {
   display: table-cell;
   vertical-align: middle;
@@ -61,9 +66,16 @@
 .centered {
   position: relative;
   display: inline-block;
-  width: 50%;
+  width: 55%;
+  bottom:-250px;
   padding: 1em;
   color: white;
+}
+
+.inner_center {
+  position:absolute; 
+  bottom:0px; 
+  width: 90%;
 }
 
 #startBtn{
@@ -81,7 +93,6 @@
     /*애니메이션 끝나구 고정.*/
     animation-fill-mode: forwards;
 }
-
 
 /* Standard syntax */
 @keyframes example {
@@ -117,16 +128,13 @@
 		<div class="outer">
 			<div class="inner">
 				<div class="centered">
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
-				<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+					<div class="inner_center">
 					<input type="button" id="startBtn" value="시작하기"> 
-					<!-- <a href="login.do" class="btn"
-					style="width: 130px; height: 40px; font-size: 15px; opacity:0.3;">시작하기</a> -->
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Vendor scripts -->
 	<script src="vendor/jquery/dist/jquery.min.js"></script>

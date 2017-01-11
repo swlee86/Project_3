@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!--  
+	작성자	: 박지은
+	작성일	: 2016-12-01
+	목 적  	: 프로젝트 상세 작성  view, css, script
+-->
 <link rel="stylesheet" href="vendor/summernote/dist/summernote.css" />
 <link rel="stylesheet" href="vendor/summernote/dist/summernote-bs3.css" /> 
 <script src="vendor/toastr/build/toastr.min.js"></script>
- <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
- <style>
-
+<link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+<style>
 .modal-dialog {
   position: relative;
   width: auto;
@@ -50,10 +54,6 @@
  $(function(){
 	 var totalpj_start = new Date($('#pj_start').val());
 	 var totalpj_end = new Date($('#pj_end').val());
-	 
-	 console.log("new date" + totalpj_start);
-	 console.log("new date" + totalpj_end);
-
 
 	 $('.formstartDate1').datepicker({
          changeMonth: true, 
@@ -63,8 +63,7 @@
           monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
           dateFormat: 'yy-mm-dd',
           changeYear: true,
-          beforeShowDay: function(date){
-        	  
+          beforeShowDay: function(date){	  
         	  var loadDt1 = totalpj_start;
               var loadDt = totalpj_end;
        	   
@@ -74,8 +73,6 @@
               if(date > dayday || date < dayday1) return [false];  //선택못해
             
               return [true];
-            
-            
           },
           onSelect: function(selected) {
              $('.formendDate1').datepicker("option","minDate", selected)
@@ -92,7 +89,6 @@
        dateFormat: 'yy-mm-dd',
        changeYear: true,
        beforeShowDay: function(date){
-
     	   var loadDt1 = totalpj_start;
            var loadDt = totalpj_end;
     	   
@@ -107,11 +103,7 @@
            $('.formstartDate1').datepicker("option","maxDate", selected)
        }
  });
-	 
-	 
-	 
-	 
-	 
+
 	$('.showhide_first').click(function(){
 		$('.pdplus_0').slideUp();
 	});
@@ -119,8 +111,6 @@
 		$('.pdplus_0').slideDown();
 	});
 	
-
-
 	 toastr.options = {	 
 			 "closeButton": true,
 			  "debug": false,
@@ -140,12 +130,8 @@
 	        };
 	 
 	 
-	//날짜 필수. 제목필수, 내용 필수, 책임자 필수
+	//유효성검사
 	$('#submit_btn').click(function(){
-		console.log("폼갯수 : "+ $('#pjd_count').val());
-		console.log("d "+$('#pjd_start_0').val());
-		
-		//console.log("ss : "+$('.note-editable').text());
 		var f_index = ($('#pjd_count').val()+1);
 		
 		 for (var i = 0; i < f_index; i++) {  
@@ -184,11 +170,9 @@
 		if($('.note-editable').text() ==""){
 			toastr.warning('내용을 입력해 주세요');
 			return false;
-		}
-		
+		}	
 	});
 	
-
  });
 </script>
 
@@ -224,7 +208,6 @@
 		<a id="pjd_detail_btn"  class="btn  btn-warning"  style="font-weight:600;font-size:13px"><i class="fa fa-plus"></i></a>
 		<div class="pull-right" style="text-align:center;">
 			<a href="project_list.do" class="btn w-xs btn-default"  style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Cancel <i class="fa fa-chevron-down"></i></a>
-		<!-- 	<a href=""  class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px"><i class="fa fa-chevron-left"></i> Previous </a> -->
 			
 			<button type="submit" id="submit_btn" onclick="send()" class="btn w-xs btn-success" style="padding-right:15px;padding-left:15px;font-weight:600;font-size:13px">Save <i class="fa fa-chevron-down"></i></button>
 			
@@ -238,7 +221,7 @@
 				<div class="panel-heading hbuilt">
 					<div class="panel-tools">
 						<a class="showhide_first"><i class="fa fa-chevron-up"></i></a> 
-						 <a class="showup_first"><i class="fa fa-chevron-down"></i></a>  <!-- <i class="fa fa-times"></i> -->
+						 <a class="showup_first"><i class="fa fa-chevron-down"></i></a> 
 					</div>
 					상세 프로젝트 - 기본
 				</div>
@@ -273,14 +256,11 @@
 											<th style="background-color:#f5f5f5; text-align:right;padding-right:10px; width:10%"><font color="#f05050">*</font> 참여자</th>
 											<td>
 											<div class="col-md-3">
-											<div class="form-inline">
-												
-												<!-- <span class="input-group">      -->                							
+											<div class="form-inline">				
 	                     							<span class="multiDiv_0"></span>
 	                        						<span class="">
 														<button class=" btn input-sm btn-default" type="button" id="organization_add"><font style="color:#fd7d86 "><span class="fa fa-user-plus"></span></font></button>
 													</span>
-	                   	  					<!-- 	</span> -->
 	                   	  						</div>
 	                   	  						</div>
 											</td>
@@ -316,7 +296,6 @@
             <h3 class="modal-title"><font color="#6a6c6f" size="4em"><i class="fa fa-table"></i> <b>사원 선택</b></font></h3>
          </div>
          <div class="modal-body">
-         	<!-- <div class="hpanel"> -->
 	         	<ul class="nav nav-tabs">
 	                <li class="active"><a data-toggle="tab" href="#tabp-1"><span style="font-weight: 600;font-size:13px">조직도</span></a></li>
 	                <li class=""><a data-toggle="tab" href="#tabp-2"><span style="font-weight: 600;font-size:13px">검색</span></a></li>
@@ -383,7 +362,6 @@
 	        			</div>
 	        		</div>
 	        	</div>
-        	 <!-- </div> -->
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">닫기</button>

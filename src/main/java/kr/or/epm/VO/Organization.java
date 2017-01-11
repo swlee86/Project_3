@@ -1,4 +1,9 @@
 package kr.or.epm.VO;
+/*
+ * 작성일 : 2016-11-22
+ * 작성자 : 이상원, 박성준
+ * 사용 목적 : 조직도에 대한 VO
+ */
 
 public class Organization {
 
@@ -11,7 +16,6 @@ public class Organization {
 	private int depth2;
 	private String emp_no;
 	
-	//11월 22일 이상원 추가(조직도에서 사용될 객체 추가)
 	private String cell_phone;
 	private String branch_no;
 	private String dept_no;
@@ -21,13 +25,10 @@ public class Organization {
 	private String email;
 	private String emp_tel;
 	
-	//12-4 조직도에서 사용될 객체 추가
 	private String fax;
 	private String tel;
 	
-	//12-8조직도에서 직위 뽑을 객체 추가
 	private String position_name;
-	
 	
 	
 	public String getPosition_name() {

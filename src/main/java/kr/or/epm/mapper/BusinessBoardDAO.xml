@@ -3,7 +3,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.epm.DAO.BusinessBoardDAO">
-
+<!--
+	작성일 : 2016-11-18
+	작성자 : 이상원
+	사용 목적 : 업무정보게시판 구현  mapper
+-->
 
 <!-- business 게시판 글 리스트를 불러오는 쿼리문  -->
 <select id="selectList" resultType="kr.or.epm.VO.BusinessBoard">

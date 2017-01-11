@@ -5,7 +5,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="systemdate" />
-<!-- 채팅 테스트용 아이디 세션 -->
+<!--  
+	작성자	: 박지은
+	작성일	: 2016-12-05
+	목 적  	: 메인 화면 프로젝트,전자결재, 업무 탭별 리스트
+	
+	작성자         : 김주희
+	작성일         : 2016-12-04
+	목 적           : 근태 차트  시각화
+-->
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
@@ -104,7 +112,7 @@
 														<c:choose>
 															<c:when test="${fn:length(approve_pjlist.pj_title) > 10}">${fn:substring(approve_pjlist.pj_title,0,10)} ...</c:when>
 															<c:otherwise>${fn:substring(approve_pjlist.pj_title,0,10)}</c:otherwise>
-														</c:choose><%-- ${approve_pjlist.pj_title} --%>
+														</c:choose>
 													</a>
 												</td>
 												<td></td>
@@ -112,7 +120,6 @@
 												<td style="text-align:center">
 													<small><i class="fa fa-clock-o"></i> </small>  
 													${fn:substring(approve_pjlist.pj_start,5, fn:length(approve_pjlist.pj_start))} ~ ${fn:substring(approve_pjlist.pj_end,5, fn:length(approve_pjlist.pj_end))} 
-													<%-- ${approve_pjlist.pj_start} ~ ${approve_pjlist.pj_end} --%>
 												</td>
 												<td style="text-align:center">
 													<c:choose>
@@ -156,12 +163,11 @@
 					<li class=""><a data-toggle="tab" href="#draft-3"><b>미승인 휴가신청서</b></a></li>
 				</ul>
 				<div class="tab-content">
-				
-					<!-- 대외발신공문 -->
+
 					<div id="draft-1" class="tab-pane active">	
 						<div class="panel-body list">
 							<div class=" project-list">
-								<table class="table table-striped table-condensed">
+								<table class="table table-striped table-condensed ">
 									<thead>
 										<tr>
 											<th>기안 제목</th>
@@ -181,9 +187,9 @@
 
 
 
-												<td style="text-align:center"><small>${ office.rec_addr}</small></td>
+												<td style="text-align:center"><small><c:if test="${fn:length(office.rec_addr) > 15}"></c:if>${fn:substring(office.rec_addr,0,15)} ...</small></td>
 												<td style="text-align:center">
-												 ${ office.emp_name }  <small>${ office.emp_no }</small>
+												 ${ office.emp_name }  <br><small>${ office.emp_no }</small>
 												</td>
 												<td style="text-align:center">
 													<c:choose>
@@ -218,11 +224,8 @@
 						</div>				
 					</div>
 				
-					<!-- 협조문 -->
 					<div id="draft-2" class="tab-pane "> 
 						<div class="panel-body list">	
-							
-							<!-- <div class="panel-body"> -->
 								<div class=" project-list">
 									<table class="table table-striped table-condensed">
 										<thead>
@@ -278,8 +281,6 @@
 					
 					<div id="draft-3" class="tab-pane "> 
 						<div class="panel-body list">	
-							
-							<!-- <div class="panel-body"> -->
 								<div class=" project-list">
 									<table class="table table-striped table-condensed">
 										<thead>
@@ -338,15 +339,7 @@
 
 
 
-
-
-
-
-
-
-
-	<!-- chart 최근 근무현황 -->
-	<div class="row" > <!-- style="height: 350px;" -->
+	<div class="row" > 
 		<div class="col-lg-6" style="height: 400px;">
 			<div class="hpanel">
 				<div class="panel-heading">
@@ -364,15 +357,8 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-			    <div class="col-lg-6">
+
+		<div class="col-lg-6">
 			<div class="hpanel">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#task-1"><b>진행중 업무</b></a></li>
@@ -389,7 +375,6 @@
 											<th style="text-align:center">마감일</th>
 											<th style="text-align:center">진행단계</th>
 											<th style="text-align:center">요청자명</th>
-											<!-- <th style="text-align:center">중 &nbsp;&nbsp; 요</th> -->
 										</tr>
 									</thead>
 									<tbody>
@@ -437,11 +422,6 @@
 												
 												</td>
 												<td style="text-align:center">${mytasklist.emp_name}</td>
-												<%-- <td style="text-align:center">
-													<c:if test="${mytasklist.sign == 1}">
-														<i class="fa fa-check text-success"></i>
-													</c:if>
-												</td> --%>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -454,10 +434,8 @@
 									
 					</div>
 				
-					<div id="task-2" class="tab-pane "> <!-- 미확인 -->
+					<div id="task-2" class="tab-pane ">
 						<div class="panel-body list">	
-							
-							<!-- <div class="panel-body"> -->
 								<div class="table-responsive project-list">
 									<table class="table table-striped table-condensed">
 										<thead>
@@ -465,7 +443,6 @@
 												<th>업무명</th>
 												<th style="text-align:center">마감일</th>
 												<th style="text-align:center">요청자명</th>
-											<!-- 	<th style="text-align:center">첨부파일</th> -->
 											</tr>
 										</thead>
 										<tbody>
@@ -493,11 +470,6 @@
 													</c:choose>
 													<td style="text-align:center">${tasklist.deadline}</td>
 													<td style="text-align:center">${tasklist.emp_name}</td>
-													<%-- <td style="text-align:center">
-														<c:if test="${not empty tasklist.file_name}">
-															<b><i class="fa fa-paperclip text-success"></i></b>
-														</c:if>
-													</td> --%>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -512,60 +484,6 @@
 			</div>
 		</div>
 		
-		
-
-		
-		<%-- <div class="col-lg-6">
-			<div class="hpanel">
-				<div class="panel-heading">
-					<div class="panel-tools">
-						<a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
-							class="closebox"><i class="fa fa-times"></i></a>
-					</div>
-					전자 우편
-				</div>
-				<div class="panel-body list">
-					<div class="table-responsive project-list">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>보낸 메일</th>
-									<th>제목</th>
-									<th>도착일시</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:choose>
-									<c:when test="${null eq maillist }">
-										<div>
-											<h6>메일의 경우 보안 관계상 메일 읽기에서 한 번 더 로그인 후 조회 가능합니다</h6>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<c:forEach var="maillist" items="${maillist}">
-											<tr>
-												<c:choose>
-													<c:when
-														test="${maillist.emp_no eq '=?UTF-8?Q?Google_=EC=BB=A4=EB=AE=A4=EB=8B=88=ED=8B=B0=ED=8C=80?= <googlecommunityteam-noreply@google.com>'}">
-														<td><a href="#">googlecommunityteam-noreply@google.com</a></td>
-													</c:when>
-													<c:otherwise>
-														<td><a href="#">${maillist.emp_no}</a></td>
-													</c:otherwise>
-												</c:choose>
-												<td><a href="#"
-													onClick="javascript:window.open('${pageContext.request.contextPath}/mail/data/${maillist.mail_content}.html','popup','scrollbars=no, resizable=no, width=500px,height=800px')">${maillist.title}</a></td>
-												<td class="text-right mail-date">${maillist.rec_check}</td>
-											</tr>
-										</c:forEach>
-									</c:otherwise>
-								</c:choose>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div> --%>
 	</div>
 	<br/><br/>
 	
@@ -585,52 +503,10 @@
 <script src="vendor/c3/c3.min.js"></script>
 
 <script>
-	$(function() {
-		/*
-		var datereg = [];
-		var add_time = [];
-		var check_obj = document.getElementsByName('regdate[]');
-		var check_add_time = document.getElementsByName('add_time[]');
-
-		for (var i = 0; i <= check_obj.length - 1; i++) {
-			datereg.push(check_obj.item(i).value);
-
-		}
-
-		for (var i = 0; i <= check_add_time.length - 1; i++) {
-			console.log("for문 1차 통과");
-			var data = check_add_time.item(i).value
-			var hour = data.substring(0, 2);
-			var minute = data.substring(3, 6);
-			var hourtominute = hour * 60;
-			var resultdata = Number(minute) + Number(hourtominute);
-			console.log(hourtominute);
-			console.log(minute);
-			console.log(resultdata);
-			add_time.push(resultdata);
-
-		}
-
-		console.log(datereg);
-		console.log(add_time);
-
-		 new Chartist.Bar('#ct-chart4', {
-			labels : datereg,
-			series : [ add_time ]
-		}, {
-			seriesBarDistance : 10,
-			reverseData : true,
-			horizontalBars : true,
-			axisY : {
-				offset : 70
-			}
-		}); */
-		
+	$(function() {	
 		var deptavg = ${deptavg};
 		var myavg = ${myavg};
-
-		//console.log("dept : "+deptavg +"/ myavg : "+ myavg);
-		
+	
  		c3.generate({
 			 bindto: '#avgCommuteChart',
 			 

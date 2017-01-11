@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
+<!--  
+	작성자	: 박성준,김주희,박지은
+	작성일	: 2016-11-26
+	목 적  	: 프로젝트 layout, css, script 기능
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,7 +59,6 @@
    border-radius : 2px;
    box-shadow : inset 0 0 1px #ccc;
 }
-
   </Style> 
   
   <script>
@@ -66,15 +70,12 @@
      function recF2(obj){
         var name = $(obj).parent().parent().children().eq(2).html();
         var emp_no = $(obj).parent().parent().children().eq(1).html();
-        
-        console.log("name : "+name);
-        console.log("emp_no : "+ emp_no);
   
         $('#hiddenEmp_no').val(emp_no);
-       $('#rec_emp_no').val(emp_no);
-       $('#rec_emp_name').val(name);
+      	$('#rec_emp_no').val(emp_no);
+       	$('#rec_emp_name').val(name);
 
-       $('#myModal7').modal("hide");
+       	$('#myModal7').modal("hide");
      }   
     
      //전체 프로젝트 참조자 선택시 - 조직도에서
@@ -82,8 +83,6 @@
         //수신자 사번
         var emp_no = $(obj).parent().parent().children().eq(0).html();
         var name = $(obj).parent().parent().children().eq(1).html();
-        console.log("=>아이디 조직도 :emp_no : "+ emp_no);
-         console.log("name: "+ name);
         
         $('#hiddenEmp_no').val(emp_no);
         $('#rec_emp_no').val(emp_no);
@@ -92,18 +91,13 @@
         $('#myModal7').modal("hide");
      }
 
+     
 $(function(){
-
-	
-	
    //검색해서 보여주는 script
-    $('#con_ins_org_sea_btn').click(function(){
-       console.log("몇개선택?? : "+ $('#con_ins_org_sea_btn_sel').val());
-       console.log('field : '+ $('#conp_ins_org_sea_field').val()+"/word:"+$('#conp_ins_org_sea_query').val());
-       
+    $('#con_ins_org_sea_btn').click(function(){   
         var choice = $('#con_ins_org_sea_btn_sel').val();
         
-       $.ajax(
+      	 $.ajax(
              {
                 type : "post",
                 url  : "contact_insert_search.do",
@@ -112,14 +106,11 @@ $(function(){
                       "query" : $('#conp_ins_org_sea_query').val()
                 },
                 success : function(data){
-                         console.log(data);
                           var emp = "";
                           var  makeTable;
                           
                               $.each(data, function(index){
-                                 emp = data[index];
-                                  console.log("객체 : "+emp);
-                           console.log("emp:"+ data[index]);                                    
+                                 emp = data[index];                                   
                               });
                               
                               if(choice == 1){  
@@ -150,29 +141,24 @@ $(function(){
              )
         });
 
-      
-       /////////////////////////////////////////////////////////////////////////////////   
        
        //전체프로젝트 - 참조자 아이콘 클릭시
        $('#organization_add').click(function() {
-    	   firstTree = 0;   
-          console.log("몇개선택?? : "+ $('#con_ins_org_sea_btn_sel').val());
-          var choice = $('#con_ins_org_sea_btn_sel').val();   // 1 : 한개 선택(전체프로젝특)  2: 두개 선택(상세프로젝트기본) 
+    	    firstTree = 0;   
+          	var choice = $('#con_ins_org_sea_btn_sel').val();   //1 : 한개 선택(전체프로젝특)  2: 두개 선택(상세프로젝트기본) 
           
-          var  empSelectNumber = Number(choice);
-         var litag = "<ul style='list-style:none; margin-left:-40px;'>";         
-         $('#porganization').empty();
-         $('#emppList').empty();
-         $('#emppList2').empty();
-         $('#conp_ins_org_sea_query').val('');
-          
+          	var  empSelectNumber = Number(choice);
+        	 var litag = "<ul style='list-style:none; margin-left:-40px;'>";         
+        	 $('#porganization').empty();
+        	 $('#emppList').empty();
+        	 $('#emppList2').empty();
+       		 $('#conp_ins_org_sea_query').val('');
+        	  
           if(choice == 2){
-        	  console.log("상세프로젝트기본 비우기");
              $('.multiDiv_0').empty();
              $('#empList_list').html('<span style="color:red"><br>선택된 사원이 없습니다.<br><br></span>');
              pre_empInfoArray2.splice(0,pre_empInfoArray2.length);
           }
-          
 
            $.ajax(
                  {
@@ -187,16 +173,17 @@ $(function(){
                            });
    
                            $.each(departMent, function(index) {
-                                 litag += "<li style='padding:2px;' onclick='seeDepart(this,"
-                                 litag +=empSelectNumber +","
-                                 litag +=departMent[index].branch_no
+                                litag += "<li style='padding:2px;' onclick='seeDepart(this,"
+                                litag +=empSelectNumber +","
+                                litag +=departMent[index].branch_no
                                 litag +=")'><i class='fa fa-sitemap'></i><span class='org_list_class'>"+departMent[index].branch_name+"&nbsp;("+departMent[index].branch_no+")</span></li>";
                                
-                               litag+="<div id='dept_div"
-                               litag+=departMent[index].branch_no
-                               litag+="'></div>";
+                               	litag+="<div id='dept_div"
+                              	litag+=departMent[index].branch_no
+                               	litag+="'></div>";
                                });
-                           litag +="</ul>";
+                           
+                           	litag +="</ul>";
                            $('#porganization').html(litag);
                         }
                      })
@@ -204,15 +191,10 @@ $(function(){
        
    });
 
-   
 
-   
-   
-   
     //부서 출력 하는 아작스
    function seeDepart(obj, empSelectNumber, choose) {
     
-      console.log("@@@@@부서출력 아작스 : "+obj+"/"+empSelectNumber+"/"+choose);
       //전역 부서 선택시
       departcho = choose;
       var div_id = "dept_div"+choose;
@@ -229,15 +211,11 @@ $(function(){
          },
          success : function(data) {
             var dept;
-            console.log("@@@@@부서출력 아작스 : data : "+data);
             $.each(data, function(index) {
-            	console.log("@@@@@each("+index+")    :   "+data[index]);
                dept = data[index];
             });
    
-            console.log("@@@ firstTree == 0 : "+(firstTree == 0));
            if(firstTree == 0){
-            	  console.log("@@@@@@@@@@@@@@@@@@@@@@@dept " + dept);
                    firstTree = 1;   
                    
                   $.each(dept, function(index) {
@@ -263,7 +241,6 @@ $(function(){
    
    //하위 부서 클릭시
    function seelow_Depart(obj,empSelectNumber,departcho) {
-      //alert("부서 : "+choose);
       deptNumber= departcho;
       var litag = "<ul style='list-style:none;'>";
       var div_id = "low_dept_div"+departcho;
@@ -275,8 +252,7 @@ $(function(){
             dept_no : deptNumber
          },
    
-         success : function(data) {
-   
+         success : function(data) { 
             var low_dept = "";
             $.each(data, function(index) {
                low_dept = data[index];
@@ -306,14 +282,9 @@ $(function(){
    function seeEmpMember(obj,empSelectNumber,low_dept_no){
       //체크
       var empListNumber = low_dept_no;
-      //alert("사원뽑기 : "+empListNumber);
-      console.log("@@@@@@empSelectNumber : " + empSelectNumber);
-      console.log(obj);
       
       //클릭한 text 값 뽑아옴.
       var low_dept = $(obj).text();
-      //alert("taskEmpModal : "+low_dept);
-      //alert("selectNo : " + empSelectNumber);
       var makeTable = "";
      
       if(empSelectNumber == 1){
@@ -332,10 +303,8 @@ $(function(){
                   var emp = "";
                    $.each(data, function(index){
                       emp = data[index];
-                      console.log("emp 머나오징:"+emp);
                   });
-                  
-                  
+                    
                   $.each(emp, function(index){
                      if(empSelectNumber == 1){   
                         makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td><td><button class='btn btn-outline btn-success btn-sm' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
@@ -345,13 +314,7 @@ $(function(){
                      }
                   });
                   
-                  if(empSelectNumber == 1){
-                        makeTable += "</table>";
-                    }else{
-                         makeTable += "</table>"; //"<br><input type='button' class='btn  btn-success'  value='선택' onclick=check2()>";
-                    }
-                  
-                
+                  makeTable += "</table>";
                   $('#emppList').empty();
                   $('#emppList').append(makeTable);
                 }    
@@ -361,13 +324,8 @@ $(function(){
    }
    
    
-
-   
-   
-   
-   ///////////////////////////////////////////////////////////////////////////////////////////
-   //상세프로젝트1
-    function empInfo2(emp_no, emp_name){
+   	   //상세프로젝트1
+       function empInfo2(emp_no, emp_name){
           this.emp_no = emp_no;
           this.emp_name = emp_name;
        }
@@ -387,38 +345,26 @@ $(function(){
        
        var choose;
        
-   
-       
-       
-       
-       
        
      //체크박스 클릭후 보여주기
        function precheck(){
-       	 $('#empList_list').empty();
-       	console.log('precheck 함수');
-       	var tablemake2 ="";
-           var checkarr = new Array();
+       	 	$('#empList_list').empty();
+       		var tablemake2 ="";
+            var checkarr = new Array();
 
-          $(":checkbox[name='chkbtn1']:checked").each(function(pi,po){
-       	   console.log('------------------------------');
-       	   var result  = 0;
+          	$(":checkbox[name='chkbtn1']:checked").each(function(pi,po){
+       	  	 	var result  = 0;
        	  
-   	       	if(pre_empInfoArray2.length == 0){  //처음에
-   	       		console.log('처음에 pre_empInfoArray.length == 0');
+   	       		if(pre_empInfoArray2.length == 0){ 
    	       		// 이름 
    	            checkarr[pi] = po.value;
    	            // 사번
    	            pre_empInfoArray2.push(new empInfo2($(this).parent().next().html(), checkarr[pi]));
-   	            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
-   	            //console.log("this:"+$(this));
    	       	}else{	       		
    	       	 //중복값 검사
    		       	for(var i = 0; i < pre_empInfoArray2.length; i++){
-   		       		console.log("배열 사번 pre_empInfoArray2["+ i +"].emp_no : " + pre_empInfoArray2[i].emp_no);
-   		       		console.log("선택된사번"+ i +" : " + $(this).parent().next().html());
    		       		if($(this).parent().next().html() == pre_empInfoArray2[i].emp_no){
-   		       			result = 1;  //같은 값이 있다.
+   		       			result = 1;  //같은 값이 있다
    		       		}
    		       	}
    		       	
@@ -427,7 +373,6 @@ $(function(){
    		         	checkarr[pi] = po.value;
    		            // 사번
    		            pre_empInfoArray2.push(new empInfo2($(this).parent().next().html(), checkarr[pi]));
-   		            console.log("===> 사번 : "+$(this).parent().next().html()+"/이름: "+checkarr[pi]);
    		       	}	
    	       	}
    	       
@@ -450,133 +395,80 @@ $(function(){
          	 }
        }
        
+     
        //선택된 체크박스 취소
        function precheck_cancel(){
-       	var pre_no = new Array();
-       	console.log('함수 탐');
-       	$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){           
-       		pre_no.push($(this).parent().next().html());  //서번넣기   		
-               var tr = $(this).parent().parent();
-       	    //라인 삭제
-       	    tr.remove();
+       		var pre_no = new Array();
+       		$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){           
+       			pre_no.push($(this).parent().next().html());  //서번넣기   		
+               	var tr = $(this).parent().parent();
+       	    	//라인 삭제
+       	    	tr.remove();
             });
        	
-       	console.log("pre_empInfoArray2.length : " + pre_empInfoArray2.length);
-       	
-       	//배열에서 사번 삭제
-       	for(var i = 0; i < pre_empInfoArray2.length; i++){
-       		console.log("pre_empInfoArray2["+ i +"].emp_no : " + pre_empInfoArray2[i].emp_no);
-       		for(var j = 0; j < pre_no.length; j++){
-       			console.log("pre_no["+ j +"] : " + pre_no[j]);
-       			if(pre_no[j] == pre_empInfoArray2[i].emp_no){
-       				//사번 지우기
-       	        	pre_empInfoArray2.splice( i, 1);
-       			}
-       		}
-       	}
-       	
-       	console.log("pre_empInfoArray2.length : " + pre_empInfoArray2.length);
-       	console.log("pre_empInfoArray2 : " + pre_empInfoArray2);
+       		//배열에서 사번 삭제
+       		for(var i = 0; i < pre_empInfoArray2.length; i++){
+	       		for(var j = 0; j < pre_no.length; j++){
+       				if(pre_no[j] == pre_empInfoArray2[i].emp_no){
+       					//사번 지우기
+       	        		pre_empInfoArray2.splice( i, 1);
+       				}
+	       		}
+	       	}
        }
        
        
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
+
        
       //체크박스 선택후 버튼 클릭시 호출
-    function check2(){
-
-         
-       //체크박스 크기만큼 배열 생성
-       var checkResult2 = new Array();
-       $(":checkbox[name='chkbtn2']:checked").each(function(pi,po){
-          //이름 
-          checkResult2[pi] = po.value;
-          //사번
-          empInfoArray2.push(new empInfo2($(this).parent().next().html(),checkResult2[pi]));
+    function check2(){         
+       	//체크박스 크기만큼 배열 생성
+       	var checkResult2 = new Array();
+       	$(":checkbox[name='chkbtn2']:checked").each(function(pi,po){
+          	//이름 
+         	 checkResult2[pi] = po.value;
+         	 //사번
+         	 empInfoArray2.push(new empInfo2($(this).parent().next().html(),checkResult2[pi]));
        });
-       console.log("####사원  정보: "+empInfoArray2);
-       console.log("####배열 사이즈: "+empInfoArray2.length);
+
           if(empInfoArray2.length >= 1){
-             //화면에 보이는 input 은 그냥 때려넣음
-             //$("#multiDiv").val(empInfoArray[0].emp_no);
-             //$('#multiDiv').val(empInfoArray[0].emp_name);
-             // $('#pjd_emp_no_' + pjd_count).val(empInfoArray[0].emp_no);
-              //$('#pjd_emp_name_' + pjd_count).val(empInfoArray[0].emp_name);
-              
-             var input_no2 = "";
-             var input_name2 = "";
-             for(var i = 0; i < empInfoArray2.length; i++){
-                 console.log("pjd_count: "+ 0 + "/ input : " +empInfoArray2[i].emp_no +" / "+empInfoArray2[i].emp_name);
-                input_no2 += "<input type='hidden' class='form-control' name='pjd[0].rec_emp_no' value='"+empInfoArray2[i].emp_no+"'>";
-                input_name2 +="<input type='text' readonly class='form-control input-sm' name='pjd[0].rec_emp_name' value='"+empInfoArray2[i].emp_name+"'>";
-             }
-            
-             empInfoArray2.splice(0,empInfoArray2.length);
-             console.log("####사원  정보 지우기 : "+empInfoArray2);
-             console.log("empInfoArray2 지우기 : " + empInfoArray2.length);
-               $('.multiDiv_0').append(input_no2);
-              $('.multiDiv_0').append(input_name2);
+	             var input_no2 = "";
+	             var input_name2 = "";
+	             for(var i = 0; i < empInfoArray2.length; i++){
+	                input_no2 += "<input type='hidden' class='form-control' name='pjd[0].rec_emp_no' value='"+empInfoArray2[i].emp_no+"'>";
+	                input_name2 +="<input type='text' readonly class='form-control input-sm' name='pjd[0].rec_emp_name' value='"+empInfoArray2[i].emp_name+"'>";
+	             }
+	            
+	             empInfoArray2.splice(0,empInfoArray2.length);
+	             $('.multiDiv_0').append(input_no2);
+	             $('.multiDiv_0').append(input_name2);
           }else{
-             $('.multiDiv_0').val(empInfoArray2[0].emp_no);
-             $('.multiDiv_0').val(empInfoArray2[0].emp_name);            
-          }
-       
+	             $('.multiDiv_0').val(empInfoArray2[0].emp_no);
+	             $('.multiDiv_0').val(empInfoArray2[0].emp_name);            
+	       }
        $("#myModal7").modal("hide");
     }
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   /////////////////////////////////////////////////////////////////////////////////
    //상세 프로젝트 추가
    $(function(){
       var pjd_count = 0; 
       
       $('#pjd_detail_btn').click(function(){
     	  for(i=0;i<=pjd_count;i++){
-    		  console.log('i:'+i);
-    		  console.log('>>>>>ss>>.pdplus_'+i);
     		  $('.pdplus_'+i).slideUp();
     	  }
-    	 
-    		//$('.pdplus_0').slideDown();
     	  
          pjd_count = $('#pjd_count').val();
-         console.log('추가번튼 클릭 ' + pjd_count);
 
          $.ajax({
             url : "project_detail_plus.do",
             dataType : "html",
             success : function(data) {
                pjd_count = Number(pjd_count) + 1;          
-               console.log("=>name pjd_count : "+pjd_count);
                $('#kung_pjd_table').append(data);
-               //console.log(data);
                calendar();
-            
-            
-            
+
                $('.pdplus').addClass('pdplus_' + pjd_count);
                $('.pdplus').removeClass('pdplus');
                
@@ -585,38 +477,25 @@ $(function(){
                
                $('.showup3').attr('id','pdplus_' + pjd_count);
                $('.showup3').removeClass('showup3');
-               
-               
+     
                $('.pjd_start_plus').attr('name','pjd[' + pjd_count + '].pjd_start');
                $('.pjd_start_plus').attr('id','pjd_start_'+pjd_count);
-               //$('.pjd_start_plus').addClass('formstartDate'+pjd_count);
                $('.pjd_start_plus').removeClass('pjd_start_plus');
                
                $('.pjd_end_plus').attr('name','pjd[' + pjd_count + '].pjd_end'); 
-               $('.pjd_end_plus').attr('id','pjd_end_'+pjd_count);
-               //$('.pjd_end_plus').addClass('formendDate'+pjd_count);             
+               $('.pjd_end_plus').attr('id','pjd_end_'+pjd_count);             
                $('.pjd_end_plus').removeClass('pjd_end_plus');
                
                $('.pjd_title_plus').attr('name','pjd[' + pjd_count + '].pjd_title');
                $('.pjd_title_plus').attr('id','pjd_title_'+pjd_count);
                $('.pjd_title_plus').removeClass('pjd_title_plus');
-               
-            /*    $('.pjd_emp_no_plus').attr('name','pjd[' + pjd_count + '].emp_no');
-               $('.pjd_emp_no_plus').attr('id','pjd_emp_no_' + pjd_count);
-               $('.pjd_emp_no_plus').removeClass('pjd_emp_no_plus'); */
-               
-               
+ 
                $('.pjd_count_plus').attr('value',pjd_count);
                $('.pjd_count_plus').removeClass('pjd_count_plus');
                
                $('.multiDiv').addClass('multiDiv_'+pjd_count);
                $('.multiDiv').removeClass('multiDiv');
-               
-               
-               /* $('.pjd_emp_name_plus').attr('name','pjd[' + pjd_count + '].emp_name');
-               $('.pjd_emp_name_plus').attr('id','pjd_emp_name_' + pjd_count);
-               $('.pjd_emp_name_plus').removeClass('pjd_emp_name_plus'); */
-               
+
                $('.pjd_content_plus').attr('name','pjd[' + pjd_count + '].pjd_content');
                $('.pjd_content_plus').removeClass('pjd_content_plus');
                
@@ -627,15 +506,14 @@ $(function(){
               
             // 지정된 객체 처리시
                 $(document).find('.formstartDate2').removeClass('hasDatepicker').datepicker({
-                	changeMonth: true, 
+                  changeMonth: true, 
       	          dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
       	          dayNamesMin: ['일','월', '화', '수', '목', '금', '토'], 
       	          monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
       	          monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
       	          dateFormat: 'yy-mm-dd',
       	          changeYear: true,
-      	          beforeShowDay: function(date){
-      	        	  
+      	          beforeShowDay: function(date){ 	        	  
       	        	  var loadDt1 =  new Date($('#pj_start').val());
       	              var loadDt = new Date($('#pj_end').val());
       	       	   
@@ -645,8 +523,6 @@ $(function(){
       	              if(date > dayday || date < dayday1) return [false];  //선택못해
       	            
       	              return [true];
-      	            
-      	            
       	          },
       	          onSelect: function(selected) {
       	             $('.formendDate2').datepicker("option","minDate", selected)
@@ -662,7 +538,6 @@ $(function(){
          	       dateFormat: 'yy-mm-dd',
          	       changeYear: true,
          	       beforeShowDay: function(date){
-
          	    	   var loadDt1 = new Date($('#pj_start').val());
          	           var loadDt = new Date($('#pj_end').val());
          	    	   
@@ -670,8 +545,7 @@ $(function(){
          	           var dayday =new Date(loadDt);  //종료일
          	            
          	           if(date > dayday || date < dayday1) return [false];  //선택못해
-         	           return [true];
-         	           
+         	           return [true]; 
          	        }, 
          	        onSelect: function(selected) {
          	           $('.formstartDate2').datepicker("option","maxDate", selected)
@@ -691,9 +565,7 @@ $(function(){
 
 <!-- Simple splash screen-->
 <div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
-<!--[if lt IE 7]>
-<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+
 
 <!-- Header -->
 <tiles:insertAttribute name="header" />
@@ -745,10 +617,8 @@ $(function(){
 <script>
 
    $(function(){
-       // Initialize Example 1
        $('#example1').footable();
        $('#example2').footable();
-      // Initialize summernote plugin
        $('.summernote').summernote();
 
        var sHTML = $('.summernote').code();
@@ -839,9 +709,6 @@ $(function(){
     //프로젝트 상세 > 참여자 선택할때 modal
 	$('.selectpeople').click(function(){  
 		var emp_no = ($(this).attr('id')).substr(9);
-	         //alert(emp_no);
-	         //console.log(emp_no);
-	         //console.log("html: " +$('#m_name').html());
 		$.ajax({
 				type : "post",
 				url  : "pjd_people.do",
@@ -868,8 +735,7 @@ $(function(){
 	});
 
    //상세보기 클릭시 실행
-   function detailProjectCheckList(mybtn){
-      
+   function detailProjectCheckList(mybtn){      
       var btn = mybtn;
       var upbtn = btn.parentNode.previousSibling.previousSibling.childNodes;
       var upbtn2;
@@ -877,8 +743,7 @@ $(function(){
       for(var i = 0; i < upbtn.length; i++){
          upbtn2 = upbtn[3];
       }
-   
-      console.log(upbtn2);
+
       //히든 값 담은 변수
       var hiddenValue = upbtn2.value;
       location.href="projectDetailCheckView.do?hidden="+hiddenValue;

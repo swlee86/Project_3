@@ -1,3 +1,4 @@
+
 package kr.or.epm.DAO;
 
 import java.util.List;
@@ -6,7 +7,11 @@ import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.MediaBoard;
 import kr.or.epm.VO.MediaBoardReply;
 import kr.or.epm.VO.Re_MediaBoard;
-
+/*
+ * 작성자 : 박지은
+ * 작성일 : 2016-11-18
+ * 목적   : 언론게시판 관련 인터페이스
+ */
 public interface MediaBoardDAO {
 	
 	//언론 게시물 개수

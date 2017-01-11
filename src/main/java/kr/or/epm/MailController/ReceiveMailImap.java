@@ -134,9 +134,6 @@ public class ReceiveMailImap {
     				String emp_no = getSender(msg);
     				String rec_date = new SimpleDateFormat("yy년MM월dd일HH시mm분ss초").format(msg.getReceivedDate());
     				String title = msg.getSubject();
-    				//System.out.println("Saving : " + title);
-    				//System.out.println(emp_no);
-    				//System.out.println(rec_date);
     				long uId = uf.getUID(msg);
     				
     				
