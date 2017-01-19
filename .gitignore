@@ -1,2 +1,6 @@
 /build/
 /target/
+.metadata/
+RemoteSystemsTempFiles/
+Servers/
+.settings/org.eclipse.wst.common.component
