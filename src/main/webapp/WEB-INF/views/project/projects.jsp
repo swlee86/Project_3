@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
 <!--  
 	작성자	: 김주희
 	작성일	: 2016-12-01
@@ -60,7 +63,14 @@
 									</div>
 									<div class="col-sm-3">
 										<div class="project-label">종료일</div>
-											<small>${i.pjd_end}</small>
+										<c:choose>
+										<c:when test="${today>i.pjd_end}">
+											<small style="color: red">${i.pjd_end}</small>
+										</c:when>
+										<c:otherwise>
+											<small style="color: blue">${i.pjd_end}</small>
+										</c:otherwise>
+										</c:choose>
 									</div>
 									<div class="col-sm-3">
 										<div class="project-label">진행률</div>
@@ -105,7 +115,7 @@
 								<div class="project-people">
 									<c:forEach var="j" items="${peopleList[i.rownum-1]}">
 										<a href="" data-toggle="modal" data-target="#myModal" id="pjdmodal_${j.emp_no}" class="selectpeople">
-										<img alt="logo" class="img-circle" src="${pageContext.request.contextPath}/img/upload/${j.pic}"></a>
+										<img alt="${i.emp_name}" class="img-circle" src="${pageContext.request.contextPath}/img/upload/${j.pic}"></a>
 									</c:forEach>
 								</div>
 							</div>

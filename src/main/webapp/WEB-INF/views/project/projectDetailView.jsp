@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
 <!--  
 	작성자	: 김주희
 	작성일	: 2016-11-18
@@ -85,8 +87,15 @@
 	                       		<td>	                       		
 	                       			<div class="form-inline">
 	                        			<div class="input-group date">
-    		  								<input type="text" class="form-control table-input input-sm formendDate_detail" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white;">
-    		 									<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
+	                        			<c:choose>
+	                        				<c:when test="${today>pjd.pjd_end}">
+    		  								<input type="text" class="form-control table-input input-sm formendDate_detail" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white; color: red">
+    		 								</c:when>
+    		 								<c:otherwise>
+    		 								<input type="text" class="form-control table-input input-sm formendDate_detail" id="pjd_end" name="input" value="${pjd.pjd_end}" disabled="disabled" style="background-color: white; color: blue">
+    		 								</c:otherwise>
+    		 							</c:choose>	
+    		 								<span class="input-group-addon" style="color:#fd7d86"><i class="fa fa-calendar"></i></span>
     		 							</div>
     		 						</div>
 	                       		

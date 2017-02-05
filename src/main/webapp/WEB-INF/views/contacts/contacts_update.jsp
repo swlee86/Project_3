@@ -96,12 +96,10 @@
 												style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">사진등록</th>
 											<td colspan="3">
 												<div class="form-inline">
-													<input type="file" class="form-control input-sm"
-														id="uploadfile" name="uploadfile"> <input
-														type="hidden" name="empimg" id="empimg" value="">
+													<input type="file" class="form-control input-sm" id="uploadfile" name="uploadfile"> 
+                                                    <input type="hidden" name="empimg" id="empimg" value="">
 													<input type="hidden" id="empimgload" value="${contact.pic}">
-													<input type="checkbox" class="form-control input-sm"
-														id="contact_img_update">사진 유지
+													<input type="checkbox" class="form-control input-sm" id="contact_img_update" checked="checked">사진 유지
 												</div>
 											</td>
 
