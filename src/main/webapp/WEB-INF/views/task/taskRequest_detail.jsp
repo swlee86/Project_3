@@ -78,7 +78,7 @@
 											${ detail.deadline }
 										</td>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											참여자 정보
+											참조자 명
 										</th>
 										<td colspan="3">
 										<c:forEach var="list" items="${peopledetail}" varStatus="status">
@@ -91,13 +91,13 @@
 
 									<tr>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											담당자 사번
+											수신자 사번
 										</th>
 										<td style="width: 25%">
 											${ detail.emp_no }
 										</td>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											담당자 명
+											수신자 명
 										</th>
 										<td style="width: 25%">
 											${ detail.emp_name }

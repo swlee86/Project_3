@@ -179,7 +179,6 @@
 									<tbody>
 										<c:forEach var="office" items="${officelist}" > 
 											<tr>
-
 												<td><a href="office_detail.do?draft_no=${ office.draft_no }">${ office.draft_title }</a><br />
 													<small><i class="fa fa-clock-o"></i>.&nbsp;
 													${office.draft_date}</small>
