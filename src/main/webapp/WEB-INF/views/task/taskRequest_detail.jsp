@@ -141,7 +141,7 @@
 										   class="btn btn-sm btn-default" value="뒤로가기"
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 											   
-									<input type="button" onclick="location.href='deleteTask.do?task_no=${detail.task_no}'"
+									<input type="button" onclick="location.href='taskDelete.do?task_no=${detail.task_no}'"
 										   class="btn btn-sm btn-danger" value="삭제"
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 								

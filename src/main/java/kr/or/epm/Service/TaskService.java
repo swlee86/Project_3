@@ -51,7 +51,6 @@ public class TaskService {
 		// 사용
 		public List<Task> selectTask_rec(String emp_no, String cg_no, String field_rec, String query_rec, int cpage_rec, int pagesize){
 			
-			
 			String cg_name = "";
 			if(cg_no.equals("1")) { cg_name = "업무 요청"; }
 			else if(cg_no.equals("2")) { cg_name = "업무 보고"; }
@@ -85,10 +84,15 @@ public class TaskService {
 		
 		// 업무 요청 > 참여 리스트 불러오기
 		public List<Task> selectTask_people(String emp_no, String field_parti, String query_parti, int cpage_parti, int pagesize) {
-			
-			
 			TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 			List<Task> list = dao.selectTask_people(emp_no,field_parti,query_parti,cpage_parti,pagesize);
+			return list;
+		}
+		
+		// 업무 요청 > 완료 리스트 불러오기
+		public List<Task> selectTask_people_end(String emp_no, String field_parti, String query_parti, int cpage_parti, int pagesize) {
+			TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+			List<Task> list = dao.selectTask_people_end(emp_no,field_parti,query_parti,cpage_parti,pagesize);
 			return list;
 		}
 		

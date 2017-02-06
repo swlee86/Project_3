@@ -170,12 +170,12 @@ public class TaskController {
 	}
 
 	// 업무 > 송신 > 삭제
-	@RequestMapping(value = "/taskDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/taskDelete.do", method = RequestMethod.GET)
 	public String taskDelete(String task_no, Model model) {
 		String RecSend = "Send";
 
 		// redirect
-		String link = "taskRequest.do";
+		String link = "taskRequest.do#tab-2";
 
 		try {
 			service.deleteTask(task_no, RecSend);
@@ -311,6 +311,18 @@ public class TaskController {
 		model.addAttribute("pagecount_parti", pagecount_parti);
 		model.addAttribute("pg_parti", cpage_parti);
 		model.addAttribute("count3", totalcount_parti);
+		
+		
+		// 2. 완료함 목록
+		List<Task> list_end = service.selectTask_people_end(emp_no, field_parti, query_parti,cpage_parti ,pagesize);  
+		model.addAttribute("list4", list_end);			
+		model.addAttribute("count3", totalcount_parti);
+		model.addAttribute("field_parti", field_parti);
+		model.addAttribute("query_parti", query_parti);
+		model.addAttribute("pagecount_parti", pagecount_parti);
+		model.addAttribute("pg_parti", cpage_parti);
+		model.addAttribute("count3", totalcount_parti);
+		
 			
 		return "task.taskRequest";
 	}
