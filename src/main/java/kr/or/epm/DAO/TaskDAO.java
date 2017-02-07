@@ -2,8 +2,11 @@ package kr.or.epm.DAO;
 
 import java.util.List;
 
+import kr.or.epm.VO.Emp;
+import kr.or.epm.VO.Re_BusinessBoard;
 import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
+import kr.or.epm.VO.Task_reply;
 
 /*
  * 작성일 : 2016-11-18
@@ -58,7 +61,15 @@ public interface TaskDAO {
 	// 완료 업무 조회하기
 	public List<Task> selectTask_people_end(String emp_no, String field_parti, String query_parti, int cpage_parti, int pagesize);
 	
-
+	// 업무 코멘트에 넣을 데이터 조회하기
+	public Emp emp_list(String emp_no);
+	
+	//
+	public int insert_reply(String task_no, Emp emp);
+	
+	//리플 리스트 구하는 함수
+	List<Task_reply> re_list(String task_no);
+	
 	// 개수구하기
 	public int selectCount_rec(String emp_no, String cg_no,String field, String query);
 

@@ -18,9 +18,11 @@ import kr.or.epm.Service.CommonService;
 import kr.or.epm.Service.PushService;
 import kr.or.epm.Service.TaskService;
 import kr.or.epm.Service.Task_peopleService;
+import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
+import kr.or.epm.VO.Task_reply;
 
 /*
  * 작성자 : 백승아
@@ -356,6 +358,11 @@ public class TaskController {
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);
 		
+		//리플 리스트 구해오기
+		List<Task_reply> re_list = null;
+		
+		
+		
 		return "task.taskRequest_rec_detail";
 	}
 
@@ -429,7 +436,10 @@ public class TaskController {
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);
-
+		
+		List<Task_reply> re_list = service.re_list(task_no);
+		model.addAttribute("re_list", re_list);
+		
 		return "task.taskRequest_participation_detail";
 	}
 
@@ -727,4 +737,26 @@ public class TaskController {
 		
 		return "task.taskLog_detail";
 	}
+	
+		
+	
+	@RequestMapping("/task_reply_insert.do")
+	public String task_reply_insert(HttpSession session, String task_no){
+		System.out.println("Task_no 넘어옴 : " + task_no);
+		Emp emp_data = null;
+		String emp_no = (String)session.getAttribute("emp_no");
+		emp_data = service.emp_list(emp_no);
+		service.insert_reply(emp_data, task_no);
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

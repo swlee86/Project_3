@@ -14,6 +14,7 @@ import kr.or.epm.VO.Emp;
 import kr.or.epm.VO.Organization;
 import kr.or.epm.VO.Task;
 import kr.or.epm.VO.Task_people;
+import kr.or.epm.VO.Task_reply;
 
 @Service
 public class TaskService {
@@ -284,9 +285,32 @@ public class TaskService {
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		result = dao.updateTask_step(task_no, task_step_no);
 		
-		
+	
 		return result;
 	}
+	
+	// 업무 코멘트 테이블에(task_reply에 인서트할 데이터 추출)
+	public Emp emp_list(String emp_no){
+		Emp result = null;
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		result = dao.emp_list(emp_no);
+		return result;
+	}
+	
+	// 업무 코멘트에 인서트 처리
+	public int insert_reply(Emp emp_data, String task_no){
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		dao.insert_reply(task_no, emp_data);
+		return 0;
+	}
+	
+	//업무에서 리플 구해오기
+	public List<Task_reply> re_list(String task_no){
+		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
+		List<Task_reply> select_list = dao.re_list(task_no);
+		return select_list;
+	}
+	
 }
 
 
