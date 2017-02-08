@@ -298,10 +298,25 @@ public class TaskService {
 	}
 	
 	// 업무 코멘트에 인서트 처리
-	public int insert_reply(Emp emp_data, String task_no){
+	public int insert_reply(Emp emp_data, String task_no, String contents){
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
-		dao.insert_reply(task_no, emp_data);
-		return 0;
+		int result=0;
+		try{
+			if(!"".equals(emp_data.getPic())){
+				System.out.println("Null일 때");
+				emp_data.setPic("Reply_Basic_Pic.jpg");
+				System.out.println("Pic : " + emp_data.getPic());
+				result = dao.insert_reply(task_no, emp_data.getEmp_name(), emp_data.getLow_dept_name(), contents, emp_data.getPic());
+			}else{
+				System.out.println("Null이 아님");
+				System.out.println("Pic : " + emp_data.getPic());
+				result = dao.insert_reply(task_no, emp_data.getEmp_name(), emp_data.getLow_dept_name(), contents, emp_data.getPic());
+			}
+					
+		}catch(Exception e){
+			System.err.println(e.getMessage());
+		}
+		return result;
 	}
 	
 	//업무에서 리플 구해오기

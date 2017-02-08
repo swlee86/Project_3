@@ -741,14 +741,25 @@ public class TaskController {
 		
 	
 	@RequestMapping("/task_reply_insert.do")
-	public String task_reply_insert(HttpSession session, String task_no){
+	public String task_reply_insert(HttpSession session, String task_no, String contents, Model model){
+		String url = "taskRequest_participation_detail.do"+"?task_no="+task_no;
 		System.out.println("Task_no 넘어옴 : " + task_no);
 		Emp emp_data = null;
 		String emp_no = (String)session.getAttribute("emp_no");
 		emp_data = service.emp_list(emp_no);
-		service.insert_reply(emp_data, task_no);
-		
-		return null;
+		try{
+			String dept = emp_data.getBranch_name()+ " "+emp_data.getDept_name()+" "+emp_data.getLow_dept_name();
+			emp_data.setLow_dept_name(dept);
+			System.out.println(emp_data);
+			System.out.println(task_no);
+			System.out.println(contents);
+			service.insert_reply(emp_data, task_no, contents);			
+		}catch(Exception e){
+			System.err.println(e.getMessage());
+		}finally{
+			model.addAttribute("link", url);
+		}
+		return "task.task_redirect";
 	}
 	
 	

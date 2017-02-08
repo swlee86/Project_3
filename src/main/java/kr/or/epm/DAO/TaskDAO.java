@@ -65,7 +65,7 @@ public interface TaskDAO {
 	public Emp emp_list(String emp_no);
 	
 	//
-	public int insert_reply(String task_no, Emp emp);
+	public int insert_reply(String task_no, String emp_name, String low_dept_name, String contents, String pic);
 	
 	//리플 리스트 구하는 함수
 	List<Task_reply> re_list(String task_no);
