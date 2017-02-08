@@ -48,8 +48,8 @@ $(function(){
 			<div class="hpanel">
 				<!-- 탭 -->
 				<ul class="nav nav-tabs">
-					<li class="<c:if test="${tab_char==1}">active</c:if>"  id="susin"><a data-toggle="tab" href="#tab-1">수신</a></li>
-					<li class="<c:if test="${tab_char==2}">active</c:if>" id="songin"><a data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class="<c:if test="${tab_char==1}">active</c:if>"  id="susin"><a data-toggle="tab" href="#tab-1">받은요청</a></li>
+					<li class="<c:if test="${tab_char==2}">active</c:if>" id="songin"><a data-toggle="tab" href="#tab-2">보낸요청</a></li>
 					<li class="<c:if test="${tab_char==3}">active</c:if>" id="cham"><a data-toggle="tab" href="#tab-3">승인완료</a></li>
 					<li class="<c:if test="${tab_char==4}">active</c:if>" id="end"><a data-toggle="tab" href="#tab-4">업무종료</a></li>
 				</ul>
@@ -70,9 +70,7 @@ $(function(){
 										<table style="margin-top: 10px; margin-bottom: 10px; " width="100%">
 										<tr>
 											<th style="text-align: right; padding-right: 20px;">
-											<select class="form-control input-sm" 
-													name="f_rec" id="selectSearch"
-													 onchange="search()">
+											<select class="form-control input-sm" name="f_rec" id="selectSearch" onchange="search()">
 												<option value="task_no">NO</option>
 												<option value="task_name">업무 명</option>
 												<option value="deadline">업무 기한</option>
@@ -83,9 +81,7 @@ $(function(){
 											<!-- 검색 input 창 -->
 											<td>
 												<div id="searchInput">
-													<input type="text" class="form-control input-sm"
-														   style="height: 27px;" 
-														   name="q_rec" id="input" >
+													<input type="text" class="form-control input-sm" style="height: 27px;" name="q_rec" id="input" >
 												</div>
 											</td>
 
@@ -323,6 +319,7 @@ $(function(){
 											<th>담당자</th>
 											<th>요청일</th>
 											<th>승인 결과</th>
+											<th>진행 단계</th>
 											<th>수신 확인</th>
 										</tr>
 									</thead>
@@ -342,6 +339,7 @@ $(function(){
 												<td style="padding-top: 12px;">${list2.rec_name}</td>
 												<td style="padding-top: 12px;">${list2.send_date}</td>
 
+
 												<td style="padding-top: 12px;">
 												<c:choose>
 													<c:when test="${ list2.step_no == '1'}">
@@ -358,6 +356,30 @@ $(function(){
 													</c:when>
 													</c:choose>
 												</td>
+												
+												<td>
+													<c:choose>
+														<c:when test="${ list2.task_step_no == '1'}">
+															<button class="btn btn-xs btn-warning" disabled>진행</button>
+														</c:when>
+														<c:when test="${list2.task_step_no == '2'}">
+															<button class="btn btn-xs btn-warning2" disabled>미진행</button>
+														</c:when>
+														<c:when test="${ list2.task_step_no == '3' }">
+															<button class="btn btn-xs btn-primary2" disabled>보류</button>
+														</c:when>
+														<c:when test="${list2.task_step_no == '4'}">
+															<button class="btn btn-xs btn-info" disabled>완료</button>
+														</c:when>
+														<c:when test="${list2.task_step_no == '5'}">
+															<button class="btn btn-xs btn-danger" disabled>중단</button>
+														</c:when>
+													</c:choose>
+												</td>
+												
+												
+												
+												
 												<td>
 												<c:choose>
 													<c:when test="${list2.rec_date == null }">
@@ -368,6 +390,8 @@ $(function(){
 													</c:when>
 												</c:choose>
 												</td>
+
+												
 											</tr>
 										</c:forEach>
 									</tbody>

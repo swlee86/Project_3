@@ -59,8 +59,8 @@ public class TaskService {
 			else { cg_name = "'cg_no'에 잘못된 값이 넘어온 것같습니다"; };
 			
 			TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
-			
-			List<Task> list = dao.selectTask_rec(emp_no, cg_no,field_rec,query_rec,cpage_rec,pagesize);
+			String field_rec_modify="t."+field_rec;
+			List<Task> list = dao.selectTask_rec(emp_no, cg_no,field_rec_modify,query_rec,cpage_rec,pagesize);
 			return list; 
 		}
 	

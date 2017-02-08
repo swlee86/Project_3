@@ -18,8 +18,8 @@
 					<li class="active"><span>업무 요청</span></li>
 				</ol>
 			</div>
-			<h2 class="font-light m-b-xs">송신 업무</h2>
-			<small>&nbsp;&nbsp;&nbsp;송신 업무에 대한 상세를 볼 수 있습니다^^</small>
+			<h2 class="font-light m-b-xs">보낸 업무</h2>
+			<small>&nbsp;&nbsp;&nbsp;보낸 업무에 대한 상세를 볼 수 있습니다^^</small>
 		</div>
 	</div>
 </div>
@@ -94,13 +94,13 @@
 											수신자 사번
 										</th>
 										<td style="width: 25%">
-											${ detail.emp_no }
+											${ detail.rec_emp_no }
 										</td>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											수신자 명
 										</th>
 										<td style="width: 25%">
-											${ detail.emp_name }
+											${ detail.rec_name }
 										</td>
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											요청일
@@ -141,12 +141,48 @@
 										   class="btn btn-sm btn-default" value="뒤로가기"
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 											   
+								<c:choose>	
+								<c:when test="${ detail.step_no =='1'}">		   
+									<input type="button" onclick="#"
+										   class="btn btn-sm btn-danger" value="승인후 삭제 불가"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px" disabled="disabled">
+								</c:when>
+								<c:otherwise>
 									<input type="button" onclick="location.href='taskDelete.do?task_no=${detail.task_no}'"
 										   class="btn btn-sm btn-danger" value="삭제"
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+								</c:otherwise>
+								</c:choose>
 								
 								</div>
 							</div>
+						</form>
+						
+						<br><br>
+						<span>업무 처리 의견</span>
+						<div class="forum-comments">
+								<c:forEach var="re_list" items="${re_list}">
+									<div class="media">
+										<a class="pull-left"> <img src="${pageContext. request.contextPath}/images/Reply_Basic_Pic.jpg" alt="profile-picture">
+										</a>
+	
+										<div class="media-body">
+											<span class="font-bold">${re_list.emp_name}</span> <small
+												class="text-muted">${re_list.create_date }</small>
+											<div class="social-content">
+												${re_list.contents}
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+						<form action=task_reply_insert_song.do method="post">
+									<div class="input-group" style="margin-left: 100px; margin-right: 100px;">
+										<input type="text" class="form-control " placeholder="Your comment" name="contents">	
+										<input type="hidden" name="task_no" value="${detail.task_no}">						
+										<span class="input-group-btn"> 
+										<input type="submit" class="btn  btn-default" value=" 댓글 달기 ">
+										</span>
+									</div>
 						</form>
 					</div>
 				</div>

@@ -208,7 +208,7 @@ public class TaskController {
 		int pagecount_song = 0;
 		int pagecount_parti = 0;
 		
-		int pagesize = 4;
+		int pagesize = 10;
 		
 		String field_rec = "task_no";
 		String query_rec ="%%";
@@ -287,7 +287,7 @@ public class TaskController {
 		}
 		
 		// 2. 송신함 목록
-		List<Task> list_song = service.selectTask(emp_no, cg_no, field_song, query_song,cpage_song ,pagesize);  
+		List<Task> list_song = service.selectTask(emp_no, cg_no, field_song, query_song, cpage_song ,pagesize);  
 		model.addAttribute("list2", list_song);		
 		model.addAttribute("field_song", field_song);
 		model.addAttribute("query_song", query_song);
@@ -318,12 +318,12 @@ public class TaskController {
 		// 2. 완료함 목록
 		List<Task> list_end = service.selectTask_people_end(emp_no, field_parti, query_parti,cpage_parti ,pagesize);  
 		model.addAttribute("list4", list_end);			
-		model.addAttribute("count3", totalcount_parti);
+		model.addAttribute("count4", totalcount_parti);
 		model.addAttribute("field_parti", field_parti);
 		model.addAttribute("query_parti", query_parti);
 		model.addAttribute("pagecount_parti", pagecount_parti);
 		model.addAttribute("pg_parti", cpage_parti);
-		model.addAttribute("count3", totalcount_parti);
+		model.addAttribute("count4", totalcount_parti);
 		
 			
 		return "task.taskRequest";
@@ -414,6 +414,9 @@ public class TaskController {
 		// 업무 참여자 상세 가져오기
 		List<Task_people> peopledetail = peopleservice.selectTask_peopleList(task_no);
 		model.addAttribute("peopledetail", peopledetail);
+		
+		List<Task_reply> re_list = service.re_list(task_no);
+		model.addAttribute("re_list", re_list);
 		
 		return "task.taskRequest_detail";
 	}
@@ -668,7 +671,7 @@ public class TaskController {
         }
 		
 		//2. 수신함 목록
-		List<Task> list_rec = service.selectTask_rec(emp_no, cg_no, field_rec, query_rec,cpage_rec ,pagesize);  
+		List<Task> list_rec = service.selectTask_rec(emp_no, cg_no, field_rec, query_rec, cpage_rec ,pagesize);  
 		model.addAttribute("list1", list_rec);
 		model.addAttribute("count1", totalcount_rec);
 		model.addAttribute("field_rec", field_rec);
@@ -737,6 +740,31 @@ public class TaskController {
 		
 		return "task.taskLog_detail";
 	}
+	
+	
+	
+	@RequestMapping("/task_reply_insert_song.do")
+	public String task_reply_insert_song(HttpSession session, String task_no, String contents, Model model){
+		String url = "taskRequest_detail.do"+"?task_no="+task_no;
+		System.out.println("Task_no 넘어옴 : " + task_no);
+		Emp emp_data = null;
+		String emp_no = (String)session.getAttribute("emp_no");
+		emp_data = service.emp_list(emp_no);
+		try{
+			String dept = emp_data.getBranch_name()+ " "+emp_data.getDept_name()+" "+emp_data.getLow_dept_name();
+			emp_data.setLow_dept_name(dept);
+			System.out.println(emp_data);
+			System.out.println(task_no);
+			System.out.println(contents);
+			service.insert_reply(emp_data, task_no, contents);			
+		}catch(Exception e){
+			System.err.println(e.getMessage());
+		}finally{
+			model.addAttribute("link", url);
+		}
+		return "task.task_redirect";
+	}
+	
 	
 		
 	

@@ -51,6 +51,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select task_no, cg_name, sign, task_name, deadline, emp_no, emp_name, send_date, file_name, step_no, step_name, step, rec_date, task_step_no from(
     	select rownum num,n.task_no, n.cg_name, n.sign, n.task_name, n.deadline, n.emp_no, n.emp_name, n.send_date, n.file_name, n.step_no, n.step_name, n.step, n.rec_date, n.task_step_no
     		from(
+          		select t.task_no, cg_name, sign, task_name, t.task_step_no, deadline, t.emp_no, emp_name, send_date, file_name, t.step_no, a.step_name, a.step, rec_date, rec_del_check, del_check
+          			from task t join task_cg c
+          			on t.cg_no = c.cg_no
+          				join approval a
+          			on t.step_no = a.step_no
+          			left outer join (select emp_no, task_no from task_people where emp_no=#{param1}) p
+          			on t.task_no=p.task_no
+          		where rec_emp_no = #{param1} or  p.emp_no is not null and t.cg_no = #{param2} and (${param3} like '%${param4}%')
+          		order by a.step desc , t.task_no desc
+        		) n where rec_del_check='0' and del_check='0'
+    ) where num  between 1 + (${param5} - 1) * ${param6} and  ${param6} + (${param5} - 1) * ${param6}
+	</select>
+	
+	
+	
+	<!-- 
+	백업
+	<select id="selectTask_rec" resultType="kr.or.epm.VO.Task">
+	select task_no, cg_name, sign, task_name, deadline, emp_no, emp_name, send_date, file_name, step_no, step_name, step, rec_date, task_step_no from(
+    	select rownum num,n.task_no, n.cg_name, n.sign, n.task_name, n.deadline, n.emp_no, n.emp_name, n.send_date, n.file_name, n.step_no, n.step_name, n.step, n.rec_date, n.task_step_no
+    		from(
           		select task_no, cg_name, sign, task_name, task_step_no, deadline, emp_no, emp_name, send_date, file_name, t.step_no, a.step_name, a.step, rec_date
           			from task t join task_cg c
           			on t.cg_no = c.cg_no
@@ -61,6 +82,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         		) n 
     ) where num  between 1 + (${param5} - 1) * ${param6} and  ${param6} + (${param5} - 1) * ${param6}
 	</select>
+	 -->
+	
+	
 	
 	
 		<!-- 업무 송신함 갯수 하기 -->
@@ -92,6 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	order by a.step desc , t.task_no desc
 	)
 	</select>
+
 	
 	
 	<!-- 업무 송신함 확인하기 -->
@@ -169,9 +194,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on t.task_no = p.task_no
 		where t.step_no = '1' and t.cg_no = '1' and  rec_emp_no =  #{param1} or  p.emp_no is not null and (t.${param2} like '%${param3}%')
 		order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
-    )n where task_step_no in ('1','2','3')
+    )n where task_step_no in (1,2,3) and step_no='1'
     )where del_check='0' and num   between 1 + (${param4} - 1) * ${param5} and  ${param5} + (${param4} - 1) * ${param5}
 	</select>
+	
+	
 	
 	<!-- 참여 업무 개수 -->
 	<select id="selectCount_parti" resultType="int">
