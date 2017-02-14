@@ -259,6 +259,7 @@ public class PageMoveController {
 		// 협조문
 		// 목록 가져오기
 		List<Cooperation> cooperationlist_ex = service2.selectCooperation_rec(emp_no);
+		List<Cooperation> cooperationlist_cham = service2.selectCooperation_rec_cham(emp_no);
 		List<Cooperation> cooperationlist = new ArrayList<Cooperation>();
 		
 		if(cooperationlist_ex.size() >= 5){
@@ -274,6 +275,7 @@ public class PageMoveController {
 			}
 		}
 		model.addAttribute("cooperationlist", cooperationlist);
+		model.addAttribute("cooperationlist_chaam", cooperationlist_cham);
 		
 
 		// 휴가신청서

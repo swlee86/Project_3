@@ -179,7 +179,7 @@ public class DraftService {
 		return officelist;
 	}
 	
-	// 협조문 수신 리스트 불러오기
+	// 협조문 수신 리스트 불러오기(승인대상)
 	public List<Cooperation> selectCooperation_rec(String emp_no) {
 		
 		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
@@ -212,7 +212,7 @@ public class DraftService {
 			cooperation = dao.selectCooperation_rec(draft_no, emp_no);
 			cooperationlist.add(cooperation);
 		}
-		
+/*		
 		// 참조당한 협조문 결재문서 리스트 불러오기
 		List<Cooperation> cooperation_reflist = dao.selectDraft_ref_Cooperaion(emp_no);
 		
@@ -229,10 +229,42 @@ public class DraftService {
 				cooperationlist.add(cooper);
 			}
 		}
+*/
 		
 		
 		return cooperationlist;
 	}
+	
+	
+	// 협조문 수신 리스트 불러오기(참조된 대상)
+	public List<Cooperation> selectCooperation_rec_cham(String emp_no) {
+		DraftDAO dao = sqlsession.getMapper(DraftDAO.class);
+		
+		List<Cooperation> cooperation_reflist = dao.selectDraft_ref_Cooperaion(emp_no);
+		List<Cooperation> cooperationlist_rec_cham = new ArrayList<Cooperation>();
+		for(Cooperation cooper : cooperation_reflist) {
+			// 이미 리스트에 add되어 있으면 add하지 않겠다
+			if(cooperationlist_rec_cham.size()>0) {
+				for (int i = 0; i < cooperationlist_rec_cham.size(); i++) {
+					if (!cooper.getDraft_no().equals(cooperationlist_rec_cham.get(i).getDraft_no())) {
+						cooperationlist_rec_cham.add(cooper);
+					}
+				}
+			}
+			else {
+				cooperationlist_rec_cham.add(cooper);
+			}
+		}
+		return cooperationlist_rec_cham;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	// 휴가 신청서 리스트 불러오기
 	public List<Break> selectBreak_rec(String emp_no) {

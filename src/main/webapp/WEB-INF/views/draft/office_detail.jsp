@@ -249,8 +249,7 @@ function pagePrint(obj){
 </div>
 
 <!-- 승인 처리하기 Modal창 -->
-<div class="modal fade hmodal-success" id="draft_process_Modal" tabindex="-1"
-	 role="dialog" aria-hidden="true" style="display: none;">
+<div class="modal fade hmodal-success" id="draft_process_Modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="color-line"></div>
@@ -264,16 +263,13 @@ function pagePrint(obj){
 			<div class="modal-body">
 					<c:choose>
 						<c:when test="${ app_check == '1' }">
-							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
-								  style="background-color: rgb(98,203,49)" value="승인"> </span>
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea" style="background-color: rgb(98,203,49)" value="승인"> </span>
 						</c:when>
 						<c:when test="${ app_check == '2' }">
-							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
-								  style="background-color: rgb(231,76,60)" value="반려"> </span>
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea" style="background-color: rgb(231,76,60)" value="반려"> </span>
 						</c:when>
 						<c:when test="${ app_check == '3' }">
-							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"
-								  style="background-color: rgb(155,89,182)" value="보류"> </span>
+							<span class="marginbottom color textcenter flag dragdrop" id="dragarea" style="background-color: rgb(155,89,182)" value="보류"> </span>
 						</c:when>
 						<c:when test="${ app_check == '4' }">
 							<span class="marginbottom color textcenter flag dragdrop" id="dragarea"></span>

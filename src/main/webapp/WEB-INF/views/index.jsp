@@ -161,6 +161,9 @@
 					<li class="active"><a data-toggle="tab" href="#draft-1"><b>미승인 대외발신공문</b></a></li>
 					<li class=""><a data-toggle="tab" href="#draft-2"><b>미승인 협조문</b></a></li>
 					<li class=""><a data-toggle="tab" href="#draft-3"><b>미승인 휴가신청서</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-4"><b>참조된 대외발신공문</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-5"><b>참조된 협조문</b></a></li>
+					<li class=""><a data-toggle="tab" href="#draft-6"><b>참조된 휴가신청서</b></a></li>
 				</ul>
 				<div class="tab-content">
 
@@ -331,6 +334,187 @@
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					<div id="draft-4" class="tab-pane">	
+						<div class="panel-body list">
+							<div class=" project-list">
+								<table class="table table-striped table-condensed ">
+									<thead>
+										<tr>
+											<th>기안 제목</th>
+											<th style="text-align:center">수신처</th>
+											<th style="text-align:center">기안자</th>
+											<th style="text-align:center">승인결과</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="office" items="${officelist}" > 
+											<tr>
+												<td><a href="office_detail.do?draft_no=${ office.draft_no }">${ office.draft_title }</a><br />
+													<small><i class="fa fa-clock-o"></i>.&nbsp;
+													${office.draft_date}</small>
+												</td>
+
+
+
+												<td style="text-align:center"><small><c:if test="${fn:length(office.rec_addr) > 15}"></c:if>${fn:substring(office.rec_addr,0,15)} ...</small></td>
+												<td style="text-align:center">
+												 ${ office.emp_name }  <br><small>${ office.emp_no }</small>
+												</td>
+												<td style="text-align:center">
+													<c:choose>
+														<c:when test="${ office.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ office.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose>
+
+
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+							<div class="pull-right">
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
+							</div>	
+						</div>				
+					</div>
+				
+					<div id="draft-5" class="tab-pane "> 
+						<div class="panel-body list">	
+								<div class=" project-list">
+									<table class="table table-striped table-condensed">
+										<thead>
+											<tr>
+												<th>기안 제목</th>
+												<th style="text-align:center">수신 부서</th>
+												<th style="text-align:center">기안자</th>
+												<th style="text-align:center">승인 결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="cooper_cham" items="${cooperationlist_chaam}">
+												<tr>
+													
+												<td><a href="cooperation_detail.do?draft_no=${cooper_cham.draft_no}">${cooper_cham.draft_title }</a><br />
+													<small><i class="fa fa-clock-o"></i>.&nbsp;
+														${cooper_cham.draft_date}</small>
+													</td>
+													
+													<td style="text-align:center">${cooper_cham.low_dept_name} <small>${ cooper_cham.branch_name } ${ cooper_cham.dept_name }</small></td>
+													<td style="text-align:center">${cooper_cham.emp_name}<br><small>${ cooper_cham.emp_no }</small></td>
+													<td style="text-align:center"><c:choose>
+														<c:when test="${ cooper_cham.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ cooper_cham.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ cooper_cham.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ cooper_cham.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							<div class="pull-right">
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					<div id="draft-6" class="tab-pane "> 
+						<div class="panel-body list">	
+								<div class=" project-list">
+									<table class="table table-striped table-condensed">
+										<thead>
+											<tr>
+												<th >기안 제목</th>
+												<th style="text-align:center">휴가기간</th>
+												<th style="text-align:center">기안자</th>
+												<th style="text-align:center">승인 결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="br" items="${breaklist}">
+												<tr>
+													
+													<td  ><a href="break_detail.do?draft_no=${ br.draft_no }">${ br.draft_title }</a><br />
+														<small><i class="fa fa-clock-o"></i>.&nbsp;
+															${br.draft_date }</small>
+													</td>
+														
+													<td style="text-align:center">${ br.break_cg_name } <small>${ br.break_term } 일</small></td>
+													<td style="text-align:center"> ${ br.emp_name }<br><small>${ br.emp_no }</small></td>
+													<td style="text-align:center">
+														<c:choose>
+														<c:when test="${ br.step_no == '1' }">
+															<button class="btn btn-info btn-circle"
+																style="width: 30px; height: 30px;"><small><b>승 인</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '2' }">
+															<button class="btn btn-danger btn-circle"
+																style="width: 30px; height: 30px;"><small><b>반 려</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '3' }">
+															<button class="btn btn-primary2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>보 류</b></small></button>
+														</c:when>
+														<c:when test="${ br.step_no == '4' }">
+															<button class="btn btn-warning2 btn-circle"
+																style="width: 30px; height: 30px;"><small><b>미승인</b></small></button>
+														</c:when>
+													</c:choose></td>
+														
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							<div class="pull-right">
+								<span><small><a href="draft_rec.do">[전자결재 리스트 바로가기]</a></small></span>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
 			</div>
 		</div>
