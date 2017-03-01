@@ -29,7 +29,7 @@ $(function(){
 				</ol>
 			</div>
 			<h2 class="font-light m-b-xs">업무 보고  <span><a id="url" href="taskInform.do?tab_char=1"><i class="fa fa-repeat text-info" ></i></a></span></h2>
-			<small>&nbsp;&nbsp;&nbsp;진행하고 있는 업무를 보고하거나 받을 수 있습니다^^</small>
+			<small>&nbsp;&nbsp;&nbsp;진행하고 있는 업무를 보고하거나 받을 수 있습니다</small>
 		</div>
 	</div>
 </div>
@@ -40,8 +40,8 @@ $(function(){
 			<div class="hpanel">
 				<!-- 탭 -->
 				<ul class="nav nav-tabs">
-					<li class="<c:if test="${tab_char==1}">active</c:if>" id="susin"><a data-toggle="tab" href="#tab-1">수신</a></li>
-					<li class="<c:if test="${tab_char==2}">active</c:if>" id="songin"><a data-toggle="tab" href="#tab-2">송신</a></li>
+					<li class="<c:if test="${tab_char==1}">active</c:if>" id="susin"><a data-toggle="tab" href="#tab-1">받은 업무 보고</a></li>
+					<li class="<c:if test="${tab_char==2}">active</c:if>" id="songin"><a data-toggle="tab" href="#tab-2">보낸 업무 보고</a></li>
 				</ul>
 				
 				<div class="tab-content">
@@ -107,7 +107,7 @@ $(function(){
 											<th>업무 기한</th>
 											<th>작성자</th>
 											<th>작성일</th>
-											<th>승인 결과</th>
+											<th>당당자 확인 여부</th>
 										</tr>
 									</thead>
 									<tbody id="firstTable">
@@ -139,7 +139,7 @@ $(function(){
 											
 												<c:choose>
 													<c:when test="${ list1.step_no == '1'}">
-														<button class="btn btn-xs btn-info" disabled>승인</button>
+														<button class="btn btn-xs btn-info" disabled>확인완료</button>
 													</c:when>
 													<c:when test="${list1.step_no == '2'}">
 														<button class="btn btn-xs btn-danger" disabled>반려</button>
@@ -148,7 +148,7 @@ $(function(){
 														<button class="btn btn-xs btn-primary2" disabled>보류</button>
 													</c:when>
 													<c:when test="${list1.step_no == '4'}">
-														<button class="btn btn-xs btn-warning2" disabled>미승인</button>
+														<button class="btn btn-xs btn-warning2" disabled>미확인</button>
 													</c:when>
 												</c:choose>
 												</td>

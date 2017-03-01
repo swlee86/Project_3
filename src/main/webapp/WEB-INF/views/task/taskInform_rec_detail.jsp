@@ -42,21 +42,21 @@
 										<td style="width: 40%" colspan="3">${ detail.task_no }</td>
 										<input type="hidden" name="task_no" value="${ detail.task_no }">
 										<th style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
-											승인 결과
+											담당자 확인 여부
 										</th>
 										<td style="width: 40%; padding-left: 10px;">
 										<c:choose>
 											<c:when test="${ detail.step_no == '1' }">
-												<button class="btn btn-xs btn-info" disabled>승인</button>
+												<button class="btn btn-xs btn-info" disabled>수신확인</button>
 											</c:when>
 											<c:when test="${ detail.step_no == '2' }">
-												<button class="btn btn-xs btn-danger" disabled>반려</button>
+												<button class="btn btn-xs btn-danger" disabled>-</button>
 											</c:when>
 											<c:when test="${ detail.step_no == '3' }">
-												<button class="btn btn-xs btn-primary2" disabled>보류</button>
+												<button class="btn btn-xs btn-primary2" disabled>-</button>
 											</c:when>
 											<c:when test="${ detail.step_no == '4' }">
-												<button class="btn btn-xs btn-warning2" disabled>미승인</button>
+												<button class="btn btn-xs btn-warning2" disabled>미확인</button>
 											</c:when>
 										</c:choose>
 										</td>
@@ -185,7 +185,10 @@
 									</tr>
 								</table>
 								</c:if>
-
+								
+								
+								
+								<c:if test="${detail.cg_no=='1' }">
 								<div class="pull-right" style="text-align: center;">
 									<input type="submit" class="btn btn-sm btn-success" value="처리하기"
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
@@ -197,6 +200,36 @@
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 								
 								</div>
+								</c:if>
+								
+								<c:if test="${detail.cg_no=='2' }">
+								<div class="pull-right" style="text-align: center;">
+									<input type="submit" class="btn btn-sm btn-success" value="수신확인"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+									<input type="button" onclick="location.href='taskInform.do'"
+										   class="btn btn-sm btn-default" value="뒤로가기"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+									<input type="button" onclick="location.href='deleteTask_rec.do?task_no=${detail.task_no}'"
+										   class="btn btn-sm btn-danger" value="삭제"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+								
+								</div>
+								</c:if>
+								
+								<c:if test="${detail.cg_no=='3' }">
+								<div class="pull-right" style="text-align: center;">
+									<input type="submit" class="btn btn-sm btn-success" value="처리하기_3"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+									<input type="button" onclick="location.href='taskInform.do'"
+										   class="btn btn-sm btn-default" value="뒤로가기"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+									<input type="button" onclick="location.href='deleteTask_rec.do?task_no=${detail.task_no}'"
+										   class="btn btn-sm btn-danger" value="삭제"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+								
+								</div>
+								</c:if>
+								
 							</div>
 						</form>
 					</div>

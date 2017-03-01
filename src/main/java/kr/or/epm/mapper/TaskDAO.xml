@@ -49,9 +49,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 업무 수신함 확인하기 -->
 	<select id="selectTask_rec" resultType="kr.or.epm.VO.Task">
 	select task_no, cg_name, sign, task_name, deadline, emp_no, emp_name, send_date, file_name, step_no, step_name, step, rec_date, task_step_no from(
-    	select rownum num,n.task_no, n.cg_name, n.sign, n.task_name, n.deadline, n.emp_no, n.emp_name, n.send_date, n.file_name, n.step_no, n.step_name, n.step, n.rec_date, n.task_step_no
+    	select rownum num,n.task_no, n.cg_name, n.sign, n.task_name, n.deadline, n.emp_no, n.emp_name, n.send_date, n.file_name, n.step_no, n.step_name, n.step, n.rec_date, n.task_step_no, n.cg_no
     		from(
-          		select t.task_no, cg_name, sign, task_name, t.task_step_no, deadline, t.emp_no, emp_name, send_date, file_name, t.step_no, a.step_name, a.step, rec_date, rec_del_check, del_check
+          		select t.task_no, t.cg_no, cg_name, sign, task_name, t.task_step_no, deadline, t.emp_no, emp_name, send_date, file_name, t.step_no, a.step_name, a.step, rec_date, rec_del_check, del_check
           			from task t join task_cg c
           			on t.cg_no = c.cg_no
           				join approval a
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           			on t.task_no=p.task_no
           		where rec_emp_no = #{param1} or  p.emp_no is not null and t.cg_no = #{param2} and (${param3} like '%${param4}%')
           		order by a.step desc , t.task_no desc
-        		) n where rec_del_check='0' and del_check='0'
+        		) n where rec_del_check='0' and del_check='0' and cg_no=#{param2}
     ) where num  between 1 + (${param5} - 1) * ${param6} and  ${param6} + (${param5} - 1) * ${param6}
 	</select>
 	
@@ -135,7 +135,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 업무 상세 조회하기 -->
 	<select id="selectTask_detail" resultType="kr.or.epm.VO.Task">
-		select t.task_no, cg_name, sign, 
+		select t.task_no, t.cg_no, cg_name, sign, 
 			   task_name, deadline, content, 
 			   rec_emp_no, rec_name, rec_date, 
 			   t.emp_no, emp_name, send_date, 

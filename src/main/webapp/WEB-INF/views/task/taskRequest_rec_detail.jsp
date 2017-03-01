@@ -185,7 +185,11 @@
 									</tr>
 								</table>
 								</c:if>
-
+								
+								<!-- 업무에 따라서 아래에 나오는 처리 버튼 등을 다르게 표기하도록 c:if 처리 할 것 -->
+								
+								<c:if test="${detail.cg_no=='1' } }">
+								<c:out value="${detail.cg_no }"></c:out>
 								<div class="pull-right" style="text-align: center;">
 									<input type="submit" class="btn btn-sm btn-success" value="처리하기"
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
@@ -198,6 +202,40 @@
 										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
 								
 								</div>
+								</c:if>
+								
+								
+								<c:if test="${detail.cg_no=='2' }">
+								<c:out value="${detail.cg_no }"></c:out>
+								<div class="pull-right" style="text-align: center;">
+									<input type="submit" class="btn btn-sm btn-success" value="22222222222222"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+									<input type="button" onclick="location.href='taskRequest.do'"
+										   class="btn btn-sm btn-default" value="뒤로가기"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+										   		   
+									<input type="button" onclick="location.href='deleteTask_rec.do?task_no=${detail.task_no}'"
+										   class="btn btn-sm btn-danger" value="삭제"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+								
+								</div>
+								</c:if>
+								
+								<c:if test="${detail.cg_no=='3' }">
+								<c:out value="${detail.cg_no }"></c:out>
+								<div class="pull-right" style="text-align: center;">
+									<input type="submit" class="btn btn-sm btn-success" value="33333333333333333333"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+									<input type="button" onclick="location.href='taskRequest.do'"
+										   class="btn btn-sm btn-default" value="뒤로가기"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+										   		   
+									<input type="button" onclick="location.href='deleteTask_rec.do?task_no=${detail.task_no}'"
+										   class="btn btn-sm btn-danger" value="삭제"
+										   style="padding-right: 15px; padding-left: 15px; font-weight: 600; font-size: 13px">
+								
+								</div>
+								</c:if>
 							</div>
 						</form>
 					</div>

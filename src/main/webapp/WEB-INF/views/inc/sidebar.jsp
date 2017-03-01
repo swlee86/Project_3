@@ -63,9 +63,9 @@
                 <a href="#"><span class="nav-label">업무</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                 	<li><a href="taskWrite.do">업무 등록</a></li>
-                    <li><a href="taskRequest.do">요청</a></li>
-                    <li><a href="taskInform.do">보고</a></li>
-                    <li><a href="taskLog.do">일지</a></li>
+                    <li><a href="taskRequest.do">업무 요청 리스트</a></li>
+                    <li><a href="taskInform.do">업무 보고 리스트</a></li>
+                    <li><a href="taskLog.do">업무 일지 리스트</a></li>
                 </ul>
             </li>
             <li>
