@@ -139,13 +139,13 @@ $(function(){
 											
 												<c:choose>
 													<c:when test="${ list1.step_no == '1'}">
-														<button class="btn btn-xs btn-info" disabled>확인완료</button>
+														<button class="btn btn-xs btn-info" disabled>확인</button>
 													</c:when>
 													<c:when test="${list1.step_no == '2'}">
-														<button class="btn btn-xs btn-danger" disabled>반려</button>
+														<button class="btn btn-xs btn-danger" disabled>추가보고요청</button>
 													</c:when>
 													<c:when test="${ list1.step_no == '3' }">
-														<button class="btn btn-xs btn-primary2" disabled>보류</button>
+														<button class="btn btn-xs btn-primary2" disabled>추가확인필요</button>
 													</c:when>
 													<c:when test="${list1.step_no == '4'}">
 														<button class="btn btn-xs btn-warning2" disabled>미확인</button>
@@ -267,8 +267,7 @@ $(function(){
 											<th>업무 기한</th>
 											<th>승인자</th>
 											<th>작성일</th>
-											<th>승인 결과</th>
-											<th>수신 확인</th>
+											<th>수신 결과</th>
 										</tr>
 									</thead>
 									<tbody id="secondTable">
@@ -290,28 +289,18 @@ $(function(){
 												<td style="padding-top: 12px;">
 												<c:choose>
 													<c:when test="${ list2.step_no == '1'}">
-														<button class="btn btn-xs btn-info" disabled>승인</button>
+														<button class="btn btn-xs btn-info" disabled>확인</button>
 													</c:when>
 													<c:when test="${list.step_no == '2'}">
-														<button class="btn btn-xs btn-danger" disabled>반려</button>
+														<button class="btn btn-xs btn-danger" disabled>추가보고요청</button>
 													</c:when>
 													<c:when test="${ list2.step_no == '3' }">
-														<button class="btn btn-xs btn-primary2" disabled>보류</button>
+														<button class="btn btn-xs btn-primary2" disabled>추가확인필요</button>
 													</c:when>
 													<c:when test="${list2.step_no == '4'}">
-														<button class="btn btn-xs btn-warning2" disabled>미승인</button>
+														<button class="btn btn-xs btn-warning2" disabled>미확인</button>
 													</c:when>
 													</c:choose>
-												</td>
-												<td>
-												<c:choose>
-													<c:when test="${list2.rec_date == null }">
-														<font color="red"><b>미확인</b></font>
-													</c:when>
-													<c:when test="${list2.rec_date != null }">
-														<font color="blue"><b>확인</b></font>
-													</c:when>
-												</c:choose>
 												</td>
 											</tr>
 										</c:forEach>

@@ -101,8 +101,7 @@
 										</span>
 										<div id="task_no_td"></div>
 										</td>
-										<th
-											style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
+										<th	style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
 											<font color="#f05050">*</font> 참조자 명
 										</th>
 										<td style="width: 40%"><input  readonly
@@ -111,22 +110,32 @@
 										</td>
 									</tr>
 									<tr>
-										<th
-											style="background-color: #f5f5f5; text-align: right; ` padding-right: 10px; width: 10%">
-											<font color="#f05050">*</font> 업무 기한 <input type="hidden"
-											id="deadline" name="deadline">
+										<th style="background-color: #f5f5f5; text-align: right; ` padding-right: 10px; width: 10%">
+											<font color="#f05050">*</font> 업무 기한 <input type="hidden" id="deadline" name="deadline">
 										</th>
-										<td colspan="3">
+										<td colspan="1">
 											<div class="form-inline">
 												<div class="input-group date">
-													<input type="text" class="form-control input-sm"
-														id="makeuserUpdateDate"> <span
-														class="input-group-addon" style="color: #fd7d86"> <i
-														class="fa fa-calendar"></i>
+													<input type="text" class="form-control input-sm" id="makeuserUpdateDate"> 
+														<span class="input-group-addon" style="color: #fd7d86"> 
+															<i class="fa fa-calendar"></i>
 													</span>
 												</div>
 											</div>
 										</td>
+											<th	style="background-color: #f5f5f5; text-align: right; padding-right: 10px; width: 10%">
+												관련 프로젝트
+											</th>
+											<td>
+											<div class="form-inline">
+												<select>
+													<option ></option>
+													
+												</select>
+											
+											</div>
+											</td>
+										
 									</tr>
 								</table>
 								<table cellpadding="1" cellspacing="1"
