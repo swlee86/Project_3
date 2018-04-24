@@ -1,63 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:websocket="http://www.springframework.org/schema/websocket"
-	   xmlns:mvc="http://www.springframework.org/schema/mvc"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context.xsd
-	http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx.xsd
-	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-	http://www.springframework.org/schema/websocket 
-	http://www.springframework.org/schema/websocket/spring-websocket.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+<beans:beans xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xmlns="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-	<mvc:annotation-driven />
+<annotation-driven />
 	<context:component-scan base-package="com.toinfra.*"/>
 
-	
+    <!--
+    <bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://phonejob.cafe24.com:3306/airless86" />
+        &lt;!&ndash;<property name="url" value="jdbc:mysql://localhost:3306/airless86" />&ndash;&gt;
+        <property name="username" value="airless86" />
+        <property name="password" value="Clqxls6119@2" />
+    </bean>
+	-->
 		<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<!--<mvc:resources mapping="/resources/**" location="/resources/" />-->
 
-	<bean id="broadsocketHandler" class="com.toinfra.PushController.broadsocket"/>
+	<beans:bean id="broadsocketHandler" class="com.toinfra.PushController.broadsocket"/>
 
 	<websocket:handlers>
 	<websocket:mapping handler="broadsocketHandler" path="/broadsocket.do" />
 	<websocket:handshake-interceptors>
-       		<bean class="com.toinfra.PushController.HandshakeInterceptor" />
+       		<beans:bean class="com.toinfra.PushController.HandshakeInterceptor" />
    	</websocket:handshake-interceptors>
-	</websocket:handlers> 
-	
- 	<mvc:default-servlet-handler />
-
-	<bean id="customAuthenticationSuccessHandler" class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
-		<property name = "sqlsession">
-			<ref bean = "sqlSession"/>
-		</property>
-	</bean>
+	</websocket:handlers>
 
 
-	<!-- transaction start -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="driverManagerDataSource"/>
-	</bean>
-
-	<tx:annotation-driven proxy-target-class="true" />
-
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
-		</tx:attributes>
-	</tx:advice>
-
-	<aop:config>
-		<aop:pointcut id="onjPointCut" expression="execution(* com.toinfra.*.*(..))"/>
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="onjPointCut" />
-	</aop:config>
-
-</beans>
+</beans:beans>
