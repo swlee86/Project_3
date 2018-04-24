@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.toinfra.DAO.MediaBoardDAO">
+
+<!-- 
+	작성일 : 2016-11-18
+	작성자 : 박지은
+	사용 목적 : 언론게시판에 대한 mapper
+ -->
+ 	
+	<!-- 언론게시판 총 글수 -->
+	<select id="selectCount" resultType="int"> 
+		select count(*) 
+		from media 
+		where ${param1} like '%${param2}%'  
+	</select>
+	
+	
+	<!-- 언론게시판리스트 -->
+	<select id="selectList" resultType="kr.or.toinfra.VO.MediaBoard">
+		select no,emp_no,emp_name,hit,title,content,regdate,file_name from
+					(select rownum num, n.no,n.emp_no,n.emp_name,n.hit,n.title,n.content,n.regdate,n.file_name
+					 from 
+					 	 (select no,emp_no,emp_name,hit,title,content,regdate,file_name
+					 	  from media 
+					 	  where ${param3} like '%${param4}%'  order by regdate desc, no desc
+						  ) n
+					) where num between 1 + (${param1} - 1) * ${param2} and  ${param2} + (${param1} - 1) * ${param2}
+	</select>
+	
+	<!-- 언론게시판 글 상세내용 -->
+	<select id="selectDetail" resultType="kr.or.toinfra.VO.MediaBoard">
+		select no,  m.emp_no, m.emp_name, e.pic, title, content, regdate, file_name, hit
+		from media m 
+    	join emp e on m.emp_no = e.emp_no
+		where no = #{no}
+	</select>
+
+	<!-- 언론게시판 리플 글 보기-->
+	<select id="selectReList" resultType="kr.or.toinfra.VO.MediaBoardReply">
+		select re_no, no, emp_name, content, regdate
+		from re_media
+		where no = #{no} 
+		order by to_number(re_no) asc
+	</select>
+	
+	<!-- 회원 정보 부르기 -->
+	<select id="selectInfoSearch" resultType="kr.or.toinfra.VO.Emp">
+		select e.emp_name,e.emp_no
+		from  emp_detail d join emp e
+		on d. emp_no = e.emp_no
+		where d.id=#{id}
+	</select>
+	
+	<!-- 게시글 추가 -->
+	<insert id="insertRow">
+		insert into media(no, emp_no, emp_name, hit, title, content, regdate, file_name)
+				    values( media_seq.nextval, #{emp_no}, #{emp_name}, 0, #{title}, #{content}, to_char(sysdate, 'YYYY-MM-DD'), #{file_name,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 최고no값 구하기 -->
+	<select id="selectMaxNo" resultType="int">
+		select max(to_number(no)) from media
+	</select>
+	
+	<!-- 글 제거 -->
+	<delete id="deleteRow">
+		delete media where no=#{no}
+	</delete>
+	
+	<!-- 글 수정 -->
+	<update id="updateRow">
+		update media
+		set title=#{title}, 
+			content=#{content}, 
+			file_name=#{file_name,jdbcType=VARCHAR}
+		where no=#{no}
+	</update>	
+	
+	<!-- 리플 다는 함수 -->
+	<insert id="insertRowReply">
+		insert into re_media(re_no, no, emp_no, emp_name, content, regdate)
+				    values(re_media_seq.nextval, #{no}, #{emp_no}, #{emp_name}, #{content}, to_char(sysdate, 'YYYY-MM-DD'))
+	</insert>
+	
+	<!-- 리플 뽑는 함수 -->
+	<select id="selectRowReply" resultType="kr.or.toinfra.VO.Re_MediaBoard">
+		select re_no, no, emp_no, content, regdate, emp_name from re_media where no = #{param1} and re_no = #{param2}
+	</select>
+	
+	<!-- 현재 리플 번호 -->
+	<select id="selectMaxReNo" resultType="int">
+		select max(to_number(re_no)) from re_media
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateHit">
+		update media set hit=hit+1 where no=#{no}
+	</update>
+	
+	<!-- 리플 삭제 -->
+	<delete id="deleteReply">
+		delete re_media where no=#{no}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.toinfra.DAO.Set_homepageDAO">
+	
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 홈페이지 접근 가능 시간에 대한 mapper
+-->
+
+	<!-- 전체 홈페이지 접근 시간 조회하기 -->
+	<select id="selectSet_homepage" resultType="kr.or.toinfra.VO.Set_homepage">
+		select a.low_dept_no, a.set_date, a.open, a.close
+		from set_homepage a join (select low_dept_no, max(set_date) as last
+                          		  from set_homepage
+                     			  group by low_dept_no) b
+		on a.low_dept_no = b.low_dept_no and a.set_date = b.last
+		order by low_dept_no asc
+	</select>
+	
+	<!-- 하위 부서별 홈페이지 접근 시간 조회하기 -->
+	<select id="selectSet_homepage_dept" resultType="kr.or.toinfra.VO.Set_homepage">
+		select low_dept_no, set_date, open, close
+		from set_homepage
+		where low_dept_no = #{low_dept_no}
+		order by set_date desc
+	</select>
+	
+	<!-- 홈페이지 접근 시간 수정하기 -->
+	<update id="updateSet_homepage">
+		update set_homepage
+		set low_dept_no = #{low_dept_no}, 
+			set_date = to_char(sysdate, 'yyyy-mm-dd'), 
+			open = #{open}, 
+			close = #{close}
+		where set_date = to_char(sysdate, 'yyyy-mm-dd') and
+			  low_dept_no = #{low_dept_no}
+	</update>
+	
+	<!-- 홈페이지 접근 시간 등록하기 -->
+	<insert id="insertSet_homepage">
+		insert into set_homepage(set_date, low_dept_no, open, close)
+		values(to_char(sysdate, 'yyyy'-mm-dd), #{low_dept_no}, #{open}, #{close})
+	</insert>
+</mapper>

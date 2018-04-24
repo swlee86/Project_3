@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.toinfra.DAO.CommuteDAO">
+
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 근태에 대한 mapper
+	
+	
+	작성일 : 2016-11-22
+	작성자 : 김주희
+	사용 목적 : 근태에 대한 mapper 추가수정
+-->
+
+	<!-- 본인의 근태 내역 조회하기 -->	
+	<select id="selectCommute" resultType="kr.or.toinfra.VO.Commute">
+		select commute_no, regdate, in_time, 
+			   out_time, commute_time, add_time, 
+			   acc_commute_time, acc_add_time, mgr_check
+		from commute
+		where emp_no = #{emp_no}
+		order by regdate desc
+	</select>
+	
+	<!-- 금월 추가근무 확정 처리 조회하기 -->
+	<select id="selectCommute_mgr" resultType="kr.or.toinfra.VO.Commute">
+		select c.emp_no, e.emp_name, regdate, commute_time, add_time, mgr_check
+		from commute c join emp e
+		on c.emp_no = e.emp_no
+		where e.low_dept_no = #{low_dept_no}
+		order by regdate asc
+	</select>
+	
+	<!-- 확정 처리하기 : 월누적근무시간, 월누적추가근무시간 저장 -->
+	<update id="updateCommute_mgr">
+		update commute
+		set mgr_check = '1', 
+   			acc_commute_time = to_char(to_date(acc_commute_time) + to_date(commute_time)), 
+    		acc_add_time =  to_char(to_date(acc_add_time) + to_date(add_time))
+		where commute_no = '3'
+	</update>
+	
+	<!-- 출근하기 : 일시 저장 / 아래 쿼리도 같이 돌려줘야 한다 -->
+	<insert id="insertCommute_in">
+		insert into commute(commute_no, emp_no, regdate, 
+							in_time, out_time, commute_time, 
+							add_time, acc_commute_time, acc_add_time, 
+							mgr_check)
+		values(commute_seq.nextval, #{emp_no}, to_char(sysdate, 'yyyy-mm-dd'), 
+			   #{in_time}, null, null, 
+			   null, null, null, 
+			   '0')
+	</insert>
+	
+	<!-- 누적 근무시간, 누적 추가근무시간 계산하기 -->
+	<update id="updateCommute_acc">
+		update commute
+		set acc_commute_time = (select max(acc_commute_time)
+                        		from commute
+                        		where emp_no = #{emp_no} and
+                              		  regdate = #{regdate}),
+    	acc_add_time = (select max(acc_add_time)
+                    	from commute
+                    	where emp_no = #{emp_no} and
+                          	  regdate = #{regdate})
+		where commute_no = #{commute_no}
+	</update>
+	
+	<!-- 퇴근하기 : 근무 시간, 추가근무시간 저장 -->
+	<update id="updateCommute_out2">
+		update commute
+		set out_time = to_char(sysdate, 'hh:mm'),
+   			commute_time = out_time - in_time,
+    		add_commute_time = (select to_date(t.out_time, 'hh:mm') - to_date(c.out_time, 'hh:mm')
+                        		from commute c join emp e
+                        		on c.emp_no = e.emp_no
+                        		join (select rownum, low_dept_no, out_time
+                              		  from (select low_dept_no, out_time
+                                    		from set_time
+                                    		where low_dept_no = #{low_dept_no}
+                                    		order by abs(trunc(to_date(to_char(sysdate, 'yyyy-mm-dd')) - to_date(set_date))))
+                              		  where rownum = 1) t
+                        	    on e.low_dept_no = t.low_dept_no)
+		where commute_no = #{commute_no}
+	</update>
+	
+
+	<!-- 오늘 출근 내역 있는지 확인 -->
+	<select id="selectMyCommute_no" parameterType="String" resultType="String">
+		select commute_no from commute where emp_no=#{emp_no} and regdate=to_char(sysdate,'yyyy-mm-dd')
+	</select>
+	
+	
+	<!-- 퇴근하기 버튼  -->
+	<update id="updateCommute_out" parameterType="hashmap">
+		update commute set out_time = #{out_time} where commute_no=#{commute_no}
+	</update>
+	
+	<!-- commute_no에 따른 정보 조회(단일) -->
+	<select id="selectCommute_commuteno" resultType="kr.or.toinfra.VO.Commute">
+		select commute_no, e.emp_no, emp_name, regdate, in_time, out_time,
+			   commute_time, add_time, acc_commute_time, acc_add_time, mgr_check 
+		from commute c 
+	    join emp e
+	    on c.emp_no = e.emp_no
+	    where commute_no=#{commute_no}
+	</select>
+	
+	<!-- 당일 하루 근무시간 -->
+	<update id="updateCommute_time" parameterType="hashmap">
+		update commute set commute_time = #{commute_time} where commute_no=#{commute_no}
+	</update>
+	
+	<!-- 부서별 출퇴근시간(최신) -->
+	<select id="selectSetTime" parameterType="String" resultType="kr.or.toinfra.VO.Set_time">
+		select in_time,out_time from (select rownum,in_time,out_time 
+		      from set_time 
+		      where low_dept_no =(select distinct(low_dept_no) 
+		                          from emp 
+		                          where emp_no=#{emp_no}) 
+		      order by set_date desc) 
+		where rownum=1
+	</select>
+
+
+	<!-- 추가근무시간 업데이트 -->
+	<update id="updateCommute_addtime" parameterType="hashmap">
+		update commute set add_time = #{add_time} where commute_no=#{commute_no}
+	</update>
+	
+	
+	<!-- 이번 달 내역 중 가장 최근 내역조회  -->
+	<select id="selectCommute_yesterday" parameterType="String" resultType="kr.or.toinfra.VO.Commute">
+    	 select commute_no,emp_no,regdate,in_time,out_time,
+		       commute_time,add_time,acc_commute_time, acc_add_time,mgr_check
+		from commute 
+		where acc_add_time = (select max(acc_add_Time) from commute where emp_no=#{emp_no} and substr(regdate,0,4) = (to_char(sysdate,'yyyy')) and substr(regdate,6,2) = (to_char(sysdate,'mm'))) 
+			and acc_commute_time = (select max(acc_commute_time) from commute where emp_no=#{emp_no} and substr(regdate,0,4) = (to_char(sysdate,'yyyy')) and substr(regdate,6,2) = (to_char(sysdate,'mm'))) 
+			and emp_no=#{emp_no}
+	    	and substr(regdate,0,4) = (to_char(sysdate,'yyyy'))
+			and substr(regdate,6,2) = (to_char(sysdate,'mm'))
+		order by substr(regdate,9,2) desc
+	</select>
+	
+	
+	<!-- 누적시간 업데이트 -->
+	<update id="updateCommute_acctime" parameterType="hashmap">
+		update commute set acc_commute_time=#{acc_commute_time} , acc_add_time=#{acc_add_time} where commute_no=#{commute_no}
+	</update>
+	
+	<!-- 이번달 내역 조회  -->
+	<select id="selectCommute_month" parameterType="hashmap" resultType="kr.or.toinfra.VO.Commute">
+		select commute_no,c.emp_no, emp_name, regdate,in_time,out_time,
+		       commute_time,add_time,acc_commute_time, acc_add_time,mgr_check 
+		from commute c
+		join emp e
+		on c.emp_no = e.emp_no
+		where substr(regdate,0,4)=#{select_year} 
+		      and substr(regdate,6,2)=#{select_month}
+		      and e.emp_no=#{emp_no}
+		order by substr(regdate,9,2) desc
+	</select>
+	
+	<!-- 회원 정보 가져오기 -->
+	<select id="selectempinfo" parameterType="String" resultType="kr.or.toinfra.VO.Commute">
+		 select emp_name,emp_no from emp where emp_no = #{emp_no}
+	</select>
+	
+	<!-- 아이디로 회원 정보 가져오기 -->
+	<select id="selectInfoSearch" resultType="kr.or.toinfra.VO.Emp">
+		select e.emp_no,e.emp_name
+		from  emp_detail d join emp e
+		on d. emp_no = e.emp_no
+		where d.id=#{id}
+	</select>
+	
+	<!-- 관리자 근태 마감 -->
+	<select id="selectCommute_all_Close" resultType="kr.or.toinfra.VO.PayList">
+	select commute_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, mgr_check
+   from emp e join position p
+   on e.position_no = p.position_no
+  join (select g.emp_no,g.acc_commute_time,g.acc_add_time,commute_no,mgr_check from (select emp_no,max(acc_commute_time) as acc_commute_time,max(acc_add_time) as acc_add_time 
+        from commute where substr(regdate, 0,7)=#{param1} group by emp_no) g 
+        join commute c
+        on g.emp_no = c.emp_no and g.acc_commute_time = c.acc_commute_time and g.acc_add_time = c.acc_add_time
+        ) f 
+   on e.emp_no = f.emp_no
+   join (select e.emp_no, b.branch_name, d.dept_name, l.low_dept_name
+         from emp e join low_dept l
+         on e.low_dept_no = l.low_dept_no
+         join dept d
+         on l.dept_no = d.dept_no
+         join branch b
+         on b.branch_no = d.branch_no) d
+   on e.emp_no = d.emp_no
+   where mgr_check='0'
+	</select>
+	
+	
+	<!-- 관리자 급여 마감 확정 -->
+	<update id="updateCommute_Close" parameterType="String">
+	  update commute set mgr_check='1' where commute_no=#{commute_no}
+	</update>
+	
+	
+	<!-- 차트에 사용할 근무시간, 추가근무시간 가져오기 ( 최근 7일 ) -->
+	<select id="selectChartCommute" parameterType="String" resultType="kr.or.toinfra.VO.Commute">
+		select regdate,commute_time,add_time from 
+	    (select commute_no,emp_no,regdate,in_time,out_time,commute_time,add_time,acc_commute_time,acc_add_time,mgr_check 
+	    from commute 
+	    where emp_no=#{emp_no}
+	    order by commute_no desc) 
+	     <![CDATA[where rownum<=7 ]]> order by regdate asc
+    
+	</select>
+	
+</mapper>

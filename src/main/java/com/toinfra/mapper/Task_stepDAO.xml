@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.toinfra.DAO.Task_stepDAO">
+
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 업무 진행단계에 대한 mapper
+-->
+
+	<!-- 업무 진행 단계 조회하기 -->
+	<select id="selectTask_step" resultType="kr.or.toinfra.VO.Task_step">
+		select task_step_no, task_step_name, step
+		from task_step
+		order by step asc
+	</select>
+	
+	<!-- 업무 진행 단계 등록하기 -->
+	<insert id="insertTask_step">
+		insert into task_step(task_step_no, task_step_name, step)
+		values(task_step_seq.nextval, #{task_step_name}, #{step})
+	</insert>
+	
+	<!-- 업무 진행 단계 삭제하기 -->
+	<delete id="deleteTask_step">
+		delete from task_step
+		where task_step_no = #{task_step_no}
+	</delete>
+	
+	<!-- 업무 진행 단계 수정하기 -->
+	<update id="updateTask_step">
+		update task_step
+		set task_step_name = #{task_step_name},
+			step = #{step}
+		where task_step_no = #{task_step_no}
+	</update>
+	
+</mapper>

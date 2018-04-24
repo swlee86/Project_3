@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.toinfra.DAO.Set_timeDAO">
+
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 출퇴근시간 설정에 대한 mapper
+-->
+
+	<!-- 전체 출,퇴근시간 조회하기 -->
+	<select id="selectSet_time" resultType="kr.or.toinfra.VO.Set_time">
+		select a.low_dept_no, a.set_date, a.in_time, a.out_time
+		from set_time a join (select low_dept_no, max(set_date) as last
+                      		  from set_time
+                      		  group by low_dept_no) b
+		on a.low_dept_no = b.low_dept_no and a.set_date = b.last
+		order by low_dept_no asc
+	</select>
+	
+	<!-- 하위 부서별 출,퇴근시간 조회하기 -->
+	<select id="selectSet_time_dept" resultType="kr.or.toinfra.VO.Set_time">
+		select low_dept_no, set_date, in_time, out_time
+		from set_time
+		where low_dept_no = #{low_dept_no}
+		order by set_date desc
+	</select>
+	
+	<!-- 출,퇴근시간 수정하기 -->
+	<update id="updateSet_time">
+		update set_time
+		set low_dept_no = #{low_dept_no}, 
+			set_date = to_char(sysdate, 'yyyy-mm-dd'), 
+			in_time = #{in_time}, 
+			out_time = #{out_time}
+		where set_date = to_char(sysdate, 'yyyy-mm-dd') and
+			  low_dept_no = #{low_dept_no}
+	</update>
+	
+	<!-- 출,퇴근시간 등록하기 -->
+	<insert id="insertSet_time">
+		insert into set_time(set_date, low_dept_no, in_time, 
+						     out_time)
+		values(to_char(sysdate, 'yyyy-mm-dd'), #{low_dept_no}, #{in_time}, 
+			   #{out_time})
+	</insert>
+</mapper>

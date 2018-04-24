@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="kr.or.epm">
+	<logger name="kr.or.infra">
 		<level value="info" />
 	</logger>
 	

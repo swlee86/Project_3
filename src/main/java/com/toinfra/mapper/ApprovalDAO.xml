@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.toinfra.DAO.ApprovalDAO">
+
+<!--
+	작성일 : 2016-11-20
+	작성자 : 백승아
+	사용 목적 : 급여에 대한 mapper
+-->
+
+	<!-- 승인 진행 단계 조회하기 -->
+	<select id="selectApproval" resultType="kr.or.toinfra.VO.Approval">
+		select step_no, step_name, step
+		from approval
+		order by step asc
+	</select>
+	
+	<!-- 승인 진행 단계 등록하기 -->
+	<insert id="insertApproval">
+		insert into approval(step_no, step_name, step)
+		values(approval_seq.nextval, #{step_name}, #{step})
+	</insert>
+	
+	<!-- 승인 진행 단계 수정하기 -->
+	<update id="updateApproval">
+		update approval
+		set step_name = #{step_name},
+			step = #{step}
+		where step_no = #{step_no}
+	</update>
+	
+	<!-- 승인 진행 단계 삭제하기 -->
+	<delete id="deleteApproval">
+		delete from approval
+		where step_no = #{step_no}
+	</delete>
+	
+	<!--업무 승인 진행 단계-->
+	<update id="updateApproval_Task">
+		update task
+		set step_no = #{param2}
+		where task_no = #{param1}
+	</update>
+	
+</mapper>

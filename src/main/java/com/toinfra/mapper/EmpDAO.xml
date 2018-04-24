@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.toinfra.DAO.EmpDAO">
+
+<!--
+	작성일 : 2016-11-25
+	작성자 : 백승아
+	사용 목적 : 사원에 대한 mapper
+-->
+
+<!-- 사원 상세 -->
+<select id="selectEmp" resultType="kr.or.toinfra.VO.Emp">
+	select emp_no, e.cg_no, e.position_no,
+      	   e.low_dept_no, emp_break, salary,
+      	   emp_name, birth, cell_phone,
+      	   p.position_name, c.cg_name, l.low_dept_name
+	from emp e join position p
+	on e.position_no = p.position_no
+	join emp_cg c
+	on e.cg_no = c.cg_no
+	join low_dept l
+	on e.low_dept_no = l.low_dept_no
+	where emp_no = #{emp_no}
+</select>
+	
+<!-- 사원 정보 수정 -->
+<update id="updateEmp">
+	update emp
+	set cg_no = #{cg_no},
+		position_no = #{position_no},
+		low_dept_no = #{low_dept_no},
+		emp_break = #{emp_break},
+		salary = #{salary},
+		emp_name = #{emp_name},
+		birth = #{birth},
+		cell_phone = #{cell_phone}
+	where emp_no = #{emp_no}
+</update>
+
+
+</mapper>
