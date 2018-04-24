@@ -35,6 +35,12 @@
 	
  	<mvc:default-servlet-handler />
 
+	<bean id="customAuthenticationSuccessHandler" class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
+		<property name = "sqlsession">
+			<ref bean = "sqlSession"/>
+		</property>
+	</bean>
+
 
 	<!-- transaction start -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
