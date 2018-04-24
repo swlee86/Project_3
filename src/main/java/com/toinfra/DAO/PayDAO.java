@@ -7,9 +7,9 @@ import com.toinfra.VO.PayList;
 import com.toinfra.VO.Set_pay_date;
 import org.apache.ibatis.annotations.Param;
 
-import kr.or.toinfra.VO.Pay;
-import kr.or.toinfra.VO.PayList;
-import kr.or.toinfra.VO.Set_pay_date;
+import com.toinfra.VO.Pay;
+import com.toinfra.VO.PayList;
+import com.toinfra.VO.Set_pay_date;
 
 /*
  * 작성일 : 2016-11-18

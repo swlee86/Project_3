@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.toinfra.VO.*;
-import kr.or.toinfra.VO.Contact;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Emp_contact;
-import kr.or.toinfra.VO.Pjd;
-import kr.or.toinfra.VO.Pjd_people;
-import kr.or.toinfra.VO.Pjdd;
+import com.toinfra.VO.Contact;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.Emp_contact;
+import com.toinfra.VO.Pjd;
+import com.toinfra.VO.Pjd_people;
+import com.toinfra.VO.Pjdd;
 
 /*
  * 작성일 : 2016-11-18

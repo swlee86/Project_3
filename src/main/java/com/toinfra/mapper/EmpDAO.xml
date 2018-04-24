@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.EmpDAO">
+<mapper namespace="com.toinfra.DAO.EmpDAO">
 
 <!--
 	작성일 : 2016-11-25
@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 <!-- 사원 상세 -->
-<select id="selectEmp" resultType="kr.or.toinfra.VO.Emp">
+<select id="selectEmp" resultType="com.toinfra.VO.Emp">
 	select emp_no, e.cg_no, e.position_no,
       	   e.low_dept_no, emp_break, salary,
       	   emp_name, birth, cell_phone,

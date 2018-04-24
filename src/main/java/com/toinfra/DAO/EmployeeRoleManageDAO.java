@@ -6,8 +6,8 @@ import com.toinfra.VO.EmployeeRoleManage;
 import com.toinfra.VO.Role;
 import org.apache.ibatis.annotations.Param;
 
-import kr.or.toinfra.VO.EmployeeRoleManage;
-import kr.or.toinfra.VO.Role;
+import com.toinfra.VO.EmployeeRoleManage;
+import com.toinfra.VO.Role;
 
 /*
  * 작성자 : 백승아

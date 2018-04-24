@@ -2,7 +2,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.Approval;
-import kr.or.toinfra.VO.Approval;
+import com.toinfra.VO.Approval;
 
 /*
  * 작성일 : 2016-11-18

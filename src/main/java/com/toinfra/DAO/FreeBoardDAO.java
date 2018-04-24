@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.toinfra.VO.FreeBoard;
 import com.toinfra.VO.Re_FreeBoard;
-import kr.or.toinfra.VO.FreeBoard;
-import kr.or.toinfra.VO.Re_FreeBoard;
+import com.toinfra.VO.FreeBoard;
+import com.toinfra.VO.Re_FreeBoard;
 
 /*
  * 작성자 : 이상원

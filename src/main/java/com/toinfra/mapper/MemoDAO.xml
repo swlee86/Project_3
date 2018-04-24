@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.MemoDAO">
+<mapper namespace="com.toinfra.DAO.MemoDAO">
 <!--
  * 작성일 : 2016-11-16
  * 작성자 : 이상원
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 로그인한 사원의 전체 메모  -->
-	<select id="selectMemo" resultType="kr.or.toinfra.VO.Memo">
+	<select id="selectMemo" resultType="com.toinfra.VO.Memo">
 		 select  memo_no, emp_no, title, memo_content, memo_date, color_no, color, color_name  from (
 				select  rownum num, n.memo_no, n.emp_no, n.title, n.memo_content, n.memo_date, n.color_no, n.color, n.color_name  from (
 					select memo_no,emp_no,title,memo_content,memo_date, m.color_no, color, color_name
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 선택한 메모 상세 조회 -->
-	<select id="selectMemo_detail" resultType="kr.or.toinfra.VO.Memo">
+	<select id="selectMemo_detail" resultType="com.toinfra.VO.Memo">
 		select memo_no,emp_no,title,memo_content,memo_date,
 	       		m.color_no, color, color_name
 		from memo m
@@ -52,12 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 메모 색상 목록 -->
-	<select id="selectMemocolorList" resultType="kr.or.toinfra.VO.Memocolor">
+	<select id="selectMemocolorList" resultType="com.toinfra.VO.Memocolor">
 		select color_no, color, color_name from memocolor
 	</select>
 	
 	<!-- 색상 선택 -->
-	<select id="selectMemocolor" resultType="kr.or.toinfra.VO.Memocolor">
+	<select id="selectMemocolor" resultType="com.toinfra.VO.Memocolor">
 		select color from memocolor where color_name=#{color_name}
 	</select>
 	
@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 메모 생성,추가 -->
-	<insert id="insertMemo" parameterType="kr.or.toinfra.VO.Memo">
+	<insert id="insertMemo" parameterType="com.toinfra.VO.Memo">
 	insert into memo(memo_no,emp_no,title,memo_content,memo_date,color_no) values(memo_seq.NEXTVAL,#{emp_no},#{title},#{memo_content},to_char(sysdate,'YYYY-MM-dd'),#{color_no})
       </insert>
 </mapper>

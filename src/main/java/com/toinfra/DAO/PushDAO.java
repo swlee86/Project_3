@@ -6,10 +6,10 @@ import com.toinfra.VO.Commute;
 import com.toinfra.VO.Emp;
 import com.toinfra.VO.Pj;
 import com.toinfra.VO.Task;
-import kr.or.toinfra.VO.Commute;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Pj;
-import kr.or.toinfra.VO.Task;
+import com.toinfra.VO.Commute;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.Pj;
+import com.toinfra.VO.Task;
 
 public interface PushDAO {
    //Emp_detail 에서 아이디를 토대로 사원번호 뽑아오기

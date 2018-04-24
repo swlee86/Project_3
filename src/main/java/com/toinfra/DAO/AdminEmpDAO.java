@@ -3,14 +3,14 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.*;
-import kr.or.toinfra.VO.Branch;
-import kr.or.toinfra.VO.Dept;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Emp_cg;
-import kr.or.toinfra.VO.Emp_role;
-import kr.or.toinfra.VO.Low_dept;
-import kr.or.toinfra.VO.Position;
-import kr.or.toinfra.VO.Role;
+import com.toinfra.VO.Branch;
+import com.toinfra.VO.Dept;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.Emp_cg;
+import com.toinfra.VO.Emp_role;
+import com.toinfra.VO.Low_dept;
+import com.toinfra.VO.Position;
+import com.toinfra.VO.Role;
 
 /*
  * 작성자 : 백승아

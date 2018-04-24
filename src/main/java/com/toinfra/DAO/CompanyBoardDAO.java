@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.toinfra.VO.Company;
 import com.toinfra.VO.Emp_detail;
-import kr.or.toinfra.VO.Company;
-import kr.or.toinfra.VO.Emp_detail;
+import com.toinfra.VO.Company;
+import com.toinfra.VO.Emp_detail;
 
 /*
  * 작성자 : 박성준

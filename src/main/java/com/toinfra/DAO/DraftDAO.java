@@ -3,12 +3,12 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.*;
-import kr.or.toinfra.VO.Break;
-import kr.or.toinfra.VO.Cooperation;
-import kr.or.toinfra.VO.Draft;
-import kr.or.toinfra.VO.Draft_line;
-import kr.or.toinfra.VO.Draft_ref;
-import kr.or.toinfra.VO.Office;
+import com.toinfra.VO.Break;
+import com.toinfra.VO.Cooperation;
+import com.toinfra.VO.Draft;
+import com.toinfra.VO.Draft_line;
+import com.toinfra.VO.Draft_ref;
+import com.toinfra.VO.Office;
 
 /*
  * 작성일 :	2016-11-24

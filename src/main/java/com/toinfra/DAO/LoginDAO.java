@@ -4,8 +4,8 @@ import com.toinfra.VO.EmpJoinEmp_Detail;
 import com.toinfra.VO.Emp_detail;
 import org.apache.ibatis.annotations.Param;
 
-import kr.or.toinfra.VO.EmpJoinEmp_Detail;
-import kr.or.toinfra.VO.Emp_detail;
+import com.toinfra.VO.EmpJoinEmp_Detail;
+import com.toinfra.VO.Emp_detail;
 
 /*
  * 작성자 : 박성준

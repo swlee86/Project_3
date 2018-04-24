@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:websocket="http://www.springframework.org/schema/websocket"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   xmlns:websocket="http://www.springframework.org/schema/websocket"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
@@ -13,36 +14,44 @@
 	http://www.springframework.org/schema/tx/spring-tx.xsd
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 	http://www.springframework.org/schema/websocket 
-	http://www.springframework.org/schema/websocket/spring-websocket.xsd
-">
-	<mvc:annotation-driven />
-	<context:component-scan base-package="kr.or.epm.*"/>
+	http://www.springframework.org/schema/websocket/spring-websocket.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-	<context:component-scan base-package="com.spring" use-default-filters="false">
-    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-	</context:component-scan>
-	
+
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.toinfra.*"/>
+
 	
 		<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	
-	
-	
-	<bean id="broadsocketHandler" class="kr.or.epm.PushController.broadsocket"/>
+
+	<bean id="broadsocketHandler" class="com.toinfra.PushController.broadsocket"/>
 
 	<websocket:handlers>
 	<websocket:mapping handler="broadsocketHandler" path="/broadsocket.do" />
 	<websocket:handshake-interceptors>
-       		<bean class="kr.or.epm.PushController.HandshakeInterceptor" />
+       		<bean class="com.toinfra.PushController.HandshakeInterceptor" />
    	</websocket:handshake-interceptors>
 	</websocket:handlers> 
 	
- 	<mvc:default-servlet-handler /> 
-	
-	
-	
-	
-	
+ 	<mvc:default-servlet-handler />
+
+
+	<!-- transaction start -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="driverManagerDataSource"/>
+	</bean>
+
+	<tx:annotation-driven proxy-target-class="true" />
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="onjPointCut" expression="execution(* com.toinfra.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="onjPointCut" />
+	</aop:config>
+
 </beans>

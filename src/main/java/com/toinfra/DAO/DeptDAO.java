@@ -7,9 +7,9 @@ import com.toinfra.VO.DeptJoinBonus;
 import com.toinfra.VO.Set_bonus;
 import org.apache.ibatis.annotations.Param;
 
-import kr.or.toinfra.VO.Dept;
-import kr.or.toinfra.VO.DeptJoinBonus;
-import kr.or.toinfra.VO.Set_bonus;
+import com.toinfra.VO.Dept;
+import com.toinfra.VO.DeptJoinBonus;
+import com.toinfra.VO.Set_bonus;
 
 /*
  * 작성자 : 박성준

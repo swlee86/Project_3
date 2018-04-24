@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.RegisterDAO">
+<mapper namespace="com.toinfra.DAO.RegisterDAO">
 	
 	<!-- 관리자의 사원등록에서 등록시 처리되는 insert 쿼리문 -->
-	<insert id="insertEmp" parameterType="kr.or.toinfra.VO.Emp">
+	<insert id="insertEmp" parameterType="com.toinfra.VO.Emp">
 		INSERT INTO emp(emp_no, cg_no, position_no, low_dept_no, emp_name, birth, salary ,emp_break, cell_phone)
 	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break}, #{cell_phone})
 	</insert>
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	
-	<update id="updateEmail" parameterType="kr.or.toinfra.VO.Emp">
+	<update id="updateEmail" parameterType="com.toinfra.VO.Emp">
 		update emp set email=#{email} where emp_no=#{emp_no}
 	</update>
 	
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 관리자의 사원정보  > 정보 등록 화면에서 하위 부서번호의 정보를 low_dept 테이블에서 불러오는 쿼리문-->
-	<select id="selectLowDeptNo" resultType="kr.or.toinfra.VO.Low_dept">
+	<select id="selectLowDeptNo" resultType="com.toinfra.VO.Low_dept">
 		select * from low_dept
 	</select>
 	
@@ -52,12 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 근무상태 테이블에서 해당 내용들을 모두 불러오는 쿼리 -->
-	<select id="selectEmpCgList" resultType="kr.or.toinfra.VO.Emp_cg">
+	<select id="selectEmpCgList" resultType="com.toinfra.VO.Emp_cg">
 	select cg_no, cg_name from emp_cg
 	</select>
 	
 	<!-- 직위 정보를 모두 불러오는 쿼리 -->
-	<select id="selectPositionList" resultType="kr.or.toinfra.VO.Position">
+	<select id="selectPositionList" resultType="com.toinfra.VO.Position">
 		select position_no, position_name from position
 	</select>
 	

@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.BranchDAO">
+<mapper namespace="com.toinfra.DAO.BranchDAO">
 
 	<!--지점 선택 selectbox  -->
-	<select id="selectBranch" resultType="kr.or.toinfra.VO.Branch">
+	<select id="selectBranch" resultType="com.toinfra.VO.Branch">
 		select branch_name, branch_no from branch where his_check=1
 	</select>
 	
 	<!-- 지점 조회하기 -->
-	<select id="selectChooseBranch" parameterType="String" resultType="kr.or.toinfra.VO.Branch">
+	<select id="selectChooseBranch" parameterType="String" resultType="com.toinfra.VO.Branch">
 		select * from branch where his_check=1 and branch_name=#{selectBranchName}
 	</select>
 	
@@ -20,28 +20,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--지점 추가  -->	
-	<insert id="addBranch" parameterType="kr.or.toinfra.VO.Branch">
+	<insert id="addBranch" parameterType="com.toinfra.VO.Branch">
 		insert into branch values (branch_seq.nextval, #{branch_name}, #{postcode},#{addr},#{addr_detail},null,1,0)
 	</insert>
 	
 	<!-- 지점 정보 수정 1)-->
-	<insert id="branchModify" parameterType="kr.or.toinfra.VO.Branch">
+	<insert id="branchModify" parameterType="com.toinfra.VO.Branch">
 		insert into branch(branch_no, branch_name, postcode, addr, addr_detail, pre_branch_no, his_check, depth) 
 		values(branch_seq.nextval, #{branch_name}, #{postcode}, #{addr}, #{addr_detail}, #{branch_no}, 1, 0) 
     </insert>
 		
 	<!--  수정된 지점 정보 select 2)-->
-	<select id="select_newBranch" resultType="kr.or.toinfra.VO.Branch">
+	<select id="select_newBranch" resultType="com.toinfra.VO.Branch">
 		select branch_name, branch_no, pre_branch_no from branch where pre_branch_no=#{branch_no} and his_check='1'
 	</select>
 	
 	<!-- 소속 부서 개수 구하기 3)-->
-	<select id="countDept" parameterType="kr.or.toinfra.VO.Branch" resultType="Integer">
+	<select id="countDept" parameterType="com.toinfra.VO.Branch" resultType="Integer">
 	    select count(*) from dept where branch_no=#{pre_branch_no} and his_check='1'
 	</select>
 	
 	<!-- 수정된 지점의 소속 부서 update 4)-->
-	<update id="update_new_dept" parameterType="kr.or.toinfra.VO.Branch">
+	<update id="update_new_dept" parameterType="com.toinfra.VO.Branch">
 		update dept set branch_no=#{branch_no}, branch_name = #{branch_name} where branch_no=#{pre_branch_no} and his_check='1'
 	</update>
 	
@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 하위부서 update -->
-	<update id="update_pre_lowDept" parameterType="kr.or.toinfra.VO.Branch">
+	<update id="update_pre_lowDept" parameterType="com.toinfra.VO.Branch">
 		update low_dept set branch_name=#{param1} where branch_name=#{param2} and his_check='1'
 	</update>
 	

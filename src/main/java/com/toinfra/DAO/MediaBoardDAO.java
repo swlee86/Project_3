@@ -7,10 +7,10 @@ import com.toinfra.VO.Emp;
 import com.toinfra.VO.MediaBoard;
 import com.toinfra.VO.MediaBoardReply;
 import com.toinfra.VO.Re_MediaBoard;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.MediaBoard;
-import kr.or.toinfra.VO.MediaBoardReply;
-import kr.or.toinfra.VO.Re_MediaBoard;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.MediaBoard;
+import com.toinfra.VO.MediaBoardReply;
+import com.toinfra.VO.Re_MediaBoard;
 /*
  * 작성자 : 박지은
  * 작성일 : 2016-11-18

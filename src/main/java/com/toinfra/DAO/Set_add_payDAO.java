@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.toinfra.VO.Set_add_pay;
 import com.toinfra.VO.Set_pay;
-import kr.or.toinfra.VO.Set_add_pay;
-import kr.or.toinfra.VO.Set_pay;
+import com.toinfra.VO.Set_add_pay;
+import com.toinfra.VO.Set_pay;
 
 /*
  * 작성일 : 2016-11-18

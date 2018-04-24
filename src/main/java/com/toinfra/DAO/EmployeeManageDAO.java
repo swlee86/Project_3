@@ -3,7 +3,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.EmployeeManage;
-import kr.or.toinfra.VO.EmployeeManage;
+import com.toinfra.VO.EmployeeManage;
 
 public interface EmployeeManageDAO {
 	List<EmployeeManage> selectEmpManage(int start, int end);

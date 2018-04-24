@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.ContactDAO">
+<mapper namespace="com.toinfra.DAO.ContactDAO">
 <!--
 	작성일 : 2016-11-21
 	작성자 : 박지은
 	사용 목적 : 주소록 기능 구현 mapper
 -->
 	<!-- 주소록 추가시 이름별 검색 -->
-	<select id="contact_insert_search" resultType="kr.or.toinfra.VO.Emp">
+	<select id="contact_insert_search" resultType="com.toinfra.VO.Emp">
 		select emp_no,emp_name,p.position_name from emp e
 		<if test="field != null and field.equals('emp_name')">
 			join position p
@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 등록인 사번 구하는 함수 -->
-	<select id="selectInfoSearch" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectInfoSearch" resultType="com.toinfra.VO.Emp">
 		select e.emp_no
 		from  emp_detail d join emp e
 		on d. emp_no = e.emp_no
@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	
 	<!-- 주소록 리스트 -->
-	<select id="selectList" resultType="kr.or.toinfra.VO.Contact">
+	<select id="selectList" resultType="com.toinfra.VO.Contact">
 		select contact_no, group_no, name, attach, birth, mail, pic, tel1, tel2, memo from
 					(select rownum num, n.contact_no,n.group_no,n.name,n.attach,n.birth,n.mail,n.pic,n.tel1,n.tel2,n.memo
 					 from 
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 주소록 상세조회 -->
-	<select id="selectContact_detail" resultType="kr.or.toinfra.VO.Contact">
+	<select id="selectContact_detail" resultType="com.toinfra.VO.Contact">
 		select contact_no, c.group_no, group_name, name, attach, birth, mail, pic, tel1, tel2, memo 
        	from contact c  join c_group g  on c.group_no = g.group_no
 		where contact_no = #{contact_no}
@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		
 	<!-- 주소록테이블 등록 -->
-	<insert id="insertContact" parameterType="kr.or.toinfra.VO.Contact">
+	<insert id="insertContact" parameterType="com.toinfra.VO.Contact">
 		insert into contact(contact_no, group_no, name, attach, birth, mail, pic, tel1, tel2, memo) 
 		values(contact_seq.nextval,#{group_no}, #{name}, #{attach}, #{birth}, #{mail}, #{pic,jdbcType=VARCHAR}, #{tel1}, #{tel2}, #{memo})
 	</insert>
@@ -87,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<!-- 현재 로그인한 사원이 갖고있는 그룹 목록 -->
-	<select id="selectEmpGroup_list" parameterType="String" resultType="kr.or.toinfra.VO.C_group">
+	<select id="selectEmpGroup_list" parameterType="String" resultType="com.toinfra.VO.C_group">
 		select group_no,group_name 
 		from c_group 
 		where group_no 
@@ -99,7 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 사내사원 정보 -->
-	<select id="selectEmpInfo" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectEmpInfo" resultType="com.toinfra.VO.Emp">
 		select emp_name, birth, pic, email, cell_phone, emp_tel, branch_name, dept_name,low_dept_name from emp e join low_dept l on e.low_dept_no=l.low_dept_no where emp_no=#{emp_no}
 	</select>
 	
@@ -198,7 +198,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 그룹별 조회 -->
-	<select id="selectContact_group" resultType="kr.or.toinfra.VO.Contact">
+	<select id="selectContact_group" resultType="com.toinfra.VO.Contact">
 		select contact_no, c.group_no, group_name, name, attach, 
 	       		birth, mail, pic, tel1, tel2, memo 
 		from contact c 
@@ -210,7 +210,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 주소록 상세조회 수정 -->
-	<update id="updateContact_detail" parameterType="kr.or.toinfra.VO.Contact">
+	<update id="updateContact_detail" parameterType="com.toinfra.VO.Contact">
 		update contact 
 		set group_no = #{group_no}, name=#{name}, attach=#{attach}, 
 		    birth =#{birth}, mail =#{mail}, pic=#{pic,jdbcType=VARCHAR}, 

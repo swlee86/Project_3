@@ -6,9 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.or.toinfra.DAO.MemoDAO;
-import kr.or.toinfra.VO.Memo;
-import kr.or.toinfra.VO.Memocolor;
+import com.toinfra.DAO.MemoDAO;
+import com.toinfra.VO.Memo;
+import com.toinfra.VO.Memocolor;
 /*
  * 작성일 : 2016-11-16
  * 작성자 : 이상원

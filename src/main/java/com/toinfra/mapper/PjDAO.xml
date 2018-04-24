@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.PjDAO">
+<mapper namespace="com.toinfra.DAO.PjDAO">
 
 <!--
 	작성일 : 2016-11-20
@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!--프로젝트 송신 리스트-->
-	<select id="select_Send_Pj_rec" resultType="kr.or.toinfra.VO.Pj">
+	<select id="select_Send_Pj_rec" resultType="com.toinfra.VO.Pj">
               select one.pj_content,one.pj_no,one.emp_no,one.emp_name,one.pj_title,one.pj_start,one.pj_end,one.step_no,one.rec_emp_no, emp.emp_name as rec_emp_name from(
           		select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no,p.rec_emp_no,p.pj_content
           		from pj p join emp e on p.emp_no = e.emp_no
@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 등록인 사번 구하는 함수 -->
-	<select id="selectInfoSearch" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectInfoSearch" resultType="com.toinfra.VO.Emp">
 		select e.emp_no
 		from  emp_detail d join emp e
 		on d. emp_no = e.emp_no
@@ -83,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 프로젝트 승인 대기함 조회하기 -->
-	<select id="selectPj_rec" resultType="kr.or.toinfra.VO.Pj">
+	<select id="selectPj_rec" resultType="com.toinfra.VO.Pj">
 		select pj_no, emp_no, emp_name, pj_title, pj_start, pj_end, step_no from(
         	select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
           		select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
@@ -95,14 +95,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 프로젝트 승인 대기함 큰 프로젝트 상세보기 -->
-	<select id="selectPj_detail" resultType="kr.or.toinfra.VO.Pj">
+	<select id="selectPj_detail" resultType="com.toinfra.VO.Pj">
 	  select  p.pj_no,p.emp_no,e.emp_name,pj_title, pj_content, pj_start, pj_end, step_no
       from pj p join emp e on p.emp_no = e.emp_no 
       where  p.pj_no=#{pj_no}
 	</select>
 	
 	<!-- 프로젝트 승인 대기함 큰프로젝트의 상세 프로젝트 보기 -->
-	<select id="selectPjd_detail" resultType="kr.or.toinfra.VO.Pjd">
+	<select id="selectPjd_detail" resultType="com.toinfra.VO.Pjd">
 	 	SELECT pjd_no ,SUBSTR( XMLAGG( XMLELEMENT(COL ,', ', emp_name) ORDER BY emp_name).EXTRACT('//text()' ).GETSTRINGVAL(), 2) emp_name, pjd_title, pjd_content,pjd_start, pjd_end 
    		FROM ( 
          select e.emp_name, p_p.pjd_no, pd.pjd_title, pd.pjd_content, pd.pjd_start, pd.pjd_end
@@ -136,7 +136,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 프로젝트 조회하기(승인처리된것들만) -->
-	<select id="selectPj" resultType="kr.or.toinfra.VO.Pj">
+	<select id="selectPj" resultType="com.toinfra.VO.Pj">
 		select pj_no, p.emp_no, e.emp_name, l.dept_name, pj_title, pj_content, pj_start, 
 		       pj_end, pj_progress, p.pj_step_no, s.pj_step_name
 		from pj p join emp e
@@ -150,7 +150,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 프로젝트에서 내가 만든 프로젝트만 조회하기(승인처리된것들만) -->
-	<select id="selectPj_write" parameterType="String" resultType="kr.or.toinfra.VO.Pj">
+	<select id="selectPj_write" parameterType="String" resultType="com.toinfra.VO.Pj">
 		select p.pj_no, p.emp_no, e.emp_name, l.dept_name, 
 				pj_title, pj_content, pj_start, 
 				pj_end, pj_progress, p.pj_step_no, s.pj_step_name
@@ -166,7 +166,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 프로젝트에서 내가 포함된 프로젝트만 조회하기(승인처리된것들만) -->
-	<select id="selectPj_include" parameterType="String" resultType="kr.or.toinfra.VO.Pj">
+	<select id="selectPj_include" parameterType="String" resultType="com.toinfra.VO.Pj">
 		select p.pj_no, p.emp_no, e.emp_name, l.dept_name, 
 				pj_title, pj_content, pj_start, 
 				pj_end, pj_progress, p.pj_step_no, s.pj_step_name
@@ -184,7 +184,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 프로젝트 내가 작성한것 and 내가 참여자인것 프로젝트 목록 가져오기 --> 
-	<select id="selectPj_callendar" parameterType="String" resultType="kr.or.toinfra.VO.Pj">
+	<select id="selectPj_callendar" parameterType="String" resultType="com.toinfra.VO.Pj">
 		select p.pj_no, p.emp_no, e.emp_name, l.dept_name, 
             pj_title, pj_content, pj_start, 
             pj_end, pj_progress, p.pj_step_no, s.pj_step_name
@@ -206,7 +206,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 프로젝트 검색 -->
-	<select id="searchPj" resultType="kr.or.toinfra.VO.Pj">
+	<select id="searchPj" resultType="com.toinfra.VO.Pj">
 		select pj_no, p.emp_no, e.emp_name, l.dept_name, pj_title, pj_content, pj_start, 
 		       pj_end, pj_progress, p.pj_step_no, s.pj_step_name
 		from pj p join emp e
@@ -232,7 +232,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 프로젝트의 시작일, 종료일 가져오기 -->
-	<select id="selectPjDate" resultType="kr.or.toinfra.VO.Pj">
+	<select id="selectPjDate" resultType="com.toinfra.VO.Pj">
 		select pj_start,pj_end from pj where pj_no = (select pj_no from pjd where pjd_no=#{pjd_no})	
 	</select>
 	

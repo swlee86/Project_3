@@ -3,7 +3,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.Mail;
-import kr.or.toinfra.VO.Mail;
+import com.toinfra.VO.Mail;
 
 /*
  * 작성자 : 백승아

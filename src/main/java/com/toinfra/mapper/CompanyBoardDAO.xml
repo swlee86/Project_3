@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.CompanyBoardDAO">
+<mapper namespace="com.toinfra.DAO.CompanyBoardDAO">
 	
 	<!--회사 정보 게시판 게시글 수 읽어오기-->
 	<select id="selectBoardCount" resultType="int">
@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--회사 정보 게시판 리스트 읽어오기-->
-	<select id="selectCompanyList" resultType="kr.or.toinfra.VO.Company">
+	<select id="selectCompanyList" resultType="com.toinfra.VO.Company">
 		select no, emp_name,title, content, hit, file_name, regdate 
 		from
 			(select rownum rn, no, emp_name,title, content, hit, file_name, regdate 
@@ -25,13 +25,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rn BETWEEN #{param1} and #{param2}
 	</select>
 	
-	<select id="selectDetail" resultType="kr.or.toinfra.VO.Company">
+	<select id="selectDetail" resultType="com.toinfra.VO.Company">
 		select no, b.emp_no,b.emp_name,title, content, hit, file_name, b.regdate, e.pic from company b
 		join emp e on b.emp_no = e.emp_no where no = #{no}
 	</select>
 	
 	<!--게시판 글쓰기-->
-	<insert id="insertInfoBoard" parameterType="kr.or.toinfra.VO.Company">
+	<insert id="insertInfoBoard" parameterType="com.toinfra.VO.Company">
 		insert into company (no,emp_no, emp_name, hit, title,content,regdate,file_name) 
 			values(
 						company_seq.nextval,
@@ -47,12 +47,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!--시큐리티를 이용, 사번 뽑아옴.-->
-	<select id="selectEmpUserInfo" resultType="kr.or.toinfra.VO.Emp_detail">
+	<select id="selectEmpUserInfo" resultType="com.toinfra.VO.Emp_detail">
 		select emp_no from emp_detail where id = #{id}
 	</select>
 	
 	<!--제목 검색-->
-	<select id="selectSeacrchCompanyList" resultType="kr.or.toinfra.VO.Company">
+	<select id="selectSeacrchCompanyList" resultType="com.toinfra.VO.Company">
 		select no,emp_name,title,content,hit,regdate from
 					(select rownum num, n.no,n.emp_no,n.emp_name,n.hit,n.title,n.content,n.regdate,n.file_name
 					 from 

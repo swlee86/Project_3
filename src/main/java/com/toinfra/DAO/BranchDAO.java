@@ -4,7 +4,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.Branch;
-import kr.or.toinfra.VO.Branch;
+import com.toinfra.VO.Branch;
 
 public interface BranchDAO {
 

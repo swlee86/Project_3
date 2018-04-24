@@ -3,7 +3,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.Task_people;
-import kr.or.toinfra.VO.Task_people;
+import com.toinfra.VO.Task_people;
 
 /*
  * 작성일 : 2016-11-18

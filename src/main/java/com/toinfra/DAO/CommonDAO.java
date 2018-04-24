@@ -2,8 +2,8 @@ package com.toinfra.DAO;
 
 import com.toinfra.VO.Common;
 import com.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Common;
-import kr.or.toinfra.VO.Emp;
+import com.toinfra.VO.Common;
+import com.toinfra.VO.Emp;
 
 /*
  * 작성일 : 2016-11-22

@@ -10,9 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.or.toinfra.DAO.PayDAO;
-import kr.or.toinfra.VO.Pay;
-import kr.or.toinfra.VO.PayList;
+import com.toinfra.DAO.PayDAO;
+import com.toinfra.VO.Pay;
+import com.toinfra.VO.PayList;
 
 @Service
 public class PayService {

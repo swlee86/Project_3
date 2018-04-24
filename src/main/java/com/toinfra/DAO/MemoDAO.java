@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.toinfra.VO.Memo;
 import com.toinfra.VO.Memocolor;
-import kr.or.toinfra.VO.Memo;
-import kr.or.toinfra.VO.Memocolor;
+import com.toinfra.VO.Memo;
+import com.toinfra.VO.Memocolor;
 
 /**
 작성일 :	2016 - 11 - 17

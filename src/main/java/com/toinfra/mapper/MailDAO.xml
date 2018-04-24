@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.MailDAO">
+<mapper namespace="com.toinfra.DAO.MailDAO">
 
 <!--
 	작성일 : 2016-11-20
@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 보낸 메일을 보낸 메일란에 저장하기 -->
-	<insert id="insertSendMail" parameterType="kr.or.toinfra.VO.Mail">
+	<insert id="insertSendMail" parameterType="com.toinfra.VO.Mail">
 		insert into mail(mail_no, title, mail_content, rec_mail, send_mail, send_date, del_check) 
 		values(mail_seq.nextval, #{title}, #{mail_content}, #{rec_mail}, #{send_mail}, to_char(sysdate, 'YY-MM-dd'), '0')
 	</insert>
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 메일 상세보기 -->
-	<select id="selectMail_detail" resultType="kr.or.toinfra.VO.Mail">
+	<select id="selectMail_detail" resultType="com.toinfra.VO.Mail">
 		select mail_no, sign, title, 
 			   mail_content, file_name, emp_no, 
 			   send_date, rec_name, rec_mail, 
@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 수신 메일 조회하기 -->
-	<select id="selectMail_rec" resultType="kr.or.toinfra.VO.Mail">
+	<select id="selectMail_rec" resultType="com.toinfra.VO.Mail">
 		select r.mail_no, r.sign, r.title, 
 			   r.file_name, r.emp_no, r.send_date, e.emp_name
 		from
@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 송신 메일 조회하기 -->
-	<select id="selectMail" resultType="kr.or.toinfra.VO.Mail">
+	<select id="selectMail" resultType="com.toinfra.VO.Mail">
 		select title, mail_content, rec_mail, send_mail, send_date, del_check
 		from mail
 		where send_mail = #{email} and 
@@ -92,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 휴지통 조회하기 -->
-	<select id="selectMail_delete" resultType="kr.or.toinfra.VO.Mail">
+	<select id="selectMail_delete" resultType="com.toinfra.VO.Mail">
 		select mail_no, title, file_name, 
 			   emp_no, send_date
 		from mail

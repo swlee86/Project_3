@@ -3,7 +3,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.Set_homepage;
-import kr.or.toinfra.VO.Set_homepage;
+import com.toinfra.VO.Set_homepage;
 
 /*
  * 작성일 : 2016-11-18

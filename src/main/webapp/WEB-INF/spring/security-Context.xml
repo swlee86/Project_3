@@ -53,7 +53,7 @@
 <!-- <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/> -->
 
 <bean id="customAuthenticationSuccessHandler" 
-	  class="kr.or.toinfra.LoginController.CustomAuthenticationSuccessHandler">
+	  class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
 	<property name = "sqlsession">
 		<ref bean = "sqlSession"/>
 	</property>

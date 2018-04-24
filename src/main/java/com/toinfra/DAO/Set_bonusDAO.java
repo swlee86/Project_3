@@ -3,7 +3,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.Set_bonus;
-import kr.or.toinfra.VO.Set_bonus;
+import com.toinfra.VO.Set_bonus;
 
 /*
  * 작성일 : 2016-11-18

@@ -6,10 +6,10 @@ import com.toinfra.VO.LowDeptJoin;
 import com.toinfra.VO.Low_dept;
 import com.toinfra.VO.Set_homepage;
 import com.toinfra.VO.Set_time;
-import kr.or.toinfra.VO.LowDeptJoin;
-import kr.or.toinfra.VO.Low_dept;
-import kr.or.toinfra.VO.Set_homepage;
-import kr.or.toinfra.VO.Set_time;
+import com.toinfra.VO.LowDeptJoin;
+import com.toinfra.VO.Low_dept;
+import com.toinfra.VO.Set_homepage;
+import com.toinfra.VO.Set_time;
 
 /*
  * 작성일 : 2016-11-18

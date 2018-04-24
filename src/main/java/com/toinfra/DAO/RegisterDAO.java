@@ -3,11 +3,11 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.*;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Emp_cg;
-import kr.or.toinfra.VO.Emp_detail;
-import kr.or.toinfra.VO.Low_dept;
-import kr.or.toinfra.VO.Position;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.Emp_cg;
+import com.toinfra.VO.Emp_detail;
+import com.toinfra.VO.Low_dept;
+import com.toinfra.VO.Position;
 
 public interface RegisterDAO {
 	//회원가입시에 insert 함수

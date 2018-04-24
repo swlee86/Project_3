@@ -3,7 +3,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.Set_pay_date;
-import kr.or.toinfra.VO.Set_pay_date;
+import com.toinfra.VO.Set_pay_date;
 
 /*
  * 작성일 : 2016-11-18

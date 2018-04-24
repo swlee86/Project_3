@@ -3,7 +3,7 @@ package com.toinfra.DAO;
 import java.util.List;
 
 import com.toinfra.VO.Pjd_people;
-import kr.or.toinfra.VO.Pjd_people;
+import com.toinfra.VO.Pjd_people;
 
 /*
  * 작성자 : 백승아

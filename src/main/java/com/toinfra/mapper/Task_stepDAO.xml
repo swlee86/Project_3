@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.Task_stepDAO">
+<mapper namespace="com.toinfra.DAO.Task_stepDAO">
 
 <!--
 	작성일 : 2016-11-20
@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 업무 진행 단계 조회하기 -->
-	<select id="selectTask_step" resultType="kr.or.toinfra.VO.Task_step">
+	<select id="selectTask_step" resultType="com.toinfra.VO.Task_step">
 		select task_step_no, task_step_name, step
 		from task_step
 		order by step asc

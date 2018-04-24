@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.CommonDAO">
+<mapper namespace="com.toinfra.DAO.CommonDAO">
 
 <!--
 	작성일 : 2016-11-22
@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 사원번호로 기본 사원정보 가져오기 -->
-	<select id="selectEmp" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectEmp" resultType="com.toinfra.VO.Emp">
 		select emp_no, emp_name, position_name, birth, low_dept_no, email, cell_phone, emp_tel
 		from emp e join position p
 		on e.position_no = p.position_no
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 사원번호로 지점명, 부서명, 하위부서명 가져오기 -->
-	<select id="selectAttach_for_emp_no" resultType="kr.or.toinfra.VO.Common">
+	<select id="selectAttach_for_emp_no" resultType="com.toinfra.VO.Common">
 		select b.branch_name, d.dept_name, l.low_dept_name
 		from emp e join low_dept l
 		on e.low_dept_no = l.low_dept_no
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 하위부서번호로 지점명, 부서명, 하위부서명 가져오기 -->
-	<select id="selectAttach_for_low_dept_no" resultType="kr.or.toinfra.VO.Common">
+	<select id="selectAttach_for_low_dept_no" resultType="com.toinfra.VO.Common">
 		select branch_name, dept_name, low_dept_name
 		from low_dept
 		where low_dept_no = #{low_dept_no}

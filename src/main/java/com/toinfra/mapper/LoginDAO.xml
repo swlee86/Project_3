@@ -3,21 +3,21 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.or.toinfra.DAO.LoginDAO">
+<mapper namespace="com.toinfra.DAO.LoginDAO">
 	<!--사번 뽑는 아이디-->
-	<select id="selectEmp_no" resultType="kr.or.toinfra.VO.Emp_detail">
+	<select id="selectEmp_no" resultType="com.toinfra.VO.Emp_detail">
 		SELECT EMP_NO FROM EMP_DETAIL WHERE id = #{id}
 	</select>
 	
 	<!--뽑은 사번 아뒤 이용 개인정보 뿌리기-->
-	<select id="selectEmpInfo" parameterType="map" resultType="kr.or.toinfra.VO.EmpJoinEmp_Detail">
+	<select id="selectEmpInfo" parameterType="map" resultType="com.toinfra.VO.EmpJoinEmp_Detail">
 		select e.emp_no, e.emp_name,l.dept_name, e.birth, e.pic, e.email, e.low_dept_no, e.cell_phone, d.id, d.pwd, d.bank, d.addr, d.addr_detail, d.account, d.postcode
 		from emp e join emp_detail d
 		on e.emp_no = #{emp_no} and d.ID = #{id} left join low_dept l
 		on e.low_dept_no = l.low_dept_no
 	</select>
 	
-	<update id="updateEmpInfo" parameterType="kr.or.toinfra.VO.EmpJoinEmp_Detail">
+	<update id="updateEmpInfo" parameterType="com.toinfra.VO.EmpJoinEmp_Detail">
 		update emp_detail set pwd = #{pwd}, bank=#{bank},account=#{account},postcode=#{postcode},addr=#{addr},addr_detail=#{addr_detail} where id = #{id}
 	</update> 
 	
@@ -32,17 +32,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 아이디로 사번 가져오기 -->
 	
-	<select id="selectEmp_Name" resultType="kr.or.toinfra.VO.EmpJoinEmp_Detail">
+	<select id="selectEmp_Name" resultType="com.toinfra.VO.EmpJoinEmp_Detail">
 		select emp_no from emp_detail where id=#{id}
 	</select>
 	
 	<!-- 사번으로 사원이름 가져오기 -->
-	<select id="selectEmp_Name_Emp" resultType="kr.or.toinfra.VO.EmpJoinEmp_Detail">
+	<select id="selectEmp_Name_Emp" resultType="com.toinfra.VO.EmpJoinEmp_Detail">
 	   select emp_name from emp where emp_no=#{emp_no}
 	</select>
 	
 	<!-- 아이디 찾기 -->
-	<select id="selectEmp_FindId" resultType="String" parameterType="kr.or.toinfra.VO.EmpJoinEmp_Detail">
+	<select id="selectEmp_FindId" resultType="String" parameterType="com.toinfra.VO.EmpJoinEmp_Detail">
 	  select id
 	  from emp e join emp_detail d
 	  on e.emp_no =d.emp_no
@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--비밀번호 찾기-->
-	<select id="selectEmp_FindPw" resultType="String" parameterType="kr.or.toinfra.VO.EmpJoinEmp_Detail">
+	<select id="selectEmp_FindPw" resultType="String" parameterType="com.toinfra.VO.EmpJoinEmp_Detail">
 		select pwd
 		from emp e join emp_detail d
 		on e.emp_no = d.emp_no

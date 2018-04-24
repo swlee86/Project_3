@@ -6,8 +6,8 @@ import com.toinfra.VO.Position;
 import com.toinfra.VO.PositionJoin;
 import org.apache.ibatis.annotations.Param;
 
-import kr.or.toinfra.VO.Position;
-import kr.or.toinfra.VO.PositionJoin;
+import com.toinfra.VO.Position;
+import com.toinfra.VO.PositionJoin;
 
 /*
  * 작성일 : 2016-11-18

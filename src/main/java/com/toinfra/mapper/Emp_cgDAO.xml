@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.Emp_cgDAO">
+<mapper namespace="com.toinfra.DAO.Emp_cgDAO">
 
 <!--
 	작성일 : 2016-11-25

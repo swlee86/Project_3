@@ -6,10 +6,10 @@ import com.toinfra.VO.Contact;
 import com.toinfra.VO.Emp;
 import com.toinfra.VO.Emp_contact;
 import com.toinfra.VO.Organization;
-import kr.or.toinfra.VO.Contact;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Emp_contact;
-import kr.or.toinfra.VO.Organization;
+import com.toinfra.VO.Contact;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.Emp_contact;
+import com.toinfra.VO.Organization;
 
 /*
  * 작성자 : 백승아

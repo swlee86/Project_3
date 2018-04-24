@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/kr/or/epm/DAO/DraftDAO.java=UTF-8
-encoding//src/main/java/kr/or/epm/DAO/MemoDAO.java=UTF-8
-encoding//src/main/java/kr/or/epm/DAO/ScheduleDAO.java=UTF-8
+encoding//src/main/java/com.epm/DAO/DraftDAO.java=UTF-8
+encoding//src/main/java/com.epm/DAO/MemoDAO.java=UTF-8
+encoding//src/main/java/com.epm/DAO/ScheduleDAO.java=UTF-8
 encoding//src/main/webapp/WEB-INF/properties/loginerror.properties=ISO-8859-1

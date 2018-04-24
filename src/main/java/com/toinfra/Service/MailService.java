@@ -16,8 +16,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.or.toinfra.DAO.MailDAO;
-import kr.or.toinfra.VO.Mail;
+import com.toinfra.DAO.MailDAO;
+import com.toinfra.VO.Mail;
 
 @Service
 public class MailService {

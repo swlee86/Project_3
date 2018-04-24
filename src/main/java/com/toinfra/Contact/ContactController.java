@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
 
-import kr.or.toinfra.Service.ContactService;
-import kr.or.toinfra.VO.C_group;
-import kr.or.toinfra.VO.Contact;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Emp_contact;
+import com.toinfra.Service.ContactService;
+import com.toinfra.VO.C_group;
+import com.toinfra.VO.Contact;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.Emp_contact;
 
 /*
  * 작성자 : 박지은

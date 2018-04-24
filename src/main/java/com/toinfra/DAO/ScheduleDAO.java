@@ -5,9 +5,9 @@ import java.util.List;
 import com.toinfra.VO.Emp;
 import com.toinfra.VO.Sch_people;
 import com.toinfra.VO.Schedule;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Sch_people;
-import kr.or.toinfra.VO.Schedule;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.Sch_people;
+import com.toinfra.VO.Schedule;
 
 /**
 작성일 :	2016 - 11 - 17

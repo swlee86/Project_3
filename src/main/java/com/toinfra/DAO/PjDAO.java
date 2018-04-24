@@ -6,9 +6,9 @@ import java.util.List;
 import com.toinfra.VO.Emp;
 import com.toinfra.VO.Pj;
 import com.toinfra.VO.Pjd;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.Pj;
-import kr.or.toinfra.VO.Pjd;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.Pj;
+import com.toinfra.VO.Pjd;
 
 /*
  * 작성일 : 2016-11-18

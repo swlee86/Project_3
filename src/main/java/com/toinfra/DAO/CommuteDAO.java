@@ -7,10 +7,10 @@ import com.toinfra.VO.Commute;
 import com.toinfra.VO.Emp;
 import com.toinfra.VO.PayList;
 import com.toinfra.VO.Set_time;
-import kr.or.toinfra.VO.Commute;
-import kr.or.toinfra.VO.Emp;
-import kr.or.toinfra.VO.PayList;
-import kr.or.toinfra.VO.Set_time;
+import com.toinfra.VO.Commute;
+import com.toinfra.VO.Emp;
+import com.toinfra.VO.PayList;
+import com.toinfra.VO.Set_time;
 
 /*
  * 작성일 : 2016-11-18

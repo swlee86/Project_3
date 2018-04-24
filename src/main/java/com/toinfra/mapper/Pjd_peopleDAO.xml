@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.Pjd_peopleDAO">
+<mapper namespace="com.toinfra.DAO.Pjd_peopleDAO">
 
 <!--
 	작성일 : 2016-11-20
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 프로젝트 참여자 조회하기 -->
-	<select id="selectPjd_people" resultType="kr.or.toinfra.VO.Pjd_people">
+	<select id="selectPjd_people" resultType="com.toinfra.VO.Pjd_people">
 		select d.pj_no, p.pjd_no, emp_no
 		from pjd_people p join pjd d
 		on p.pjd_no = d.pjd_no

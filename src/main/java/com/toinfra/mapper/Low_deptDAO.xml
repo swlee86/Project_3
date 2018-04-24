@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.Low_deptDAO">
+<mapper namespace="com.toinfra.DAO.Low_deptDAO">
 
 <!--
 	작성일 : 2016-11-20
@@ -10,14 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	사용 목적 : 하위부서에 대한 mapper
 -->
 	<!-- 하위 부서 selectbox -->
-    <select id="select_lowdept_name" parameterType="String" resultType="kr.or.toinfra.VO.Low_dept">
+    <select id="select_lowdept_name" parameterType="String" resultType="com.toinfra.VO.Low_dept">
       select low_dept_no, low_dept_name, pre_low_dept_no
       from low_dept 
       where dept_no=#{dept_no} and his_check='1'
     </select>
     
 	<!-- 하위 부서 조회하기-->
-	<select id="selectLow_dept" resultType="kr.or.toinfra.VO.Low_dept">
+	<select id="selectLow_dept" resultType="com.toinfra.VO.Low_dept">
 		select branch_name, dept_name, low_dept_name
 		from low_dept
 		where his_check = '1'
@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 하위 부서  조회하기  1)-->
-	<select id="selectLow_dept_detail" resultType="kr.or.toinfra.VO.LowDeptJoin">
+	<select id="selectLow_dept_detail" resultType="com.toinfra.VO.LowDeptJoin">
 		select low_dept_no, dept_no, branch_name, dept_name, low_dept_name, 
 			   tel, fax
 		from low_dept
@@ -33,12 +33,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--하위부서 조회하기 2)홈페이지  -->
-	<select id="selectHomePage" resultType="kr.or.toinfra.VO.Set_homepage">
+	<select id="selectHomePage" resultType="com.toinfra.VO.Set_homepage">
 		select open, close from set_homepage where low_dept_no=#{low_dept_no}
 	</select>
 	
 	<!--하위부서 조회하기 3)출퇴근시간  -->
-	<select id="selectTime" resultType="kr.or.toinfra.VO.Set_time">
+	<select id="selectTime" resultType="com.toinfra.VO.Set_time">
 		select in_time, out_time from set_time where low_dept_no=#{low_dept_no}
 	</select>
 	
@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 하위 부서 등록하기 1)-->
-	<insert id="insertLow_dept" parameterType="kr.or.toinfra.VO.LowDeptJoin">
+	<insert id="insertLow_dept" parameterType="com.toinfra.VO.LowDeptJoin">
 		insert into low_dept(low_dept_no, dept_no, branch_name, 
 							 dept_name, low_dept_name, tel, 
 							 fax, pre_low_dept_no, his_check, 
@@ -65,13 +65,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--하위 부서 등록하기 3)  -->
-	<insert id="insert_homepage" parameterType="kr.or.toinfra.VO.LowDeptJoin">
+	<insert id="insert_homepage" parameterType="com.toinfra.VO.LowDeptJoin">
 		insert into set_homepage(set_date, low_dept_no, open, close)
 		values(#{set_date}, #{low_dept_no}, #{open}, #{close})
 	</insert>
 	
 	<!--하위 부서 등록하기 4)  -->
-	<insert id="insert_time" parameterType="kr.or.toinfra.VO.LowDeptJoin">
+	<insert id="insert_time" parameterType="com.toinfra.VO.LowDeptJoin">
 	   insert into set_time(set_date, low_dept_no, in_time, out_time)
 	   values(#{set_date}, #{low_dept_no}, #{in_time}, #{out_time})
 	</insert>
@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 하위 부서 수정하기 1)-->
-	<insert id="updateLow_dept" parameterType="kr.or.toinfra.VO.LowDeptJoin">
+	<insert id="updateLow_dept" parameterType="com.toinfra.VO.LowDeptJoin">
 		insert into low_dept(low_dept_no, dept_no, branch_name, 
 							 dept_name, low_dept_name, tel, 
 							 fax, pre_low_dept_no, his_check, 
@@ -91,30 +91,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 하위 부서 수정되면 최종 여부 0으로 변경하기 / 이전 하위 부서 등록하기 2) -->
-	<update id="updateLow_dept_his" parameterType="kr.or.toinfra.VO.LowDeptJoin">
+	<update id="updateLow_dept_his" parameterType="com.toinfra.VO.LowDeptJoin">
 		update low_dept
 		set his_check = '0'
 		where low_dept_no = #{low_dept_no}
 	</update>
 	<!--변경된 하위부서번호 조회 3)-->
-	<select id="select_re_low_dept_no" parameterType="kr.or.toinfra.VO.LowDeptJoin">
+	<select id="select_re_low_dept_no" parameterType="com.toinfra.VO.LowDeptJoin">
 		select low_dept_no from low_dept where pre_low_dept_no = #{low_dept_no} and his_check='1'
  	</select>
  	
  	<!--홈페이지 시간변경 4) -->
- 	<update id="update_homepage" parameterType="kr.or.toinfra.VO.LowDeptJoin">
+ 	<update id="update_homepage" parameterType="com.toinfra.VO.LowDeptJoin">
  	  update set_homepage set set_date=#{set_date}, low_dept_no=#{low_dept_no}, open=#{open}, close=#{close}
  	  where low_dept_no=#{pre_low_dept_no}
  	</update>
  	
  	<!-- 출퇴근시간 변경 5) -->
- 	<update id="update_time" parameterType="kr.or.toinfra.VO.LowDeptJoin">
+ 	<update id="update_time" parameterType="com.toinfra.VO.LowDeptJoin">
  		update set_time set set_date=#{set_date}, low_dept_no=#{low_dept_no}, in_time=#{in_time}, out_time=#{out_time}
  	    where low_dept_no=#{pre_low_dept_no}
  	</update>
  	
  	<!-- 하위부서 수정 후 부서번호 조회 -->
- 	<select id="select_low_dept_no" resultType="kr.or.toinfra.VO.LowDeptJoin">
+ 	<select id="select_low_dept_no" resultType="com.toinfra.VO.LowDeptJoin">
  	  select low_dept_no, pre_low_dept_no from low_dept where low_dept_name=#{low_dept_name} and his_check='1'
  	</select>
  	

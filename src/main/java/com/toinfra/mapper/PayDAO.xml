@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.PayDAO">
+<mapper namespace="com.toinfra.DAO.PayDAO">
 
 <!--
 	작성일 : 2016-11-20
@@ -11,13 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 급여 등록하기 -->
-	<insert id="insertPay" parameterType="kr.or.toinfra.VO.Pay">
+	<insert id="insertPay" parameterType="com.toinfra.VO.Pay">
 		insert into pay(pay_no, emp_no, basic_pay, severance_pay, bonus, add_pay, total_pay, give_date, master_check)
 		values(pay_seq.nextval, #{emp_no}, #{basic_pay}, 0, #{bonus}, #{add_pay}, #{total_pay}, null, '0')
 	</insert>
 
 	<!-- 본인의 급여 내역 조회하기 -->
-	<select id="selectPay_mine_all" resultType="kr.or.toinfra.VO.Pay">
+	<select id="selectPay_mine_all" resultType="com.toinfra.VO.Pay">
 		select pay_no, basic_pay, bonus, add_pay, total_pay, give_date
 		from pay
 		where emp_no = #{emp_no} and give_date is not null
@@ -25,14 +25,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--월별 급여 조회  -->
-	<select id="selectPay_mine_Monthly" resultType="kr.or.toinfra.VO.Pay">
+	<select id="selectPay_mine_Monthly" resultType="com.toinfra.VO.Pay">
 		select pay_no, emp_no, basic_pay, bonus, add_pay, total_pay, give_date
 		from pay
 		where emp_no = #{param1} and give_date like '%${param2}%'
 	</select>
 	
 	<!--연도별 급여 조회  -->
-	<select id="selectPay_mine_Yearly" resultType="kr.or.toinfra.VO.Pay">
+	<select id="selectPay_mine_Yearly" resultType="com.toinfra.VO.Pay">
 		select pay_no, emp_no, basic_pay, bonus, add_pay, total_pay, give_date
 		from pay
 		where emp_no = #{param1} and give_date like '%${param2}%'
@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 본인 금월 예상 급여 조회하기 -->
-	<select id="selectPay_mine" resultType="kr.or.toinfra.VO.Pay">
+	<select id="selectPay_mine" resultType="com.toinfra.VO.Pay">
 	    select pay_no, e.emp_no, basic_pay, bonus, add_pay, severance_pay
         acc_commute_time, acc_add_time, total_pay, give_date
 		from emp e join pay y
@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 전체 급여 내역 조회하기 -->
-	<select id="selectPay_all" resultType="kr.or.toinfra.VO.Pay">
+	<select id="selectPay_all" resultType="com.toinfra.VO.Pay">
 		 select give_date, sum(total_pay) as total_pay
 		from pay p join emp e
 		on p.emp_no = e.emp_no
@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 		
 	<!-- 급여 마감 관리 전체 급여 내역 조회하기 -->
-	<select id="selectPay_all_Close" resultType="kr.or.toinfra.VO.PayList">
+	<select id="selectPay_all_Close" resultType="com.toinfra.VO.PayList">
 
 	select pay_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, total_pay, give_date, master_check
 	from emp e join position p
@@ -101,7 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 		
 	<!-- 월별 급여 상세 보기 - 카드에서 버튼 클릭시 해당 월 급여 지급 리스트 뜸. -  관리자 > 급여 > 급여내역 조회  -->
-	<select id="select_payMoth_Detail" parameterType="String" resultType="kr.or.toinfra.VO.PayList">
+	<select id="select_payMoth_Detail" parameterType="String" resultType="com.toinfra.VO.PayList">
      	select pay_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, total_pay, give_date, master_check
 	from emp e join position p
 	on e.position_no = p.position_no
@@ -143,19 +143,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--급여일 등록하기  -->
-	<insert id="insertpay_date" parameterType="kr.or.toinfra.VO.Set_pay_date">
+	<insert id="insertpay_date" parameterType="com.toinfra.VO.Set_pay_date">
 		insert into set_pay_date(set_date, pay_date)  values(#{set_date}, #{pay_date})
 	</insert>
 	
 	<!-- 급여일 수정하기 -->
-	<update id="updatepay_date" parameterType="kr.or.toinfra.VO.Set_pay_date">
+	<update id="updatepay_date" parameterType="com.toinfra.VO.Set_pay_date">
 		update set_pay_date
 		set set_date = #{set_date}, 
 			pay_date = #{pay_date}
 	</update>
 	
 	<!--급여 기본 정보 관리 리스트   -->
-	<select id="selectPayList_Manage" resultType="kr.or.toinfra.VO.PayList">
+	<select id="selectPayList_Manage" resultType="com.toinfra.VO.PayList">
 	    select d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, salary, bank, account, h.regdate
 		from emp e join position p
 		on e.position_no = p.position_no
@@ -176,7 +176,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</select>
 	
 	<!-- 급여 기본 정보 관리 상세 정보 수정 페이지-->
-	<select id="selectPayList_Modify" resultType="kr.or.toinfra.VO.PayList">
+	<select id="selectPayList_Modify" resultType="com.toinfra.VO.PayList">
 	    select d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, salary, bank, account, h.regdate
 		from emp e join position p
 		on e.position_no = p.position_no
@@ -196,13 +196,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  </select>
 	  
 	  <!-- 급여 기본 정보 수정 1)연봉 -->
-	  <update id="update_pay_Info_emp" parameterType="kr.or.toinfra.VO.PayList">
+	  <update id="update_pay_Info_emp" parameterType="com.toinfra.VO.PayList">
 	    update emp set salary=#{salary}
 	    where emp_no=#{emp_no}
 	  </update>
 	  
 	  <!-- 급여 기본 정보 수정 > 계좌/은행명 -->
-	  <update id="update_pay_Info_empdetail" parameterType="kr.or.toinfra.VO.PayList">
+	  <update id="update_pay_Info_empdetail" parameterType="com.toinfra.VO.PayList">
 	    update emp_detail set bank=#{bank}, account=#{account}
 	    where emp_no=#{emp_no}
 	  </update>

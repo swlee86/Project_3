@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.toinfra.DAO.CommuteDAO">
+<mapper namespace="com.toinfra.DAO.CommuteDAO">
 
 <!--
 	작성일 : 2016-11-20
@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 본인의 근태 내역 조회하기 -->	
-	<select id="selectCommute" resultType="kr.or.toinfra.VO.Commute">
+	<select id="selectCommute" resultType="com.toinfra.VO.Commute">
 		select commute_no, regdate, in_time, 
 			   out_time, commute_time, add_time, 
 			   acc_commute_time, acc_add_time, mgr_check
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 금월 추가근무 확정 처리 조회하기 -->
-	<select id="selectCommute_mgr" resultType="kr.or.toinfra.VO.Commute">
+	<select id="selectCommute_mgr" resultType="com.toinfra.VO.Commute">
 		select c.emp_no, e.emp_name, regdate, commute_time, add_time, mgr_check
 		from commute c join emp e
 		on c.emp_no = e.emp_no
@@ -100,7 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- commute_no에 따른 정보 조회(단일) -->
-	<select id="selectCommute_commuteno" resultType="kr.or.toinfra.VO.Commute">
+	<select id="selectCommute_commuteno" resultType="com.toinfra.VO.Commute">
 		select commute_no, e.emp_no, emp_name, regdate, in_time, out_time,
 			   commute_time, add_time, acc_commute_time, acc_add_time, mgr_check 
 		from commute c 
@@ -115,7 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 부서별 출퇴근시간(최신) -->
-	<select id="selectSetTime" parameterType="String" resultType="kr.or.toinfra.VO.Set_time">
+	<select id="selectSetTime" parameterType="String" resultType="com.toinfra.VO.Set_time">
 		select in_time,out_time from (select rownum,in_time,out_time 
 		      from set_time 
 		      where low_dept_no =(select distinct(low_dept_no) 
@@ -133,7 +133,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 이번 달 내역 중 가장 최근 내역조회  -->
-	<select id="selectCommute_yesterday" parameterType="String" resultType="kr.or.toinfra.VO.Commute">
+	<select id="selectCommute_yesterday" parameterType="String" resultType="com.toinfra.VO.Commute">
     	 select commute_no,emp_no,regdate,in_time,out_time,
 		       commute_time,add_time,acc_commute_time, acc_add_time,mgr_check
 		from commute 
@@ -152,7 +152,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 이번달 내역 조회  -->
-	<select id="selectCommute_month" parameterType="hashmap" resultType="kr.or.toinfra.VO.Commute">
+	<select id="selectCommute_month" parameterType="hashmap" resultType="com.toinfra.VO.Commute">
 		select commute_no,c.emp_no, emp_name, regdate,in_time,out_time,
 		       commute_time,add_time,acc_commute_time, acc_add_time,mgr_check 
 		from commute c
@@ -165,12 +165,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 회원 정보 가져오기 -->
-	<select id="selectempinfo" parameterType="String" resultType="kr.or.toinfra.VO.Commute">
+	<select id="selectempinfo" parameterType="String" resultType="com.toinfra.VO.Commute">
 		 select emp_name,emp_no from emp where emp_no = #{emp_no}
 	</select>
 	
 	<!-- 아이디로 회원 정보 가져오기 -->
-	<select id="selectInfoSearch" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectInfoSearch" resultType="com.toinfra.VO.Emp">
 		select e.emp_no,e.emp_name
 		from  emp_detail d join emp e
 		on d. emp_no = e.emp_no
@@ -178,7 +178,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 관리자 근태 마감 -->
-	<select id="selectCommute_all_Close" resultType="kr.or.toinfra.VO.PayList">
+	<select id="selectCommute_all_Close" resultType="com.toinfra.VO.PayList">
 	select commute_no, d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, acc_commute_time, acc_add_time, mgr_check
    from emp e join position p
    on e.position_no = p.position_no
@@ -207,7 +207,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 차트에 사용할 근무시간, 추가근무시간 가져오기 ( 최근 7일 ) -->
-	<select id="selectChartCommute" parameterType="String" resultType="kr.or.toinfra.VO.Commute">
+	<select id="selectChartCommute" parameterType="String" resultType="com.toinfra.VO.Commute">
 		select regdate,commute_time,add_time from 
 	    (select commute_no,emp_no,regdate,in_time,out_time,commute_time,add_time,acc_commute_time,acc_add_time,mgr_check 
 	    from commute 

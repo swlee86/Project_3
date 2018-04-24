@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	목  적 : 사원관리 전용 mapper
 -->
 
-<mapper namespace="kr.or.toinfra.DAO.AdminEmpDAO">
+<mapper namespace="com.toinfra.DAO.AdminEmpDAO">
 
 	<!-- 개수 -->
 	<select id="selectCount" resultType="int">
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 사원 정보 리스트 출력 -->
-	<select id="selectEmp_list" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectEmp_list" resultType="com.toinfra.VO.Emp">
 	 select emp_no, emp_name, branch_name, dept_name, low_dept_name, pic, cg_name, position_name from(
 		select rownum num, emp_no, emp_name, branch_name, dept_name, low_dept_name, pic, cg_name, position_name
 		from emp e join low_dept l
@@ -48,28 +48,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 사원 등록을 위한 근무 상태 리스트 불러오기 -->
-	<select id="selectEmp_cg_list" resultType="kr.or.toinfra.VO.Emp_cg">
+	<select id="selectEmp_cg_list" resultType="com.toinfra.VO.Emp_cg">
 		select cg_no, cg_name
 		from emp_cg
 	</select>
 	
 	<!-- 사원 등록을 위한 직위 리스트 불러오기 -->
 	<!-- 권한 부여 페이지를 위한 직위 리스트 불러오기 -->
-	<select id="selectPosition_list" resultType="kr.or.toinfra.VO.Position">
+	<select id="selectPosition_list" resultType="com.toinfra.VO.Position">
 		select position_no, position_name, step
 		from position
 		order by to_number(step) asc
 	</select>
 	
 	<!-- 사원 등록을 위한 지점 리스트 불러오기 -->
-	<select id="selectBranch_list" resultType="kr.or.toinfra.VO.Branch">
+	<select id="selectBranch_list" resultType="com.toinfra.VO.Branch">
 		select branch_no, branch_name
 		from branch
 		order by to_number(branch_no) asc
 	</select>
 	
 	<!-- 사원 등록에서 부서 리스트 불러오기 -->
-	<select id="selectDept_list" resultType="kr.or.toinfra.VO.Dept">
+	<select id="selectDept_list" resultType="com.toinfra.VO.Dept">
 		select dept_no, dept_name
 		from dept
 		where branch_no = #{branch_no}
@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 사원 등록에서 하위 부서 리스트 불러오기 -->
-	<select id="selectLow_dept_list" resultType="kr.or.toinfra.VO.Low_dept">
+	<select id="selectLow_dept_list" resultType="com.toinfra.VO.Low_dept">
 		select low_dept_no, low_dept_name
 		from low_dept
 		where dept_no = #{dept_no}
@@ -109,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 사원 이력 불러오기 -->
-	<select id="selectEmp_his" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectEmp_his" resultType="com.toinfra.VO.Emp">
 		select e.emp_no, branch_name, dept_name, his_no, role_exp, 
 			   low_dept_name, position_name, emp_name, regdate,
 			   ec.cg_name, hc.cg_name as "his_cg_name", role_name
@@ -132,7 +132,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 탈퇴를 요청한 사원 리스트 불러오기 -->
-	<select id="selectEmp_withdrawal" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectEmp_withdrawal" resultType="com.toinfra.VO.Emp">
 		select emp_no, emp_name, position_name, low_dept_name, dept_name, branch_name
 		from emp e join position p
 		on e.position_no = p.position_no
@@ -145,7 +145,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 탈퇴를 요청한 사원의 상세 불러오기  -->
-	<select id="selectEmp_withdrawal_detail" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectEmp_withdrawal_detail" resultType="com.toinfra.VO.Emp">
 		select e.emp_no, salary, emp_name, 
 			   birth, pic, cell_phone, 
 			   emp_tel, branch_name, dept_name, 
@@ -182,7 +182,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 권한 부여 페이지를 위해 권한 리스트 불러오기 -->
-	<select id="selectRole" resultType="kr.or.toinfra.VO.Role">
+	<select id="selectRole" resultType="com.toinfra.VO.Role">
 		select *
 		from role
 		order by to_number(role_no)
@@ -218,7 +218,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 권한 부여 상세 페이지를 위해 사원의 리스트 불러오기 -->
-	<select id="selectEmp_authority" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectEmp_authority" resultType="com.toinfra.VO.Emp">
 		select e.emp_no, emp_name, branch_name, 
        		   dept_name, low_dept_name, position_name, 
        		   pic, birth, cell_phone, cg_name
@@ -233,7 +233,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 권한 부여 상세 페이지를 위해 해당 사원의 권한 불러오기 -->
-	<select id="selectEmp_role" resultType="kr.or.toinfra.VO.Emp_role">
+	<select id="selectEmp_role" resultType="com.toinfra.VO.Emp_role">
 		select er.role_no, emp_no, role_name, role_exp
 		from emp_role er join role r
 		on er.role_no = r.role_no
@@ -242,7 +242,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 정보 수정을 위해 사원의 정보 불러오기 -->
-	<select id="selectEmp_detail" resultType="kr.or.toinfra.VO.Emp">
+	<select id="selectEmp_detail" resultType="com.toinfra.VO.Emp">
 		select e.emp_no, cg_name, position_name, 
        low_dept_name, dept_name, branch_name, 
        emp_break, salary, emp_name, 
@@ -263,7 +263,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 사원 정보 수정하기 -->
-	<update id="updateEmp_detail" parameterType="kr.or.toinfra.VO.Emp">
+	<update id="updateEmp_detail" parameterType="com.toinfra.VO.Emp">
 		update Emp set emp_name=#{emp_name}, salary=#{salary}, emp_break=#{emp_break}, birth=#{birth}, cell_phone=#{cell_phone} where emp_no=#{emp_no}
 	</update>
 </mapper>
