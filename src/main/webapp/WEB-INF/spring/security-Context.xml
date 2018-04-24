@@ -52,7 +52,12 @@
  </security:authentication-manager>
 <!-- <security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/> -->
 
-<bean id="customAuthenticationSuccessHandler" 
+    <bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <constructor-arg name="strength" value="10"></constructor-arg>
+    </bean>
+
+
+    <bean id="customAuthenticationSuccessHandler"
 	  class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
 	<property name = "sqlsession">
 		<ref bean = "sqlSession"/>

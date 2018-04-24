@@ -3,8 +3,7 @@
 	   xmlns:context="http://www.springframework.org/schema/context"
 	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-	   xsi:schemaLocation="http://www.springframework.org/schema/task
-	                       http://www.springframework.org/schema/beans
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd
@@ -13,16 +12,27 @@
        					   http://www.springframework.org/schema/aop
 						   http://www.springframework.org/schema/aop/spring-aop.xsd
 						   http://www.springframework.org/schema/tx
-						   http://www.springframework.org/schema/tx/spring-tx.xsd
-						   http://www.springframework.org/schema/task/spring-task.xsd">
+						   http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<mvc:annotation-driven />
+
+
+
+	<!--
+
+        <bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+            <property name="url" value="jdbc:oracle:thin:@orcl.cn5acqnoqihv.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></property>
+            <property name="username" value="swlee"></property>
+            <property name="password" value="new1234!"></property>
+        </bean>
+    -->
 
 	<bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://phonejob.cafe24.com:3306/airless86" />
-		<!--<property name="url" value="jdbc:mysql://localhost:3306/airless86" />-->
-		<property name="username" value="airless86" />
-		<property name="password" value="Clqxls6119@2" />
+		<!--<property name="url" value="jdbc:mysql://phonejob.cafe24.com:3306/phonejob" />-->
+		<property name="url" value="jdbc:mysql://localhost:3306/phonejob" />
+		<property name="username" value="phonejob" />
+		<property name="password" value="phonejob0" />
 	</bean>
 
 
@@ -35,28 +45,17 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
-	<bean id="customAuthenticationSuccessHandler" class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
-		<property name = "sqlsession">
-			<ref bean = "sqlSession"/>
-		</property>
-	</bean>
-
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
-		in the /WEB-INF/views directory -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<bean id="viewResolver"	class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"></property>
 		<property name="order" value="1" />
 	</bean>
 
-	<bean id="viewResolver2"
-		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	<bean id="viewResolver2" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="2"></property>
 	</bean>
 
-	<bean id="jspViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="3" />
@@ -70,50 +69,39 @@
 		</property>
 	</bean>
 
-	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-		<constructor-arg name="strength" value="10"></constructor-arg>
-	</bean>
 
 	<!-- 파일업로드 -->
 	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760" />
 	</bean>
 
-	<!--
 	<mvc:resources location="/WEB-INF/resource/js/" mapping="/js/**" />
-	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-	-->
+	<bean name="jsonview"
+		  class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+
+
+
+	<!-- transaction end -->
+
+	<!-- Security Login Customise -->
+	<bean id="customAuthenticationSuccessHandler" class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
+		<property name="sqlsession">
+			<ref bean = "sqlSession"/>
+		</property>
+	</bean>
+
 
 	<!--시큐리티 메세지-->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basenames">
-            <list>
-                <value>/WEB-INF/message/spring_security_messages</value>
-            </list>
-        </property>
-        <property name="defaultEncoding" value="UTF-8"/>
-        <property name="cacheSeconds" value="5"/>
-    </bean>
-
-	<!-- transaction start -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="driverManagerDataSource"/>
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/message/spring_security_messages</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="cacheSeconds" value="5"/>
 	</bean>
-
-	<tx:annotation-driven proxy-target-class="true" />
-
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
-		</tx:attributes>
-	</tx:advice>
-
-	<aop:config>
-		<aop:pointcut id="onjPointCut" expression="execution(* com.toinfra.*.*(..))"/>
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="onjPointCut" />
-	</aop:config>
-
 
 
 </beans>

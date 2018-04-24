@@ -1,38 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns:websocket="http://www.springframework.org/schema/websocket"
-       xmlns="http://www.springframework.org/schema/mvc"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:beans="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+             xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
-<annotation-driven />
-	<context:component-scan base-package="com.toinfra.*"/>
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <annotation-driven />
 
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+    <!--<resources mapping="/resources/**" location="/resource/"/>-->
     <!--
-    <bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://phonejob.cafe24.com:3306/airless86" />
-        &lt;!&ndash;<property name="url" value="jdbc:mysql://localhost:3306/airless86" />&ndash;&gt;
-        <property name="username" value="airless86" />
-        <property name="password" value="Clqxls6119@2" />
-    </bean>
-	-->
-		<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<!--<mvc:resources mapping="/resources/**" location="/resources/" />-->
+        <context:component-scan base-package="com.spring" use-default-filters="false">
+            <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        </context:component-scan>
+        -->
+    <context:component-scan base-package="com.toinfra.*" />
+    <!--
+        <beans:bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
+            <beans:property name="url" value="jdbc:oracle:thin:@orcl.cn5acqnoqihv.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></beans:property>
+            <beans:property name="username" value="swlee"></beans:property>
+            <beans:property name="password" value="new1234!"></beans:property>
+        </beans:bean>
+        -->
 
-	<beans:bean id="broadsocketHandler" class="com.toinfra.PushController.broadsocket"/>
 
-	<websocket:handlers>
-	<websocket:mapping handler="broadsocketHandler" path="/broadsocket.do" />
-	<websocket:handshake-interceptors>
-       		<beans:bean class="com.toinfra.PushController.HandshakeInterceptor" />
-   	</websocket:handshake-interceptors>
-	</websocket:handlers>
+    <beans:bean id="customAuthenticationSuccessHandler" class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
+        <beans:property name = "sqlsession">
+            <beans:ref bean = "sqlSession"/>
+        </beans:property>
+    </beans:bean>
 
+
+
+    <!-- transaction start -->
+    <beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <beans:property name="dataSource" ref="driverManagerDataSource"/>
+    </beans:bean>
+
+    <tx:annotation-driven proxy-target-class="true" />
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="onjPointCut" expression="execution(* com.toinfra.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="onjPointCut" />
+    </aop:config>
+
+    <beans:bean id="broadsocketHandler" class="com.toinfra.PushController.broadsocket"/>
+
+    <websocket:handlers>
+        <websocket:mapping handler="broadsocketHandler" path="/broadsocket.do" />
+        <websocket:handshake-interceptors>
+            <beans:bean class="com.toinfra.PushController.HandshakeInterceptor" />
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
 
 </beans:beans>
