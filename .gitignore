@@ -1,7 +1,6 @@
-*.class
-*.MF
-*.properties
+/build/
 /target/
-build/
 .metadata/
-target/
+RemoteSystemsTempFiles/
+Servers/
+.settings/org.eclipse.wst.common.component
