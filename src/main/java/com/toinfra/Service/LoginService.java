@@ -26,11 +26,11 @@ public class LoginService {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//사용자 이름 구하는것 - web socket 채팅할때 사용할 것
-	public String selectUserName(String id){
+	public String selectUserName(String user_id){
 		
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		//사번 
-		EmpJoinEmp_Detail emp = dao.selectEmp_Name(id);
+		EmpJoinEmp_Detail emp = dao.selectEmp_Name(user_id);
 		EmpJoinEmp_Detail emp_name = dao.selectEmp_Name_Emp(emp.getUser_id());
 		
 		return emp_name.getEmp_name();

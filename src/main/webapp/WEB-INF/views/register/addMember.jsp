@@ -33,7 +33,7 @@
 										<div class="form-group col-lg-12">
 											<label style="color: black;">ID</label>
 											<div class="input-group">
-												<input type="text" value="" id="userid" class="form-control" name="userid">
+												<input type="text" value="" id="user_id" class="form-control" name="user_id">
 												<span class="input-group-btn">
 													<input type="button" class="btn btn-success " id="idchk" value="중복 체크">
 												</span> 										
@@ -46,8 +46,8 @@
 											<input type="password" value="" id="pwd" class="form-control" name="pwd">
 										</div>
 										<div class="form-group col-lg-6">
-											<label style="color: black;">Repeat Password</label> <input
-												type="password" value="" id="pwdchk" class="form-control" name="pwdchk">
+											<label style="color: black;">Repeat Password</label>
+											<input type="password" value="" id="pwdchk" class="form-control" name="pwdchk">
 										</div>
 										<%--
 										<div class="form-group col-lg-12">
@@ -70,6 +70,14 @@
 											</div>
 										</div>
 										--%>
+											<div class="form-group col-lg-12">
+												<label style="color: black;">이름</label>
+												<div class="row">
+													<div class="col-lg-12">
+														<input type="text" value="" id="user_name" class="form-control" name="user_name">
+													</div>
+												</div>
+											</div>
 										<div class="form-group col-lg-12">
 											<label style="color: black;">E-mail</label>
 											<div class="row">
@@ -80,20 +88,13 @@
 										</div>
 										
 										<div class="form-group col-lg-12">
-											<label style="color: black;">계좌번호</label> 
+											<label style="color: black;">팀/조직명</label>
 											<div class="row">
-											<div class=" col-lg-6">
-												<select class="form-control" name="bank">
-													<option value="국민">국민</option>
-													<option value="신한">신한</option>
-													<option value="기업">기업</option>
-													<option value="SC은행">SC은행</option>
-													<option value="우체국">우체국</option>
-													<option value="농협">농협</option>
+											<div class="col-lg-12">
+												<select class="form-control" name="team_code">
+													<option value="test01">Team 단위의 사용을 원하시는 경우 메일로 문의 주세요</option>
 												</select>
-											</div>
-											<div class=" col-lg-6">
-												<input type="text" value="" id="account" class="form-control" name="account">
+												메일 주소 : admin@toinfra.com
 											</div>
 											<input type="hidden" value="${registerGoogleId}" name="googleapiid">
 											</div>

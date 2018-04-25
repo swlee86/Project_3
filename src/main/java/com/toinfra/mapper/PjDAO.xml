@@ -13,11 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--프로젝트 송신 리스트-->
 	<select id="select_Send_Pj_rec" resultType="com.toinfra.DTO.Pj">
-              select one.pj_content,one.pj_no,one.user_id,one.emp_name,one.pj_title,one.pj_start,one.pj_end,one.step_no,one.rec_emp_no, userDto.emp_name as rec_emp_name from(
-          		select p.pj_no, p.user_id, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no,p.rec_emp_no,p.pj_content
-          		from pj p join emp e on p.user_id = e.user_id
+              select one.pj_content,one.pj_no,one.user_id,one.user_name,one.pj_title,one.pj_start,one.pj_end,one.step_no,one.rec_user_id, userDto.emp_name as rec_emp_name from(
+          		select p.pj_no, p.user_id, e.user_name, p.pj_title, p.pj_start, p.pj_end, p.step_no,p.rec_user_id,p.pj_content
+          		from pj p join user e on p.user_id = e.user_id
           		where p.emp_no =  #{param1} and p.step_no != '1' and (${param2} like '%${param3}%')
-              ) one join userDto on one.rec_emp_no = emp.user_id
+              ) one join userDto on one.rec_user_id = emp.user_id
 	</select>
 	
 	
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="selectApprovalCount" resultType="int">
 		select nvl(count(*),0) 
 		from pj  p join userDto e on p.emp_no = e.emp_no
-		where p.rec_emp_no = #{param1} and (${param2} like '%${param3}%') and p.step_no != '1'
+		where p.rec_user_id = #{param1} and (${param2} like '%${param3}%') and p.step_no != '1'
 	</select> 
 	
 	<select id="selectStepName">
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 등록인 사번 구하는 함수 -->
 	<select id="selectInfoSearch" resultType="com.toinfra.DTO.UserDto">
 		select e.emp_no
-		from  emp_detail d join userDto e
+		from  user_detail d join userDto e
 		on d. emp_no = e.emp_no
 		where d.id=#{id}
 	</select>
@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 등록하기 -->
 	<insert id="insertPj">
-		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_emp_no, pj_step_no, step_no)
+		insert into pj(pj_no, emp_no, pj_title, pj_content, pj_start, pj_end, pj_progress, rec_user_id, pj_step_no, step_no)
 		values(pj_seq.nextval, #{emp_no}, #{pj_title}, #{pj_content}, #{pj_start}, #{pj_end}, '0', #{rec_emp_no}, '2', '4')
 	</insert>
 	
@@ -85,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
           		select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
           		from pj p join userDto e on p.emp_no = e.emp_no
-          		where p.rec_emp_no = #{param5} and p.step_no != '1' and (${param3} like '%${param4}%')
+          		where p.rec_user_id = #{param5} and p.step_no != '1' and (${param3} like '%${param4}%')
           		order by to_number(p.pj_no) DESC
         	)n 
     	)where num between 1 + (${param1} * ${param2})-${param2} and ${param1}*${param2}
@@ -134,9 +134,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 조회하기(승인처리된것들만) -->
 	<select id="selectPj" resultType="com.toinfra.DTO.Pj">
-		select pj_no, p.user_id, e.emp_name, l.dept_name, pj_title, pj_content, pj_start,
+		select pj_no, p.user_id, e.user_name, l.dept_name, pj_title, pj_content, pj_start,
 		       pj_end, pj_progress, p.pj_step_no, s.pj_step_name
-		from pj p join emp e
+		from pj p join user e
 			  on p.user_id = e.user_id
 			join pj_step s
 			  on p.pj_step_no = s.pj_step_no
@@ -148,13 +148,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트에서 내가 만든 프로젝트만 조회하기(승인처리된것들만) -->
 	<select id="selectPj_write" parameterType="String" resultType="com.toinfra.DTO.Pj">
-		select p.pj_no, p.user_id, e.emp_name, l.dept_name,
+		select p.pj_no, p.user_id, e.user_name, l.dept_name,
 				pj_title, pj_content, pj_start, 
 				pj_end, pj_progress, p.pj_step_no, s.pj_step_name
 		from pj p 
 		join pj_step s
 				on p.pj_step_no = s.pj_step_no
-		join emp e
+		join user e
 				on p.user_id = e.user_id
 		join low_dept l
 		      on e.low_dept_no = l.low_dept_no      
@@ -164,13 +164,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트에서 내가 포함된 프로젝트만 조회하기(승인처리된것들만) -->
 	<select id="selectPj_include" parameterType="String" resultType="com.toinfra.DTO.Pj">
-		select p.pj_no, p.user_id, e.emp_name, l.dept_name,
+		select p.pj_no, p.user_id, e.user_name, l.dept_name,
 				pj_title, pj_content, pj_start, 
 				pj_end, pj_progress, p.pj_step_no, s.pj_step_name
 		from pj p 
 		join pj_step s
 				on p.pj_step_no = s.pj_step_no
-		join emp e
+		join user e
 				on p.user_id = e.user_id
 		join low_dept l
 				on e.low_dept_no = l.low_dept_no      
@@ -182,13 +182,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 내가 작성한것 and 내가 참여자인것 프로젝트 목록 가져오기 --> 
 	<select id="selectPj_callendar" parameterType="String" resultType="com.toinfra.DTO.Pj">
-		select p.pj_no, p.user_id, e.emp_name, l.dept_name,
+		select p.pj_no, p.user_id, e.user_name, l.dept_name,
             pj_title, pj_content, pj_start, 
             pj_end, pj_progress, p.pj_step_no, s.pj_step_name
      	from pj p 
       	join pj_step s
             on p.pj_step_no = s.pj_step_no
-      	join emp e
+      	join user e
             on p.user_id = e.user_id
       	join low_dept l
             on e.low_dept_no = l.low_dept_no      
@@ -204,9 +204,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트 검색 -->
 	<select id="searchPj" resultType="com.toinfra.DTO.Pj">
-		select pj_no, p.user_id, e.emp_name, l.dept_name, pj_title, pj_content, pj_start,
+		select pj_no, p.user_id, e.user_name, l.dept_name, pj_title, pj_content, pj_start,
 		       pj_end, pj_progress, p.pj_step_no, s.pj_step_name
-		from pj p join emp e
+		from pj p join user e
 			  on p.user_id = e.user_id
 			join pj_step s
 			  on p.pj_step_no = s.pj_step_no

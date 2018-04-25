@@ -14,8 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertTask" parameterType="com.toinfra.DTO.Task">
 		insert into task(task_no, cg_no, sign, 
 						 task_name, deadline, content, 
-						 rec_emp_no, rec_name, rec_date, 
-						 emp_no, emp_name, send_date, 
+						 rec_user_id, rec_name, rec_date,
+						 emp_no, user_name, send_date,
 						 file_name, del_check, rec_del_check, 
 						 task_step_no, step_no)
 		values(task_seq.nextval, #{cg_no}, '0', 
@@ -37,28 +37,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCount_rec" resultType="int">
 	select nvl(count(*),0)
     from(
-          select task_no, cg_name, sign, task_name, deadline, emp_no, emp_name, send_date, file_name, t.step_no, a.step_name, a.step, rec_date
+          select task_no, cg_name, sign, task_name, deadline, emp_no, user_name, send_date, file_name, t.step_no, a.step_name, a.step, rec_date
           from task t join task_cg c
           on t.cg_no = c.cg_no
           join approval a
           on t.step_no = a.step_no
-          where rec_emp_no = #{param1} and  rec_del_check = '0' and  t.cg_no = #{param2}  and (${param3} like '%${param4}%') 
+          where rec_user_id = #{param1} and  rec_del_check = '0' and  t.cg_no = #{param2}  and (${param3} like '%${param4}%')
         )
 	</select>
 	
 	<!-- 업무 수신함 확인하기 -->
 	<select id="selectTask_rec" resultType="com.toinfra.DTO.Task">
-	select task_no, cg_name, sign, task_name, deadline, emp_no, emp_name, send_date, file_name, step_no, step_name, step, rec_date, task_step_no from(
-    	select rownum num,n.task_no, n.cg_name, n.sign, n.task_name, n.deadline, n.emp_no, n.emp_name, n.send_date, n.file_name, n.step_no, n.step_name, n.step, n.rec_date, n.task_step_no, n.cg_no
+	select task_no, cg_name, sign, task_name, deadline, emp_no, user_name, send_date, file_name, step_no, step_name, step, rec_date, task_step_no from(
+    	select rownum num,n.task_no, n.cg_name, n.sign, n.task_name, n.deadline, n.emp_no, n.user_name, n.send_date, n.file_name, n.step_no, n.step_name, n.step, n.rec_date, n.task_step_no, n.cg_no
     		from(
-          		select t.task_no, t.cg_no, cg_name, sign, task_name, t.task_step_no, deadline, t.emp_no, emp_name, send_date, file_name, t.step_no, a.step_name, a.step, rec_date, rec_del_check, del_check
+          		select t.task_no, t.cg_no, cg_name, sign, task_name, t.task_step_no, deadline, t.emp_no, user_name, send_date, file_name, t.step_no, a.step_name, a.step, rec_date, rec_del_check, del_check
           			from task t join task_cg c
           			on t.cg_no = c.cg_no
           				join approval a
           			on t.step_no = a.step_no
           			left outer join (select emp_no, task_no from task_people where emp_no=#{param1}) p
           			on t.task_no=p.task_no
-          		where rec_emp_no = #{param1} or  p.emp_no is not null and t.cg_no = #{param2} and (${param3} like '%${param4}%')
+          		where rec_user_id = #{param1} or  p.emp_no is not null and t.cg_no = #{param2} and (${param3} like '%${param4}%')
           		order by a.step desc , t.task_no desc
         		) n where rec_del_check='0' and del_check='0' and cg_no=#{param2}
     ) where num  between 1 + (${param5} - 1) * ${param6} and  ${param6} + (${param5} - 1) * ${param6}
@@ -90,7 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 업무 송신함 갯수 하기 -->
 	<select id="selectTask" resultType="com.toinfra.DTO.Task">
 		select task_no, cg_name, task_name, 
-			   deadline, rec_emp_no, rec_name, 
+			   deadline, rec_user_id, rec_name,
 			   rec_date, send_date, file_name, 
 			   task_step_no, t.step_no, a.step_name, a.step
 		from task t join task_cg c 
@@ -109,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCount_song" resultType="int">
 	select nvl(count(*),0)
 	from(
-	select task_no, cg_name, task_name,   deadline, rec_emp_no, rec_name,  rec_date, send_date, file_name,  task_step_no, t.step_no, a.step_name, a.step
+	select task_no, cg_name, task_name,   deadline, rec_user_id, rec_name,  rec_date, send_date, file_name,  task_step_no, t.step_no, a.step_name, a.step
 	from task t join task_cg c  on t.cg_no = c.cg_no
 	join approval a on t.step_no = a.step_no
 	where emp_no = #{param1} and del_check = '0' and  t.cg_no = #{param2} and (${param3} like '%${param4}%') 
@@ -121,10 +121,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 업무 송신함 확인하기 -->
 	<select id="selectTask_song" resultType="com.toinfra.DTO.Task">
-		select task_no, cg_name, task_name,   deadline, rec_emp_no, rec_name,  rec_date, send_date, file_name,  task_step_no, step_no, step_name, step from(
-			select rownum num, n.task_no,  n.cg_name,  n.task_name,    n.deadline,  n.rec_emp_no,  n.rec_name,   n.rec_date,  n.send_date,  n.file_name,   n.task_step_no, n.step_no,  n.step_name,  n.step
+		select task_no, cg_name, task_name,   deadline, rec_user_id, rec_name,  rec_date, send_date, file_name,  task_step_no, step_no, step_name, step from(
+			select rownum num, n.task_no,  n.cg_name,  n.task_name,    n.deadline,  n.rec_user_id,  n.rec_name,   n.rec_date,  n.send_date,  n.file_name,   n.task_step_no, n.step_no,  n.step_name,  n.step
 			from(
-			select task_no, cg_name, task_name,   deadline, rec_emp_no, rec_name,  rec_date, send_date, file_name,  task_step_no, t.step_no, a.step_name, a.step
+			select task_no, cg_name, task_name,   deadline, rec_user_id, rec_name,  rec_date, send_date, file_name,  task_step_no, t.step_no, a.step_name, a.step
 			from task t join task_cg c  on t.cg_no = c.cg_no
 			join approval a on t.step_no = a.step_no
 			where emp_no = #{param1} and del_check = '0' and  t.cg_no = #{param2} and (${param3} like '%${param4}%') 
@@ -137,8 +137,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectTask_detail" resultType="com.toinfra.DTO.Task">
 		select t.task_no, t.cg_no, cg_name, sign, 
 			   task_name, deadline, content, 
-			   rec_emp_no, rec_name, rec_date, 
-			   t.emp_no, emp_name, send_date, 
+			   rec_user_id, rec_name, rec_date,
+			   t.emp_no, user_name, send_date,
 			   file_name, t.step_no, t.task_step_no
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
@@ -151,7 +151,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--업무 요청 수신 상세 보기 업무 내용만 있음-->
 	<select id="selectTask_receive_detail" resultType="com.toinfra.DTO.Task">
-	   select task_no, cg_no, sign, task_name, deadline, content, emp_name, rec_name, emp_no, send_date, file_name, task_step_no, step_no from task where task_no = #{task_no}
+	   select task_no, cg_no, sign, task_name, deadline, content, user_name, rec_name, emp_no, send_date, file_name, task_step_no, step_no from task where task_no = #{task_no}
 	</select>
 	
 	<!-- 수신함에서 읽었을 때 수신일 데이터 삽입하기 -->
@@ -184,15 +184,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
 	<select id="selectTask_people" resultType="com.toinfra.DTO.Task">
-		 select task_no, cg_name, task_name,  deadline, rec_emp_no, rec_name,  emp_no, emp_name, file_name,   task_step_name, send_date, step_no,  task_step_no from(
-    select rownum num, n.task_no, n.cg_name, n.task_name,  n.deadline, n.rec_emp_no, n.rec_name,  n.emp_no, n.emp_name, n.file_name,   n.task_step_name, n.send_date, n.step_no,  n.task_step_no, n.del_check
+		 select task_no, cg_name, task_name,  deadline, rec_user_id, rec_name,  emp_no, user_name, file_name,   task_step_name, send_date, step_no,  task_step_no from(
+    select rownum num, n.task_no, n.cg_name, n.task_name,  n.deadline, n.rec_user_id, n.rec_name,  n.emp_no, n.user_name, n.file_name,   n.task_step_name, n.send_date, n.step_no,  n.task_step_no, n.del_check
     from(
-    select t.task_no, cg_name, task_name, del_check, deadline, rec_emp_no, rec_name,  t.emp_no, emp_name, file_name,   task_step_name, send_date, step_no,  t.task_step_no
+    select t.task_no, cg_name, task_name, del_check, deadline, rec_user_id, rec_name,  t.emp_no, user_name, file_name,   task_step_name, send_date, step_no,  t.task_step_no
 		from task t join task_cg c on t.cg_no = c.cg_no
     join task_step s on t.task_step_no = s.task_step_no
 		left outer join (select task_no, emp_no  from task_people where emp_no =  #{param1}) p
 		on t.task_no = p.task_no
-		where t.step_no = '1' and t.cg_no = '1' and  rec_emp_no =  #{param1} or  p.emp_no is not null and (t.${param2} like '%${param3}%')
+		where t.step_no = '1' and t.cg_no = '1' and  rec_user_id =  #{param1} or  p.emp_no is not null and (t.${param2} like '%${param3}%')
 		order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
     )n where task_step_no in (1,2,3) and step_no='1'
     )where del_check='0' and num   between 1 + (${param4} - 1) * ${param5} and  ${param5} + (${param4} - 1) * ${param5}
@@ -204,12 +204,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCount_parti" resultType="int">
 	select nvl(count(*),0)
     from(
-    select t.task_no, cg_name, task_name,  deadline, rec_emp_no, rec_name,  t.emp_no, emp_name, file_name,   task_step_name, send_date, step_no,  t.task_step_no
+    select t.task_no, cg_name, task_name,  deadline, rec_user_id, rec_name,  t.emp_no, user_name, file_name,   task_step_name, send_date, step_no,  t.task_step_no
 		from task t join task_cg c on t.cg_no = c.cg_no
     join task_step s on t.task_step_no = s.task_step_no
 		left outer join (select task_no, emp_no  from task_people where emp_no =  #{param1}) p
 		on t.task_no = p.task_no
-		where t.step_no = '1' and t.cg_no = '1' and  rec_emp_no =  #{param1} or  p.emp_no is not null and (t.${param2} like '%${param3}%') 
+		where t.step_no = '1' and t.cg_no = '1' and  rec_user_id =  #{param1} or  p.emp_no is not null and (t.${param2} like '%${param3}%')
 		order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
     )
 	</select>
@@ -226,15 +226,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 완료 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
 	<select id="selectTask_people_end" resultType="com.toinfra.DTO.Task">
-		 select task_no, cg_name, task_name,  deadline, rec_emp_no, rec_name,  emp_no, emp_name, file_name,   task_step_name, send_date, step_no,  task_step_no from(
-    select rownum num, n.task_no, n.cg_name, n.task_name,  n.deadline, n.rec_emp_no, n.rec_name,  n.emp_no, n.emp_name, n.file_name,   n.task_step_name, n.send_date, n.step_no,  n.task_step_no, n.del_check
+		 select task_no, cg_name, task_name,  deadline, rec_user_id, rec_name,  emp_no, user_name, file_name,   task_step_name, send_date, step_no,  task_step_no from(
+    select rownum num, n.task_no, n.cg_name, n.task_name,  n.deadline, n.rec_user_id, n.rec_name,  n.emp_no, n.user_name, n.file_name,   n.task_step_name, n.send_date, n.step_no,  n.task_step_no, n.del_check
     from(
-    select t.task_no, cg_name, task_name, del_check, deadline, rec_emp_no, rec_name,  t.emp_no, emp_name, file_name,   task_step_name, send_date, step_no,  t.task_step_no
+    select t.task_no, cg_name, task_name, del_check, deadline, rec_user_id, rec_name,  t.emp_no, user_name, file_name,   task_step_name, send_date, step_no,  t.task_step_no
 		from task t join task_cg c on t.cg_no = c.cg_no
     join task_step s on t.task_step_no = s.task_step_no
 		left outer join (select task_no, emp_no  from task_people where emp_no =  #{param1}) p
 		on t.task_no = p.task_no
-		where t.step_no = '1' and t.cg_no = '1' and  rec_emp_no =  #{param1} or  p.emp_no is not null and (t.${param2} like '%${param3}%')
+		where t.step_no = '1' and t.cg_no = '1' and  rec_user_id =  #{param1} or  p.emp_no is not null and (t.${param2} like '%${param3}%')
 		order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
     )n where task_step_no='4'
     )where del_check='0' and num between 1 + (${param4} - 1) * ${param5} and  ${param5} + (${param4} - 1) * ${param5}
@@ -255,7 +255,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="countTask_rec" resultType="Integer">
 		select count(task_no)
 		from task
-		where cg_no = #{param2} and rec_emp_no = #{param1} and rec_del_check = '0'
+		where cg_no = #{param2} and rec_user_id = #{param1} and rec_del_check = '0'
 	</select>
 	
 	<!-- 송신 글 개수 구하기 -->
@@ -269,13 +269,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="searchTask" resultType="com.toinfra.DTO.Task">
 		select task_no, cg_name, sign,
        		   task_name, deadline, emp_no,
-       		   emp_name, send_date, file_name,
+       		   user_name, send_date, file_name,
        		   t.step_no, a.step_name, a.step, rec_date
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
     	join approval a
     	on t.step_no = a.step_no
-		where rec_emp_no = #{param1} and 
+		where rec_user_id = #{param1} and
 			  rec_del_check = '0' and 
 			  t.cg_no = #{param2} and
         	  ${param3} like '%${param4}%'
@@ -287,7 +287,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(task_no)
 		from task t join task_cg c
 		on t.cg_no = c.cg_no
-		where rec_emp_no = #{param1} and 
+		where rec_user_id = #{param1} and
 			  rec_del_check = '0' and 
 			  t.cg_no = #{param2} and
         	  #{param3} like '%${param4}%'

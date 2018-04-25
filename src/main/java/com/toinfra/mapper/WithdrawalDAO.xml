@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 비밀번호 가져오기 -->
 	<select id="selectPwd" parameterType="String" resultType="String">
-		select pwd from emp_detail where emp_no=#{emp_no}
+		select pwd from user_detail where emp_no=#{emp_no}
 	</select>
 	
 	<!-- 회원 탈퇴 요청하기 -->

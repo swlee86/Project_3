@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.toinfra.DTO.*;
 import com.toinfra.Util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +23,6 @@ import com.toinfra.Service.DraftService;
 import com.toinfra.Service.LoginService;
 import com.toinfra.Service.ProjectService;
 import com.toinfra.Service.PushService;
-import com.toinfra.DTO.Break;
-import com.toinfra.DTO.Company;
-import com.toinfra.DTO.Cooperation;
-import com.toinfra.DTO.Office;
-import com.toinfra.DTO.Pj;
-import com.toinfra.DTO.Task;
 
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
 
@@ -56,9 +51,23 @@ public class IndexController {
 	@RequestMapping(value={"index.do"}, method=RequestMethod.GET)
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, Principal principal) {
 			HttpSession session = request.getSession();
-			String user_id = (String)session.getAttribute("user_id");
+			Emp_detail user_date = (Emp_detail)session.getAttribute("user_date");
+			String user_id = null;
 
-			logger.info("user_id 세션 : " + user_id);
+			if(Util.isEmpty(user_date)){
+				user_id = "";
+			}else{
+				user_id = user_date.getUser_id();
+				//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
+				session.setAttribute("userName", user_id);
+			}
+
+			boolean emp_no_chk = Util.isEmpty(user_date);
+
+			logger.info("emp_no_chk 값 : " + emp_no_chk);
+
+			logger.info("IndexPage user_data 세션 : " + user_date);
+			logger.info("IndexPage user_data 세션의 ID 추출 : " + user_id);
 
 			///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
 			List<Company> list = null;
@@ -77,18 +86,7 @@ public class IndexController {
 
 
 
-			boolean emp_no_chk = Util.isEmpty(user_id);
 
-			logger.info("emp_no_chk 값 : " + emp_no_chk);
-
-			String id = null;
-
-			//시큐리티를 이용한 아이디 뽑기 웹소켓 채팅 작업시 사용
-			if(emp_no_chk==false){
-				id = principal.getName();
-				String empinfo = service.selectUserName(id);
-				session.setAttribute("userName", empinfo);
-			}
 
 			/////////////////////////////////
 

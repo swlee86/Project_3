@@ -92,39 +92,33 @@ public class RegisterController {
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
 	public String insertMemberOk(Emp_detail emp_detail, Model mv, String email){
 		emp_detail.setPwd(this.bCryptPasswordEncoder.encode(emp_detail.getPwd()));;
-		UserDto userDto = new UserDto();
-		userDto.setEmail(email);
-		userDto.setUser_id(emp_detail.getUser_id());
+		emp_detail.setEmail(email);
 	
-		int resultempdetail = 0;
-		int resultemp = 0;
-		int resultrole = 0;
+		int result_user = 0;
+		int result_userR = 0;
+		int result_userD = 0;
+		int resultrule = 0;
+
 		String answer = null;
 		String data = null;			
 		try{
-			resultempdetail = registerservice.insertEmp_detail(emp_detail);
+			emp_detail.setAlive("1");
+			result_userR = registerservice.insertUserRelation(emp_detail);
+			emp_detail.setCredential_id(registerservice.selectCredential(emp_detail.getUser_id()));
+			result_user = registerservice.insertEmp(emp_detail);
+			result_userD = registerservice.insertEmp_detail(emp_detail);
+			resultrule = registerservice.insertEmpRoleList(emp_detail.getUser_id());
 		}catch(Exception e){
-			e.getMessage();
+			e.printStackTrace();
 		}finally{
-			try{
-				resultemp = registerservice.updateEmail(userDto);
-			}catch(Exception e){
-				e.printStackTrace();
-			}finally{
-				try{
-					resultrole = registerservice.insertEmpRoleList(emp_detail.getUser_id());
-				}catch(Exception e){
-					e.printStackTrace();
-				}finally{
-					if(resultrole>0){
-						answer = "login.do";
-						data = "회원 가입에 성공하였습니다.";
-					}else{
-						answer = "login.do";
-						data = "회원 가입에 실패 하였습니다.";
-					}					
-				}
+			if(result_user>0&&result_userR>0&&result_userD>0&&resultrule>0){
+				answer = "index.do";
+				data = "회원 가입에 성공하였습니다.";
+			}else{
+				answer = "index.do";
+				data = "회원 가입에 실패 하였습니다.";
 			}
+
 			
 			mv.addAttribute("data", data);
 			mv.addAttribute("answer", answer);

@@ -61,7 +61,7 @@
             <td style="border:1px #666666 solid" height=360 align=center bgcolor=white>
                 <ul>
                     <li>해당 사이트는 현재 구축 중인 사이트입니다.</li>
-                    따라서 사이트 이용이 정상적이지 않을 수 있는 점 양해 부탁드립니다.
+                    따라서 사이트 이용이 정상적이지 않을 수 있는 점 양해 부탁드립니다.<br/>
                     감사합니다.
                 </ul>
             </td>

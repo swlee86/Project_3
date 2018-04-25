@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.DAO.PushDAO;
+import com.toinfra.DTO.Emp_detail;
 import com.toinfra.DTO.UserDto;
+import com.toinfra.Service.PushService;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -24,10 +27,14 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 
 public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-   
+
+   @Autowired
    private SqlSession sqlsession;
 
-   
+   @Autowired
+   private PushService pservice;
+
+
    public void setSqlsession(SqlSession sqlsession) {
       this.sqlsession = sqlsession;
    }
@@ -43,15 +50,15 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
    private boolean useReferer;
    
    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-   
-   
+
+
    public CustomAuthenticationSuccessHandler() {
       // TODO Auto-generated constructor stub
       targetUrlParameter = "";
       defaultUrl = "/index.do";
       useReferer = false;
    }
-   
+
    public String getTargetUrlParameter() {
       return targetUrlParameter;
    }
@@ -81,7 +88,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       //1.로그인 성공 할때 시작됨 
       request.getSession().removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
       //알림에 각 항목의 카운트를 담기 위한 변수
-      String emp_no =null;
+      String user_id =null;
       String projectcount = null;
    
       //내가 추가한 부분 try 내부에 dao 이용해서 쿼리문 돌려줘야함.
@@ -98,44 +105,42 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       
       int resultdata = 0;
       PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
-      emp_no = pushdao.selectEmp_no(authentication.getName());
-      
-      //로그인 시 사용하는 UserDto
-      UserDto userDto = null;
+      user_id = authentication.getName();
+      logger.info("user_id 값 : " + user_id);
+      //로그인 시 사용하는 Emp_detail
+      Emp_detail emp_detail = null;
       
       try{
-    
-    	  
-    	  userDto = pushdao.selectLogin_Emp(emp_no);
+         emp_detail = pushdao.selectLogin_Emp(user_id);
     	  
     	  
     	 //미 확인 업무
-    	  taskcount = pushdao.taskCount(emp_no);
+    	  taskcount = pushdao.taskCount(user_id);
          //진행중인 프로젝트
-         projectcount=pushdao.myprojectCount(emp_no);
+         projectcount=pushdao.myprojectCount(user_id);
          //내가 승인해야 할 프로젝트
-         approval = pushdao.projectApproval(emp_no);
+         approval = pushdao.projectApproval(user_id);
          //승인 해야 할 업무
-         taskApprovalcount = pushdao.taskApproval(emp_no);
+         taskApprovalcount = pushdao.taskApproval(user_id);
          //내가 참조당한 전자 결재 
-         draft = pushdao.selectDraftCount(emp_no);
+         draft = pushdao.selectDraftCount(user_id);
          //각 항목의 카운트의 총 합                   업무(미확인 업무)             진행중인 프로젝트                            승인해야하는 프로젝트                               승인해야하는 업무                                참조당한 전자결재          
          resultdata = (Integer.parseInt(taskcount))+Integer.parseInt(projectcount) +Integer.parseInt(approval)+Integer.parseInt(taskApprovalcount)+Integer.parseInt(draft);
                
       }catch(Exception e){
-         System.err.println(e.getMessage());
+         e.printStackTrace();
       }
       
       HttpSession session = request.getSession();
       
-      session.setAttribute("Emp", userDto);
+      session.setAttribute("user_date", emp_detail);
       
       clearAuthenticationAttributes(request);
       
       //로그인 성공시 session 객체들 사용
       //미완료 taskcount 생성 > websocket 사용
-      session.setAttribute("customerId", authentication.getName());   //두개 세션은 로그인용
-      session.setAttribute("emp_no", emp_no); //두개 세션은 로그인용
+      session.setAttribute("credential_id", emp_detail.getCredential_id());
+      session.setAttribute("user_id", emp_detail.getUser_id());
 
       //////////////////////////////////////////////////////////////////////////컨트롤러 쪽에 try내부 소스랑
       ///////////같이 복붙.
@@ -216,7 +221,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       return result;
    }
 
-      
+
 
 
 }

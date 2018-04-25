@@ -3,6 +3,7 @@ package com.toinfra.Service;
 import java.util.Calendar;
 import java.util.List;
 
+import com.toinfra.DTO.Emp_detail;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,20 @@ public class PushService {
 
 	@Autowired
 	private SqlSession sqlsession;
+
+
+	public String selectDraftCount(String user_id){
+		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
+		String result=pushdao.selectDraftCount(user_id);
+		return result;
+	}
+
+
+	public Emp_detail selectLogin_Emp(String user_id){
+		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
+		Emp_detail result = pushdao.selectLogin_Emp(user_id);
+		return result;
+	}
 
 	// 업무 리스트 푸쉬 알림 불러오기
 	public String taskCount(String emp_no) {

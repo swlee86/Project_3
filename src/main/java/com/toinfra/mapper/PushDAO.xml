@@ -4,128 +4,139 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.toinfra.DAO.PushDAO">
 
-<select id="projectMyCount" resultType="String">
-	select count(pj_no) from pj where emp_no=#{emp_no} and step_no='1'
-</select>
+    <select id="projectMyCount" resultType="String">
+        select count(pj_no) from pj where emp_no=#{emp_no} and step_no='1'
+    </select>
 
-<select id="projectApproval" resultType="String">
-	select count(pj_no)from(
-           select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
-                select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
-                from pj p join userDto e on p.emp_no = e.emp_no
-                where p.rec_emp_no = #{param1} and p.step_no = '4' 
-                order by to_number(p.pj_no) DESC
-           ) n
-       )
-</select>
+    <select id="projectApproval" resultType="String">
+        select count(pj_no)from(
+                      select n.pj_no, n.user_id, n.user_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
+                                    select p.pj_no, p.user_id, e.user_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
+                                             from pj p join user e on p.user_id = e.user_id
+                                             where p.rec_user_id = #{user_id} and p.step_no = '4'
+                                             order by  CAST(p.pj_no AS UNSIGNED) DESC
+                      ) n
+        ) b
+    </select>
 
-   <!-- 내가 승인해야 하는 프로젝트 리스트 뽑기(index에서 사용) -->
-<select id="selectPj_rec" resultType="com.toinfra.DTO.Pj">
-      select pj_no, emp_no, emp_name, pj_title, pj_start, pj_end, step_no from(
-           select rownum num, n.pj_no, n.emp_no, n.emp_name, n.pj_title, n.pj_start, n.pj_end, n.step_no from(
-                select p.pj_no, p.emp_no, e.emp_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
-                from pj p join userDto e on p.emp_no = e.emp_no
-                where p.rec_emp_no = #{param1} and p.step_no != '1' 
-                order by to_number(p.pj_no) DESC
-           )n 
-       )where num between ${param2} and ${param3}
-</select>
-
-
-<!-- 미확인 업무 리스트의 데이터 추출(index에서 사용) -->
-<select id="selecttasklist" parameterType="String" resultType="com.toinfra.DTO.Task">
-select step_no ,task_no, task_name, DEADLINE, emp_no, emp_name, send_date,file_name from (select rownum rn, task_no, task_name, DEADLINE, emp_no, emp_name, send_date,step_no,file_name from task where rec_emp_no=#{param1} and rec_date is null and rec_del_check = '0') where rn between #{param2} and #{param3}
-</select>
-
-   <!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
-   <select id="selectmytasklist" resultType="com.toinfra.DTO.Task">
-	select task_no, cg_no, task_name, rec_name, emp_name, task_step_no, deadline, rec_emp_no , send_date, file_name, sign from(  
-      select rownum r,t.task_no, t.cg_no, task_name, rec_name, emp_name, t.task_step_no, deadline, rec_emp_no , t.send_date, t.file_name, t.sign
-from task t join task_step s
-on t.task_step_no = s.task_step_no
-left outer join (select p.task_no, p.emp_no, t.cg_no
-                 from task t join task_people p
-                 on t.task_no = p.task_no
-                 where p.emp_no = #{emp_no} and cg_no = '1') p
-on t.task_no = p.task_no
-where rec_emp_no = #{emp_no} and t.cg_no = '1' and t.step_no = '1' and t.task_step_no != '4'  and t.task_step_no != '5' or p.emp_no is not null
-order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
-) where r between 1 and 5
-</select>
-   
+       <!-- 내가 승인해야 하는 프로젝트 리스트 뽑기(index에서 사용) -->
+    <select id="selectPj_rec" resultType="com.toinfra.DTO.Pj">
+         select t.*
+              from
+              (
+                select @rownum := @rownum + 1 AS rownum,
+                  p.pj_no, p.user_id, e.user_name, p.pj_title, p.pj_start, p.pj_end, p.step_no
+                from pj p join user e on p.user_id = e.user_id, (SELECT @rownum := 0) r
+                where p.rec_user_id = #{param1} and p.step_no != '1'
+                order by p.pj_no DESC
+              ) t
+              where t.rownum between #{param2} and #{param3}
+    </select>
 
 
-<!-- 미확인 업무 리스트 갯수 추출(login에서 사용) -->
-<select id="taskCount" resultType="String" parameterType="String">
-select count(*) cnt from task where rec_emp_no=#{emp_no} and rec_date is null and rec_del_check = '0'
-</select>
+    <!-- 미확인 업무 리스트의 데이터 추출(index에서 사용) -->
+    <select id="selecttasklist" parameterType="String" resultType="com.toinfra.DTO.Task">
+    select t.*
+       from (
+              select @rownum := @rownum + 1 AS rownum, task_no, task_name, DEADLINE, user_id, user_name, send_date,step_no,file_name
+              from task, (SELECT @rownum := 0) r
+              where rec_user_id=#{param1} and rec_date is null and rec_del_check = '0'
+            ) t where t.rownum between #{param2} and #{param3}
+    </select>
 
-<!-- 진행중인 프로젝트 리스트 갯수 추출(login에서 사용) -->
-<select id="myprojectCount" resultType="String" parameterType="String">
-   select count(*) cnt
-        from pj p 
-         join pj_step s
-            on p.pj_step_no = s.pj_step_no
-         join userDto e
-            on p.emp_no = e.emp_no
-         join low_dept l
-            on e.low_dept_no = l.low_dept_no      
-         where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where emp_no=#{emp_no}))) or p.emp_no=#{emp_no})
-                 and step_no = (select step_no from approval where step_name='승인')
-</select>
-
-<!-- 사원번호 가져오는 쿼리문(login에서 사용) -->
-<select id="selectEmp_no" parameterType="String" resultType="String"> 
-select emp_no from emp_detail where id=#{id}
-</select>
-
-
-<!-- 차트 데이터를 뽑아오는 함수 -->
-<select id="commutelist" parameterType="String" resultType="com.toinfra.DTO.Commute">
-select regdate, in_time, out_time, add_time from (select regdate, in_time, out_time, add_time from commute where emp_no=#{param1} and add_time is not null and add_time!='00:00' and regdate between to_char(to_date(#{param2}, 'YYYY-MM-dd'), 'YYYY-MM-dd') and to_char(to_date(#{param3}, 'YYYY-MM-dd'), 'YYYY-MM-dd') order by regdate asc)
-</select>
-
-<!-- 평균 근무시간 - 부서 -->
-<select id="selectavgcommute_dept" parameterType="String" resultType="String">
-select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60)+ 
-           sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))    
-    from (select commute_time from commute c
-    join userDto e
-    on c.emp_no=e.emp_no
-    where e.low_dept_no =  
-    (select low_dept_no from userDto where emp_no=#{emp_no})
-    and commute_time is not null
-    and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm'))
-</select>
-
-<!--업무 승인 /-->
-<select id="taskApproval" parameterType="String" resultType="String">
-   select count(task_no)
-   from task
-   where rec_emp_no =#{emp_no} and step_no='4'  
-</select>
-
-<!-- 평균 근무시간 - 내것 -->
-<select id="selectavgcommute_my" parameterType="String" resultType="String">
-select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60 ) +
-           sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))
-    from commute where emp_no=#{emp_no} and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm') and commute_time is not null
-</select>
-   
-<select id="selectLogin_Emp" resultType="com.toinfra.DTO.UserDto">
-   select * from userDto where emp_no = #{emp_no}
-</select>   
+       <!-- 참여 업무 조회하기 / 마감기한이 현재 날짜와 가까운 순서대로 정렬 -->
+       <select id="selectmytasklist" resultType="com.toinfra.DTO.Task">
+        select task_no, cg_no, task_name, rec_name, user_name, task_step_no, deadline, rec_user_id , send_date, file_name, sign from(
+          select rownum r,t.task_no, t.cg_no, task_name, rec_name, user_name, t.task_step_no, deadline, rec_user_id , t.send_date, t.file_name, t.sign
+    from task t join task_step s
+    on t.task_step_no = s.task_step_no
+    left outer join (select p.task_no, p.emp_no, t.cg_no
+                     from task t join task_people p
+                     on t.task_no = p.task_no
+                     where p.emp_no = #{emp_no} and cg_no = '1') p
+    on t.task_no = p.task_no
+    where rec_user_id = #{emp_no} and t.cg_no = '1' and t.step_no = '1' and t.task_step_no != '4'  and t.task_step_no != '5' or p.emp_no is not null
+    order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
+    ) where r between 1 and 5
+    </select>
 
 
 
-<!-- 전자 결재 >> 참조 
-  --> 
-  <select id="selectDraftCount" resultType="String">
-  select count(d.draft_no) 
-  from draft_ref r join draft d 
-  on r.draft_no = d.draft_no 
-  where rec_date is null and r.emp_no = #{emp_no}
-  </select> 
+    <!-- 미확인 업무 리스트 갯수 추출(login에서 사용) -->
+    <select id="taskCount" resultType="String" parameterType="String">
+    select count(*) cnt from task where rec_user_id=#{user_id} and rec_date is null and rec_del_check = '0'
+    </select>
+
+    <!-- 진행중인 프로젝트 리스트 갯수 추출(login에서 사용) -->
+    <select id="myprojectCount" resultType="String" parameterType="String">
+       select count(*) cnt
+            from pj p
+             join pj_step s
+                on p.pj_step_no = s.pj_step_no
+             join user e
+                on p.user_id = e.user_id
+             join low_dept l
+                on e.low_dept_no = l.low_dept_no
+             where ((pj_no in (select distinct(pj_no) from pjd where pjd_no in (select pjd_no from pjd_people where user_id=#{user_id}))) or p.user_id=#{user_id})
+                     and step_no = (select step_no from approval where step_name='승인')
+    </select>
+
+    <!-- 사원번호 가져오는 쿼리문(login에서 사용) -->
+    <select id="selectEmp_no" parameterType="String" resultType="String">
+    select user_id from user_detail where user_id=#{user_id}
+    </select>
+
+
+    <!-- 차트 데이터를 뽑아오는 함수 -->
+    <select id="commutelist" parameterType="String" resultType="com.toinfra.DTO.Commute">
+    select regdate, in_time, out_time, add_time from (select regdate, in_time, out_time, add_time from commute where emp_no=#{param1} and add_time is not null and add_time!='00:00' and regdate between to_char(to_date(#{param2}, 'YYYY-MM-dd'), 'YYYY-MM-dd') and to_char(to_date(#{param3}, 'YYYY-MM-dd'), 'YYYY-MM-dd') order by regdate asc)
+    </select>
+
+    <!-- 평균 근무시간 - 부서 -->
+    <select id="selectavgcommute_dept" parameterType="String" resultType="String">
+    select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60)+
+               sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))
+        from (select commute_time from commute c
+        join userDto e
+        on c.emp_no=e.emp_no
+        where e.low_dept_no =
+        (select low_dept_no from userDto where emp_no=#{emp_no})
+        and commute_time is not null
+        and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm'))
+    </select>
+
+    <!--업무 승인 /-->
+    <select id="taskApproval" parameterType="String" resultType="String">
+       select count(task_no)
+       from task
+       where rec_user_id =#{user_id} and step_no='4'
+    </select>
+
+    <!-- 평균 근무시간 - 내것 -->
+    <select id="selectavgcommute_my" parameterType="String" resultType="String">
+    select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60 ) +
+               sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))
+        from commute where emp_no=#{emp_no} and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm') and commute_time is not null
+    </select>
+
+    <select id="selectLogin_Emp" resultType="com.toinfra.DTO.Emp_detail">
+       select * from user where user_id = #{user_id}
+    </select>
+
+    <select id="selectLogin_Emp_Detail" resultType="com.toinfra.DTO.Emp_detail">
+       select * from user_detail where user_id = #{user_id}
+    </select>
+
+
+
+    <!-- 전자 결재 >> 참조
+      -->
+      <select id="selectDraftCount" resultType="String">
+      select count(d.draft_no)
+      from draft_ref r join draft d
+      on r.draft_no = d.draft_no
+      where rec_date is null and r.user_id = #{user_id}
+      </select>
 
 
 

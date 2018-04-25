@@ -7,38 +7,90 @@ package com.toinfra.DTO;
  */
 
 public class Emp_detail {
-	private String emp_no;
-	private String id;
+	private String user_id;
 	private String pwd;
-	private String bank;
-	private String addr;
-	private String addr_detail;
-	private String account;
-	private String postcode;
+	private String team_code;
+	private String credential_id;
 	private String googleapiid;
+	private String email;
+	private String alive;
+	private String position_no;
+	private String low_dept_no;
+	private String user_name;
+	private String salary;
+	private String emp_break;
+	private String cell_phone;
 
-	public String getGoogleapiid() {
-		return googleapiid;
+	public String getPosition_no() {
+		return position_no;
 	}
 
-	public void setGoogleapiid(String googleapiid) {
-		this.googleapiid = googleapiid;
+	public void setPosition_no(String position_no) {
+		this.position_no = position_no;
+	}
+
+	public String getLow_dept_no() {
+		return low_dept_no;
+	}
+
+	public void setLow_dept_no(String low_dept_no) {
+		this.low_dept_no = low_dept_no;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public String getSalary() {
+		return salary;
+	}
+
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
+	public String getEmp_break() {
+		return emp_break;
+	}
+
+	public void setEmp_break(String emp_break) {
+		this.emp_break = emp_break;
+	}
+
+	public String getCell_phone() {
+		return cell_phone;
+	}
+
+	public void setCell_phone(String cell_phone) {
+		this.cell_phone = cell_phone;
+	}
+
+	public String getAlive() {
+		return alive;
+	}
+
+	public void setAlive(String alive) {
+		this.alive = alive;
+	}
+
+	public String getCredential_id() {
+		return credential_id;
+	}
+
+	public void setCredential_id(String credential_id) {
+		this.credential_id = credential_id;
 	}
 
 	public String getUser_id() {
-		return emp_no;
+		return user_id;
 	}
 
-	public void setUser_id(String emp_no) {
-		this.emp_no = emp_no;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getPwd() {
@@ -49,50 +101,46 @@ public class Emp_detail {
 		this.pwd = pwd;
 	}
 
-	public String getBank() {
-		return bank;
+	public String getTeam_code() {
+		return team_code;
 	}
 
-	public void setBank(String bank) {
-		this.bank = bank;
+	public void setTeam_code(String team_code) {
+		this.team_code = team_code;
 	}
 
-	public String getAddr() {
-		return addr;
+	public String getGoogleapiid() {
+		return googleapiid;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setGoogleapiid(String googleapiid) {
+		this.googleapiid = googleapiid;
 	}
 
-	public String getAddr_detail() {
-		return addr_detail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAddr_detail(String addr_detail) {
-		this.addr_detail = addr_detail;
-	}
-
-	public String getAccount() {
-		return account;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
-	}
-
-	public String getPostcode() {
-		return postcode;
-	}
-
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "Emp_detail [emp_no=" + emp_no + ", id=" + id + ", pwd=" + pwd + ", bank=" + bank + ", addr=" + addr
-				+ ", addr_detail=" + addr_detail + ", account=" + account + ", postcode=" + postcode + ", googleapiid="
-				+ googleapiid + "]";
-	}	
+		return "Emp_detail{" +
+				"user_id='" + user_id + '\'' +
+				", pwd='" + pwd + '\'' +
+				", team_code='" + team_code + '\'' +
+				", credential_id='" + credential_id + '\'' +
+				", googleapiid='" + googleapiid + '\'' +
+				", email='" + email + '\'' +
+				", alive='" + alive + '\'' +
+				", position_no='" + position_no + '\'' +
+				", low_dept_no='" + low_dept_no + '\'' +
+				", user_name='" + user_name + '\'' +
+				", salary='" + salary + '\'' +
+				", emp_break='" + emp_break + '\'' +
+				", cell_phone='" + cell_phone + '\'' +
+				'}';
+	}
 }

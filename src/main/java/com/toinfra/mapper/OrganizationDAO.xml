@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 등록인 사번 구하는 함수 -->
 	<select id="selectInfoSearch" resultType="com.toinfra.DTO.UserDto">
 		select e.emp_no
-		from  emp_detail d join userDto e
+		from  user_detail d join userDto e
 		on d. emp_no = e.emp_no
 		where d.id=#{id}
 	</select>

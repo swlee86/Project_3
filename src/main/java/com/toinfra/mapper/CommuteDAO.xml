@@ -172,7 +172,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 아이디로 회원 정보 가져오기 -->
 	<select id="selectInfoSearch" resultType="com.toinfra.DTO.UserDto">
 		select e.emp_no,e.emp_name
-		from  emp_detail d join userDto e
+		from  user_detail d join userDto e
 		on d. emp_no = e.emp_no
 		where d.id=#{id}
 	</select>

@@ -26,22 +26,26 @@ public class RegisterService {
 		return list;
 	}
 	
-	//관리자 > 사원 등록시 등록을 처리하는 함수(Emp에 insert)
-	public int insertEmp(UserDto userDto){
+	//회원가입 시 User테이블 등록을 처리하는 함수(Emp에 insert)
+	public int insertEmp(Emp_detail emp_detail){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
-		int result = registerDao.insertEmp(userDto);
-		
-		//현재날짜 구하기
-		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
-		Date currentTime = new Date ( );
-		String dTime = formatter.format ( currentTime );
-		
-		result += registerDao.insertEmp_his(userDto.getUser_id(), dTime);
-		
+		int result = registerDao.insertEmp(emp_detail);
+		return result;
+	}
+
+	public int insertUserRelation(Emp_detail emp_detail){
+		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
+		int result = registerDao.insertUserRelation(emp_detail);
+		return result;
+	}
+
+	public String selectCredential(String user_id){
+		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
+		String result = registerDao.selectCredential(user_id);
 		return result;
 	}
 	
-	//회원가입시 등록을 처리하는 함수(Emp_detail에 insert)
+	//회원가입시 User_detail 등록을 처리하는 함수(Emp_detail에 insert)
 	public int insertEmp_detail(Emp_detail emp_detail){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
 		int result = registerDao.insertEmp_detail(emp_detail);
@@ -78,10 +82,10 @@ public class RegisterService {
 		return resultemp;
 	}
 	
-	//Role 리스트를 불러오는 서비스 함수
-	public int insertEmpRoleList(String emp_no){
+	//Role 리스트를 입력하는 서비스 함수
+	public int insertEmpRoleList(String user_id){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
-		int result = registerDao.insertEmpRoleList(emp_no);
+		int result = registerDao.insertEmpRoleList(user_id);
 		return result;
 	}
 	

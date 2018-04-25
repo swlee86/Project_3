@@ -156,10 +156,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--급여 기본 정보 관리 리스트   -->
 	<select id="selectPayList_Manage" resultType="com.toinfra.DTO.PayList">
-	    select d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, salary, bank, account, h.regdate
+	    select d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, salary, bank, team_code, h.regdate
 		from userDto e join position p
 		on e.position_no = p.position_no
-		join emp_detail y
+		join user_detail y
 		on e.emp_no = y.emp_no
 	    join (select e.emp_no, b.branch_name, d.dept_name, l.low_dept_name
 		      from userDto e join low_dept l
@@ -177,10 +177,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 급여 기본 정보 관리 상세 정보 수정 페이지-->
 	<select id="selectPayList_Modify" resultType="com.toinfra.DTO.PayList">
-	    select d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, salary, bank, account, h.regdate
+	    select d.branch_name, d.dept_name, d.low_dept_name, position_name, e.emp_no, emp_name, salary, bank, team_code, h.regdate
 		from userDto e join position p
 		on e.position_no = p.position_no
-		join emp_detail y
+		join user_detail y
 		on e.emp_no = y.emp_no
 	    join (select e.emp_no, b.branch_name, d.dept_name, l.low_dept_name
 		      from userDto e join low_dept l
@@ -203,7 +203,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  
 	  <!-- 급여 기본 정보 수정 > 계좌/은행명 -->
 	  <update id="update_pay_Info_empdetail" parameterType="com.toinfra.DTO.PayList">
-	    update emp_detail set bank=#{bank}, account=#{account}
+	    update user_detail set bank=#{bank}, team_code=#{account}
 	    where emp_no=#{emp_no}
 	  </update>
 	  

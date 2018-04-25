@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 사원을 등록하면서 권한에 'none' 추가하기 -->
 	<insert id="insertEmp_role_none">
-		insert into emp_role(role_no, emp_no)
+		insert into user_role(role_no, emp_no)
 		values('1', #{emp_no})
 	</insert>
 	
@@ -113,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select e.emp_no, branch_name, dept_name, his_no, role_exp, 
 			   low_dept_name, position_name, emp_name, regdate,
 			   ec.cg_name, hc.cg_name as "his_cg_name", role_name
-		from userDto e join emp_role er
+		from userDto e join user_role er
 		on e.emp_no = er.emp_no
 		join role r
 		on er.role_no = r.role_no
@@ -169,7 +169,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 탈퇴시키기 위해 사원의 권한을 none으로 변경하기 -->
 	<update id="updateEmp_role_none">
-		update emp_role
+		update user_role
 		set role_no = '0'
 		where emp_no = #{emp_no}
 	</update>
@@ -191,7 +191,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 권한 부여 페이지를 위해 부여되어 있는 권한 리스트 불러오기 -->
 	<select id="selectRole_selected" resultType="String">
 		select role_no
-		from userDto e join emp_role r
+		from userDto e join user_role r
 		on e.emp_no = r.emp_no
 		where position_no = #{position_no}
 		group by role_no
@@ -200,7 +200,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 권한 부여 -->
 	<insert id="insertEmp_role">
-		insert into emp_role(role_no, emp_no)
+		insert into user_role(role_no, emp_no)
 		values(#{param2}, #{param1})
 	</insert>
 	
@@ -213,7 +213,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 권한 부여를 위해 해당 사원의 권한 전부 삭제하기 -->
 	<delete id="deleteEmp_role">
-		delete from emp_role
+		delete from user_role
 		where emp_no = #{emp_no}
 	</delete>
 	
@@ -235,7 +235,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 권한 부여 상세 페이지를 위해 해당 사원의 권한 불러오기 -->
 	<select id="selectEmp_role" resultType="com.toinfra.DTO.Emp_role">
 		select er.role_no, emp_no, role_name, role_exp
-		from emp_role er join role r
+		from user_role er join role r
 		on er.role_no = r.role_no
 		where emp_no = #{emp_no}
 		order by to_number(emp_no)
@@ -249,9 +249,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        birth, pic, email, 
        cell_phone, emp_tel, id, 
        pwd, bank, addr, 
-       addr_detail, account, postcode, 
+       addr_detail, team_code, postcode,
        googleapiid
-		from userDto e join emp_detail d
+		from userDto e join user_detail d
 		on e.emp_no = d.emp_no
 		join emp_cg c
 		on e.cg_no = c.cg_no

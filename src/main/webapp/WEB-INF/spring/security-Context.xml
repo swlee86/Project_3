@@ -12,38 +12,20 @@
   <security:form-login login-page="/login.do"
   					   authentication-failure-url="/errors/lock.jsp" 
   					   authentication-success-handler-ref="customAuthenticationSuccessHandler"/>
-  <security:logout logout-success-url="/index.html" />
+  <security:logout logout-success-url="/index.do" />
   <security:access-denied-handler error-page="/authority.do" />
-  
-  <!--    
-  <security:intercept-url pattern="/*sanction.do" access="hasRole('ROLE_MASTER')"/>
-  <security:intercept-url pattern="/*board.do" access="hasRole('ROLE_MASTER')"/>
-  <security:intercept-url pattern="/customer/noticeReg.htm" access="ROLE_ADMIN"/>
-  <security:intercept-url pattern="/customer/**" access="ROLE_USER" />
-  -->
-  
- 
-  <security:intercept-url pattern="/draft_rec.do" access="hasRole('ROLE_DRAFT')" />
-  <security:intercept-url pattern="projectApprove.do" access="hasRole('ROLE_PJ')" />
-  <security:intercept-url pattern="projectMake.do" access="hasRole('ROLE_PJ')" />
-  <security:intercept-url pattern="adminEmp_list.do" access="hasRole('ROLE_EMPLIST')" />
-  <security:intercept-url pattern="adminDepartWidget.do" access="hasRole('ROLE_ATTACH')" />
-  <security:intercept-url pattern="adminGrade.do" access="hasRole('ROLE_POSITION')" />
-  <security:intercept-url pattern="adminSalaryView.do" access="hasRole('ROLE_ADMIN')" />
-  <security:intercept-url pattern="adminSalaryList.do" access="hasRole('ROLE_PAYLIST')" />
-  <security:intercept-url pattern="adminSalary.do" access="hasRole('ROLE_PAYCHECK')" />
-  <security:intercept-url pattern="adminSalaryManage.do" access="hasRole('ROLE_SALARY')" />
-  <security:intercept-url pattern="adminSalarySetting.do" access="hasRole('ROLE_BONUS')" />
-  <security:intercept-url pattern="CommuteAdmin.do" access="hasRole('ROLE_ADMIN')" />
-  
+
+      <security:intercept-url pattern="/" access="permitAll"/>
 </security:http>
+
+
 <security:authentication-manager>
      <security:authentication-provider>
 		<security:jdbc-user-service data-source-ref="driverManagerDataSource"
-			users-by-username-query="select id as USERID, pwd as PASSWORD, 1 enable 
-									 from emp_detail 
-									 where id=?"
-				authorities-by-username-query="select e.USERID, r.ROLE_NAME from (select ed.id AS USERID, er.role_no from emp_detail ed join emp_role er on ed.emp_no = er.emp_no where ed.id=?) e join role r on e.role_no=r.role_no"
+			users-by-username-query="select user_id as USERID, pwd as PASSWORD, 1 enable
+									 from user_detail
+									 where user_id=?"
+				authorities-by-username-query="select e.user_id, r.ROLE_NAME from (select ed.user_id, er.role_no from user_detail ed join user_role er on ed.user_id = er.user_id where ed.user_id=?) e join role r on e.role_no=r.role_no"
 		 
 		/>
 		 

@@ -4,16 +4,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.toinfra.DAO.RegisterDAO">
 	
-	<!-- 관리자의 사원등록에서 등록시 처리되는 insert 쿼리문 -->
-	<insert id="insertEmp" parameterType="com.toinfra.DTO.UserDto">
-		INSERT INTO userDto(emp_no, cg_no, position_no, low_dept_no, emp_name, birth, salary ,emp_break, cell_phone)
-	    VALUES(#{emp_no}, #{cg_no}, #{position_no}, #{low_dept_no}, #{emp_name}, #{birth}, #{salary}, #{emp_break}, #{cell_phone})
+	<!-- 회원가입 시 User 테이블에 처리되는 insert 쿼리문 -->
+	<insert id="insertEmp" parameterType="com.toinfra.DTO.Emp_detail">
+		INSERT INTO user(user_id, credential_id, position_no, low_dept_no, user_name, salary ,emp_break, cell_phone, email)
+	    VALUES(#{user_id}, #{credential_id}, #{position_no}, #{low_dept_no}, #{user_name}, #{salary}, #{emp_break}, #{cell_phone}, #{email})
 	</insert>
 	
 	<!-- 회원 가입시 인서트 처리되는 쿼리문 1) -->
+	<insert id="insertUserRelation">
+		INSERT INTO user_relation(user_id, credential_id, alive)
+	    VALUES(#{user_id}, (select max(credential_id)+1 from user_relation u), #{alive})
+	</insert>
+
+	<select id="selectCredential" parameterType="String" resultType="String">
+		SELECT credential_id from user_relation
+		where user_id=#{user_id} and alive='1'
+	</select>
+
+
 	<insert id="insertEmp_detail">
-		INSERT INTO emp_detail(emp_no, id, pwd, bank, addr, addr_detail, account ,postcode, googleapiid)
-	    VALUES(#{emp_no}, #{id}, #{pwd}, #{bank}, #{addr}, #{addr_detail}, #{account}, #{postcode}, #{googleapiid})
+		INSERT INTO user_detail(user_id, credential_id, pwd, team_code, googleapiid)
+	    VALUES(#{user_id}, #{credential_id}, #{pwd}, #{team_code}, #{googleapiid})
 	</insert>
 	
 	<!--회원 가입시 인서트 처리되는 쿼리문 2)  -->
@@ -23,22 +34,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<update id="updateEmail" parameterType="com.toinfra.DTO.UserDto">
-		update userDto set email=#{email} where emp_no=#{emp_no}
+		update user set email=#{email} where user_id=#{user_id}
 	</update>
 	
 	<!-- 회원가입에서 해당 사번이 사용 가능한지 확인하는 쿼리문 -->
 	<select id="selectEmpno" parameterType="String" resultType="String">
 		select emp_no from userDto where emp_no=#{emp_no}
 	</select>
-	
+
 	<!-- 회원 가입에서 해당 사번이 가입되어 있는지 여부를 체크해주는 쿼리문 -->
 	<select id="selectUsedEmpno" parameterType="String" resultType="String">
-		select id from emp_detail where emp_no=#{emp_no}
+		select id from user_detail where emp_no=#{emp_no}
 	</select>
-	
+
 	<!-- 회원 가입에서 입력한 아이디가 맞는지 체크해주는 쿼리문 -->
 	<select id="selectUsedId" parameterType="String" resultType="String">
-		select user_id from emp_detail where user_id=#{userid}
+		select user_id from user_detail where user_id=#{userid}
 	</select>
 	
 	<!-- 관리자의 사원정보  > 정보 등록 화면에서 하위 부서번호의 정보를 low_dept 테이블에서 불러오는 쿼리문-->
@@ -48,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- Role 테이블에서 해당 정보들을 모두 불러오는 쿼리 -->
 	<insert id="insertEmpRoleList" parameterType="int">
-		insert into emp_role(role_no, emp_no) values(1, #{emp_no})
+		insert into user_role(role_no, user_id) values(99, #{user_id})
 	</insert>
 	
 	<!-- 근무상태 테이블에서 해당 내용들을 모두 불러오는 쿼리 -->
