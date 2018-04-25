@@ -29,8 +29,8 @@
 
 	<bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://airless86.cafe24.com:3306/airless86" />
-		<!--<property name="url" value="jdbc:mysql://localhost:3306/airless86" />-->
+		<!--<property name="url" value="jdbc:mysql://airless86.cafe24.com:3306/airless86" />-->
+		<property name="url" value="jdbc:mysql://localhost:3306/airless86" />
 		<property name="username" value="airless86" />
 		<property name="password" value="Clqxls6119@2" />
 	</bean>
@@ -102,6 +102,26 @@
 		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="cacheSeconds" value="5"/>
 	</bean>
+
+
+
+	<!-- transaction start -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="driverManagerDataSource"/>
+	</bean>
+
+	<tx:annotation-driven proxy-target-class="true" />
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="onjPointCut" expression="execution(* com.toinfra.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="onjPointCut" />
+	</aop:config>
 
 
 </beans>

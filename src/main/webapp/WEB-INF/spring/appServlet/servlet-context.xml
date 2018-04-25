@@ -31,38 +31,21 @@
         </context:component-scan>
         -->
     <context:component-scan base-package="com.toinfra.*" />
-
+<!--
     <beans:bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <beans:property name="url" value="jdbc:mysql://airless86.cafe24.com:3306/airless86" />
-        <!--<beans:property name="url" value="jdbc:mysql://localhost:3306/airless86" />-->
+        &lt;!&ndash;<beans:property name="url" value="jdbc:mysql://localhost:3306/airless86" />&ndash;&gt;
         <beans:property name="username" value="airless86" />
         <beans:property name="password" value="Clqxls6119@2" />
     </beans:bean>
+-->
 
 
 
 
 
 
-
-    <!-- transaction start -->
-    <beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <beans:property name="dataSource" ref="driverManagerDataSource"/>
-    </beans:bean>
-
-    <tx:annotation-driven proxy-target-class="true" />
-
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <aop:config>
-        <aop:pointcut id="onjPointCut" expression="execution(* com.toinfra.*.*(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="onjPointCut" />
-    </aop:config>
 
     <beans:bean id="broadsocketHandler" class="com.toinfra.PushController.broadsocket"/>
 
