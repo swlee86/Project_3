@@ -56,12 +56,17 @@
 
 <!-- POPUP -->
 <div id="divpop" style="position:absolute;left:395px;top:190px;z-index:200;visibility:hidden;">
-    <table width=600 height=400 cellpadding=2 cellspacing=0>
+    <table width=200 height=400 cellpadding=2 cellspacing=0>
         <tr>
             <td style="border:1px #666666 solid" height=360 align=center bgcolor=white>
                 <ul>
                     <li>해당 사이트는 현재 구축 중인 사이트입니다.</li>
-                    따라서 사이트 이용이 정상적이지 않을 수 있는 점 양해 부탁드립니다.<br/>
+                    현재 일부의 메뉴만 오픈되어 있는 상태로<br/>
+                    오픈된 메뉴들도 개발 및 테스트 작업이 진행 중에 있습니다.<br/>
+
+                    따라서 사이트 이용이 정상적이지 않을 수 있으며 <br/>
+                    메뉴 이용 가능 여부에 대해서는 머지않아 개설 될 전체 공지사항 게시판으로 안내 드리겠습니다<br/><br/>
+                    ※해당 홈페이지는 별도로 사용료를 받지 않는 사이트입니다.<br/>
                     감사합니다.
                 </ul>
             </td>

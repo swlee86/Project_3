@@ -530,7 +530,8 @@
 
 
 
-	<div class="row" > 
+	<div class="row" >
+		<%--
 		<div class="col-lg-6" style="height: 400px;">
 			<div class="hpanel">
 				<div class="panel-heading">
@@ -548,6 +549,7 @@
 				</div>
 			</div>
 		</div>
+		--%>
 
 		<div class="col-lg-6">
 			<div class="hpanel">

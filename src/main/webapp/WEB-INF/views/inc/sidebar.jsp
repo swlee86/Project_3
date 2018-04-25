@@ -21,13 +21,14 @@
             <!-- <li class="active">
                 <a href="index.do"> <span class="nav-label">Main</span> <span class="label label-success pull-right"></span> </a>
             </li> -->
+            <%--
             <li>
                 <a href="private_memo.do"> <span class="nav-label">개인메모</span><span class="label label-warning pull-right"></span> </a>
             </li>
             <li>
                 <a href="contacts.do"> <span class="nav-label">주소록</span><span class="label label-warning pull-right"></span> </a>
             </li>
-       
+
            <li>
                 <a href="#"><span class="nav-label">메일 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
@@ -37,7 +38,9 @@
                     <li><a href="mailbox_send.do">보낸 메일함 </a></li>
                 </ul>
             </li>
-        <!--     <li>
+            --%>
+             <!--
+             <li>
                 <a href="#"><span class="nav-label">회의</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
                     <li style="text-align: center;">
@@ -76,6 +79,7 @@
                     <li><a href="projectMake.do">프로젝트 작성</a></li>
                 </ul>
             </li>
+            <%--
             <li>
                 <a href="team_member.do"><span class="nav-label">조직도</span></a>
             </li>
@@ -92,6 +96,7 @@
                     <li><a href="salarySearch.do">급여 조회</a></li>
                 </ul>
             </li>
+            --%>
             <li>
                 <a href="#"><span class="nav-label">게시판 서비스</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
@@ -101,6 +106,7 @@
                  	<li><a href="free_board_list.do">자유 게시판</a></li>
                 </ul>
             </li>
+            <%--
             <li>
                 <a href="#"><span class="nav-label">회원 정보 관리</span><span class="fa arrow"></span> </a>
                 <ul class="nav nav-second-level">
@@ -109,6 +115,7 @@
                     <li><a href="withdrawal.do">회원탈퇴</a></li>
                 </ul>
             </li>
+            --%>
               <se:authorize access="hasRole('ROLE_ADMIN')">
               <li>
                 <a href="#"><span class="nav-label">관리자</span><span class="fa arrow"></span> </a>
@@ -121,8 +128,6 @@
                 </ul>
             </li>
             </se:authorize>
-            <li>
-            	<a href="#" onClick="javascript:window.open('http://192.168.0.116:3000/?id=${Emp.emp_name}', 'popup','scrollbars=no, width=500px,height=600px,resizable=no')">Node 채팅</a>
             </li>
             <li>
             	&nbsp;
