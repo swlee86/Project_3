@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.OrganizationDAO;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
-import com.toinfra.VO.Organization;
+import com.toinfra.DTO.Contact;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Emp_contact;
+import com.toinfra.DTO.Organization;
 
 /*
  * 작성자 : 이상원
@@ -89,10 +89,10 @@ public class OrganizationChartService {
 	}
 	
 	//로그인한 사원정보 부르는 함수
-	public Emp selectInfoSearchEmp(String id) {
+	public UserDto selectInfoSearchEmp(String id) {
 		OrganizationDAO organizationDAO = sqlsession.getMapper(OrganizationDAO.class);
-		Emp emp = organizationDAO.selectInfoSearch(id);
-		return emp;
+		UserDto userDto = organizationDAO.selectInfoSearch(id);
+		return userDto;
 	}
 
 	//주소록테이블에 추가하는 함수

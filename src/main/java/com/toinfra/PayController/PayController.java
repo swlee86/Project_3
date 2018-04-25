@@ -2,26 +2,21 @@ package com.toinfra.PayController;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import com.toinfra.Service.LoginService;
-import com.toinfra.VO.EmpJoinEmp_Detail;
-import com.toinfra.VO.Pay;
-import com.toinfra.VO.PayList;
+import com.toinfra.DTO.EmpJoinEmp_Detail;
+import com.toinfra.DTO.Pay;
+import com.toinfra.DTO.PayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
-import com.toinfra.Service.LoginService;
 import com.toinfra.Service.PayService;
-import com.toinfra.VO.EmpJoinEmp_Detail;
-import com.toinfra.VO.Pay;
-import com.toinfra.VO.PayList;
 
 /*
  * 작성자 : 하재현
@@ -59,7 +54,7 @@ public class PayController {
 			 
 			//아이디 통해 사번 얻어옴
 		    EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
-		    Pay list = payservice.selectPay_mine(emp.getEmp_no(), dTime);
+		    Pay list = payservice.selectPay_mine(emp.getUser_id(), dTime);
 		    model.addAttribute("list", list);
 		    model.addAttribute("date", dTime);
 		   

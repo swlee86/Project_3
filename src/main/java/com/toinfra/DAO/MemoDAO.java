@@ -3,10 +3,8 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Memo;
-import com.toinfra.VO.Memocolor;
-import com.toinfra.VO.Memo;
-import com.toinfra.VO.Memocolor;
+import com.toinfra.DTO.Memo;
+import com.toinfra.DTO.Memocolor;
 
 /**
 작성일 :	2016 - 11 - 17

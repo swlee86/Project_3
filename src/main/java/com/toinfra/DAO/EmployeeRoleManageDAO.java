@@ -2,12 +2,9 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.EmployeeRoleManage;
-import com.toinfra.VO.Role;
+import com.toinfra.DTO.EmployeeRoleManage;
+import com.toinfra.DTO.Role;
 import org.apache.ibatis.annotations.Param;
-
-import com.toinfra.VO.EmployeeRoleManage;
-import com.toinfra.VO.Role;
 
 /*
  * 작성자 : 백승아

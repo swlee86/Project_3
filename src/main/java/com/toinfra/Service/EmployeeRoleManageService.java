@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.EmployeeRoleManageDAO;
-import com.toinfra.VO.EmployeeRoleManage;
-import com.toinfra.VO.Role;
+import com.toinfra.DTO.EmployeeRoleManage;
+import com.toinfra.DTO.Role;
 
 @Service
 public class EmployeeRoleManageService {

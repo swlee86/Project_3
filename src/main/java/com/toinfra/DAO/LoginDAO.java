@@ -1,11 +1,8 @@
 package com.toinfra.DAO;
 
-import com.toinfra.VO.EmpJoinEmp_Detail;
-import com.toinfra.VO.Emp_detail;
+import com.toinfra.DTO.EmpJoinEmp_Detail;
+import com.toinfra.DTO.Emp_detail;
 import org.apache.ibatis.annotations.Param;
-
-import com.toinfra.VO.EmpJoinEmp_Detail;
-import com.toinfra.VO.Emp_detail;
 
 /*
  * 작성자 : 박성준
@@ -20,7 +17,7 @@ public interface LoginDAO {
 	//view 에 넘어온 사번 에 맞춰 정보 뿌려줌.
 	EmpJoinEmp_Detail selectEmpInfo(@Param("emp_no") String emp_no, @Param("id") String id);
 	
-	//업데이트 Emp (detail 테이블에 업데이트 시 사용)
+	//업데이트 UserDto (detail 테이블에 업데이트 시 사용)
 	int updateEmpInfo(EmpJoinEmp_Detail detail);
 	
 	//emp 테이블에  정보수정시 email 변경함.

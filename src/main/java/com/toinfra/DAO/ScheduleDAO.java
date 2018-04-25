@@ -2,12 +2,9 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Sch_people;
-import com.toinfra.VO.Schedule;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Sch_people;
-import com.toinfra.VO.Schedule;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Sch_people;
+import com.toinfra.DTO.Schedule;
 
 /**
 작성일 :	2016 - 11 - 17
@@ -23,7 +20,7 @@ public interface ScheduleDAO {
 	public Schedule selectSchedule_detail(String sch_no);
 	
 	//일정 참여자들의 사원 정보
-	public List<Emp> selectSchedule_people(String emp_no);
+	public List<UserDto> selectSchedule_people(String emp_no);
 	
 	//일정 삭제
 	public int deleteSchedule(String sch_no);

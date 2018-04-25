@@ -1,15 +1,10 @@
 package com.toinfra.Service;
 
-import java.util.List;
-
 import com.toinfra.DAO.CommonDAO;
-import com.toinfra.VO.Common;
+import com.toinfra.DTO.Common;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.toinfra.DAO.CommonDAO;
-import com.toinfra.VO.Common;
 
 @Service
 public class CommonService {

@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 프로젝트 진행 단계 조회하기 -->	
-	<select id="selectPj_step" resultType="com.toinfra.VO.Pj_step">
+	<select id="selectPj_step" resultType="com.toinfra.DTO.Pj_step">
 		select pj_step_no,pj_step_name, step
 		from pj_step
 		order by step asc

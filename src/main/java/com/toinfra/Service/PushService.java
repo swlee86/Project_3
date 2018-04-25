@@ -1,6 +1,5 @@
 package com.toinfra.Service;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -9,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.PushDAO;
-import com.toinfra.VO.Commute;
-import com.toinfra.VO.Pj;
-import com.toinfra.VO.Task;
+import com.toinfra.DTO.Commute;
+import com.toinfra.DTO.Pj;
+import com.toinfra.DTO.Task;
 
 @Service
 public class PushService {

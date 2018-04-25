@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 업무 구분 단계 조회하기 -->
-	<select id="selectTask_cg" resultType="com.toinfra.VO.Task_cg">
+	<select id="selectTask_cg" resultType="com.toinfra.DTO.Task_cg">
 		select cg_no, cg_name
 		from task_cg
 		order by cg_name asc

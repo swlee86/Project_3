@@ -3,14 +3,13 @@ package com.toinfra.AjaxController;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import com.toinfra.Service.LoginService;
-import com.toinfra.VO.EmpJoinEmp_Detail;
-import com.toinfra.VO.Pay;
+import com.toinfra.DTO.EmpJoinEmp_Detail;
+import com.toinfra.DTO.Pay;
 import org.springframework.beans.factory.annotation.Autowired;
 /*
  *급여 페이지 ajax controller 
@@ -23,10 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
-import com.toinfra.Service.LoginService;
 import com.toinfra.Service.PayService;
-import com.toinfra.VO.EmpJoinEmp_Detail;
-import com.toinfra.VO.Pay;
 
 /*
  * 작성자 : 하재현
@@ -58,7 +54,7 @@ public class SalaryAjaxController {
 	     
 		//아이디 통해 사번 얻어옴
 	    EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
-	    Pay list = payservice.selectPay_mine(emp.getEmp_no(), dTime);
+	    Pay list = payservice.selectPay_mine(emp.getUser_id(), dTime);
 	    model.addAttribute("list", list);
 	    model.addAttribute("date", dTime);
 		
@@ -73,7 +69,7 @@ public class SalaryAjaxController {
 	     
 		//아이디 통해 사번 얻어옴
 	    EmpJoinEmp_Detail emp = loginservice.modifyInfo(id);
-	    List<Pay> list = payservice.selectPay_mine_all(emp.getEmp_no());
+	    List<Pay> list = payservice.selectPay_mine_all(emp.getUser_id());
 	    model.addAttribute("list", list);
 		
 		return jsonview;
@@ -89,7 +85,7 @@ public class SalaryAjaxController {
 		Pay monthly_pay = null;
 
 		try {
-			monthly_pay = payservice.selectPay_mine_Monthly(emp.getEmp_no(), date);
+			monthly_pay = payservice.selectPay_mine_Monthly(emp.getUser_id(), date);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -110,7 +106,7 @@ public class SalaryAjaxController {
 		List<Pay> Yearly_pay = null;
 		
 		try {
-			Yearly_pay = payservice.selectPay_mine_Yearly(emp.getEmp_no(), date);
+			Yearly_pay = payservice.selectPay_mine_Yearly(emp.getUser_id(), date);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -195,13 +191,13 @@ public class SalaryAjaxController {
 			   		
 			   		String give_date=selectdate[0]+"-"+zeroDate;
 			   		//최근 3개월 월별 급여 조회
-			   		Pay pay = payservice.selectPay_mine_Monthly(emp.getEmp_no(), give_date);
+			   		Pay pay = payservice.selectPay_mine_Monthly(emp.getUser_id(), give_date);
 			   		list.add(pay);
 			   		
 			   }
 		    }
 		   //재직일수
-		   String regdate = payservice.selectRegdate(emp.getEmp_no());
+		   String regdate = payservice.selectRegdate(emp.getUser_id());
 		  
 		   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		   

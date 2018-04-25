@@ -405,22 +405,22 @@
 
 											},
 											success : function(data) {
-												var emp = "";
+												var userDto = "";
 												$.each(data, function(index) {
-													emp = data[index];
+													userDto = data[index];
 												});
 
 												var makeTable = "<table class='table table-condensed'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>번호</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>선택</th></tr>";
 												$
 														.each(
-																emp,
+																userDto,
 																function(index) {
 																	makeTable += "<tr style='text-align:center'><td>"
 																			+ (index + 1)
 																			+ "</td><td>"
-																			+ emp[index].emp_no
+																			+ userDto[index].emp_no
 																			+ "</td><td>"
-																			+ emp[index].emp_name
+																			+ userDto[index].emp_name
 																			+ "</td><td><button class='btn  btn-outline btn-success' onclick='recF2(this)'><i class='fa fa-check'></i></button></td></tr>";
 																});
 												makeTable += "</table>";
@@ -558,26 +558,26 @@
 							low_dept_no : empListNumber
 						},
 						success : function(data) {
-							var emp = "";
+							var userDto = "";
 							$.each(data, function(index) {
-								emp = data[index];
+								userDto = data[index];
 							});
 
 							$
 									.each(
-											emp,
+											userDto,
 											function(index) {
 												if (empSelectNumber == 1) {
 													makeTable += "<tr><td>"
-															+ emp[index].emp_no
+															+ userDto[index].emp_no
 															+ "</td><td>"
-															+ emp[index].emp_name
+															+ userDto[index].emp_name
 															+ "</td><td><button class='btn  btn-outline btn-success' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";
 												} else if (empSelectNumber == 2) {
-													makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"
-															+ emp[index].emp_no
+													makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+userDto[index].emp_name+"'></td><td>"
+															+ userDto[index].emp_no
 															+ "</td><td>"
-															+ emp[index].emp_name
+															+ userDto[index].emp_name
 															+ "</td></tr>";
 												}
 											});

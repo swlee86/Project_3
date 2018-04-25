@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.CreateLogDAO;
-import com.toinfra.VO.CreateLog;
+import com.toinfra.DTO.CreateLog;
 
 
 @Service

@@ -32,11 +32,18 @@ $(function(){
 <div id="header">
     <div class="color-line">
     </div>
-    <div id="logo" class="light-version" 
+    <%--
+    <div id="logo" class="light-version"
     	 style="background: url('img/Logo.png');
     	 		background-size: 60%;
     	 		background-repeat: no-repeat;
-    	 		background-position: center center;"></div>
+    	 		background-position: center center;">
+
+    </div>
+    --%>
+    <div id="logo" class="light-version">
+        ToInfra
+    </div>
     <nav role="navigation">
         <div class="header-link hide-menu">
         	&nbsp;<i class="fa fa-bars"></i></div>

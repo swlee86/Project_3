@@ -4,21 +4,13 @@ package com.toinfra.Service;
 import java.util.List;
 
 import com.toinfra.DAO.AdminEmpDAO;
-import com.toinfra.VO.*;
+import com.toinfra.DTO.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.toinfra.DAO.AdminEmpDAO;
-import com.toinfra.VO.Branch;
-import com.toinfra.VO.Dept;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_cg;
-import com.toinfra.VO.Emp_role;
-import com.toinfra.VO.Low_dept;
-import com.toinfra.VO.Position;
-import com.toinfra.VO.Role;
+import com.toinfra.DTO.UserDto;
 
 /*
  * 작성자 : 백승아
@@ -33,9 +25,9 @@ public class AdminEmpService {
 	private SqlSession sqlsession;
 	
 	// 사원 정보 리스트 출력
-	public List<Emp> selectEmpList(int cpage, int pgsize, String field, String query) {
+	public List<UserDto> selectEmpList(int cpage, int pgsize, String field, String query) {
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<Emp> list = dao.selectEmp_list(cpage, pgsize,field,query);
+		List<UserDto> list = dao.selectEmp_list(cpage, pgsize,field,query);
 		
 		return list;
 	}
@@ -91,7 +83,7 @@ public class AdminEmpService {
 	
 	// AJAX 사원 등록
 	@Transactional
-	public int insertEmp(Emp emp) {
+	public int insertEmp(UserDto userDto) {
 		int result = 0;
 		int result1 = 0;
 		int result2 = 0;
@@ -99,10 +91,10 @@ public class AdminEmpService {
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
 		
 		// 이력에 '입사' 추가하기
-		String emp_no = emp.getEmp_no();
+		String emp_no = userDto.getUser_id();
 		
 		try {
-			result1 = dao.insertEmp(emp);
+			result1 = dao.insertEmp(userDto);
 			result2 = dao.insertEmp_his_in(emp_no);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -121,26 +113,26 @@ public class AdminEmpService {
 	}
 	
 	// AJAX 사원 이력 불러오기
-	public List<Emp> selectEmp_his(String emp_no) {
+	public List<UserDto> selectEmp_his(String emp_no) {
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<Emp> list = dao.selectEmp_his(emp_no);
+		List<UserDto> list = dao.selectEmp_his(emp_no);
 		
 		return list;
 	}
 	
 	
 	// 탈퇴를 요청한 사원 리스트 출력
-	public List<Emp> selectEmp_withdrawal() {
+	public List<UserDto> selectEmp_withdrawal() {
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<Emp> list = dao.selectEmp_withdrawal();
+		List<UserDto> list = dao.selectEmp_withdrawal();
 		
 		return list;
 	}
 	
 	// AJAX 탈퇴를 요청한 사원의 상세 출력
-	public Emp selectEmp_withdrawal_detail(String emp_no) {
+	public UserDto selectEmp_withdrawal_detail(String emp_no) {
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		Emp detail = dao.selectEmp_withdrawal_detail(emp_no);
+		UserDto detail = dao.selectEmp_withdrawal_detail(emp_no);
 		
 		return detail;
 	}
@@ -215,9 +207,9 @@ public class AdminEmpService {
 	}
 	
 	// 사원에 권한을 부여하기 위해 사원 리스트 불러오기
-	public List<Emp> selectEmp_authority(String position_no) {
+	public List<UserDto> selectEmp_authority(String position_no) {
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		List<Emp> list = dao.selectEmp_authority(position_no);
+		List<UserDto> list = dao.selectEmp_authority(position_no);
 		
 		return list;
 	}
@@ -240,18 +232,18 @@ public class AdminEmpService {
 	}
 	
 	// 사원 정보 수정
-	public Emp selectEmp_detail(String emp_no) {
+	public UserDto selectEmp_detail(String emp_no) {
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		Emp detail = dao.selectEmp_detail(emp_no);
+		UserDto detail = dao.selectEmp_detail(emp_no);
 				
 		return detail;
 	}
 	
 	// AJAX 사원 정보 수정
-	public int updateEmp_detail(Emp emp) {
-		System.out.println(emp.toString());
+	public int updateEmp_detail(UserDto userDto) {
+		System.out.println(userDto.toString());
 		AdminEmpDAO dao = sqlsession.getMapper(AdminEmpDAO.class);
-		int result = dao.updateEmp_detail(emp);
+		int result = dao.updateEmp_detail(userDto);
 				
 		return result;
 	}

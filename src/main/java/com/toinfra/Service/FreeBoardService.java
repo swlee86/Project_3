@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.FreeBoardDAO;
-import com.toinfra.VO.FreeBoard;
-import com.toinfra.VO.Re_FreeBoard;
+import com.toinfra.DTO.FreeBoard;
+import com.toinfra.DTO.Re_FreeBoard;
 /*
  * 작성자 : 이상원
  * 작성일 : 2016-11-21

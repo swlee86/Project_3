@@ -2,14 +2,10 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Commute;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Pj;
-import com.toinfra.VO.Task;
-import com.toinfra.VO.Commute;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Pj;
-import com.toinfra.VO.Task;
+import com.toinfra.DTO.Commute;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Pj;
+import com.toinfra.DTO.Task;
 
 public interface PushDAO {
    //Emp_detail 에서 아이디를 토대로 사원번호 뽑아오기
@@ -37,7 +33,7 @@ public interface PushDAO {
    //평균 근무시간 - 내것
    String selectavgcommute_my(String emp_no);
    
-   Emp selectLogin_Emp(String emp_no);
+   UserDto selectLogin_Emp(String emp_no);
    
    //전자결재 참조 숫자 구하는 것.
    String selectDraftCount(String emp_no);

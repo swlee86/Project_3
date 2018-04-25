@@ -4,15 +4,11 @@ import java.util.List;
 
 
 import com.toinfra.DAO.PayDAO;
-import com.toinfra.VO.Pay;
-import com.toinfra.VO.PayList;
+import com.toinfra.DTO.Pay;
+import com.toinfra.DTO.PayList;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.toinfra.DAO.PayDAO;
-import com.toinfra.VO.Pay;
-import com.toinfra.VO.PayList;
 
 @Service
 public class PayService {

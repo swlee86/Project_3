@@ -3,14 +3,10 @@ package com.toinfra.DAO;
 import java.util.HashMap;
 import java.util.List;
 
-import com.toinfra.VO.C_group;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
-import com.toinfra.VO.C_group;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
+import com.toinfra.DTO.C_group;
+import com.toinfra.DTO.Contact;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Emp_contact;
 
 /*
  * 작성일 :	2016 - 11 - 18
@@ -22,7 +18,7 @@ import com.toinfra.VO.Emp_contact;
 public interface ContactDAO {
 
 	// 주소록 추가시 이름별,부서명별 검색
-	public List<Emp> contact_insert_search(HashMap<String, String> map);
+	public List<UserDto> contact_insert_search(HashMap<String, String> map);
 
 	// 전체 그룹 조회
 	public List<Contact> selectList(int cpage, int pagesize, String field, String query, String emp_no, String start,
@@ -32,7 +28,7 @@ public interface ContactDAO {
 	public int selectCount(String emp_no, String field, String query, String start, String end, String group);
 
 	// 등록인 정보 구하기
-	public Emp selectInfoSearch(String id);
+	public UserDto selectInfoSearch(String id);
 
 	// 현재 로그인한 사원이 갖고있는 그룹 목록
 	public List<C_group> selectEmpGroup_list(String emp_no);
@@ -47,7 +43,7 @@ public interface ContactDAO {
 	public int selectMaxContact_No(String name);
 
 	// 사내 사원 정보 부르는 함수
-	public Emp selectEmpInfo(String emp_no);
+	public UserDto selectEmpInfo(String emp_no);
 
 	// 그룹 이름 수정시 , 주소록 그룹 번호 수정
 	public int updateContact_GroupNo(String group_no, String pre_group_no, String emp_no);

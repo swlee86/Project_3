@@ -2,24 +2,24 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.toinfra.DAO.DraftDAO">
+
 
 <!--
- 	작성자 : 백승아
- 	작성일 : 2016-12-08
+ 	작성자 : 이상원
+ 	작성일 : 2018-04-25
  	목  적 : 전자결재 mapper
 -->
-
+<mapper namespace="com.toinfra.DAO.DraftDAO">
 	<!-- 등록을 위해 전자결재 번호 가져오기 -->
 	<select id="selectDraft_no" resultType="String">
-		select nvl(max(to_number(draft_no))+1, '1')
+		select COALESCE(max(draft_no)+1, '1' )
 		from draft
 	</select>
 	
 	<!-- 등록을 위해 전자결재 기본정보 가져오기 -->
-	<select id="selectDraft_basic" resultType="com.toinfra.VO.Draft">
+	<select id="selectDraft_basic" resultType="com.toinfra.DTO.Draft">
 		select branch_name, dept_name, low_dept_name, emp_no, position_name, emp_name
-		from emp e join low_dept l
+		from userDto e join low_dept l
 		on e.low_dept_no = l.low_dept_no
 		join position p 
 		on e.position_no = p.position_no
@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select zz.draft_no
 		from (select rownum n, z.draft_no, z.emp_no
       		  from (select draft_no, l.emp_no, e.emp_name, p.position_name, p.step, app_check, app_date
-          		 	from draft_line l join emp e
+          		 	from draft_line l join userDto e
             		on l.emp_no = e.emp_no
             		join position p
             		on e.position_no = p.position_no
@@ -110,36 +110,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 참조당한 대외발신공문 결재 문서 리스트 -->
-	<select id="selectDraft_ref_Office" resultType="com.toinfra.VO.Office">
-		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no, 
-       	  	   e.emp_name, rec_place, rec_addr, rec_date
-		from draft_ref r join draft d
-		on r.draft_no = d.draft_no
-		join emp e
-		on d.emp_no = e.emp_no
-		join office o
-		on d.draft_no = o.draft_no
-		where r.emp_no = #{emp_no} and step_no != '1'
+	<select id="selectDraft_ref_Office" resultType="com.toinfra.DTO.Office">
+		select d.draft_no, d.cg_no, draft_title, d.user_id, draft_date, file_name, del_check, rec_del_check, step_no,
+			e.emp_name, rec_place, rec_addr, rec_date
+			from draft_ref r join draft d
+			on r.draft_no = d.draft_no
+			join emp e
+			on d.user_id = e.user_id
+			join office o
+			on d.draft_no = o.draft_no
+			where r.user_id = #{emp_no} and step_no != '1';
 	</select>
 	
 	<!-- 참조당한 협조문 결재 문서 리스트 -->
-	<select id="selectDraft_ref_Cooperaion" resultType="com.toinfra.VO.Cooperation">
-		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
+	<select id="selectDraft_ref_Cooperaion" resultType="com.toinfra.DTO.Cooperation">
+		select d.draft_no, d.cg_no, draft_title, d.user_id, draft_date, file_name, del_check, rec_del_check, step_no,
        		   e.emp_name, low_dept_name, dept_name, branch_name, rec_date
 		from draft_ref r join draft d
 		on r.draft_no = d.draft_no
 		join emp e
-		on d.emp_no = e.emp_no
+		on d.user_id = e.user_id
 		join low_dept l
 		on e.low_dept_no = l.low_dept_no
     	join cooperation c
     	on d.draft_no = c.draft_no
-		where r.emp_no = #{emp_no} and step_no != '1'
+		where r.user_id = #{emp_no} and step_no != '1'
 	</select>
 	
 	<!-- 참조당한 휴가신청서 결재 문서 리스트 -->
-	<select id="selectDraft_ref_Break" resultType="com.toinfra.VO.Break">
-		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
+	<select id="selectDraft_ref_Break" resultType="com.toinfra.DTO.Break">
+		select d.draft_no, d.cg_no, draft_title, d.user_id, draft_date, file_name, del_check, rec_del_check, step_no,
        		   break_term, break_cg_name, e.emp_name, rec_date
 		from draft_ref r join draft d
 		on r.draft_no = d.draft_no
@@ -148,93 +148,93 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join break_cg g
 		on b.break_cg_no = g.break_cg_no
 		join emp e
-		on d.emp_no = e.emp_no
-		where r.emp_no = #{emp_no} and step_no != '1'
+		on d.user_id = e.user_id
+		where r.user_id = #{emp_no} and step_no != '1'
 	</select>
 	
 	<!-- 대외발신공문 수신 리스트 -->
-	<select id="selectOffice_rec" resultType="com.toinfra.VO.Office">
-		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no, 
+	<select id="selectOffice_rec" resultType="com.toinfra.DTO.Office">
+		select d.draft_no, d.cg_no, draft_title, d.user_id, draft_date, file_name, del_check, rec_del_check, step_no,
   			   e.emp_name, rec_place, rec_addr, rec_check
 		from draft d join office o
 		on d.draft_no = o.draft_no
     	join emp e
-    	on d.emp_no = e.emp_no
+    	on d.user_id = e.user_id
       	join draft_line l
       	on d.draft_no = l.draft_no
-		where d.draft_no = #{param1} and l.emp_no = #{param2}
+		where d.draft_no = #{param1} and l.user_id = #{param2}
 	</select>
 	
 	<!-- 협조문 수신 리스트 -->
-	<select id="selectCooperation_rec" resultType="com.toinfra.VO.Cooperation">
-		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
+	<select id="selectCooperation_rec" resultType="com.toinfra.DTO.Cooperation">
+		select d.draft_no, d.cg_no, draft_title, d.user_id, draft_date, file_name, del_check, rec_del_check, step_no,
            	   e.emp_name, low_dept_name, dept_name, branch_name, rec_check
 		from draft d join cooperation c
 		on d.draft_no = c.draft_no
     	join emp e
-    	on d.emp_no = e.emp_no
+    	on d.user_id = e.user_id
     	join low_dept l
    	 	on l.low_dept_no = c.low_dept_no
       	join draft_line n
       	on d.draft_no = n.draft_no
-		where d.draft_no = #{param1} and n.emp_no = #{param2}
+		where d.draft_no = #{param1} and n.user_id = #{param2}
 	</select>
 	
 	<!-- 휴가신청서 수신 리스트 -->
-	<select id="selectBreak_rec" resultType="com.toinfra.VO.Break">
-		select d.draft_no, d.cg_no, draft_title, d.emp_no, draft_date, file_name, del_check, rec_del_check, step_no,
+	<select id="selectBreak_rec" resultType="com.toinfra.DTO.Break">
+		select d.draft_no, d.cg_no, draft_title, d.user_id, draft_date, file_name, del_check, rec_del_check, step_no,
          	   break_term, break_cg_name, e.emp_name, rec_check
 		from draft d join break b
 		on d.draft_no = b.draft_no
 		join break_cg c
 		on b.break_cg_no = c.break_cg_no
     	join emp e
-    	on d.emp_no = e.emp_no
+    	on d.user_id = e.user_id
       	join draft_line l
       	on d.draft_no = l.draft_no
-		where d.draft_no = #{param1} and l.emp_no = #{param2}
+		where d.draft_no = #{param1} and l.user_id = #{param2}
 	</select>
 	
 	<!-- 대외발신공문 송신 리스트 -->
-	<select id="selectOffice" resultType="com.toinfra.VO.Office">
+	<select id="selectOffice" resultType="com.toinfra.DTO.Office">
 		select d.draft_no, cg_no, draft_title, draft_date, step_no, rec_place, rec_addr
 		from draft d join office o
 		on d.draft_no = o.draft_no
-		where emp_no = #{emp_no} and del_check = '0'
+		where user_id = #{emp_no} and del_check = '0'
 	</select>
 	
 	<!-- 협조문 송신 리스트 -->
-	<select id="selectCooperation" resultType="com.toinfra.VO.Cooperation">
+	<select id="selectCooperation" resultType="com.toinfra.DTO.Cooperation">
 		select d.draft_no, cg_no, draft_title, draft_date, step_no, low_dept_name, dept_name, branch_name
 		from draft d join cooperation c
 		on d.draft_no = c.draft_no
 		join low_dept l
 		on c.low_dept_no = l.low_dept_no 
-		where emp_no = #{emp_no} and del_check = '0'
+		where user_id = #{emp_no} and del_check = '0'
 	</select>
 	
 	<!-- 휴가신청서 송신 리스트 -->
-	<select id="selectBreak" resultType="com.toinfra.VO.Break">
+	<select id="selectBreak" resultType="com.toinfra.DTO.Break">
 		select d.draft_no, cg_no, draft_title, draft_date, step_no, break_term, break_cg_name
 		from draft d join break b
 		on d.draft_no = b.draft_no
 		join break_cg c
 		on b.break_cg_no = c.break_cg_no
-		where emp_no = #{emp_no} and del_check ='0'
+		where user_id = #{emp_no} and del_check ='0'
 	</select>
 	
 	<!-- 대외발신공문 상세 -->
-	<select id="selectOffice_detail" resultType="com.toinfra.VO.Office">
+	<select id="selectOffice_detail" resultType="com.toinfra.DTO.Office">
 		select d.draft_no, rec_place, rec_fax, rec_person, rec_tel, 
 			   rec_postcode, rec_addr, rec_addr_detail, d.cg_no, draft_title,
-         	   draft_content, d.emp_no, draft_date, file_name, 
+         	   draft_content, d.user_id, draft_date, file_name,
          	   low_dept_name, dept_name, branch_name, step_no, e.emp_name,
          	   position_name
 		from office o 
 		join draft d 
 		on d.draft_no = o.draft_no
     	join emp e
-    	on d.emp_no = e.emp_no
+    	on d.user_id = e.user_id
     	join low_dept l
     	on e.low_dept_no = l.low_dept_no 
     	join position p
@@ -243,14 +243,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 협조문 상세 -->
-	<select id="selectCooperation_detail" resultType="com.toinfra.VO.Cooperation">
-		select distinct(d.draft_no), d.cg_no, draft_title, draft_content, d.emp_no, draft_date, file_name, step_no,
+	<select id="selectCooperation_detail" resultType="com.toinfra.DTO.Cooperation">
+		select distinct(d.draft_no), d.cg_no, draft_title, draft_content, d.user_id, draft_date, file_name, step_no,
        		   c.low_dept_no, app_check,
        		   e.emp_name, l.branch_name, l.dept_name, l.low_dept_name
 		from draft d join cooperation c
 		on d.draft_no = c.draft_no
 		join emp e
-		on d.emp_no = e.emp_no
+		on d.user_id = e.user_id
 		join low_dept l 
 		on e.low_dept_no = l.low_dept_no
     	join draft_line n
@@ -259,8 +259,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 휴가 신청서 상세 -->
-	<select id="selectBreak_detail" resultType="com.toinfra.VO.Break">
-		select d.draft_no, d.cg_no, draft_title, draft_content, d.emp_no, draft_date, file_name, step_no,
+	<select id="selectBreak_detail" resultType="com.toinfra.DTO.Break">
+		select d.draft_no, d.cg_no, draft_title, draft_content, d.user_id, draft_date, file_name, step_no,
        	   	   break_start, break_end, break_term, break_cg_name, cell_phone, break_tel,
        		   e.emp_name, l.branch_name, l.dept_name, l.low_dept_name, p.position_name
 		from draft d join break b
@@ -268,7 +268,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join break_cg c
 		on b.break_cg_no = c.break_cg_no
 		join emp e
-		on d.emp_no = e.emp_no
+		on d.user_id = e.user_id
 		join low_dept l 
 		on e.low_dept_no = l.low_dept_no
     	join position p
@@ -277,11 +277,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 결재라인 정보 가져오기 -->
-	<select id="selectDraft_line_data" resultType="com.toinfra.VO.Draft_line">
-		select draft_no, l.emp_no, app_check, app_date, rec_check, emp_name,
+	<select id="selectDraft_line_data" resultType="com.toinfra.DTO.Draft_line">
+		select draft_no, l.user_id, app_check, app_date, rec_check, emp_name,
        		   position_name, branch_name, dept_name, low_dept_name
 		from draft_line l join emp e
-    	on l.emp_no = e.emp_no
+    	on l.user_id = e.user_id
       	join position p
       	on e.position_no = p.position_no
       	join low_dept d
@@ -290,11 +290,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 참조자 정보 가져오기 -->
-	<select id="selectDraft_ref_data" resultType="com.toinfra.VO.Draft_ref">
-		select draft_no, r.emp_no, emp_name, 
+	<select id="selectDraft_ref_data" resultType="com.toinfra.DTO.Draft_ref">
+		select draft_no, r.user_id, emp_name,
        		   position_name, branch_name, dept_name, low_dept_name
 		from draft_ref r join emp e
-    	on r.emp_no = e.emp_no
+    	on r.user_id = e.user_id
       	join position p
       	on e.position_no = p.position_no
       	join low_dept l

@@ -162,12 +162,12 @@ jQuery(function($){
 								if(data.result=="2"){
 									alert("출근시간 오류!\n관리자에게 문의하세요")
 								}else{
-									console.log("@@@@@@@@@@@@data: "+data + "/ data.emp : "+data.emp);
-									console.log("data.emp.emp_no : "+data.emp.emp_no);
-									console.log("data.emp.emp_name : "+data.emp.emp_name);
+									console.log("@@@@@@@@@@@@data: "+data + "/ data.userDto : "+data.userDto);
+									console.log("data.userDto.emp_no : "+data.userDto.emp_no);
+									console.log("data.userDto.emp_name : "+data.userDto.emp_name);
 									$('#start').html(startTime);
-									$('#commute_empno').html(data.emp.emp_no);
-									$('#commute_empname').html(data.emp.emp_name);
+									$('#commute_empno').html(data.userDto.emp_no);
+									$('#commute_empname').html(data.userDto.emp_name);
 								}
 							}
 						 }

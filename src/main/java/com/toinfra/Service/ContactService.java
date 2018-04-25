@@ -3,16 +3,16 @@ package com.toinfra.Service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.toinfra.DTO.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.toinfra.DAO.ContactDAO;
-import com.toinfra.VO.C_group;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
+import com.toinfra.DTO.C_group;
+import com.toinfra.DTO.Contact;
+import com.toinfra.DTO.Emp_contact;
 /*
  * 작성자 : 박지은
  * 작성일 : 2016-11-21
@@ -43,10 +43,10 @@ public class ContactService {
 	
 
 	//로그인한 사원정보 부르는 함수
-	public Emp selectInfoSearch(String id) {
+	public UserDto selectInfoSearch(String id) {
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
-		Emp emp = contactDAO.selectInfoSearch(id);
-		return emp;
+		UserDto userDto = contactDAO.selectInfoSearch(id);
+		return userDto;
 	}
 
 
@@ -89,10 +89,10 @@ public class ContactService {
 
 
 	//사내사원 정보 불러오는 함수
-	public Emp selectEmpInfo(String emp_no) {
+	public UserDto selectEmpInfo(String emp_no) {
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
-		Emp emp = contactDAO.selectEmpInfo(emp_no);
-		return emp;
+		UserDto userDto = contactDAO.selectEmpInfo(emp_no);
+		return userDto;
 	}
 	
 	
@@ -243,7 +243,7 @@ public class ContactService {
 
 
 	//주소록 추가시 검색해서 사원 뽑아오는 함수
-	public List<Emp>  contact_insert_search(String field, String query, String id) {
+	public List<UserDto>  contact_insert_search(String field, String query, String id) {
 		ContactDAO contactDAO = sqlSession.getMapper(ContactDAO.class);
 		String field2 = "emp_name";
 		String query2 = "%%";		
@@ -261,9 +261,9 @@ public class ContactService {
 		map.put("query", query2);
 		map.put("id", id);
 			
-		List<Emp> emp = contactDAO.contact_insert_search(map);
+		List<UserDto> userDto = contactDAO.contact_insert_search(map);
 		
-		return emp;
+		return userDto;
 	}
 	
 }

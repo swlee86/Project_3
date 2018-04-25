@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.toinfra.Service.AdminEmpService;
-import com.toinfra.VO.Branch;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_cg;
-import com.toinfra.VO.Emp_role;
-import com.toinfra.VO.Position;
-import com.toinfra.VO.Role;
+import com.toinfra.DTO.Branch;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Emp_cg;
+import com.toinfra.DTO.Emp_role;
+import com.toinfra.DTO.Position;
+import com.toinfra.DTO.Role;
 
 /*
  * 작성자 : 백승아
@@ -65,7 +65,7 @@ public class AdminEmpController {
 			pagecount = (totalcount / pgsize) + 1;
 		}
 		
-		List<Emp> list = service.selectEmpList(cpage, pgsize,field, query);
+		List<UserDto> list = service.selectEmpList(cpage, pgsize,field, query);
 		
 		model.addAttribute("field", field);
 		model.addAttribute("query", query);
@@ -105,7 +105,7 @@ public class AdminEmpController {
 	@RequestMapping(value="/adminWithdrawal.do", method=RequestMethod.GET)
 	public String adminWithdrawal(Model model) {
 		// 탈퇴 요청자 출력
-		List<Emp> list = service.selectEmp_withdrawal();
+		List<UserDto> list = service.selectEmp_withdrawal();
 		model.addAttribute("withdrawal", list);
 		
 		return "adminMember.adminWithdrawal";
@@ -135,13 +135,13 @@ public class AdminEmpController {
 	@RequestMapping(value="/adminAuthority_detail.do", method=RequestMethod.GET)
 	public String adminAuthority_detail(String position_no, Model model) {
 		// 해당 직위의 사원 리스트 불러오기
-		List<Emp> elist = service.selectEmp_authority(position_no);
+		List<UserDto> elist = service.selectEmp_authority(position_no);
 		
 		String emp_no = "";
 		List<Emp_role> rlist = new ArrayList<Emp_role>();
 		
 		for(int i=0; i<elist.size(); i++) {
-			emp_no = elist.get(i).getEmp_no();
+			emp_no = elist.get(i).getUser_id();
 			
 			// 해당 사원의 권한 리스트 불러오기
 			rlist = service.selecEmp_role(emp_no);
@@ -160,7 +160,7 @@ public class AdminEmpController {
 	@RequestMapping(value="/adminEmp_detail.do", method=RequestMethod.GET)
 	public String adminEmp_detail(String emp_no, Model model) {
 		// 사원 상세 정보 불러오기
-		Emp detail = service.selectEmp_detail(emp_no);
+		UserDto detail = service.selectEmp_detail(emp_no);
 		model.addAttribute("detail", detail);
 		
 		return "adminMember.adminEdit";
@@ -168,11 +168,11 @@ public class AdminEmpController {
 	
 	// 사원 정보 수정 Ok
 	@RequestMapping(value="/adminEmp_detail.do", method=RequestMethod.POST)
-	public String adminEmp_detail_Ok(Emp emp, Model model) {
+	public String adminEmp_detail_Ok(UserDto userDto, Model model) {
 		// 사원 정보 수정하기
-		int result = service.updateEmp_detail(emp);
+		int result = service.updateEmp_detail(userDto);
 
-		Emp detail = service.selectEmp_detail(emp.getEmp_no());
+		UserDto detail = service.selectEmp_detail(userDto.getUser_id());
 		model.addAttribute("detail", detail);
 
 		return "adminMember.adminEdit";

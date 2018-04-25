@@ -2,8 +2,7 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Task_cg;
-import com.toinfra.VO.Task_cg;
+import com.toinfra.DTO.Task_cg;
 
 /*
  * 작성일 : 2016-11-18

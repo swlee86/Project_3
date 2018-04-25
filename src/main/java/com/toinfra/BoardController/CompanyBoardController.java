@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.Service.CompanyBoardService;
-import com.toinfra.VO.Company;
-import com.toinfra.VO.Emp_detail;
+import com.toinfra.DTO.Company;
+import com.toinfra.DTO.Emp_detail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.toinfra.Service.CompanyBoardService;
-import com.toinfra.VO.Company;
-import com.toinfra.VO.Emp_detail;
 
 /*
  * 작성자 : 박성준
@@ -155,7 +151,7 @@ public class CompanyBoardController {
 
 		Company company = new Company();
 		company.setContent(content);
-		company.setEmp_no(emp.getEmp_no());
+		company.setUser_id(emp.getUser_id());
 		company.setTitle(title);
 		company.setFile_name(file.getOriginalFilename());
 		

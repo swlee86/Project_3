@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 급여 지급일 조회하기 -->
-	<select id="selectSet_pay_date" resultType="com.toinfra.VO.Set_pay_date">
+	<select id="selectSet_pay_date" resultType="com.toinfra.DTO.Set_pay_date">
 		select set_date, pay_date
 		from set_pay_date
 		order by set_date desc

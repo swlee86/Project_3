@@ -2,14 +2,10 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Dept;
-import com.toinfra.VO.DeptJoinBonus;
-import com.toinfra.VO.Set_bonus;
+import com.toinfra.DTO.Dept;
+import com.toinfra.DTO.DeptJoinBonus;
+import com.toinfra.DTO.Set_bonus;
 import org.apache.ibatis.annotations.Param;
-
-import com.toinfra.VO.Dept;
-import com.toinfra.VO.DeptJoinBonus;
-import com.toinfra.VO.Set_bonus;
 
 /*
  * 작성자 : 박성준

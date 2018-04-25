@@ -2,8 +2,7 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.EmployeeManage;
-import com.toinfra.VO.EmployeeManage;
+import com.toinfra.DTO.EmployeeManage;
 
 public interface EmployeeManageDAO {
 	List<EmployeeManage> selectEmpManage(int start, int end);

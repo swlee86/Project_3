@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.Service.MediaBoardService;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.MediaBoard;
-import com.toinfra.VO.MediaBoardReply;
-import com.toinfra.VO.Re_MediaBoard;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.MediaBoard;
+import com.toinfra.DTO.MediaBoardReply;
+import com.toinfra.DTO.Re_MediaBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,12 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.toinfra.Service.MediaBoardService;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.MediaBoard;
-import com.toinfra.VO.MediaBoardReply;
-import com.toinfra.VO.Re_MediaBoard;
 
 /*
  * 작성자 : 박지은
@@ -137,9 +131,9 @@ public class MediaBoardController {
 		}
 		
 		
-		Emp info = mediaboardservice.selectInfoSearch(id);  //사번,이름 가져가기
+		UserDto info = mediaboardservice.selectInfoSearch(id);  //사번,이름 가져가기
 		
-		mediaBoard.setEmp_no(info.getEmp_no());
+		mediaBoard.setUser_id(info.getUser_id());
 		mediaBoard.setEmp_name(info.getEmp_name());
 		mediaBoard.setFile_name(file.getOriginalFilename());
 
@@ -207,9 +201,9 @@ public class MediaBoardController {
 			Re_MediaBoard re_MediaBoard = new Re_MediaBoard();
 			String id= principal.getName();
 			
-			Emp info = mediaboardservice.selectInfoSearch(id);  //사번,이름 가져가기
+			UserDto info = mediaboardservice.selectInfoSearch(id);  //사번,이름 가져가기
 
-			re_MediaBoard.setEmp_no(info.getEmp_no());
+			re_MediaBoard.setUser_id(info.getUser_id());
 			re_MediaBoard.setEmp_name(info.getEmp_name());
 			re_MediaBoard.setContent(replytext);
 			re_MediaBoard.setNo(no);

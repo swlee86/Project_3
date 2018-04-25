@@ -5,15 +5,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.toinfra.DTO.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.MediaBoardDAO;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.MediaBoard;
-import com.toinfra.VO.MediaBoardReply;
-import com.toinfra.VO.Re_MediaBoard;
+import com.toinfra.DTO.MediaBoard;
+import com.toinfra.DTO.MediaBoardReply;
+import com.toinfra.DTO.Re_MediaBoard;
 /*
  * 작성자 : 박지은
  * 작성일 : 2016-11-18
@@ -62,9 +62,9 @@ public class MediaBoardService {
 	}
 
 	// id로 이름, 사번 가져오는 함수
-	public Emp selectInfoSearch(String id) {
+	public UserDto selectInfoSearch(String id) {
 		MediaBoardDAO mediaBoardDAO = sqlSession.getMapper(MediaBoardDAO.class);
-		Emp info = mediaBoardDAO.selectInfoSearch(id);
+		UserDto info = mediaBoardDAO.selectInfoSearch(id);
 		return info;
 	}
 

@@ -7,8 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.LoginDAO;
-import com.toinfra.VO.EmpJoinEmp_Detail;
-import com.toinfra.VO.Emp_detail;
+import com.toinfra.DTO.EmpJoinEmp_Detail;
+import com.toinfra.DTO.Emp_detail;
 
 /*
  * 작성자 : 박성준
@@ -31,7 +31,7 @@ public class LoginService {
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		//사번 
 		EmpJoinEmp_Detail emp = dao.selectEmp_Name(id);
-		EmpJoinEmp_Detail emp_name = dao.selectEmp_Name_Emp(emp.getEmp_no());
+		EmpJoinEmp_Detail emp_name = dao.selectEmp_Name_Emp(emp.getUser_id());
 		
 		return emp_name.getEmp_name();
 	}
@@ -45,7 +45,7 @@ public class LoginService {
 		//첫번째 사번을 뽑아줌.
 		Emp_detail emp_detail = dao.selectEmp_no(id);
 		//두번째
-		String emp_no = emp_detail.getEmp_no();
+		String emp_no = emp_detail.getUser_id();
 		EmpJoinEmp_Detail emp = dao.selectEmpInfo(emp_no, id);
 		
 		return emp;
@@ -57,9 +57,9 @@ public class LoginService {
 		
 		//사원 상세 정보 바꿀때 사용
 		int result = dao.updateEmpInfo(emp);
-		//Emp 테이블에 이메일 수정시 사용
+		//UserDto 테이블에 이메일 수정시 사용
 		String email = emp.getEmail();
-		String emp_no = emp.getEmp_no();
+		String emp_no = emp.getUser_id();
 		String cell_phone = emp.getCell_phone();
 		int result2 = dao.updateEmp_Email(email, emp_no , cell_phone);
 		
@@ -95,7 +95,7 @@ public class LoginService {
 		String pw = dao.selectEmp_FindPw(emp);
 		pw = emp.getId()+"1";
 		emp.setPwd(this.bCryptPasswordEncoder.encode(pw));
-		int result = dao.updateEmp_TempPw(emp.getEmp_no(), emp.getPwd());
+		int result = dao.updateEmp_TempPw(emp.getUser_id(), emp.getPwd());
 		if(result > 0){
 			return pw;
 		}else{

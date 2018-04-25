@@ -2,10 +2,8 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Set_add_pay;
-import com.toinfra.VO.Set_pay;
-import com.toinfra.VO.Set_add_pay;
-import com.toinfra.VO.Set_pay;
+import com.toinfra.DTO.Set_add_pay;
+import com.toinfra.DTO.Set_pay;
 
 /*
  * 작성일 : 2016-11-18

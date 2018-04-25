@@ -87,7 +87,7 @@ small {
 							<div id="page-top">
 								<div class="heading">
 									<h3 style="color: white"><B>Login</B></h3>
-									<small>WelCome 2pm! 
+									<small>WelCome ToInfra!
 										<c:if test="${param.error != null}">
 											<div>
 											

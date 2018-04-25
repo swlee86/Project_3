@@ -6,19 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.Service.OrganizationChartService;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp_contact;
-import com.toinfra.VO.Organization;
+import com.toinfra.DTO.Contact;
+import com.toinfra.DTO.Emp_contact;
+import com.toinfra.DTO.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
-
-import com.toinfra.Service.OrganizationChartService;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp_contact;
 
 /*
  * 작성자 : 이상원
@@ -112,7 +108,7 @@ public class OrganizationChartController {
 
 			if(result > 0){  //개인주소록 추가될때 
 				Emp_contact emp_contact = new Emp_contact();
-				emp_contact.setEmp_no(emp_no);
+				emp_contact.setUser_id(emp_no);
 				emp_contact.setContact_no(String.valueOf(result));				
 				organizationchart.insertPrivateContact(emp_contact); //개인주소록 테이블 삽입
 			}		

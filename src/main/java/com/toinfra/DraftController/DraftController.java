@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.toinfra.Service.CommonService;
-import com.toinfra.Service.DraftService;
-import com.toinfra.VO.Break;
-import com.toinfra.VO.Common;
-import com.toinfra.VO.Cooperation;
-import com.toinfra.VO.Draft;
-import com.toinfra.VO.Draft_line;
-import com.toinfra.VO.Draft_ref;
-import com.toinfra.VO.Office;
+import com.toinfra.DTO.Break;
+import com.toinfra.DTO.Common;
+import com.toinfra.DTO.Cooperation;
+import com.toinfra.DTO.Draft;
+import com.toinfra.DTO.Draft_line;
+import com.toinfra.DTO.Draft_ref;
+import com.toinfra.DTO.Office;
 
 /*
  * 작성자 : 백승아
@@ -78,7 +77,7 @@ public class DraftController {
 		String emp_no = (String) session.getAttribute("emp_no");
 		model.addAttribute("emp_no", emp_no);
 				
-		office.setEmp_no(emp_no);
+		office.setUser_id(emp_no);
 		office.setCg_no(cg_no);
 		
 		service.insertOffice(office);
@@ -102,7 +101,7 @@ public class DraftController {
 		String emp_no = (String) session.getAttribute("emp_no");
 		model.addAttribute("emp_no", emp_no);
 				
-		cooperation.setEmp_no(emp_no);
+		cooperation.setUser_id(emp_no);
 		cooperation.setCg_no(cg_no);
 		
 		service.insertCooperation(cooperation);
@@ -126,7 +125,7 @@ public class DraftController {
 		String emp_no = (String) session.getAttribute("emp_no");
 		model.addAttribute("emp_no", emp_no);
 				
-		break2.setEmp_no(emp_no);
+		break2.setUser_id(emp_no);
 		break2.setCg_no(cg_no);
 		
 		service.insertBreak(break2);
@@ -251,12 +250,12 @@ public class DraftController {
 		
 		// 결재자가 읽으면 rec_check에 날짜 삽입
 		for(Draft_line data : linedetail) {
-			if(data.getEmp_no().equals(session_emp_no)) {
+			if(data.getUser_id().equals(session_emp_no)) {
 				service.insertRec_check(draft_no);
 			}
 		}
 		for(Draft_ref data : refdetail) {
-			if(data.getEmp_no().equals(session_emp_no)) {
+			if(data.getUser_id().equals(session_emp_no)) {
 				service.insertRec_date(draft_no);
 			}
 		}
@@ -308,12 +307,12 @@ public class DraftController {
 		
 		// 결재자가 읽으면 rec_check에 날짜 삽입
 		for(Draft_line data : linedetail) {
-			if(data.getEmp_no().equals(emp_no)) {
+			if(data.getUser_id().equals(emp_no)) {
 				service.insertRec_check(draft_no);
 			}
 		}
 		for(Draft_ref data : refdetail) {
-			if(data.getEmp_no().equals(emp_no)) {
+			if(data.getUser_id().equals(emp_no)) {
 				service.insertRec_date(draft_no);
 			}
 		}
@@ -359,12 +358,12 @@ public class DraftController {
 
 		// 결재자가 읽으면 rec_check에 날짜 삽입
 		for(Draft_line data : linedetail) {
-			if(data.getEmp_no().equals(emp_no)) {
+			if(data.getUser_id().equals(emp_no)) {
 				service.insertRec_check(draft_no);
 			}
 		}
 		for(Draft_ref data : refdetail) {
-			if(data.getEmp_no().equals(emp_no)) {
+			if(data.getUser_id().equals(emp_no)) {
 				service.insertRec_date(draft_no);
 			}
 		}

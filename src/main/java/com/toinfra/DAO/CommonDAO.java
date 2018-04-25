@@ -1,9 +1,7 @@
 package com.toinfra.DAO;
 
-import com.toinfra.VO.Common;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Common;
-import com.toinfra.VO.Emp;
+import com.toinfra.DTO.Common;
+import com.toinfra.DTO.UserDto;
 
 /*
  * 작성일 : 2016-11-22
@@ -14,7 +12,7 @@ import com.toinfra.VO.Emp;
 public interface CommonDAO {
 	
 	// 사원번호로 기본 사원정보 가져오기
-	public Emp selectEmp(String emp_no);
+	public UserDto selectEmp(String emp_no);
 	
 	// 사원번호로 사원이름 가져오기
 	public String selectEmp_name_for_emp_no(String emp_no);

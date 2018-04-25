@@ -3,7 +3,7 @@
 
     <footer class="footer">
         <span class="pull-right">
-          KOSTA
+          ToInfra
         </span>
-       2PM Company 2016.12.12
+       ToInfra. 2018.04.25
     </footer>

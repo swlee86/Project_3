@@ -2,15 +2,8 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.*;
-import com.toinfra.VO.Branch;
-import com.toinfra.VO.Dept;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_cg;
-import com.toinfra.VO.Emp_role;
-import com.toinfra.VO.Low_dept;
-import com.toinfra.VO.Position;
-import com.toinfra.VO.Role;
+import com.toinfra.DTO.*;
+import com.toinfra.DTO.UserDto;
 
 /*
  * 작성자 : 백승아
@@ -21,7 +14,7 @@ import com.toinfra.VO.Role;
 public interface AdminEmpDAO {
 	
 	// 사원 정보 리스트 출력
-	public List<Emp> selectEmp_list(int cpage, int pgsize, String field, String query);
+	public List<UserDto> selectEmp_list(int cpage, int pgsize, String field, String query);
 	
 	// 사원 등록을 위한 새로운 사번 가져오기
 	public String selectNew_emp_no();
@@ -43,23 +36,23 @@ public interface AdminEmpDAO {
 	public List<Low_dept> selectLow_dept_list(String dept_no);
 	
 	// 사원 등록하기
-	public int insertEmp(Emp emp);
+	public int insertEmp(UserDto userDto);
 	
 	// 사원을 등록하면서 이력에 '입사' 추가하기
 	public int insertEmp_his_in(String emp_no);
 	
 	// 사원 이력 불러오기
-	public List<Emp> selectEmp_his(String emp_no);
+	public List<UserDto> selectEmp_his(String emp_no);
 	
 	// 회원가입하면서 권한에 'none' 추가하기
 	// 아직 미사용
 	public int insertEmp_role_none(String emp_no);
 	
 	// 탈퇴를 요청한 사원 리스트 불러오기
-	public List<Emp> selectEmp_withdrawal();
+	public List<UserDto> selectEmp_withdrawal();
 	
 	// 탈퇴를 요청한 사원의 상세 불러오기
-	public Emp selectEmp_withdrawal_detail(String emp_no);
+	public UserDto selectEmp_withdrawal_detail(String emp_no);
 	
 	// 탈퇴시키기 위해 사번의 년도를 0000으로 변경하기
 	public int updateEmp_no(String emp_no);
@@ -86,7 +79,7 @@ public interface AdminEmpDAO {
 	public int deleteEmp_role(String emp_no);
 	
 	// 권한 부여 상세 페이지를 위해 사원의 리스트 불러오기
-	public List<Emp> selectEmp_authority(String position_no);
+	public List<UserDto> selectEmp_authority(String position_no);
 	
 	// 권한 부여 상세 페이지를 위해 해당 사원의 권한 불러오기
 	public List<Emp_role> selectEmp_role(String emp_no);
@@ -95,10 +88,10 @@ public interface AdminEmpDAO {
 	public int selectCount(String field, String query);
 	
 	// 사원 정보 수정을 위해 정보 불러오기
-	public Emp selectEmp_detail(String emp_no);
+	public UserDto selectEmp_detail(String emp_no);
 	
 	// 사원 정보 수정
-	public int updateEmp_detail(Emp emp);
+	public int updateEmp_detail(UserDto userDto);
 	
 	// 회원 탈퇴 요청하기
 	public int updateWithdrawal(String emp_no);

@@ -106,11 +106,11 @@ $(function(){
                       "query" : $('#conp_ins_org_sea_query').val()
                 },
                 success : function(data){
-                          var emp = "";
+                          var userDto = "";
                           var  makeTable;
                           
                               $.each(data, function(index){
-                                 emp = data[index];                                   
+                                 userDto = data[index];
                               });
                               
                               if(choice == 1){  
@@ -119,12 +119,12 @@ $(function(){
                                  makeTable = "<table class='table table-condensed table-bordered  table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>NO</th><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
                               }
                               
-                              $.each(emp, function(index){
+                              $.each(userDto, function(index){
                                  if(choice == 1){   
-                                    makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td><td><button class='btn btn-outline btn-success btn-sm' onclick='recF2(this)'><i class='fa fa-check'></i></button></td></tr>";   
+                                    makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td>"+userDto[index].emp_no+"</td><td>"+userDto[index].emp_name+"</td><td>"+userDto[index].position_name+"</td><td><button class='btn btn-outline btn-success btn-sm' onclick='recF2(this)'><i class='fa fa-check'></i></button></td></tr>";
                                  }
                                  else if(choice == 2){  //여러명
-                                    makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td><input type='checkbox'  name='chkbtn2' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td></tr>";
+                                    makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td><input type='checkbox'  name='chkbtn2' value='"+userDto[index].emp_name+"'></td><td>"+userDto[index].emp_no+"</td><td>"+userDto[index].emp_name+"</td><td>"+userDto[index].position_name+"</td></tr>";
                                  }
                               });
                               
@@ -300,17 +300,17 @@ $(function(){
                   low_dept_no: empListNumber
                     },
                success:function(data){
-                  var emp = "";
+                  var userDto = "";
                    $.each(data, function(index){
-                      emp = data[index];
+                      userDto = data[index];
                   });
                     
-                  $.each(emp, function(index){
+                  $.each(userDto, function(index){
                      if(empSelectNumber == 1){   
-                        makeTable += "<tr><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td><td><button class='btn btn-outline btn-success btn-sm' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";   
+                        makeTable += "<tr><td>"+userDto[index].emp_no+"</td><td>"+userDto[index].emp_name+"</td><td>"+userDto[index].position_name+"</td><td><button class='btn btn-outline btn-success btn-sm' onclick='recF(this)'><i class='fa fa-check'></i></button></td></tr>";
                      }
                      else if(empSelectNumber == 2){  //여러명
-                        makeTable += "<tr><td><input type='checkbox' name='chkbtn1' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";
+                        makeTable += "<tr><td><input type='checkbox' name='chkbtn1' value='"+userDto[index].emp_name+"'></td><td>"+userDto[index].emp_no+"</td><td>"+userDto[index].emp_name+" ("+userDto[index].position_name+")</td></tr>";
                      }
                   });
                   

@@ -5,15 +5,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.toinfra.DTO.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.toinfra.DAO.RegisterDAO;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_cg;
-import com.toinfra.VO.Emp_detail;
-import com.toinfra.VO.Low_dept;
-import com.toinfra.VO.Position;
+import com.toinfra.DTO.UserDto;
 
 @Service
 public class RegisterService {
@@ -30,16 +27,16 @@ public class RegisterService {
 	}
 	
 	//관리자 > 사원 등록시 등록을 처리하는 함수(Emp에 insert)
-	public int insertEmp(Emp emp){
+	public int insertEmp(UserDto userDto){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
-		int result = registerDao.insertEmp(emp);
+		int result = registerDao.insertEmp(userDto);
 		
 		//현재날짜 구하기
 		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 		Date currentTime = new Date ( );
 		String dTime = formatter.format ( currentTime );
 		
-		result += registerDao.insertEmp_his(emp.getEmp_no(), dTime);
+		result += registerDao.insertEmp_his(userDto.getUser_id(), dTime);
 		
 		return result;
 	}
@@ -51,10 +48,10 @@ public class RegisterService {
 		return result;
 	}
 	
-	//회원 가입시 이메일을 emp table에 업데이트 시키는 함수
-	public int updateEmail(Emp emp){
+	//회원 가입시 이메일을 userDto table에 업데이트 시키는 함수
+	public int updateEmail(UserDto userDto){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
-		int result = registerDao.updateEmail(emp);
+		int result = registerDao.updateEmail(userDto);
 		return result;
 	}
 	

@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 언론게시판리스트 -->
-	<select id="selectList" resultType="com.toinfra.VO.MediaBoard">
+	<select id="selectList" resultType="com.toinfra.DTO.MediaBoard">
 		select no,emp_no,emp_name,hit,title,content,regdate,file_name from
 					(select rownum num, n.no,n.emp_no,n.emp_name,n.hit,n.title,n.content,n.regdate,n.file_name
 					 from 
@@ -32,15 +32,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 언론게시판 글 상세내용 -->
-	<select id="selectDetail" resultType="com.toinfra.VO.MediaBoard">
+	<select id="selectDetail" resultType="com.toinfra.DTO.MediaBoard">
 		select no,  m.emp_no, m.emp_name, e.pic, title, content, regdate, file_name, hit
 		from media m 
-    	join emp e on m.emp_no = e.emp_no
+    	join userDto e on m.emp_no = e.emp_no
 		where no = #{no}
 	</select>
 
 	<!-- 언론게시판 리플 글 보기-->
-	<select id="selectReList" resultType="com.toinfra.VO.MediaBoardReply">
+	<select id="selectReList" resultType="com.toinfra.DTO.MediaBoardReply">
 		select re_no, no, emp_name, content, regdate
 		from re_media
 		where no = #{no} 
@@ -48,9 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 회원 정보 부르기 -->
-	<select id="selectInfoSearch" resultType="com.toinfra.VO.Emp">
+	<select id="selectInfoSearch" resultType="com.toinfra.DTO.UserDto">
 		select e.emp_name,e.emp_no
-		from  emp_detail d join emp e
+		from  emp_detail d join userDto e
 		on d. emp_no = e.emp_no
 		where d.id=#{id}
 	</select>
@@ -87,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 리플 뽑는 함수 -->
-	<select id="selectRowReply" resultType="com.toinfra.VO.Re_MediaBoard">
+	<select id="selectRowReply" resultType="com.toinfra.DTO.Re_MediaBoard">
 		select re_no, no, emp_no, content, regdate, emp_name from re_media where no = #{param1} and re_no = #{param2}
 	</select>
 	

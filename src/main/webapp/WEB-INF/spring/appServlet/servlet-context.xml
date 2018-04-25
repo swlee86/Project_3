@@ -31,21 +31,18 @@
         </context:component-scan>
         -->
     <context:component-scan base-package="com.toinfra.*" />
-    <!--
-        <beans:bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-            <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
-            <beans:property name="url" value="jdbc:oracle:thin:@orcl.cn5acqnoqihv.ap-northeast-2.rds.amazonaws.com:1521:ORCL"></beans:property>
-            <beans:property name="username" value="swlee"></beans:property>
-            <beans:property name="password" value="new1234!"></beans:property>
-        </beans:bean>
-        -->
 
-
-    <beans:bean id="customAuthenticationSuccessHandler" class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
-        <beans:property name = "sqlsession">
-            <beans:ref bean = "sqlSession"/>
-        </beans:property>
+    <beans:bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <beans:property name="url" value="jdbc:mysql://airless86.cafe24.com:3306/airless86" />
+        <!--<beans:property name="url" value="jdbc:mysql://localhost:3306/airless86" />-->
+        <beans:property name="username" value="airless86" />
+        <beans:property name="password" value="Clqxls6119@2" />
     </beans:bean>
+
+
+
+
 
 
 

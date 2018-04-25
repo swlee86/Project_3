@@ -1,12 +1,12 @@
 package com.toinfra.Service;
 
 
+import com.toinfra.DTO.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.EmpDAO;
-import com.toinfra.VO.Emp;
 
 @Service
 public class EmployeeManageService {
@@ -24,7 +24,7 @@ public class EmployeeManageService {
 		return list;
 	}
 	
-	//Emp 테이블의 열 갯수를 구하는 서비스 함수
+	//UserDto 테이블의 열 갯수를 구하는 서비스 함수
 	public int selectEmpCount(){
 		EmployeeManageDAO employeemanage = sqlSession.getMapper(EmployeeManageDAO.class);
 		int result = employeemanage.selectEmpCount();
@@ -39,29 +39,29 @@ public class EmployeeManageService {
 	}*/
 	
 	// 상세 정보
-	public Emp selectDetail2(String emp_no){
+	public UserDto selectDetail2(String emp_no){
 		
 		
 		EmpDAO dao = sqlSession.getMapper(EmpDAO.class);
-		Emp emp = dao.selectEmp(emp_no);
+		UserDto userDto = dao.selectEmp(emp_no);
 				
-		return emp;
+		return userDto;
 	}
 	
 	// 사원 정보 수정
-	public int updateEmp(Emp emp) {
+	public int updateEmp(UserDto userDto) {
 		
 		
 		// 사번이 중복으로 넘어오잖아
-		String emp_no = emp.getEmp_no();
+		String emp_no = userDto.getUser_id();
 		String[] emp_no1 = emp_no.split(",");
-		emp.setEmp_no(emp_no1[0]);
+		userDto.setUser_id(emp_no1[0]);
 		
 		EmpDAO dao = sqlSession.getMapper(EmpDAO.class);
-		System.out.println(emp.toString());
+		System.out.println(userDto.toString());
 		
 		int result = 0;
-		result = dao.updateEmp(emp);
+		result = dao.updateEmp(userDto);
 		
 		return result;
 	}

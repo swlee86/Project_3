@@ -325,17 +325,17 @@ function calendar(){
                            "query" : $('#con_ins_org_sea_query').val()
                      },
                      success : function(data){
-                               var emp = "";
+                               var userDto = "";
                                var  makeTable;
                                
                                    $.each(data, function(index){
-                                      emp = data[index];                                 
+                                      userDto = data[index];
                                    });
                                    
                                    makeTable = "<table class='table table-condensed table-bordered  table-hover'><tr style='background-color:#f8f8f8;'><th style='text-align:center'>NO</th><th style='text-align:center'>선택</th><th style='text-align:center'>사번</th><th style='text-align:center'>이름</th><th style='text-align:center'>직위</th></tr>";
                                    
-                                   $.each(emp, function(index){
-                                       makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td><input type='checkbox'  name='chkbtn_end' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+"</td><td>"+emp[index].position_name+"</td></tr>";                               
+                                   $.each(userDto, function(index){
+                                       makeTable += "<tr style='text-align:center'><td>"+(index+1)+"</td><td><input type='checkbox'  name='chkbtn_end' value='"+userDto[index].emp_name+"'></td><td>"+userDto[index].emp_no+"</td><td>"+userDto[index].emp_name+"</td><td>"+userDto[index].position_name+"</td></tr>";
                                    });
                                    
                                    makeTable += "</table><div class='pull-right'><input type='button' class='btn btn-success' value='선택' onclick=check("+pjd_count+")></div>";
@@ -453,14 +453,14 @@ function calendar(){
                      low_dept_no: empListNumber
                        },
                   success:function(data){
-                     var emp = "";
+                     var userDto = "";
                       $.each(data, function(index){
-                         emp = data[index];
+                         userDto = data[index];
                      });
                      
-                     $.each(emp, function(index){                   
+                     $.each(userDto, function(index){
                         if(empSelectNumber == 2){
-                           makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+emp[index].emp_name+"'></td><td>"+emp[index].emp_no+"</td><td>"+emp[index].emp_name+" ("+emp[index].position_name+")</td></tr>";
+                           makeTable += "<tr><td><input type='checkbox' name='chkbtn' value='"+userDto[index].emp_name+"'></td><td>"+userDto[index].emp_no+"</td><td>"+userDto[index].emp_name+" ("+userDto[index].position_name+")</td></tr>";
                         }                 
                      });
                      

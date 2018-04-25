@@ -2,12 +2,9 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Position;
-import com.toinfra.VO.PositionJoin;
+import com.toinfra.DTO.Position;
+import com.toinfra.DTO.PositionJoin;
 import org.apache.ibatis.annotations.Param;
-
-import com.toinfra.VO.Position;
-import com.toinfra.VO.PositionJoin;
 
 /*
  * 작성일 : 2016-11-18

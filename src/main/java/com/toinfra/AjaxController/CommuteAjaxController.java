@@ -8,15 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.Service.CommuteService;
-import com.toinfra.VO.Emp;
+import com.toinfra.DTO.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
-
-import com.toinfra.Service.CommuteService;
-import com.toinfra.VO.Emp;
 
 
 /*
@@ -39,11 +36,11 @@ public class CommuteAjaxController {
 	@RequestMapping("/insertCommute_in.do")
 	public View InsertCommute_in(Principal principal, String in_time,Model model){
 		String id= principal.getName();
-		Emp emp = commuteservice.selectInfoSearch(id);
+		UserDto userDto = commuteservice.selectInfoSearch(id);
 		
-		int result = commuteservice.insertCommute_in(in_time,emp.getEmp_no());
+		int result = commuteservice.insertCommute_in(in_time, userDto.getUser_id());
 		
-		model.addAttribute("emp",emp);
+		model.addAttribute("emp", userDto);
 		model.addAttribute("result",result);
 		return jsonview;
 	}

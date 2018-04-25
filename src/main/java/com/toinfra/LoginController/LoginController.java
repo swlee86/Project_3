@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 import com.toinfra.Util.Util;
-import com.toinfra.VO.EmpJoinEmp_Detail;
+import com.toinfra.DTO.EmpJoinEmp_Detail;
 
 /*
  * 작성일 : 2016-10-27

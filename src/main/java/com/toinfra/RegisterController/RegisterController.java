@@ -3,11 +3,11 @@ package com.toinfra.RegisterController;
 
 import javax.servlet.http.HttpSession;
 
+import com.toinfra.DTO.UserDto;
 import com.toinfra.Service.LoginService;
 import com.toinfra.Service.RegisterService;
 import com.toinfra.Util.Util;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_detail;
+import com.toinfra.DTO.Emp_detail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,12 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
-
-import com.toinfra.Service.LoginService;
-import com.toinfra.Service.RegisterService;
-import com.toinfra.Util.Util;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_detail;
 
 
 /*
@@ -79,9 +73,9 @@ public class RegisterController {
 	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
 	public String insertMemberOk(Emp_detail emp_detail, Model mv, String email){
 		emp_detail.setPwd(this.bCryptPasswordEncoder.encode(emp_detail.getPwd()));;
-		Emp emp = new Emp();
-		emp.setEmail(email);
-		emp.setEmp_no(emp_detail.getEmp_no());
+		UserDto userDto = new UserDto();
+		userDto.setEmail(email);
+		userDto.setUser_id(emp_detail.getUser_id());
 	
 		int resultempdetail = 0;
 		int resultemp = 0;
@@ -94,12 +88,12 @@ public class RegisterController {
 			e.getMessage();
 		}finally{
 			try{
-				resultemp = registerservice.updateEmail(emp);
+				resultemp = registerservice.updateEmail(userDto);
 			}catch(Exception e){
 				e.printStackTrace();
 			}finally{
 				try{
-					resultrole = registerservice.insertEmpRoleList(emp_detail.getEmp_no());
+					resultrole = registerservice.insertEmpRoleList(emp_detail.getUser_id());
 				}catch(Exception e){
 					e.printStackTrace();
 				}finally{

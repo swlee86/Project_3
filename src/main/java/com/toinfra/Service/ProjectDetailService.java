@@ -5,17 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.toinfra.DTO.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.PjdDAO;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
-import com.toinfra.VO.Pjd;
-import com.toinfra.VO.Pjd_people;
-import com.toinfra.VO.Pjdd;
+import com.toinfra.DTO.UserDto;
 /*
  * 작성일 : 2016-11-23
  * 작성자 : 김주희
@@ -82,10 +78,10 @@ public class ProjectDetailService {
 		return result;
 	}
 	//로그인한 사원정보 부르는 함수
-	public Emp selectInfoSearchEmp(String id) {
+	public UserDto selectInfoSearchEmp(String id) {
 		PjdDAO dao = sqlsession.getMapper(PjdDAO.class);
-		Emp emp = dao.selectInfoSearch(id);
-		return emp;
+		UserDto userDto = dao.selectInfoSearch(id);
+		return userDto;
 	}
 		
 	

@@ -1,7 +1,6 @@
 package com.toinfra.AdminController;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -15,15 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.toinfra.Service.AdminService;
-import com.toinfra.Service.CommuteService;
 import com.toinfra.Service.PayService;
-import com.toinfra.Service.RegisterService;
-import com.toinfra.VO.Branch;
-import com.toinfra.VO.Dept;
-import com.toinfra.VO.Pay;
-import com.toinfra.VO.PayList;
-import com.toinfra.VO.PositionJoin;
+import com.toinfra.DTO.Branch;
+import com.toinfra.DTO.Dept;
+import com.toinfra.DTO.Pay;
+import com.toinfra.DTO.PayList;
+import com.toinfra.DTO.PositionJoin;
 
 /*
  * 작성자 : 박성준
@@ -266,10 +262,10 @@ public class AdminController {
 		
 		if(result >=2){
 			msg = "수정 성공!";
-			link = "adminSalaryModify.do?emp_no="+list.getEmp_no();
+			link = "adminSalaryModify.do?emp_no="+list.getUser_id();
 		}else{
 			msg = "수정 실패!";
-			link = "adminSalaryModify.do?emp_no="+list.getEmp_no();
+			link = "adminSalaryModify.do?emp_no="+list.getUser_id();
 		}
 		
 		model.addAttribute("msg",msg);

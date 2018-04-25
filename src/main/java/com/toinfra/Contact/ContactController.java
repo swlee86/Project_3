@@ -8,11 +8,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.toinfra.DTO.UserDto;
 import com.toinfra.Service.ContactService;
-import com.toinfra.VO.C_group;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
+import com.toinfra.DTO.C_group;
+import com.toinfra.DTO.Contact;
+import com.toinfra.DTO.Emp_contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.View;
-
-import com.toinfra.Service.ContactService;
-import com.toinfra.VO.C_group;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
 
 /*
  * 작성자 : 박지은
@@ -48,8 +42,8 @@ public class ContactController {
 	@RequestMapping(value = "/contact_insert_search.do", method=RequestMethod.POST)
 	public View  contact_insert_search(Principal principal, String field,String query, Model model){
 		String id= principal.getName();
-		List<Emp>  emp = contactService.contact_insert_search(field,query,id);
-		model.addAttribute("emp", emp);
+		List<UserDto> userDto = contactService.contact_insert_search(field,query,id);
+		model.addAttribute("emp", userDto);
 		return jsonview;
 	}
 	
@@ -218,7 +212,7 @@ public class ContactController {
 		
 		if(result > 0){  //개인주소록 추가될때 
 			Emp_contact emp_contact = new Emp_contact();
-			emp_contact.setEmp_no(emp_no);
+			emp_contact.setUser_id(emp_no);
 			emp_contact.setContact_no(String.valueOf(result));
 			emp_contact.setGroups(contact.getGroup_no()); //추가
 			contactService.insertEmpContact(emp_contact);  //개인주소록 테이블 삽입
@@ -229,9 +223,10 @@ public class ContactController {
 	
 	//주소록 추가> 사내사원 정보불러오기 
 	@RequestMapping(value = "/contact_fam_insert.do", method = RequestMethod.POST)
-	public @ResponseBody Emp contact_fam_insert(String emp_no){
-		Emp emp = contactService.selectEmpInfo(emp_no);	
-		return emp;
+	public @ResponseBody
+	UserDto contact_fam_insert(String emp_no){
+		UserDto userDto = contactService.selectEmpInfo(emp_no);
+		return userDto;
 	}
 		
 	//주소록  > 주소록 그룹 관리 페이지 이동

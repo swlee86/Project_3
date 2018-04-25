@@ -5,12 +5,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.View;
 
+import com.toinfra.DTO.*;
 import com.toinfra.Service.ProjectDetailService;
 import com.toinfra.Service.ProjectService;
 import com.toinfra.Service.PushService;
-import com.toinfra.VO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.toinfra.Service.ProjectDetailService;
-import com.toinfra.Service.ProjectService;
-import com.toinfra.Service.PushService;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Pj;
-import com.toinfra.VO.Pj_step;
-import com.toinfra.VO.Pjd;
-import com.toinfra.VO.Pjd_Command;
-import com.toinfra.VO.Pjd_people;
-import com.toinfra.VO.Pjdd;
+import com.toinfra.DTO.UserDto;
 
 /*
  * 작성일 : 2016-11-16
@@ -149,14 +139,14 @@ public class ProjectController {
 	@RequestMapping(value="project_detail_plus_try.do", method=RequestMethod.POST)
 	public String  project_detail_plus_try(Principal principal, Pjd_Command pjd_Command, String pjd_count){
 		String id= principal.getName();
-		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기
+		UserDto userDto = projectservice.selectInfoSearch(id);  //사번,이름 가져가기
 
 		String url = "redirect:project_list.do"; 
 
 		List<Pjd> list = pjd_Command.getPjd();
 			
 			for(Pjd pjd : list){
-				pjd.setEmp_no(emp.getEmp_no());
+				pjd.setUser_id(userDto.getUser_id());
 			}	
 
 			try{
@@ -178,7 +168,7 @@ public class ProjectController {
 
 		HttpSession session = request.getSession();
 		String emp_no = (String)session.getAttribute("emp_no");
-		pj.setEmp_no(emp_no);
+		pj.setUser_id(emp_no);
 
 		model.addAttribute("pj_start", pj.getPj_start());
 		model.addAttribute("pj_end", pj.getPj_end());
@@ -252,8 +242,8 @@ public class ProjectController {
 	@RequestMapping("/projectdetail_detailview.do")
 	public String projectdetail_detailview(Principal principal, Model model, String pjd_no){
 		String id= principal.getName();
-		Emp emp = projectservice.selectInfoSearch(id);  //사번,이름 가져가기	
-		String login_emp_no = emp.getEmp_no();
+		UserDto userDto = projectservice.selectInfoSearch(id);  //사번,이름 가져가기
+		String login_emp_no = userDto.getUser_id();
 		
 		//pjd의 데이터 가져오기
 		Pjd pjd= null;

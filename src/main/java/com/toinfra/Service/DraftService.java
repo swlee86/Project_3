@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import com.toinfra.DAO.DraftDAO;
 import com.toinfra.DAO.Draft_lineDAO;
 import com.toinfra.DAO.Draft_refDAO;
-import com.toinfra.VO.Break;
-import com.toinfra.VO.Cooperation;
-import com.toinfra.VO.Draft;
-import com.toinfra.VO.Draft_line;
-import com.toinfra.VO.Draft_ref;
-import com.toinfra.VO.Office;
+import com.toinfra.DTO.Break;
+import com.toinfra.DTO.Cooperation;
+import com.toinfra.DTO.Draft;
+import com.toinfra.DTO.Draft_line;
+import com.toinfra.DTO.Draft_ref;
+import com.toinfra.DTO.Office;
 
 @Service
 public class DraftService {

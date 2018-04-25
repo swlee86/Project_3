@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.toinfra.VO.Dept;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Low_dept;
+import com.toinfra.DTO.Dept;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Low_dept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
 import com.toinfra.Service.AdminEmpService;
-import com.toinfra.VO.Dept;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Low_dept;
 import net.sf.json.JSONArray;
 
 /*
@@ -56,8 +53,8 @@ public class AdminEmpAjaxController {
 	
 	// 사원 등록
 	@RequestMapping(value="/adminAdd_member_ok.do", method=RequestMethod.POST)
-	public View adminAdd_member_ok(Emp emp, Model model) {
-		service.insertEmp(emp);
+	public View adminAdd_member_ok(UserDto userDto, Model model) {
+		service.insertEmp(userDto);
 		model.addAttribute("result", "성공");
 		return jsonview;
 	}
@@ -65,7 +62,7 @@ public class AdminEmpAjaxController {
 	// 사원 이력 출력
 	@RequestMapping(value="/adminEmp_his.do", method=RequestMethod.POST)
 	public View adminEmp_his(String emp_no, Model model) {
-		List<Emp> list = service.selectEmp_his(emp_no);
+		List<UserDto> list = service.selectEmp_his(emp_no);
 		model.addAttribute("list", list);
 		
 		return jsonview;
@@ -74,7 +71,7 @@ public class AdminEmpAjaxController {
 	// 탈퇴를 요청한 사원의 상세를 출력
 	@RequestMapping(value="/adminEmp_withdrawal_detail.do", method=RequestMethod.POST)
 	public View adminEmp_withdrawal_detail(String emp_no, Model model) {
-		Emp detail = service.selectEmp_withdrawal_detail(emp_no);
+		UserDto detail = service.selectEmp_withdrawal_detail(emp_no);
 		model.addAttribute("detail", detail);
 		
 		return jsonview;
@@ -138,8 +135,8 @@ public class AdminEmpAjaxController {
 	}
 	
 	// 사원 정보 수정
-	public View adminEmp_update(Emp emp, Model model) {
-		service.updateEmp_detail(emp);
+	public View adminEmp_update(UserDto userDto, Model model) {
+		service.updateEmp_detail(userDto);
 		model.addAttribute("result", "성공");
 		
 		return jsonview;

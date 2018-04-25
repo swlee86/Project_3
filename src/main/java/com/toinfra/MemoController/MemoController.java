@@ -7,21 +7,15 @@ import javax.servlet.http.HttpSession;
 
 import com.toinfra.Service.CreateLogService;
 import com.toinfra.Service.MemoService;
-import com.toinfra.VO.CreateLog;
-import com.toinfra.VO.Memo;
-import com.toinfra.VO.Memocolor;
+import com.toinfra.DTO.CreateLog;
+import com.toinfra.DTO.Memo;
+import com.toinfra.DTO.Memocolor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.toinfra.Service.CreateLogService;
-import com.toinfra.Service.MemoService;
-import com.toinfra.VO.CreateLog;
-import com.toinfra.VO.Memo;
-import com.toinfra.VO.Memocolor;
 /*
  * 작성자 : 이상원
  * 작성일 : 2016-11-20
@@ -91,7 +85,7 @@ public class MemoController {
 		log.setIp((String)session.getAttribute("clientIP"));
 		log.setPage(request.getRequestURI());
 		log.setId((String)session.getAttribute("customerId"));
-		log.setEmp_no((String)session.getAttribute("emp_no"));
+		log.setUser_id((String)session.getAttribute("emp_no"));
 		log.setResult("메모페이지_진입");
 		
 		logservice.BasicLog(log);
@@ -116,7 +110,7 @@ public class MemoController {
 		log.setIp((String)session.getAttribute("clientIP"));
 		log.setPage(request.getRequestURI());
 		log.setId((String)session.getAttribute("customerId"));
-		log.setEmp_no((String)session.getAttribute("emp_no"));
+		log.setUser_id((String)session.getAttribute("emp_no"));
 		log.setResult("메모작성_진입");
 		
 		logservice.BasicLog(log);
@@ -137,13 +131,13 @@ public class MemoController {
 	public String memowriteOk(Memo memo, HttpServletRequest request, Model mv) {
 		HttpSession session = request.getSession();
 		String emp_no = (String)session.getAttribute("emp_no");
-		memo.setEmp_no(emp_no);
+		memo.setUser_id(emp_no);
 
 		CreateLog log = new CreateLog();
 		log.setIp((String)session.getAttribute("clientIP"));
 		log.setPage(request.getRequestURI());
 		log.setId((String)session.getAttribute("customerId"));
-		log.setEmp_no((String)session.getAttribute("emp_no"));
+		log.setUser_id((String)session.getAttribute("emp_no"));
 
 		
 		try{

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.CompanyBoardDAO;
-import com.toinfra.VO.Company;
-import com.toinfra.VO.Emp_detail;
+import com.toinfra.DTO.Company;
+import com.toinfra.DTO.Emp_detail;
 
 /*
  * 작성자 : 박성준

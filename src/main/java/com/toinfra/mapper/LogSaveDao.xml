@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.toinfra.DAO.LogSaveDao">
+
+
+	<insert id="loghitsave" parameterType="com.toinfra.DTO.LogSaveDto">
+		INSERT INTO tb_loghit(
+		loghit_seq,
+		USERID,
+		CREDENTIAL_ID,
+		CREDT_DATE,
+		URI,
+		IP
+		)
+		VALUES(
+		(select max(loghit_seq)+1 from tb_loghit a),
+		#{userid},
+		#{credential_id},
+		DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'),
+		#{uri},
+		#{ip}
+		)
+	</insert>
+
+
+	<insert id="loghstsave" parameterType="com.toinfra.DTO.LogSaveDto">
+		INSERT INTO tb_loghst_chg(
+				logchg_seq,
+				USERID,
+				CREDENTIAL_ID,
+				CREDT_DATE,
+				URI,
+				CHANGE_VALUE,
+				ERROR_CD,
+				IP
+				)
+				VALUES(
+				(select max(logchg_seq)+1 from tb_loghst_chg a),
+				#{userid},
+				#{credential_id},
+				DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'),
+				#{uri},
+				#{change_value},
+				#{error_cd},
+				#{ip}
+				)
+	</insert>
+
+</mapper>

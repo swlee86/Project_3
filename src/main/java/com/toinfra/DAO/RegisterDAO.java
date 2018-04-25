@@ -2,22 +2,18 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.*;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_cg;
-import com.toinfra.VO.Emp_detail;
-import com.toinfra.VO.Low_dept;
-import com.toinfra.VO.Position;
+import com.toinfra.DTO.*;
+import com.toinfra.DTO.UserDto;
 
 public interface RegisterDAO {
 	//회원가입시에 insert 함수
 	int insertEmp_detail(Emp_detail emp_detail);
 	
-	//회원 가입시에 Emp 테이블의 email을 업데이트 하는 함수
-	int updateEmail(Emp emp);
+	//회원 가입시에 UserDto 테이블의 email을 업데이트 하는 함수
+	int updateEmail(UserDto userDto);
 	
 	//관리자 > 사원정보 등록 페이지에서 기본 사원정보를 등록하는 함수 1)
-	int insertEmp(Emp emp);
+	int insertEmp(UserDto userDto);
 	
 	//관리자 > 사원정보 등록시 emp_his에 입사일 insert하는 함수 2)
 	int insertEmp_his(String regdate, String emp_no);

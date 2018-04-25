@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 승인 진행 단계 조회하기 -->
-	<select id="selectApproval" resultType="com.toinfra.VO.Approval">
+	<select id="selectApproval" resultType="com.toinfra.DTO.Approval">
 		select step_no, step_name, step
 		from approval
 		order by step asc

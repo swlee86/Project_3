@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.toinfra.DAO.PjDAO;
 import com.toinfra.DAO.Pj_stepDAO;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Pj;
-import com.toinfra.VO.Pj_step;
-import com.toinfra.VO.Pjd;
-import com.toinfra.VO.Pjd_Command;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Pj;
+import com.toinfra.DTO.Pj_step;
+import com.toinfra.DTO.Pjd;
+import com.toinfra.DTO.Pjd_Command;
 
 /*
  * 작성일 : 2016-11-23
@@ -73,10 +73,10 @@ public class ProjectService {
 	}
 	
 	//자신의 정보 가져오기 
-	public Emp selectInfoSearch(String id) {
+	public UserDto selectInfoSearch(String id) {
 		PjDAO dao = sqlsession.getMapper(PjDAO.class);
-		Emp emp = dao.selectInfoSearch(id);
-		return emp;
+		UserDto userDto = dao.selectInfoSearch(id);
+		return userDto;
 	}
 		
 	//큰 프로젝트 작성

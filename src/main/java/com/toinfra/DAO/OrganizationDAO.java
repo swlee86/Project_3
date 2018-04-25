@@ -2,14 +2,10 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
-import com.toinfra.VO.Organization;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
-import com.toinfra.VO.Organization;
+import com.toinfra.DTO.Contact;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Emp_contact;
+import com.toinfra.DTO.Organization;
 
 /*
  * 작성자 : 백승아
@@ -54,7 +50,7 @@ public interface OrganizationDAO {
     public Organization selectMasterEmpInfo(String low_dept_no);
     
 	//등록인 정보 구하기
-	public Emp selectInfoSearch(String id);
+	public UserDto selectInfoSearch(String id);
 
 	//주소록테이블 등록
 	public int insertContact(Contact contact);

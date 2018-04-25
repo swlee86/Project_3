@@ -6,12 +6,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.Service.PushService;
-import com.toinfra.VO.Push;
+import com.toinfra.DTO.Push;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.toinfra.Service.PushService;
-import com.toinfra.VO.Push;
 
 @Controller
 public class PushController {

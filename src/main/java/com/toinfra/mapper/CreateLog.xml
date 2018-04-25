@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 기본적인 이동을 할 때 남기는 쿼리 -->
-	<insert id="CreateBasicLog" parameterType="com.toinfra.VO.CreateLog">
+	<insert id="CreateBasicLog" parameterType="com.toinfra.DTO.CreateLog">
 		insert into member_history(emp_no, id, create_date, result, ip, page) values(#{emp_no},#{id},to_char(systimestamp, 'YYYY-MM-DD HH:MI'),#{result},#{ip},#{page})
 	</insert>
 	

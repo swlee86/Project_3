@@ -18,12 +18,19 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/resource/log4j.xml</param-value>
+	</context-param>
+
 	<servlet>
 		<servlet-name>servlet-context</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
+				/WEB-INF/spring/*-servlet.xml
 				/WEB-INF/spring/appServlet/servlet-context.xml
 			</param-value>
 		</init-param>

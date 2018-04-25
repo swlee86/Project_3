@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.toinfra.Service.MailService;
-import com.toinfra.VO.Mail;
+import com.toinfra.DTO.Mail;
 
 @Controller
 public class SendMail {

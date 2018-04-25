@@ -5,22 +5,11 @@ import java.util.List;
 import com.toinfra.DAO.OrganizationDAO;
 import com.toinfra.DAO.TaskDAO;
 import com.toinfra.DAO.Task_peopleDAO;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Organization;
-import com.toinfra.VO.Task;
-import com.toinfra.VO.Task_people;
+import com.toinfra.DTO.*;
+import com.toinfra.DTO.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.toinfra.DAO.OrganizationDAO;
-import com.toinfra.DAO.TaskDAO;
-import com.toinfra.DAO.Task_peopleDAO;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Organization;
-import com.toinfra.VO.Task;
-import com.toinfra.VO.Task_people;
-import com.toinfra.VO.Task_reply;
 
 @Service
 public class TaskService {
@@ -296,27 +285,27 @@ public class TaskService {
 	}
 	
 	// 업무 코멘트 테이블에(task_reply에 인서트할 데이터 추출)
-	public Emp emp_list(String emp_no){
-		Emp result = null;
+	public UserDto emp_list(String emp_no){
+		UserDto result = null;
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		result = dao.emp_list(emp_no);
 		return result;
 	}
 	
 	// 업무 코멘트에 인서트 처리
-	public int insert_reply(Emp emp_data, String task_no, String contents){
+	public int insert_reply(UserDto userDto_data, String task_no, String contents){
 		TaskDAO dao = sqlsession.getMapper(TaskDAO.class);
 		int result=0;
 		try{
-			if(!"".equals(emp_data.getPic())){
+			if(!"".equals(userDto_data.getPic())){
 				System.out.println("Null일 때");
-				emp_data.setPic("Reply_Basic_Pic.jpg");
-				System.out.println("Pic : " + emp_data.getPic());
-				result = dao.insert_reply(task_no, emp_data.getEmp_name(), emp_data.getLow_dept_name(), contents, emp_data.getPic());
+				userDto_data.setPic("Reply_Basic_Pic.jpg");
+				System.out.println("Pic : " + userDto_data.getPic());
+				result = dao.insert_reply(task_no, userDto_data.getEmp_name(), userDto_data.getLow_dept_name(), contents, userDto_data.getPic());
 			}else{
 				System.out.println("Null이 아님");
-				System.out.println("Pic : " + emp_data.getPic());
-				result = dao.insert_reply(task_no, emp_data.getEmp_name(), emp_data.getLow_dept_name(), contents, emp_data.getPic());
+				System.out.println("Pic : " + userDto_data.getPic());
+				result = dao.insert_reply(task_no, userDto_data.getEmp_name(), userDto_data.getLow_dept_name(), contents, userDto_data.getPic());
 			}
 					
 		}catch(Exception e){

@@ -4,7 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import com.toinfra.Service.ProjectService;
-import com.toinfra.VO.Pj;
+import com.toinfra.DTO.Pj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
 import com.toinfra.Service.CommonService;
-import com.toinfra.Service.ProjectService;
-import com.toinfra.VO.Pj;
 
 @Controller
 public class ProjectCallendarAjaxController {

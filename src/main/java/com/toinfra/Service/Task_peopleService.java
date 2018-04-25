@@ -1,16 +1,12 @@
 package com.toinfra.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.toinfra.DAO.Task_peopleDAO;
-import com.toinfra.VO.Task_people;
+import com.toinfra.DTO.Task_people;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.toinfra.DAO.Task_peopleDAO;
-import com.toinfra.VO.Task_people;
 
 @Service
 public class Task_peopleService {

@@ -2,10 +2,9 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.BusinessBoard;
-import com.toinfra.VO.Re_BusinessBoard;
-import com.toinfra.VO.BusinessBoard;
-import com.toinfra.VO.Re_BusinessBoard;
+import com.toinfra.DTO.BusinessBoard;
+import com.toinfra.DTO.Re_BusinessBoard;
+
 /*
  * 작성자 : 이상원
  * 작성일 : 2016-11-18

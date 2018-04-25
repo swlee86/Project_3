@@ -2,13 +2,10 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Task;
-import com.toinfra.VO.Task_people;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Task;
-import com.toinfra.VO.Task_people;
-import com.toinfra.VO.Task_reply;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Task;
+import com.toinfra.DTO.Task_people;
+import com.toinfra.DTO.Task_reply;
 
 /*
  * 작성일 : 2016-11-18
@@ -64,7 +61,7 @@ public interface TaskDAO {
 	public List<Task> selectTask_people_end(String emp_no, String field_parti, String query_parti, int cpage_parti, int pagesize);
 	
 	// 업무 코멘트에 넣을 데이터 조회하기
-	public Emp emp_list(String emp_no);
+	public UserDto emp_list(String emp_no);
 	
 	//
 	public int insert_reply(String task_no, String emp_name, String low_dept_name, String contents, String pic);

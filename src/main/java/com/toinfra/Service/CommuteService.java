@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.toinfra.DTO.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +15,7 @@ import com.toinfra.DAO.EmpDAO;
 import com.toinfra.DAO.Low_deptDAO;
 import com.toinfra.DAO.PayDAO;
 import com.toinfra.DAO.PositionDAO;
-import com.toinfra.VO.Commute;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.LowDeptJoin;
-import com.toinfra.VO.Pay;
-import com.toinfra.VO.PayList;
-import com.toinfra.VO.PositionJoin;
-import com.toinfra.VO.Set_bonus;
-import com.toinfra.VO.Set_time;
+import com.toinfra.DTO.UserDto;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -139,19 +133,19 @@ public class CommuteService {
 	    if(result>0){
 	    	EmpDAO empdao = sqlsession.getMapper(EmpDAO.class);
 	    	//1. 기본급여
-	    	Emp emp=empdao.selectEmp(emp_no);
+	    	UserDto userDto =empdao.selectEmp(emp_no);
 	    
 	    	//emp_no로 emp에서 연봉 가져오기
-	    	int salary = emp.getSalary()/12;
+	    	int salary = userDto.getSalary()/12;
 	    	
 	    	Pay pay =new Pay();
-	    	//emp > basic_pay(기본급여) 세팅하기---------------------1)
+	    	//userDto > basic_pay(기본급여) 세팅하기---------------------1)
 	    	pay.setBasic_pay(salary);
 	    	
 	    	//2.상여금
 	        Low_deptDAO low_deptdao =sqlsession.getMapper(Low_deptDAO.class);
 	        //emp의 low_dept_no로 dept_no 가져오기
-	        LowDeptJoin lowDeptjoin =low_deptdao.selectLow_dept_detail(emp.getLow_dept_no());
+	        LowDeptJoin lowDeptjoin =low_deptdao.selectLow_dept_detail(userDto.getLow_dept_no());
 	        String dept_no =lowDeptjoin.getDept_no();
 	        DeptDAO deptdao = sqlsession.getMapper(DeptDAO.class);
 	        //dept_no로 상여금 지급하는 부서 가져오기
@@ -167,13 +161,13 @@ public class CommuteService {
 	        pay.setBonus(bonus);
 	        
 	        //3.추가급여
-	        int add_pay=add_Pay(emp, commute_no);
+	        int add_pay=add_Pay(userDto, commute_no);
 	        pay.setAdd_pay(add_pay);
 	        
 	        //4.총급여 더하기
 	        int total_pay = pay.getBasic_pay()+pay.getAdd_pay()+pay.getBonus();
 	        pay.setTotal_pay(total_pay);
-	        pay.setEmp_no(emp_no);
+	        pay.setUser_id(emp_no);
 	       
 	        
 	        
@@ -182,13 +176,13 @@ public class CommuteService {
 	        	pay.setBonus(0);
 	        	//3. 추가급여
 	        	
-	        	int add_pay=add_Pay(emp, commute_no);
+	        	int add_pay=add_Pay(userDto, commute_no);
 	        	pay.setAdd_pay(add_pay);
 	        	
 	        	//4. 총급여
 	        	int total_pay = pay.getBasic_pay()+pay.getAdd_pay()+pay.getBonus();
 	        	pay.setTotal_pay(total_pay);
-	        	pay.setEmp_no(emp_no);
+	        	pay.setUser_id(emp_no);
 		      	
 	        }
 	    	
@@ -204,12 +198,12 @@ public class CommuteService {
 	}
 	
 	//추가급여
-	public int add_Pay(Emp emp, String commute_no){
+	public int add_Pay(UserDto userDto, String commute_no){
 		int result = 0;
 		//1.추가급여
         //emp의 직위번호로 set_add_pay에서 추가급여 구하기
         PositionDAO positiondao =sqlsession.getMapper(PositionDAO.class);
-        PositionJoin positionjoin= positiondao.selectOptionJoin(emp.getPosition_no());
+        PositionJoin positionjoin= positiondao.selectOptionJoin(userDto.getPosition_no());
         //추가급여
         int add_pay_cost = positionjoin.getAdd_pay();
         
@@ -481,10 +475,10 @@ public class CommuteService {
 	}
 	
 	//아이디로 회원정보가져오기
-	public Emp selectInfoSearch(String id) {
+	public UserDto selectInfoSearch(String id) {
 		CommuteDAO dao = sqlsession.getMapper(CommuteDAO.class);
-		Emp emp =  dao.selectInfoSearch(id);
-		return emp;
+		UserDto userDto =  dao.selectInfoSearch(id);
+		return userDto;
 	}
 	
 	//근태 마감 관리 리스트 - > 서비스

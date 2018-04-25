@@ -14,13 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!-- 큰 프로젝트에 대한 프로젝트 상세 조회하기 -->
-	<select id="selectPjd" parameterType="String" resultType="com.toinfra.VO.Pjd">
+	<select id="selectPjd" parameterType="String" resultType="com.toinfra.DTO.Pjd">
 		select rownum,e.emp_name,pjd_no,d.pj_no,pjd_title,
 				pjd_content,pjd_start,pjd_end, pjd_progress,
 				d.pj_step_no, pj_step_name 
 			from pjd d join pj_step s
 				on d.pj_step_no = s.pj_step_no
-	    join emp e
+	    join userDto e
 	      on (select emp_no from pj where pj_no=#{pj_no}) = e.emp_no
 	  	where d.pj_no = #{pj_no}
 	  	order by pjd_end asc
@@ -61,10 +61,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 상세의 참여자 사진 조회하기 -->
-	<select id="selectPeople" parameterType="String" resultType="com.toinfra.VO.Pjd_people">
+	<select id="selectPeople" parameterType="String" resultType="com.toinfra.DTO.Pjd_people">
 		select pjd_no, p.emp_no, e.emp_name, d.branch_name, d.dept_name, d.low_dept_name, cell_phone,pic
 			from pjd_people p 
-			join emp e 
+			join userDto e
 			on p.emp_no = e.emp_no 
 			join low_dept d
 	    on e.low_dept_no = d.low_dept_no
@@ -72,17 +72,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 상세의 참여자 조회하기(modal) -->
-	<select id="selectPeople_info" parameterType="String" resultType="com.toinfra.VO.Pjd_people">
+	<select id="selectPeople_info" parameterType="String" resultType="com.toinfra.DTO.Pjd_people">
 	    select e.emp_no, e.emp_name, d.branch_name, d.dept_name, 
 				d.low_dept_name, cell_phone, emp_tel, birth, email,pic 
-	      from emp e 
+	      from userDto e
 	      join low_dept d 
 	      on e.low_dept_no = d.low_dept_no 
 	      where emp_no=#{emp_no}
 	</select>
 	
 	<!-- 프로젝트 상세 조회하기(단일)	 -->
-	<select id="selectPjd_Detail" parameterType="String" resultType="com.toinfra.VO.Pjd">
+	<select id="selectPjd_Detail" parameterType="String" resultType="com.toinfra.DTO.Pjd">
 		select pjd_no,pj_no,pjd_title,pjd_content,pjd_start,pjd_end,p.pj_step_no,s.pj_step_name 
 		from pjd p join pj_step s on p.pj_step_no = s.pj_step_no 
 		where pjd_no=#{pjd_no}
@@ -94,16 +94,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 등록인 사번 구하는 함수 -->
-	<select id="selectInfoSearch" resultType="com.toinfra.VO.Emp">
+	<select id="selectInfoSearch" resultType="com.toinfra.DTO.UserDto">
 		select e.emp_no
-		from  emp_detail d join emp e
+		from  emp_detail d join userDto e
 		on d. emp_no = e.emp_no
 		where d.id=#{id}
 	</select>
 	
 	
 	<!-- 주소록테이블 등록 -->
-	<insert id="insertContact" parameterType="com.toinfra.VO.Contact">
+	<insert id="insertContact" parameterType="com.toinfra.DTO.Contact">
 		insert into contact(contact_no, group_no, name, attach, birth, mail, pic, tel1, tel2, memo) 
 		values(contact_seq.nextval,#{group_no}, #{name}, #{attach, jdbcType=VARCHAR}, #{birth, jdbcType=VARCHAR}, #{mail, jdbcType=VARCHAR}, #{pic, jdbcType=VARCHAR}, #{tel1}, #{tel2}, #{memo, jdbcType=VARCHAR})
 	</insert>
@@ -115,12 +115,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 상세의 상세내역 -->
- 	<select id="selectPjdd" parameterType="String" resultType="com.toinfra.VO.Pjdd">
+ 	<select id="selectPjdd" parameterType="String" resultType="com.toinfra.DTO.Pjdd">
 		select pjdd_no,pjd_no,pjdd_content,fin_check from pjdd where pjd_no=#{pjd_no} order by to_number(pjdd_no) asc
  	</select>
  	
  	<!-- 상세의 상세내역 추가 -->
- 	<insert id="insertPjdd" parameterType="com.toinfra.VO.Pjdd">
+ 	<insert id="insertPjdd" parameterType="com.toinfra.DTO.Pjdd">
  		insert into pjdd(pjdd_no,pjd_no,pjdd_content,fin_check) values(pjdd_seq.nextval,#{pjd_no},#{pjdd_content},'0')
 	</insert>
 	

@@ -3,8 +3,7 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Branch;
-import com.toinfra.VO.Branch;
+import com.toinfra.DTO.Branch;
 
 public interface BranchDAO {
 

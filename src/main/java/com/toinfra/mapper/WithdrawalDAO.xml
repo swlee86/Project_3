@@ -17,6 +17,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 회원 탈퇴 요청하기 -->
 	<update id="updateWithdrawal" parameterType="String">
-		update emp set cg_no = 23 where emp_no=#{emp_no}
+		update userDto set cg_no = 23 where emp_no=#{emp_no}
 	</update>
 </mapper>

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.DAO.PushDAO;
-import com.toinfra.VO.Emp;
+import com.toinfra.DTO.UserDto;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +22,6 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
-
-import com.toinfra.DAO.PushDAO;
-import com.toinfra.VO.Emp;
 
 public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
    
@@ -103,13 +100,13 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
       emp_no = pushdao.selectEmp_no(authentication.getName());
       
-      //로그인 시 사용하는 Emp
-      Emp emp = null;
+      //로그인 시 사용하는 UserDto
+      UserDto userDto = null;
       
       try{
     
     	  
-    	  emp = pushdao.selectLogin_Emp(emp_no);
+    	  userDto = pushdao.selectLogin_Emp(emp_no);
     	  
     	  
     	 //미 확인 업무
@@ -131,7 +128,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
       
       HttpSession session = request.getSession();
       
-      session.setAttribute("Emp", emp);
+      session.setAttribute("Emp", userDto);
       
       clearAuthenticationAttributes(request);
       

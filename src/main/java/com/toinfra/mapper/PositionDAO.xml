@@ -11,25 +11,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 	<!--1.직위 등록하기(position) -->
-	<insert id="insertPosition" parameterType="com.toinfra.VO.PositionJoin">
+	<insert id="insertPosition" parameterType="com.toinfra.DTO.PositionJoin">
 		insert into position(position_no, position_name, step)
 		values(position_seq.nextval, #{position_name}, #{step})
 	</insert>
 	
 	<!--2.직위 등록하기(set_pay)-->
-	<insert id="insertSet_pay" parameterType="com.toinfra.VO.PositionJoin">
+	<insert id="insertSet_pay" parameterType="com.toinfra.DTO.PositionJoin">
 		insert into set_pay(set_date, position_no, basic_pay)
 		values (#{set_date}, #{position_no}, #{basic_pay})
 	</insert>
 	
 	<!--3.직위 등록하기 (set_add_pay)-->
-	<insert id="insertSet_add_Pay" parameterType="com.toinfra.VO.PositionJoin">
+	<insert id="insertSet_add_Pay" parameterType="com.toinfra.DTO.PositionJoin">
 		insert into set_add_pay(set_date, position_no, add_pay)
 		values (#{set_date}, #{position_no}, #{add_pay})
 	</insert>
 	
 	<!-- 직위 수정하기 (왼쪽) 셀렉박스 용 -->
-	<update id="updatePosition" parameterType="com.toinfra.VO.Position">
+	<update id="updatePosition" parameterType="com.toinfra.DTO.Position">
 		update position
 		set position_name = #{position_name}
 		where position_no = #{position_no}
@@ -40,20 +40,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!--기본 연봉설정 수정.-->
-	<update id="updateset_pay" parameterType="com.toinfra.VO.PositionJoin">
+	<update id="updateset_pay" parameterType="com.toinfra.DTO.PositionJoin">
 		update set_pay
 		set set_date = #{set_date}, basic_pay = #{basic_pay}
 		where position_no = #{position_no}
 	</update>
 	
-	<update id="updateset_add_pay" parameterType="com.toinfra.VO.PositionJoin">
+	<update id="updateset_add_pay" parameterType="com.toinfra.DTO.PositionJoin">
 		update set_add_pay
 		set set_date = #{set_date}, add_pay = #{add_pay}
 		where position_no = #{position_no}
 	</update>
 	
 	<!-- 직위 조회하기 -->
-	<select id="selectPosition" resultType="com.toinfra.VO.PositionJoin">
+	<select id="selectPosition" resultType="com.toinfra.DTO.PositionJoin">
 		select p.position_no, p.position_name, p.step, s.basic_pay, s.set_date,a.add_pay
 		from position p join set_pay s
 		on p.position_no = s.position_no
@@ -63,14 +63,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 직위 상세 조회하기 -->
-	<select id="selectPosition_detail" resultType="com.toinfra.VO.Position">
+	<select id="selectPosition_detail" resultType="com.toinfra.DTO.Position">
 		select position_no, position_name, step
 		from position
 		where position_no = #{position_no}
 	</select>
 	
 	<!--직위 추가시 position_no 구하기-->
-	<select id="selectPosition_no" resultType="String" parameterType="com.toinfra.VO.PositionJoin">
+	<select id="selectPosition_no" resultType="String" parameterType="com.toinfra.DTO.PositionJoin">
 		select position_no
 		from position
 		where position_name = #{position_name}
@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--직위 삭제전 사원 존재여부 확인  -->
 	<select id="check_emp" parameterType="String" resultType="String">
-	  select emp_no from emp where position_no=#{position_no}
+	  select emp_no from userDto where position_no=#{position_no}
 	</select>
 	
 	<!--직위 삭제하기 1)  기본연봉-->
@@ -98,7 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!--직위 선택시 기본급여 , 추가급여 조회-->
-	<select id="selectOptionJoin" parameterType="String" resultType="com.toinfra.VO.PositionJoin">
+	<select id="selectOptionJoin" parameterType="String" resultType="com.toinfra.DTO.PositionJoin">
 	select p.position_no, p.position_name, p.step, s.basic_pay,s.set_date, a.add_pay
 	from position p join set_pay s
 	on p.position_no = s.position_no

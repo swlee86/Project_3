@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.toinfra.Service.MailService;
 import com.toinfra.Util.Util;
-import com.toinfra.VO.Mail;
+import com.toinfra.DTO.Mail;
 
 @Controller
 public class MailController {

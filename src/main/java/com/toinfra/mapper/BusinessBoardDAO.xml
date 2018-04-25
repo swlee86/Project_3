@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 <!-- business 게시판 글 리스트를 불러오는 쿼리문  -->
-<select id="selectList" resultType="com.toinfra.VO.BusinessBoard">
+<select id="selectList" resultType="com.toinfra.DTO.BusinessBoard">
 select no, title, emp_name,regdate, hit, low_dept_name, depth,step,refer,file_name
 	from(select rownum rn, no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer ,file_name
 		from (select no, title, emp_name, regdate, hit, low_dept_name, depth,step,refer ,file_name
@@ -26,24 +26,24 @@ where ${param1} like '%${param2}%'
 
 <!-- business Board list에서 글을 클릭하면 글 내용을 불러오는 쿼리문 -->
 <!-- business Board 글 내용에서 답글을 누르면 답글을 띄울 때 본문 내용을 에디터에 띄워주는 쿼리문 -->
-<select id="selectDetail" resultType="com.toinfra.VO.BusinessBoard">
+<select id="selectDetail" resultType="com.toinfra.DTO.BusinessBoard">
 	select no, title, content, b.emp_no, b.emp_name, e.pic,
 	file_name, regdate, low_dept_name, refer, depth, step 
 	from business b
-	join emp e
+	join userDto e
 	on b.emp_no = e.emp_no
 	where no=#{no}
 </select>
 	
 <!-- business board list에서 글을 클릭하여 내용을 불러올 때 댓글 내용도 불러오는 쿼리문 -->	
-<select id="selectReList" resultType="com.toinfra.VO.Re_BusinessBoard">
+<select id="selectReList" resultType="com.toinfra.DTO.Re_BusinessBoard">
 select emp_name, content, regdate from (select rownum rn, emp_name, content, regdate from re_business where no=#{no} order by re_no asc)
 </select>
 
 <!-- 글을 쓰기 위해 필요한 데이터인 emp_no, emp_name, low_dept_no, low_dept_name을 불러온다 -->	
-<select id="selectWrite" resultType="com.toinfra.VO.Re_BusinessBoard">
+<select id="selectWrite" resultType="com.toinfra.DTO.Re_BusinessBoard">
 select e.emp_no, e.emp_name, l.low_dept_name, e.low_dept_no 
-from (select e.emp_no, e.low_dept_no, e.emp_name from emp e join 
+from (select e.emp_no, e.low_dept_no, e.emp_name from userDto e join
 (select emp_no from emp_detail ed where id=#{id}) ed 
 on e.emp_no=ed.emp_no) e join low_dept l 
 on e.low_dept_no=l.low_dept_no
@@ -56,13 +56,13 @@ select nvl(max(refer),0) from business
 
 
 <!-- 글쓰기 진행시 글을 인서트 하는 쿼리문 -->
-<insert id="insertArticle" parameterType="com.toinfra.VO.BusinessBoard">
+<insert id="insertArticle" parameterType="com.toinfra.DTO.BusinessBoard">
 insert into business(no, emp_no, emp_name, low_dept_no, low_dept_name, refer, depth, step, hit, title, content, regdate, file_name)
 values(BUSINESS_SEQ.nextval, #{emp_no}, #{emp_name}, #{low_dept_no}, #{low_dept_name}, #{refer}, #{depth}, #{step}, #{hit}, #{title},#{content}, to_char(sysdate, 'YYYY-MM-DD'), #{file_name})
 </insert>
 
 <!-- 댓글 달 때 댓글을 인서트 하는 쿼리문 -->
-<insert id="insertReply" parameterType="com.toinfra.VO.Re_BusinessBoard">
+<insert id="insertReply" parameterType="com.toinfra.DTO.Re_BusinessBoard">
 insert into RE_BUSINESS(re_no, no, emp_no, emp_name, content, regdate)
 values(RE_BUSINESS_SEQ.nextval, #{no}, #{emp_no}, #{emp_name}, #{content}, to_char(sysdate, 'YYYY-MM-DD'))
 </insert>

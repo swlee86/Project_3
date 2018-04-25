@@ -19,7 +19,7 @@ import javax.mail.Store;
 import javax.mail.UIDFolder;
 import javax.mail.internet.MimeBodyPart;
 
-import com.toinfra.VO.Mail;
+import com.toinfra.DTO.Mail;
 
 public class ReceiveMailImap {
 
@@ -111,7 +111,7 @@ public class ReceiveMailImap {
                     
                     
                     Mail maillist = new Mail();
-                    maillist.setEmp_no(emp_no);
+                    maillist.setUser_id(emp_no);
                     maillist.setRec_check(rec_date);
                     maillist.setTitle(title);
                     
@@ -138,7 +138,7 @@ public class ReceiveMailImap {
     				
     				
     				Mail maillist = new Mail();
-    				maillist.setEmp_no(emp_no);
+    				maillist.setUser_id(emp_no);
     				maillist.setRec_check(rec_date);
     				maillist.setTitle(title);
     				

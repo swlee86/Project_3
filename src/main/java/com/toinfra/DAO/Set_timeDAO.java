@@ -2,8 +2,7 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Set_time;
-import com.toinfra.VO.Set_time;
+import com.toinfra.DTO.Set_time;
 
 /*
  * 작성일 : 2016-11-18

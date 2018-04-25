@@ -11,7 +11,7 @@
 						<div class="col-md-12">
 							<div class="text-center m-b-md">
 								<h3>로그인</h3>
-								<small>WelCome 2pm! 
+								<small>WelCome ToInfra!
 									<c:if test="${param.error != null}">
 										<div>
 											로그인실패<br>

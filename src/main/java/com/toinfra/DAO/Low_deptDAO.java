@@ -2,14 +2,10 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.LowDeptJoin;
-import com.toinfra.VO.Low_dept;
-import com.toinfra.VO.Set_homepage;
-import com.toinfra.VO.Set_time;
-import com.toinfra.VO.LowDeptJoin;
-import com.toinfra.VO.Low_dept;
-import com.toinfra.VO.Set_homepage;
-import com.toinfra.VO.Set_time;
+import com.toinfra.DTO.LowDeptJoin;
+import com.toinfra.DTO.Low_dept;
+import com.toinfra.DTO.Set_homepage;
+import com.toinfra.DTO.Set_time;
 
 /*
  * 작성일 : 2016-11-18

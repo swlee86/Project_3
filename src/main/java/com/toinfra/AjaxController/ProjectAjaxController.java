@@ -1,16 +1,14 @@
 package com.toinfra.AjaxController;
 
 
-import java.lang.reflect.Array;
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.toinfra.DTO.*;
 import com.toinfra.Service.ProjectDetailService;
 import com.toinfra.Service.ProjectService;
-import com.toinfra.VO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
 import com.toinfra.Service.CommonService;
-import com.toinfra.Service.ProjectDetailService;
-import com.toinfra.Service.ProjectService;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
-import com.toinfra.VO.Pj;
-import com.toinfra.VO.Pjd_people;
-import com.toinfra.VO.Pjdd;
-import sun.print.resources.serviceui;
+import com.toinfra.DTO.UserDto;
 
 /*
  * 작성자 : 김주희
@@ -75,9 +65,9 @@ public class ProjectAjaxController {
 		public View addContact(Principal principal, Contact contact, Model model) {
 				
 			String id= principal.getName();
-			Emp emp = projectdetailservice.selectInfoSearchEmp(id);  //사번,이름 가져가기
+			UserDto userDto = projectdetailservice.selectInfoSearchEmp(id);  //사번,이름 가져가기
 			
-			String emp_no = emp.getEmp_no();//사번
+			String emp_no = userDto.getUser_id();//사번
 			System.out.println("emp_no:"+emp_no);
 			
 			contact.setGroup_no("1");
@@ -90,7 +80,7 @@ public class ProjectAjaxController {
 			if(result > 0){  //개인주소록 추가될때 
 						
 				Emp_contact emp_contact = new Emp_contact();
-				emp_contact.setEmp_no(emp_no);
+				emp_contact.setUser_id(emp_no);
 				emp_contact.setContact_no(String.valueOf(result));
 							
 				last_result=projectdetailservice.insertPrivateContact(emp_contact); //개인주소록 테이블 삽입

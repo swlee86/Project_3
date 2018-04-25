@@ -11,13 +11,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.toinfra.DAO.MailDAO;
-import com.toinfra.VO.Mail;
+import com.toinfra.DTO.Mail;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.toinfra.DAO.MailDAO;
-import com.toinfra.VO.Mail;
 
 @Service
 public class MailService {

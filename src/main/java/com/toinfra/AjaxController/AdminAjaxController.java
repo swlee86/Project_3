@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.toinfra.Service.AdminService;
-import com.toinfra.VO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
-import com.toinfra.Service.AdminService;
-import com.toinfra.VO.Branch;
-import com.toinfra.VO.Dept;
-import com.toinfra.VO.DeptJoinBonus;
-import com.toinfra.VO.LowDeptJoin;
-import com.toinfra.VO.Low_dept;
-import com.toinfra.VO.PositionJoin;
-import com.toinfra.VO.Set_pay_date;
+import com.toinfra.DTO.Branch;
+import com.toinfra.DTO.Dept;
+import com.toinfra.DTO.DeptJoinBonus;
+import com.toinfra.DTO.LowDeptJoin;
+import com.toinfra.DTO.Low_dept;
+import com.toinfra.DTO.PositionJoin;
+import com.toinfra.DTO.Set_pay_date;
 import net.sf.json.JSONArray;
 
 /*

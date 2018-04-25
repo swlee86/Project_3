@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.toinfra.DTO.*;
 import com.toinfra.Service.PushService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,14 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 import com.toinfra.Service.CommonService;
-import com.toinfra.Service.PushService;
 import com.toinfra.Service.TaskService;
 import com.toinfra.Service.Task_peopleService;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Organization;
-import com.toinfra.VO.Task;
-import com.toinfra.VO.Task_people;
-import com.toinfra.VO.Task_reply;
+import com.toinfra.DTO.UserDto;
 
 /*
  * 작성자 : 백승아
@@ -123,7 +119,7 @@ public class TaskController {
 		
 		try {
 			// 업무에 송신자 사번, 송신자 이름 담기
-			task.setEmp_no(myemp_no);
+			task.setUser_id(myemp_no);
 			emp_name = commonservice.selectEmp_name(id);
 			task.setEmp_name(emp_name);
 			
@@ -748,16 +744,16 @@ public class TaskController {
 	public String task_reply_insert_song(HttpSession session, String task_no, String contents, Model model){
 		String url = "taskRequest_detail.do"+"?task_no="+task_no;
 		System.out.println("Task_no 넘어옴 : " + task_no);
-		Emp emp_data = null;
+		UserDto userDto_data = null;
 		String emp_no = (String)session.getAttribute("emp_no");
-		emp_data = service.emp_list(emp_no);
+		userDto_data = service.emp_list(emp_no);
 		try{
-			String dept = emp_data.getBranch_name()+ " "+emp_data.getDept_name()+" "+emp_data.getLow_dept_name();
-			emp_data.setLow_dept_name(dept);
-			System.out.println(emp_data);
+			String dept = userDto_data.getBranch_name()+ " "+ userDto_data.getDept_name()+" "+ userDto_data.getLow_dept_name();
+			userDto_data.setLow_dept_name(dept);
+			System.out.println(userDto_data);
 			System.out.println(task_no);
 			System.out.println(contents);
-			service.insert_reply(emp_data, task_no, contents);			
+			service.insert_reply(userDto_data, task_no, contents);
 		}catch(Exception e){
 			System.err.println(e.getMessage());
 		}finally{
@@ -766,23 +762,26 @@ public class TaskController {
 		return "task.task_redirect";
 	}
 	
-	
-		
-	
+
+
+
+
+
+
 	@RequestMapping("/task_reply_insert.do")
 	public String task_reply_insert(HttpSession session, String task_no, String contents, Model model){
 		String url = "taskRequest_participation_detail.do"+"?task_no="+task_no;
 		System.out.println("Task_no 넘어옴 : " + task_no);
-		Emp emp_data = null;
+		UserDto userDto_data = null;
 		String emp_no = (String)session.getAttribute("emp_no");
-		emp_data = service.emp_list(emp_no);
+		userDto_data = service.emp_list(emp_no);
 		try{
-			String dept = emp_data.getBranch_name()+ " "+emp_data.getDept_name()+" "+emp_data.getLow_dept_name();
-			emp_data.setLow_dept_name(dept);
-			System.out.println(emp_data);
+			String dept = userDto_data.getBranch_name()+ " "+ userDto_data.getDept_name()+" "+ userDto_data.getLow_dept_name();
+			userDto_data.setLow_dept_name(dept);
+			System.out.println(userDto_data);
 			System.out.println(task_no);
 			System.out.println(contents);
-			service.insert_reply(emp_data, task_no, contents);			
+			service.insert_reply(userDto_data, task_no, contents);
 		}catch(Exception e){
 			System.err.println(e.getMessage());
 		}finally{
@@ -790,13 +789,13 @@ public class TaskController {
 		}
 		return "task.task_redirect";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 }

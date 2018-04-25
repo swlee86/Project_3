@@ -218,23 +218,23 @@ function seeEmpMember(obj,low_dept_no){
                  },
             success:function(data){
             	console.log("데이터 : " + data.msg);
-               var emp = "";
+               var userDto = "";
                
                if(data.msg==null){
-               $.each(data.emp, function(index){
-               	   emp = data.emp[index];
+               $.each(data.userDto, function(index){
+               	   userDto = data.userDto[index];
                    makeTable+="<div class='col-md-4'>"
                	   makeTable+="<div class='hpanel hgreen contact-panel'>"
                	   makeTable+="<div class='panel-body'>"
                	   makeTable+="<h3>"	   
                	   makeTable+="<a href='' data-toggle='modal' data-target="	
                	   makeTable+="#myModal"
-               	   makeTable+= emp.emp_no
-               	   makeTable+=">"+emp.emp_name
-               	   makeTable+="<span style='font-size: 15px'>"+emp.emp_no+"</span>"		
+               	   makeTable+= userDto.emp_no
+               	   makeTable+=">"+userDto.emp_name
+               	   makeTable+="<span style='font-size: 15px'>"+userDto.emp_no+"</span>"
                	   makeTable+="</a></h3>"            		
-               	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+emp.branch_name+"</div>"   
-               	   makeTable+="<p>H.P&nbsp;:&nbsp;"+emp.cell_phone+"<br>"+emp.branch_name+">"+emp.dept_name+" > "+emp.low_dept_name+"</p></div></div></div>"   
+               	   makeTable+="<div class='text-muted font-bold m-b-xs'>"+userDto.branch_name+"</div>"
+               	   makeTable+="<p>H.P&nbsp;:&nbsp;"+userDto.cell_phone+"<br>"+userDto.branch_name+">"+userDto.dept_name+" > "+userDto.low_dept_name+"</p></div></div></div>"
                });
                
                }else{

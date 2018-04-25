@@ -3,14 +3,10 @@ package com.toinfra.DAO;
 import java.util.HashMap;
 import java.util.List;
 
-import com.toinfra.VO.Commute;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.PayList;
-import com.toinfra.VO.Set_time;
-import com.toinfra.VO.Commute;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.PayList;
-import com.toinfra.VO.Set_time;
+import com.toinfra.DTO.Commute;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.PayList;
+import com.toinfra.DTO.Set_time;
 
 /*
  * 작성일 : 2016-11-18
@@ -75,7 +71,7 @@ public interface CommuteDAO {
 	public Commute selectempinfo(String emp_no);
 
 	//아이디로 회원정보 가져오기
-	public Emp selectInfoSearch(String id);
+	public UserDto selectInfoSearch(String id);
 
 	//관리자 > 근태 마감 페이지 리스트
 	public List<PayList> selectCommute_all_Close(String dTime);

@@ -2,8 +2,7 @@
 
 package com.toinfra.DAO;
 
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp;
+import com.toinfra.DTO.UserDto;
 
 /*
  * 작성일 : 2016-11-25
@@ -14,8 +13,8 @@ import com.toinfra.VO.Emp;
 public interface EmpDAO {
 
 	// emp_no로 사원 데이터 불러오기
-	public Emp selectEmp(String emp_no);
+	public UserDto selectEmp(String emp_no);
 	
 	// 사원 정보 수정
-	int updateEmp(Emp emp);
+	int updateEmp(UserDto userDto);
 }

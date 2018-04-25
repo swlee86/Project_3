@@ -1,7 +1,6 @@
 package com.toinfra.DAO;
 
-import com.toinfra.VO.CreateLog;
-import com.toinfra.VO.CreateLog;
+import com.toinfra.DTO.CreateLog;
 
 public interface CreateLogDAO {
 

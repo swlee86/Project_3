@@ -57,8 +57,7 @@
     </bean>
 
 
-    <bean id="customAuthenticationSuccessHandler"
-	  class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
+    <bean id="customAuthenticationSuccessHandler"  class="com.toinfra.LoginController.CustomAuthenticationSuccessHandler">
 	<property name = "sqlsession">
 		<ref bean = "sqlSession"/>
 	</property>

@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 프로젝트 참여자 조회하기 -->
-	<select id="selectPjd_people" resultType="com.toinfra.VO.Pjd_people">
+	<select id="selectPjd_people" resultType="com.toinfra.DTO.Pjd_people">
 		select d.pj_no, p.pjd_no, emp_no
 		from pjd_people p join pjd d
 		on p.pjd_no = d.pjd_no

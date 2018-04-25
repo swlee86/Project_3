@@ -6,18 +6,15 @@
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="systemdate" />
 <!--  
-	작성자	: 박지은
-	작성일	: 2016-12-05
+	작성자	: 이상원
+	작성일	: 2018-04-25
 	목 적  	: 메인 화면 프로젝트,전자결재, 업무 탭별 리스트
-	
-	작성자         : 김주희
-	작성일         : 2016-12-04
-	목 적           : 근태 차트  시각화
+
 -->
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
-			<h3><span style="font-family:Arial ">Welcome to <b>2PM</b></span></h3>
+			<h3><span style="font-family:Arial ">Welcome to <b>ToInfra</b></span></h3>
 			<p>
 				스타트업 및 중소기업의 <strong>프로젝트 관리, 인사, 일정 관리</strong>를 위한 그 모든 프로그램
 				

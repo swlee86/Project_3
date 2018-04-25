@@ -2,10 +2,8 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Company;
-import com.toinfra.VO.Emp_detail;
-import com.toinfra.VO.Company;
-import com.toinfra.VO.Emp_detail;
+import com.toinfra.DTO.Company;
+import com.toinfra.DTO.Emp_detail;
 
 /*
  * 작성자 : 박성준

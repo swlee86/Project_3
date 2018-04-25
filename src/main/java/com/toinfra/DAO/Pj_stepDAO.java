@@ -2,8 +2,7 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Pj_step;
-import com.toinfra.VO.Pj_step;
+import com.toinfra.DTO.Pj_step;
 
 /*
  * 작성일 : 2016-11-18

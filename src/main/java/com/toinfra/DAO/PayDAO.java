@@ -2,14 +2,10 @@ package com.toinfra.DAO;
 
 import java.util.List;
 
-import com.toinfra.VO.Pay;
-import com.toinfra.VO.PayList;
-import com.toinfra.VO.Set_pay_date;
+import com.toinfra.DTO.Pay;
+import com.toinfra.DTO.PayList;
+import com.toinfra.DTO.Set_pay_date;
 import org.apache.ibatis.annotations.Param;
-
-import com.toinfra.VO.Pay;
-import com.toinfra.VO.PayList;
-import com.toinfra.VO.Set_pay_date;
 
 /*
  * 작성일 : 2016-11-18

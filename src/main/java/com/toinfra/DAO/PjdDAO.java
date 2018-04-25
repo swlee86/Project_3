@@ -3,13 +3,8 @@ package com.toinfra.DAO;
 import java.util.HashMap;
 import java.util.List;
 
-import com.toinfra.VO.*;
-import com.toinfra.VO.Contact;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_contact;
-import com.toinfra.VO.Pjd;
-import com.toinfra.VO.Pjd_people;
-import com.toinfra.VO.Pjdd;
+import com.toinfra.DTO.*;
+import com.toinfra.DTO.UserDto;
 
 /*
  * 작성일 : 2016-11-18
@@ -44,7 +39,7 @@ public interface PjdDAO {
 	public Pjd selectPjd_Detail(String pjd_no);
 
 	// 등록인 정보 구하기
-	public Emp selectInfoSearch(String id);
+	public UserDto selectInfoSearch(String id);
 
 	// 주소록테이블 등록
 	public int insertContact(Contact contact);

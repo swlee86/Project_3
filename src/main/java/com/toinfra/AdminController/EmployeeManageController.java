@@ -2,6 +2,7 @@ package com.toinfra.AdminController;
 
 import java.util.List;
 
+import com.toinfra.DTO.UserDto;
 import com.toinfra.Service.EmployeeManageService;
 import com.toinfra.Service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.toinfra.Service.EmployeeManageService;
-import com.toinfra.Service.RegisterService;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Emp_cg;
-import com.toinfra.VO.Low_dept;
-import com.toinfra.VO.Position;
+import com.toinfra.DTO.Emp_cg;
+import com.toinfra.DTO.Low_dept;
+import com.toinfra.DTO.Position;
 
 @Controller
 public class EmployeeManageController {
@@ -41,8 +39,8 @@ public class EmployeeManageController {
 		}
 */
 		
-		Emp emp = employeeManage.selectDetail2(emp_no);
-		model.addAttribute("result", emp);
+		UserDto userDto = employeeManage.selectDetail2(emp_no);
+		model.addAttribute("result", userDto);
 		
 		return "admin.adminMemberDetail";
 	}
@@ -52,7 +50,7 @@ public class EmployeeManageController {
 	@RequestMapping(value = "/adminMemberUpdate.do", method = RequestMethod.GET)
 	public String adminMemberUpdate(Model model, String emp_no) {
 		List<Low_dept> list = null;
-		Emp result = null;
+		UserDto result = null;
 		List<Emp_cg> empcglist = null;
 		List<Position> plist = null;
 		try {
@@ -74,10 +72,10 @@ public class EmployeeManageController {
 
 	// 사원 정보 수정
 	@RequestMapping(value = "/adminMemberUpdate.do", method = RequestMethod.POST)
-	public String adminMemberUpdateOk(Emp emp, Model model) {
+	public String adminMemberUpdateOk(UserDto userDto, Model model) {
 		
 		
-		String emp_no = emp.getEmp_no();
+		String emp_no = userDto.getUser_id();
 		String[] emp_no1 = emp_no.split(",");
 		System.out.println("넘겨진 emp_no : " + emp_no1[0]);
 		
@@ -85,7 +83,7 @@ public class EmployeeManageController {
 		String msg = "";
 		int result = 0;
 		
-		result = employeeManage.updateEmp(emp);
+		result = employeeManage.updateEmp(userDto);
 		if(result > 0){
 			msg = "사원 정보 수정에 성공했습니다";
 		} else {

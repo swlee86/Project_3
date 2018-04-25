@@ -11,12 +11,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 -->
 
 <!-- 사원 상세 -->
-<select id="selectEmp" resultType="com.toinfra.VO.Emp">
+<select id="selectEmp" resultType="com.toinfra.DTO.UserDto">
 	select emp_no, e.cg_no, e.position_no,
       	   e.low_dept_no, emp_break, salary,
       	   emp_name, birth, cell_phone,
       	   p.position_name, c.cg_name, l.low_dept_name
-	from emp e join position p
+	from userDto e join position p
 	on e.position_no = p.position_no
 	join emp_cg c
 	on e.cg_no = c.cg_no
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <!-- 사원 정보 수정 -->
 <update id="updateEmp">
-	update emp
+	update userDto
 	set cg_no = #{cg_no},
 		position_no = #{position_no},
 		low_dept_no = #{low_dept_no},

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.Service.FreeBoardService;
-import com.toinfra.VO.FreeBoard;
-import com.toinfra.VO.Re_FreeBoard;
+import com.toinfra.DTO.FreeBoard;
+import com.toinfra.DTO.Re_FreeBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.toinfra.Service.FreeBoardService;
-import com.toinfra.VO.FreeBoard;
-import com.toinfra.VO.Re_FreeBoard;
 
 @Controller
 public class FreeBoardController {
@@ -140,7 +136,7 @@ public class FreeBoardController {
 		Re_FreeBoard free = freeboardservice.selectWrite(id);
 		int maxrefer = freeboardservice.selectRefer();
 		
-		board.setEmp_no(free.getEmp_no());
+		board.setUser_id(free.getUser_id());
 		board.setEmp_name(free.getEmp_name());;
 		board.setLow_dept_no(free.getLow_dept_no());
 		board.setLow_dept_name(free.getLow_dept_name());
@@ -279,7 +275,7 @@ public class FreeBoardController {
 			free.setContent(content);
 			free.setRefer(refer);
 			free.setHit(0);
-			free.setEmp_no(dto.getEmp_no());
+			free.setUser_id(dto.getUser_id());
 			free.setEmp_name(dto.getEmp_name());
 			free.setLow_dept_name(dto.getLow_dept_name());
 			free.setLow_dept_no(dto.getLow_dept_no());

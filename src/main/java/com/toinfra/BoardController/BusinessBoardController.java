@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.toinfra.Service.BusinessBoardService;
-import com.toinfra.VO.BusinessBoard;
-import com.toinfra.VO.Re_BusinessBoard;
+import com.toinfra.DTO.BusinessBoard;
+import com.toinfra.DTO.Re_BusinessBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.toinfra.Service.BusinessBoardService;
-import com.toinfra.VO.BusinessBoard;
-import com.toinfra.VO.Re_BusinessBoard;
 
 /*
  * 작성자 : 이상원
@@ -202,7 +198,7 @@ public class BusinessBoardController {
 		Re_BusinessBoard business = businessboardservice.selectWrite(id);
 		int maxrefer = businessboardservice.selectRefer();
 		
-		board.setEmp_no(business.getEmp_no());
+		board.setUser_id(business.getUser_id());
 		board.setEmp_name(business.getEmp_name());;
 		board.setLow_dept_no(business.getLow_dept_no());
 		board.setLow_dept_name(business.getLow_dept_name());
@@ -306,7 +302,7 @@ public class BusinessBoardController {
 		business.setContent(content);
 		business.setRefer(refer);
 		business.setHit(0);
-		business.setEmp_no(dto.getEmp_no());
+		business.setUser_id(dto.getUser_id());
 		business.setEmp_name(dto.getEmp_name());
 		business.setLow_dept_name(dto.getLow_dept_name());
 		business.setLow_dept_no(dto.getLow_dept_no());

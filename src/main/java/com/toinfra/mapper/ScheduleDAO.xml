@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.toinfra.DAO.ScheduleDAO">
 
 	<!-- 로그인한 사원의 전체 일정 조회-->
-	<select id="selectSchedule" resultType="com.toinfra.VO.Schedule">
+	<select id="selectSchedule" resultType="com.toinfra.DTO.Schedule">
 		select s.sch_no, emp_no, s.cg_no, cg_color, cg_name, 
 		       sign, sch_name, sch_start, sch_end, sch_content, 
 		       s.step_no, step_name, step  
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 일정 상세 조회 -->
-	<select id="selectSchedule_detail" resultType="com.toinfra.VO.Schedule">
+	<select id="selectSchedule_detail" resultType="com.toinfra.DTO.Schedule">
 		select s.sch_no, emp_no, s.cg_no, cg_color, cg_name, 
 		       sign, sch_name, sch_start, sch_end, sch_content, 
 		       s.step_no, step_name, step
@@ -34,10 +34,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 일정 참여자들의 사원 정보 -->	
-	<select id="selectSchedule_people" resultType="com.toinfra.VO.Emp">
+	<select id="selectSchedule_people" resultType="com.toinfra.DTO.UserDto">
 		select emp_no, position_no, low_dept_no, salary, emp_name, birth,
 	       pic, email, cell_phone, emp_tel, emp_break, cg_no 
-		from emp 
+		from userDto
 		where emp_no 
 		in 
 		  (select p.emp_no 
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<!-- 일정 수정 (카테고리(범주), 중요도, 제목, 시작일, 종료일, 내용)-->
-	<update id="updateSchedule" parameterType="com.toinfra.VO.Schedule">
+	<update id="updateSchedule" parameterType="com.toinfra.DTO.Schedule">
 		update schedule 
 		set cg_no = (select cg_no from sch_cg where cg_name=#{cg_name}), 
 			sign = #{sign} , 
@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 일정 진행 단계 수정 -->
-	<update id="updateSchedule_step" parameterType="com.toinfra.VO.Schedule">
+	<update id="updateSchedule_step" parameterType="com.toinfra.DTO.Schedule">
 		update schedule 
 		set step_no = (select step_no from sch_step where step_name=#{step_name}) 
 		where sch_no=#{sch_no}
@@ -74,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 일정 등록,추가 -->
-	<insert id="insertSchedule" parameterType="com.toinfra.VO.Schedule">
+	<insert id="insertSchedule" parameterType="com.toinfra.DTO.Schedule">
 		insert into schedule(sch_no,
 		                     emp_no,
 		                     cg_no,
@@ -96,12 +96,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 일정 참여자 추가 -->
-	<insert id="insertSchPeople" parameterType="com.toinfra.VO.Sch_people">
+	<insert id="insertSchPeople" parameterType="com.toinfra.DTO.Sch_people">
 		insert into sch_people(sch_no,emp_no) values(#{sch_no},#{emp_no})
 	</insert>
 	
 	<!-- 일정 참여자 삭제 -->
-	<delete id="deleteSchPeople" parameterType="com.toinfra.VO.Sch_people">
+	<delete id="deleteSchPeople" parameterType="com.toinfra.DTO.Sch_people">
 		delete sch_people where sch_no=#{sch_no} and emp_no=#{emp_no}
 	</delete>
 	

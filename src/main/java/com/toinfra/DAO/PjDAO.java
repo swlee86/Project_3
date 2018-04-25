@@ -3,12 +3,9 @@ package com.toinfra.DAO;
 import java.util.HashMap;
 import java.util.List;
 
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Pj;
-import com.toinfra.VO.Pjd;
-import com.toinfra.VO.Emp;
-import com.toinfra.VO.Pj;
-import com.toinfra.VO.Pjd;
+import com.toinfra.DTO.UserDto;
+import com.toinfra.DTO.Pj;
+import com.toinfra.DTO.Pjd;
 
 /*
  * 작성일 : 2016-11-18
@@ -56,7 +53,7 @@ public interface PjDAO {
 	public List<Pj> selectPj_callendar(String emp_no);
 
 	// 회원정보 가져오기
-	public Emp selectInfoSearch(String id);
+	public UserDto selectInfoSearch(String id);
 
 	public int selectMaxPj_no();
 

@@ -14,9 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.toinfra.Service.CommuteService;
 import com.toinfra.Service.PayService;
-import com.toinfra.VO.Commute;
+import com.toinfra.DTO.Commute;
 /*
  * 작성자 : 김주희
  * 작성일 : 2016-11-21
