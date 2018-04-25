@@ -48,7 +48,7 @@ $(function(){
         <div class="header-link hide-menu">
         	&nbsp;<i class="fa fa-bars"></i></div>
         <div class="small-logo">
-            <span class="text-primary">HOMER APP</span>
+            <span class="text-primary">ToInfra</span>
         </div>
         <form role="search" class="navbar-form-custom" method="post" action="#">
             <div class="form-group">
