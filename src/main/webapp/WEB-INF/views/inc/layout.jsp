@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
-
+    <link rel="stylesheet" href="styles/layer.css">
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
@@ -54,6 +54,31 @@
 
 </div>
 
+<!-- POPUP -->
+<div id="divpop" style="position:absolute;left:395px;top:190px;z-index:200;visibility:hidden;">
+    <table width=600 height=400 cellpadding=2 cellspacing=0>
+        <tr>
+            <td style="border:1px #666666 solid" height=360 align=center bgcolor=white>
+                <ul>
+                    <li>해당 사이트는 현재 구축 중인 사이트입니다.</li>
+                    따라서 사이트 이용이 정상적이지 않을 수 있는 점 양해 부탁드립니다.
+                    감사합니다.
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <form name="notice_form">
+                <td align=right bgcolor=white>
+                    <input type="checkbox" name="chkbox" value="checkbox">오늘 하루 이 창을 열지 않음
+                    <a href="javascript:closeWin();"><B>[닫기]</B></a>
+                </td>
+        </tr>
+        </form>
+    </table>
+</div>
+
+
+
 <!-- Vendor scripts -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
@@ -74,6 +99,33 @@
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <script src="scripts/charts.js"></script>
+<script src="js/layer/layerpop.js"></script>
+
+<script type="application/javascript">
+    function setCookie( name, value, expiredays ) {
+        var todayDate = new Date();
+        todayDate.setDate( todayDate.getDate() + expiredays );
+        document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+    }
+    function closeWin() {
+        if ( document.notice_form.chkbox.checked ){
+            setCookie( "maindiv", "done" , 1 );
+        }
+        document.all['divpop'].style.visibility = "hidden";
+    }
+
+    cookiedata = document.cookie;
+    if ( cookiedata.indexOf("maindiv=done") < 0 ){
+        document.all['divpop'].style.visibility = "visible";
+    }
+    else {
+        document.all['divpop'].style.visibility = "hidden";
+    }
+
+
+</script>
+
+
 
 </body>
 </html>

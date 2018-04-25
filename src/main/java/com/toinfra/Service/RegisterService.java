@@ -72,9 +72,9 @@ public class RegisterService {
 	}
 	
 	//id를 사용해서 사번을 뽑아내는 서비스 함수
-	public String selectUsedId(String id){
+	public String selectUsedId(String userid){
 		RegisterDAO registerDao = sqlsession.getMapper(RegisterDAO.class);
-		String resultemp = registerDao.selectUsedId(id);
+		String resultemp = registerDao.selectUsedId(userid);
 		return resultemp;
 	}
 	

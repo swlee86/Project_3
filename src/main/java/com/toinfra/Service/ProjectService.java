@@ -147,8 +147,7 @@ public class ProjectService {
 	// 모든 프로젝트 목록 출력
 	public List<Pj> selectPjlist_all(){
 		PjDAO dao = sqlsession.getMapper(PjDAO.class);
-		List<Pj> list = null;	
-		list= dao.selectPj();		
+		List<Pj> list = dao.selectPj();
 		return list;
 	}
 	

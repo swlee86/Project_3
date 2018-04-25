@@ -32,9 +32,9 @@ import com.toinfra.DTO.Task;
 //index.do 접근시에 index.jsp를 열어주는 컨트롤러
 
 @Controller
-public class PageMoveController {
+public class IndexController {
 
-	private static final Logger logger = LoggerFactory.getLogger(PageMoveController.class);
+	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
 	@Autowired
 	private CreateLogService logservice;
@@ -55,8 +55,10 @@ public class PageMoveController {
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping(value={"index.do"}, method=RequestMethod.GET)
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, Principal principal) {
-		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("user_id");
+			HttpSession session = request.getSession();
+			String user_id = (String)session.getAttribute("user_id");
+
+			logger.info("user_id 세션 : " + user_id);
 
 			///////////////////////인덱스에 띄워 줄 회사 게시판 내용 구하기 시작////////////////////////////////////////////////////
 			List<Company> list = null;

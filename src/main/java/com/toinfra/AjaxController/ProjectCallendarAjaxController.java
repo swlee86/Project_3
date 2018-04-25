@@ -5,10 +5,12 @@ import java.util.List;
 
 import com.toinfra.Service.ProjectService;
 import com.toinfra.DTO.Pj;
+import com.toinfra.Util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
 import com.toinfra.Service.CommonService;
@@ -32,17 +34,22 @@ public class ProjectCallendarAjaxController {
 		return "project.projectAllList_Callendar";
 	}
 	
-	@RequestMapping("/projectcalendarData.do")
+	@RequestMapping(value={"/projectcalendarData.do"}, method=RequestMethod.GET)
 	public View CalendarData(Principal principal, Model model){
 		String id= principal.getName();
-		String emp_no = commonservice.selectEmp_no(id);
-		//내가 쓴것들만 뽑아냄
-		List<Pj> result = projectservice.selectPj_callendar(emp_no);
-		
-		model.addAttribute("wlist", result);
-		//내가 참여자로 된 것.
-		model.addAttribute("emp_no", emp_no);
-		model.addAttribute("list",result);
+		if(Util.isEmpty(id)){
+
+		}else{
+			String user_id = commonservice.selectEmp_no(id);
+			//내가 쓴것들만 뽑아냄
+			List<Pj> result = projectservice.selectPj_callendar(user_id);
+
+			model.addAttribute("wlist", result);
+			//내가 참여자로 된 것.
+			model.addAttribute("user_id", user_id);
+			model.addAttribute("list",result);
+		}
+
 		return jsonview;
 	}
 	

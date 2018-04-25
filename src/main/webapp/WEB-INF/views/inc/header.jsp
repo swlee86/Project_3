@@ -63,7 +63,8 @@ $(function(){
                 <ul class="nav navbar-nav">
 					<c:if test="${empty pageContext.request.userPrincipal}">
 						<li>
-							<a href="${pageContext.request.contextPath}/login.do">Login</a>
+							<%--<a href="${pageContext.request.contextPath}/login.do">Login</a>--%>
+                            <%--<a href="#layer2" class="btn-login">Login</a>--%>
 						</li>
 					</c:if>
 					<c:if test="${not empty pageContext.request.userPrincipal}">
@@ -221,9 +222,73 @@ $(function(){
                 
                 <c:if test="${empty pageContext.request.userPrincipal}">
 					<li>
-						<a href="${pageContext.request.contextPath}/login.do">
+						<%--<a href="${pageContext.request.contextPath}/login.do">--%>
+                        <a href="#layer2" class="btn-login">
 							<i class="pe-7s-upload pe-rotate-90"></i>
 						</a>
+                            <div class="dim-layer">
+                                <div class="dimBg"></div>
+                                <div id="layer2" class="pop-layer">
+                                    <div class="pop-container">
+                                        <div class="pop-conts">
+                                            <!--content //-->
+                                            <div class="text-center m-b-md">
+                                                <h3>로그인</h3>
+                                                <small>WelCome ToInfra!
+                                                    <c:if test="${param.error != null}">
+                                                        <div>
+                                                            로그인실패<br>
+                                                            <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+                                                                이유 : <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+                                                            </c:if>
+                                                        </div>
+                                                    </c:if>
+                                                </small>
+                                            </div>
+                                            <div class="hpanel">
+                                                <div class="panel-body">
+                                                    <form action="${pageContext.request.contextPath}/login" id="loginForm" method="POST" name="f">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="username" style="color: black;">아이디</label> <input
+                                                                type="text" title="Please enter you username" required="" value="구글 로그인 후 이용하세요"
+                                                                name="username" id="username" class="form-control">
+                                                            <span class="help-block small">Your unique username to
+												app</span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="password" style="color:black;">비밀번호</label> <input
+                                                                type="password" title="Please enter your password"
+                                                                placeholder="******" required="" value="" name="password"
+                                                                id="password" class="form-control"> <span
+                                                                class="help-block small">Your strong password</span>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" class="i-checks" checked>
+                                                            <label style="color: black;">로그인상태 유지</label>
+                                                            <p class="help-block small">(if this is a private computer)</p>
+                                                        </div>
+                                                        <div style="text-align: center;">
+                                                            <div class="g-signin2" data-onsuccess="onSignIn" style="display: block;"></div>
+                                                        </div>
+                                                        <hr>
+                                                        <input type="hidden" name="loginRedirect" value="${loginRedirect}" />
+                                                        <a class="btn btn-default btn-block" href="#" id="googlelogout" onClick="javascript:window.open('https://accounts.google.com/logout','popup','scrollbars=no, resizable=no, width=500px,height=800px')">구글 로그아웃</a>
+                                                        <input type="submit" class="btn btn-success btn-block" value="로그인" id="loginSubmitBtn">
+                                                        <a class="btn btn-default btn-block" href="addMember.do">회원가입</a>
+                                                        <a class="btn btn-default btn-block" href="findId.do">아이디 찾기</a>
+                                                        <a class="btn btn-default btn-block" href="findPw.do">비밀번호 찾기</a>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="btn-r">
+                                                <a href="#" class="btn-layerClose">Close</a>
+                                            </div>
+                                            <!--// content-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 					</li>
 				</c:if>
 				<c:if test="${not empty pageContext.request.userPrincipal}">
@@ -351,46 +416,6 @@ $('#birthDay').click(function(){
 		}
 		
 		
-		
-		
-		
-		
-	/* 	
-		//기본 폴링방식
-        $(function () {
-            window.setInterval(function () {
-                $.get("${pageContext.request.contextPath}/pollingchk.do", function (data) {
 
-                });
-            }, 15000);
-            
-        });
-         
- */  
- /* 
-        $(function () {
-            
-            (function longPolling() {
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/pollingchk.do",
-                    timeout: 10000,
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        if (textStatus == "timeout") { // 요청
-                                longPolling(); // 재귀적 호출
-                            // 기타 버그, 오류 등 같은 네트워크
-                            } else { 
-                                longPolling();
-                            }
-                        },
-                    success: function (data, textStatus) {
-                        if (textStatus == "success") { // 요청 성공
-                            longPolling();
-                        }
-                    }
-                });
-            })();
-            
-        });
-    */
 </script>
     

@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- Page title -->
-<title>HOMER | WebApp admin theme</title>
+<title>ToInfra</title>
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -42,15 +42,14 @@
 						<div class="col-md-12">
 							<div class="text-center m-b-md" >
 								<h3>회원가입</h3>
-								<small>2PM 의 다양한 기능을 느껴보세요!</small>
+								<small>ToInfra 의 다양한 기능을 느껴보세요!</small>
 							</div>
 							<div class="hpanel">
 								<div class="panel-body">
 									<form action="#" id="loginForm">
 										<div class="row">
 											<div class="form-group col-lg-12">
-												<label style="color:black;">Username</label> <input type="" value="" id=""
-													class="form-control" name="">
+												<label style="color:black;">Username</label> <input type="" value="" id=""	class="form-control" name="">
 											</div>
 											<div class="form-group col-lg-6">
 												<label style="color:black;">Password</label> <input type="password" value=""

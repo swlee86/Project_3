@@ -7,7 +7,7 @@
     </div>
     <div id="logo" class="light-version">
         <span>
-            2PM
+            ToInfra
         </span>
     </div>
     <nav role="navigation">

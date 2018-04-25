@@ -9,7 +9,7 @@
 <div class="content animate-panel">
 	<div class="row">
 		<div class="col-lg-12 text-center m-t-md">
-			<h2>Welcome to 2PM</h2>
+			<h2>Welcome to ToInfra</h2>
 			<p>
 				스타트업 및 중소기업의 <strong>프로젝트 관리, 인사, 일정 관리</strong>를 위한 그 모든 프로그램
 			</p>

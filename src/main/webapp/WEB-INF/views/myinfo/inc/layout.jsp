@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Page title -->
-    <title>EPM | WebApp admin theme</title>
+    <title>ToInfra | Admin Page</title>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/layer.css">
 	<!--jQuery UI CSS-->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
 	<script src="js/custom/register.js"></script>
@@ -76,7 +77,7 @@
 <body class="fixed-navbar fixed-sidebar">
 
 <!-- Simple splash screen-->
-<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>ToInfra</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
 <!--[if lt IE 7]>
 <p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -107,7 +108,7 @@
 <script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
 <script src="vendor/iCheck/icheck.min.js"></script>
 <script src="vendor/sparkline/index.js"></script>
-
+<script src="js/layer/layerpop.js"></script>
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>

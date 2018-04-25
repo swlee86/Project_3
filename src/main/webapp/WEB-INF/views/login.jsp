@@ -13,7 +13,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- Page title -->
-<title>2PM</title>
+<title>ToInfra</title>
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -65,7 +65,7 @@ small {
 	<div class="splash">
 		<div class="color-line"></div>
 		<div class="splash-title">
-			<h1>2PM</h1>
+			<h1>ToInfra</h1>
 			<p>Now loading...</p>
 			<div class="spinner">
 				<div class="rect1"></div>
@@ -286,7 +286,7 @@ small {
 				<form class="form-horizontal" action="addMember.do" method="POST">
 					<div class="modal-body" style="height:500px;">
 						<h3>회원가입</h3>
-						<small>2PM 의 다양한 기능을 느껴보세요!</small>
+						<small>ToInfra 의 다양한 기능을 느껴보세요!</small>
 						<div class="form-group col-lg-12">
 							<label style="color: black;">사번 확인</label>
 							<div class="input-group">

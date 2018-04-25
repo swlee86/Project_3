@@ -106,6 +106,7 @@
 
 
 	<!-- transaction start -->
+	<!--
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="driverManagerDataSource"/>
 	</bean>
@@ -122,6 +123,6 @@
 		<aop:pointcut id="onjPointCut" expression="execution(* com.toinfra.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="onjPointCut" />
 	</aop:config>
-
+	-->
 
 </beans>

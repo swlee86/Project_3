@@ -178,7 +178,7 @@ public class ProjectController {
 	}
 		
 	//프로젝트 > 진행중인 프로젝트 클릭시 구동
-	@RequestMapping("/project_list.do")
+	@RequestMapping(value={"/project_list.do"},method=RequestMethod.GET)
 	public String projectview(Model model) {
 		
 		List<Pj> pjlist = null;

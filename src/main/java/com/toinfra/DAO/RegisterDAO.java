@@ -25,7 +25,7 @@ public interface RegisterDAO {
 	String selectUsedEmpno(String Emp_no);
 	
 	//회원가입 > 아이디 중복 체크하는 함수
-	String selectUsedId(String id);
+	String selectUsedId(String userid);
 	
 	//사원정보 등록페이지 접근시 하위 부서번호를 읽어와서 뿌려주는 함수
 	List<Low_dept> selectLowDeptNo();

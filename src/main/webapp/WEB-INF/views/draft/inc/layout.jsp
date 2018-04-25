@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!-- Page title -->
-<title>2PM</title>
+<title>ToInfra</title>
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -31,7 +31,8 @@
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
 <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
 <link rel="stylesheet" href="styles/style.css">
-  <link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+<link rel="stylesheet" href="vendor/toastr/build/toastr.min.css" />
+<link rel="stylesheet" href="styles/layer.css">
 
 <!--jQuery UI CSS-->
 <link rel="stylesheet"
@@ -120,7 +121,7 @@
 	<div class="splash">
 		<div class="color-line"></div>
 		<div class="splash-title">
-			<h1>2PM</h1>
+			<h1>ToInfra</h1>
 			<p>Now loading...</p>
 			<div class="spinner">
 				<div class="rect1"></div>
@@ -196,6 +197,7 @@
 	
    <!-- alert -->
    <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+	<script src="js/layer/layerpop.js"></script>
    
 </body>
 </html>

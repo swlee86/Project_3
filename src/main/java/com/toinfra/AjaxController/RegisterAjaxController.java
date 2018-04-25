@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
 import com.toinfra.Service.RegisterService;
@@ -42,9 +43,9 @@ public class RegisterAjaxController {
 	}
 	
 	//회원 가입에서 아이디 체크 버튼시 작동
-	@RequestMapping("/idchk.do")
-	public View idchk(String id , Model model){	
-		String idcheck = regiseterservice.selectUsedId(id);
+	@RequestMapping(value={"/idchk.do"}, method=RequestMethod.POST)
+	public View idchk(String userid , Model model){
+		String idcheck = regiseterservice.selectUsedId(userid);
 		String answer= null;
 		if(idcheck!=null){
 			answer="존재하는 아이디입니다. 다른 아이디를 선택해 주세요.";

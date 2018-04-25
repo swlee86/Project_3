@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Page title -->
-    <title>EPM | WebApp admin theme</title>
+    <title>ToInfra | Admin Page</title>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/layer.css">
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
@@ -48,5 +49,6 @@
 
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
+<script src="js/layer/layerpop.js"></script>
 </body>
 </html>

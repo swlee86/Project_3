@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Page title -->
-    <title>2PM</title>
+    <title>ToInfra</title>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -32,12 +32,13 @@
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/layer.css">
 
 </head>
 <body class="fixed-navbar fixed-sidebar">
 
 <!-- Simple splash screen-->
-<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>ToInfra</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
 
 <!-- Header -->
 <tiles:insertAttribute name="header" />
@@ -73,6 +74,7 @@
 <script src="vendor/sparkline/index.js"></script>
 
 <script src="vendor/summernote/dist/summernote.min.js"></script>
+<script src="js/layer/layerpop.js"></script>
 <!-- App scripts -->
 <script src="scripts/homer.js"></script>
 <!-- alert 창 -->

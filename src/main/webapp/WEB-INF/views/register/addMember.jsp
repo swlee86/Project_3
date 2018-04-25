@@ -10,15 +10,17 @@
 					<div class="col-md-12">
 						<div class="text-center m-b-md" style="color:gray">
 							<h3>회원가입</h3>
-							<small>2PM 의 다양한 기능을 느껴보세요!</small>
+							<small>ToInfra 의 다양한 기능을 느껴보세요!</small>
 						</div>
 						
 						<div class="hpanel">
 							<div class="panel-body">
 								<form action="#" id="loginForm" method="post">
 									<div class="row">
+										<%--
 										<div class="form-group col-lg-12">
 											<label style="color: black;">사번 확인</label>
+
 											<div class="input-group">
 												<input type="text" value="" id="emp_no" class="form-control" name="emp_no"> 
 												<span class="input-group-btn" id="numchkmsg">
@@ -27,11 +29,11 @@
 											</div>
 											<span id="numchkresult" style="color: blue;"></span>
 										</div>
-																			
+										--%>
 										<div class="form-group col-lg-12">
 											<label style="color: black;">ID</label>
 											<div class="input-group">
-												<input type="text" value="" id="id" class="form-control" name="id"> 
+												<input type="text" value="" id="userid" class="form-control" name="userid">
 												<span class="input-group-btn">
 													<input type="button" class="btn btn-success " id="idchk" value="중복 체크">
 												</span> 										
@@ -47,6 +49,7 @@
 											<label style="color: black;">Repeat Password</label> <input
 												type="password" value="" id="pwdchk" class="form-control" name="pwdchk">
 										</div>
+										<%--
 										<div class="form-group col-lg-12">
 											<label style="color: black;">주소</label>
 											<div class="input-group">
@@ -66,11 +69,12 @@
 
 											</div>
 										</div>
+										--%>
 										<div class="form-group col-lg-12">
 											<label style="color: black;">E-mail</label>
 											<div class="row">
 											<div class="col-lg-12">
-												<input type="text" value="${registerGoogleMail}" id="email" class="form-control" name="email" readonly="readonly">																					
+												<input type="text" value="${registerGoogleMail}" id="email" class="form-control" name="email">
 											</div>
 											</div>
 										</div>

@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Page title -->
-    <title>2PM</title>
+    <title>ToInfra</title>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
@@ -41,7 +41,9 @@
    
    <!--jQuery UI CSS-->
    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
-   
+
+    <link rel="stylesheet" href="styles/layer.css">
+
    <!--텍스트 에디터 사용시 추가해야할 css -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     	<!-- sweet alert -->
@@ -564,7 +566,7 @@ $(function(){
 <body class="fixed-navbar fixed-sidebar">
 
 <!-- Simple splash screen-->
-<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>2PM</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>ToInfra</h1><p>Now loading...</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
 
 
 <!-- Header -->
@@ -611,7 +613,7 @@ $(function(){
 <!--풀캘린더 스크립트-->
 <script src="vendor/moment/min/moment.min.js"></script>
 <script src="vendor/fullcalendar/dist/fullcalendar.min.js"></script>
-
+<script src="js/layer/layerpop.js"></script>
 
 
 <script>

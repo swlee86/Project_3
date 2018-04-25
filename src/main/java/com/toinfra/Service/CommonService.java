@@ -15,9 +15,7 @@ public class CommonService {
 	// 로그인 id로 emp_no 출력
 	public String selectEmp_no(String id){
 		CommonDAO dao = sqlsession.getMapper(CommonDAO.class);
-		String emp_no = null;
-		emp_no = dao.selectEmp_no(id);
-		
+		String emp_no = dao.selectEmp_no(id);
 		return emp_no;
 	}
 	
