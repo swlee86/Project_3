@@ -249,18 +249,14 @@ $(function(){
                                                 <div class="panel-body">
                                                     <form action="${pageContext.request.contextPath}/login" id="loginForm" method="POST" name="f">
                                                         <div class="form-group">
-                                                            <label class="control-label" for="username" style="color: black;">아이디</label> <input
-                                                                type="text" title="Please enter you username" required="" value="구글 로그인 후 이용하세요"
-                                                                name="username" id="username" class="form-control">
-                                                            <span class="help-block small">Your unique username to
-												app</span>
+                                                            <label class="control-label" for="username" style="color: black;">아이디</label>
+                                                                <input type="text" title="Please enter you username" required="" value="" name="username" id="username" class="form-control">
+                                                            <span class="help-block small">Your unique username to app</span>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label" for="password" style="color:black;">비밀번호</label> <input
-                                                                type="password" title="Please enter your password"
-                                                                placeholder="******" required="" value="" name="password"
-                                                                id="password" class="form-control"> <span
-                                                                class="help-block small">Your strong password</span>
+                                                            <label class="control-label" for="password" style="color:black;">비밀번호</label>
+                                                            <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control">
+                                                            <span class="help-block small">Your strong password</span>
                                                         </div>
                                                         <div class="checkbox">
                                                             <input type="checkbox" class="i-checks" checked>

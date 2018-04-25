@@ -84,10 +84,5 @@
 		  }
 
 	  
-	  $(function(){
-		  $('#googlelogout').click(function(){
-			  $('#username').val("구글 로그인 후 이용하세요");
-		  });
-		  
-	  })
+
 	</script>
