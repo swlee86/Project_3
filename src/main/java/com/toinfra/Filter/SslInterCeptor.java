@@ -16,6 +16,7 @@ public class SslInterCeptor extends HandlerInterceptorAdapter {
         if (logger.isDebugEnabled()) {
             logger.debug("======================================          SSL Filter START         ======================================");
             logger.debug(" Request URI \t:  " + request.getRequestURI());
+/*
 
             // SSL 적용
             String url = request.getRequestURL().toString();
@@ -25,6 +26,7 @@ public class SslInterCeptor extends HandlerInterceptorAdapter {
                 logger.info("SSL 적용 후 URL : " + url);
                 response.sendRedirect(url);
             }
+*/
 
 
 
