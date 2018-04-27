@@ -325,7 +325,11 @@
 					<include>**/*.xml</include>
 				</includes>
 			</resource>
+			<resource>
+				<directory>src/main/resources-${env}</directory>
+			</resource>
 		</resources>
+
 		<!-- ROOT.war 가 생성된다. -->
 		<finalName>ROOT</finalName>
 		<plugins>
