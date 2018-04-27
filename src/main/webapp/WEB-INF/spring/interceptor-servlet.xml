@@ -26,6 +26,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/etc/**" />
             <bean id="sslInterceptorPC" class="com.toinfra.Filter.SslInterCeptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

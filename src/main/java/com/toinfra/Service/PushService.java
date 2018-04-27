@@ -48,11 +48,11 @@ public class PushService {
 	}
 
 	// index에서 사용될 Task 미확인 데이터를 끌고 옴
-	public List<Task> tasklist(String emp_no, int cpage, int pgsize) {
+	public List<Task> tasklist(String user_id, int cpage, int pgsize) {
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		int start = 1 ;//+ (cpage * pgsize - 5);//(pgsize - 1);
 		int end = 5;//(cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
-		List<Task> tasklist = pushdao.selecttasklist(emp_no, start, end);
+		List<Task> tasklist = pushdao.selecttasklist(user_id, start, end);
 		return tasklist;
 	}
 
@@ -67,11 +67,11 @@ public class PushService {
 	}
 
 	// 미승인된 프로젝트 리스트를 뽑는 함수
-	public List<Pj> selectPj_rec(String emp_no, int cpage, int pgsize) {
+	public List<Pj> selectPj_rec(String user_id, int cpage, int pgsize) {
 		PushDAO pushdao = sqlsession.getMapper(PushDAO.class);
 		int start = 1 + (cpage * pgsize - 5);//(pgsize - 1);
 		int end = (cpage * pgsize);//  5개 까지 - 2; // 최대 3개까지만
-		List<Pj> projectlist = pushdao.selectPj_rec(emp_no, start, end);
+		List<Pj> projectlist = pushdao.selectPj_rec(user_id, start, end);
 		return projectlist;
 	}
 

@@ -50,7 +50,7 @@ public class IndexController {
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping(value={"index.do"}, method=RequestMethod.GET)
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, Principal principal) {
-		
+
 			HttpSession session = request.getSession();
 			Emp_detail user_date = (Emp_detail)session.getAttribute("user_date");
 			String user_id = null;
@@ -85,21 +85,19 @@ public class IndexController {
 			int pgsize = Integer.parseInt(pagesize);  		// 10
 			int cpage = Integer.parseInt(currentpage);     //1
 
-
-
-
-
 			/////////////////////////////////
 
 			List<Task> tasklist = null;
 
 			///////////////////////인덱스에 띄워 줄 업무 내용 구하기 시작////////////////////////////////////////////////////
 			if(emp_no_chk==true){
+				logger.info("로그인 미진행 - 미확인 업무 확인 불가 로직 진행");
 				String msg_task = "미확인 업무 내역은 로그인 후 내용 확인 가능합니다";
 				model.addAttribute("msg_task", msg_task);
 			}else{
 				try{
 					tasklist = pushService.tasklist(user_id, cpage, pgsize);
+					logger.info("1. 업무내용 확인 : " + tasklist);
 				}catch(Exception e){
 					e.printStackTrace();
 					session.setAttribute("error_Cd","9999999");
@@ -119,6 +117,7 @@ public class IndexController {
 			}else{
 				try{
 					mytasklist = pushService.mytasklist(user_id, cpage, pgsize);
+					logger.info("2. 진행중인 업무내역 확인 : " + mytasklist);
 				}catch(Exception e){
 					e.printStackTrace();
 					session.setAttribute("error_Cd","9999999");
@@ -131,7 +130,8 @@ public class IndexController {
 
 			}
 
-
+			/*
+			>>메인 근태 페이지 보류 작업
 			String deptavg = "";
 			String myavg = "";
 			if(emp_no_chk==true){
@@ -179,6 +179,7 @@ public class IndexController {
 					model.addAttribute("pjlist", pjlist);
 				}
 			}
+			*/
 
 			List<Pj> approve_pjlist = null;
 
@@ -263,48 +264,6 @@ public class IndexController {
 			model.addAttribute("breaklist", breaklist);
 
 
-
-
-
-
-			/////////////////////////인덱스에 띄워 줄 메일 내용 구하기 시작////////////////////////////////////////////////////
-
-			//메인에 띄워 줄 메일 토탈 카운트 구하기
-/*        List<Mail> mail =  null;
-		String mailid = (String)session.getAttribute("googlemail");
-        String sessionchk=(String)session.getAttribute("mailusedata");
-        boolean test = Util.isEmpty(sessionchk);
-
- 	    String saveFolder="/mail/data";
- 	    String filePath = request.getRealPath(saveFolder);
-
- 		if(test==true){
- 			String msg = "메일은 보안 관계상 로그인 후 내용 확인 가능합니다";
- 			model.addAttribute("msg", msg);
-
- 		}else{
- 			try {
-				mail =  ReceiveMailImap.doit(mailid, sessionchk, filePath, pgsize, cpage);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally{
-				model.addAttribute("maillist", mail);
-			}
- 		}
-
-        try{
-        	list = companyBoardService.selectBoard(cpage, pgsize+5);
-
-        }catch (Exception e) {
-        	e.printStackTrace();
-		}finally {
-			model.addAttribute("companyList", list);
-
-			model.addAttribute("cpage", cpage);
-			model.addAttribute("psize", pgsize);
-		}*/
-
-
 			//로그 데이터에 담을 DTO 생성
 			session.setAttribute("error_Cd","0000000");
 			session.setAttribute("change_value","인덱스_정상진입");
@@ -352,13 +311,13 @@ public class IndexController {
 
 	
 	// 404번 에러 발생시 구동
-	@RequestMapping("/error_404.do")
+	@RequestMapping("/etc/error_404.do")
 	public String error_404view() {
 		return "error_404";
 	}
 
 	// 500번 에러 발생시 구동
-	@RequestMapping("/error_500.do")
+	@RequestMapping("/etc/error_500.do")
 	public String error_500view() {
 		return "error_500";
 	}
