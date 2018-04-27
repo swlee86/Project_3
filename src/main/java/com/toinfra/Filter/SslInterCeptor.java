@@ -18,7 +18,7 @@ public class SslInterCeptor extends HandlerInterceptorAdapter {
             logger.debug("======================================          SSL Filter START         ======================================");
             logger.debug(" Request URI \t:  " + request.getRequestURI());
         }
-
+/*
         // SSL 적용
         String url = request.getRequestURL().toString();
         logger.info("SSL 접근 URL : " + url);
@@ -28,8 +28,12 @@ public class SslInterCeptor extends HandlerInterceptorAdapter {
             response.sendRedirect(url);
             return false;
         }else{
-            return super.preHandle(request, response, handler);
+
         }
+
+    */
+
+        return super.preHandle(request, response, handler);
     }
 
     @Override
