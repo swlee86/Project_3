@@ -3,6 +3,7 @@ package com.toinfra.Service;
 import java.util.List;
 import java.util.Map;
 
+import com.toinfra.DTO.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +14,6 @@ import com.toinfra.DAO.DeptDAO;
 import com.toinfra.DAO.Low_deptDAO;
 import com.toinfra.DAO.PayDAO;
 import com.toinfra.DAO.PositionDAO;
-import com.toinfra.DTO.Branch;
-import com.toinfra.DTO.Dept;
-import com.toinfra.DTO.DeptJoinBonus;
-import com.toinfra.DTO.LowDeptJoin;
-import com.toinfra.DTO.Low_dept;
-import com.toinfra.DTO.Pay;
-import com.toinfra.DTO.Position;
-import com.toinfra.DTO.PositionJoin;
-import com.toinfra.DTO.Set_homepage;
-import com.toinfra.DTO.Set_pay_date;
-import com.toinfra.DTO.Set_time;
 
 @Service
 public class AdminService {
