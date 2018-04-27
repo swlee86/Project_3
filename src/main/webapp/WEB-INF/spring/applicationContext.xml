@@ -29,8 +29,8 @@
 
 	<bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://airless86.cafe24.com:3306/airless86" />
-		<!--<property name="url" value="jdbc:mysql://localhost:3306/airless86" />-->
+		<!--<property name="url" value="jdbc:mysql://airless86.cafe24.com:3306/airless86" />-->
+		<property name="url" value="jdbc:mysql://localhost:3306/airless86" />
 		<property name="username" value="airless86" />
 		<property name="password" value="Clqxls6119@2" />
 	</bean>
