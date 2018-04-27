@@ -326,7 +326,7 @@
 				</includes>
 			</resource>
 			<resource>
-				<directory>src/main/resources-${env}</directory>
+				<directory>src/main/resources/${env}</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
