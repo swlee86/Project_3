@@ -8,6 +8,11 @@
 
 <script>
 
+    if ( document.location.protocol == 'http:' ) {
+        if ( document.location.port == '443' ) {
+            document.location.href = document.location.href.replace('http:', 'https:');
+        };
+    };
          
 $(function(){
 	$('#sidebar').click(function(){
