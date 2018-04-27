@@ -19,8 +19,10 @@ public class SslInterCeptor extends HandlerInterceptorAdapter {
 
             // SSL 적용
             String url = request.getRequestURL().toString();
+            logger.info("SSL 접근 URL : " + url);
             if(url.startsWith("http://") && url.indexOf("localhost") < 0) {
                 url = url.replaceAll("http://", "https://");
+                logger.info("SSL 적용 후 URL : " + url);
                 response.sendRedirect(url);
             }
 
