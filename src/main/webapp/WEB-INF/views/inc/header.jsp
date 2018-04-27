@@ -347,7 +347,7 @@ $('#birthDay').click(function(){
 
 		var pushcount;
 		var webSocket;
-		webSocket = new WebSocket("ws://192.168.0.128:8090/toinfra/broadsocket.do");
+		webSocket = new WebSocket("ws://toinfra.com/broadsocket.do");
 		
 		//호출 시점  :  send() 메세지 호출 > broadsocket > handleTextMessage > json 넘어와서 
         webSocket.onmessage = function (message){
