@@ -369,4 +369,33 @@
 				</configuration></plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<!-- 로컬 서버-->
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<env>local</env>
+			</properties>
+		</profile>
+
+		<!-- 개발 서버-->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
+			</properties>
+		</profile>
+
+		<!-- 운영 서버-->
+		<profile>
+			<id>real</id>
+			<properties>
+				<env>real</env>
+			</properties>
+		</profile>
+	</profiles>
 </project>
