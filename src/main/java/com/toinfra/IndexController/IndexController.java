@@ -50,6 +50,7 @@ public class IndexController {
 	// 최초 접속(index.html)시 views/index.jsp 구동
 	@RequestMapping(value={"index.do"}, method=RequestMethod.GET)
 	public String indexview(HttpServletRequest request, HttpServletResponse response, String pagesize, String currentpage, Model model, Principal principal) {
+		
 			HttpSession session = request.getSession();
 			Emp_detail user_date = (Emp_detail)session.getAttribute("user_date");
 			String user_id = null;
