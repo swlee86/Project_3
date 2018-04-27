@@ -34,7 +34,16 @@
 		<property name="username" value="airless86" />
 		<property name="password" value="Clqxls6119@2" />
 	</bean>
+
 	-->
+
+	<bean id="propertyPlaceholderConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:db.properties</value>
+		</property>
+	</bean>
+
 	<bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${dbPool.DriverClassName}"/>
 		<property name="url" value="${dbPool.Url}"/>

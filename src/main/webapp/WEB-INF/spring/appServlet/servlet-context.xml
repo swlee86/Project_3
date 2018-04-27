@@ -44,6 +44,7 @@
 -->
 
 
+
     <beans:bean id="driverManagerDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <beans:property name="driverClassName" value="${dbPool.DriverClassName}" />
         <beans:property name="url" value="${dbPool.Url}"/>
