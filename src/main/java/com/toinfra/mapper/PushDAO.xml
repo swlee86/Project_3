@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.toinfra.DAO.PushDAO">
 
     <select id="projectMyCount" resultType="String">
-        select count(pj_no) from pj where emp_no=#{emp_no} and step_no='1'
+        select count(pj_no) from pj where user_id=#{user_id} and step_no='1'
     </select>
 
     <select id="projectApproval" resultType="String">
@@ -50,12 +50,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           select rownum r,t.task_no, t.cg_no, task_name, rec_name, user_name, t.task_step_no, deadline, rec_user_id , t.send_date, t.file_name, t.sign
     from task t join task_step s
     on t.task_step_no = s.task_step_no
-    left outer join (select p.task_no, p.emp_no, t.cg_no
+    left outer join (select p.task_no, p.user_id, t.cg_no
                      from task t join task_people p
                      on t.task_no = p.task_no
-                     where p.emp_no = #{emp_no} and cg_no = '1') p
+                     where p.user_id = #{user_id} and cg_no = '1') p
     on t.task_no = p.task_no
-    where rec_user_id = #{emp_no} and t.cg_no = '1' and t.step_no = '1' and t.task_step_no != '4'  and t.task_step_no != '5' or p.emp_no is not null
+    where rec_user_id = #{user_id} and t.cg_no = '1' and t.step_no = '1' and t.task_step_no != '4'  and t.task_step_no != '5' or p.user_id is not null
     order by abs(trunc(to_date(deadline) - to_date(to_char(sysdate, 'yyyy-mm-dd')))) asc
     ) where r between 1 and 5
     </select>
@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <!-- 차트 데이터를 뽑아오는 함수 -->
     <select id="commutelist" parameterType="String" resultType="com.toinfra.DTO.Commute">
-    select regdate, in_time, out_time, add_time from (select regdate, in_time, out_time, add_time from commute where emp_no=#{param1} and add_time is not null and add_time!='00:00' and regdate between to_char(to_date(#{param2}, 'YYYY-MM-dd'), 'YYYY-MM-dd') and to_char(to_date(#{param3}, 'YYYY-MM-dd'), 'YYYY-MM-dd') order by regdate asc)
+    select regdate, in_time, out_time, add_time from (select regdate, in_time, out_time, add_time from commute where user_id=#{param1} and add_time is not null and add_time!='00:00' and regdate between to_char(to_date(#{param2}, 'YYYY-MM-dd'), 'YYYY-MM-dd') and to_char(to_date(#{param3}, 'YYYY-MM-dd'), 'YYYY-MM-dd') order by regdate asc)
     </select>
 
     <!-- 평균 근무시간 - 부서 -->
@@ -97,10 +97,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60)+
                sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))
         from (select commute_time from commute c
-        join userDto e
-        on c.emp_no=e.emp_no
+        join user e
+        on c.user_id=e.user_id
         where e.low_dept_no =
-        (select low_dept_no from userDto where emp_no=#{emp_no})
+        (select low_dept_no from userDto where user_id=#{user_id})
         and commute_time is not null
         and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm'))
     </select>
@@ -116,7 +116,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectavgcommute_my" parameterType="String" resultType="String">
     select round((sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'hh24'))*60 ) +
                sum(to_number(to_char(to_date(commute_time,'hh24:mi'),'mi'))))/count(commute_time))
-        from commute where emp_no=#{emp_no} and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm') and commute_time is not null
+        from commute where user_id=#{user_id} and substr(regdate, 0,7)=to_char(sysdate,'yyyy-mm') and commute_time is not null
     </select>
 
     <select id="selectLogin_Emp" resultType="com.toinfra.DTO.Emp_detail">
