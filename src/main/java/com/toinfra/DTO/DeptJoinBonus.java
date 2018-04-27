@@ -16,8 +16,6 @@ public class DeptJoinBonus {
 	private int bonus_percent;
 	private String bonus_check;
 	
-	
-	
 	public String getBonus_check() {
 		return bonus_check;
 	}
