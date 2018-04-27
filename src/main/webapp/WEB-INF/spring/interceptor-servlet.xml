@@ -22,14 +22,14 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-<!--
+
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean id="loginInterceptorPC" class="kr.or.phonejob.Filter.Interceptor"></bean>
+            <bean id="sslInterceptorPC" class="com.toinfra.Filter.SslInterCeptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
--->
+
 
 
 </beans>
