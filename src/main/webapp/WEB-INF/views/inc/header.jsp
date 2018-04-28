@@ -9,7 +9,8 @@
 <script>
 
     if ( document.location.protocol == 'http:' ) {
-        if ( document.location.host == 'localhost' ) {
+        console.log("접근한 host : " + document.location.hostname);
+        if ( document.location.hostname != 'localhost' ) {
             document.location.href = document.location.href.replace('http:', 'https:');
         };
     };
