@@ -9,9 +9,9 @@
 <script>
 
     if ( document.location.protocol == 'http:' ) {
-        //if ( document.location.port == '443' ) {
+        if ( document.location.host == 'localhost' ) {
             document.location.href = document.location.href.replace('http:', 'https:');
-        //};
+        };
     };
          
 $(function(){

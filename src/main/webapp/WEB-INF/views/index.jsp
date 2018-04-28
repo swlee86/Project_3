@@ -696,6 +696,7 @@
 <script src="vendor/c3/c3.min.js"></script>
 
 <script>
+	/*
 	$(function() {	
 		var deptavg = ${deptavg};
 		var myavg = ${myavg};
@@ -735,4 +736,5 @@
 
 
 	});
+	*/
 </script>
