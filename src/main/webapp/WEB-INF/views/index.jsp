@@ -694,9 +694,10 @@
 <link rel="stylesheet" href="vendor/c3/c3.min.css" />
 <script src="vendor/d3/d3.min.js"></script>
 <script src="vendor/c3/c3.min.js"></script>
+<%--
 
 <script>
-	/*
+
 	$(function() {	
 		var deptavg = ${deptavg};
 		var myavg = ${myavg};
@@ -736,5 +737,6 @@
 
 
 	});
-	*/
+
 </script>
+--%>
